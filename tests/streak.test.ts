@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { computeStreak } from "@/lib/progress/streak";
 import { addDays, toLocalDateKey } from "@/lib/progress/dates";
+import { buildHeatmap, intensity } from "@/lib/progress/heatmap";
 
 describe("computeStreak", () => {
   it("is zero with no activity", () => {
@@ -47,5 +48,20 @@ describe("date helpers", () => {
   });
   it("formats local dates", () => {
     expect(toLocalDateKey(new Date(2026, 0, 5, 23, 59))).toBe("2026-01-05");
+  });
+});
+
+
+describe("buildHeatmap", () => {
+  it("ends with the week containing today, Sunday first", () => {
+    const grid = buildHeatmap({ "2026-10-29": 3 }, "2026-10-29", 4);
+    expect(grid).toHaveLength(4);
+    const last = grid.at(-1)!;
+    expect(last[0]?.date).toBe("2026-10-25"); // Sunday
+    expect(last[4]).toMatchObject({ date: "2026-10-29", count: 3, inRange: true });
+    expect(last[5]?.inRange).toBe(false);
+  });
+  it("buckets intensity", () => {
+    expect([0, 1, 3, 7, 20].map(intensity)).toEqual([0, 1, 2, 3, 4]);
   });
 });
