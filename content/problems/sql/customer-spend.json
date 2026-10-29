@@ -1,0 +1,23 @@
+{
+  "slug": "customer-spend",
+  "track": "sql",
+  "title": "Customer spend",
+  "difficulty": "Medium",
+  "tags": [
+    "join",
+    "group-by",
+    "order-by"
+  ],
+  "statementMd": "For each customer with at least one non-cancelled order, return their name, the number of non-cancelled orders and the total amount spent (`quantity * unit_price`, rounded to 2 decimals). Sort by total spent, highest first.\n\nExpected columns: `name`, `order_count`, `total_spent`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Count distinct order ids: one order can have several line items.",
+    "Join `customers` → `orders` → `order_items`, filter cancelled orders, then group by customer."
+  ],
+  "solutionMd": "```sql\nSELECT c.name, COUNT(DISTINCT o.id) AS order_count, ROUND(SUM(oi.quantity * oi.unit_price), 2) AS total_spent\nFROM customers c\nJOIN orders o ON o.customer_id = c.id\nJOIN order_items oi ON oi.order_id = o.id\nWHERE o.status <> 'cancelled'\nGROUP BY c.id, c.name\nORDER BY total_spent DESC;\n```\n\nJoining to line items multiplies rows per order, so `COUNT(DISTINCT o.id)` is needed for the order count.",
+  "starterCode": "-- customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "SELECT c.name, COUNT(DISTINCT o.id) AS order_count, ROUND(SUM(oi.quantity * oi.unit_price), 2) AS total_spent\nFROM customers c\nJOIN orders o ON o.customer_id = c.id\nJOIN order_items oi ON oi.order_id = o.id\nWHERE o.status <> 'cancelled'\nGROUP BY c.id, c.name\nORDER BY total_spent DESC;",
+    "orderMatters": true
+  }
+}

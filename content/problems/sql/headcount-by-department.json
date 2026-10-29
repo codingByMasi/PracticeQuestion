@@ -1,0 +1,21 @@
+{
+  "slug": "headcount-by-department",
+  "track": "sql",
+  "title": "Headcount by department",
+  "difficulty": "Easy",
+  "tags": [
+    "group-by"
+  ],
+  "statementMd": "For every department that has employees, return its `department_id` and the number of employees in it. Ignore employees without a department.\n\nExpected columns: `department_id`, `headcount`.\n\nTables: `employees`, `departments`.\n\nRow order does not matter.",
+  "hints": [
+    "`GROUP BY department_id` makes one row per department.",
+    "Filter out NULL departments before grouping with `WHERE`."
+  ],
+  "solutionMd": "```sql\nSELECT department_id, COUNT(*) AS headcount FROM employees WHERE department_id IS NOT NULL GROUP BY department_id;\n```\n\n`WHERE` runs before grouping, removing the NULL group; `COUNT(*)` then counts rows per group.",
+  "starterCode": "-- employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "SELECT department_id, COUNT(*) AS headcount FROM employees WHERE department_id IS NOT NULL GROUP BY department_id;",
+    "orderMatters": false
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "slug": "london-departments",
+  "track": "sql",
+  "title": "Departments in London",
+  "difficulty": "Easy",
+  "tags": [
+    "select",
+    "where"
+  ],
+  "statementMd": "List the `name` of every department located in **London**.\n\nExpected columns: `name`.\n\nTables: `employees`, `departments`.\n\nRow order does not matter.",
+  "hints": [
+    "Filter rows with `WHERE`.",
+    "String literals use single quotes: `'London'`."
+  ],
+  "solutionMd": "```sql\nSELECT name FROM departments WHERE location = 'London';\n```\n\n`WHERE location = 'London'` keeps only matching rows, and selecting just `name` returns one column.",
+  "starterCode": "-- employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "SELECT name FROM departments WHERE location = 'London';",
+    "orderMatters": false
+  }
+}

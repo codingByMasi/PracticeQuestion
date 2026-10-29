@@ -1,0 +1,23 @@
+{
+  "slug": "monthly-revenue",
+  "track": "sql",
+  "title": "Monthly revenue",
+  "difficulty": "Medium",
+  "tags": [
+    "cte",
+    "group-by",
+    "dates"
+  ],
+  "statementMd": "Report revenue per month for **delivered** orders, in chronological order. Format the month as `YYYY-MM` and round revenue to 2 decimals.\n\nExpected columns: `month`, `revenue`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "`strftime('%Y-%m', order_date)` extracts the month.",
+    "A CTE (`WITH order_totals AS (...)`) can compute per-order totals first."
+  ],
+  "solutionMd": "```sql\nWITH order_totals AS (\n  SELECT o.id, strftime('%Y-%m', o.order_date) AS month, SUM(oi.quantity * oi.unit_price) AS total\n  FROM orders o\n  JOIN order_items oi ON oi.order_id = o.id\n  WHERE o.status = 'delivered'\n  GROUP BY o.id\n)\nSELECT month, ROUND(SUM(total), 2) AS revenue\nFROM order_totals\nGROUP BY month\nORDER BY month;\n```\n\nThe CTE names an intermediate result (one row per order), which the main query then rolls up by month.",
+  "starterCode": "-- customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "WITH order_totals AS (\n  SELECT o.id, strftime('%Y-%m', o.order_date) AS month, SUM(oi.quantity * oi.unit_price) AS total\n  FROM orders o\n  JOIN order_items oi ON oi.order_id = o.id\n  WHERE o.status = 'delivered'\n  GROUP BY o.id\n)\nSELECT month, ROUND(SUM(total), 2) AS revenue\nFROM order_totals\nGROUP BY month\nORDER BY month;",
+    "orderMatters": true
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "slug": "select-all-departments",
+  "track": "sql",
+  "title": "All departments",
+  "difficulty": "Easy",
+  "tags": [
+    "select"
+  ],
+  "statementMd": "Return every column of every row in the `departments` table.\n\nTables: `employees`, `departments`.\n\nRow order does not matter.",
+  "hints": [
+    "`*` selects every column.",
+    "You don't need a WHERE clause."
+  ],
+  "solutionMd": "```sql\nSELECT * FROM departments;\n```\n\n`SELECT *` returns all columns; without a `WHERE` clause every row is included.",
+  "starterCode": "-- employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "SELECT * FROM departments;",
+    "orderMatters": false
+  }
+}

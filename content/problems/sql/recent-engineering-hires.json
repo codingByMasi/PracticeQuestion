@@ -1,0 +1,22 @@
+{
+  "slug": "recent-engineering-hires",
+  "track": "sql",
+  "title": "Recent engineering hires",
+  "difficulty": "Easy",
+  "tags": [
+    "where",
+    "dates"
+  ],
+  "statementMd": "List employees in the **Engineering** department (`department_id = 1`) who were hired on or after **2019-01-01**.\n\nDates are stored as `YYYY-MM-DD` text, which sorts and compares correctly as strings.\n\nExpected columns: `first_name`, `hire_date`.\n\nTables: `employees`, `departments`.\n\nRow order does not matter.",
+  "hints": [
+    "Combine two conditions with `AND`.",
+    "`hire_date >= '2019-01-01'` works because ISO dates compare lexically."
+  ],
+  "solutionMd": "```sql\nSELECT first_name, hire_date FROM employees WHERE department_id = 1 AND hire_date >= '2019-01-01';\n```\n\nBoth conditions must hold, so they're joined with `AND`. ISO-8601 date strings compare in chronological order.",
+  "starterCode": "-- employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "SELECT first_name, hire_date FROM employees WHERE department_id = 1 AND hire_date >= '2019-01-01';",
+    "orderMatters": false
+  }
+}

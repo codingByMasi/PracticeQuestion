@@ -1,0 +1,21 @@
+{
+  "slug": "high-earners",
+  "track": "sql",
+  "title": "High earners",
+  "difficulty": "Easy",
+  "tags": [
+    "where"
+  ],
+  "statementMd": "Find employees whose salary is **greater than 140,000**.\n\nExpected columns: `first_name`, `last_name`, `salary`.\n\nTables: `employees`, `departments`.\n\nRow order does not matter.",
+  "hints": [
+    "Use a comparison operator in `WHERE`.",
+    "Numbers are written without separators: `140000`."
+  ],
+  "solutionMd": "```sql\nSELECT first_name, last_name, salary FROM employees WHERE salary > 140000;\n```\n\nA simple numeric comparison in the `WHERE` clause.",
+  "starterCode": "-- employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "SELECT first_name, last_name, salary FROM employees WHERE salary > 140000;",
+    "orderMatters": false
+  }
+}

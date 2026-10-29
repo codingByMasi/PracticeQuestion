@@ -1,0 +1,22 @@
+{
+  "slug": "empty-departments",
+  "track": "sql",
+  "title": "Departments with no employees",
+  "difficulty": "Medium",
+  "tags": [
+    "join",
+    "left-join"
+  ],
+  "statementMd": "Find departments that have **no** employees.\n\nExpected columns: `name`.\n\nTables: `employees`, `departments`.\n\nRow order does not matter.",
+  "hints": [
+    "A `LEFT JOIN` keeps every department, even without a match.",
+    "Unmatched rows have NULL in the joined table's columns."
+  ],
+  "solutionMd": "```sql\nSELECT d.name\nFROM departments d\nLEFT JOIN employees e ON e.department_id = d.id\nWHERE e.id IS NULL;\n```\n\nThe anti-join pattern: left join, then keep rows where the right side is missing. `NOT EXISTS` works too.",
+  "starterCode": "-- employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "SELECT d.name\nFROM departments d\nLEFT JOIN employees e ON e.department_id = d.id\nWHERE e.id IS NULL;",
+    "orderMatters": false
+  }
+}

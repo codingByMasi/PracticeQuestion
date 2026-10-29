@@ -1,0 +1,23 @@
+{
+  "slug": "well-paid-departments",
+  "track": "sql",
+  "title": "Well-paid departments",
+  "difficulty": "Medium",
+  "tags": [
+    "group-by",
+    "having",
+    "join"
+  ],
+  "statementMd": "List departments whose average salary is **above 110,000**. Show the department name and the average salary rounded to 2 decimals.\n\nExpected columns: `department`, `avg_salary`.\n\nTables: `employees`, `departments`.\n\nRow order does not matter.",
+  "hints": [
+    "Join `employees` to `departments` on `department_id`.",
+    "Use `HAVING AVG(salary) > 110000`."
+  ],
+  "solutionMd": "```sql\nSELECT d.name AS department, ROUND(AVG(e.salary), 2) AS avg_salary\nFROM employees e\nJOIN departments d ON d.id = e.department_id\nGROUP BY d.id, d.name\nHAVING AVG(e.salary) > 110000;\n```\n\nJoin to get names, group per department, and filter groups on the unrounded average.",
+  "starterCode": "-- employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "SELECT d.name AS department, ROUND(AVG(e.salary), 2) AS avg_salary\nFROM employees e\nJOIN departments d ON d.id = e.department_id\nGROUP BY d.id, d.name\nHAVING AVG(e.salary) > 110000;",
+    "orderMatters": false
+  }
+}

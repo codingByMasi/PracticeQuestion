@@ -1,0 +1,21 @@
+{
+  "slug": "above-average-salary",
+  "track": "sql",
+  "title": "Above-average earners",
+  "difficulty": "Medium",
+  "tags": [
+    "subquery"
+  ],
+  "statementMd": "List employees who earn **more than the company-wide average salary**.\n\nExpected columns: `first_name`, `salary`.\n\nTables: `employees`, `departments`.\n\nRow order does not matter.",
+  "hints": [
+    "You can't use `AVG` directly in `WHERE`.",
+    "Compute the average in a subquery: `(SELECT AVG(salary) FROM employees)`."
+  ],
+  "solutionMd": "```sql\nSELECT first_name, salary FROM employees WHERE salary > (SELECT AVG(salary) FROM employees);\n```\n\nA scalar subquery returns a single value that can be compared against each row.",
+  "starterCode": "-- employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "SELECT first_name, salary FROM employees WHERE salary > (SELECT AVG(salary) FROM employees);",
+    "orderMatters": false
+  }
+}

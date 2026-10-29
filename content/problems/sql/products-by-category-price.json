@@ -1,0 +1,21 @@
+{
+  "slug": "products-by-category-price",
+  "track": "sql",
+  "title": "Products by category and price",
+  "difficulty": "Medium",
+  "tags": [
+    "order-by"
+  ],
+  "statementMd": "List all products sorted by `category` alphabetically, and within each category by `price` from most to least expensive.\n\nExpected columns: `name`, `category`, `price`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "`ORDER BY` accepts several columns separated by commas.",
+    "Each column can have its own direction: `ASC` or `DESC`."
+  ],
+  "solutionMd": "```sql\nSELECT name, category, price FROM products ORDER BY category ASC, price DESC;\n```\n\nThe second sort key only breaks ties within the first, giving a per-category price ranking.",
+  "starterCode": "-- customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "SELECT name, category, price FROM products ORDER BY category ASC, price DESC;",
+    "orderMatters": true
+  }
+}

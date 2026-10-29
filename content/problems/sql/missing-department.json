@@ -1,0 +1,22 @@
+{
+  "slug": "missing-department",
+  "track": "sql",
+  "title": "Employees without a department",
+  "difficulty": "Easy",
+  "tags": [
+    "where",
+    "null"
+  ],
+  "statementMd": "Some employees are not assigned to any department (`department_id` is NULL). List them.\n\nExpected columns: `first_name`, `last_name`.\n\nTables: `employees`, `departments`.\n\nRow order does not matter.",
+  "hints": [
+    "`= NULL` never matches anything in SQL.",
+    "Use `IS NULL`."
+  ],
+  "solutionMd": "```sql\nSELECT first_name, last_name FROM employees WHERE department_id IS NULL;\n```\n\nNULL means \"unknown\", so comparisons with `=` yield NULL (not true). `IS NULL` is the correct test.",
+  "starterCode": "-- employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "SELECT first_name, last_name FROM employees WHERE department_id IS NULL;",
+    "orderMatters": false
+  }
+}

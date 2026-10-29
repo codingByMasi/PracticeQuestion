@@ -1,0 +1,21 @@
+{
+  "slug": "salary-rank-in-department",
+  "track": "sql",
+  "title": "Salary rank within department",
+  "difficulty": "Hard",
+  "tags": [
+    "window-functions"
+  ],
+  "statementMd": "For every employee who belongs to a department, show their first name, `department_id`, salary and their salary rank within the department (1 = highest paid). Use `RANK()` semantics.\n\nExpected columns: `first_name`, `department_id`, `salary`, `dept_rank`.\n\nTables: `employees`, `departments`.\n\nRow order does not matter.",
+  "hints": [
+    "Window functions compute a value per row without collapsing rows.",
+    "`RANK() OVER (PARTITION BY department_id ORDER BY salary DESC)`"
+  ],
+  "solutionMd": "```sql\nSELECT first_name, department_id, salary,\n  RANK() OVER (PARTITION BY department_id ORDER BY salary DESC) AS dept_rank\nFROM employees\nWHERE department_id IS NOT NULL;\n```\n\n`PARTITION BY` restarts the ranking for each department; `ORDER BY salary DESC` ranks the top earner first.",
+  "starterCode": "-- employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "SELECT first_name, department_id, salary,\n  RANK() OVER (PARTITION BY department_id ORDER BY salary DESC) AS dept_rank\nFROM employees\nWHERE department_id IS NOT NULL;",
+    "orderMatters": false
+  }
+}

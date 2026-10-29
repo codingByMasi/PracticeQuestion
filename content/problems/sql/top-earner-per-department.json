@@ -1,0 +1,23 @@
+{
+  "slug": "top-earner-per-department",
+  "track": "sql",
+  "title": "Top earner per department",
+  "difficulty": "Hard",
+  "tags": [
+    "subquery",
+    "correlated-subquery",
+    "join"
+  ],
+  "statementMd": "For each department, show the department name and the first name and salary of its highest-paid employee.\n\nExpected columns: `department`, `first_name`, `salary`.\n\nTables: `employees`, `departments`.\n\nRow order does not matter.",
+  "hints": [
+    "A correlated subquery can reference the outer row: `WHERE e.salary = (SELECT MAX(salary) FROM employees WHERE department_id = e.department_id)`.",
+    "Join to `departments` for the name."
+  ],
+  "solutionMd": "```sql\nSELECT d.name AS department, e.first_name, e.salary\nFROM employees e\nJOIN departments d ON d.id = e.department_id\nWHERE e.salary = (\n  SELECT MAX(e2.salary) FROM employees e2 WHERE e2.department_id = e.department_id\n);\n```\n\nThe subquery is re-evaluated for each outer row, returning that row's department maximum. A window function (`RANK() OVER (PARTITION BY ...)`) is an alternative.",
+  "starterCode": "-- employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "SELECT d.name AS department, e.first_name, e.salary\nFROM employees e\nJOIN departments d ON d.id = e.department_id\nWHERE e.salary = (\n  SELECT MAX(e2.salary) FROM employees e2 WHERE e2.department_id = e.department_id\n);",
+    "orderMatters": false
+  }
+}

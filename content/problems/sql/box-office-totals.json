@@ -1,0 +1,22 @@
+{
+  "slug": "box-office-totals",
+  "track": "sql",
+  "title": "Box office totals",
+  "difficulty": "Easy",
+  "tags": [
+    "aggregate",
+    "null"
+  ],
+  "statementMd": "Report the total `gross_millions` of all movies, and how many movies have **no recorded budget**.\n\nExpected columns: `total_gross`, `missing_budget`.\n\nTables: `movies`, `directors`, `reviews`.\n\nRow order does not matter.",
+  "hints": [
+    "`SUM` skips NULL values automatically.",
+    "`COUNT(column)` skips NULLs, `COUNT(*)` doesn't. Or use `SUM(CASE WHEN ... THEN 1 ELSE 0 END)`."
+  ],
+  "solutionMd": "```sql\nSELECT SUM(gross_millions) AS total_gross, COUNT(*) - COUNT(budget_millions) AS missing_budget FROM movies;\n```\n\nAggregates ignore NULLs, so `COUNT(*) - COUNT(budget_millions)` is the number of NULL budgets.",
+  "starterCode": "-- movies, directors, reviews\nSELECT\n",
+  "datasetId": "movies",
+  "expected": {
+    "query": "SELECT SUM(gross_millions) AS total_gross, COUNT(*) - COUNT(budget_millions) AS missing_budget FROM movies;",
+    "orderMatters": false
+  }
+}

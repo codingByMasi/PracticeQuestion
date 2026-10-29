@@ -1,0 +1,22 @@
+{
+  "slug": "big-spenders",
+  "track": "sql",
+  "title": "Big spenders",
+  "difficulty": "Hard",
+  "tags": [
+    "cte",
+    "subquery"
+  ],
+  "statementMd": "Find customers whose total spend on non-cancelled orders is **greater than the average total spend** of customers who have spent anything. Return the name and their total rounded to 2 decimals.\n\nExpected columns: `name`, `total_spent`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\nRow order does not matter.",
+  "hints": [
+    "First compute each customer's total in a CTE.",
+    "Then compare each total with `(SELECT AVG(total) FROM your_cte)`."
+  ],
+  "solutionMd": "```sql\nWITH spend AS (\n  SELECT o.customer_id, SUM(oi.quantity * oi.unit_price) AS total\n  FROM orders o\n  JOIN order_items oi ON oi.order_id = o.id\n  WHERE o.status <> 'cancelled'\n  GROUP BY o.customer_id\n)\nSELECT c.name, ROUND(s.total, 2) AS total_spent\nFROM spend s\nJOIN customers c ON c.id = s.customer_id\nWHERE s.total > (SELECT AVG(total) FROM spend);\n```\n\nA CTE can be referenced more than once: here for the per-customer totals and for their average.",
+  "starterCode": "-- customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "WITH spend AS (\n  SELECT o.customer_id, SUM(oi.quantity * oi.unit_price) AS total\n  FROM orders o\n  JOIN order_items oi ON oi.order_id = o.id\n  WHERE o.status <> 'cancelled'\n  GROUP BY o.customer_id\n)\nSELECT c.name, ROUND(s.total, 2) AS total_spent\nFROM spend s\nJOIN customers c ON c.id = s.customer_id\nWHERE s.total > (SELECT AVG(total) FROM spend);",
+    "orderMatters": false
+  }
+}

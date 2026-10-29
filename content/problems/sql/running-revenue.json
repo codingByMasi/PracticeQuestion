@@ -1,0 +1,22 @@
+{
+  "slug": "running-revenue",
+  "track": "sql",
+  "title": "Running revenue total",
+  "difficulty": "Hard",
+  "tags": [
+    "window-functions",
+    "cte"
+  ],
+  "statementMd": "For each **delivered** order, in order of `order_date`, show the date, the order's total (`quantity * unit_price`, rounded to 2 decimals) and the running total of revenue up to and including that order (rounded to 2 decimals).\n\nExpected columns: `order_date`, `order_total`, `running_total`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Compute order totals first (CTE or subquery).",
+    "`SUM(total) OVER (ORDER BY order_date)` gives a running sum."
+  ],
+  "solutionMd": "```sql\nWITH totals AS (\n  SELECT o.order_date, SUM(oi.quantity * oi.unit_price) AS total\n  FROM orders o\n  JOIN order_items oi ON oi.order_id = o.id\n  WHERE o.status = 'delivered'\n  GROUP BY o.id\n)\nSELECT order_date, ROUND(total, 2) AS order_total,\n  ROUND(SUM(total) OVER (ORDER BY order_date), 2) AS running_total\nFROM totals\nORDER BY order_date;\n```\n\nAn aggregate with `OVER (ORDER BY ...)` accumulates over all preceding rows instead of collapsing them.",
+  "starterCode": "-- customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "WITH totals AS (\n  SELECT o.order_date, SUM(oi.quantity * oi.unit_price) AS total\n  FROM orders o\n  JOIN order_items oi ON oi.order_id = o.id\n  WHERE o.status = 'delivered'\n  GROUP BY o.id\n)\nSELECT order_date, ROUND(total, 2) AS order_total,\n  ROUND(SUM(total) OVER (ORDER BY order_date), 2) AS running_total\nFROM totals\nORDER BY order_date;",
+    "orderMatters": true
+  }
+}

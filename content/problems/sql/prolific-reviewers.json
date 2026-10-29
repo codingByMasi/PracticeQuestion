@@ -1,0 +1,22 @@
+{
+  "slug": "prolific-reviewers",
+  "track": "sql",
+  "title": "Prolific reviewers",
+  "difficulty": "Medium",
+  "tags": [
+    "group-by",
+    "having"
+  ],
+  "statementMd": "Find reviewers who have written **at least 6** reviews.\n\nExpected columns: `reviewer`, `review_count`.\n\nTables: `movies`, `directors`, `reviews`.\n\nRow order does not matter.",
+  "hints": [
+    "Group by `reviewer` and count.",
+    "Filter groups (not rows) with `HAVING`."
+  ],
+  "solutionMd": "```sql\nSELECT reviewer, COUNT(*) AS review_count FROM reviews GROUP BY reviewer HAVING COUNT(*) >= 6;\n```\n\n`HAVING` filters after aggregation, so it can reference `COUNT(*)`.",
+  "starterCode": "-- movies, directors, reviews\nSELECT\n",
+  "datasetId": "movies",
+  "expected": {
+    "query": "SELECT reviewer, COUNT(*) AS review_count FROM reviews GROUP BY reviewer HAVING COUNT(*) >= 6;",
+    "orderMatters": false
+  }
+}

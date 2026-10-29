@@ -1,0 +1,21 @@
+{
+  "slug": "count-employees",
+  "track": "sql",
+  "title": "Count employees",
+  "difficulty": "Easy",
+  "tags": [
+    "aggregate"
+  ],
+  "statementMd": "How many employees does the company have?\n\nExpected columns: `employee_count`.\n\nTables: `employees`, `departments`.\n\nRow order does not matter.",
+  "hints": [
+    "`COUNT(*)` counts rows.",
+    "Name the column with `AS employee_count`."
+  ],
+  "solutionMd": "```sql\nSELECT COUNT(*) AS employee_count FROM employees;\n```\n\n`COUNT(*)` counts every row; `AS` gives the result column the expected name.",
+  "starterCode": "-- employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "SELECT COUNT(*) AS employee_count FROM employees;",
+    "orderMatters": false
+  }
+}

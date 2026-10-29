@@ -1,0 +1,23 @@
+{
+  "slug": "top-rated-movies",
+  "track": "sql",
+  "title": "Top-rated movies",
+  "difficulty": "Medium",
+  "tags": [
+    "join",
+    "group-by",
+    "order-by"
+  ],
+  "statementMd": "List the three movies with the highest average review rating, best first. Show the title and the average rating rounded to 2 decimals. Break ties by title alphabetically.\n\nExpected columns: `title`, `avg_rating`.\n\nTables: `movies`, `directors`, `reviews`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Join `movies` to `reviews` and group by movie.",
+    "Sort by `AVG(rating) DESC, title` and use `LIMIT 3`."
+  ],
+  "solutionMd": "```sql\nSELECT m.title, ROUND(AVG(r.rating), 2) AS avg_rating\nFROM movies m\nJOIN reviews r ON r.movie_id = m.id\nGROUP BY m.id, m.title\nORDER BY AVG(r.rating) DESC, m.title\nLIMIT 3;\n```\n\nAggregating per movie and sorting on the aggregate; the secondary sort key makes the result deterministic.",
+  "starterCode": "-- movies, directors, reviews\nSELECT\n",
+  "datasetId": "movies",
+  "expected": {
+    "query": "SELECT m.title, ROUND(AVG(r.rating), 2) AS avg_rating\nFROM movies m\nJOIN reviews r ON r.movie_id = m.id\nGROUP BY m.id, m.title\nORDER BY AVG(r.rating) DESC, m.title\nLIMIT 3;",
+    "orderMatters": true
+  }
+}

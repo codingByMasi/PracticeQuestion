@@ -1,0 +1,21 @@
+{
+  "slug": "employee-departments",
+  "track": "sql",
+  "title": "Employees and their departments",
+  "difficulty": "Easy",
+  "tags": [
+    "join"
+  ],
+  "statementMd": "List each employee's first and last name together with the name of their department. Employees without a department should not appear.\n\nExpected columns: `first_name`, `last_name`, `department`.\n\nTables: `employees`, `departments`.\n\nRow order does not matter.",
+  "hints": [
+    "An inner `JOIN` keeps only rows that match on both sides.",
+    "Alias the department name with `AS department`."
+  ],
+  "solutionMd": "```sql\nSELECT e.first_name, e.last_name, d.name AS department\nFROM employees e\nJOIN departments d ON d.id = e.department_id;\n```\n\nAn inner join drops employees whose `department_id` is NULL because they have no matching department.",
+  "starterCode": "-- employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "SELECT e.first_name, e.last_name, d.name AS department\nFROM employees e\nJOIN departments d ON d.id = e.department_id;",
+    "orderMatters": false
+  }
+}

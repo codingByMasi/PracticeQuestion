@@ -1,0 +1,21 @@
+{
+  "slug": "salary-stats",
+  "track": "sql",
+  "title": "Salary statistics",
+  "difficulty": "Easy",
+  "tags": [
+    "aggregate"
+  ],
+  "statementMd": "Compute the lowest, highest and average salary across all employees. Round the average to **2 decimal places**.\n\nExpected columns: `min_salary`, `max_salary`, `avg_salary`.\n\nTables: `employees`, `departments`.\n\nRow order does not matter.",
+  "hints": [
+    "`MIN`, `MAX` and `AVG` are aggregate functions.",
+    "`ROUND(x, 2)` rounds to two decimals."
+  ],
+  "solutionMd": "```sql\nSELECT MIN(salary) AS min_salary, MAX(salary) AS max_salary, ROUND(AVG(salary), 2) AS avg_salary FROM employees;\n```\n\nSeveral aggregates can be computed in one pass over the table.",
+  "starterCode": "-- employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "SELECT MIN(salary) AS min_salary, MAX(salary) AS max_salary, ROUND(AVG(salary), 2) AS avg_salary FROM employees;",
+    "orderMatters": false
+  }
+}

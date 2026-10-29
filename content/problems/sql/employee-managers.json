@@ -1,0 +1,22 @@
+{
+  "slug": "employee-managers",
+  "track": "sql",
+  "title": "Who manages whom",
+  "difficulty": "Medium",
+  "tags": [
+    "join",
+    "self-join"
+  ],
+  "statementMd": "For every employee who has a manager, show the employee's first name and their manager's first name.\n\nExpected columns: `employee`, `manager`.\n\nTables: `employees`, `departments`.\n\nRow order does not matter.",
+  "hints": [
+    "Join the `employees` table to itself.",
+    "Use two aliases, e.g. `e` for the employee and `m` for the manager: `ON m.id = e.manager_id`."
+  ],
+  "solutionMd": "```sql\nSELECT e.first_name AS employee, m.first_name AS manager\nFROM employees e\nJOIN employees m ON m.id = e.manager_id;\n```\n\nA self-join treats the same table as two roles. The inner join skips employees whose `manager_id` is NULL.",
+  "starterCode": "-- employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "SELECT e.first_name AS employee, m.first_name AS manager\nFROM employees e\nJOIN employees m ON m.id = e.manager_id;",
+    "orderMatters": false
+  }
+}
