@@ -1,0 +1,8 @@
+{
+  "id": "sql",
+  "title": "SQL",
+  "description": "Query relational data with SQLite: filtering, sorting, aggregates, joins, subqueries, CTEs and window functions.",
+  "runnerId": "sql",
+  "editorLanguage": "sql",
+  "order": 1
+}

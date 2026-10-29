@@ -1,0 +1,8 @@
+{
+  "id": "python",
+  "title": "Python",
+  "description": "Write Python functions: strings, lists, dictionaries, loops, recursion, comprehensions and classic algorithms.",
+  "runnerId": "python",
+  "editorLanguage": "python",
+  "order": 2
+}
