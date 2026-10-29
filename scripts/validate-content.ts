@@ -9,6 +9,7 @@ import { loadPyodide } from "pyodide";
 import initSqlJs from "sql.js";
 import { ContentError, loadContent, type Content } from "../lib/content/load";
 import type { Problem } from "../lib/content/schema";
+import { extractRunnableSnippets, runnerForLanguage } from "../lib/content/snippets";
 import { judgePython } from "../lib/judge/python";
 import { judgeSql } from "../lib/judge/sql";
 import type { JudgeReport } from "../lib/judge/types";
@@ -70,6 +71,26 @@ async function main() {
       const starter = await judgePython(problem, problem.starterCode, "submit", executors.python);
       checks.push({ label, ok: report.passed, detail: report.passed ? undefined : describeFailure(report) });
       if (starter.passed) checks.push({ label: `${label} (starter code must not pass)`, ok: false });
+    }
+  }
+
+  for (const lesson of content.lessons) {
+    const snippets = extractRunnableSnippets(lesson.bodyMd);
+    const setup = content.datasets.find((d) => d.id === lesson.datasetId)?.sql;
+    for (const [i, snippet] of snippets.entries()) {
+      const label = `lesson ${lesson.track}/${lesson.id} snippet ${i + 1}`;
+      const runnerId = runnerForLanguage(snippet.language, content.tracks);
+      const execute = runnerId ? executors[runnerId as Problem["kind"]] : undefined;
+      if (!execute) {
+        checks.push({ label, ok: false, detail: `no runner for "${snippet.language}"` });
+        continue;
+      }
+      if (runnerId === "sql" && !setup) {
+        checks.push({ label, ok: false, detail: "SQL snippets need a datasetId in the lesson frontmatter" });
+        continue;
+      }
+      const res = await execute({ code: snippet.code, setup: runnerId === "sql" ? setup : undefined, echoLastExpression: true });
+      checks.push({ label, ok: res.ok, detail: res.ok ? undefined : res.error });
     }
   }
 
