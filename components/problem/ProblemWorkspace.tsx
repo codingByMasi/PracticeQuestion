@@ -23,7 +23,7 @@ type Props = {
 
 export function ProblemWorkspace(props: Props) {
   const { ready } = useProgress();
-  if (!ready) return <p className="p-6 text-sm text-zinc-500">Loading…</p>;
+  if (!ready) return <p className="p-6 text-sm text-zinc-500 dark:text-zinc-400">Loading…</p>;
   return <Workspace {...props} />;
 }
 

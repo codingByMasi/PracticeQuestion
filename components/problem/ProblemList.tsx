@@ -98,14 +98,14 @@ export function ProblemList({ problems, tracks }: { problems: ProblemSummary[]; 
             <option value="unsolved">Unsolved</option>
           </select>
         </label>
-        <p className="ml-auto text-sm text-zinc-500" aria-live="polite">
+        <p className="ml-auto text-sm text-zinc-500 dark:text-zinc-400" aria-live="polite">
           {filtered.length} shown
         </p>
       </form>
 
       <div className="overflow-hidden rounded-lg border border-zinc-200 dark:border-zinc-800">
         <table className="w-full text-sm">
-          <thead className="bg-zinc-50 text-left text-xs uppercase tracking-wide text-zinc-500 dark:bg-zinc-900">
+          <thead className="bg-zinc-50 text-left text-xs uppercase tracking-wide text-zinc-500 dark:text-zinc-400 dark:bg-zinc-900">
             <tr>
               <th scope="col" className="w-10 px-3 py-2">
                 <span className="sr-only">Status</span>
@@ -156,7 +156,7 @@ export function ProblemList({ problems, tracks }: { problems: ProblemSummary[]; 
             })}
             {filtered.length === 0 && (
               <tr>
-                <td colSpan={5} className="px-3 py-8 text-center text-zinc-500">
+                <td colSpan={5} className="px-3 py-8 text-center text-zinc-500 dark:text-zinc-400">
                   No problems match these filters.
                 </td>
               </tr>

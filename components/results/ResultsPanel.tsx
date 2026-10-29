@@ -25,11 +25,11 @@ function Verdict({ report }: { report: JudgeReport }) {
         {label}
       </p>
       {total !== undefined && (
-        <span className="text-sm text-zinc-500">
+        <span className="text-sm text-zinc-500 dark:text-zinc-400">
           {passedCount}/{total} tests passed
         </span>
       )}
-      <span className="text-xs text-zinc-500">{report.durationMs} ms</span>
+      <span className="text-xs text-zinc-500 dark:text-zinc-400">{report.durationMs} ms</span>
     </div>
   );
 }
@@ -44,9 +44,9 @@ export function ResultsPanel({ report, status, busy }: { report: JudgeReport | n
         </p>
       )}
       {status.state === "error" && <p className="text-rose-600">Runtime failed to load: {status.message}</p>}
-      {busy && status.state !== "loading" && <p className="text-zinc-500">Running…</p>}
+      {busy && status.state !== "loading" && <p className="text-zinc-500 dark:text-zinc-400">Running…</p>}
       {!report && !busy && status.state !== "loading" && (
-        <p className="text-zinc-500">
+        <p className="text-zinc-500 dark:text-zinc-400">
           Press <kbd className="rounded border px-1 font-mono text-xs">Ctrl/⌘ + Enter</kbd> to run,{" "}
           <kbd className="rounded border px-1 font-mono text-xs">Ctrl/⌘ + Shift + Enter</kbd> to submit.
         </p>
@@ -76,31 +76,31 @@ export function ResultsPanel({ report, status, busy }: { report: JudgeReport | n
                       {c.passed ? "✓" : "✗"}
                     </span>{" "}
                     {c.label}
-                    {c.hidden && <span className="ml-2 text-xs text-zinc-500">(hidden)</span>}
+                    {c.hidden && <span className="ml-2 text-xs text-zinc-500 dark:text-zinc-400">(hidden)</span>}
                   </p>
                   {!c.hidden && (
                     <dl className="mt-1 grid grid-cols-[max-content_1fr] gap-x-3 font-mono text-xs">
                       {c.input !== undefined && (
                         <>
-                          <dt className="text-zinc-500">input</dt>
+                          <dt className="text-zinc-500 dark:text-zinc-400">input</dt>
                           <dd className="break-all">{c.input}</dd>
                         </>
                       )}
                       {c.expected !== undefined && (
                         <>
-                          <dt className="text-zinc-500">expected</dt>
+                          <dt className="text-zinc-500 dark:text-zinc-400">expected</dt>
                           <dd className="break-all">{c.expected}</dd>
                         </>
                       )}
                       {c.actual !== undefined && (
                         <>
-                          <dt className="text-zinc-500">got</dt>
+                          <dt className="text-zinc-500 dark:text-zinc-400">got</dt>
                           <dd className="break-all">{c.actual}</dd>
                         </>
                       )}
                       {c.stdout && (
                         <>
-                          <dt className="text-zinc-500">stdout</dt>
+                          <dt className="text-zinc-500 dark:text-zinc-400">stdout</dt>
                           <dd className="whitespace-pre-wrap">{c.stdout}</dd>
                         </>
                       )}

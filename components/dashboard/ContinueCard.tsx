@@ -8,7 +8,7 @@ export function ContinueCard({ fallbackHref, fallbackTitle }: { fallbackHref: st
   const last = ready ? store.getLastVisited() : null;
   return (
     <section aria-labelledby="continue-h" className="flex flex-col gap-2 rounded-xl border border-zinc-200 p-5 dark:border-zinc-800">
-      <h2 id="continue-h" className="text-sm font-semibold uppercase tracking-wide text-zinc-500">
+      <h2 id="continue-h" className="text-sm font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
         {last ? "Continue where you left off" : "Start here"}
       </h2>
       <p className="text-lg font-semibold">{last?.title ?? fallbackTitle}</p>

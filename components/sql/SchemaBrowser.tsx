@@ -7,7 +7,7 @@ import { SCHEMA_QUERY } from "@/lib/runners/sql/schema-query";
 type Column = { name: string; type: string; pk: boolean };
 type Schema = { table: string; columns: Column[] }[];
 
-export function SchemaBrowser({ setup, onInsert }: { setup: string; onInsert?: (text: string) => void }) {
+export function SchemaBrowser({ setup }: { setup: string }) {
   const { runner } = useRunner("sql");
   const [schema, setSchema] = useState<Schema | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -35,21 +35,13 @@ export function SchemaBrowser({ setup, onInsert }: { setup: string; onInsert?: (
   }, [runner, setup]);
 
   if (error) return <p className="text-sm text-rose-600">{error}</p>;
-  if (!schema) return <p className="text-sm text-zinc-500">Loading schema…</p>;
+  if (!schema) return <p className="text-sm text-zinc-500 dark:text-zinc-400">Loading schema…</p>;
   return (
     <ul className="space-y-2 text-sm">
       {schema.map((t) => (
         <li key={t.table}>
           <details open>
-            <summary className="cursor-pointer font-mono font-semibold">
-              {onInsert ? (
-                <button type="button" className="hover:underline" onClick={() => onInsert(t.table)} title="Insert table name">
-                  {t.table}
-                </button>
-              ) : (
-                t.table
-              )}
-            </summary>
+            <summary className="cursor-pointer font-mono font-semibold">{t.table}</summary>
             <ul className="ml-4 mt-1 space-y-0.5 font-mono text-xs">
               {t.columns.map((c) => (
                 <li key={c.name} className="flex justify-between gap-2">
@@ -57,7 +49,7 @@ export function SchemaBrowser({ setup, onInsert }: { setup: string; onInsert?: (
                     {c.name}
                     {c.pk && <span className="ml-1 text-amber-600" title="Primary key">🔑</span>}
                   </span>
-                  <span className="text-zinc-500">{c.type.toLowerCase()}</span>
+                  <span className="text-zinc-500 dark:text-zinc-400">{c.type.toLowerCase()}</span>
                 </li>
               ))}
             </ul>

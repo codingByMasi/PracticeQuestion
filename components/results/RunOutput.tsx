@@ -11,7 +11,7 @@ export function RunOutput({ result, status, busy }: { result: RunResult | null; 
           {status.message ?? "Loading runtime…"}
         </p>
       )}
-      {busy && status.state === "running" && <p className="text-zinc-500">{status.message ?? "Running…"}</p>}
+      {busy && status.state === "running" && <p className="text-zinc-500 dark:text-zinc-400">{status.message ?? "Running…"}</p>}
       {status.state === "error" && <p className="text-rose-600">Runtime failed to load: {status.message}</p>}
       {result && !busy && (
         <>
@@ -29,8 +29,8 @@ export function RunOutput({ result, status, busy }: { result: RunResult | null; 
               {result.error}
             </pre>
           )}
-          {result.ok && !result.table && !result.stdout && !result.stderr && <p className="text-zinc-500">(no output)</p>}
-          <p className="text-xs text-zinc-500">{result.durationMs} ms</p>
+          {result.ok && !result.table && !result.stdout && !result.stderr && <p className="text-zinc-500 dark:text-zinc-400">(no output)</p>}
+          <p className="text-xs text-zinc-500 dark:text-zinc-400">{result.durationMs} ms</p>
         </>
       )}
     </div>

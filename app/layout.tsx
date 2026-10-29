@@ -20,6 +20,10 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* Monaco and Pyodide are served from jsDelivr; warm up the connection. */}
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="" />
+      </head>
       <body className="min-h-screen">
         <ThemeProvider>
           <ProgressProvider>

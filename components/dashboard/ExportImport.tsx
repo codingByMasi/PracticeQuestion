@@ -36,7 +36,7 @@ export function ExportImport() {
 
   return (
     <section aria-labelledby="backup-h" className="space-y-3 rounded-xl border border-zinc-200 p-5 dark:border-zinc-800">
-      <h2 id="backup-h" className="text-sm font-semibold uppercase tracking-wide text-zinc-500">
+      <h2 id="backup-h" className="text-sm font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
         Backup
       </h2>
       <p className="text-sm text-zinc-600 dark:text-zinc-400">

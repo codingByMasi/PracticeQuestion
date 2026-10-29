@@ -5,6 +5,7 @@ import type { Problem } from "@/lib/content/schema";
 import { DifficultyBadge, Tag } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Markdown } from "@/components/ui/Markdown";
+import { formatPython } from "@/lib/judge/python-compare";
 import type { Status } from "@/lib/progress/types";
 
 export const SOLUTION_UNLOCK_FAILURES = 3;
@@ -39,14 +40,14 @@ export function ProblemDescription({ problem, status, failedAttempts, schema }: 
 
       {problem.kind === "python" && (
         <section aria-labelledby="examples-h" className="space-y-2">
-          <h2 id="examples-h" className="text-sm font-semibold uppercase tracking-wide text-zinc-500">
+          <h2 id="examples-h" className="text-sm font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
             Examples
           </h2>
           {problem.tests
             .filter((t) => !t.hidden)
             .map((t, i) => (
-              <pre key={i} className="overflow-auto rounded bg-zinc-100 p-2 font-mono text-xs dark:bg-zinc-900">
-                {`${problem.functionName}(${t.args.map((a) => JSON.stringify(a)).join(", ")})\n→ ${JSON.stringify(t.expected)}`}
+              <pre key={i} tabIndex={0} className="overflow-auto rounded bg-zinc-100 p-2 font-mono text-xs dark:bg-zinc-900">
+                {`>>> ${problem.functionName}(${t.args.map(formatPython).join(", ")})\n${formatPython(t.expected)}`}
               </pre>
             ))}
         </section>
@@ -54,7 +55,7 @@ export function ProblemDescription({ problem, status, failedAttempts, schema }: 
 
       {schema && (
         <section aria-labelledby="schema-h" className="space-y-2">
-          <h2 id="schema-h" className="text-sm font-semibold uppercase tracking-wide text-zinc-500">
+          <h2 id="schema-h" className="text-sm font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
             Schema
           </h2>
           {schema}
@@ -63,7 +64,7 @@ export function ProblemDescription({ problem, status, failedAttempts, schema }: 
 
       {problem.hints.length > 0 && (
         <section aria-labelledby="hints-h" className="space-y-2">
-          <h2 id="hints-h" className="text-sm font-semibold uppercase tracking-wide text-zinc-500">
+          <h2 id="hints-h" className="text-sm font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
             Hints
           </h2>
           <ol className="list-decimal space-y-1 pl-5 text-sm">
@@ -82,11 +83,11 @@ export function ProblemDescription({ problem, status, failedAttempts, schema }: 
       )}
 
       <section aria-labelledby="solution-h" className="space-y-2">
-        <h2 id="solution-h" className="text-sm font-semibold uppercase tracking-wide text-zinc-500">
+        <h2 id="solution-h" className="text-sm font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
           Solution
         </h2>
         {!unlocked ? (
-          <p className="text-sm text-zinc-500">
+          <p className="text-sm text-zinc-500 dark:text-zinc-400">
             🔒 Unlocks after you solve the problem or after {remaining} more failed submission{remaining === 1 ? "" : "s"}.
           </p>
         ) : showSolution ? (

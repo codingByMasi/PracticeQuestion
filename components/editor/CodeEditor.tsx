@@ -1,8 +1,14 @@
 "use client";
 
-import Editor, { type OnMount } from "@monaco-editor/react";
+import Editor, { type BeforeMount, type OnMount } from "@monaco-editor/react";
 import { useTheme } from "next-themes";
 import { useEffect, useRef } from "react";
+
+/** Built-in themes with comment colours raised to WCAG AA contrast. */
+const defineThemes: BeforeMount = (monaco) => {
+  monaco.editor.defineTheme("codedrill-light", { base: "vs", inherit: true, rules: [{ token: "comment", foreground: "5c6b78" }], colors: {} });
+  monaco.editor.defineTheme("codedrill-dark", { base: "vs-dark", inherit: true, rules: [{ token: "comment", foreground: "86b077" }], colors: {} });
+};
 
 type Props = {
   value: string;
@@ -36,9 +42,10 @@ export function CodeEditor({ value, onChange, language, onRun, onSubmit, ariaLab
       language={language}
       value={value}
       onChange={(v) => onChange(v ?? "")}
+      beforeMount={defineThemes}
       onMount={handleMount}
-      theme={resolvedTheme === "dark" ? "vs-dark" : "light"}
-      loading={<div className="p-4 text-sm text-zinc-500">Loading editor…</div>}
+      theme={resolvedTheme === "dark" ? "codedrill-dark" : "codedrill-light"}
+      loading={<div className="p-4 text-sm text-zinc-500 dark:text-zinc-400">Loading editor…</div>}
       options={{
         ariaLabel,
         minimap: { enabled: false },

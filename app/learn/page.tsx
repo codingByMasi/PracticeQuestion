@@ -22,7 +22,7 @@ export default function LearnPage() {
                 </Link>
               </h2>
               <p className="flex-1 text-sm text-zinc-600 dark:text-zinc-400">{t.description}</p>
-              <p className="text-xs text-zinc-500">
+              <p className="text-xs text-zinc-500 dark:text-zinc-400">
                 {trackLessons.length} lessons · {problems.filter((p) => p.track === t.id).length} problems
               </p>
               <TrackProgress trackId={t.id} lessonIds={trackLessons.map((l) => l.id)} />

@@ -16,7 +16,7 @@ export default function ProgressPage() {
       <div className="grid gap-4 md:grid-cols-2">
         <StreakCard />
         <section aria-labelledby="lessons-h" className="space-y-3 rounded-xl border border-zinc-200 p-5 dark:border-zinc-800">
-          <h2 id="lessons-h" className="text-sm font-semibold uppercase tracking-wide text-zinc-500">
+          <h2 id="lessons-h" className="text-sm font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
             Lessons
           </h2>
           {tracks.map((t) => (
@@ -28,7 +28,7 @@ export default function ProgressPage() {
         </section>
       </div>
       <section aria-labelledby="activity-h" className="rounded-xl border border-zinc-200 p-5 dark:border-zinc-800">
-        <h2 id="activity-h" className="mb-3 text-sm font-semibold uppercase tracking-wide text-zinc-500">
+        <h2 id="activity-h" className="mb-3 text-sm font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
           Activity in the last year
         </h2>
         <Heatmap />

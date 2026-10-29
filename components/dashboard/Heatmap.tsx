@@ -40,7 +40,7 @@ export function Heatmap({ weeks = 53 }: { weeks?: number }) {
           ))}
         </div>
       </div>
-      <figcaption className="flex items-center gap-1 text-xs text-zinc-500">
+      <figcaption className="flex items-center gap-1 text-xs text-zinc-500 dark:text-zinc-400">
         Less
         {LEVELS.map((c, i) => (
           <span key={i} className={`h-3 w-3 rounded-sm ${c}`} aria-hidden="true" />

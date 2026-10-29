@@ -32,7 +32,7 @@ export default function DashboardPage() {
       <div className="grid gap-4 lg:grid-cols-[1fr_1fr]">
         <SolvedStats problems={summaries} tracks={tracks.map((t) => ({ id: t.id, title: t.title }))} />
         <section aria-labelledby="lessons-h" className="space-y-4 rounded-xl border border-zinc-200 p-5 dark:border-zinc-800">
-          <h2 id="lessons-h" className="text-sm font-semibold uppercase tracking-wide text-zinc-500">
+          <h2 id="lessons-h" className="text-sm font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
             Lessons
           </h2>
           {tracks.map((t) => (
@@ -47,7 +47,7 @@ export default function DashboardPage() {
       </div>
 
       <section aria-labelledby="activity-h" className="rounded-xl border border-zinc-200 p-5 dark:border-zinc-800">
-        <h2 id="activity-h" className="mb-3 text-sm font-semibold uppercase tracking-wide text-zinc-500">
+        <h2 id="activity-h" className="mb-3 text-sm font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
           Activity
         </h2>
         <Heatmap />

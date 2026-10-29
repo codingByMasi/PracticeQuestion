@@ -51,7 +51,7 @@ export function LessonView({ track, tracks, lesson, total, datasetSql, exercises
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-8">
-      <nav aria-label="Breadcrumb" className="text-sm text-zinc-500">
+      <nav aria-label="Breadcrumb" className="text-sm text-zinc-500 dark:text-zinc-400">
         <Link href="/learn" className="hover:underline">
           Learn
         </Link>{" "}

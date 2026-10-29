@@ -25,7 +25,7 @@ export function ResultTable({ table, caption, highlightRow }: { table: Table; ca
               className={`border-t border-zinc-100 dark:border-zinc-800 ${r === highlightRow ? "bg-rose-50 dark:bg-rose-950/40" : ""}`}
             >
               {row.map((v, c) => (
-                <td key={c} className={`whitespace-nowrap px-2 py-1 ${v === null ? "italic text-zinc-400" : ""}`}>
+                <td key={c} className={`whitespace-nowrap px-2 py-1 ${v === null ? "italic text-zinc-500 dark:text-zinc-400" : ""}`}>
                   {v === null ? "NULL" : typeof v === "string" ? v : formatValue(v)}
                 </td>
               ))}
@@ -33,7 +33,7 @@ export function ResultTable({ table, caption, highlightRow }: { table: Table; ca
           ))}
         </tbody>
       </table>
-      <p className="border-t border-zinc-100 px-2 py-1 text-xs text-zinc-500 dark:border-zinc-800">
+      <p className="border-t border-zinc-100 px-2 py-1 text-xs text-zinc-500 dark:text-zinc-400 dark:border-zinc-800">
         {table.rows.length} row{table.rows.length === 1 ? "" : "s"}
         {table.rows.length > MAX_ROWS ? ` (showing first ${MAX_ROWS})` : ""}
       </p>

@@ -31,7 +31,7 @@ export function RunnableSnippet({ code: initial, runnerId, language, setup }: Pr
             Reset
           </Button>
         )}
-        <span className="ml-auto text-xs text-zinc-500">Ctrl/⌘ + Enter</span>
+        <span className="ml-auto text-xs text-zinc-500 dark:text-zinc-400">Ctrl/⌘ + Enter</span>
       </div>
       {(result || busy || status.state === "loading" || status.state === "error") && (
         <div className="border-t border-zinc-200 p-3 dark:border-zinc-800">

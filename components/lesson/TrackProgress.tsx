@@ -20,7 +20,7 @@ export function TrackProgress({ trackId, lessonIds }: { trackId: string; lessonI
       >
         <div className="h-full rounded-full bg-indigo-600 transition-all" style={{ width: `${pct}%` }} />
       </div>
-      <p className="text-xs text-zinc-500">
+      <p className="text-xs text-zinc-500 dark:text-zinc-400">
         {done} of {lessonIds.length} lessons complete
       </p>
     </div>

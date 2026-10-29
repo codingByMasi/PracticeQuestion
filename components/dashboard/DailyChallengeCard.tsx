@@ -25,7 +25,7 @@ export function DailyChallengeCard({ pool, trackTitles }: { pool: ProblemSummary
   return (
     <section aria-labelledby="daily-h" className="flex flex-col gap-3 rounded-xl border border-indigo-200 bg-indigo-50/60 p-5 dark:border-indigo-900 dark:bg-indigo-950/30">
       <h2 id="daily-h" className="text-sm font-semibold uppercase tracking-wide text-indigo-700 dark:text-indigo-300">
-        Daily challenge {today && <span className="font-normal normal-case text-zinc-500">· {today}</span>}
+        Daily challenge {today && <span className="font-normal normal-case text-zinc-500 dark:text-zinc-400">· {today}</span>}
       </h2>
       {problem ? (
         <>
@@ -43,7 +43,7 @@ export function DailyChallengeCard({ pool, trackTitles }: { pool: ProblemSummary
           </Link>
         </>
       ) : (
-        <p className="h-20 text-sm text-zinc-500">Picking today&apos;s challenge…</p>
+        <p className="h-20 text-sm text-zinc-500 dark:text-zinc-400">Picking today&apos;s challenge…</p>
       )}
     </section>
   );

@@ -28,7 +28,7 @@ export function PythonPlayground() {
   return (
     <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-6 lg:h-[calc(100dvh-3.5rem)]">
       <h1 className="text-2xl font-bold tracking-tight">Python playground</h1>
-      {ready ? <PythonWorkbench /> : <p className="text-sm text-zinc-500">Loading…</p>}
+      {ready ? <PythonWorkbench /> : <p className="text-sm text-zinc-500 dark:text-zinc-400">Loading…</p>}
     </div>
   );
 }
@@ -47,7 +47,7 @@ function PythonWorkbench() {
         <Button variant="ghost" onClick={() => setCode(DEFAULT_CODE)}>
           Reset
         </Button>
-        <span className="ml-auto text-xs text-zinc-500">
+        <span className="ml-auto text-xs text-zinc-500 dark:text-zinc-400">
           {status.state === "ready" ? "Python ready" : status.state === "loading" ? "Loading Python…" : ""}
         </span>
       </div>
@@ -59,9 +59,9 @@ function PythonWorkbench() {
 
   const output = (
     <section aria-label="Output" className="h-full overflow-auto p-3">
-      <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-zinc-500">Output</h2>
+      <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">Output</h2>
       {!result && !busy && status.state !== "loading" ? (
-        <p className="text-sm text-zinc-500">Run your code to see stdout, stderr and errors here.</p>
+        <p className="text-sm text-zinc-500 dark:text-zinc-400">Run your code to see stdout, stderr and errors here.</p>
       ) : (
         <RunOutput result={result} status={status} busy={busy} />
       )}

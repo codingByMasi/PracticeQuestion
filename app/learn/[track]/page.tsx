@@ -26,7 +26,7 @@ export default async function TrackPage({ params }: Params) {
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-8">
-      <nav aria-label="Breadcrumb" className="text-sm text-zinc-500">
+      <nav aria-label="Breadcrumb" className="text-sm text-zinc-500 dark:text-zinc-400">
         <Link href="/learn" className="hover:underline">
           Learn
         </Link>
@@ -40,9 +40,9 @@ export default async function TrackPage({ params }: Params) {
         {trackLessons.map((l) => (
           <li key={l.id}>
             <Link href={`/learn/${track.id}/${l.id}`} className="flex items-center gap-4 px-4 py-3 hover:bg-zinc-50 dark:hover:bg-zinc-900">
-              <span className="w-6 text-right font-mono text-sm text-zinc-500">{l.order}</span>
+              <span className="w-6 text-right font-mono text-sm text-zinc-500 dark:text-zinc-400">{l.order}</span>
               <span className="flex-1 font-medium">{l.title}</span>
-              <span className="text-xs text-zinc-500">{l.exerciseSlugs.length} exercises</span>
+              <span className="text-xs text-zinc-500 dark:text-zinc-400">{l.exerciseSlugs.length} exercises</span>
               <LessonDoneMark trackId={track.id} lessonId={l.id} />
             </Link>
           </li>

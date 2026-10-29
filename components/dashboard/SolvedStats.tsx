@@ -10,17 +10,17 @@ export function SolvedStats({ problems, tracks }: { problems: ProblemSummary[]; 
 
   return (
     <section aria-labelledby="solved-h" className="rounded-xl border border-zinc-200 p-5 dark:border-zinc-800">
-      <h2 id="solved-h" className="text-sm font-semibold uppercase tracking-wide text-zinc-500">
+      <h2 id="solved-h" className="text-sm font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
         Solved
       </h2>
       <p className="mt-1 text-3xl font-bold">
         {total}
-        <span className="text-base font-normal text-zinc-500"> / {problems.length}</span>
+        <span className="text-base font-normal text-zinc-500 dark:text-zinc-400"> / {problems.length}</span>
       </p>
       <div className="mt-4 overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
-            <tr className="text-left text-xs text-zinc-500">
+            <tr className="text-left text-xs text-zinc-500 dark:text-zinc-400">
               <th scope="col" className="py-1 pr-3 font-medium">
                 Track
               </th>
@@ -42,7 +42,7 @@ export function SolvedStats({ problems, tracks }: { problems: ProblemSummary[]; 
                   return (
                     <td key={d} className="py-1.5 pr-3 tabular-nums">
                       {pool.filter(solved).length}
-                      <span className="text-zinc-400">/{pool.length}</span>
+                      <span className="text-zinc-500 dark:text-zinc-400">/{pool.length}</span>
                     </td>
                   );
                 })}

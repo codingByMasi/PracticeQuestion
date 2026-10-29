@@ -48,7 +48,7 @@ export function SqlPlayground({ datasets }: { datasets: DatasetOption[] }) {
       <p className="text-sm text-zinc-600 dark:text-zinc-400">
         {dataset.description} Every run starts from a fresh copy of the dataset, so feel free to INSERT, UPDATE or DROP.
       </p>
-      {ready ? <SqlWorkbench key={dataset.id} dataset={dataset} /> : <p className="text-sm text-zinc-500">Loading…</p>}
+      {ready ? <SqlWorkbench key={dataset.id} dataset={dataset} /> : <p className="text-sm text-zinc-500 dark:text-zinc-400">Loading…</p>}
     </div>
   );
 }
@@ -61,7 +61,7 @@ function SqlWorkbench({ dataset }: { dataset: DatasetOption }) {
   return (
     <div className="grid min-h-0 flex-1 gap-4 lg:grid-cols-[16rem_1fr]">
       <aside aria-label="Schema" className="overflow-auto rounded-lg border border-zinc-200 p-3 lg:max-h-full dark:border-zinc-800">
-        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-zinc-500">Schema</h2>
+        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">Schema</h2>
         <SchemaBrowser setup={dataset.sql} />
       </aside>
       <div className="flex min-h-0 flex-col overflow-hidden rounded-lg border border-zinc-200 dark:border-zinc-800">
@@ -77,7 +77,7 @@ function SqlWorkbench({ dataset }: { dataset: DatasetOption }) {
           <CodeEditor value={code} onChange={setCode} language="sql" onRun={execute} ariaLabel="SQL playground editor" />
         </div>
         <section aria-label="Output" className="min-h-0 flex-1 overflow-auto border-t border-zinc-200 p-3 dark:border-zinc-800">
-          {!result && !busy ? <p className="text-sm text-zinc-500">Run a query to see results.</p> : <RunOutput result={result} status={status} busy={busy} />}
+          {!result && !busy ? <p className="text-sm text-zinc-500 dark:text-zinc-400">Run a query to see results.</p> : <RunOutput result={result} status={status} busy={busy} />}
         </section>
       </div>
     </div>
