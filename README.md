@@ -32,11 +32,19 @@ The first visit to a Python page downloads Pyodide (~10 MB) from jsDelivr; the b
 
 ## Deploying to Vercel
 
-1. Push the repo to GitHub and import it in Vercel (framework is detected as Next.js).
-2. `vercel.json` runs `npm ci`, then `npm run validate:content && npm run build`, so broken content fails the deploy.
-3. No environment variables are required. Optionally set `NEXT_PUBLIC_PYODIDE_BASE_URL` to self-host Pyodide.
+No server, database or environment variables are needed; the whole app is statically generated and all code runs in the visitor's browser.
 
-Or from the CLI: `npx vercel` (preview) and `npx vercel --prod`.
+1. Sign in at [vercel.com](https://vercel.com) with GitHub.
+2. Click **Add New... > Project**, find this repository and click **Import**.
+3. Leave **Framework Preset** as **Next.js**, **Root Directory** as `./`, and do not override the build settings. `vercel.json` already sets `npm ci` as the install command and `npm run validate:content && npm run build` as the build command, so broken content fails the deploy instead of shipping.
+4. Leave **Environment Variables** empty and click **Deploy**. The first build takes a couple of minutes (about 1,000 static problem pages).
+5. Every push to the default branch redeploys to production; other branches and PRs get preview URLs.
+
+How the build works: `postinstall` (after `npm ci`) and `prebuild` run `scripts/build-workers.mjs`, which bundles the Python worker with esbuild into `public/workers/`. `postinstall` also runs `scripts/copy-wasm.mjs` to copy the SQLite wasm. These generated folders are gitignored, so they must be built on Vercel; no manual step is needed.
+
+Optional: set `NEXT_PUBLIC_PYODIDE_BASE_URL` (for example `/pyodide/`) to load Pyodide from your own site instead of jsDelivr. It is only needed for self-hosting, and you must copy `node_modules/pyodide/*` to `public/pyodide/` yourself. Leave it unset to use the CDN.
+
+CLI alternative: `npx vercel` for a preview and `npx vercel --prod` for production.
 
 ## Project layout
 
