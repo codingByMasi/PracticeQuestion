@@ -1,11 +1,13 @@
 "use client";
 
+import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { CodeEditor } from "@/components/editor/CodeEditor";
 import { ResultsPanel } from "@/components/results/ResultsPanel";
 import { SchemaBrowser } from "@/components/sql/SchemaBrowser";
 import { Button } from "@/components/ui/Button";
 import { SplitPane } from "@/components/ui/SplitPane";
+import type { NextTarget } from "@/lib/content/next-problem";
 import type { Problem } from "@/lib/content/schema";
 import { useAutosaveDraft } from "@/lib/hooks/use-autosave-draft";
 import { useRunner } from "@/lib/hooks/use-runner";
@@ -19,6 +21,7 @@ type Props = {
   runnerId: string;
   editorLanguage: string;
   datasetSql?: string;
+  next: NextTarget | null;
 };
 
 export function ProblemWorkspace(props: Props) {
@@ -27,7 +30,7 @@ export function ProblemWorkspace(props: Props) {
   return <Workspace {...props} />;
 }
 
-function Workspace({ problem, runnerId, editorLanguage, datasetSql }: Props) {
+function Workspace({ problem, runnerId, editorLanguage, datasetSql, next }: Props) {
   const { store } = useProgress();
   const { runner, status } = useRunner(runnerId);
   const [code, setCode] = useAutosaveDraft(problem.slug, problem.starterCode);
@@ -54,6 +57,7 @@ function Workspace({ problem, runnerId, editorLanguage, datasetSql }: Props) {
   );
 
   const status_ = store.getProblemStatus(problem.slug);
+  const solved = status_ === "solved" || report?.passed === true;
   const failed = store.getFailedAttempts(problem.slug);
   const schema = problem.kind === "sql" && datasetSql !== undefined ? <SchemaBrowser setup={sqlSetup(problem, datasetSql)} /> : undefined;
 
@@ -66,9 +70,20 @@ function Workspace({ problem, runnerId, editorLanguage, datasetSql }: Props) {
         <Button variant="primary" onClick={() => execute("submit")} disabled={busy} title="Submit (Ctrl/⌘+Shift+Enter)">
           Submit
         </Button>
+        {next && (
+          <Link
+            href={next.href}
+            className={`ml-auto rounded-md px-3 py-1.5 text-sm font-medium ${
+              solved
+                ? "bg-emerald-600 text-white hover:bg-emerald-500"
+                : "border border-zinc-300 hover:bg-zinc-50 dark:border-zinc-700 dark:hover:bg-zinc-800"
+            }`}
+          >
+            {next.label} →
+          </Link>
+        )}
         <Button
           variant="ghost"
-          className="ml-auto"
           onClick={() => {
             if (window.confirm("Reset your code to the starter template?")) setCode(problem.starterCode);
           }}
