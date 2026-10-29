@@ -1,0 +1,105 @@
+{
+  "slug": "anagram-mappings",
+  "track": "python",
+  "title": "Anagram mappings",
+  "difficulty": "Medium",
+  "tags": [
+    "dicts"
+  ],
+  "statementMd": "`b` is an anagram of list `a` (same multiset). Return a list `m` where `m[i]` is an index `j` in `b` with `b[j] == a[i]`, using each index of `b` once and always the smallest unused one.\n\n**Example:** `anagram_mapping([12, 28, 46, 32, 50], [50, 12, 32, 46, 28])` returns `[1, 4, 3, 2, 0]`.",
+  "hints": [
+    "Map each value to a queue of indices."
+  ],
+  "solutionMd": "```python\ndef anagram_mapping(a, b):\n    pos = {}\n    for j, x in enumerate(b):\n        pos.setdefault(x, []).append(j)\n    used = {}\n    out = []\n    for x in a:\n        i = used.get(x, 0)\n        out.append(pos[x][i])\n        used[x] = i + 1\n    return out\n```\n\nConsume indices left to right.",
+  "starterCode": "def anagram_mapping(a, b):\n    # Write your code here\n    pass\n",
+  "functionName": "anagram_mapping",
+  "referenceSolution": "def anagram_mapping(a, b):\n    pos = {}\n    for j, x in enumerate(b):\n        pos.setdefault(x, []).append(j)\n    used = {}\n    out = []\n    for x in a:\n        i = used.get(x, 0)\n        out.append(pos[x][i])\n        used[x] = i + 1\n    return out\n",
+  "tests": [
+    {
+      "args": [
+        [
+          12,
+          28,
+          46,
+          32,
+          50
+        ],
+        [
+          50,
+          12,
+          32,
+          46,
+          28
+        ]
+      ],
+      "expected": [
+        1,
+        4,
+        3,
+        2,
+        0
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "expected": [
+        0,
+        1
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [],
+        []
+      ],
+      "expected": [],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          5
+        ],
+        [
+          5
+        ]
+      ],
+      "expected": [
+        0
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          2,
+          1
+        ],
+        [
+          1,
+          1,
+          2
+        ]
+      ],
+      "expected": [
+        0,
+        2,
+        1
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 220
+}

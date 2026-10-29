@@ -1,0 +1,21 @@
+{
+  "slug": "routes-with-city-names",
+  "track": "sql",
+  "title": "Routes with city names",
+  "difficulty": "Medium",
+  "tags": [
+    "multi-join"
+  ],
+  "statementMd": "For flights 1 to 5 show origin city and destination city. Join `airports` twice.\n\nExpected columns: `id`, `from_city`, `to_city`.\n\nTables: `airlines`, `airports`, `flights`, `bookings`.\n\nRow order does not matter.",
+  "hints": [
+    "Alias the airports table as `o` and `d`."
+  ],
+  "solutionMd": "```sql\nSELECT f.id, o.city AS from_city, d.city AS to_city FROM flights f JOIN airports o ON o.code = f.origin JOIN airports d ON d.code = f.destination WHERE f.id <= 5;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: airlines, airports, flights, bookings\nSELECT\n",
+  "datasetId": "flights",
+  "expected": {
+    "query": "SELECT f.id, o.city AS from_city, d.city AS to_city FROM flights f JOIN airports o ON o.code = f.origin JOIN airports d ON d.code = f.destination WHERE f.id <= 5;",
+    "orderMatters": false
+  },
+  "order": 298
+}

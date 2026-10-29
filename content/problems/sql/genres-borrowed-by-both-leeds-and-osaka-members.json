@@ -1,0 +1,21 @@
+{
+  "slug": "genres-borrowed-by-both-leeds-and-osaka-members",
+  "track": "sql",
+  "title": "Genres borrowed by both Leeds and Osaka members",
+  "difficulty": "Medium",
+  "tags": [
+    "set-ops"
+  ],
+  "statementMd": "List genres that have been borrowed by members living in Leeds and also by members living in Osaka.\n\nExpected columns: `genre`.\n\nTables: `authors`, `books`, `members`, `loans`.\n\nRow order does not matter.",
+  "hints": [
+    "`INTERSECT`."
+  ],
+  "solutionMd": "```sql\nSELECT b.genre FROM loans l JOIN members m ON m.id = l.member_id JOIN books b ON b.id = l.book_id WHERE m.city = 'Leeds' INTERSECT SELECT b.genre FROM loans l JOIN members m ON m.id = l.member_id JOIN books b ON b.id = l.book_id WHERE m.city = 'Osaka';\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: authors, books, members, loans\nSELECT\n",
+  "datasetId": "library",
+  "expected": {
+    "query": "SELECT b.genre FROM loans l JOIN members m ON m.id = l.member_id JOIN books b ON b.id = l.book_id WHERE m.city = 'Leeds' INTERSECT SELECT b.genre FROM loans l JOIN members m ON m.id = l.member_id JOIN books b ON b.id = l.book_id WHERE m.city = 'Osaka';",
+    "orderMatters": false
+  },
+  "order": 334
+}

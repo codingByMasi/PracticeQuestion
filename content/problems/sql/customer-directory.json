@@ -1,0 +1,21 @@
+{
+  "slug": "customer-directory",
+  "track": "sql",
+  "title": "Customer directory",
+  "difficulty": "Easy",
+  "tags": [
+    "select"
+  ],
+  "statementMd": "List each customer's name, city and segment.\n\nExpected columns: `name`, `city`, `segment`.\n\nTables: `customers`, `accounts`, `transactions`.\n\nRow order does not matter.",
+  "hints": [
+    "Three columns."
+  ],
+  "solutionMd": "```sql\nSELECT name, city, segment FROM customers;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, accounts, transactions\nSELECT\n",
+  "datasetId": "bank",
+  "expected": {
+    "query": "SELECT name, city, segment FROM customers;",
+    "orderMatters": false
+  },
+  "order": 3
+}

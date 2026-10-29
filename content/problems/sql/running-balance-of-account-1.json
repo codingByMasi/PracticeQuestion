@@ -1,0 +1,21 @@
+{
+  "slug": "running-balance-of-account-1",
+  "track": "sql",
+  "title": "Running balance of account 1",
+  "difficulty": "Hard",
+  "tags": [
+    "running-total"
+  ],
+  "statementMd": "For account 1 list its transactions in date order (ties by id) with a running balance rounded to 2 decimals.\n\nExpected columns: `id`, `tx_date`, `amount`, `balance`.\n\nTables: `customers`, `accounts`, `transactions`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "`SUM(amount) OVER (ORDER BY tx_date, id)`."
+  ],
+  "solutionMd": "```sql\nSELECT id, tx_date, amount, ROUND(SUM(amount) OVER (ORDER BY tx_date, id), 2) AS balance FROM transactions WHERE account_id = 1 ORDER BY tx_date, id;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, accounts, transactions\nSELECT\n",
+  "datasetId": "bank",
+  "expected": {
+    "query": "SELECT id, tx_date, amount, ROUND(SUM(amount) OVER (ORDER BY tx_date, id), 2) AS balance FROM transactions WHERE account_id = 1 ORDER BY tx_date, id;",
+    "orderMatters": true
+  },
+  "order": 467
+}

@@ -1,0 +1,21 @@
+{
+  "slug": "department-share-of-payroll",
+  "track": "sql",
+  "title": "Department share of payroll",
+  "difficulty": "Hard",
+  "tags": [
+    "window-functions"
+  ],
+  "statementMd": "For each department with employees, show its payroll and its share of total company payroll as a percentage rounded to 1 decimal. Employees without a department count in the company total.\n\nExpected columns: `department`, `payroll`, `pct`.\n\nTables: `employees`, `departments`.\n\nRow order does not matter.",
+  "hints": [
+    "Total payroll can be a scalar subquery over all employees."
+  ],
+  "solutionMd": "```sql\nSELECT d.name AS department, SUM(e.salary) AS payroll, ROUND(100.0 * SUM(e.salary) / (SELECT SUM(salary) FROM employees), 1) AS pct FROM employees e JOIN departments d ON d.id = e.department_id GROUP BY d.id, d.name;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "SELECT d.name AS department, SUM(e.salary) AS payroll, ROUND(100.0 * SUM(e.salary) / (SELECT SUM(salary) FROM employees), 1) AS pct FROM employees e JOIN departments d ON d.id = e.department_id GROUP BY d.id, d.name;",
+    "orderMatters": false
+  },
+  "order": 414
+}

@@ -1,0 +1,68 @@
+{
+  "slug": "ackermann",
+  "track": "python",
+  "title": "Ackermann",
+  "difficulty": "Hard",
+  "tags": [
+    "recursion"
+  ],
+  "statementMd": "Compute the Ackermann function `A(m, n)`: `n + 1` if `m == 0`; `A(m-1, 1)` if `n == 0`; otherwise `A(m-1, A(m, n-1))`. Inputs are small.\n\n**Example:** `ackermann(1, 2)` returns `4`.",
+  "hints": [
+    "Translate the definition directly."
+  ],
+  "solutionMd": "```python\ndef ackermann(m, n):\n    if m == 0:\n        return n + 1\n    if n == 0:\n        return ackermann(m - 1, 1)\n    return ackermann(m - 1, ackermann(m, n - 1))\n```\n\nGrows extremely fast, so tests stay tiny.",
+  "starterCode": "def ackermann(m, n):\n    # Write your code here\n    pass\n",
+  "functionName": "ackermann",
+  "referenceSolution": "def ackermann(m, n):\n    if m == 0:\n        return n + 1\n    if n == 0:\n        return ackermann(m - 1, 1)\n    return ackermann(m - 1, ackermann(m, n - 1))\n",
+  "tests": [
+    {
+      "args": [
+        1,
+        2
+      ],
+      "expected": 4,
+      "hidden": false
+    },
+    {
+      "args": [
+        2,
+        2
+      ],
+      "expected": 7,
+      "hidden": false
+    },
+    {
+      "args": [
+        0,
+        0
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        2,
+        3
+      ],
+      "expected": 9,
+      "hidden": true
+    },
+    {
+      "args": [
+        3,
+        2
+      ],
+      "expected": 29,
+      "hidden": true
+    },
+    {
+      "args": [
+        1,
+        0
+      ],
+      "expected": 2,
+      "hidden": true
+    }
+  ],
+  "order": 399
+}

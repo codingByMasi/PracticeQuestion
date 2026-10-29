@@ -1,0 +1,60 @@
+{
+  "slug": "text-justify-center",
+  "track": "python",
+  "title": "Text justify center",
+  "difficulty": "Easy",
+  "tags": [
+    "strings"
+  ],
+  "statementMd": "Center `s` in a field of `width` characters using spaces. If padding is odd put the extra space on the right. If `s` is at least `width` long return it unchanged.\n\n**Example:** `center_text(\"hi\", 6)` returns `\"  hi  \"`.",
+  "hints": [
+    "Left pad is `(width - len) // 2`."
+  ],
+  "solutionMd": "```python\ndef center_text(s, width):\n    pad = width - len(s)\n    if pad <= 0:\n        return s\n    left = pad // 2\n    return ' ' * left + s + ' ' * (pad - left)\n```\n\nInteger division puts the extra space on the right.",
+  "starterCode": "def center_text(s, width):\n    # Write your code here\n    pass\n",
+  "functionName": "center_text",
+  "referenceSolution": "def center_text(s, width):\n    pad = width - len(s)\n    if pad <= 0:\n        return s\n    left = pad // 2\n    return ' ' * left + s + ' ' * (pad - left)\n",
+  "tests": [
+    {
+      "args": [
+        "hi",
+        6
+      ],
+      "expected": "  hi  ",
+      "hidden": false
+    },
+    {
+      "args": [
+        "odd",
+        6
+      ],
+      "expected": " odd  ",
+      "hidden": false
+    },
+    {
+      "args": [
+        "long",
+        2
+      ],
+      "expected": "long",
+      "hidden": true
+    },
+    {
+      "args": [
+        "",
+        3
+      ],
+      "expected": "   ",
+      "hidden": true
+    },
+    {
+      "args": [
+        "a",
+        2
+      ],
+      "expected": "a ",
+      "hidden": true
+    }
+  ],
+  "order": 65
+}

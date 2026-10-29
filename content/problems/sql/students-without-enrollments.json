@@ -1,0 +1,21 @@
+{
+  "slug": "students-without-enrollments",
+  "track": "sql",
+  "title": "Students without enrollments",
+  "difficulty": "Medium",
+  "tags": [
+    "left-join"
+  ],
+  "statementMd": "Count students with fewer than 4 enrollments (zero counts).\n\nExpected columns: `students`.\n\nTables: `teachers`, `courses`, `students`, `enrollments`.\n\nRow order does not matter.",
+  "hints": [
+    "Left join and `HAVING COUNT(e.course_id) < 4`."
+  ],
+  "solutionMd": "```sql\nSELECT COUNT(*) AS students FROM (SELECT s.id FROM students s LEFT JOIN enrollments e ON e.student_id = s.id GROUP BY s.id HAVING COUNT(e.course_id) < 4);\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: teachers, courses, students, enrollments\nSELECT\n",
+  "datasetId": "school",
+  "expected": {
+    "query": "SELECT COUNT(*) AS students FROM (SELECT s.id FROM students s LEFT JOIN enrollments e ON e.student_id = s.id GROUP BY s.id HAVING COUNT(e.course_id) < 4);",
+    "orderMatters": false
+  },
+  "order": 289
+}

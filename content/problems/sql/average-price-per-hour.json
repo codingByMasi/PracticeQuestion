@@ -1,0 +1,21 @@
+{
+  "slug": "average-price-per-hour",
+  "track": "sql",
+  "title": "Average price per hour",
+  "difficulty": "Medium",
+  "tags": [
+    "expressions"
+  ],
+  "statementMd": "For each airline show the average base price per flight hour (base price divided by duration in hours), rounded to 2 decimals.\n\nExpected columns: `name`, `price_per_hour`.\n\nTables: `airlines`, `airports`, `flights`, `bookings`.\n\nRow order does not matter.",
+  "hints": [
+    "Average the ratio per flight."
+  ],
+  "solutionMd": "```sql\nSELECT a.name, ROUND(AVG(f.base_price / (f.duration_min / 60.0)), 2) AS price_per_hour FROM flights f JOIN airlines a ON a.code = f.airline_code GROUP BY a.code, a.name;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: airlines, airports, flights, bookings\nSELECT\n",
+  "datasetId": "flights",
+  "expected": {
+    "query": "SELECT a.name, ROUND(AVG(f.base_price / (f.duration_min / 60.0)), 2) AS price_per_hour FROM flights f JOIN airlines a ON a.code = f.airline_code GROUP BY a.code, a.name;",
+    "orderMatters": false
+  },
+  "order": 173
+}

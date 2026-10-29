@@ -1,0 +1,88 @@
+{
+  "slug": "is-symmetric",
+  "track": "python",
+  "title": "Is symmetric",
+  "difficulty": "Medium",
+  "tags": [
+    "trees"
+  ],
+  "statementMd": "Return whether the tree is a mirror image of itself around its centre. The tree is given as a level-order list where `None` marks a missing child (like `[3, 9, 20, None, None, 15, 7]`); the helper `build_tree` in the solution shows how it is read, and in your function the argument is already that list.\n\n**Example:** `is_symmetric([1, 2, 2, 3, 4, 4, 3])` returns `true`.",
+  "hints": [
+    "Compare the left subtree with the mirrored right subtree."
+  ],
+  "solutionMd": "```python\nclass Node:\n    def __init__(self, val, left=None, right=None):\n        self.val, self.left, self.right = val, left, right\n\n\ndef build_tree(values):\n    \"\"\"Build a binary tree from a level-order list where None marks a missing child.\"\"\"\n    if not values or values[0] is None:\n        return None\n    root = Node(values[0])\n    queue, i = [root], 1\n    while queue and i < len(values):\n        node = queue.pop(0)\n        if i < len(values) and values[i] is not None:\n            node.left = Node(values[i])\n            queue.append(node.left)\n        i += 1\n        if i < len(values) and values[i] is not None:\n            node.right = Node(values[i])\n            queue.append(node.right)\n        i += 1\n    return root\n\n\ndef is_symmetric(values):\n    def mirror(a, b):\n        if a is None or b is None:\n            return a is b\n        return a.val == b.val and mirror(a.left, b.right) and mirror(a.right, b.left)\n    root = build_tree(values)\n    return root is None or mirror(root.left, root.right)\n```\n\nMirror recursion on two nodes.",
+  "starterCode": "def is_symmetric(values):\n    # Write your code here\n    pass\n",
+  "functionName": "is_symmetric",
+  "referenceSolution": "class Node:\n    def __init__(self, val, left=None, right=None):\n        self.val, self.left, self.right = val, left, right\n\n\ndef build_tree(values):\n    \"\"\"Build a binary tree from a level-order list where None marks a missing child.\"\"\"\n    if not values or values[0] is None:\n        return None\n    root = Node(values[0])\n    queue, i = [root], 1\n    while queue and i < len(values):\n        node = queue.pop(0)\n        if i < len(values) and values[i] is not None:\n            node.left = Node(values[i])\n            queue.append(node.left)\n        i += 1\n        if i < len(values) and values[i] is not None:\n            node.right = Node(values[i])\n            queue.append(node.right)\n        i += 1\n    return root\n\n\ndef is_symmetric(values):\n    def mirror(a, b):\n        if a is None or b is None:\n            return a is b\n        return a.val == b.val and mirror(a.left, b.right) and mirror(a.right, b.left)\n    root = build_tree(values)\n    return root is None or mirror(root.left, root.right)\n",
+  "tests": [
+    {
+      "args": [
+        [
+          1,
+          2,
+          2,
+          3,
+          4,
+          4,
+          3
+        ]
+      ],
+      "expected": true,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          1,
+          2,
+          2,
+          null,
+          3,
+          null,
+          3
+        ]
+      ],
+      "expected": false,
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1
+        ]
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "expected": false,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          2,
+          2
+        ]
+      ],
+      "expected": true,
+      "hidden": true
+    }
+  ],
+  "order": 354
+}

@@ -1,0 +1,21 @@
+{
+  "slug": "genres-by-profit-and-share",
+  "track": "sql",
+  "title": "Genres by profit and share",
+  "difficulty": "Hard",
+  "tags": [
+    "window-functions"
+  ],
+  "statementMd": "For each genre with known financials, show total profit (gross minus budget) and its share of all profit as a percentage rounded to 1 decimal.\n\nExpected columns: `genre`, `profit`, `share_pct`.\n\nTables: `movies`, `directors`, `reviews`.\n\nRow order does not matter.",
+  "hints": [
+    "Window total beside grouped rows."
+  ],
+  "solutionMd": "```sql\nWITH g AS (SELECT genre, SUM(gross_millions - budget_millions) AS profit FROM movies WHERE gross_millions IS NOT NULL AND budget_millions IS NOT NULL GROUP BY genre) SELECT genre, ROUND(profit, 1) AS profit, ROUND(100.0 * profit / SUM(profit) OVER (), 1) AS share_pct FROM g;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: movies, directors, reviews\nSELECT\n",
+  "datasetId": "movies",
+  "expected": {
+    "query": "WITH g AS (SELECT genre, SUM(gross_millions - budget_millions) AS profit FROM movies WHERE gross_millions IS NOT NULL AND budget_millions IS NOT NULL GROUP BY genre) SELECT genre, ROUND(profit, 1) AS profit, ROUND(100.0 * profit / SUM(profit) OVER (), 1) AS share_pct FROM g;",
+    "orderMatters": false
+  },
+  "order": 420
+}

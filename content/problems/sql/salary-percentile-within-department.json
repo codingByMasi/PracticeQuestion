@@ -1,0 +1,21 @@
+{
+  "slug": "salary-percentile-within-department",
+  "track": "sql",
+  "title": "Salary percentile within department",
+  "difficulty": "Hard",
+  "tags": [
+    "window-functions"
+  ],
+  "statementMd": "For each employee with a department show the percentage rank (`PERCENT_RANK`) of their salary within the department rounded to 2 decimals. Order by department then salary.\n\nExpected columns: `department_id`, `first_name`, `salary`, `pct_rank`.\n\nTables: `employees`, `departments`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "`PERCENT_RANK() OVER (PARTITION BY department_id ORDER BY salary)`."
+  ],
+  "solutionMd": "```sql\nSELECT department_id, first_name, salary, ROUND(PERCENT_RANK() OVER (PARTITION BY department_id ORDER BY salary), 2) AS pct_rank FROM employees WHERE department_id IS NOT NULL ORDER BY department_id, salary;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "SELECT department_id, first_name, salary, ROUND(PERCENT_RANK() OVER (PARTITION BY department_id ORDER BY salary), 2) AS pct_rank FROM employees WHERE department_id IS NOT NULL ORDER BY department_id, salary;",
+    "orderMatters": true
+  },
+  "order": 434
+}

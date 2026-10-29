@@ -1,0 +1,21 @@
+{
+  "slug": "cancel-an-order-and-recount",
+  "track": "sql",
+  "title": "Cancel an order and recount",
+  "difficulty": "Medium",
+  "tags": [
+    "dml"
+  ],
+  "statementMd": "Delete all items of cancelled orders with a `DELETE`, then report how many order lines remain.\n\nExpected columns: `lines`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\nRow order does not matter.",
+  "hints": [
+    "`DELETE FROM order_items WHERE order_id IN (SELECT id FROM orders WHERE status = 'cancelled')`."
+  ],
+  "solutionMd": "```sql\nDELETE FROM order_items WHERE order_id IN (SELECT id FROM orders WHERE status = 'cancelled'); SELECT COUNT(*) AS lines FROM order_items;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "DELETE FROM order_items WHERE order_id IN (SELECT id FROM orders WHERE status = 'cancelled'); SELECT COUNT(*) AS lines FROM order_items;",
+    "orderMatters": false
+  },
+  "order": 356
+}

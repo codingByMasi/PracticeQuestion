@@ -1,0 +1,21 @@
+{
+  "slug": "reviewers-who-rated-above-movie-average",
+  "track": "sql",
+  "title": "Reviewers who rated above movie average",
+  "difficulty": "Hard",
+  "tags": [
+    "correlated-subquery"
+  ],
+  "statementMd": "Count, per reviewer, how many of their reviews were above the average rating of the movie they reviewed. Show reviewers with at least 2 such reviews, ordered by count desc then name.\n\nExpected columns: `reviewer`, `above`.\n\nTables: `directors`, `movies`, `reviews`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Correlated subquery for the movie average."
+  ],
+  "solutionMd": "```sql\nSELECT r.reviewer, COUNT(*) AS above FROM reviews r WHERE r.rating > (SELECT AVG(r2.rating) FROM reviews r2 WHERE r2.movie_id = r.movie_id) GROUP BY r.reviewer HAVING COUNT(*) >= 2 ORDER BY above DESC, r.reviewer;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: directors, movies, reviews\nSELECT\n",
+  "datasetId": "movies",
+  "expected": {
+    "query": "SELECT r.reviewer, COUNT(*) AS above FROM reviews r WHERE r.rating > (SELECT AVG(r2.rating) FROM reviews r2 WHERE r2.movie_id = r.movie_id) GROUP BY r.reviewer HAVING COUNT(*) >= 2 ORDER BY above DESC, r.reviewer;",
+    "orderMatters": true
+  },
+  "order": 397
+}

@@ -1,0 +1,21 @@
+{
+  "slug": "price-drift-from-list-price",
+  "track": "sql",
+  "title": "Price drift from list price",
+  "difficulty": "Medium",
+  "tags": [
+    "join"
+  ],
+  "statementMd": "Find order lines where the customer paid a different unit price than the product's current list price. Show order id, product name, list price and unit price.\n\nExpected columns: `order_id`, `name`, `list_price`, `unit_price`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\nRow order does not matter.",
+  "hints": [
+    "Join items to products and compare."
+  ],
+  "solutionMd": "```sql\nSELECT oi.order_id, p.name, p.price AS list_price, oi.unit_price FROM order_items oi JOIN products p ON p.id = oi.product_id WHERE oi.unit_price <> p.price;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "SELECT oi.order_id, p.name, p.price AS list_price, oi.unit_price FROM order_items oi JOIN products p ON p.id = oi.product_id WHERE oi.unit_price <> p.price;",
+    "orderMatters": false
+  },
+  "order": 262
+}

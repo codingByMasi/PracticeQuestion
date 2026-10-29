@@ -1,0 +1,76 @@
+{
+  "slug": "valid-ipv4",
+  "track": "python",
+  "title": "Valid IPv4",
+  "difficulty": "Medium",
+  "tags": [
+    "parsing"
+  ],
+  "statementMd": "Return whether `s` is a valid IPv4 address: four decimal parts separated by dots, each 0-255 with no leading zeros (except `0` itself) and no other characters.\n\n**Example:** `is_valid_ipv4(\"192.168.1.1\")` returns `true`.",
+  "hints": [
+    "Check each part separately."
+  ],
+  "solutionMd": "```python\ndef is_valid_ipv4(s):\n    parts = s.split('.')\n    if len(parts) != 4:\n        return False\n    for p in parts:\n        if not p.isdigit() or not p.isascii() or (len(p) > 1 and p[0] == '0') or int(p) > 255:\n            return False\n    return True\n```\n\nSeveral small rules combined.",
+  "starterCode": "def is_valid_ipv4(s):\n    # Write your code here\n    pass\n",
+  "functionName": "is_valid_ipv4",
+  "referenceSolution": "def is_valid_ipv4(s):\n    parts = s.split('.')\n    if len(parts) != 4:\n        return False\n    for p in parts:\n        if not p.isdigit() or not p.isascii() or (len(p) > 1 and p[0] == '0') or int(p) > 255:\n            return False\n    return True\n",
+  "tests": [
+    {
+      "args": [
+        "192.168.1.1"
+      ],
+      "expected": true,
+      "hidden": false
+    },
+    {
+      "args": [
+        "256.1.1.1"
+      ],
+      "expected": false,
+      "hidden": false
+    },
+    {
+      "args": [
+        "1.2.3"
+      ],
+      "expected": false,
+      "hidden": true
+    },
+    {
+      "args": [
+        "01.2.3.4"
+      ],
+      "expected": false,
+      "hidden": true
+    },
+    {
+      "args": [
+        "0.0.0.0"
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        "1.2.3.4.5"
+      ],
+      "expected": false,
+      "hidden": true
+    },
+    {
+      "args": [
+        "a.b.c.d"
+      ],
+      "expected": false,
+      "hidden": true
+    },
+    {
+      "args": [
+        "1..2.3"
+      ],
+      "expected": false,
+      "hidden": true
+    }
+  ],
+  "order": 295
+}

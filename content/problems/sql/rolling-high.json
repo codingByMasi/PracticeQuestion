@@ -1,0 +1,21 @@
+{
+  "slug": "rolling-high",
+  "track": "sql",
+  "title": "Rolling high",
+  "difficulty": "Hard",
+  "tags": [
+    "window-functions"
+  ],
+  "statementMd": "For `ENRG`, show each day's close and the highest close seen so far (running maximum). First 10 days.\n\nExpected columns: `trade_date`, `close`, `running_high`.\n\nTables: `tickers`, `prices`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "`MAX(close) OVER (ORDER BY trade_date)`."
+  ],
+  "solutionMd": "```sql\nSELECT trade_date, close, MAX(close) OVER (ORDER BY trade_date) AS running_high FROM prices WHERE symbol = 'ENRG' ORDER BY trade_date LIMIT 10;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: tickers, prices\nSELECT\n",
+  "datasetId": "stocks",
+  "expected": {
+    "query": "SELECT trade_date, close, MAX(close) OVER (ORDER BY trade_date) AS running_high FROM prices WHERE symbol = 'ENRG' ORDER BY trade_date LIMIT 10;",
+    "orderMatters": true
+  },
+  "order": 426
+}

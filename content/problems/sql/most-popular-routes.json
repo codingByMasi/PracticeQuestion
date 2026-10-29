@@ -1,0 +1,21 @@
+{
+  "slug": "most-popular-routes",
+  "track": "sql",
+  "title": "Most popular routes",
+  "difficulty": "Medium",
+  "tags": [
+    "group-by"
+  ],
+  "statementMd": "The five most frequent origin-destination routes with their flight counts. Ties by origin then destination.\n\nExpected columns: `origin`, `destination`, `flights`.\n\nTables: `airlines`, `airports`, `flights`, `bookings`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Group by both columns."
+  ],
+  "solutionMd": "```sql\nSELECT origin, destination, COUNT(*) AS flights FROM flights GROUP BY origin, destination ORDER BY flights DESC, origin, destination LIMIT 5;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: airlines, airports, flights, bookings\nSELECT\n",
+  "datasetId": "flights",
+  "expected": {
+    "query": "SELECT origin, destination, COUNT(*) AS flights FROM flights GROUP BY origin, destination ORDER BY flights DESC, origin, destination LIMIT 5;",
+    "orderMatters": true
+  },
+  "order": 233
+}

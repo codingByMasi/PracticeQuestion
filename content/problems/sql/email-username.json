@@ -1,0 +1,21 @@
+{
+  "slug": "email-username",
+  "track": "sql",
+  "title": "Email username",
+  "difficulty": "Easy",
+  "tags": [
+    "strings"
+  ],
+  "statementMd": "Show each employee's email username (the part before `@`) in upper case.\n\nExpected columns: `username`.\n\nTables: `employees`, `departments`.\n\nRow order does not matter.",
+  "hints": [
+    "`substr(email, 1, instr(email, '@') - 1)`."
+  ],
+  "solutionMd": "```sql\nSELECT UPPER(substr(email, 1, instr(email, '@') - 1)) AS username FROM employees;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "SELECT UPPER(substr(email, 1, instr(email, '@') - 1)) AS username FROM employees;",
+    "orderMatters": false
+  },
+  "order": 105
+}

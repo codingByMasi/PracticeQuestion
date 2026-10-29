@@ -1,0 +1,55 @@
+{
+  "slug": "reverse-bits",
+  "track": "python",
+  "title": "Reverse bits",
+  "difficulty": "Medium",
+  "tags": [
+    "bit-manipulation"
+  ],
+  "statementMd": "Reverse the bits of a 32-bit unsigned integer and return the resulting integer.\n\n**Example:** `reverse_bits(43261596)` returns `964176192`.",
+  "hints": [
+    "Build the result by shifting."
+  ],
+  "solutionMd": "```python\ndef reverse_bits(n):\n    out = 0\n    for _ in range(32):\n        out = (out << 1) | (n & 1)\n        n >>= 1\n    return out\n```\n\nTake the lowest bit of n and push it into the result.",
+  "starterCode": "def reverse_bits(n):\n    # Write your code here\n    pass\n",
+  "functionName": "reverse_bits",
+  "referenceSolution": "def reverse_bits(n):\n    out = 0\n    for _ in range(32):\n        out = (out << 1) | (n & 1)\n        n >>= 1\n    return out\n",
+  "tests": [
+    {
+      "args": [
+        43261596
+      ],
+      "expected": 964176192,
+      "hidden": false
+    },
+    {
+      "args": [
+        0
+      ],
+      "expected": 0,
+      "hidden": false
+    },
+    {
+      "args": [
+        1
+      ],
+      "expected": 2147483648,
+      "hidden": true
+    },
+    {
+      "args": [
+        4294967293
+      ],
+      "expected": 3221225471,
+      "hidden": true
+    },
+    {
+      "args": [
+        2147483648
+      ],
+      "expected": 1,
+      "hidden": true
+    }
+  ],
+  "order": 277
+}

@@ -1,0 +1,21 @@
+{
+  "slug": "average-order-value",
+  "track": "sql",
+  "title": "Average order value",
+  "difficulty": "Medium",
+  "tags": [
+    "cte"
+  ],
+  "statementMd": "What is the average value of an order (over orders that have items), rounded to 2 decimals?\n\nExpected columns: `avg_order_value`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\nRow order does not matter.",
+  "hints": [
+    "Compute per-order totals in a CTE first."
+  ],
+  "solutionMd": "```sql\nWITH totals AS (SELECT order_id, SUM(oi.quantity * oi.unit_price) AS total FROM order_items oi GROUP BY order_id) SELECT ROUND(AVG(total), 2) AS avg_order_value FROM totals;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "WITH totals AS (SELECT order_id, SUM(oi.quantity * oi.unit_price) AS total FROM order_items oi GROUP BY order_id) SELECT ROUND(AVG(total), 2) AS avg_order_value FROM totals;",
+    "orderMatters": false
+  },
+  "order": 349
+}

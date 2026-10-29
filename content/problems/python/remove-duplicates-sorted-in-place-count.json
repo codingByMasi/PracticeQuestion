@@ -1,0 +1,71 @@
+{
+  "slug": "remove-duplicates-sorted-in-place-count",
+  "track": "python",
+  "title": "Remove duplicates sorted in place count",
+  "difficulty": "Easy",
+  "tags": [
+    "two-pointers"
+  ],
+  "statementMd": "`nums` is sorted. Return the number of distinct values.\n\n**Example:** `unique_count_sorted([1, 1, 2, 2, 3])` returns `3`.",
+  "hints": [
+    "Count positions where the value changes."
+  ],
+  "solutionMd": "```python\ndef unique_count_sorted(nums):\n    if not nums:\n        return 0\n    return 1 + sum(1 for a, b in zip(nums, nums[1:]) if a != b)\n```\n\nOne pass comparing neighbours.",
+  "starterCode": "def unique_count_sorted(nums):\n    # Write your code here\n    pass\n",
+  "functionName": "unique_count_sorted",
+  "referenceSolution": "def unique_count_sorted(nums):\n    if not nums:\n        return 0\n    return 1 + sum(1 for a, b in zip(nums, nums[1:]) if a != b)\n",
+  "tests": [
+    {
+      "args": [
+        [
+          1,
+          1,
+          2,
+          2,
+          3
+        ]
+      ],
+      "expected": 3,
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": 0,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          5
+        ]
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "expected": 3,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          4,
+          4,
+          4
+        ]
+      ],
+      "expected": 1,
+      "hidden": true
+    }
+  ],
+  "order": 125
+}

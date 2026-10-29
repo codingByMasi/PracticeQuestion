@@ -1,0 +1,71 @@
+{
+  "slug": "wrap-text",
+  "track": "python",
+  "title": "Wrap text",
+  "difficulty": "Medium",
+  "tags": [
+    "strings"
+  ],
+  "statementMd": "Split `text` into lines of at most `width` characters, breaking only at spaces (words longer than `width` stay alone on their line). Return the list of lines; words are separated by single spaces.\n\n**Example:** `wrap_text(\"the quick brown fox\", 10)` returns `[\"the quick\", \"brown fox\"]`.",
+  "hints": [
+    "Greedily add words while the line fits."
+  ],
+  "solutionMd": "```python\ndef wrap_text(text, width):\n    lines, cur = [], ''\n    for w in text.split():\n        if not cur:\n            cur = w\n        elif len(cur) + 1 + len(w) <= width:\n            cur += ' ' + w\n        else:\n            lines.append(cur)\n            cur = w\n    if cur:\n        lines.append(cur)\n    return lines\n```\n\nGreedy filling gives the standard result.",
+  "starterCode": "def wrap_text(text, width):\n    # Write your code here\n    pass\n",
+  "functionName": "wrap_text",
+  "referenceSolution": "def wrap_text(text, width):\n    lines, cur = [], ''\n    for w in text.split():\n        if not cur:\n            cur = w\n        elif len(cur) + 1 + len(w) <= width:\n            cur += ' ' + w\n        else:\n            lines.append(cur)\n            cur = w\n    if cur:\n        lines.append(cur)\n    return lines\n",
+  "tests": [
+    {
+      "args": [
+        "the quick brown fox",
+        10
+      ],
+      "expected": [
+        "the quick",
+        "brown fox"
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        "a b c",
+        3
+      ],
+      "expected": [
+        "a b",
+        "c"
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        "",
+        5
+      ],
+      "expected": [],
+      "hidden": true
+    },
+    {
+      "args": [
+        "supercalifragilistic is long",
+        8
+      ],
+      "expected": [
+        "supercalifragilistic",
+        "is long"
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        "one two three",
+        100
+      ],
+      "expected": [
+        "one two three"
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 189
+}

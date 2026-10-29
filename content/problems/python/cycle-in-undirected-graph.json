@@ -1,0 +1,108 @@
+{
+  "slug": "cycle-in-undirected-graph",
+  "track": "python",
+  "title": "Cycle in undirected graph",
+  "difficulty": "Medium",
+  "tags": [
+    "graphs"
+  ],
+  "statementMd": "Return whether an undirected graph (no self-loops or duplicate edges) contains a cycle.\n\n**Example:** `has_cycle_undirected(3, [[0, 1], [1, 2], [2, 0]])` returns `true`.",
+  "hints": [
+    "Union-find: an edge joining two already-connected nodes closes a cycle."
+  ],
+  "solutionMd": "```python\nfrom collections import deque, defaultdict\n\n\ndef has_cycle_undirected(n, edges):\n    parent = list(range(n))\n    def find(x):\n        while parent[x] != x:\n            parent[x] = parent[parent[x]]\n            x = parent[x]\n        return x\n    for a, b in edges:\n        ra, rb = find(a), find(b)\n        if ra == rb:\n            return True\n        parent[ra] = rb\n    return False\n```\n\nUnion-find detects the closing edge.",
+  "starterCode": "def has_cycle_undirected(n, edges):\n    # Write your code here\n    pass\n",
+  "functionName": "has_cycle_undirected",
+  "referenceSolution": "from collections import deque, defaultdict\n\n\ndef has_cycle_undirected(n, edges):\n    parent = list(range(n))\n    def find(x):\n        while parent[x] != x:\n            parent[x] = parent[parent[x]]\n            x = parent[x]\n        return x\n    for a, b in edges:\n        ra, rb = find(a), find(b)\n        if ra == rb:\n            return True\n        parent[ra] = rb\n    return False\n",
+  "tests": [
+    {
+      "args": [
+        3,
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            0
+          ]
+        ]
+      ],
+      "expected": true,
+      "hidden": false
+    },
+    {
+      "args": [
+        3,
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      ],
+      "expected": false,
+      "hidden": false
+    },
+    {
+      "args": [
+        1,
+        []
+      ],
+      "expected": false,
+      "hidden": true
+    },
+    {
+      "args": [
+        4,
+        [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      ],
+      "expected": false,
+      "hidden": true
+    },
+    {
+      "args": [
+        4,
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            1
+          ]
+        ]
+      ],
+      "expected": true,
+      "hidden": true
+    }
+  ],
+  "order": 342
+}

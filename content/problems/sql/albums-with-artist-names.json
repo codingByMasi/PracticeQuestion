@@ -1,0 +1,21 @@
+{
+  "slug": "albums-with-artist-names",
+  "track": "sql",
+  "title": "Albums with artist names",
+  "difficulty": "Easy",
+  "tags": [
+    "join"
+  ],
+  "statementMd": "For albums 1 to 5 show title and artist name.\n\nExpected columns: `title`, `artist`.\n\nTables: `artists`, `albums`, `tracks`, `listeners`, `plays`.\n\nRow order does not matter.",
+  "hints": [
+    "Join albums to artists."
+  ],
+  "solutionMd": "```sql\nSELECT al.title, ar.name AS artist FROM albums al JOIN artists ar ON ar.id = al.artist_id WHERE al.id <= 5;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: artists, albums, tracks, listeners, plays\nSELECT\n",
+  "datasetId": "music",
+  "expected": {
+    "query": "SELECT al.title, ar.name AS artist FROM albums al JOIN artists ar ON ar.id = al.artist_id WHERE al.id <= 5;",
+    "orderMatters": false
+  },
+  "order": 161
+}

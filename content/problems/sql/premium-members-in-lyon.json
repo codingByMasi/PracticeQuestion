@@ -1,0 +1,21 @@
+{
+  "slug": "premium-members-in-lyon",
+  "track": "sql",
+  "title": "Premium members in Lyon",
+  "difficulty": "Easy",
+  "tags": [
+    "where"
+  ],
+  "statementMd": "List the names of premium-tier members who live in Lyon.\n\nExpected columns: `name`.\n\nTables: `authors`, `books`, `members`, `loans`.\n\nRow order does not matter.",
+  "hints": [
+    "Two conditions with `AND`."
+  ],
+  "solutionMd": "```sql\nSELECT name FROM members WHERE tier = 'premium' AND city = 'Lyon';\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: authors, books, members, loans\nSELECT\n",
+  "datasetId": "library",
+  "expected": {
+    "query": "SELECT name FROM members WHERE tier = 'premium' AND city = 'Lyon';",
+    "orderMatters": false
+  },
+  "order": 35
+}

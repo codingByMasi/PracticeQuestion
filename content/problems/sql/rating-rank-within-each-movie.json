@@ -1,0 +1,21 @@
+{
+  "slug": "rating-rank-within-each-movie",
+  "track": "sql",
+  "title": "Rating rank within each movie",
+  "difficulty": "Hard",
+  "tags": [
+    "ranking"
+  ],
+  "statementMd": "Rank each review within its movie from highest rating to lowest with `RANK()`. Show movie id, reviewer, rating, rank. Only for movies with at least three reviews. Order by movie id, rank, reviewer.\n\nExpected columns: `movie_id`, `reviewer`, `rating`, `rk`.\n\nTables: `movies`, `directors`, `reviews`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Window `RANK()` partitioned by movie; filter on a count window."
+  ],
+  "solutionMd": "```sql\nSELECT movie_id, reviewer, rating, rk FROM (SELECT movie_id, reviewer, rating, RANK() OVER (PARTITION BY movie_id ORDER BY rating DESC) AS rk, COUNT(*) OVER (PARTITION BY movie_id) AS n FROM reviews) WHERE n >= 3 ORDER BY movie_id, rk, reviewer;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: movies, directors, reviews\nSELECT\n",
+  "datasetId": "movies",
+  "expected": {
+    "query": "SELECT movie_id, reviewer, rating, rk FROM (SELECT movie_id, reviewer, rating, RANK() OVER (PARTITION BY movie_id ORDER BY rating DESC) AS rk, COUNT(*) OVER (PARTITION BY movie_id) AS n FROM reviews) WHERE n >= 3 ORDER BY movie_id, rk, reviewer;",
+    "orderMatters": true
+  },
+  "order": 455
+}

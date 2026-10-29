@@ -1,0 +1,22 @@
+{
+  "slug": "average-pay-by-department",
+  "track": "sql",
+  "title": "Average pay by department",
+  "difficulty": "Easy",
+  "tags": [
+    "group-by"
+  ],
+  "statementMd": "For each department name, show the average salary rounded to 2 decimals. Include only departments that have employees.\n\nExpected columns: `department`, `avg_salary`.\n\nTables: `employees`, `departments`.\n\nRow order does not matter.",
+  "hints": [
+    "Join to `departments` for the name.",
+    "Group by department."
+  ],
+  "solutionMd": "```sql\nSELECT d.name AS department, ROUND(AVG(e.salary), 2) AS avg_salary FROM employees e JOIN departments d ON d.id = e.department_id GROUP BY d.id, d.name;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "SELECT d.name AS department, ROUND(AVG(e.salary), 2) AS avg_salary FROM employees e JOIN departments d ON d.id = e.department_id GROUP BY d.id, d.name;",
+    "orderMatters": false
+  },
+  "order": 131
+}

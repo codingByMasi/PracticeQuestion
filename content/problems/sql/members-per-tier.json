@@ -1,0 +1,21 @@
+{
+  "slug": "members-per-tier",
+  "track": "sql",
+  "title": "Members per tier",
+  "difficulty": "Easy",
+  "tags": [
+    "group-by"
+  ],
+  "statementMd": "Count members per tier.\n\nExpected columns: `tier`, `members`.\n\nTables: `authors`, `books`, `members`, `loans`.\n\nRow order does not matter.",
+  "hints": [
+    "`GROUP BY tier`."
+  ],
+  "solutionMd": "```sql\nSELECT tier, COUNT(*) AS members FROM members GROUP BY tier;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: authors, books, members, loans\nSELECT\n",
+  "datasetId": "library",
+  "expected": {
+    "query": "SELECT tier, COUNT(*) AS members FROM members GROUP BY tier;",
+    "orderMatters": false
+  },
+  "order": 136
+}

@@ -1,0 +1,82 @@
+{
+  "slug": "container-with-most-water",
+  "track": "python",
+  "title": "Container with most water",
+  "difficulty": "Hard",
+  "tags": [
+    "two-pointers"
+  ],
+  "statementMd": "Given bar heights, choose two bars to form a container; return the maximum area `min(h[i], h[j]) * (j - i)`.\n\n**Example:** `max_area([1, 8, 6, 2, 5, 4, 8, 3, 7])` returns `49`.",
+  "hints": [
+    "Start with the widest pair; move the shorter side."
+  ],
+  "solutionMd": "```python\ndef max_area(heights):\n    l, r = 0, len(heights) - 1\n    best = 0\n    while l < r:\n        best = max(best, min(heights[l], heights[r]) * (r - l))\n        if heights[l] < heights[r]:\n            l += 1\n        else:\n            r -= 1\n    return best\n```\n\nMoving the taller side can never help.",
+  "starterCode": "def max_area(heights):\n    # Write your code here\n    pass\n",
+  "functionName": "max_area",
+  "referenceSolution": "def max_area(heights):\n    l, r = 0, len(heights) - 1\n    best = 0\n    while l < r:\n        best = max(best, min(heights[l], heights[r]) * (r - l))\n        if heights[l] < heights[r]:\n            l += 1\n        else:\n            r -= 1\n    return best\n",
+  "tests": [
+    {
+      "args": [
+        [
+          1,
+          8,
+          6,
+          2,
+          5,
+          4,
+          8,
+          3,
+          7
+        ]
+      ],
+      "expected": 49,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          1,
+          1
+        ]
+      ],
+      "expected": 1,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          4,
+          3,
+          2,
+          1,
+          4
+        ]
+      ],
+      "expected": 16,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          2,
+          1
+        ]
+      ],
+      "expected": 2,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          5,
+          5,
+          5
+        ]
+      ],
+      "expected": 10,
+      "hidden": true
+    }
+  ],
+  "order": 401
+}

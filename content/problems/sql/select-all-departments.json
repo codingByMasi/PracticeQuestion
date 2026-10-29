@@ -17,5 +17,6 @@
   "expected": {
     "query": "SELECT * FROM departments;",
     "orderMatters": false
-  }
+  },
+  "order": 1
 }

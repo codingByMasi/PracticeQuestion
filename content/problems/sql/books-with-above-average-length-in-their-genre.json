@@ -1,0 +1,21 @@
+{
+  "slug": "books-with-above-average-length-in-their-genre",
+  "track": "sql",
+  "title": "Books with above-average length in their genre",
+  "difficulty": "Medium",
+  "tags": [
+    "correlated-subquery"
+  ],
+  "statementMd": "List books longer than the average page count of their genre.\n\nExpected columns: `title`, `genre`, `pages`.\n\nTables: `authors`, `books`, `members`, `loans`.\n\nRow order does not matter.",
+  "hints": [
+    "Correlated subquery on genre."
+  ],
+  "solutionMd": "```sql\nSELECT b.title, b.genre, b.pages FROM books b WHERE b.pages > (SELECT AVG(b2.pages) FROM books b2 WHERE b2.genre = b.genre);\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: authors, books, members, loans\nSELECT\n",
+  "datasetId": "library",
+  "expected": {
+    "query": "SELECT b.title, b.genre, b.pages FROM books b WHERE b.pages > (SELECT AVG(b2.pages) FROM books b2 WHERE b2.genre = b.genre);",
+    "orderMatters": false
+  },
+  "order": 342
+}

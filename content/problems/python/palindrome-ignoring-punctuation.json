@@ -1,0 +1,62 @@
+{
+  "slug": "palindrome-ignoring-punctuation",
+  "track": "python",
+  "title": "Palindrome ignoring punctuation",
+  "difficulty": "Medium",
+  "tags": [
+    "strings"
+  ],
+  "statementMd": "Return `True` if `s` is a palindrome considering only letters and digits and ignoring case. (An empty cleaned string is a palindrome.)\n\n**Example:** `is_palindrome_phrase(\"A man, a plan, a canal: Panama\")` returns `true`.",
+  "hints": [
+    "Clean first, then compare with the reverse."
+  ],
+  "solutionMd": "```python\ndef is_palindrome_phrase(s):\n    t = [c.lower() for c in s if c.isalnum()]\n    return t == t[::-1]\n```\n\nFilter with `isalnum`.",
+  "starterCode": "def is_palindrome_phrase(s):\n    # Write your code here\n    pass\n",
+  "functionName": "is_palindrome_phrase",
+  "referenceSolution": "def is_palindrome_phrase(s):\n    t = [c.lower() for c in s if c.isalnum()]\n    return t == t[::-1]\n",
+  "tests": [
+    {
+      "args": [
+        "A man, a plan, a canal: Panama"
+      ],
+      "expected": true,
+      "hidden": false
+    },
+    {
+      "args": [
+        "race a car"
+      ],
+      "expected": false,
+      "hidden": false
+    },
+    {
+      "args": [
+        ""
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        ".,"
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        "No lemon, no melon"
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        "ab"
+      ],
+      "expected": false,
+      "hidden": true
+    }
+  ],
+  "order": 187
+}

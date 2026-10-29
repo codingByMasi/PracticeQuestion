@@ -1,0 +1,117 @@
+{
+  "slug": "maximal-rectangle-of-ones",
+  "track": "python",
+  "title": "Maximal rectangle of ones",
+  "difficulty": "Hard",
+  "tags": [
+    "stacks"
+  ],
+  "statementMd": "Given a binary matrix of `0`/`1` integers, return the area of the largest rectangle containing only 1s.\n\n**Example:** `maximal_rectangle([[1, 0, 1, 0, 0], [1, 0, 1, 1, 1], [1, 1, 1, 1, 1], [1, 0, …)` returns `6`.",
+  "hints": [
+    "Treat each row as a histogram."
+  ],
+  "solutionMd": "```python\ndef maximal_rectangle(matrix):\n    if not matrix:\n        return 0\n    heights = [0] * len(matrix[0])\n    best = 0\n    for row in matrix:\n        for i, v in enumerate(row):\n            heights[i] = heights[i] + 1 if v else 0\n        stack = []\n        for i, h in enumerate(heights + [0]):\n            start = i\n            while stack and stack[-1][1] >= h:\n                idx, height = stack.pop()\n                best = max(best, height * (i - idx))\n                start = idx\n            stack.append((start, h))\n    return best\n```\n\nLargest-rectangle-in-histogram per row.",
+  "starterCode": "def maximal_rectangle(matrix):\n    # Write your code here\n    pass\n",
+  "functionName": "maximal_rectangle",
+  "referenceSolution": "def maximal_rectangle(matrix):\n    if not matrix:\n        return 0\n    heights = [0] * len(matrix[0])\n    best = 0\n    for row in matrix:\n        for i, v in enumerate(row):\n            heights[i] = heights[i] + 1 if v else 0\n        stack = []\n        for i, h in enumerate(heights + [0]):\n            start = i\n            while stack and stack[-1][1] >= h:\n                idx, height = stack.pop()\n                best = max(best, height * (i - idx))\n                start = idx\n            stack.append((start, h))\n    return best\n",
+  "tests": [
+    {
+      "args": [
+        [
+          [
+            1,
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            1,
+            0
+          ]
+        ]
+      ],
+      "expected": 6,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            0
+          ]
+        ]
+      ],
+      "expected": 0,
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            1
+          ]
+        ]
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      ],
+      "expected": 4,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      ],
+      "expected": 2,
+      "hidden": true
+    }
+  ],
+  "order": 417
+}

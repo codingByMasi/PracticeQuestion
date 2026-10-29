@@ -1,0 +1,21 @@
+{
+  "slug": "customers-who-never-paid-a-fee",
+  "track": "sql",
+  "title": "Customers who never paid a fee",
+  "difficulty": "Medium",
+  "tags": [
+    "exists"
+  ],
+  "statementMd": "List customers none of whose accounts were ever charged a fee.\n\nExpected columns: `name`.\n\nTables: `customers`, `accounts`, `transactions`.\n\nRow order does not matter.",
+  "hints": [
+    "`NOT EXISTS` through accounts and transactions."
+  ],
+  "solutionMd": "```sql\nSELECT c.name FROM customers c WHERE NOT EXISTS (SELECT 1 FROM accounts a JOIN transactions t ON t.account_id = a.id WHERE a.customer_id = c.id AND t.kind = 'fee');\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, accounts, transactions\nSELECT\n",
+  "datasetId": "bank",
+  "expected": {
+    "query": "SELECT c.name FROM customers c WHERE NOT EXISTS (SELECT 1 FROM accounts a JOIN transactions t ON t.account_id = a.id WHERE a.customer_id = c.id AND t.kind = 'fee');",
+    "orderMatters": false
+  },
+  "order": 322
+}

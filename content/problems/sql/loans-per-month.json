@@ -1,0 +1,21 @@
+{
+  "slug": "loans-per-month",
+  "track": "sql",
+  "title": "Loans per month",
+  "difficulty": "Medium",
+  "tags": [
+    "dates"
+  ],
+  "statementMd": "Number of loans started in each month (YYYY-MM), earliest first.\n\nExpected columns: `month`, `loans`.\n\nTables: `authors`, `books`, `members`, `loans`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "`strftime`."
+  ],
+  "solutionMd": "```sql\nSELECT strftime('%Y-%m', loan_date) AS month, COUNT(*) AS loans FROM loans GROUP BY month ORDER BY month;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: authors, books, members, loans\nSELECT\n",
+  "datasetId": "library",
+  "expected": {
+    "query": "SELECT strftime('%Y-%m', loan_date) AS month, COUNT(*) AS loans FROM loans GROUP BY month ORDER BY month;",
+    "orderMatters": true
+  },
+  "order": 196
+}

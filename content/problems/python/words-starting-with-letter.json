@@ -1,0 +1,93 @@
+{
+  "slug": "words-starting-with-letter",
+  "track": "python",
+  "title": "Words starting with letter",
+  "difficulty": "Easy",
+  "tags": [
+    "dicts"
+  ],
+  "statementMd": "Return a dict from each initial letter (lowercase) to the sorted list of words starting with it (case-insensitive grouping, original spelling kept).\n\n**Example:** `words_by_initial([\"apple\", \"avocado\", \"banana\"])` returns `{\"a\": [\"apple\", \"avocado\"], \"b\": [\"banana\"]}`.",
+  "hints": [
+    "Group by `w[0].lower()`, sort each group."
+  ],
+  "solutionMd": "```python\ndef words_by_initial(words):\n    groups = {}\n    for w in words:\n        groups.setdefault(w[0].lower(), []).append(w)\n    return {k: sorted(v) for k, v in groups.items()}\n```\n\nGroup first, sort later.",
+  "starterCode": "def words_by_initial(words):\n    # Write your code here\n    pass\n",
+  "functionName": "words_by_initial",
+  "referenceSolution": "def words_by_initial(words):\n    groups = {}\n    for w in words:\n        groups.setdefault(w[0].lower(), []).append(w)\n    return {k: sorted(v) for k, v in groups.items()}\n",
+  "tests": [
+    {
+      "args": [
+        [
+          "apple",
+          "avocado",
+          "banana"
+        ]
+      ],
+      "expected": {
+        "a": [
+          "apple",
+          "avocado"
+        ],
+        "b": [
+          "banana"
+        ]
+      },
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": {},
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          "Cat",
+          "car"
+        ]
+      ],
+      "expected": {
+        "c": [
+          "Cat",
+          "car"
+        ]
+      },
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          "x"
+        ]
+      ],
+      "expected": {
+        "x": [
+          "x"
+        ]
+      },
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          "b",
+          "a",
+          "B"
+        ]
+      ],
+      "expected": {
+        "b": [
+          "B",
+          "b"
+        ],
+        "a": [
+          "a"
+        ]
+      },
+      "hidden": true
+    }
+  ],
+  "order": 102
+}

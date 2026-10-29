@@ -1,0 +1,81 @@
+{
+  "slug": "count-items",
+  "track": "python",
+  "title": "Count items",
+  "difficulty": "Easy",
+  "tags": [
+    "counting"
+  ],
+  "statementMd": "Return a dict mapping each item (string) to the number of times it appears.\n\n**Example:** `count_items([\"a\", \"b\", \"a\"])` returns `{\"a\": 2, \"b\": 1}`.",
+  "hints": [
+    "Use `dict.get(key, 0) + 1`."
+  ],
+  "solutionMd": "```python\ndef count_items(items):\n    counts = {}\n    for x in items:\n        counts[x] = counts.get(x, 0) + 1\n    return counts\n```\n\n`get` with a default avoids KeyError.",
+  "starterCode": "def count_items(items):\n    # Write your code here\n    pass\n",
+  "functionName": "count_items",
+  "referenceSolution": "def count_items(items):\n    counts = {}\n    for x in items:\n        counts[x] = counts.get(x, 0) + 1\n    return counts\n",
+  "tests": [
+    {
+      "args": [
+        [
+          "a",
+          "b",
+          "a"
+        ]
+      ],
+      "expected": {
+        "a": 2,
+        "b": 1
+      },
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": {},
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          "x"
+        ]
+      ],
+      "expected": {
+        "x": 1
+      },
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          "a",
+          "a",
+          "a"
+        ]
+      ],
+      "expected": {
+        "a": 3
+      },
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          "b",
+          "a",
+          "c",
+          "b"
+        ]
+      ],
+      "expected": {
+        "b": 2,
+        "a": 1,
+        "c": 1
+      },
+      "hidden": true
+    }
+  ],
+  "order": 105
+}

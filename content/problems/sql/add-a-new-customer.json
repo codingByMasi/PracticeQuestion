@@ -1,0 +1,21 @@
+{
+  "slug": "add-a-new-customer",
+  "track": "sql",
+  "title": "Add a new customer",
+  "difficulty": "Medium",
+  "tags": [
+    "dml"
+  ],
+  "statementMd": "Insert a customer named `Zed Park` from `Korea` (email `zed@example.com`, signup date `2024-07-01`, id 11), then list all customers from Korea or Japan.\n\nExpected columns: `name`, `country`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\nRow order does not matter.",
+  "hints": [
+    "`INSERT INTO customers (...) VALUES (...)`."
+  ],
+  "solutionMd": "```sql\nINSERT INTO customers (id, name, email, country, signup_date) VALUES (11, 'Zed Park', 'zed@example.com', 'Korea', '2024-07-01'); SELECT name, country FROM customers WHERE country IN ('Korea', 'Japan');\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "INSERT INTO customers (id, name, email, country, signup_date) VALUES (11, 'Zed Park', 'zed@example.com', 'Korea', '2024-07-01'); SELECT name, country FROM customers WHERE country IN ('Korea', 'Japan');",
+    "orderMatters": false
+  },
+  "order": 358
+}

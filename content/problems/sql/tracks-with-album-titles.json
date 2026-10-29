@@ -1,0 +1,21 @@
+{
+  "slug": "tracks-with-album-titles",
+  "track": "sql",
+  "title": "Tracks with album titles",
+  "difficulty": "Easy",
+  "tags": [
+    "join"
+  ],
+  "statementMd": "For tracks 1 to 6 show track title and album title.\n\nExpected columns: `track`, `album`.\n\nTables: `artists`, `albums`, `tracks`, `listeners`, `plays`.\n\nRow order does not matter.",
+  "hints": [
+    "Join tracks to albums."
+  ],
+  "solutionMd": "```sql\nSELECT t.title AS track, al.title AS album FROM tracks t JOIN albums al ON al.id = t.album_id WHERE t.id <= 6;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: artists, albums, tracks, listeners, plays\nSELECT\n",
+  "datasetId": "music",
+  "expected": {
+    "query": "SELECT t.title AS track, al.title AS album FROM tracks t JOIN albums al ON al.id = t.album_id WHERE t.id <= 6;",
+    "orderMatters": false
+  },
+  "order": 162
+}

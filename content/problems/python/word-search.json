@@ -1,0 +1,118 @@
+{
+  "slug": "word-search",
+  "track": "python",
+  "title": "Word search",
+  "difficulty": "Hard",
+  "tags": [
+    "backtracking"
+  ],
+  "statementMd": "Given a grid of letters, return whether `word` can be built from sequentially adjacent (up, down, left, right) cells, using each cell at most once.\n\n**Example:** `word_search([[\"A\", \"B\", \"C\", \"E\"], [\"S\", \"F\", \"C\", \"S\"], [\"A\", \"D\", \"E\"…, \"ABCCED\")` returns `true`.",
+  "hints": [
+    "DFS from every cell, marking visited."
+  ],
+  "solutionMd": "```python\ndef word_search(board, word):\n    R, C = len(board), len(board[0]) if board else 0\n    def go(r, c, i):\n        if i == len(word):\n            return True\n        if not (0 <= r < R and 0 <= c < C) or board[r][c] != word[i]:\n            return False\n        saved, board[r][c] = board[r][c], '#'\n        found = any(go(r + dr, c + dc, i + 1) for dr, dc in ((1, 0), (-1, 0), (0, 1), (0, -1)))\n        board[r][c] = saved\n        return found\n    return any(go(r, c, 0) for r in range(R) for c in range(C))\n```\n\nMark the cell, explore, then restore it.",
+  "starterCode": "def word_search(board, word):\n    # Write your code here\n    pass\n",
+  "functionName": "word_search",
+  "referenceSolution": "def word_search(board, word):\n    R, C = len(board), len(board[0]) if board else 0\n    def go(r, c, i):\n        if i == len(word):\n            return True\n        if not (0 <= r < R and 0 <= c < C) or board[r][c] != word[i]:\n            return False\n        saved, board[r][c] = board[r][c], '#'\n        found = any(go(r + dr, c + dc, i + 1) for dr, dc in ((1, 0), (-1, 0), (0, 1), (0, -1)))\n        board[r][c] = saved\n        return found\n    return any(go(r, c, 0) for r in range(R) for c in range(C))\n",
+  "tests": [
+    {
+      "args": [
+        [
+          [
+            "A",
+            "B",
+            "C",
+            "E"
+          ],
+          [
+            "S",
+            "F",
+            "C",
+            "S"
+          ],
+          [
+            "A",
+            "D",
+            "E",
+            "E"
+          ]
+        ],
+        "ABCCED"
+      ],
+      "expected": true,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            "A",
+            "B"
+          ],
+          [
+            "C",
+            "D"
+          ]
+        ],
+        "ABDCA"
+      ],
+      "expected": false,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            "A"
+          ]
+        ],
+        "A"
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            "A"
+          ]
+        ],
+        "B"
+      ],
+      "expected": false,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            "A",
+            "B"
+          ],
+          [
+            "C",
+            "D"
+          ]
+        ],
+        "ACDB"
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            "A",
+            "A"
+          ]
+        ],
+        "AAA"
+      ],
+      "expected": false,
+      "hidden": true
+    }
+  ],
+  "order": 456
+}

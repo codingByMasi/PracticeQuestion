@@ -1,0 +1,21 @@
+{
+  "slug": "top-three-grossing-films",
+  "track": "sql",
+  "title": "Top three grossing films",
+  "difficulty": "Easy",
+  "tags": [
+    "order-by"
+  ],
+  "statementMd": "The three highest-grossing movies, biggest first. Show title and gross.\n\nExpected columns: `title`, `gross_millions`.\n\nTables: `movies`, `directors`, `reviews`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "NULL gross sorts low in SQLite when descending."
+  ],
+  "solutionMd": "```sql\nSELECT title, gross_millions FROM movies ORDER BY gross_millions DESC LIMIT 3;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: movies, directors, reviews\nSELECT\n",
+  "datasetId": "movies",
+  "expected": {
+    "query": "SELECT title, gross_millions FROM movies ORDER BY gross_millions DESC LIMIT 3;",
+    "orderMatters": true
+  },
+  "order": 73
+}

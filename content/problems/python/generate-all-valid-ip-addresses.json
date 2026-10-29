@@ -1,0 +1,78 @@
+{
+  "slug": "generate-all-valid-ip-addresses",
+  "track": "python",
+  "title": "Generate all valid IP addresses",
+  "difficulty": "Medium",
+  "tags": [
+    "backtracking"
+  ],
+  "statementMd": "Given a string of digits, return all valid IPv4 addresses that can be formed by inserting three dots (parts 0-255, no leading zeros), sorted.\n\n**Example:** `restore_ips(\"25525511135\")` returns `[\"255.255.11.135\", \"255.255.111.35\"]`.",
+  "hints": [
+    "Try 1 to 3 digits for each of four parts."
+  ],
+  "solutionMd": "```python\ndef restore_ips(s):\n    out = []\n    def go(i, parts):\n        if len(parts) == 4:\n            if i == len(s):\n                out.append('.'.join(parts))\n            return\n        for l in (1, 2, 3):\n            piece = s[i:i + l]\n            if len(piece) == l and (l == 1 or piece[0] != '0') and int(piece) <= 255:\n                go(i + l, parts + [piece])\n    go(0, [])\n    return sorted(out)\n```\n\nPrune parts with leading zeros or values above 255.",
+  "starterCode": "def restore_ips(s):\n    # Write your code here\n    pass\n",
+  "functionName": "restore_ips",
+  "referenceSolution": "def restore_ips(s):\n    out = []\n    def go(i, parts):\n        if len(parts) == 4:\n            if i == len(s):\n                out.append('.'.join(parts))\n            return\n        for l in (1, 2, 3):\n            piece = s[i:i + l]\n            if len(piece) == l and (l == 1 or piece[0] != '0') and int(piece) <= 255:\n                go(i + l, parts + [piece])\n    go(0, [])\n    return sorted(out)\n",
+  "tests": [
+    {
+      "args": [
+        "25525511135"
+      ],
+      "expected": [
+        "255.255.11.135",
+        "255.255.111.35"
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        "0000"
+      ],
+      "expected": [
+        "0.0.0.0"
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        "1111"
+      ],
+      "expected": [
+        "1.1.1.1"
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        "010010"
+      ],
+      "expected": [
+        "0.10.0.10",
+        "0.100.1.0"
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        "1"
+      ],
+      "expected": [],
+      "hidden": true
+    },
+    {
+      "args": [
+        "101023"
+      ],
+      "expected": [
+        "1.0.10.23",
+        "1.0.102.3",
+        "10.1.0.23",
+        "10.10.2.3",
+        "101.0.2.3"
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 338
+}

@@ -1,0 +1,21 @@
+{
+  "slug": "total-copies-owned",
+  "track": "sql",
+  "title": "Total copies owned",
+  "difficulty": "Easy",
+  "tags": [
+    "aggregate"
+  ],
+  "statementMd": "How many physical copies does the library own in total?\n\nExpected columns: `total_copies`.\n\nTables: `authors`, `books`, `members`, `loans`.\n\nRow order does not matter.",
+  "hints": [
+    "`SUM(copies)`."
+  ],
+  "solutionMd": "```sql\nSELECT SUM(copies) AS total_copies FROM books;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: authors, books, members, loans\nSELECT\n",
+  "datasetId": "library",
+  "expected": {
+    "query": "SELECT SUM(copies) AS total_copies FROM books;",
+    "orderMatters": false
+  },
+  "order": 116
+}

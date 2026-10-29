@@ -1,0 +1,21 @@
+{
+  "slug": "score-summary",
+  "track": "sql",
+  "title": "Score summary",
+  "difficulty": "Easy",
+  "tags": [
+    "aggregate"
+  ],
+  "statementMd": "Show the lowest, highest and average score among graded enrollments (average rounded to 2 decimals).\n\nExpected columns: `lowest`, `highest`, `average`.\n\nTables: `teachers`, `courses`, `students`, `enrollments`.\n\nRow order does not matter.",
+  "hints": [
+    "Aggregates skip NULL."
+  ],
+  "solutionMd": "```sql\nSELECT MIN(score) AS lowest, MAX(score) AS highest, ROUND(AVG(score), 2) AS average FROM enrollments;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: teachers, courses, students, enrollments\nSELECT\n",
+  "datasetId": "school",
+  "expected": {
+    "query": "SELECT MIN(score) AS lowest, MAX(score) AS highest, ROUND(AVG(score), 2) AS average FROM enrollments;",
+    "orderMatters": false
+  },
+  "order": 122
+}

@@ -1,0 +1,62 @@
+{
+  "slug": "largest-power-of-two-not-above-n",
+  "track": "python",
+  "title": "Largest power of two not above n",
+  "difficulty": "Easy",
+  "tags": [
+    "bit-manipulation"
+  ],
+  "statementMd": "Return the largest power of two that is less than or equal to `n >= 1`.\n\n**Example:** `highest_power_of_two(10)` returns `8`.",
+  "hints": [
+    "`1 << (n.bit_length() - 1)`."
+  ],
+  "solutionMd": "```python\ndef highest_power_of_two(n):\n    return 1 << (n.bit_length() - 1)\n```\n\nBit length gives the top bit.",
+  "starterCode": "def highest_power_of_two(n):\n    # Write your code here\n    pass\n",
+  "functionName": "highest_power_of_two",
+  "referenceSolution": "def highest_power_of_two(n):\n    return 1 << (n.bit_length() - 1)\n",
+  "tests": [
+    {
+      "args": [
+        10
+      ],
+      "expected": 8,
+      "hidden": false
+    },
+    {
+      "args": [
+        1
+      ],
+      "expected": 1,
+      "hidden": false
+    },
+    {
+      "args": [
+        2
+      ],
+      "expected": 2,
+      "hidden": true
+    },
+    {
+      "args": [
+        63
+      ],
+      "expected": 32,
+      "hidden": true
+    },
+    {
+      "args": [
+        64
+      ],
+      "expected": 64,
+      "hidden": true
+    },
+    {
+      "args": [
+        1000
+      ],
+      "expected": 512,
+      "hidden": true
+    }
+  ],
+  "order": 140
+}

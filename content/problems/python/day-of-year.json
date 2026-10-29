@@ -1,0 +1,74 @@
+{
+  "slug": "day-of-year",
+  "track": "python",
+  "title": "Day of year",
+  "difficulty": "Medium",
+  "tags": [
+    "numbers"
+  ],
+  "statementMd": "Return which day of the year (1-366) the date falls on.\n\n**Example:** `day_of_year(2023, 1, 1)` returns `1`.",
+  "hints": [
+    "Add up the lengths of the previous months."
+  ],
+  "solutionMd": "```python\ndef day_of_year(year, month, day):\n    leap = year % 4 == 0 and (year % 100 != 0 or year % 400 == 0)\n    lengths = [31, 29 if leap else 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]\n    return sum(lengths[: month - 1]) + day\n```\n\nSlice the month lengths before the current month.",
+  "starterCode": "def day_of_year(year, month, day):\n    # Write your code here\n    pass\n",
+  "functionName": "day_of_year",
+  "referenceSolution": "def day_of_year(year, month, day):\n    leap = year % 4 == 0 and (year % 100 != 0 or year % 400 == 0)\n    lengths = [31, 29 if leap else 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]\n    return sum(lengths[: month - 1]) + day\n",
+  "tests": [
+    {
+      "args": [
+        2023,
+        1,
+        1
+      ],
+      "expected": 1,
+      "hidden": false
+    },
+    {
+      "args": [
+        2024,
+        3,
+        1
+      ],
+      "expected": 61,
+      "hidden": false
+    },
+    {
+      "args": [
+        2023,
+        12,
+        31
+      ],
+      "expected": 365,
+      "hidden": true
+    },
+    {
+      "args": [
+        2024,
+        12,
+        31
+      ],
+      "expected": 366,
+      "hidden": true
+    },
+    {
+      "args": [
+        2023,
+        3,
+        1
+      ],
+      "expected": 60,
+      "hidden": true
+    },
+    {
+      "args": [
+        1900,
+        3,
+        1
+      ],
+      "expected": 60,
+      "hidden": true
+    }
+  ],
+  "order": 167
+}

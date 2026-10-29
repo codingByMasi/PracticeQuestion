@@ -1,0 +1,62 @@
+{
+  "slug": "digital-root",
+  "track": "python",
+  "title": "Digital root",
+  "difficulty": "Easy",
+  "tags": [
+    "numbers"
+  ],
+  "statementMd": "Repeatedly sum the digits of the non-negative integer `n` until a single digit remains, and return it.\n\n**Example:** `digital_root(38)` returns `2`.",
+  "hints": [
+    "Loop while `n >= 10`."
+  ],
+  "solutionMd": "```python\ndef digital_root(n):\n    while n >= 10:\n        n = sum(int(c) for c in str(n))\n    return n\n```\n\nStop once only one digit is left.",
+  "starterCode": "def digital_root(n):\n    # Write your code here\n    pass\n",
+  "functionName": "digital_root",
+  "referenceSolution": "def digital_root(n):\n    while n >= 10:\n        n = sum(int(c) for c in str(n))\n    return n\n",
+  "tests": [
+    {
+      "args": [
+        38
+      ],
+      "expected": 2,
+      "hidden": false
+    },
+    {
+      "args": [
+        5
+      ],
+      "expected": 5,
+      "hidden": false
+    },
+    {
+      "args": [
+        0
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        99999
+      ],
+      "expected": 9,
+      "hidden": true
+    },
+    {
+      "args": [
+        493193
+      ],
+      "expected": 2,
+      "hidden": true
+    },
+    {
+      "args": [
+        10
+      ],
+      "expected": 1,
+      "hidden": true
+    }
+  ],
+  "order": 21
+}

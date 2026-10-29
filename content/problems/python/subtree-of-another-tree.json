@@ -1,0 +1,99 @@
+{
+  "slug": "subtree-of-another-tree",
+  "track": "python",
+  "title": "Subtree of another tree",
+  "difficulty": "Medium",
+  "tags": [
+    "trees"
+  ],
+  "statementMd": "Return whether the tree `sub` appears as a subtree (same structure and values, rooted at some node) of the tree `main`. The tree is given as a level-order list where `None` marks a missing child (like `[3, 9, 20, None, None, 15, 7]`); the helper `build_tree` in the solution shows how it is read, and in your function the argument is already that list.\n\n**Example:** `is_subtree([3, 4, 5, 1, 2], [4, 1, 2])` returns `true`.",
+  "hints": [
+    "Check same-tree at every node."
+  ],
+  "solutionMd": "```python\nclass Node:\n    def __init__(self, val, left=None, right=None):\n        self.val, self.left, self.right = val, left, right\n\n\ndef build_tree(values):\n    \"\"\"Build a binary tree from a level-order list where None marks a missing child.\"\"\"\n    if not values or values[0] is None:\n        return None\n    root = Node(values[0])\n    queue, i = [root], 1\n    while queue and i < len(values):\n        node = queue.pop(0)\n        if i < len(values) and values[i] is not None:\n            node.left = Node(values[i])\n            queue.append(node.left)\n        i += 1\n        if i < len(values) and values[i] is not None:\n            node.right = Node(values[i])\n            queue.append(node.right)\n        i += 1\n    return root\n\n\ndef is_subtree(main, sub):\n    def eq(x, y):\n        if x is None or y is None:\n            return x is y\n        return x.val == y.val and eq(x.left, y.left) and eq(x.right, y.right)\n    s = build_tree(sub)\n    def find(n):\n        return n is not None and (eq(n, s) or find(n.left) or find(n.right))\n    return find(build_tree(main)) if s else True\n```\n\nTry every node as the root of a match.",
+  "starterCode": "def is_subtree(main, sub):\n    # Write your code here\n    pass\n",
+  "functionName": "is_subtree",
+  "referenceSolution": "class Node:\n    def __init__(self, val, left=None, right=None):\n        self.val, self.left, self.right = val, left, right\n\n\ndef build_tree(values):\n    \"\"\"Build a binary tree from a level-order list where None marks a missing child.\"\"\"\n    if not values or values[0] is None:\n        return None\n    root = Node(values[0])\n    queue, i = [root], 1\n    while queue and i < len(values):\n        node = queue.pop(0)\n        if i < len(values) and values[i] is not None:\n            node.left = Node(values[i])\n            queue.append(node.left)\n        i += 1\n        if i < len(values) and values[i] is not None:\n            node.right = Node(values[i])\n            queue.append(node.right)\n        i += 1\n    return root\n\n\ndef is_subtree(main, sub):\n    def eq(x, y):\n        if x is None or y is None:\n            return x is y\n        return x.val == y.val and eq(x.left, y.left) and eq(x.right, y.right)\n    s = build_tree(sub)\n    def find(n):\n        return n is not None and (eq(n, s) or find(n.left) or find(n.right))\n    return find(build_tree(main)) if s else True\n",
+  "tests": [
+    {
+      "args": [
+        [
+          3,
+          4,
+          5,
+          1,
+          2
+        ],
+        [
+          4,
+          1,
+          2
+        ]
+      ],
+      "expected": true,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          3,
+          4,
+          5,
+          1,
+          2,
+          null,
+          null,
+          null,
+          null,
+          0
+        ],
+        [
+          4,
+          1,
+          2
+        ]
+      ],
+      "expected": false,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          1
+        ],
+        [
+          1
+        ]
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          2
+        ],
+        [
+          2
+        ]
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          2
+        ],
+        [
+          3
+        ]
+      ],
+      "expected": false,
+      "hidden": true
+    }
+  ],
+  "order": 361
+}

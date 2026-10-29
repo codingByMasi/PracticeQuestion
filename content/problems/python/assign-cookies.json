@@ -1,0 +1,88 @@
+{
+  "slug": "assign-cookies",
+  "track": "python",
+  "title": "Assign cookies",
+  "difficulty": "Easy",
+  "tags": [
+    "greedy"
+  ],
+  "statementMd": "Each child needs a cookie at least as large as their greed; each cookie goes to one child. Return the maximum number of satisfied children.\n\n**Example:** `assign_cookies([1, 2, 3], [1, 1])` returns `1`.",
+  "hints": [
+    "Sort both and match smallest feasible."
+  ],
+  "solutionMd": "```python\ndef assign_cookies(children, cookies):\n    children, cookies = sorted(children), sorted(cookies)\n    i = 0\n    for c in cookies:\n        if i < len(children) and children[i] <= c:\n            i += 1\n    return i\n```\n\nGreedy matching after sorting.",
+  "starterCode": "def assign_cookies(children, cookies):\n    # Write your code here\n    pass\n",
+  "functionName": "assign_cookies",
+  "referenceSolution": "def assign_cookies(children, cookies):\n    children, cookies = sorted(children), sorted(cookies)\n    i = 0\n    for c in cookies:\n        if i < len(children) and children[i] <= c:\n            i += 1\n    return i\n",
+  "tests": [
+    {
+      "args": [
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "expected": 1,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "expected": 2,
+      "hidden": false
+    },
+    {
+      "args": [
+        [],
+        [
+          1
+        ]
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          5
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          2,
+          2
+        ]
+      ],
+      "expected": 2,
+      "hidden": true
+    }
+  ],
+  "order": 147
+}

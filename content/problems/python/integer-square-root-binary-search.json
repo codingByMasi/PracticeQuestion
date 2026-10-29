@@ -1,0 +1,69 @@
+{
+  "slug": "integer-square-root-binary-search",
+  "track": "python",
+  "title": "Integer square root binary search",
+  "difficulty": "Easy",
+  "tags": [
+    "searching"
+  ],
+  "statementMd": "Return `True` if `n >= 0` is a perfect square, without `sqrt`.\n\n**Example:** `is_perfect_square(16)` returns `true`.",
+  "hints": [
+    "Binary search for the root."
+  ],
+  "solutionMd": "```python\ndef is_perfect_square(n):\n    lo, hi = 0, n\n    while lo <= hi:\n        mid = (lo + hi) // 2\n        if mid * mid == n:\n            return True\n        if mid * mid < n:\n            lo = mid + 1\n        else:\n            hi = mid - 1\n    return False\n```\n\nSearch the answer space.",
+  "starterCode": "def is_perfect_square(n):\n    # Write your code here\n    pass\n",
+  "functionName": "is_perfect_square",
+  "referenceSolution": "def is_perfect_square(n):\n    lo, hi = 0, n\n    while lo <= hi:\n        mid = (lo + hi) // 2\n        if mid * mid == n:\n            return True\n        if mid * mid < n:\n            lo = mid + 1\n        else:\n            hi = mid - 1\n    return False\n",
+  "tests": [
+    {
+      "args": [
+        16
+      ],
+      "expected": true,
+      "hidden": false
+    },
+    {
+      "args": [
+        14
+      ],
+      "expected": false,
+      "hidden": false
+    },
+    {
+      "args": [
+        0
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        1
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        2
+      ],
+      "expected": false,
+      "hidden": true
+    },
+    {
+      "args": [
+        10000000000
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        10000000001
+      ],
+      "expected": false,
+      "hidden": true
+    }
+  ],
+  "order": 117
+}

@@ -1,0 +1,126 @@
+{
+  "slug": "all-subsets",
+  "track": "python",
+  "title": "All subsets",
+  "difficulty": "Medium",
+  "tags": [
+    "backtracking"
+  ],
+  "statementMd": "Return all subsets of a list of distinct integers, each subset keeping the input order, and the final list sorted lexicographically (by comparing the lists).\n\n**Example:** `subsets([1, 2])` returns `[[], [1], [1, 2], [2]]`.",
+  "hints": [
+    "For each element choose include or exclude."
+  ],
+  "solutionMd": "```python\ndef subsets(nums):\n    out = [[]]\n    for x in nums:\n        out += [s + [x] for s in out]\n    return sorted(out)\n```\n\nDoubling the list per element.",
+  "starterCode": "def subsets(nums):\n    # Write your code here\n    pass\n",
+  "functionName": "subsets",
+  "referenceSolution": "def subsets(nums):\n    out = [[]]\n    for x in nums:\n        out += [s + [x] for s in out]\n    return sorted(out)\n",
+  "tests": [
+    {
+      "args": [
+        [
+          1,
+          2
+        ]
+      ],
+      "expected": [
+        [],
+        [
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2
+        ]
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": [
+        []
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          3
+        ]
+      ],
+      "expected": [
+        [],
+        [
+          3
+        ]
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "expected": [
+        [],
+        [
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3
+        ]
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          5,
+          1
+        ]
+      ],
+      "expected": [
+        [],
+        [
+          1
+        ],
+        [
+          5
+        ],
+        [
+          5,
+          1
+        ]
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 331
+}

@@ -1,0 +1,21 @@
+{
+  "slug": "depth-of-each-branch",
+  "track": "sql",
+  "title": "Depth of each branch",
+  "difficulty": "Hard",
+  "tags": [
+    "recursive"
+  ],
+  "statementMd": "Report the maximum depth (number of management levels below the top) of the reporting tree as `max_depth`, where a top manager is depth 0.\n\nExpected columns: `max_depth`.\n\nTables: `employees`, `departments`.\n\nRow order does not matter.",
+  "hints": [
+    "Recursive CTE tracking depth, then `MAX`."
+  ],
+  "solutionMd": "```sql\nWITH RECURSIVE t(id, depth) AS (SELECT id, 0 FROM employees WHERE manager_id IS NULL UNION ALL SELECT e.id, t.depth + 1 FROM employees e JOIN t ON e.manager_id = t.id) SELECT MAX(depth) AS max_depth FROM t;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "WITH RECURSIVE t(id, depth) AS (SELECT id, 0 FROM employees WHERE manager_id IS NULL UNION ALL SELECT e.id, t.depth + 1 FROM employees e JOIN t ON e.manager_id = t.id) SELECT MAX(depth) AS max_depth FROM t;",
+    "orderMatters": false
+  },
+  "order": 494
+}

@@ -1,0 +1,21 @@
+{
+  "slug": "lowest-point-of-a-balance",
+  "track": "sql",
+  "title": "Lowest point of a balance",
+  "difficulty": "Hard",
+  "tags": [
+    "running-total"
+  ],
+  "statementMd": "For account 2 find the minimum running balance reached (rounded to 2 decimals).\n\nExpected columns: `lowest_balance`.\n\nTables: `customers`, `accounts`, `transactions`.\n\nRow order does not matter.",
+  "hints": [
+    "Compute the running sum in a CTE then `MIN`."
+  ],
+  "solutionMd": "```sql\nWITH r AS (SELECT SUM(amount) OVER (ORDER BY tx_date, id) AS balance FROM transactions WHERE account_id = 2) SELECT ROUND(MIN(balance), 2) AS lowest_balance FROM r;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, accounts, transactions\nSELECT\n",
+  "datasetId": "bank",
+  "expected": {
+    "query": "WITH r AS (SELECT SUM(amount) OVER (ORDER BY tx_date, id) AS balance FROM transactions WHERE account_id = 2) SELECT ROUND(MIN(balance), 2) AS lowest_balance FROM r;",
+    "orderMatters": false
+  },
+  "order": 468
+}

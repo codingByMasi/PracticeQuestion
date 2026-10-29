@@ -1,0 +1,21 @@
+{
+  "slug": "sector-counts-of-up-days",
+  "track": "sql",
+  "title": "Sector counts of up days",
+  "difficulty": "Medium",
+  "tags": [
+    "group-by"
+  ],
+  "statementMd": "For each sector count ticker-days that closed higher than they opened.\n\nExpected columns: `sector`, `up_days`.\n\nTables: `tickers`, `prices`.\n\nRow order does not matter.",
+  "hints": [
+    "Join and filter."
+  ],
+  "solutionMd": "```sql\nSELECT t.sector, COUNT(*) AS up_days FROM prices p JOIN tickers t ON t.symbol = p.symbol WHERE p.close > p.open GROUP BY t.sector;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: tickers, prices\nSELECT\n",
+  "datasetId": "stocks",
+  "expected": {
+    "query": "SELECT t.sector, COUNT(*) AS up_days FROM prices p JOIN tickers t ON t.symbol = p.symbol WHERE p.close > p.open GROUP BY t.sector;",
+    "orderMatters": false
+  },
+  "order": 241
+}

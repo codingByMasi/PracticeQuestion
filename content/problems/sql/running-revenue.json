@@ -18,5 +18,6 @@
   "expected": {
     "query": "WITH totals AS (\n  SELECT o.order_date, SUM(oi.quantity * oi.unit_price) AS total\n  FROM orders o\n  JOIN order_items oi ON oi.order_id = o.id\n  WHERE o.status = 'delivered'\n  GROUP BY o.id\n)\nSELECT order_date, ROUND(total, 2) AS order_total,\n  ROUND(SUM(total) OVER (ORDER BY order_date), 2) AS running_total\nFROM totals\nORDER BY order_date;",
     "orderMatters": true
-  }
+  },
+  "order": 399
 }

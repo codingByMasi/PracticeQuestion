@@ -1,0 +1,116 @@
+{
+  "slug": "count-inversions",
+  "track": "python",
+  "title": "Count inversions",
+  "difficulty": "Hard",
+  "tags": [
+    "sorting"
+  ],
+  "statementMd": "Count pairs `i < j` with `nums[i] > nums[j]`.\n\n**Example:** `count_inversions([2, 4, 1, 3, 5])` returns `3`.",
+  "hints": [
+    "Merge sort and count while merging."
+  ],
+  "solutionMd": "```python\ndef count_inversions(nums):\n    def sort(a):\n        if len(a) <= 1:\n            return a, 0\n        mid = len(a) // 2\n        l, x = sort(a[:mid])\n        r, y = sort(a[mid:])\n        out, i, j, c = [], 0, 0, x + y\n        while i < len(l) and j < len(r):\n            if l[i] <= r[j]:\n                out.append(l[i]); i += 1\n            else:\n                out.append(r[j]); j += 1\n                c += len(l) - i\n        return out + l[i:] + r[j:], c\n    return sort(nums)[1]\n```\n\nWhen a right element jumps ahead, it is smaller than every remaining left element.",
+  "starterCode": "def count_inversions(nums):\n    # Write your code here\n    pass\n",
+  "functionName": "count_inversions",
+  "referenceSolution": "def count_inversions(nums):\n    def sort(a):\n        if len(a) <= 1:\n            return a, 0\n        mid = len(a) // 2\n        l, x = sort(a[:mid])\n        r, y = sort(a[mid:])\n        out, i, j, c = [], 0, 0, x + y\n        while i < len(l) and j < len(r):\n            if l[i] <= r[j]:\n                out.append(l[i]); i += 1\n            else:\n                out.append(r[j]); j += 1\n                c += len(l) - i\n        return out + l[i:] + r[j:], c\n    return sort(nums)[1]\n",
+  "tests": [
+    {
+      "args": [
+        [
+          2,
+          4,
+          1,
+          3,
+          5
+        ]
+      ],
+      "expected": 3,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "expected": 0,
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          3,
+          2,
+          1
+        ]
+      ],
+      "expected": 3,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          1
+        ]
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          7
+        ]
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          0,
+          8,
+          9,
+          3,
+          7,
+          2,
+          1,
+          6,
+          0,
+          2
+        ]
+      ],
+      "expected": 28,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          7,
+          3,
+          0,
+          5,
+          8,
+          3,
+          1,
+          9
+        ]
+      ],
+      "expected": 12,
+      "hidden": true
+    }
+  ],
+  "order": 389
+}

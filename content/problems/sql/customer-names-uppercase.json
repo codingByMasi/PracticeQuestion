@@ -1,0 +1,21 @@
+{
+  "slug": "customer-names-uppercase",
+  "track": "sql",
+  "title": "Customer names uppercase",
+  "difficulty": "Easy",
+  "tags": [
+    "strings"
+  ],
+  "statementMd": "Show customers in the city of Boston with their name in upper case.\n\nExpected columns: `name`.\n\nTables: `customers`, `accounts`, `transactions`.\n\nRow order does not matter.",
+  "hints": [
+    "`UPPER(name)`."
+  ],
+  "solutionMd": "```sql\nSELECT UPPER(name) AS name FROM customers WHERE city = 'Boston';\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, accounts, transactions\nSELECT\n",
+  "datasetId": "bank",
+  "expected": {
+    "query": "SELECT UPPER(name) AS name FROM customers WHERE city = 'Boston';",
+    "orderMatters": false
+  },
+  "order": 96
+}

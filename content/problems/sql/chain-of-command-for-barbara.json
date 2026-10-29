@@ -1,0 +1,21 @@
+{
+  "slug": "chain-of-command-for-barbara",
+  "track": "sql",
+  "title": "Chain of command for Barbara",
+  "difficulty": "Hard",
+  "tags": [
+    "recursive"
+  ],
+  "statementMd": "List Barbara Liskov's management chain: her manager, that manager's manager, and so on up to the top. Show first name and distance (1 = direct manager).\n\nExpected columns: `first_name`, `dist`.\n\nTables: `employees`, `departments`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Recurse upward by joining `employees.id = chain.manager_id`."
+  ],
+  "solutionMd": "```sql\nWITH RECURSIVE chain(id, manager_id, first_name, dist) AS (SELECT m.id, m.manager_id, m.first_name, 1 FROM employees b JOIN employees m ON m.id = b.manager_id WHERE b.first_name = 'Barbara' UNION ALL SELECT m.id, m.manager_id, m.first_name, c.dist + 1 FROM chain c JOIN employees m ON m.id = c.manager_id) SELECT first_name, dist FROM chain ORDER BY dist;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "WITH RECURSIVE chain(id, manager_id, first_name, dist) AS (SELECT m.id, m.manager_id, m.first_name, 1 FROM employees b JOIN employees m ON m.id = b.manager_id WHERE b.first_name = 'Barbara' UNION ALL SELECT m.id, m.manager_id, m.first_name, c.dist + 1 FROM chain c JOIN employees m ON m.id = c.manager_id) SELECT first_name, dist FROM chain ORDER BY dist;",
+    "orderMatters": true
+  },
+  "order": 490
+}

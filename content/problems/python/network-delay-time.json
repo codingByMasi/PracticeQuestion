@@ -1,0 +1,109 @@
+{
+  "slug": "network-delay-time",
+  "track": "python",
+  "title": "Network delay time",
+  "difficulty": "Hard",
+  "tags": [
+    "graphs"
+  ],
+  "statementMd": "A signal is sent from node `k` through directed edges `[u, v, w]` (travel time `w`) among nodes `1..n`. Return the time for all nodes to receive it, or `-1` if some never do.\n\n**Example:** `network_delay([[2, 1, 1], [2, 3, 1], [3, 4, 1]], 4, 2)` returns `2`.",
+  "hints": [
+    "Dijkstra, then take the maximum distance."
+  ],
+  "solutionMd": "```python\nfrom collections import deque, defaultdict\n\n\ndef network_delay(times, n, k):\n    import heapq\n    adj = defaultdict(list)\n    for u, v, w in times:\n        adj[u].append((v, w))\n    dist = {}\n    heap = [(0, k)]\n    while heap:\n        d, u = heapq.heappop(heap)\n        if u in dist:\n            continue\n        dist[u] = d\n        for v, w in adj[u]:\n            if v not in dist:\n                heapq.heappush(heap, (d + w, v))\n    return max(dist.values()) if len(dist) == n else -1\n```\n\nThe slowest node determines the delay.",
+  "starterCode": "def network_delay(times, n, k):\n    # Write your code here\n    pass\n",
+  "functionName": "network_delay",
+  "referenceSolution": "from collections import deque, defaultdict\n\n\ndef network_delay(times, n, k):\n    import heapq\n    adj = defaultdict(list)\n    for u, v, w in times:\n        adj[u].append((v, w))\n    dist = {}\n    heap = [(0, k)]\n    while heap:\n        d, u = heapq.heappop(heap)\n        if u in dist:\n            continue\n        dist[u] = d\n        for v, w in adj[u]:\n            if v not in dist:\n                heapq.heappush(heap, (d + w, v))\n    return max(dist.values()) if len(dist) == n else -1\n",
+  "tests": [
+    {
+      "args": [
+        [
+          [
+            2,
+            1,
+            1
+          ],
+          [
+            2,
+            3,
+            1
+          ],
+          [
+            3,
+            4,
+            1
+          ]
+        ],
+        4,
+        2
+      ],
+      "expected": 2,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            1,
+            2,
+            1
+          ]
+        ],
+        2,
+        2
+      ],
+      "expected": -1,
+      "hidden": false
+    },
+    {
+      "args": [
+        [],
+        1,
+        1
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            1,
+            2,
+            1
+          ]
+        ],
+        2,
+        1
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            1,
+            2,
+            5
+          ],
+          [
+            1,
+            3,
+            1
+          ],
+          [
+            3,
+            2,
+            1
+          ]
+        ],
+        3,
+        1
+      ],
+      "expected": 2,
+      "hidden": true
+    }
+  ],
+  "order": 468
+}

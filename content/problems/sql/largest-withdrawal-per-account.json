@@ -1,0 +1,21 @@
+{
+  "slug": "largest-withdrawal-per-account",
+  "track": "sql",
+  "title": "Largest withdrawal per account",
+  "difficulty": "Medium",
+  "tags": [
+    "correlated-subquery"
+  ],
+  "statementMd": "For accounts 1 to 5, show the largest withdrawal in absolute value (positive number). Skip accounts without withdrawals.\n\nExpected columns: `account_id`, `largest_withdrawal`.\n\nTables: `customers`, `accounts`, `transactions`.\n\nRow order does not matter.",
+  "hints": [
+    "`MAX(-amount)` on withdrawals."
+  ],
+  "solutionMd": "```sql\nSELECT account_id, MAX(-amount) AS largest_withdrawal FROM transactions WHERE kind = 'withdrawal' AND account_id <= 5 GROUP BY account_id;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, accounts, transactions\nSELECT\n",
+  "datasetId": "bank",
+  "expected": {
+    "query": "SELECT account_id, MAX(-amount) AS largest_withdrawal FROM transactions WHERE kind = 'withdrawal' AND account_id <= 5 GROUP BY account_id;",
+    "orderMatters": false
+  },
+  "order": 337
+}

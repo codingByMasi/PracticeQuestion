@@ -1,0 +1,21 @@
+{
+  "slug": "last-names-a-to-z",
+  "track": "sql",
+  "title": "Last names A to Z",
+  "difficulty": "Easy",
+  "tags": [
+    "order-by"
+  ],
+  "statementMd": "List the last names of all employees in alphabetical order.\n\nExpected columns: `last_name`.\n\nTables: `employees`, `departments`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "`ORDER BY last_name`."
+  ],
+  "solutionMd": "```sql\nSELECT last_name FROM employees ORDER BY last_name;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "SELECT last_name FROM employees ORDER BY last_name;",
+    "orderMatters": true
+  },
+  "order": 66
+}

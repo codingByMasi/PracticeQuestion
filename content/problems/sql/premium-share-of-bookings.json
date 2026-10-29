@@ -1,0 +1,21 @@
+{
+  "slug": "premium-share-of-bookings",
+  "track": "sql",
+  "title": "Premium share of bookings",
+  "difficulty": "Medium",
+  "tags": [
+    "aggregate"
+  ],
+  "statementMd": "What percentage of bookings are business or first class (rounded to 1 decimal)?\n\nExpected columns: `premium_pct`.\n\nTables: `airlines`, `airports`, `flights`, `bookings`.\n\nRow order does not matter.",
+  "hints": [
+    "Divide premium count by all."
+  ],
+  "solutionMd": "```sql\nSELECT ROUND(100.0 * SUM(CASE WHEN seat_class <> 'economy' THEN 1 ELSE 0 END) / COUNT(*), 1) AS premium_pct FROM bookings;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: airlines, airports, flights, bookings\nSELECT\n",
+  "datasetId": "flights",
+  "expected": {
+    "query": "SELECT ROUND(100.0 * SUM(CASE WHEN seat_class <> 'economy' THEN 1 ELSE 0 END) / COUNT(*), 1) AS premium_pct FROM bookings;",
+    "orderMatters": false
+  },
+  "order": 212
+}

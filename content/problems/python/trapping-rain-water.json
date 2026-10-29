@@ -1,0 +1,92 @@
+{
+  "slug": "trapping-rain-water",
+  "track": "python",
+  "title": "Trapping rain water",
+  "difficulty": "Hard",
+  "tags": [
+    "two-pointers"
+  ],
+  "statementMd": "Given an elevation map of bar heights (width 1), compute how much water it traps after raining.\n\n**Example:** `trap_water([0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1])` returns `6`.",
+  "hints": [
+    "Water above a bar is limited by the lower of the tallest bars on either side."
+  ],
+  "solutionMd": "```python\ndef trap_water(heights):\n    l, r = 0, len(heights) - 1\n    left_max = right_max = water = 0\n    while l < r:\n        if heights[l] < heights[r]:\n            left_max = max(left_max, heights[l])\n            water += left_max - heights[l]\n            l += 1\n        else:\n            right_max = max(right_max, heights[r])\n            water += right_max - heights[r]\n            r -= 1\n    return water\n```\n\nTwo pointers with running maxima.",
+  "starterCode": "def trap_water(heights):\n    # Write your code here\n    pass\n",
+  "functionName": "trap_water",
+  "referenceSolution": "def trap_water(heights):\n    l, r = 0, len(heights) - 1\n    left_max = right_max = water = 0\n    while l < r:\n        if heights[l] < heights[r]:\n            left_max = max(left_max, heights[l])\n            water += left_max - heights[l]\n            l += 1\n        else:\n            right_max = max(right_max, heights[r])\n            water += right_max - heights[r]\n            r -= 1\n    return water\n",
+  "tests": [
+    {
+      "args": [
+        [
+          0,
+          1,
+          0,
+          2,
+          1,
+          0,
+          1,
+          3,
+          2,
+          1,
+          2,
+          1
+        ]
+      ],
+      "expected": 6,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          4,
+          2,
+          0,
+          3,
+          2,
+          5
+        ]
+      ],
+      "expected": 9,
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1
+        ]
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          3,
+          0,
+          3
+        ]
+      ],
+      "expected": 3,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "expected": 0,
+      "hidden": true
+    }
+  ],
+  "order": 402
+}

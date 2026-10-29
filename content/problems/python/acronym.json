@@ -1,0 +1,55 @@
+{
+  "slug": "acronym",
+  "track": "python",
+  "title": "Acronym",
+  "difficulty": "Easy",
+  "tags": [
+    "strings"
+  ],
+  "statementMd": "Return the uppercase first letters of each word in `phrase`.\n\n**Example:** `acronym(\"portable network graphics\")` returns `\"PNG\"`.",
+  "hints": [
+    "Take `w[0]` of each word."
+  ],
+  "solutionMd": "```python\ndef acronym(phrase):\n    return ''.join(w[0].upper() for w in phrase.split())\n```\n\nA generator expression over words.",
+  "starterCode": "def acronym(phrase):\n    # Write your code here\n    pass\n",
+  "functionName": "acronym",
+  "referenceSolution": "def acronym(phrase):\n    return ''.join(w[0].upper() for w in phrase.split())\n",
+  "tests": [
+    {
+      "args": [
+        "portable network graphics"
+      ],
+      "expected": "PNG",
+      "hidden": false
+    },
+    {
+      "args": [
+        "as soon as possible"
+      ],
+      "expected": "ASAP",
+      "hidden": false
+    },
+    {
+      "args": [
+        "hello"
+      ],
+      "expected": "H",
+      "hidden": true
+    },
+    {
+      "args": [
+        "a b c"
+      ],
+      "expected": "ABC",
+      "hidden": true
+    },
+    {
+      "args": [
+        "Read only memory"
+      ],
+      "expected": "ROM",
+      "hidden": true
+    }
+  ],
+  "order": 57
+}

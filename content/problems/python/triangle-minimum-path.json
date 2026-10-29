@@ -1,0 +1,112 @@
+{
+  "slug": "triangle-minimum-path",
+  "track": "python",
+  "title": "Triangle minimum path",
+  "difficulty": "Medium",
+  "tags": [
+    "dynamic-programming"
+  ],
+  "statementMd": "In a triangle (row `i` has `i+1` numbers) move from each number to one of the two adjacent numbers on the next row. Return the minimum path sum from top to bottom.\n\n**Example:** `min_triangle_path([[2], [3, 4], [6, 5, 7], [4, 1, 8, 3]])` returns `11`.",
+  "hints": [
+    "Collapse from the bottom row up."
+  ],
+  "solutionMd": "```python\ndef min_triangle_path(triangle):\n    row = triangle[-1][:]\n    for r in range(len(triangle) - 2, -1, -1):\n        row = [triangle[r][i] + min(row[i], row[i + 1]) for i in range(r + 1)]\n    return row[0]\n```\n\nBottom-up DP needs only one row.",
+  "starterCode": "def min_triangle_path(triangle):\n    # Write your code here\n    pass\n",
+  "functionName": "min_triangle_path",
+  "referenceSolution": "def min_triangle_path(triangle):\n    row = triangle[-1][:]\n    for r in range(len(triangle) - 2, -1, -1):\n        row = [triangle[r][i] + min(row[i], row[i + 1]) for i in range(r + 1)]\n    return row[0]\n",
+  "tests": [
+    {
+      "args": [
+        [
+          [
+            2
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            6,
+            5,
+            7
+          ],
+          [
+            4,
+            1,
+            8,
+            3
+          ]
+        ]
+      ],
+      "expected": 11,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            -10
+          ]
+        ]
+      ],
+      "expected": -10,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            1
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      ],
+      "expected": 3,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            5
+          ],
+          [
+            9,
+            1
+          ],
+          [
+            1,
+            9,
+            1
+          ]
+        ]
+      ],
+      "expected": 7,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      ],
+      "expected": 3,
+      "hidden": true
+    }
+  ],
+  "order": 329
+}

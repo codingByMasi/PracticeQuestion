@@ -1,0 +1,21 @@
+{
+  "slug": "daily-range",
+  "track": "sql",
+  "title": "Daily range",
+  "difficulty": "Easy",
+  "tags": [
+    "expressions"
+  ],
+  "statementMd": "For BYTE on its first five trading days show the date and the daily range (high minus low) rounded to 2 decimals.\n\nExpected columns: `trade_date`, `day_range`.\n\nTables: `tickers`, `prices`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "`ROUND(high - low, 2)`."
+  ],
+  "solutionMd": "```sql\nSELECT trade_date, ROUND(high - low, 2) AS day_range FROM prices WHERE symbol = 'BYTE' ORDER BY trade_date LIMIT 5;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: tickers, prices\nSELECT\n",
+  "datasetId": "stocks",
+  "expected": {
+    "query": "SELECT trade_date, ROUND(high - low, 2) AS day_range FROM prices WHERE symbol = 'BYTE' ORDER BY trade_date LIMIT 5;",
+    "orderMatters": true
+  },
+  "order": 95
+}

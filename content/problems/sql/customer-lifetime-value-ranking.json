@@ -1,0 +1,21 @@
+{
+  "slug": "customer-lifetime-value-ranking",
+  "track": "sql",
+  "title": "Customer lifetime value ranking",
+  "difficulty": "Hard",
+  "tags": [
+    "ranking"
+  ],
+  "statementMd": "Rank customers by lifetime value (non-cancelled revenue) with `DENSE_RANK`. Show rank, name and value rounded to 2 decimals. Order by rank then name.\n\nExpected columns: `rank`, `name`, `ltv`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "`DENSE_RANK() OVER (ORDER BY total DESC)`."
+  ],
+  "solutionMd": "```sql\nWITH s AS (SELECT c.id, c.name, SUM(oi.quantity * oi.unit_price) AS total FROM customers c JOIN orders o ON o.customer_id = c.id AND o.status <> 'cancelled' JOIN order_items oi ON oi.order_id = o.id GROUP BY c.id) SELECT DENSE_RANK() OVER (ORDER BY total DESC) AS rank, name, ROUND(total, 2) AS ltv FROM s ORDER BY rank, name;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "WITH s AS (SELECT c.id, c.name, SUM(oi.quantity * oi.unit_price) AS total FROM customers c JOIN orders o ON o.customer_id = c.id AND o.status <> 'cancelled' JOIN order_items oi ON oi.order_id = o.id GROUP BY c.id) SELECT DENSE_RANK() OVER (ORDER BY total DESC) AS rank, name, ROUND(total, 2) AS ltv FROM s ORDER BY rank, name;",
+    "orderMatters": true
+  },
+  "order": 447
+}

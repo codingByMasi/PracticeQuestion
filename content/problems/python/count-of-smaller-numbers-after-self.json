@@ -1,0 +1,100 @@
+{
+  "slug": "count-of-smaller-numbers-after-self",
+  "track": "python",
+  "title": "Count of smaller numbers after self",
+  "difficulty": "Hard",
+  "tags": [
+    "sorting"
+  ],
+  "statementMd": "For each index return how many elements to its right are strictly smaller.\n\n**Example:** `count_smaller([5, 2, 6, 1])` returns `[2, 1, 1, 0]`.",
+  "hints": [
+    "Insert from the right into a sorted list with bisect."
+  ],
+  "solutionMd": "```python\ndef count_smaller(nums):\n    import bisect\n    seen, out = [], []\n    for x in reversed(nums):\n        i = bisect.bisect_left(seen, x)\n        out.append(i)\n        seen.insert(i, x)\n    return out[::-1]\n```\n\nThe insertion point counts smaller elements.",
+  "starterCode": "def count_smaller(nums):\n    # Write your code here\n    pass\n",
+  "functionName": "count_smaller",
+  "referenceSolution": "def count_smaller(nums):\n    import bisect\n    seen, out = [], []\n    for x in reversed(nums):\n        i = bisect.bisect_left(seen, x)\n        out.append(i)\n        seen.insert(i, x)\n    return out[::-1]\n",
+  "tests": [
+    {
+      "args": [
+        [
+          5,
+          2,
+          6,
+          1
+        ]
+      ],
+      "expected": [
+        2,
+        1,
+        1,
+        0
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          -1
+        ]
+      ],
+      "expected": [
+        0
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": [],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          2,
+          0,
+          1
+        ]
+      ],
+      "expected": [
+        2,
+        0,
+        0
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          1,
+          1
+        ]
+      ],
+      "expected": [
+        0,
+        0,
+        0
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          3,
+          2,
+          1
+        ]
+      ],
+      "expected": [
+        2,
+        1,
+        0
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 390
+}

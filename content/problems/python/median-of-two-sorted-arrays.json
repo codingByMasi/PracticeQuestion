@@ -1,0 +1,98 @@
+{
+  "slug": "median-of-two-sorted-arrays",
+  "track": "python",
+  "title": "Median of two sorted arrays",
+  "difficulty": "Hard",
+  "tags": [
+    "searching"
+  ],
+  "statementMd": "Return the median of the combined data of two sorted lists (at least one non-empty), as a float. For an even total count it is the mean of the two middle values.\n\n**Example:** `median_two_sorted([1, 3], [2])` returns `2.0`.",
+  "hints": [
+    "Merge conceptually and pick the middle (or binary search a partition)."
+  ],
+  "solutionMd": "```python\ndef median_two_sorted(a, b):\n    merged = sorted(a + b)\n    n = len(merged)\n    mid = n // 2\n    return float(merged[mid]) if n % 2 else (merged[mid - 1] + merged[mid]) / 2\n```\n\nA correct reference; an O(log n) partition search is the optimised version.",
+  "starterCode": "def median_two_sorted(a, b):\n    # Write your code here\n    pass\n",
+  "functionName": "median_two_sorted",
+  "referenceSolution": "def median_two_sorted(a, b):\n    merged = sorted(a + b)\n    n = len(merged)\n    mid = n // 2\n    return float(merged[mid]) if n % 2 else (merged[mid - 1] + merged[mid]) / 2\n",
+  "tests": [
+    {
+      "args": [
+        [
+          1,
+          3
+        ],
+        [
+          2
+        ]
+      ],
+      "expected": 2.0,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          1,
+          2
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "expected": 2.5,
+      "hidden": false
+    },
+    {
+      "args": [
+        [],
+        [
+          1
+        ]
+      ],
+      "expected": 1.0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "expected": 0.0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          5,
+          9
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "expected": 3.0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          -5
+        ],
+        [
+          5
+        ]
+      ],
+      "expected": 0.0,
+      "hidden": true
+    }
+  ],
+  "order": 395
+}

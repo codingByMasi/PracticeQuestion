@@ -1,0 +1,21 @@
+{
+  "slug": "rating-histogram",
+  "track": "sql",
+  "title": "Rating histogram",
+  "difficulty": "Medium",
+  "tags": [
+    "group-by"
+  ],
+  "statementMd": "How many reviews gave each rating? Highest rating first.\n\nExpected columns: `rating`, `n`.\n\nTables: `movies`, `directors`, `reviews`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Group by rating."
+  ],
+  "solutionMd": "```sql\nSELECT rating, COUNT(*) AS n FROM reviews GROUP BY rating ORDER BY rating DESC;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: movies, directors, reviews\nSELECT\n",
+  "datasetId": "movies",
+  "expected": {
+    "query": "SELECT rating, COUNT(*) AS n FROM reviews GROUP BY rating ORDER BY rating DESC;",
+    "orderMatters": true
+  },
+  "order": 236
+}

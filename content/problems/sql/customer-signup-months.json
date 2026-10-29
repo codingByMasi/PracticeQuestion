@@ -1,0 +1,21 @@
+{
+  "slug": "customer-signup-months",
+  "track": "sql",
+  "title": "Customer signup months",
+  "difficulty": "Medium",
+  "tags": [
+    "dates"
+  ],
+  "statementMd": "How many customers signed up in each month (format YYYY-MM)? Earliest month first.\n\nExpected columns: `month`, `signups`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "`strftime('%Y-%m', signup_date)`."
+  ],
+  "solutionMd": "```sql\nSELECT strftime('%Y-%m', signup_date) AS month, COUNT(*) AS signups FROM customers GROUP BY month ORDER BY month;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "SELECT strftime('%Y-%m', signup_date) AS month, COUNT(*) AS signups FROM customers GROUP BY month ORDER BY month;",
+    "orderMatters": true
+  },
+  "order": 186
+}

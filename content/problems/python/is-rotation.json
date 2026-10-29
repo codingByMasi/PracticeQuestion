@@ -1,0 +1,68 @@
+{
+  "slug": "is-rotation",
+  "track": "python",
+  "title": "Is rotation",
+  "difficulty": "Medium",
+  "tags": [
+    "strings"
+  ],
+  "statementMd": "Return `True` if `b` can be obtained by rotating `a` (moving some leading characters to the end).\n\n**Example:** `is_rotation(\"waterbottle\", \"erbottlewat\")` returns `true`.",
+  "hints": [
+    "`b` must appear inside `a + a`, with equal length."
+  ],
+  "solutionMd": "```python\ndef is_rotation(a, b):\n    return len(a) == len(b) and b in a + a\n```\n\nA doubled string contains all rotations.",
+  "starterCode": "def is_rotation(a, b):\n    # Write your code here\n    pass\n",
+  "functionName": "is_rotation",
+  "referenceSolution": "def is_rotation(a, b):\n    return len(a) == len(b) and b in a + a\n",
+  "tests": [
+    {
+      "args": [
+        "waterbottle",
+        "erbottlewat"
+      ],
+      "expected": true,
+      "hidden": false
+    },
+    {
+      "args": [
+        "abc",
+        "acb"
+      ],
+      "expected": false,
+      "hidden": false
+    },
+    {
+      "args": [
+        "",
+        ""
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        "a",
+        "a"
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        "ab",
+        "ba"
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        "abc",
+        "abcd"
+      ],
+      "expected": false,
+      "hidden": true
+    }
+  ],
+  "order": 184
+}

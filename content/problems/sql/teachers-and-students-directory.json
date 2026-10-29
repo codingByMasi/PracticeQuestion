@@ -1,0 +1,21 @@
+{
+  "slug": "teachers-and-students-directory",
+  "track": "sql",
+  "title": "Teachers and students directory",
+  "difficulty": "Medium",
+  "tags": [
+    "set-ops"
+  ],
+  "statementMd": "Create one combined directory with columns `name` and `role` (`teacher` or `student`) for all teachers and all students in grade level 12.\n\nExpected columns: `name`, `role`.\n\nTables: `teachers`, `courses`, `students`, `enrollments`.\n\nRow order does not matter.",
+  "hints": [
+    "`UNION ALL` with a literal role column."
+  ],
+  "solutionMd": "```sql\nSELECT name, 'teacher' AS role FROM teachers UNION ALL SELECT name, 'student' FROM students WHERE grade_level = 12;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: teachers, courses, students, enrollments\nSELECT\n",
+  "datasetId": "school",
+  "expected": {
+    "query": "SELECT name, 'teacher' AS role FROM teachers UNION ALL SELECT name, 'student' FROM students WHERE grade_level = 12;",
+    "orderMatters": false
+  },
+  "order": 336
+}

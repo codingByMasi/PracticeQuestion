@@ -1,0 +1,21 @@
+{
+  "slug": "first-and-last-close",
+  "track": "sql",
+  "title": "First and last close",
+  "difficulty": "Medium",
+  "tags": [
+    "correlated-subquery"
+  ],
+  "statementMd": "For each symbol show the closing price on its first trading day and on its last trading day.\n\nExpected columns: `symbol`, `first_close`, `last_close`.\n\nTables: `tickers`, `prices`.\n\nRow order does not matter.",
+  "hints": [
+    "Join to the min/max dates, or use window functions."
+  ],
+  "solutionMd": "```sql\nSELECT f.symbol, f.close AS first_close, l.close AS last_close FROM prices f JOIN prices l ON l.symbol = f.symbol WHERE f.trade_date = (SELECT MIN(trade_date) FROM prices WHERE symbol = f.symbol) AND l.trade_date = (SELECT MAX(trade_date) FROM prices WHERE symbol = f.symbol);\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: tickers, prices\nSELECT\n",
+  "datasetId": "stocks",
+  "expected": {
+    "query": "SELECT f.symbol, f.close AS first_close, l.close AS last_close FROM prices f JOIN prices l ON l.symbol = f.symbol WHERE f.trade_date = (SELECT MIN(trade_date) FROM prices WHERE symbol = f.symbol) AND l.trade_date = (SELECT MAX(trade_date) FROM prices WHERE symbol = f.symbol);",
+    "orderMatters": false
+  },
+  "order": 345
+}

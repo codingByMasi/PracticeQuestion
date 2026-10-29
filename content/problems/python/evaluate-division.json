@@ -1,0 +1,163 @@
+{
+  "slug": "evaluate-division",
+  "track": "python",
+  "title": "Evaluate division",
+  "difficulty": "Hard",
+  "tags": [
+    "graphs"
+  ],
+  "statementMd": "Given equations `[a, b]` with `a / b = value`, answer each query `[x, y]` with `x / y` (as a float), or `-1.0` if unknown.\n\n**Example:** `calc_equations([[\"a\", \"b\"], [\"b\", \"c\"]], [2.0, 3.0], [[\"a\", \"c\"], [\"b\", \"a\"], [\"a\", \"e\"], [\"a\", \"a\"], [\"x\", \"x\"]])` returns `[6.0, 0.5, -1.0, 1.0, -1.0]`.",
+  "hints": [
+    "Graph with weighted edges and reciprocals; DFS per query."
+  ],
+  "solutionMd": "```python\ndef calc_equations(equations, values, queries):\n    g = {}\n    for (a, b), v in zip(equations, values):\n        g.setdefault(a, {})[b] = v\n        g.setdefault(b, {})[a] = 1 / v\n    def solve(x, y):\n        if x not in g or y not in g:\n            return -1.0\n        stack, seen = [(x, 1.0)], {x}\n        while stack:\n            node, acc = stack.pop()\n            if node == y:\n                return acc\n            for nxt, w in g[node].items():\n                if nxt not in seen:\n                    seen.add(nxt)\n                    stack.append((nxt, acc * w))\n        return -1.0\n    return [round(solve(x, y), 5) for x, y in queries]\n```\n\nMultiply edge weights along a path.",
+  "starterCode": "def calc_equations(equations, values, queries):\n    # Write your code here\n    pass\n",
+  "functionName": "calc_equations",
+  "referenceSolution": "def calc_equations(equations, values, queries):\n    g = {}\n    for (a, b), v in zip(equations, values):\n        g.setdefault(a, {})[b] = v\n        g.setdefault(b, {})[a] = 1 / v\n    def solve(x, y):\n        if x not in g or y not in g:\n            return -1.0\n        stack, seen = [(x, 1.0)], {x}\n        while stack:\n            node, acc = stack.pop()\n            if node == y:\n                return acc\n            for nxt, w in g[node].items():\n                if nxt not in seen:\n                    seen.add(nxt)\n                    stack.append((nxt, acc * w))\n        return -1.0\n    return [round(solve(x, y), 5) for x, y in queries]\n",
+  "tests": [
+    {
+      "args": [
+        [
+          [
+            "a",
+            "b"
+          ],
+          [
+            "b",
+            "c"
+          ]
+        ],
+        [
+          2.0,
+          3.0
+        ],
+        [
+          [
+            "a",
+            "c"
+          ],
+          [
+            "b",
+            "a"
+          ],
+          [
+            "a",
+            "e"
+          ],
+          [
+            "a",
+            "a"
+          ],
+          [
+            "x",
+            "x"
+          ]
+        ]
+      ],
+      "expected": [
+        6.0,
+        0.5,
+        -1.0,
+        1.0,
+        -1.0
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            "a",
+            "b"
+          ]
+        ],
+        [
+          0.5
+        ],
+        [
+          [
+            "b",
+            "a"
+          ]
+        ]
+      ],
+      "expected": [
+        2.0
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [],
+        [],
+        [
+          [
+            "a",
+            "b"
+          ]
+        ]
+      ],
+      "expected": [
+        -1.0
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            "x",
+            "y"
+          ]
+        ],
+        [
+          4.0
+        ],
+        [
+          [
+            "x",
+            "y"
+          ],
+          [
+            "y",
+            "x"
+          ]
+        ]
+      ],
+      "expected": [
+        4.0,
+        0.25
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            "a",
+            "b"
+          ],
+          [
+            "c",
+            "d"
+          ]
+        ],
+        [
+          2.0,
+          3.0
+        ],
+        [
+          [
+            "a",
+            "d"
+          ]
+        ]
+      ],
+      "expected": [
+        -1.0
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 477
+}

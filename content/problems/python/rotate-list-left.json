@@ -1,0 +1,90 @@
+{
+  "slug": "rotate-list-left",
+  "track": "python",
+  "title": "Rotate list left",
+  "difficulty": "Easy",
+  "tags": [
+    "lists"
+  ],
+  "statementMd": "Rotate the list left by `k` positions (`k >= 0`).\n\n**Example:** `rotate_left([1, 2, 3, 4], 1)` returns `[2, 3, 4, 1]`.",
+  "hints": [
+    "Slice at `k % len`."
+  ],
+  "solutionMd": "```python\ndef rotate_left(nums, k):\n    if not nums:\n        return []\n    k %= len(nums)\n    return nums[k:] + nums[:k]\n```\n\nMirror of rotate right.",
+  "starterCode": "def rotate_left(nums, k):\n    # Write your code here\n    pass\n",
+  "functionName": "rotate_left",
+  "referenceSolution": "def rotate_left(nums, k):\n    if not nums:\n        return []\n    k %= len(nums)\n    return nums[k:] + nums[:k]\n",
+  "tests": [
+    {
+      "args": [
+        [
+          1,
+          2,
+          3,
+          4
+        ],
+        1
+      ],
+      "expected": [
+        2,
+        3,
+        4,
+        1
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          1,
+          2,
+          3
+        ],
+        4
+      ],
+      "expected": [
+        2,
+        3,
+        1
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [],
+        2
+      ],
+      "expected": [],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          5
+        ],
+        3
+      ],
+      "expected": [
+        5
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          2,
+          3
+        ],
+        0
+      ],
+      "expected": [
+        1,
+        2,
+        3
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 78
+}

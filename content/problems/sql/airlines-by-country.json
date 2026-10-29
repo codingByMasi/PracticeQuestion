@@ -1,0 +1,21 @@
+{
+  "slug": "airlines-by-country",
+  "track": "sql",
+  "title": "Airlines by country",
+  "difficulty": "Easy",
+  "tags": [
+    "order-by"
+  ],
+  "statementMd": "List airlines sorted by country and then name.\n\nExpected columns: `name`, `country`.\n\nTables: `airlines`, `airports`, `flights`, `bookings`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Two sort keys."
+  ],
+  "solutionMd": "```sql\nSELECT name, country FROM airlines ORDER BY country, name;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: airlines, airports, flights, bookings\nSELECT\n",
+  "datasetId": "flights",
+  "expected": {
+    "query": "SELECT name, country FROM airlines ORDER BY country, name;",
+    "orderMatters": true
+  },
+  "order": 69
+}

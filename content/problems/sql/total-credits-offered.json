@@ -1,0 +1,21 @@
+{
+  "slug": "total-credits-offered",
+  "track": "sql",
+  "title": "Total credits offered",
+  "difficulty": "Easy",
+  "tags": [
+    "aggregate"
+  ],
+  "statementMd": "What is the total number of credits across all courses?\n\nExpected columns: `total_credits`.\n\nTables: `teachers`, `courses`, `students`, `enrollments`.\n\nRow order does not matter.",
+  "hints": [
+    "`SUM(credits)`."
+  ],
+  "solutionMd": "```sql\nSELECT SUM(credits) AS total_credits FROM courses;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: teachers, courses, students, enrollments\nSELECT\n",
+  "datasetId": "school",
+  "expected": {
+    "query": "SELECT SUM(credits) AS total_credits FROM courses;",
+    "orderMatters": false
+  },
+  "order": 121
+}

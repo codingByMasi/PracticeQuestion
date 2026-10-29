@@ -1,0 +1,21 @@
+{
+  "slug": "latest-order-per-customer",
+  "track": "sql",
+  "title": "Latest order per customer",
+  "difficulty": "Hard",
+  "tags": [
+    "window-functions"
+  ],
+  "statementMd": "For each customer who ordered, show their name and the id and date of their most recent order.\n\nExpected columns: `name`, `order_id`, `order_date`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\nRow order does not matter.",
+  "hints": [
+    "`ROW_NUMBER() OVER (PARTITION BY customer_id ORDER BY order_date DESC)`."
+  ],
+  "solutionMd": "```sql\nWITH ranked AS (SELECT o.*, ROW_NUMBER() OVER (PARTITION BY customer_id ORDER BY order_date DESC) AS rn FROM orders o) SELECT c.name, r.id AS order_id, r.order_date FROM ranked r JOIN customers c ON c.id = r.customer_id WHERE r.rn = 1;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "WITH ranked AS (SELECT o.*, ROW_NUMBER() OVER (PARTITION BY customer_id ORDER BY order_date DESC) AS rn FROM orders o) SELECT c.name, r.id AS order_id, r.order_date FROM ranked r JOIN customers c ON c.id = r.customer_id WHERE r.rn = 1;",
+    "orderMatters": false
+  },
+  "order": 407
+}

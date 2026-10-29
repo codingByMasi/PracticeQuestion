@@ -1,0 +1,21 @@
+{
+  "slug": "customers-above-segment-median",
+  "track": "sql",
+  "title": "Customers above segment median",
+  "difficulty": "Hard",
+  "tags": [
+    "window-functions"
+  ],
+  "statementMd": "For each customer compute total purchase spending; list those who spend more than the average of their segment. Show name, segment and spend rounded to 2 decimals.\n\nExpected columns: `name`, `segment`, `spent`.\n\nTables: `customers`, `accounts`, `transactions`.\n\nRow order does not matter.",
+  "hints": [
+    "Window average per segment."
+  ],
+  "solutionMd": "```sql\nWITH s AS (SELECT c.id, c.name, c.segment, -SUM(t.amount) AS spent FROM transactions t JOIN accounts a ON a.id = t.account_id JOIN customers c ON c.id = a.customer_id WHERE t.kind = 'purchase' GROUP BY c.id) SELECT name, segment, ROUND(spent, 2) AS spent FROM (SELECT *, AVG(spent) OVER (PARTITION BY segment) AS seg_avg FROM s) WHERE spent > seg_avg;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, accounts, transactions\nSELECT\n",
+  "datasetId": "bank",
+  "expected": {
+    "query": "WITH s AS (SELECT c.id, c.name, c.segment, -SUM(t.amount) AS spent FROM transactions t JOIN accounts a ON a.id = t.account_id JOIN customers c ON c.id = a.customer_id WHERE t.kind = 'purchase' GROUP BY c.id) SELECT name, segment, ROUND(spent, 2) AS spent FROM (SELECT *, AVG(spent) OVER (PARTITION BY segment) AS seg_avg FROM s) WHERE spent > seg_avg;",
+    "orderMatters": false
+  },
+  "order": 405
+}

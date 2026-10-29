@@ -1,0 +1,83 @@
+{
+  "slug": "single-number-appears-once-of-three",
+  "track": "python",
+  "title": "Single number appears once of three",
+  "difficulty": "Hard",
+  "tags": [
+    "bit-manipulation"
+  ],
+  "statementMd": "Every element appears three times except one that appears once. Return that element (non-negative integers).\n\n**Example:** `single_of_three([2, 2, 3, 2])` returns `3`.",
+  "hints": [
+    "Sum each bit position modulo 3."
+  ],
+  "solutionMd": "```python\ndef single_of_three(nums):\n    out = 0\n    for bit in range(40):\n        s = sum((n >> bit) & 1 for n in nums)\n        if s % 3:\n            out |= 1 << bit\n    return out\n```\n\nBits of triple elements add up to multiples of three.",
+  "starterCode": "def single_of_three(nums):\n    # Write your code here\n    pass\n",
+  "functionName": "single_of_three",
+  "referenceSolution": "def single_of_three(nums):\n    out = 0\n    for bit in range(40):\n        s = sum((n >> bit) & 1 for n in nums)\n        if s % 3:\n            out |= 1 << bit\n    return out\n",
+  "tests": [
+    {
+      "args": [
+        [
+          2,
+          2,
+          3,
+          2
+        ]
+      ],
+      "expected": 3,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          99
+        ]
+      ],
+      "expected": 99,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          5
+        ]
+      ],
+      "expected": 5,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          7,
+          7,
+          7,
+          8
+        ]
+      ],
+      "expected": 8,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          1,
+          1,
+          6,
+          6,
+          6,
+          1000
+        ]
+      ],
+      "expected": 1000,
+      "hidden": true
+    }
+  ],
+  "order": 422
+}

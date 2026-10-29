@@ -1,0 +1,21 @@
+{
+  "slug": "quartile-of-closing-price",
+  "track": "sql",
+  "title": "Quartile of closing price",
+  "difficulty": "Hard",
+  "tags": [
+    "window-functions"
+  ],
+  "statementMd": "For 2024-04-15 assign each ticker to a price quartile with `NTILE(4)` by close (1 = lowest). Show symbol, close and quartile, ordered by close.\n\nExpected columns: `symbol`, `close`, `quartile`.\n\nTables: `tickers`, `prices`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "`NTILE(4) OVER (ORDER BY close)`."
+  ],
+  "solutionMd": "```sql\nSELECT symbol, close, NTILE(4) OVER (ORDER BY close) AS quartile FROM prices WHERE trade_date = '2024-04-15' ORDER BY close;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: tickers, prices\nSELECT\n",
+  "datasetId": "stocks",
+  "expected": {
+    "query": "SELECT symbol, close, NTILE(4) OVER (ORDER BY close) AS quartile FROM prices WHERE trade_date = '2024-04-15' ORDER BY close;",
+    "orderMatters": true
+  },
+  "order": 429
+}

@@ -1,0 +1,21 @@
+{
+  "slug": "shortest-first",
+  "track": "sql",
+  "title": "Shortest first",
+  "difficulty": "Easy",
+  "tags": [
+    "order-by"
+  ],
+  "statementMd": "List titles and runtimes, shortest movie first.\n\nExpected columns: `title`, `runtime_minutes`.\n\nTables: `movies`, `directors`, `reviews`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "`ORDER BY runtime_minutes`."
+  ],
+  "solutionMd": "```sql\nSELECT title, runtime_minutes FROM movies ORDER BY runtime_minutes;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: movies, directors, reviews\nSELECT\n",
+  "datasetId": "movies",
+  "expected": {
+    "query": "SELECT title, runtime_minutes FROM movies ORDER BY runtime_minutes;",
+    "orderMatters": true
+  },
+  "order": 72
+}

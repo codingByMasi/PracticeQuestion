@@ -1,0 +1,21 @@
+{
+  "slug": "perfect-ish-scores",
+  "track": "sql",
+  "title": "Perfect-ish scores",
+  "difficulty": "Easy",
+  "tags": [
+    "where"
+  ],
+  "statementMd": "List enrollments (student id, course id) with a score of at least 98.\n\nExpected columns: `student_id`, `course_id`, `score`.\n\nTables: `teachers`, `courses`, `students`, `enrollments`.\n\nRow order does not matter.",
+  "hints": [
+    "Numeric comparison."
+  ],
+  "solutionMd": "```sql\nSELECT student_id, course_id, score FROM enrollments WHERE score >= 98;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: teachers, courses, students, enrollments\nSELECT\n",
+  "datasetId": "school",
+  "expected": {
+    "query": "SELECT student_id, course_id, score FROM enrollments WHERE score >= 98;",
+    "orderMatters": false
+  },
+  "order": 47
+}

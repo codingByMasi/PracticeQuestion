@@ -1,0 +1,21 @@
+{
+  "slug": "price-rows-per-ticker",
+  "track": "sql",
+  "title": "Price rows per ticker",
+  "difficulty": "Easy",
+  "tags": [
+    "group-by"
+  ],
+  "statementMd": "Count the number of price rows per symbol.\n\nExpected columns: `symbol`, `days`.\n\nTables: `tickers`, `prices`.\n\nRow order does not matter.",
+  "hints": [
+    "`GROUP BY symbol`."
+  ],
+  "solutionMd": "```sql\nSELECT symbol, COUNT(*) AS days FROM prices GROUP BY symbol;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: tickers, prices\nSELECT\n",
+  "datasetId": "stocks",
+  "expected": {
+    "query": "SELECT symbol, COUNT(*) AS days FROM prices GROUP BY symbol;",
+    "orderMatters": false
+  },
+  "order": 145
+}

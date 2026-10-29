@@ -1,0 +1,21 @@
+{
+  "slug": "customers-per-country",
+  "track": "sql",
+  "title": "Customers per country",
+  "difficulty": "Easy",
+  "tags": [
+    "group-by"
+  ],
+  "statementMd": "How many customers are in each country?\n\nExpected columns: `country`, `customers`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\nRow order does not matter.",
+  "hints": [
+    "`GROUP BY country`."
+  ],
+  "solutionMd": "```sql\nSELECT country, COUNT(*) AS customers FROM customers GROUP BY country;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "SELECT country, COUNT(*) AS customers FROM customers GROUP BY country;",
+    "orderMatters": false
+  },
+  "order": 129
+}

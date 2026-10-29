@@ -1,0 +1,21 @@
+{
+  "slug": "long-artist-names-in-capitals",
+  "track": "sql",
+  "title": "Long artist names in capitals",
+  "difficulty": "Easy",
+  "tags": [
+    "strings"
+  ],
+  "statementMd": "Show each artist name in upper case along with its length in characters, for artists whose name is longer than 12 characters.\n\nExpected columns: `name`, `chars`.\n\nTables: `artists`, `albums`, `tracks`, `listeners`, `plays`.\n\nRow order does not matter.",
+  "hints": [
+    "`UPPER`, `LENGTH`."
+  ],
+  "solutionMd": "```sql\nSELECT UPPER(name) AS name, LENGTH(name) AS chars FROM artists WHERE LENGTH(name) > 12;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: artists, albums, tracks, listeners, plays\nSELECT\n",
+  "datasetId": "music",
+  "expected": {
+    "query": "SELECT UPPER(name) AS name, LENGTH(name) AS chars FROM artists WHERE LENGTH(name) > 12;",
+    "orderMatters": false
+  },
+  "order": 103
+}

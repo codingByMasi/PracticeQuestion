@@ -1,0 +1,21 @@
+{
+  "slug": "movies-without-a-director",
+  "track": "sql",
+  "title": "Movies without a director",
+  "difficulty": "Easy",
+  "tags": [
+    "null"
+  ],
+  "statementMd": "List movies whose director is unknown.\n\nExpected columns: `title`.\n\nTables: `movies`, `directors`, `reviews`.\n\nRow order does not matter.",
+  "hints": [
+    "`director_id IS NULL`."
+  ],
+  "solutionMd": "```sql\nSELECT title FROM movies WHERE director_id IS NULL;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: movies, directors, reviews\nSELECT\n",
+  "datasetId": "movies",
+  "expected": {
+    "query": "SELECT title FROM movies WHERE director_id IS NULL;",
+    "orderMatters": false
+  },
+  "order": 53
+}

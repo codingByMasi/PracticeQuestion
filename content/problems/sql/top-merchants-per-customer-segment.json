@@ -1,0 +1,21 @@
+{
+  "slug": "top-merchants-per-customer-segment",
+  "track": "sql",
+  "title": "Top merchants per customer segment",
+  "difficulty": "Hard",
+  "tags": [
+    "ranking"
+  ],
+  "statementMd": "For each customer segment show its top merchant by purchase spending (segment, merchant, spent rounded to 2 decimals; ties by merchant).\n\nExpected columns: `segment`, `merchant`, `spent`.\n\nTables: `customers`, `accounts`, `transactions`.\n\nRow order does not matter.",
+  "hints": [
+    "Group by segment and merchant, rank."
+  ],
+  "solutionMd": "```sql\nWITH s AS (SELECT c.segment, t.merchant, -SUM(t.amount) AS spent FROM transactions t JOIN accounts a ON a.id = t.account_id JOIN customers c ON c.id = a.customer_id WHERE t.kind = 'purchase' GROUP BY c.segment, t.merchant), r AS (SELECT *, ROW_NUMBER() OVER (PARTITION BY segment ORDER BY spent DESC, merchant) AS rn FROM s) SELECT segment, merchant, ROUND(spent, 2) AS spent FROM r WHERE rn = 1;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, accounts, transactions\nSELECT\n",
+  "datasetId": "bank",
+  "expected": {
+    "query": "WITH s AS (SELECT c.segment, t.merchant, -SUM(t.amount) AS spent FROM transactions t JOIN accounts a ON a.id = t.account_id JOIN customers c ON c.id = a.customer_id WHERE t.kind = 'purchase' GROUP BY c.segment, t.merchant), r AS (SELECT *, ROW_NUMBER() OVER (PARTITION BY segment ORDER BY spent DESC, merchant) AS rn FROM s) SELECT segment, merchant, ROUND(spent, 2) AS spent FROM r WHERE rn = 1;",
+    "orderMatters": false
+  },
+  "order": 445
+}

@@ -1,0 +1,21 @@
+{
+  "slug": "failing-grades-by-department",
+  "track": "sql",
+  "title": "Failing grades by department",
+  "difficulty": "Medium",
+  "tags": [
+    "group-by"
+  ],
+  "statementMd": "Count scores below 60 per course department. Show departments with at least one.\n\nExpected columns: `department`, `failing`.\n\nTables: `teachers`, `courses`, `students`, `enrollments`.\n\nRow order does not matter.",
+  "hints": [
+    "Filter in `WHERE`, join courses."
+  ],
+  "solutionMd": "```sql\nSELECT c.department, COUNT(*) AS failing FROM enrollments e JOIN courses c ON c.id = e.course_id WHERE e.score < 60 GROUP BY c.department;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: teachers, courses, students, enrollments\nSELECT\n",
+  "datasetId": "school",
+  "expected": {
+    "query": "SELECT c.department, COUNT(*) AS failing FROM enrollments e JOIN courses c ON c.id = e.course_id WHERE e.score < 60 GROUP BY c.department;",
+    "orderMatters": false
+  },
+  "order": 240
+}

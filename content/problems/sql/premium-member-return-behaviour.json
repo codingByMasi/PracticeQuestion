@@ -1,0 +1,21 @@
+{
+  "slug": "premium-member-return-behaviour",
+  "track": "sql",
+  "title": "Premium member return behaviour",
+  "difficulty": "Hard",
+  "tags": [
+    "case"
+  ],
+  "statementMd": "Compare tiers: for each tier show total loans, loans returned late, loans still out and the late percentage among returned loans (rounded to 1 decimal).\n\nExpected columns: `tier`, `loans`, `late`, `still_out`, `late_pct`.\n\nTables: `authors`, `books`, `members`, `loans`.\n\nRow order does not matter.",
+  "hints": [
+    "Conditional sums per tier."
+  ],
+  "solutionMd": "```sql\nSELECT m.tier, COUNT(*) AS loans, SUM(l.return_date > l.due_date) AS late, SUM(l.return_date IS NULL) AS still_out, ROUND(100.0 * SUM(l.return_date > l.due_date) / SUM(l.return_date IS NOT NULL), 1) AS late_pct FROM loans l JOIN members m ON m.id = l.member_id GROUP BY m.tier;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: authors, books, members, loans\nSELECT\n",
+  "datasetId": "library",
+  "expected": {
+    "query": "SELECT m.tier, COUNT(*) AS loans, SUM(l.return_date > l.due_date) AS late, SUM(l.return_date IS NULL) AS still_out, ROUND(100.0 * SUM(l.return_date > l.due_date) / SUM(l.return_date IS NOT NULL), 1) AS late_pct FROM loans l JOIN members m ON m.id = l.member_id GROUP BY m.tier;",
+    "orderMatters": false
+  },
+  "order": 373
+}

@@ -1,0 +1,82 @@
+{
+  "slug": "largest-number-from-list",
+  "track": "python",
+  "title": "Largest number from list",
+  "difficulty": "Hard",
+  "tags": [
+    "greedy"
+  ],
+  "statementMd": "Arrange non-negative integers to form the largest possible number; return it as a string.\n\n**Example:** `largest_number([10, 2])` returns `\"210\"`.",
+  "hints": [
+    "Compare `a+b` with `b+a` as strings."
+  ],
+  "solutionMd": "```python\ndef largest_number(nums):\n    from functools import cmp_to_key\n    s = sorted(map(str, nums), key=cmp_to_key(lambda a, b: -1 if a + b > b + a else (1 if a + b < b + a else 0)))\n    out = ''.join(s)\n    return '0' if out[0] == '0' else out\n```\n\nPairwise concatenation defines the ordering.",
+  "starterCode": "def largest_number(nums):\n    # Write your code here\n    pass\n",
+  "functionName": "largest_number",
+  "referenceSolution": "def largest_number(nums):\n    from functools import cmp_to_key\n    s = sorted(map(str, nums), key=cmp_to_key(lambda a, b: -1 if a + b > b + a else (1 if a + b < b + a else 0)))\n    out = ''.join(s)\n    return '0' if out[0] == '0' else out\n",
+  "tests": [
+    {
+      "args": [
+        [
+          10,
+          2
+        ]
+      ],
+      "expected": "210",
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          3,
+          30,
+          34,
+          5,
+          9
+        ]
+      ],
+      "expected": "9534330",
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          0,
+          0
+        ]
+      ],
+      "expected": "0",
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1
+        ]
+      ],
+      "expected": "1",
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          824,
+          8247
+        ]
+      ],
+      "expected": "8248247",
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          12,
+          121
+        ]
+      ],
+      "expected": "12121",
+      "hidden": true
+    }
+  ],
+  "order": 437
+}

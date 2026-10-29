@@ -1,0 +1,21 @@
+{
+  "slug": "hired-before-2017",
+  "track": "sql",
+  "title": "Hired before 2017",
+  "difficulty": "Easy",
+  "tags": [
+    "where"
+  ],
+  "statementMd": "List employees hired before 2017-01-01, with their hire date.\n\nExpected columns: `first_name`, `hire_date`.\n\nTables: `employees`, `departments`.\n\nRow order does not matter.",
+  "hints": [
+    "ISO date strings compare chronologically."
+  ],
+  "solutionMd": "```sql\nSELECT first_name, hire_date FROM employees WHERE hire_date < '2017-01-01';\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "SELECT first_name, hire_date FROM employees WHERE hire_date < '2017-01-01';",
+    "orderMatters": false
+  },
+  "order": 24
+}

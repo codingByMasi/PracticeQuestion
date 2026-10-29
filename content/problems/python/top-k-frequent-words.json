@@ -1,0 +1,96 @@
+{
+  "slug": "top-k-frequent-words",
+  "track": "python",
+  "title": "Top k frequent words",
+  "difficulty": "Medium",
+  "tags": [
+    "heaps"
+  ],
+  "statementMd": "Return the `k` most frequent words, ordered by frequency descending then alphabetically.\n\n**Example:** `top_k_words([\"i\", \"love\", \"leetcode\", \"i\", \"love\", \"coding\"], 2)` returns `[\"i\", \"love\"]`.",
+  "hints": [
+    "Sort by (-count, word)."
+  ],
+  "solutionMd": "```python\ndef top_k_words(words, k):\n    counts = {}\n    for w in words:\n        counts[w] = counts.get(w, 0) + 1\n    return sorted(counts, key=lambda w: (-counts[w], w))[:k]\n```\n\nAlphabetical tie-break.",
+  "starterCode": "def top_k_words(words, k):\n    # Write your code here\n    pass\n",
+  "functionName": "top_k_words",
+  "referenceSolution": "def top_k_words(words, k):\n    counts = {}\n    for w in words:\n        counts[w] = counts.get(w, 0) + 1\n    return sorted(counts, key=lambda w: (-counts[w], w))[:k]\n",
+  "tests": [
+    {
+      "args": [
+        [
+          "i",
+          "love",
+          "leetcode",
+          "i",
+          "love",
+          "coding"
+        ],
+        2
+      ],
+      "expected": [
+        "i",
+        "love"
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          "a"
+        ],
+        1
+      ],
+      "expected": [
+        "a"
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          "b",
+          "a",
+          "b",
+          "a",
+          "c"
+        ],
+        3
+      ],
+      "expected": [
+        "a",
+        "b",
+        "c"
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          "x",
+          "y"
+        ],
+        1
+      ],
+      "expected": [
+        "x"
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          "z",
+          "z",
+          "y"
+        ],
+        2
+      ],
+      "expected": [
+        "z",
+        "y"
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 366
+}

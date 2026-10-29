@@ -17,5 +17,6 @@
   "expected": {
     "query": "SELECT e.first_name, e.last_name, d.name AS department\nFROM employees e\nJOIN departments d ON d.id = e.department_id;",
     "orderMatters": false
-  }
+  },
+  "order": 153
 }

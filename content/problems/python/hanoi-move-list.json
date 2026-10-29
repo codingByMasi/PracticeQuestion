@@ -1,0 +1,163 @@
+{
+  "slug": "hanoi-move-list",
+  "track": "python",
+  "title": "Hanoi move list",
+  "difficulty": "Hard",
+  "tags": [
+    "recursion"
+  ],
+  "statementMd": "Return the list of moves `[from, to]` (pegs `\"A\"`, `\"B\"`, `\"C\"`) to move `n` discs from `A` to `C` using `B`, following the standard recursive algorithm.\n\n**Example:** `hanoi_sequence(1)` returns `[[\"A\", \"C\"]]`.",
+  "hints": [
+    "Move n-1 from A to B (using C), then A to C, then n-1 from B to C (using A)."
+  ],
+  "solutionMd": "```python\ndef hanoi_sequence(n):\n    moves = []\n    def go(k, src, dst, via):\n        if k == 0:\n            return\n        go(k - 1, src, via, dst)\n        moves.append([src, dst])\n        go(k - 1, via, dst, src)\n    go(n, 'A', 'C', 'B')\n    return moves\n```\n\nThe move list is unique for the standard algorithm.",
+  "starterCode": "def hanoi_sequence(n):\n    # Write your code here\n    pass\n",
+  "functionName": "hanoi_sequence",
+  "referenceSolution": "def hanoi_sequence(n):\n    moves = []\n    def go(k, src, dst, via):\n        if k == 0:\n            return\n        go(k - 1, src, via, dst)\n        moves.append([src, dst])\n        go(k - 1, via, dst, src)\n    go(n, 'A', 'C', 'B')\n    return moves\n",
+  "tests": [
+    {
+      "args": [
+        1
+      ],
+      "expected": [
+        [
+          "A",
+          "C"
+        ]
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        2
+      ],
+      "expected": [
+        [
+          "A",
+          "B"
+        ],
+        [
+          "A",
+          "C"
+        ],
+        [
+          "B",
+          "C"
+        ]
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        0
+      ],
+      "expected": [],
+      "hidden": true
+    },
+    {
+      "args": [
+        3
+      ],
+      "expected": [
+        [
+          "A",
+          "C"
+        ],
+        [
+          "A",
+          "B"
+        ],
+        [
+          "C",
+          "B"
+        ],
+        [
+          "A",
+          "C"
+        ],
+        [
+          "B",
+          "A"
+        ],
+        [
+          "B",
+          "C"
+        ],
+        [
+          "A",
+          "C"
+        ]
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        4
+      ],
+      "expected": [
+        [
+          "A",
+          "B"
+        ],
+        [
+          "A",
+          "C"
+        ],
+        [
+          "B",
+          "C"
+        ],
+        [
+          "A",
+          "B"
+        ],
+        [
+          "C",
+          "A"
+        ],
+        [
+          "C",
+          "B"
+        ],
+        [
+          "A",
+          "B"
+        ],
+        [
+          "A",
+          "C"
+        ],
+        [
+          "B",
+          "C"
+        ],
+        [
+          "B",
+          "A"
+        ],
+        [
+          "C",
+          "A"
+        ],
+        [
+          "B",
+          "C"
+        ],
+        [
+          "A",
+          "B"
+        ],
+        [
+          "A",
+          "C"
+        ],
+        [
+          "B",
+          "C"
+        ]
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 398
+}

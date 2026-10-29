@@ -1,0 +1,62 @@
+{
+  "slug": "check-balanced-parentheses-only",
+  "track": "python",
+  "title": "Check balanced parentheses only",
+  "difficulty": "Easy",
+  "tags": [
+    "stacks"
+  ],
+  "statementMd": "Return `True` if the parentheses `(` and `)` in `s` are balanced (ignore all other characters).\n\n**Example:** `parens_balanced(\"(a(b)c)\")` returns `true`.",
+  "hints": [
+    "Keep a counter that must never go negative."
+  ],
+  "solutionMd": "```python\ndef parens_balanced(s):\n    depth = 0\n    for c in s:\n        if c == '(':\n            depth += 1\n        elif c == ')':\n            depth -= 1\n            if depth < 0:\n                return False\n    return depth == 0\n```\n\nA counter suffices when there is only one bracket type.",
+  "starterCode": "def parens_balanced(s):\n    # Write your code here\n    pass\n",
+  "functionName": "parens_balanced",
+  "referenceSolution": "def parens_balanced(s):\n    depth = 0\n    for c in s:\n        if c == '(':\n            depth += 1\n        elif c == ')':\n            depth -= 1\n            if depth < 0:\n                return False\n    return depth == 0\n",
+  "tests": [
+    {
+      "args": [
+        "(a(b)c)"
+      ],
+      "expected": true,
+      "hidden": false
+    },
+    {
+      "args": [
+        ")("
+      ],
+      "expected": false,
+      "hidden": false
+    },
+    {
+      "args": [
+        ""
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        "(("
+      ],
+      "expected": false,
+      "hidden": true
+    },
+    {
+      "args": [
+        "())("
+      ],
+      "expected": false,
+      "hidden": true
+    },
+    {
+      "args": [
+        "no parens"
+      ],
+      "expected": true,
+      "hidden": true
+    }
+  ],
+  "order": 128
+}

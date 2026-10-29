@@ -1,0 +1,62 @@
+{
+  "slug": "next-prime",
+  "track": "python",
+  "title": "Next prime",
+  "difficulty": "Medium",
+  "tags": [
+    "number-theory"
+  ],
+  "statementMd": "Return the smallest prime strictly greater than `n` (`n >= 0`).\n\n**Example:** `next_prime(10)` returns `11`.",
+  "hints": [
+    "Test candidates upward with a primality helper."
+  ],
+  "solutionMd": "```python\ndef next_prime(n):\n    def is_prime(k):\n        if k < 2:\n            return False\n        i = 2\n        while i * i <= k:\n            if k % i == 0:\n                return False\n            i += 1\n        return True\n    n += 1\n    while not is_prime(n):\n        n += 1\n    return n\n```\n\nPrime gaps are small, so linear search is fast.",
+  "starterCode": "def next_prime(n):\n    # Write your code here\n    pass\n",
+  "functionName": "next_prime",
+  "referenceSolution": "def next_prime(n):\n    def is_prime(k):\n        if k < 2:\n            return False\n        i = 2\n        while i * i <= k:\n            if k % i == 0:\n                return False\n            i += 1\n        return True\n    n += 1\n    while not is_prime(n):\n        n += 1\n    return n\n",
+  "tests": [
+    {
+      "args": [
+        10
+      ],
+      "expected": 11,
+      "hidden": false
+    },
+    {
+      "args": [
+        2
+      ],
+      "expected": 3,
+      "hidden": false
+    },
+    {
+      "args": [
+        0
+      ],
+      "expected": 2,
+      "hidden": true
+    },
+    {
+      "args": [
+        13
+      ],
+      "expected": 17,
+      "hidden": true
+    },
+    {
+      "args": [
+        89
+      ],
+      "expected": 97,
+      "hidden": true
+    },
+    {
+      "args": [
+        1000
+      ],
+      "expected": 1009,
+      "hidden": true
+    }
+  ],
+  "order": 282
+}

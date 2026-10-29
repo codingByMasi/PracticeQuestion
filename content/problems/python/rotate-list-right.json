@@ -1,0 +1,106 @@
+{
+  "slug": "rotate-list-right",
+  "track": "python",
+  "title": "Rotate list right",
+  "difficulty": "Medium",
+  "tags": [
+    "lists"
+  ],
+  "statementMd": "Rotate the list right by `k` steps (`k >= 0` may exceed the length) and return the new list.\n\n**Example:** `rotate_right([1, 2, 3, 4, 5], 2)` returns `[4, 5, 1, 2, 3]`.",
+  "hints": [
+    "Reduce `k` modulo the length."
+  ],
+  "solutionMd": "```python\ndef rotate_right(nums, k):\n    if not nums:\n        return []\n    k %= len(nums)\n    return nums[-k:] + nums[:-k] if k else nums[:]\n```\n\nSlice from the end for the moved part.",
+  "starterCode": "def rotate_right(nums, k):\n    # Write your code here\n    pass\n",
+  "functionName": "rotate_right",
+  "referenceSolution": "def rotate_right(nums, k):\n    if not nums:\n        return []\n    k %= len(nums)\n    return nums[-k:] + nums[:-k] if k else nums[:]\n",
+  "tests": [
+    {
+      "args": [
+        [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        2
+      ],
+      "expected": [
+        4,
+        5,
+        1,
+        2,
+        3
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          1,
+          2
+        ],
+        3
+      ],
+      "expected": [
+        2,
+        1
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [],
+        4
+      ],
+      "expected": [],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1
+        ],
+        10
+      ],
+      "expected": [
+        1
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          2,
+          3
+        ],
+        0
+      ],
+      "expected": [
+        1,
+        2,
+        3
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          2,
+          3
+        ],
+        3
+      ],
+      "expected": [
+        1,
+        2,
+        3
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 195
+}

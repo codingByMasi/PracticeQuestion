@@ -1,0 +1,21 @@
+{
+  "slug": "sector-average-volume",
+  "track": "sql",
+  "title": "Sector average volume",
+  "difficulty": "Medium",
+  "tags": [
+    "join"
+  ],
+  "statementMd": "Average daily volume per sector (rounded to the nearest whole number).\n\nExpected columns: `sector`, `avg_volume`.\n\nTables: `tickers`, `prices`.\n\nRow order does not matter.",
+  "hints": [
+    "Join, group by sector."
+  ],
+  "solutionMd": "```sql\nSELECT t.sector, ROUND(AVG(p.volume)) AS avg_volume FROM prices p JOIN tickers t ON t.symbol = p.symbol GROUP BY t.sector;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: tickers, prices\nSELECT\n",
+  "datasetId": "stocks",
+  "expected": {
+    "query": "SELECT t.sector, ROUND(AVG(p.volume)) AS avg_volume FROM prices p JOIN tickers t ON t.symbol = p.symbol GROUP BY t.sector;",
+    "orderMatters": false
+  },
+  "order": 276
+}

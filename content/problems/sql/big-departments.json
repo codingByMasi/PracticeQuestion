@@ -1,0 +1,21 @@
+{
+  "slug": "big-departments",
+  "track": "sql",
+  "title": "Big departments",
+  "difficulty": "Easy",
+  "tags": [
+    "having"
+  ],
+  "statementMd": "Which departments have more than three employees? Show the department name and headcount.\n\nExpected columns: `name`, `headcount`.\n\nTables: `employees`, `departments`.\n\nRow order does not matter.",
+  "hints": [
+    "`HAVING COUNT(*) > 3`."
+  ],
+  "solutionMd": "```sql\nSELECT d.name, COUNT(*) AS headcount FROM employees e JOIN departments d ON d.id = e.department_id GROUP BY d.id, d.name HAVING COUNT(*) > 3;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "SELECT d.name, COUNT(*) AS headcount FROM employees e JOIN departments d ON d.id = e.department_id GROUP BY d.id, d.name HAVING COUNT(*) > 3;",
+    "orderMatters": false
+  },
+  "order": 149
+}

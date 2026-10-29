@@ -1,0 +1,21 @@
+{
+  "slug": "films-per-director",
+  "track": "sql",
+  "title": "Films per director",
+  "difficulty": "Medium",
+  "tags": [
+    "group-by"
+  ],
+  "statementMd": "For each director show their name and how many movies they made.\n\nExpected columns: `name`, `movies`.\n\nTables: `movies`, `directors`, `reviews`.\n\nRow order does not matter.",
+  "hints": [
+    "Join and group."
+  ],
+  "solutionMd": "```sql\nSELECT d.name, COUNT(*) AS movies FROM directors d JOIN movies m ON m.director_id = d.id GROUP BY d.id, d.name;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: movies, directors, reviews\nSELECT\n",
+  "datasetId": "movies",
+  "expected": {
+    "query": "SELECT d.name, COUNT(*) AS movies FROM directors d JOIN movies m ON m.director_id = d.id GROUP BY d.id, d.name;",
+    "orderMatters": false
+  },
+  "order": 235
+}

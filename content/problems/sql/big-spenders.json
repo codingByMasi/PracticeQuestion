@@ -18,5 +18,6 @@
   "expected": {
     "query": "WITH spend AS (\n  SELECT o.customer_id, SUM(oi.quantity * oi.unit_price) AS total\n  FROM orders o\n  JOIN order_items oi ON oi.order_id = o.id\n  WHERE o.status <> 'cancelled'\n  GROUP BY o.customer_id\n)\nSELECT c.name, ROUND(s.total, 2) AS total_spent\nFROM spend s\nJOIN customers c ON c.id = s.customer_id\nWHERE s.total > (SELECT AVG(total) FROM spend);",
     "orderMatters": false
-  }
+  },
+  "order": 398
 }

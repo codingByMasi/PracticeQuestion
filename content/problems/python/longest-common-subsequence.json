@@ -1,0 +1,84 @@
+{
+  "slug": "longest-common-subsequence",
+  "track": "python",
+  "title": "Longest common subsequence",
+  "difficulty": "Medium",
+  "tags": [
+    "dynamic-programming"
+  ],
+  "statementMd": "Return the length of the longest common subsequence of two strings.\n\n**Example:** `lcs_length(\"abcde\", \"ace\")` returns `3`.",
+  "hints": [
+    "dp over prefixes."
+  ],
+  "solutionMd": "```python\ndef lcs_length(a, b):\n    prev = [0] * (len(b) + 1)\n    for x in a:\n        cur = [0]\n        for j, y in enumerate(b):\n            cur.append(prev[j] + 1 if x == y else max(prev[j + 1], cur[j]))\n        prev = cur\n    return prev[-1]\n```\n\nMatch extends the diagonal, otherwise take the best neighbour.",
+  "starterCode": "def lcs_length(a, b):\n    # Write your code here\n    pass\n",
+  "functionName": "lcs_length",
+  "referenceSolution": "def lcs_length(a, b):\n    prev = [0] * (len(b) + 1)\n    for x in a:\n        cur = [0]\n        for j, y in enumerate(b):\n            cur.append(prev[j] + 1 if x == y else max(prev[j + 1], cur[j]))\n        prev = cur\n    return prev[-1]\n",
+  "tests": [
+    {
+      "args": [
+        "abcde",
+        "ace"
+      ],
+      "expected": 3,
+      "hidden": false
+    },
+    {
+      "args": [
+        "abc",
+        "def"
+      ],
+      "expected": 0,
+      "hidden": false
+    },
+    {
+      "args": [
+        "",
+        "a"
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        "abc",
+        "abc"
+      ],
+      "expected": 3,
+      "hidden": true
+    },
+    {
+      "args": [
+        "AGGTAB",
+        "GXTXAYB"
+      ],
+      "expected": 4,
+      "hidden": true
+    },
+    {
+      "args": [
+        "bcca",
+        "bcbaaaaccc"
+      ],
+      "expected": 3,
+      "hidden": true
+    },
+    {
+      "args": [
+        "aa",
+        "bc"
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        "abaabcaaca",
+        "abcabbb"
+      ],
+      "expected": 4,
+      "hidden": true
+    }
+  ],
+  "order": 321
+}

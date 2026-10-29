@@ -1,0 +1,69 @@
+{
+  "slug": "perfect-squares-minimum",
+  "track": "python",
+  "title": "Perfect squares minimum",
+  "difficulty": "Medium",
+  "tags": [
+    "dynamic-programming"
+  ],
+  "statementMd": "Return the least number of perfect squares (1, 4, 9, ...) that sum to `n`.\n\n**Example:** `num_squares(12)` returns `3`.",
+  "hints": [
+    "dp[i] = 1 + min(dp[i - k*k])."
+  ],
+  "solutionMd": "```python\ndef num_squares(n):\n    dp = [0] + [float('inf')] * n\n    for i in range(1, n + 1):\n        k = 1\n        while k * k <= i:\n            dp[i] = min(dp[i], dp[i - k * k] + 1)\n            k += 1\n    return dp[n]\n```\n\nCoin change where coins are squares.",
+  "starterCode": "def num_squares(n):\n    # Write your code here\n    pass\n",
+  "functionName": "num_squares",
+  "referenceSolution": "def num_squares(n):\n    dp = [0] + [float('inf')] * n\n    for i in range(1, n + 1):\n        k = 1\n        while k * k <= i:\n            dp[i] = min(dp[i], dp[i - k * k] + 1)\n            k += 1\n    return dp[n]\n",
+  "tests": [
+    {
+      "args": [
+        12
+      ],
+      "expected": 3,
+      "hidden": false
+    },
+    {
+      "args": [
+        13
+      ],
+      "expected": 2,
+      "hidden": false
+    },
+    {
+      "args": [
+        1
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        0
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        7
+      ],
+      "expected": 4,
+      "hidden": true
+    },
+    {
+      "args": [
+        25
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        43
+      ],
+      "expected": 3,
+      "hidden": true
+    }
+  ],
+  "order": 327
+}

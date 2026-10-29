@@ -1,0 +1,21 @@
+{
+  "slug": "return-on-investment",
+  "track": "sql",
+  "title": "Return on investment",
+  "difficulty": "Medium",
+  "tags": [
+    "expressions"
+  ],
+  "statementMd": "For movies with known budget and gross, show the title and the gross-to-budget ratio rounded to 1 decimal. Highest ratio first.\n\nExpected columns: `title`, `roi`.\n\nTables: `movies`, `directors`, `reviews`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Divide gross by budget."
+  ],
+  "solutionMd": "```sql\nSELECT title, ROUND(gross_millions / budget_millions, 1) AS roi FROM movies WHERE budget_millions IS NOT NULL AND gross_millions IS NOT NULL ORDER BY roi DESC;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: movies, directors, reviews\nSELECT\n",
+  "datasetId": "movies",
+  "expected": {
+    "query": "SELECT title, ROUND(gross_millions / budget_millions, 1) AS roi FROM movies WHERE budget_millions IS NOT NULL AND gross_millions IS NOT NULL ORDER BY roi DESC;",
+    "orderMatters": true
+  },
+  "order": 175
+}

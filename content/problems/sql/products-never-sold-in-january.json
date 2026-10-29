@@ -1,0 +1,21 @@
+{
+  "slug": "products-never-sold-in-january",
+  "track": "sql",
+  "title": "Products never sold in January",
+  "difficulty": "Medium",
+  "tags": [
+    "subquery"
+  ],
+  "statementMd": "List products that do not appear in any order placed in January 2024.\n\nExpected columns: `name`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\nRow order does not matter.",
+  "hints": [
+    "Subquery on orders in January, `NOT IN`."
+  ],
+  "solutionMd": "```sql\nSELECT name FROM products WHERE id NOT IN (SELECT oi.product_id FROM order_items oi JOIN orders o ON o.id = oi.order_id WHERE o.order_date LIKE '2024-01-%');\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "SELECT name FROM products WHERE id NOT IN (SELECT oi.product_id FROM order_items oi JOIN orders o ON o.id = oi.order_id WHERE o.order_date LIKE '2024-01-%');",
+    "orderMatters": false
+  },
+  "order": 310
+}

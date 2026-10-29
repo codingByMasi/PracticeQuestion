@@ -1,0 +1,75 @@
+{
+  "slug": "index-of-first-match",
+  "track": "python",
+  "title": "Index of first match",
+  "difficulty": "Easy",
+  "tags": [
+    "searching"
+  ],
+  "statementMd": "Return the index of the first occurrence of `target` in `items`, or `-1` if absent.\n\n**Example:** `find_index([4, 5, 6], 5)` returns `1`.",
+  "hints": [
+    "`enumerate` gives index and value."
+  ],
+  "solutionMd": "```python\ndef find_index(items, target):\n    for i, x in enumerate(items):\n        if x == target:\n            return i\n    return -1\n```\n\nReturn as soon as you find it.",
+  "starterCode": "def find_index(items, target):\n    # Write your code here\n    pass\n",
+  "functionName": "find_index",
+  "referenceSolution": "def find_index(items, target):\n    for i, x in enumerate(items):\n        if x == target:\n            return i\n    return -1\n",
+  "tests": [
+    {
+      "args": [
+        [
+          4,
+          5,
+          6
+        ],
+        5
+      ],
+      "expected": 1,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          4,
+          5,
+          6
+        ],
+        9
+      ],
+      "expected": -1,
+      "hidden": false
+    },
+    {
+      "args": [
+        [],
+        1
+      ],
+      "expected": -1,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          1,
+          1
+        ],
+        1
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          "x",
+          "y"
+        ],
+        "y"
+      ],
+      "expected": 1,
+      "hidden": true
+    }
+  ],
+  "order": 115
+}

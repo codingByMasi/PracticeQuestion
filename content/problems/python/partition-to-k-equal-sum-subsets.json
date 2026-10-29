@@ -1,0 +1,97 @@
+{
+  "slug": "partition-to-k-equal-sum-subsets",
+  "track": "python",
+  "title": "Partition to k equal sum subsets",
+  "difficulty": "Hard",
+  "tags": [
+    "backtracking"
+  ],
+  "statementMd": "Return whether the list of positive integers can be split into `k` non-empty subsets with equal sums.\n\n**Example:** `can_partition_k([4, 3, 2, 3, 5, 2, 1], 4)` returns `true`.",
+  "hints": [
+    "Backtrack filling k buckets of size total/k."
+  ],
+  "solutionMd": "```python\ndef can_partition_k(nums, k):\n    total = sum(nums)\n    if total % k:\n        return False\n    target = total // k\n    nums = sorted(nums, reverse=True)\n    if nums[0] > target:\n        return False\n    buckets = [0] * k\n    def go(i):\n        if i == len(nums):\n            return True\n        seen = set()\n        for b in range(k):\n            if buckets[b] + nums[i] <= target and buckets[b] not in seen:\n                seen.add(buckets[b])\n                buckets[b] += nums[i]\n                if go(i + 1):\n                    return True\n                buckets[b] -= nums[i]\n        return False\n    return go(0)\n```\n\nSkip identical bucket states to prune.",
+  "starterCode": "def can_partition_k(nums, k):\n    # Write your code here\n    pass\n",
+  "functionName": "can_partition_k",
+  "referenceSolution": "def can_partition_k(nums, k):\n    total = sum(nums)\n    if total % k:\n        return False\n    target = total // k\n    nums = sorted(nums, reverse=True)\n    if nums[0] > target:\n        return False\n    buckets = [0] * k\n    def go(i):\n        if i == len(nums):\n            return True\n        seen = set()\n        for b in range(k):\n            if buckets[b] + nums[i] <= target and buckets[b] not in seen:\n                seen.add(buckets[b])\n                buckets[b] += nums[i]\n                if go(i + 1):\n                    return True\n                buckets[b] -= nums[i]\n        return False\n    return go(0)\n",
+  "tests": [
+    {
+      "args": [
+        [
+          4,
+          3,
+          2,
+          3,
+          5,
+          2,
+          1
+        ],
+        4
+      ],
+      "expected": true,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          1,
+          2,
+          3,
+          4
+        ],
+        3
+      ],
+      "expected": false,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          2,
+          2,
+          2,
+          2
+        ],
+        2
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1
+        ],
+        1
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          5,
+          5,
+          5
+        ],
+        2
+      ],
+      "expected": false,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          3,
+          3,
+          3,
+          3
+        ],
+        4
+      ],
+      "expected": true,
+      "hidden": true
+    }
+  ],
+  "order": 457
+}

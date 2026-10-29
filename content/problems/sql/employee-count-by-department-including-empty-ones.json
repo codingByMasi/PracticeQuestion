@@ -1,0 +1,21 @@
+{
+  "slug": "employee-count-by-department-including-empty-ones",
+  "track": "sql",
+  "title": "Employee count by department including empty ones",
+  "difficulty": "Medium",
+  "tags": [
+    "left-join"
+  ],
+  "statementMd": "List every department with its employee count, including departments with none (count 0).\n\nExpected columns: `name`, `employees`.\n\nTables: `employees`, `departments`.\n\nRow order does not matter.",
+  "hints": [
+    "Count a column from the employees side after a `LEFT JOIN`."
+  ],
+  "solutionMd": "```sql\nSELECT d.name, COUNT(e.id) AS employees FROM departments d LEFT JOIN employees e ON e.department_id = d.id GROUP BY d.id, d.name;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "SELECT d.name, COUNT(e.id) AS employees FROM departments d LEFT JOIN employees e ON e.department_id = d.id GROUP BY d.id, d.name;",
+    "orderMatters": false
+  },
+  "order": 290
+}

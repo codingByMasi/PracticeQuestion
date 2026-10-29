@@ -1,0 +1,65 @@
+{
+  "slug": "maximum-of-three",
+  "track": "python",
+  "title": "Maximum of three",
+  "difficulty": "Easy",
+  "tags": [
+    "conditionals"
+  ],
+  "statementMd": "Return the largest of three numbers without using `max`.\n\n**Example:** `max_of_three(1, 2, 3)` returns `3`.",
+  "hints": [
+    "Compare step by step, keeping the best so far."
+  ],
+  "solutionMd": "```python\ndef max_of_three(a, b, c):\n    best = a\n    if b > best:\n        best = b\n    if c > best:\n        best = c\n    return best\n```\n\nKeep a running best and update it with each candidate.",
+  "starterCode": "def max_of_three(a, b, c):\n    # Write your code here\n    pass\n",
+  "functionName": "max_of_three",
+  "referenceSolution": "def max_of_three(a, b, c):\n    best = a\n    if b > best:\n        best = b\n    if c > best:\n        best = c\n    return best\n",
+  "tests": [
+    {
+      "args": [
+        1,
+        2,
+        3
+      ],
+      "expected": 3,
+      "hidden": false
+    },
+    {
+      "args": [
+        9,
+        4,
+        7
+      ],
+      "expected": 9,
+      "hidden": false
+    },
+    {
+      "args": [
+        -1,
+        -5,
+        -3
+      ],
+      "expected": -1,
+      "hidden": true
+    },
+    {
+      "args": [
+        5,
+        5,
+        5
+      ],
+      "expected": 5,
+      "hidden": true
+    },
+    {
+      "args": [
+        0,
+        10,
+        10
+      ],
+      "expected": 10,
+      "hidden": true
+    }
+  ],
+  "order": 9
+}

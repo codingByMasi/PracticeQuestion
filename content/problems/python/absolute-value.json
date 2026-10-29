@@ -1,0 +1,55 @@
+{
+  "slug": "absolute-value",
+  "track": "python",
+  "title": "Absolute value",
+  "difficulty": "Easy",
+  "tags": [
+    "basics"
+  ],
+  "statementMd": "Return the absolute value of `n` without calling the built-in `abs`.\n\n**Example:** `my_abs(5)` returns `5`.",
+  "hints": [
+    "If `n` is negative return `-n`."
+  ],
+  "solutionMd": "```python\ndef my_abs(n):\n    return -n if n < 0 else n\n```\n\nA conditional expression keeps it on one line.",
+  "starterCode": "def my_abs(n):\n    # Write your code here\n    pass\n",
+  "functionName": "my_abs",
+  "referenceSolution": "def my_abs(n):\n    return -n if n < 0 else n\n",
+  "tests": [
+    {
+      "args": [
+        5
+      ],
+      "expected": 5,
+      "hidden": false
+    },
+    {
+      "args": [
+        -5
+      ],
+      "expected": 5,
+      "hidden": false
+    },
+    {
+      "args": [
+        0
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        -2.5
+      ],
+      "expected": 2.5,
+      "hidden": true
+    },
+    {
+      "args": [
+        3.25
+      ],
+      "expected": 3.25,
+      "hidden": true
+    }
+  ],
+  "order": 4
+}

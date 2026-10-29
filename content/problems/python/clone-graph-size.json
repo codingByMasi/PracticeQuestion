@@ -1,0 +1,119 @@
+{
+  "slug": "clone-graph-size",
+  "track": "python",
+  "title": "Clone graph size",
+  "difficulty": "Medium",
+  "tags": [
+    "graphs"
+  ],
+  "statementMd": "Return the sorted (descending) list of node degrees of an undirected simple graph on `n` nodes.\n\n**Example:** `degree_sequence(4, [[0, 1], [1, 2], [1, 3]])` returns `[3, 1, 1, 1]`.",
+  "hints": [
+    "Count how many edges touch each node."
+  ],
+  "solutionMd": "```python\nfrom collections import deque, defaultdict\n\n\ndef degree_sequence(n, edges):\n    deg = [0] * n\n    for a, b in edges:\n        deg[a] += 1\n        deg[b] += 1\n    return sorted(deg, reverse=True)\n```\n\nEach edge adds one to both ends.",
+  "starterCode": "def degree_sequence(n, edges):\n    # Write your code here\n    pass\n",
+  "functionName": "degree_sequence",
+  "referenceSolution": "from collections import deque, defaultdict\n\n\ndef degree_sequence(n, edges):\n    deg = [0] * n\n    for a, b in edges:\n        deg[a] += 1\n        deg[b] += 1\n    return sorted(deg, reverse=True)\n",
+  "tests": [
+    {
+      "args": [
+        4,
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ]
+        ]
+      ],
+      "expected": [
+        3,
+        1,
+        1,
+        1
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        3,
+        []
+      ],
+      "expected": [
+        0,
+        0,
+        0
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        2,
+        [
+          [
+            0,
+            1
+          ]
+        ]
+      ],
+      "expected": [
+        1,
+        1
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        5,
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            0
+          ]
+        ]
+      ],
+      "expected": [
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        1,
+        []
+      ],
+      "expected": [
+        0
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 347
+}

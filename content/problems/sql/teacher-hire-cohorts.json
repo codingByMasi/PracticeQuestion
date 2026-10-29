@@ -1,0 +1,21 @@
+{
+  "slug": "teacher-hire-cohorts",
+  "track": "sql",
+  "title": "Teacher hire cohorts",
+  "difficulty": "Easy",
+  "tags": [
+    "group-by"
+  ],
+  "statementMd": "How many teachers were hired in each decade (2000s, 2010s, 2020s)? Show the decade start year and count.\n\nExpected columns: `decade`, `teachers`.\n\nTables: `teachers`, `courses`, `students`, `enrollments`.\n\nRow order does not matter.",
+  "hints": [
+    "`hired_year / 10 * 10`."
+  ],
+  "solutionMd": "```sql\nSELECT hired_year / 10 * 10 AS decade, COUNT(*) AS teachers FROM teachers GROUP BY decade;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: teachers, courses, students, enrollments\nSELECT\n",
+  "datasetId": "school",
+  "expected": {
+    "query": "SELECT hired_year / 10 * 10 AS decade, COUNT(*) AS teachers FROM teachers GROUP BY decade;",
+    "orderMatters": false
+  },
+  "order": 144
+}

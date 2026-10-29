@@ -1,0 +1,69 @@
+{
+  "slug": "longest-valid-parentheses",
+  "track": "python",
+  "title": "Longest valid parentheses",
+  "difficulty": "Hard",
+  "tags": [
+    "stacks"
+  ],
+  "statementMd": "Given a string of `(` and `)`, return the length of the longest well-formed (valid) parentheses substring.\n\n**Example:** `longest_valid_parentheses(\"(()\")` returns `2`.",
+  "hints": [
+    "Stack of indices with a base marker."
+  ],
+  "solutionMd": "```python\ndef longest_valid_parentheses(s):\n    stack = [-1]\n    best = 0\n    for i, c in enumerate(s):\n        if c == '(':\n            stack.append(i)\n        else:\n            stack.pop()\n            if not stack:\n                stack.append(i)\n            else:\n                best = max(best, i - stack[-1])\n    return best\n```\n\nThe stack top is the last unmatched position.",
+  "starterCode": "def longest_valid_parentheses(s):\n    # Write your code here\n    pass\n",
+  "functionName": "longest_valid_parentheses",
+  "referenceSolution": "def longest_valid_parentheses(s):\n    stack = [-1]\n    best = 0\n    for i, c in enumerate(s):\n        if c == '(':\n            stack.append(i)\n        else:\n            stack.pop()\n            if not stack:\n                stack.append(i)\n            else:\n                best = max(best, i - stack[-1])\n    return best\n",
+  "tests": [
+    {
+      "args": [
+        "(()"
+      ],
+      "expected": 2,
+      "hidden": false
+    },
+    {
+      "args": [
+        ")()())"
+      ],
+      "expected": 4,
+      "hidden": false
+    },
+    {
+      "args": [
+        ""
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        "()"
+      ],
+      "expected": 2,
+      "hidden": true
+    },
+    {
+      "args": [
+        "(((("
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        "()(()"
+      ],
+      "expected": 2,
+      "hidden": true
+    },
+    {
+      "args": [
+        "()(())"
+      ],
+      "expected": 6,
+      "hidden": true
+    }
+  ],
+  "order": 416
+}

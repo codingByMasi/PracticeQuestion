@@ -1,0 +1,92 @@
+{
+  "slug": "dictionary-from-two-lists",
+  "track": "python",
+  "title": "Dictionary from two lists",
+  "difficulty": "Easy",
+  "tags": [
+    "dicts"
+  ],
+  "statementMd": "Build a dict pairing `keys[i]` with `values[i]`; extra items in the longer list are ignored.\n\n**Example:** `make_dict([\"a\", \"b\"], [1, 2])` returns `{\"a\": 1, \"b\": 2}`.",
+  "hints": [
+    "`dict(zip(...))`."
+  ],
+  "solutionMd": "```python\ndef make_dict(keys, values):\n    return dict(zip(keys, values))\n```\n\n`zip` truncates to the shorter input.",
+  "starterCode": "def make_dict(keys, values):\n    # Write your code here\n    pass\n",
+  "functionName": "make_dict",
+  "referenceSolution": "def make_dict(keys, values):\n    return dict(zip(keys, values))\n",
+  "tests": [
+    {
+      "args": [
+        [
+          "a",
+          "b"
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "expected": {
+        "a": 1,
+        "b": 2
+      },
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          "a"
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "expected": {
+        "a": 1
+      },
+      "hidden": false
+    },
+    {
+      "args": [
+        [],
+        []
+      ],
+      "expected": {},
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          "a",
+          "b",
+          "c"
+        ],
+        [
+          1
+        ]
+      ],
+      "expected": {
+        "a": 1
+      },
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          "k",
+          "k"
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "expected": {
+        "k": 2
+      },
+      "hidden": true
+    }
+  ],
+  "order": 103
+}

@@ -1,0 +1,21 @@
+{
+  "slug": "rare-copies",
+  "track": "sql",
+  "title": "Rare copies",
+  "difficulty": "Easy",
+  "tags": [
+    "where"
+  ],
+  "statementMd": "Find books of which the library owns exactly one copy.\n\nExpected columns: `title`.\n\nTables: `authors`, `books`, `members`, `loans`.\n\nRow order does not matter.",
+  "hints": [
+    "`copies = 1`."
+  ],
+  "solutionMd": "```sql\nSELECT title FROM books WHERE copies = 1;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: authors, books, members, loans\nSELECT\n",
+  "datasetId": "library",
+  "expected": {
+    "query": "SELECT title FROM books WHERE copies = 1;",
+    "orderMatters": false
+  },
+  "order": 33
+}

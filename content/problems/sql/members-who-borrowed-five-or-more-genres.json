@@ -1,0 +1,21 @@
+{
+  "slug": "members-who-borrowed-five-or-more-genres",
+  "track": "sql",
+  "title": "Members who borrowed five or more genres",
+  "difficulty": "Hard",
+  "tags": [
+    "having"
+  ],
+  "statementMd": "List members who borrowed books from at least five different genres. Show name and genre count.\n\nExpected columns: `name`, `genres`.\n\nTables: `authors`, `books`, `members`, `loans`.\n\nRow order does not matter.",
+  "hints": [
+    "`COUNT(DISTINCT b.genre)`."
+  ],
+  "solutionMd": "```sql\nSELECT m.name, COUNT(DISTINCT b.genre) AS genres FROM members m JOIN loans l ON l.member_id = m.id JOIN books b ON b.id = l.book_id GROUP BY m.id, m.name HAVING COUNT(DISTINCT b.genre) >= 5;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: authors, books, members, loans\nSELECT\n",
+  "datasetId": "library",
+  "expected": {
+    "query": "SELECT m.name, COUNT(DISTINCT b.genre) AS genres FROM members m JOIN loans l ON l.member_id = m.id JOIN books b ON b.id = l.book_id GROUP BY m.id, m.name HAVING COUNT(DISTINCT b.genre) >= 5;",
+    "orderMatters": false
+  },
+  "order": 379
+}

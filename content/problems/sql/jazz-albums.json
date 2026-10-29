@@ -1,0 +1,21 @@
+{
+  "slug": "jazz-albums",
+  "track": "sql",
+  "title": "Jazz albums",
+  "difficulty": "Easy",
+  "tags": [
+    "where"
+  ],
+  "statementMd": "List the titles and release years of Jazz albums.\n\nExpected columns: `title`, `release_year`.\n\nTables: `artists`, `albums`, `tracks`, `listeners`, `plays`.\n\nRow order does not matter.",
+  "hints": [
+    "`genre = 'Jazz'`."
+  ],
+  "solutionMd": "```sql\nSELECT title, release_year FROM albums WHERE genre = 'Jazz';\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: artists, albums, tracks, listeners, plays\nSELECT\n",
+  "datasetId": "music",
+  "expected": {
+    "query": "SELECT title, release_year FROM albums WHERE genre = 'Jazz';",
+    "orderMatters": false
+  },
+  "order": 39
+}

@@ -1,0 +1,60 @@
+{
+  "slug": "count-substrings",
+  "track": "python",
+  "title": "Count substrings",
+  "difficulty": "Easy",
+  "tags": [
+    "strings"
+  ],
+  "statementMd": "Count overlapping occurrences of non-empty `sub` in `s`.\n\n**Example:** `count_substring(\"aaaa\", \"aa\")` returns `3`.",
+  "hints": [
+    "Check each starting index."
+  ],
+  "solutionMd": "```python\ndef count_substring(s, sub):\n    return sum(1 for i in range(len(s) - len(sub) + 1) if s[i:i + len(sub)] == sub)\n```\n\n`str.count` skips overlaps, so slice instead.",
+  "starterCode": "def count_substring(s, sub):\n    # Write your code here\n    pass\n",
+  "functionName": "count_substring",
+  "referenceSolution": "def count_substring(s, sub):\n    return sum(1 for i in range(len(s) - len(sub) + 1) if s[i:i + len(sub)] == sub)\n",
+  "tests": [
+    {
+      "args": [
+        "aaaa",
+        "aa"
+      ],
+      "expected": 3,
+      "hidden": false
+    },
+    {
+      "args": [
+        "abcabc",
+        "bc"
+      ],
+      "expected": 2,
+      "hidden": false
+    },
+    {
+      "args": [
+        "abc",
+        "d"
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        "",
+        "a"
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        "ababab",
+        "aba"
+      ],
+      "expected": 2,
+      "hidden": true
+    }
+  ],
+  "order": 63
+}

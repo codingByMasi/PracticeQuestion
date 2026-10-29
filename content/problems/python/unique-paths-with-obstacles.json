@@ -1,0 +1,113 @@
+{
+  "slug": "unique-paths-with-obstacles",
+  "track": "python",
+  "title": "Unique paths with obstacles",
+  "difficulty": "Medium",
+  "tags": [
+    "dynamic-programming"
+  ],
+  "statementMd": "Same as unique paths but `grid[r][c] == 1` marks an obstacle that cannot be entered. Return the number of paths from top-left to bottom-right.\n\n**Example:** `unique_paths_obstacles([[0, 0, 0], [0, 1, 0], [0, 0, 0]])` returns `2`.",
+  "hints": [
+    "A blocked cell has zero paths."
+  ],
+  "solutionMd": "```python\ndef unique_paths_obstacles(grid):\n    R, C = len(grid), len(grid[0])\n    dp = [0] * C\n    dp[0] = 1 if grid[0][0] == 0 else 0\n    for r in range(R):\n        for c in range(C):\n            if grid[r][c] == 1:\n                dp[c] = 0\n            elif c:\n                dp[c] += dp[c - 1]\n    return dp[-1]\n```\n\nObstacle cells reset the count.",
+  "starterCode": "def unique_paths_obstacles(grid):\n    # Write your code here\n    pass\n",
+  "functionName": "unique_paths_obstacles",
+  "referenceSolution": "def unique_paths_obstacles(grid):\n    R, C = len(grid), len(grid[0])\n    dp = [0] * C\n    dp[0] = 1 if grid[0][0] == 0 else 0\n    for r in range(R):\n        for c in range(C):\n            if grid[r][c] == 1:\n                dp[c] = 0\n            elif c:\n                dp[c] += dp[c - 1]\n    return dp[-1]\n",
+  "tests": [
+    {
+      "args": [
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      ],
+      "expected": 2,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      ],
+      "expected": 1,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            1
+          ]
+        ]
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            0
+          ]
+        ]
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      ],
+      "expected": 2,
+      "hidden": true
+    }
+  ],
+  "order": 318
+}

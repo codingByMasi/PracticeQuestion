@@ -1,0 +1,21 @@
+{
+  "slug": "passengers-per-flight",
+  "track": "sql",
+  "title": "Passengers per flight",
+  "difficulty": "Medium",
+  "tags": [
+    "join"
+  ],
+  "statementMd": "Show the five flights with the most bookings: flight id, bookings. Ties by flight id.\n\nExpected columns: `flight_id`, `bookings`.\n\nTables: `airlines`, `airports`, `flights`, `bookings`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Group bookings by flight."
+  ],
+  "solutionMd": "```sql\nSELECT flight_id, COUNT(*) AS bookings FROM bookings GROUP BY flight_id ORDER BY bookings DESC, flight_id LIMIT 5;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: airlines, airports, flights, bookings\nSELECT\n",
+  "datasetId": "flights",
+  "expected": {
+    "query": "SELECT flight_id, COUNT(*) AS bookings FROM bookings GROUP BY flight_id ORDER BY bookings DESC, flight_id LIMIT 5;",
+    "orderMatters": true
+  },
+  "order": 266
+}

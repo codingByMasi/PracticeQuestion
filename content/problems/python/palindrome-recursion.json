@@ -1,0 +1,62 @@
+{
+  "slug": "palindrome-recursion",
+  "track": "python",
+  "title": "Palindrome recursion",
+  "difficulty": "Easy",
+  "tags": [
+    "recursion"
+  ],
+  "statementMd": "Return whether `s` is a palindrome using recursion on the ends.\n\n**Example:** `rec_palindrome(\"racecar\")` returns `true`.",
+  "hints": [
+    "Compare first and last, recurse on the middle."
+  ],
+  "solutionMd": "```python\ndef rec_palindrome(s):\n    if len(s) < 2:\n        return True\n    return s[0] == s[-1] and rec_palindrome(s[1:-1])\n```\n\nShrink from both ends.",
+  "starterCode": "def rec_palindrome(s):\n    # Write your code here\n    pass\n",
+  "functionName": "rec_palindrome",
+  "referenceSolution": "def rec_palindrome(s):\n    if len(s) < 2:\n        return True\n    return s[0] == s[-1] and rec_palindrome(s[1:-1])\n",
+  "tests": [
+    {
+      "args": [
+        "racecar"
+      ],
+      "expected": true,
+      "hidden": false
+    },
+    {
+      "args": [
+        "ab"
+      ],
+      "expected": false,
+      "hidden": false
+    },
+    {
+      "args": [
+        ""
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        "a"
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        "abba"
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        "abca"
+      ],
+      "expected": false,
+      "hidden": true
+    }
+  ],
+  "order": 122
+}

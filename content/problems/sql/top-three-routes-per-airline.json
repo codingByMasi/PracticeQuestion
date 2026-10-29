@@ -1,0 +1,21 @@
+{
+  "slug": "top-three-routes-per-airline",
+  "track": "sql",
+  "title": "Top three routes per airline",
+  "difficulty": "Hard",
+  "tags": [
+    "ranking"
+  ],
+  "statementMd": "For each airline, rank routes (origin, destination) by number of flights and show the top route with its count (ties: alphabetical origin then destination).\n\nExpected columns: `airline_code`, `origin`, `destination`, `flights`.\n\nTables: `airlines`, `airports`, `flights`, `bookings`.\n\nRow order does not matter.",
+  "hints": [
+    "Rank in a CTE."
+  ],
+  "solutionMd": "```sql\nWITH r AS (SELECT airline_code, origin, destination, COUNT(*) AS flights FROM flights GROUP BY airline_code, origin, destination), k AS (SELECT *, ROW_NUMBER() OVER (PARTITION BY airline_code ORDER BY flights DESC, origin, destination) AS rn FROM r) SELECT airline_code, origin, destination, flights FROM k WHERE rn = 1;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: airlines, airports, flights, bookings\nSELECT\n",
+  "datasetId": "flights",
+  "expected": {
+    "query": "WITH r AS (SELECT airline_code, origin, destination, COUNT(*) AS flights FROM flights GROUP BY airline_code, origin, destination), k AS (SELECT *, ROW_NUMBER() OVER (PARTITION BY airline_code ORDER BY flights DESC, origin, destination) AS rn FROM r) SELECT airline_code, origin, destination, flights FROM k WHERE rn = 1;",
+    "orderMatters": false
+  },
+  "order": 451
+}

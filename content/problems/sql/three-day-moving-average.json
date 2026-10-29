@@ -1,0 +1,21 @@
+{
+  "slug": "three-day-moving-average",
+  "track": "sql",
+  "title": "Three-day moving average",
+  "difficulty": "Hard",
+  "tags": [
+    "window-functions"
+  ],
+  "statementMd": "For `ACME`, show each trading day's close and the average of the close and the two previous closes (rounded to 2 decimals). Only from the third trading day on. Order by date.\n\nExpected columns: `trade_date`, `close`, `ma3`.\n\nTables: `tickers`, `prices`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Window frame of 3 rows; filter on a row number."
+  ],
+  "solutionMd": "```sql\nWITH m AS (SELECT trade_date, close, ROUND(AVG(close) OVER (ORDER BY trade_date ROWS BETWEEN 2 PRECEDING AND CURRENT ROW), 2) AS ma3, ROW_NUMBER() OVER (ORDER BY trade_date) AS rn FROM prices WHERE symbol = 'ACME') SELECT trade_date, close, ma3 FROM m WHERE rn >= 3 ORDER BY trade_date;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: tickers, prices\nSELECT\n",
+  "datasetId": "stocks",
+  "expected": {
+    "query": "WITH m AS (SELECT trade_date, close, ROUND(AVG(close) OVER (ORDER BY trade_date ROWS BETWEEN 2 PRECEDING AND CURRENT ROW), 2) AS ma3, ROW_NUMBER() OVER (ORDER BY trade_date) AS rn FROM prices WHERE symbol = 'ACME') SELECT trade_date, close, ma3 FROM m WHERE rn >= 3 ORDER BY trade_date;",
+    "orderMatters": true
+  },
+  "order": 425
+}

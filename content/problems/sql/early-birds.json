@@ -1,0 +1,21 @@
+{
+  "slug": "early-birds",
+  "track": "sql",
+  "title": "Early birds",
+  "difficulty": "Medium",
+  "tags": [
+    "dates"
+  ],
+  "statementMd": "For each booking show the number of days between booking and departure. List the 5 earliest-booked (largest gap), ties by booking id.\n\nExpected columns: `id`, `days_ahead`.\n\nTables: `airlines`, `airports`, `flights`, `bookings`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "`julianday(depart_date) - julianday(booked_on)`."
+  ],
+  "solutionMd": "```sql\nSELECT b.id, CAST(julianday(f.depart_date) - julianday(b.booked_on) AS INTEGER) AS days_ahead FROM bookings b JOIN flights f ON f.id = b.flight_id ORDER BY days_ahead DESC, b.id LIMIT 5;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: airlines, airports, flights, bookings\nSELECT\n",
+  "datasetId": "flights",
+  "expected": {
+    "query": "SELECT b.id, CAST(julianday(f.depart_date) - julianday(b.booked_on) AS INTEGER) AS days_ahead FROM bookings b JOIN flights f ON f.id = b.flight_id ORDER BY days_ahead DESC, b.id LIMIT 5;",
+    "orderMatters": true
+  },
+  "order": 190
+}

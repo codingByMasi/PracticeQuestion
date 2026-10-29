@@ -1,0 +1,99 @@
+{
+  "slug": "meeting-rooms",
+  "track": "python",
+  "title": "Meeting rooms",
+  "difficulty": "Medium",
+  "tags": [
+    "intervals"
+  ],
+  "statementMd": "Given meeting intervals `[start, end)`, return the minimum number of rooms required.\n\n**Example:** `min_meeting_rooms([[0, 30], [5, 10], [15, 20]])` returns `2`.",
+  "hints": [
+    "Sweep sorted starts and ends."
+  ],
+  "solutionMd": "```python\ndef min_meeting_rooms(meetings):\n    starts = sorted(m[0] for m in meetings)\n    ends = sorted(m[1] for m in meetings)\n    rooms = best = j = 0\n    for s in starts:\n        while ends[j] <= s:\n            j += 1\n            rooms -= 1\n        rooms += 1\n        best = max(best, rooms)\n    return best\n```\n\nRooms in use = starts so far minus ends so far.",
+  "starterCode": "def min_meeting_rooms(meetings):\n    # Write your code here\n    pass\n",
+  "functionName": "min_meeting_rooms",
+  "referenceSolution": "def min_meeting_rooms(meetings):\n    starts = sorted(m[0] for m in meetings)\n    ends = sorted(m[1] for m in meetings)\n    rooms = best = j = 0\n    for s in starts:\n        while ends[j] <= s:\n            j += 1\n            rooms -= 1\n        rooms += 1\n        best = max(best, rooms)\n    return best\n",
+  "tests": [
+    {
+      "args": [
+        [
+          [
+            0,
+            30
+          ],
+          [
+            5,
+            10
+          ],
+          [
+            15,
+            20
+          ]
+        ]
+      ],
+      "expected": 2,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            7,
+            10
+          ],
+          [
+            2,
+            4
+          ]
+        ]
+      ],
+      "expected": 1,
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            1,
+            5
+          ],
+          [
+            5,
+            10
+          ]
+        ]
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            3,
+            6
+          ]
+        ]
+      ],
+      "expected": 3,
+      "hidden": true
+    }
+  ],
+  "order": 267
+}

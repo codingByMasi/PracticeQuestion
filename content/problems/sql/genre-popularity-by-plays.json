@@ -1,0 +1,21 @@
+{
+  "slug": "genre-popularity-by-plays",
+  "track": "sql",
+  "title": "Genre popularity by plays",
+  "difficulty": "Medium",
+  "tags": [
+    "multi-join"
+  ],
+  "statementMd": "Number of plays per album genre, most first.\n\nExpected columns: `genre`, `plays`.\n\nTables: `artists`, `albums`, `tracks`, `listeners`, `plays`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Join plays, tracks, albums."
+  ],
+  "solutionMd": "```sql\nSELECT al.genre, COUNT(*) AS plays FROM plays p JOIN tracks t ON t.id = p.track_id JOIN albums al ON al.id = t.album_id GROUP BY al.genre ORDER BY plays DESC;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: artists, albums, tracks, listeners, plays\nSELECT\n",
+  "datasetId": "music",
+  "expected": {
+    "query": "SELECT al.genre, COUNT(*) AS plays FROM plays p JOIN tracks t ON t.id = p.track_id JOIN albums al ON al.id = t.album_id GROUP BY al.genre ORDER BY plays DESC;",
+    "orderMatters": true
+  },
+  "order": 305
+}

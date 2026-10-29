@@ -1,0 +1,21 @@
+{
+  "slug": "directors-whose-every-movie-beat-7-average",
+  "track": "sql",
+  "title": "Directors whose every movie beat 7 average",
+  "difficulty": "Hard",
+  "tags": [
+    "having"
+  ],
+  "statementMd": "Directors whose every movie has an average review rating above 7. Show name (only movies with reviews count).\n\nExpected columns: `name`.\n\nTables: `directors`, `movies`, `reviews`.\n\nRow order does not matter.",
+  "hints": [
+    "Average per movie, then `MIN` of that per director."
+  ],
+  "solutionMd": "```sql\nWITH a AS (SELECT m.director_id, AVG(r.rating) AS avg_r FROM movies m JOIN reviews r ON r.movie_id = m.id GROUP BY m.id) SELECT d.name FROM a JOIN directors d ON d.id = a.director_id GROUP BY a.director_id HAVING MIN(avg_r) > 7;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: directors, movies, reviews\nSELECT\n",
+  "datasetId": "movies",
+  "expected": {
+    "query": "WITH a AS (SELECT m.director_id, AVG(r.rating) AS avg_r FROM movies m JOIN reviews r ON r.movie_id = m.id GROUP BY m.id) SELECT d.name FROM a JOIN directors d ON d.id = a.director_id GROUP BY a.director_id HAVING MIN(avg_r) > 7;",
+    "orderMatters": false
+  },
+  "order": 383
+}

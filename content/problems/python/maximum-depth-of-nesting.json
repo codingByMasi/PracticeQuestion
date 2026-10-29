@@ -1,0 +1,84 @@
+{
+  "slug": "maximum-depth-of-nesting",
+  "track": "python",
+  "title": "Maximum depth of nesting",
+  "difficulty": "Medium",
+  "tags": [
+    "recursion"
+  ],
+  "statementMd": "Return the maximum nesting depth of lists: `[]` has depth 1, `[1]` depth 1, `[[1]]` depth 2, a non-list has depth 0.\n\n**Example:** `nesting_depth([1, [2]])` returns `2`.",
+  "hints": [
+    "Depth of a list is 1 + the maximum depth of children."
+  ],
+  "solutionMd": "```python\ndef nesting_depth(data):\n    if not isinstance(data, list):\n        return 0\n    return 1 + max((nesting_depth(x) for x in data), default=0)\n```\n\n`default=0` handles empty lists.",
+  "starterCode": "def nesting_depth(data):\n    # Write your code here\n    pass\n",
+  "functionName": "nesting_depth",
+  "referenceSolution": "def nesting_depth(data):\n    if not isinstance(data, list):\n        return 0\n    return 1 + max((nesting_depth(x) for x in data), default=0)\n",
+  "tests": [
+    {
+      "args": [
+        [
+          1,
+          [
+            2
+          ]
+        ]
+      ],
+      "expected": 2,
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": 1,
+      "hidden": false
+    },
+    {
+      "args": [
+        5
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            []
+          ]
+        ]
+      ],
+      "expected": 3,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            1
+          ],
+          [
+            [
+              2
+            ]
+          ]
+        ]
+      ],
+      "expected": 3,
+      "hidden": true
+    }
+  ],
+  "order": 247
+}

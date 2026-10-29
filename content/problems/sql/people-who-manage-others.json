@@ -1,0 +1,21 @@
+{
+  "slug": "people-who-manage-others",
+  "track": "sql",
+  "title": "People who manage others",
+  "difficulty": "Medium",
+  "tags": [
+    "subquery"
+  ],
+  "statementMd": "List employees who have at least one direct report.\n\nExpected columns: `first_name`, `last_name`.\n\nTables: `employees`, `departments`.\n\nRow order does not matter.",
+  "hints": [
+    "`id IN (SELECT manager_id FROM employees WHERE manager_id IS NOT NULL)`."
+  ],
+  "solutionMd": "```sql\nSELECT first_name, last_name FROM employees WHERE id IN (SELECT manager_id FROM employees WHERE manager_id IS NOT NULL);\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "SELECT first_name, last_name FROM employees WHERE id IN (SELECT manager_id FROM employees WHERE manager_id IS NOT NULL);",
+    "orderMatters": false
+  },
+  "order": 311
+}

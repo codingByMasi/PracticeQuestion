@@ -1,0 +1,21 @@
+{
+  "slug": "name-length-buckets",
+  "track": "sql",
+  "title": "Name length buckets",
+  "difficulty": "Easy",
+  "tags": [
+    "strings"
+  ],
+  "statementMd": "How many students have a name shorter than 12 characters, from 12 to 15, and longer than 15? Show a `bucket` label (`short`, `medium`, `long`) and the count.\n\nExpected columns: `bucket`, `students`.\n\nTables: `teachers`, `courses`, `students`, `enrollments`.\n\nRow order does not matter.",
+  "hints": [
+    "`LENGTH(name)` in a `CASE`."
+  ],
+  "solutionMd": "```sql\nSELECT CASE WHEN LENGTH(name) < 12 THEN 'short' WHEN LENGTH(name) <= 15 THEN 'medium' ELSE 'long' END AS bucket, COUNT(*) AS students FROM students GROUP BY bucket;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: teachers, courses, students, enrollments\nSELECT\n",
+  "datasetId": "school",
+  "expected": {
+    "query": "SELECT CASE WHEN LENGTH(name) < 12 THEN 'short' WHEN LENGTH(name) <= 15 THEN 'medium' ELSE 'long' END AS bucket, COUNT(*) AS students FROM students GROUP BY bucket;",
+    "orderMatters": false
+  },
+  "order": 104
+}

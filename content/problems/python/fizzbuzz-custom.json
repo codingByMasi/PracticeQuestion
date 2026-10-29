@@ -1,0 +1,105 @@
+{
+  "slug": "fizzbuzz-custom",
+  "track": "python",
+  "title": "FizzBuzz custom",
+  "difficulty": "Easy",
+  "tags": [
+    "loops"
+  ],
+  "statementMd": "Like FizzBuzz for `1..n`, but using divisors `a` and `b`: `\"Fizz\"` for multiples of `a`, `\"Buzz\"` for multiples of `b`, `\"FizzBuzz\"` for both, otherwise the number as a string.\n\n**Example:** `fizzbuzz_custom(6, 2, 3)` returns `[\"1\", \"Fizz\", \"Buzz\", \"Fizz\", \"5\", \"FizzBuzz\"]`.",
+  "hints": [
+    "Build the word from parts."
+  ],
+  "solutionMd": "```python\ndef fizzbuzz_custom(n, a, b):\n    out = []\n    for i in range(1, n + 1):\n        s = ('Fizz' if i % a == 0 else '') + ('Buzz' if i % b == 0 else '')\n        out.append(s or str(i))\n    return out\n```\n\nConcatenating optional parts handles the combined case automatically.",
+  "starterCode": "def fizzbuzz_custom(n, a, b):\n    # Write your code here\n    pass\n",
+  "functionName": "fizzbuzz_custom",
+  "referenceSolution": "def fizzbuzz_custom(n, a, b):\n    out = []\n    for i in range(1, n + 1):\n        s = ('Fizz' if i % a == 0 else '') + ('Buzz' if i % b == 0 else '')\n        out.append(s or str(i))\n    return out\n",
+  "tests": [
+    {
+      "args": [
+        6,
+        2,
+        3
+      ],
+      "expected": [
+        "1",
+        "Fizz",
+        "Buzz",
+        "Fizz",
+        "5",
+        "FizzBuzz"
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        5,
+        5,
+        7
+      ],
+      "expected": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "Fizz"
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        0,
+        2,
+        3
+      ],
+      "expected": [],
+      "hidden": true
+    },
+    {
+      "args": [
+        15,
+        3,
+        5
+      ],
+      "expected": [
+        "1",
+        "2",
+        "Fizz",
+        "4",
+        "Buzz",
+        "Fizz",
+        "7",
+        "8",
+        "Fizz",
+        "Buzz",
+        "11",
+        "Fizz",
+        "13",
+        "14",
+        "FizzBuzz"
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        10,
+        4,
+        6
+      ],
+      "expected": [
+        "1",
+        "2",
+        "3",
+        "Fizz",
+        "5",
+        "Buzz",
+        "7",
+        "Fizz",
+        "9",
+        "10"
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 42
+}

@@ -1,0 +1,82 @@
+{
+  "slug": "partition-equal-subset-sum",
+  "track": "python",
+  "title": "Partition equal subset sum",
+  "difficulty": "Medium",
+  "tags": [
+    "dynamic-programming"
+  ],
+  "statementMd": "Return whether the list of positive integers can be split into two subsets with equal sum.\n\n**Example:** `can_partition([1, 5, 11, 5])` returns `true`.",
+  "hints": [
+    "Subset-sum for half of the total."
+  ],
+  "solutionMd": "```python\ndef can_partition(nums):\n    total = sum(nums)\n    if total % 2:\n        return False\n    half = total // 2\n    reach = {0}\n    for x in nums:\n        reach |= {r + x for r in reach if r + x <= half}\n    return half in reach\n```\n\nTrack reachable sums.",
+  "starterCode": "def can_partition(nums):\n    # Write your code here\n    pass\n",
+  "functionName": "can_partition",
+  "referenceSolution": "def can_partition(nums):\n    total = sum(nums)\n    if total % 2:\n        return False\n    half = total // 2\n    reach = {0}\n    for x in nums:\n        reach |= {r + x for r in reach if r + x <= half}\n    return half in reach\n",
+  "tests": [
+    {
+      "args": [
+        [
+          1,
+          5,
+          11,
+          5
+        ]
+      ],
+      "expected": true,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          1,
+          2,
+          3,
+          5
+        ]
+      ],
+      "expected": false,
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          2,
+          2
+        ]
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1
+        ]
+      ],
+      "expected": false,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          3,
+          3,
+          3,
+          3
+        ]
+      ],
+      "expected": true,
+      "hidden": true
+    }
+  ],
+  "order": 323
+}

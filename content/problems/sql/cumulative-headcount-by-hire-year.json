@@ -1,0 +1,21 @@
+{
+  "slug": "cumulative-headcount-by-hire-year",
+  "track": "sql",
+  "title": "Cumulative headcount by hire year",
+  "difficulty": "Hard",
+  "tags": [
+    "window-functions"
+  ],
+  "statementMd": "For each hire year show the number hired that year and the cumulative number of employees hired up to that year.\n\nExpected columns: `year`, `hires`, `cumulative`.\n\nTables: `employees`, `departments`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Aggregate by year in a CTE, then apply a running `SUM` window over the counts."
+  ],
+  "solutionMd": "```sql\nWITH yearly AS (SELECT strftime('%Y', hire_date) AS year, COUNT(*) AS hires FROM employees GROUP BY year) SELECT year, hires, SUM(hires) OVER (ORDER BY year) AS cumulative FROM yearly ORDER BY year;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "WITH yearly AS (SELECT strftime('%Y', hire_date) AS year, COUNT(*) AS hires FROM employees GROUP BY year) SELECT year, hires, SUM(hires) OVER (ORDER BY year) AS cumulative FROM yearly ORDER BY year;",
+    "orderMatters": true
+  },
+  "order": 413
+}

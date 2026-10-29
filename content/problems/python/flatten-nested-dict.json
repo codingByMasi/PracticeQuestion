@@ -1,0 +1,89 @@
+{
+  "slug": "flatten-nested-dict",
+  "track": "python",
+  "title": "Flatten nested dict",
+  "difficulty": "Hard",
+  "tags": [
+    "dicts"
+  ],
+  "statementMd": "Flatten nested dicts into one dict with dot-joined keys: `{'a': {'b': 1}}` -> `{'a.b': 1}`. Non-dict values are kept; empty nested dicts disappear.\n\n**Example:** `flatten_dict({\"a\": {\"b\": 1, \"c\": 2}, \"d\": 3})` returns `{\"a.b\": 1, \"a.c\": 2, \"d\": 3}`.",
+  "hints": [
+    "Recurse with a prefix."
+  ],
+  "solutionMd": "```python\ndef flatten_dict(d):\n    out = {}\n    def walk(cur, prefix):\n        for k, v in cur.items():\n            key = prefix + '.' + k if prefix else k\n            if isinstance(v, dict):\n                walk(v, key)\n            else:\n                out[key] = v\n    walk(d, '')\n    return out\n```\n\nA helper closure writes into one output dict.",
+  "starterCode": "def flatten_dict(d):\n    # Write your code here\n    pass\n",
+  "functionName": "flatten_dict",
+  "referenceSolution": "def flatten_dict(d):\n    out = {}\n    def walk(cur, prefix):\n        for k, v in cur.items():\n            key = prefix + '.' + k if prefix else k\n            if isinstance(v, dict):\n                walk(v, key)\n            else:\n                out[key] = v\n    walk(d, '')\n    return out\n",
+  "tests": [
+    {
+      "args": [
+        {
+          "a": {
+            "b": 1,
+            "c": 2
+          },
+          "d": 3
+        }
+      ],
+      "expected": {
+        "a.b": 1,
+        "a.c": 2,
+        "d": 3
+      },
+      "hidden": false
+    },
+    {
+      "args": [
+        {}
+      ],
+      "expected": {},
+      "hidden": false
+    },
+    {
+      "args": [
+        {
+          "x": {
+            "y": {
+              "z": 0
+            }
+          }
+        }
+      ],
+      "expected": {
+        "x.y.z": 0
+      },
+      "hidden": true
+    },
+    {
+      "args": [
+        {
+          "a": {}
+        }
+      ],
+      "expected": {},
+      "hidden": true
+    },
+    {
+      "args": [
+        {
+          "k": [
+            1,
+            2
+          ],
+          "m": {
+            "n": null
+          }
+        }
+      ],
+      "expected": {
+        "k": [
+          1,
+          2
+        ],
+        "m.n": null
+      },
+      "hidden": true
+    }
+  ],
+  "order": 387
+}

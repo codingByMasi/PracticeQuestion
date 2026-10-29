@@ -1,0 +1,132 @@
+{
+  "slug": "smallest-range-covering-k-lists",
+  "track": "python",
+  "title": "Smallest range covering k lists",
+  "difficulty": "Hard",
+  "tags": [
+    "heaps"
+  ],
+  "statementMd": "Given `k` sorted lists, find the smallest range `[a, b]` that includes at least one number from each list. A range `[a, b]` is smaller than `[c, d]` if `b - a < d - c`, or equal length and `a < c`.\n\n**Example:** `smallest_range([[4, 10, 15, 24, 26], [0, 9, 12, 20], [5, 18, 22, 30]])` returns `[20, 24]`.",
+  "hints": [
+    "Min-heap of current heads while tracking the max."
+  ],
+  "solutionMd": "```python\ndef smallest_range(lists):\n    import heapq\n    heap = [(l[0], i, 0) for i, l in enumerate(lists)]\n    heapq.heapify(heap)\n    hi = max(l[0] for l in lists)\n    best = [heap[0][0], hi]\n    while True:\n        lo, i, j = heapq.heappop(heap)\n        if hi - lo < best[1] - best[0] or (hi - lo == best[1] - best[0] and lo < best[0]):\n            best = [lo, hi]\n        if j + 1 == len(lists[i]):\n            return best\n        nxt = lists[i][j + 1]\n        hi = max(hi, nxt)\n        heapq.heappush(heap, (nxt, i, j + 1))\n```\n\nAdvance the list holding the minimum.",
+  "starterCode": "def smallest_range(lists):\n    # Write your code here\n    pass\n",
+  "functionName": "smallest_range",
+  "referenceSolution": "def smallest_range(lists):\n    import heapq\n    heap = [(l[0], i, 0) for i, l in enumerate(lists)]\n    heapq.heapify(heap)\n    hi = max(l[0] for l in lists)\n    best = [heap[0][0], hi]\n    while True:\n        lo, i, j = heapq.heappop(heap)\n        if hi - lo < best[1] - best[0] or (hi - lo == best[1] - best[0] and lo < best[0]):\n            best = [lo, hi]\n        if j + 1 == len(lists[i]):\n            return best\n        nxt = lists[i][j + 1]\n        hi = max(hi, nxt)\n        heapq.heappush(heap, (nxt, i, j + 1))\n",
+  "tests": [
+    {
+      "args": [
+        [
+          [
+            4,
+            10,
+            15,
+            24,
+            26
+          ],
+          [
+            0,
+            9,
+            12,
+            20
+          ],
+          [
+            5,
+            18,
+            22,
+            30
+          ]
+        ]
+      ],
+      "expected": [
+        20,
+        24
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            1,
+            2,
+            3
+          ]
+        ]
+      ],
+      "expected": [
+        1,
+        1
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            1
+          ],
+          [
+            2
+          ]
+        ]
+      ],
+      "expected": [
+        1,
+        2
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            1,
+            5
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      ],
+      "expected": [
+        4,
+        5
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            10
+          ],
+          [
+            10
+          ],
+          [
+            10
+          ]
+        ]
+      ],
+      "expected": [
+        10,
+        10
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 488
+}

@@ -1,0 +1,205 @@
+{
+  "slug": "three-sum-zero-count",
+  "track": "python",
+  "title": "Three sum zero count",
+  "difficulty": "Hard",
+  "tags": [
+    "two-pointers"
+  ],
+  "statementMd": "Return all unique triplets `[a, b, c]` (sorted ascending inside, and the list of triplets sorted) that sum to zero.\n\n**Example:** `three_sum([-1, 0, 1, 2, -1, -4])` returns `[[-1, -1, 2], [-1, 0, 1]]`.",
+  "hints": [
+    "Sort, fix one value, two pointers for the rest, skip duplicates."
+  ],
+  "solutionMd": "```python\ndef three_sum(nums):\n    nums = sorted(nums)\n    out = []\n    for i in range(len(nums) - 2):\n        if i and nums[i] == nums[i - 1]:\n            continue\n        l, r = i + 1, len(nums) - 1\n        while l < r:\n            s = nums[i] + nums[l] + nums[r]\n            if s < 0:\n                l += 1\n            elif s > 0:\n                r -= 1\n            else:\n                out.append([nums[i], nums[l], nums[r]])\n                l += 1\n                while l < r and nums[l] == nums[l - 1]:\n                    l += 1\n    return out\n```\n\nSkipping equal values avoids duplicate triplets.",
+  "starterCode": "def three_sum(nums):\n    # Write your code here\n    pass\n",
+  "functionName": "three_sum",
+  "referenceSolution": "def three_sum(nums):\n    nums = sorted(nums)\n    out = []\n    for i in range(len(nums) - 2):\n        if i and nums[i] == nums[i - 1]:\n            continue\n        l, r = i + 1, len(nums) - 1\n        while l < r:\n            s = nums[i] + nums[l] + nums[r]\n            if s < 0:\n                l += 1\n            elif s > 0:\n                r -= 1\n            else:\n                out.append([nums[i], nums[l], nums[r]])\n                l += 1\n                while l < r and nums[l] == nums[l - 1]:\n                    l += 1\n    return out\n",
+  "tests": [
+    {
+      "args": [
+        [
+          -1,
+          0,
+          1,
+          2,
+          -1,
+          -4
+        ]
+      ],
+      "expected": [
+        [
+          -1,
+          -1,
+          2
+        ],
+        [
+          -1,
+          0,
+          1
+        ]
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          0,
+          1,
+          1
+        ]
+      ],
+      "expected": [],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "expected": [
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": [],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          -2,
+          0,
+          1,
+          1,
+          2
+        ]
+      ],
+      "expected": [
+        [
+          -2,
+          0,
+          2
+        ],
+        [
+          -2,
+          1,
+          1
+        ]
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "expected": [
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          -1,
+          1,
+          -1,
+          0,
+          2,
+          2,
+          3,
+          -3,
+          -3
+        ]
+      ],
+      "expected": [
+        [
+          -3,
+          0,
+          3
+        ],
+        [
+          -3,
+          1,
+          2
+        ],
+        [
+          -1,
+          -1,
+          2
+        ],
+        [
+          -1,
+          0,
+          1
+        ]
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          2,
+          -3,
+          3,
+          1
+        ]
+      ],
+      "expected": [
+        [
+          -3,
+          1,
+          2
+        ]
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          2,
+          0,
+          -1,
+          -2,
+          2,
+          4,
+          0
+        ]
+      ],
+      "expected": [
+        [
+          -2,
+          0,
+          2
+        ],
+        [
+          -1,
+          0,
+          1
+        ]
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 400
+}

@@ -1,0 +1,21 @@
+{
+  "slug": "median-score",
+  "track": "sql",
+  "title": "Median score",
+  "difficulty": "Hard",
+  "tags": [
+    "window-functions"
+  ],
+  "statementMd": "Compute the median score of all graded enrollments (average the two middle values if the count is even).\n\nExpected columns: `median_score`.\n\nTables: `teachers`, `courses`, `students`, `enrollments`.\n\nRow order does not matter.",
+  "hints": [
+    "Number the sorted scores and pick the middle row(s)."
+  ],
+  "solutionMd": "```sql\nWITH r AS (SELECT score, ROW_NUMBER() OVER (ORDER BY score) AS rn, COUNT(*) OVER () AS n FROM enrollments WHERE score IS NOT NULL) SELECT AVG(score) AS median_score FROM r WHERE rn IN ((n + 1) / 2, (n + 2) / 2);\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: teachers, courses, students, enrollments\nSELECT\n",
+  "datasetId": "school",
+  "expected": {
+    "query": "WITH r AS (SELECT score, ROW_NUMBER() OVER (ORDER BY score) AS rn, COUNT(*) OVER () AS n FROM enrollments WHERE score IS NOT NULL) SELECT AVG(score) AS median_score FROM r WHERE rn IN ((n + 1) / 2, (n + 2) / 2);",
+    "orderMatters": false
+  },
+  "order": 424
+}

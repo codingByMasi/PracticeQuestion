@@ -1,0 +1,134 @@
+{
+  "slug": "celsius-table",
+  "track": "python",
+  "title": "Celsius table",
+  "difficulty": "Easy",
+  "tags": [
+    "loops"
+  ],
+  "statementMd": "Return a list of `[celsius, fahrenheit]` pairs for celsius from `start` to `stop` inclusive in increments of `step` (a positive integer). Fahrenheit is `c * 9 / 5 + 32`.\n\n**Example:** `temperature_table(0, 20, 10)` returns `[[0, 32.0], [10, 50.0], [20, 68.0]]`.",
+  "hints": [
+    "Use `range(start, stop + 1, step)`."
+  ],
+  "solutionMd": "```python\ndef temperature_table(start, stop, step):\n    return [[c, c * 9 / 5 + 32] for c in range(start, stop + 1, step)]\n```\n\nInclusive stop requires `stop + 1`.",
+  "starterCode": "def temperature_table(start, stop, step):\n    # Write your code here\n    pass\n",
+  "functionName": "temperature_table",
+  "referenceSolution": "def temperature_table(start, stop, step):\n    return [[c, c * 9 / 5 + 32] for c in range(start, stop + 1, step)]\n",
+  "tests": [
+    {
+      "args": [
+        0,
+        20,
+        10
+      ],
+      "expected": [
+        [
+          0,
+          32.0
+        ],
+        [
+          10,
+          50.0
+        ],
+        [
+          20,
+          68.0
+        ]
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        -10,
+        10,
+        10
+      ],
+      "expected": [
+        [
+          -10,
+          14.0
+        ],
+        [
+          0,
+          32.0
+        ],
+        [
+          10,
+          50.0
+        ]
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        0,
+        0,
+        1
+      ],
+      "expected": [
+        [
+          0,
+          32.0
+        ]
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        30,
+        40,
+        5
+      ],
+      "expected": [
+        [
+          30,
+          86.0
+        ],
+        [
+          35,
+          95.0
+        ],
+        [
+          40,
+          104.0
+        ]
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        -40,
+        -30,
+        2
+      ],
+      "expected": [
+        [
+          -40,
+          -40.0
+        ],
+        [
+          -38,
+          -36.400000000000006
+        ],
+        [
+          -36,
+          -32.8
+        ],
+        [
+          -34,
+          -29.200000000000003
+        ],
+        [
+          -32,
+          -25.6
+        ],
+        [
+          -30,
+          -22.0
+        ]
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 39
+}

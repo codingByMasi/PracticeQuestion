@@ -1,0 +1,83 @@
+{
+  "slug": "generate-parentheses",
+  "track": "python",
+  "title": "Generate parentheses",
+  "difficulty": "Medium",
+  "tags": [
+    "backtracking"
+  ],
+  "statementMd": "Return all well-formed strings of `n` pairs of parentheses, sorted ascending.\n\n**Example:** `generate_parentheses(3)` returns `[\"((()))\", \"(()())\", \"(())()\", \"()(())\", \"()()()\"]`.",
+  "hints": [
+    "Add '(' while fewer than n; add ')' while it closes an open one."
+  ],
+  "solutionMd": "```python\ndef generate_parentheses(n):\n    out = []\n    def go(cur, open_, close):\n        if len(cur) == 2 * n:\n            out.append(cur)\n            return\n        if open_ < n:\n            go(cur + '(', open_ + 1, close)\n        if close < open_:\n            go(cur + ')', open_, close + 1)\n    go('', 0, 0)\n    return sorted(out)\n```\n\nConstrained choices keep every string valid.",
+  "starterCode": "def generate_parentheses(n):\n    # Write your code here\n    pass\n",
+  "functionName": "generate_parentheses",
+  "referenceSolution": "def generate_parentheses(n):\n    out = []\n    def go(cur, open_, close):\n        if len(cur) == 2 * n:\n            out.append(cur)\n            return\n        if open_ < n:\n            go(cur + '(', open_ + 1, close)\n        if close < open_:\n            go(cur + ')', open_, close + 1)\n    go('', 0, 0)\n    return sorted(out)\n",
+  "tests": [
+    {
+      "args": [
+        3
+      ],
+      "expected": [
+        "((()))",
+        "(()())",
+        "(())()",
+        "()(())",
+        "()()()"
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        1
+      ],
+      "expected": [
+        "()"
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        0
+      ],
+      "expected": [
+        ""
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        2
+      ],
+      "expected": [
+        "(())",
+        "()()"
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        4
+      ],
+      "expected": [
+        "(((())))",
+        "((()()))",
+        "((())())",
+        "((()))()",
+        "(()(()))",
+        "(()()())",
+        "(()())()",
+        "(())(())",
+        "(())()()",
+        "()((()))",
+        "()(()())",
+        "()(())()",
+        "()()(())",
+        "()()()()"
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 334
+}

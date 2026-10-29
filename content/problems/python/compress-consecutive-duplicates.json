@@ -1,0 +1,55 @@
+{
+  "slug": "compress-consecutive-duplicates",
+  "track": "python",
+  "title": "Compress consecutive duplicates",
+  "difficulty": "Medium",
+  "tags": [
+    "strings"
+  ],
+  "statementMd": "Collapse runs of identical characters into one: `\"aaabccdd\"` -> `\"abcd\"`.\n\n**Example:** `dedupe_consecutive(\"aaabccdd\")` returns `\"abcd\"`.",
+  "hints": [
+    "Compare with the previous character."
+  ],
+  "solutionMd": "```python\ndef dedupe_consecutive(s):\n    out = []\n    for c in s:\n        if not out or out[-1] != c:\n            out.append(c)\n    return ''.join(out)\n```\n\nOnly adjacent duplicates are removed.",
+  "starterCode": "def dedupe_consecutive(s):\n    # Write your code here\n    pass\n",
+  "functionName": "dedupe_consecutive",
+  "referenceSolution": "def dedupe_consecutive(s):\n    out = []\n    for c in s:\n        if not out or out[-1] != c:\n            out.append(c)\n    return ''.join(out)\n",
+  "tests": [
+    {
+      "args": [
+        "aaabccdd"
+      ],
+      "expected": "abcd",
+      "hidden": false
+    },
+    {
+      "args": [
+        "abc"
+      ],
+      "expected": "abc",
+      "hidden": false
+    },
+    {
+      "args": [
+        ""
+      ],
+      "expected": "",
+      "hidden": true
+    },
+    {
+      "args": [
+        "aaaa"
+      ],
+      "expected": "a",
+      "hidden": true
+    },
+    {
+      "args": [
+        "abba"
+      ],
+      "expected": "aba",
+      "hidden": true
+    }
+  ],
+  "order": 182
+}

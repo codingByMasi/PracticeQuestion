@@ -1,0 +1,21 @@
+{
+  "slug": "membership-age-bands",
+  "track": "sql",
+  "title": "Membership age bands",
+  "difficulty": "Medium",
+  "tags": [
+    "case"
+  ],
+  "statementMd": "Label each member by years since joining as of 2024-07-01: `new` (under 1 year), `regular` (1 to under 3), `veteran` (3 or more). Count members per label.\n\nExpected columns: `label`, `members`.\n\nTables: `authors`, `books`, `members`, `loans`.\n\nRow order does not matter.",
+  "hints": [
+    "Years = days / 365.25."
+  ],
+  "solutionMd": "```sql\nSELECT CASE WHEN (julianday('2024-07-01') - julianday(joined)) / 365.25 < 1 THEN 'new' WHEN (julianday('2024-07-01') - julianday(joined)) / 365.25 < 3 THEN 'regular' ELSE 'veteran' END AS label, COUNT(*) AS members FROM members GROUP BY label;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: authors, books, members, loans\nSELECT\n",
+  "datasetId": "library",
+  "expected": {
+    "query": "SELECT CASE WHEN (julianday('2024-07-01') - julianday(joined)) / 365.25 < 1 THEN 'new' WHEN (julianday('2024-07-01') - julianday(joined)) / 365.25 < 3 THEN 'regular' ELSE 'veteran' END AS label, COUNT(*) AS members FROM members GROUP BY label;",
+    "orderMatters": false
+  },
+  "order": 170
+}

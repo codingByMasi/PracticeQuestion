@@ -1,0 +1,68 @@
+{
+  "slug": "contains-duplicate",
+  "track": "python",
+  "title": "Contains duplicate",
+  "difficulty": "Easy",
+  "tags": [
+    "sets"
+  ],
+  "statementMd": "Return `True` if any value appears at least twice.\n\n**Example:** `has_duplicate([1, 2, 3, 1])` returns `true`.",
+  "hints": [
+    "Compare the length with the set length."
+  ],
+  "solutionMd": "```python\ndef has_duplicate(nums):\n    return len(set(nums)) != len(nums)\n```\n\nDuplicates shrink the set.",
+  "starterCode": "def has_duplicate(nums):\n    # Write your code here\n    pass\n",
+  "functionName": "has_duplicate",
+  "referenceSolution": "def has_duplicate(nums):\n    return len(set(nums)) != len(nums)\n",
+  "tests": [
+    {
+      "args": [
+        [
+          1,
+          2,
+          3,
+          1
+        ]
+      ],
+      "expected": true,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          1,
+          2
+        ]
+      ],
+      "expected": false,
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": false,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          7
+        ]
+      ],
+      "expected": false,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          0,
+          0
+        ]
+      ],
+      "expected": true,
+      "hidden": true
+    }
+  ],
+  "order": 95
+}

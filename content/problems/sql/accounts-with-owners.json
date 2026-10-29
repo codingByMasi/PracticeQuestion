@@ -1,0 +1,21 @@
+{
+  "slug": "accounts-with-owners",
+  "track": "sql",
+  "title": "Accounts with owners",
+  "difficulty": "Easy",
+  "tags": [
+    "join"
+  ],
+  "statementMd": "For accounts 1 to 6 show the account id, type and the owner's name.\n\nExpected columns: `id`, `type`, `name`.\n\nTables: `customers`, `accounts`, `transactions`.\n\nRow order does not matter.",
+  "hints": [
+    "Join to customers."
+  ],
+  "solutionMd": "```sql\nSELECT a.id, a.type, c.name FROM accounts a JOIN customers c ON c.id = a.customer_id WHERE a.id <= 6;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, accounts, transactions\nSELECT\n",
+  "datasetId": "bank",
+  "expected": {
+    "query": "SELECT a.id, a.type, c.name FROM accounts a JOIN customers c ON c.id = a.customer_id WHERE a.id <= 6;",
+    "orderMatters": false
+  },
+  "order": 154
+}

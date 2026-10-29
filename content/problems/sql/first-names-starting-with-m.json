@@ -1,0 +1,21 @@
+{
+  "slug": "first-names-starting-with-m",
+  "track": "sql",
+  "title": "First names starting with M",
+  "difficulty": "Easy",
+  "tags": [
+    "like"
+  ],
+  "statementMd": "List the first names that start with the letter M.\n\nExpected columns: `first_name`, `last_name`.\n\nTables: `employees`, `departments`.\n\nRow order does not matter.",
+  "hints": [
+    "`LIKE 'M%'` matches a prefix."
+  ],
+  "solutionMd": "```sql\nSELECT first_name, last_name FROM employees WHERE first_name LIKE 'M%';\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "SELECT first_name, last_name FROM employees WHERE first_name LIKE 'M%';",
+    "orderMatters": false
+  },
+  "order": 57
+}

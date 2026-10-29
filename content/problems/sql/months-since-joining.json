@@ -1,0 +1,21 @@
+{
+  "slug": "months-since-joining",
+  "track": "sql",
+  "title": "Months since joining",
+  "difficulty": "Medium",
+  "tags": [
+    "dates"
+  ],
+  "statementMd": "For the five customers who joined most recently show name and months between joining and 2024-06-30 (days / 30.44, rounded down). Ties by name.\n\nExpected columns: `name`, `months`.\n\nTables: `customers`, `accounts`, `transactions`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "`julianday` difference."
+  ],
+  "solutionMd": "```sql\nSELECT name, CAST((julianday('2024-06-30') - julianday(joined)) / 30.44 AS INTEGER) AS months FROM customers ORDER BY joined DESC, name LIMIT 5;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, accounts, transactions\nSELECT\n",
+  "datasetId": "bank",
+  "expected": {
+    "query": "SELECT name, CAST((julianday('2024-06-30') - julianday(joined)) / 30.44 AS INTEGER) AS months FROM customers ORDER BY joined DESC, name LIMIT 5;",
+    "orderMatters": true
+  },
+  "order": 185
+}

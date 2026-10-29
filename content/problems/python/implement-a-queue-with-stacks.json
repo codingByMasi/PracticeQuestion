@@ -1,0 +1,133 @@
+{
+  "slug": "implement-a-queue-with-stacks",
+  "track": "python",
+  "title": "Implement a queue with stacks",
+  "difficulty": "Medium",
+  "tags": [
+    "design"
+  ],
+  "statementMd": "Simulate a queue with operations `['push', x]`, `['pop']` (returns and removes the front), `['peek']` (returns the front) and `['empty']` (returns a bool). Return the results of pop, peek and empty in order.\n\n**Example:** `ops_queue([[\"push\", 1], [\"push\", 2], [\"peek\"], [\"pop\"], [\"empty\"]])` returns `[1, 1, false]`.",
+  "hints": [
+    "Two stacks."
+  ],
+  "solutionMd": "```python\ndef ops_queue(ops):\n    inbox, outbox, out = [], [], []\n    def move():\n        if not outbox:\n            while inbox:\n                outbox.append(inbox.pop())\n    for op in ops:\n        if op[0] == 'push':\n            inbox.append(op[1])\n        elif op[0] == 'pop':\n            move(); out.append(outbox.pop())\n        elif op[0] == 'peek':\n            move(); out.append(outbox[-1])\n        else:\n            out.append(not inbox and not outbox)\n    return out\n```\n\nAmortised O(1) per operation.",
+  "starterCode": "def ops_queue(ops):\n    # Write your code here\n    pass\n",
+  "functionName": "ops_queue",
+  "referenceSolution": "def ops_queue(ops):\n    inbox, outbox, out = [], [], []\n    def move():\n        if not outbox:\n            while inbox:\n                outbox.append(inbox.pop())\n    for op in ops:\n        if op[0] == 'push':\n            inbox.append(op[1])\n        elif op[0] == 'pop':\n            move(); out.append(outbox.pop())\n        elif op[0] == 'peek':\n            move(); out.append(outbox[-1])\n        else:\n            out.append(not inbox and not outbox)\n    return out\n",
+  "tests": [
+    {
+      "args": [
+        [
+          [
+            "push",
+            1
+          ],
+          [
+            "push",
+            2
+          ],
+          [
+            "peek"
+          ],
+          [
+            "pop"
+          ],
+          [
+            "empty"
+          ]
+        ]
+      ],
+      "expected": [
+        1,
+        1,
+        false
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            "empty"
+          ]
+        ]
+      ],
+      "expected": [
+        true
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            "push",
+            1
+          ],
+          [
+            "pop"
+          ],
+          [
+            "empty"
+          ]
+        ]
+      ],
+      "expected": [
+        1,
+        true
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            "push",
+            5
+          ],
+          [
+            "push",
+            6
+          ],
+          [
+            "pop"
+          ],
+          [
+            "pop"
+          ],
+          [
+            "empty"
+          ]
+        ]
+      ],
+      "expected": [
+        5,
+        6,
+        true
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            "push",
+            "a"
+          ],
+          [
+            "peek"
+          ],
+          [
+            "peek"
+          ]
+        ]
+      ],
+      "expected": [
+        "a",
+        "a"
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 371
+}

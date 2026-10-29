@@ -1,0 +1,107 @@
+{
+  "slug": "maximum-product-subarray",
+  "track": "python",
+  "title": "Maximum product subarray",
+  "difficulty": "Medium",
+  "tags": [
+    "dynamic-programming"
+  ],
+  "statementMd": "Return the largest product of a non-empty contiguous subarray.\n\n**Example:** `max_product_subarray([2, 3, -2, 4])` returns `6`.",
+  "hints": [
+    "Track both max and min ending here."
+  ],
+  "solutionMd": "```python\ndef max_product_subarray(nums):\n    hi = lo = best = nums[0]\n    for x in nums[1:]:\n        cands = (x, hi * x, lo * x)\n        hi, lo = max(cands), min(cands)\n        best = max(best, hi)\n    return best\n```\n\nA negative can flip the minimum into the maximum.",
+  "starterCode": "def max_product_subarray(nums):\n    # Write your code here\n    pass\n",
+  "functionName": "max_product_subarray",
+  "referenceSolution": "def max_product_subarray(nums):\n    hi = lo = best = nums[0]\n    for x in nums[1:]:\n        cands = (x, hi * x, lo * x)\n        hi, lo = max(cands), min(cands)\n        best = max(best, hi)\n    return best\n",
+  "tests": [
+    {
+      "args": [
+        [
+          2,
+          3,
+          -2,
+          4
+        ]
+      ],
+      "expected": 6,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          -2,
+          0,
+          -1
+        ]
+      ],
+      "expected": 0,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          -2
+        ]
+      ],
+      "expected": -2,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          -2,
+          3,
+          -4
+        ]
+      ],
+      "expected": 24,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          0,
+          2
+        ]
+      ],
+      "expected": 2,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          -2,
+          1
+        ]
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          -3,
+          -4,
+          1,
+          0,
+          -2,
+          -2,
+          1
+        ]
+      ],
+      "expected": 12,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1
+        ]
+      ],
+      "expected": 1,
+      "hidden": true
+    }
+  ],
+  "order": 326
+}

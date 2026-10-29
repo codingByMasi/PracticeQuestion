@@ -1,0 +1,21 @@
+{
+  "slug": "streak-of-daily-activity",
+  "track": "sql",
+  "title": "Streak of daily activity",
+  "difficulty": "Hard",
+  "tags": [
+    "gaps-islands"
+  ],
+  "statementMd": "For account 3, group distinct transaction days into runs of consecutive calendar days and show the longest run length in days as `longest_streak`.\n\nExpected columns: `longest_streak`.\n\nTables: `customers`, `accounts`, `transactions`.\n\nRow order does not matter.",
+  "hints": [
+    "Subtract a row number from the day number to identify islands."
+  ],
+  "solutionMd": "```sql\nWITH d AS (SELECT DISTINCT tx_date FROM transactions WHERE account_id = 3), g AS (SELECT CAST(julianday(tx_date) AS INTEGER) - ROW_NUMBER() OVER (ORDER BY tx_date) AS grp FROM d) SELECT MAX(c) AS longest_streak FROM (SELECT COUNT(*) AS c FROM g GROUP BY grp);\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, accounts, transactions\nSELECT\n",
+  "datasetId": "bank",
+  "expected": {
+    "query": "WITH d AS (SELECT DISTINCT tx_date FROM transactions WHERE account_id = 3), g AS (SELECT CAST(julianday(tx_date) AS INTEGER) - ROW_NUMBER() OVER (ORDER BY tx_date) AS grp FROM d) SELECT MAX(c) AS longest_streak FROM (SELECT COUNT(*) AS c FROM g GROUP BY grp);",
+    "orderMatters": false
+  },
+  "order": 495
+}

@@ -1,0 +1,62 @@
+{
+  "slug": "multiples-of-3-or-5",
+  "track": "python",
+  "title": "Multiples of 3 or 5",
+  "difficulty": "Easy",
+  "tags": [
+    "math"
+  ],
+  "statementMd": "Return the sum of all multiples of 3 or 5 that are below `n`.\n\n**Example:** `sum_of_multiples(10)` returns `23`.",
+  "hints": [
+    "Loop and test both divisors."
+  ],
+  "solutionMd": "```python\ndef sum_of_multiples(n):\n    return sum(i for i in range(n) if i % 3 == 0 or i % 5 == 0)\n```\n\nThe classic first Project Euler problem.",
+  "starterCode": "def sum_of_multiples(n):\n    # Write your code here\n    pass\n",
+  "functionName": "sum_of_multiples",
+  "referenceSolution": "def sum_of_multiples(n):\n    return sum(i for i in range(n) if i % 3 == 0 or i % 5 == 0)\n",
+  "tests": [
+    {
+      "args": [
+        10
+      ],
+      "expected": 23,
+      "hidden": false
+    },
+    {
+      "args": [
+        1
+      ],
+      "expected": 0,
+      "hidden": false
+    },
+    {
+      "args": [
+        0
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        16
+      ],
+      "expected": 60,
+      "hidden": true
+    },
+    {
+      "args": [
+        100
+      ],
+      "expected": 2318,
+      "hidden": true
+    },
+    {
+      "args": [
+        1000
+      ],
+      "expected": 233168,
+      "hidden": true
+    }
+  ],
+  "order": 31
+}

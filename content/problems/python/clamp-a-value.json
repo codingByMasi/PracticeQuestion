@@ -1,0 +1,74 @@
+{
+  "slug": "clamp-a-value",
+  "track": "python",
+  "title": "Clamp a value",
+  "difficulty": "Easy",
+  "tags": [
+    "conditionals"
+  ],
+  "statementMd": "Return `x` limited to the closed range `[low, high]` (`low <= high`).\n\n**Example:** `clamp(5, 0, 10)` returns `5`.",
+  "hints": [
+    "`max(low, min(x, high))`."
+  ],
+  "solutionMd": "```python\ndef clamp(x, low, high):\n    return max(low, min(x, high))\n```\n\nMin then max keeps x inside the bounds.",
+  "starterCode": "def clamp(x, low, high):\n    # Write your code here\n    pass\n",
+  "functionName": "clamp",
+  "referenceSolution": "def clamp(x, low, high):\n    return max(low, min(x, high))\n",
+  "tests": [
+    {
+      "args": [
+        5,
+        0,
+        10
+      ],
+      "expected": 5,
+      "hidden": false
+    },
+    {
+      "args": [
+        -3,
+        0,
+        10
+      ],
+      "expected": 0,
+      "hidden": false
+    },
+    {
+      "args": [
+        15,
+        0,
+        10
+      ],
+      "expected": 10,
+      "hidden": true
+    },
+    {
+      "args": [
+        0,
+        0,
+        10
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        10,
+        0,
+        10
+      ],
+      "expected": 10,
+      "hidden": true
+    },
+    {
+      "args": [
+        2.5,
+        1,
+        2
+      ],
+      "expected": 2,
+      "hidden": true
+    }
+  ],
+  "order": 16
+}

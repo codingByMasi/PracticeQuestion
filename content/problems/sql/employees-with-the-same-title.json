@@ -1,0 +1,21 @@
+{
+  "slug": "employees-with-the-same-title",
+  "track": "sql",
+  "title": "Employees with the same title",
+  "difficulty": "Medium",
+  "tags": [
+    "self-join"
+  ],
+  "statementMd": "Find pairs of different employees with the same job title. List each pair once (first names alphabetical inside the pair) with the title.\n\nExpected columns: `employee_a`, `employee_b`, `title`.\n\nTables: `employees`, `departments`.\n\nRow order does not matter.",
+  "hints": [
+    "Self-join on title with `a.id < b.id`."
+  ],
+  "solutionMd": "```sql\nSELECT a.first_name AS employee_a, b.first_name AS employee_b, a.title FROM employees a JOIN employees b ON a.title = b.title AND a.id < b.id;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "SELECT a.first_name AS employee_a, b.first_name AS employee_b, a.title FROM employees a JOIN employees b ON a.title = b.title AND a.id < b.id;",
+    "orderMatters": false
+  },
+  "order": 293
+}

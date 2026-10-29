@@ -1,0 +1,21 @@
+{
+  "slug": "two-category-shoppers",
+  "track": "sql",
+  "title": "Two-category shoppers",
+  "difficulty": "Hard",
+  "tags": [
+    "having"
+  ],
+  "statementMd": "Find customers who bought products from at least two different categories (non-cancelled orders). Show name and category count.\n\nExpected columns: `name`, `categories`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\nRow order does not matter.",
+  "hints": [
+    "`COUNT(DISTINCT p.category)`."
+  ],
+  "solutionMd": "```sql\nSELECT c.name, COUNT(DISTINCT p.category) AS categories FROM customers c JOIN orders o ON o.customer_id = c.id AND o.status <> 'cancelled' JOIN order_items oi ON oi.order_id = o.id JOIN products p ON p.id = oi.product_id GROUP BY c.id, c.name HAVING COUNT(DISTINCT p.category) >= 2;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "SELECT c.name, COUNT(DISTINCT p.category) AS categories FROM customers c JOIN orders o ON o.customer_id = c.id AND o.status <> 'cancelled' JOIN order_items oi ON oi.order_id = o.id JOIN products p ON p.id = oi.product_id GROUP BY c.id, c.name HAVING COUNT(DISTINCT p.category) >= 2;",
+    "orderMatters": false
+  },
+  "order": 377
+}

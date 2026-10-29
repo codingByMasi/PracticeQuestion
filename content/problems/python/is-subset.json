@@ -1,0 +1,78 @@
+{
+  "slug": "is-subset",
+  "track": "python",
+  "title": "Is subset",
+  "difficulty": "Easy",
+  "tags": [
+    "sets"
+  ],
+  "statementMd": "Return `True` if every element of list `a` appears in list `b`.\n\n**Example:** `is_subset([1, 2], [1, 2, 3])` returns `true`.",
+  "hints": [
+    "Compare sets."
+  ],
+  "solutionMd": "```python\ndef is_subset(a, b):\n    return set(a) <= set(b)\n```\n\nSubset operator.",
+  "starterCode": "def is_subset(a, b):\n    # Write your code here\n    pass\n",
+  "functionName": "is_subset",
+  "referenceSolution": "def is_subset(a, b):\n    return set(a) <= set(b)\n",
+  "tests": [
+    {
+      "args": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "expected": true,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          4
+        ],
+        [
+          1
+        ]
+      ],
+      "expected": false,
+      "hidden": false
+    },
+    {
+      "args": [
+        [],
+        []
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        [],
+        [
+          1
+        ]
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          1
+        ],
+        [
+          1
+        ]
+      ],
+      "expected": true,
+      "hidden": true
+    }
+  ],
+  "order": 97
+}

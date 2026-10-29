@@ -1,0 +1,21 @@
+{
+  "slug": "missing-box-office",
+  "track": "sql",
+  "title": "Missing box office",
+  "difficulty": "Easy",
+  "tags": [
+    "null"
+  ],
+  "statementMd": "List movies with no recorded `gross_millions`.\n\nExpected columns: `title`.\n\nTables: `movies`, `directors`, `reviews`.\n\nRow order does not matter.",
+  "hints": [
+    "`IS NULL`."
+  ],
+  "solutionMd": "```sql\nSELECT title FROM movies WHERE gross_millions IS NULL;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: movies, directors, reviews\nSELECT\n",
+  "datasetId": "movies",
+  "expected": {
+    "query": "SELECT title FROM movies WHERE gross_millions IS NULL;",
+    "orderMatters": false
+  },
+  "order": 52
+}

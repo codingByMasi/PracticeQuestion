@@ -1,0 +1,21 @@
+{
+  "slug": "rank-of-the-day-by-volume",
+  "track": "sql",
+  "title": "Rank of the day by volume",
+  "difficulty": "Hard",
+  "tags": [
+    "ranking"
+  ],
+  "statementMd": "For `HOME` rank all trading days by volume (1 = highest) with `RANK()` and show the top 5 (rank, date, volume). Ties by date.\n\nExpected columns: `rk`, `trade_date`, `volume`.\n\nTables: `tickers`, `prices`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "`RANK() OVER (ORDER BY volume DESC)`."
+  ],
+  "solutionMd": "```sql\nSELECT rk, trade_date, volume FROM (SELECT trade_date, volume, RANK() OVER (ORDER BY volume DESC) AS rk FROM prices WHERE symbol = 'HOME') WHERE rk <= 5 ORDER BY rk, trade_date;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: tickers, prices\nSELECT\n",
+  "datasetId": "stocks",
+  "expected": {
+    "query": "SELECT rk, trade_date, volume FROM (SELECT trade_date, volume, RANK() OVER (ORDER BY volume DESC) AS rk FROM prices WHERE symbol = 'HOME') WHERE rk <= 5 ORDER BY rk, trade_date;",
+    "orderMatters": true
+  },
+  "order": 461
+}

@@ -1,0 +1,150 @@
+{
+  "slug": "reconstruct-itinerary",
+  "track": "python",
+  "title": "Reconstruct itinerary",
+  "difficulty": "Hard",
+  "tags": [
+    "graphs"
+  ],
+  "statementMd": "Given airline tickets `[from, to]`, reconstruct the itinerary starting at `\"JFK\"` that uses every ticket once, and is lexicographically smallest among valid ones. Return the list of airports.\n\n**Example:** `find_itinerary([[\"MUC\", \"LHR\"], [\"JFK\", \"MUC\"], [\"SFO\", \"SJC\"], [\"LHR\", \"S…)` returns `[\"JFK\", \"MUC\", \"LHR\", \"SFO\", \"SJC\"]`.",
+  "hints": [
+    "Hierholzer's algorithm with sorted adjacency."
+  ],
+  "solutionMd": "```python\ndef find_itinerary(tickets):\n    graph = {}\n    for a, b in sorted(tickets, reverse=True):\n        graph.setdefault(a, []).append(b)\n    route = []\n    def visit(airport):\n        while graph.get(airport):\n            visit(graph[airport].pop())\n        route.append(airport)\n    visit('JFK')\n    return route[::-1]\n```\n\nPost-order reversed gives the Eulerian path.",
+  "starterCode": "def find_itinerary(tickets):\n    # Write your code here\n    pass\n",
+  "functionName": "find_itinerary",
+  "referenceSolution": "def find_itinerary(tickets):\n    graph = {}\n    for a, b in sorted(tickets, reverse=True):\n        graph.setdefault(a, []).append(b)\n    route = []\n    def visit(airport):\n        while graph.get(airport):\n            visit(graph[airport].pop())\n        route.append(airport)\n    visit('JFK')\n    return route[::-1]\n",
+  "tests": [
+    {
+      "args": [
+        [
+          [
+            "MUC",
+            "LHR"
+          ],
+          [
+            "JFK",
+            "MUC"
+          ],
+          [
+            "SFO",
+            "SJC"
+          ],
+          [
+            "LHR",
+            "SFO"
+          ]
+        ]
+      ],
+      "expected": [
+        "JFK",
+        "MUC",
+        "LHR",
+        "SFO",
+        "SJC"
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            "JFK",
+            "SFO"
+          ],
+          [
+            "JFK",
+            "ATL"
+          ],
+          [
+            "SFO",
+            "ATL"
+          ],
+          [
+            "ATL",
+            "JFK"
+          ],
+          [
+            "ATL",
+            "SFO"
+          ]
+        ]
+      ],
+      "expected": [
+        "JFK",
+        "ATL",
+        "JFK",
+        "SFO",
+        "ATL",
+        "SFO"
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            "JFK",
+            "A"
+          ]
+        ]
+      ],
+      "expected": [
+        "JFK",
+        "A"
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            "JFK",
+            "B"
+          ],
+          [
+            "JFK",
+            "A"
+          ],
+          [
+            "A",
+            "JFK"
+          ]
+        ]
+      ],
+      "expected": [
+        "JFK",
+        "A",
+        "JFK",
+        "B"
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            "JFK",
+            "KUL"
+          ],
+          [
+            "JFK",
+            "NRT"
+          ],
+          [
+            "NRT",
+            "JFK"
+          ]
+        ]
+      ],
+      "expected": [
+        "JFK",
+        "NRT",
+        "JFK",
+        "KUL"
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 478
+}

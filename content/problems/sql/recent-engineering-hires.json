@@ -18,5 +18,6 @@
   "expected": {
     "query": "SELECT first_name, hire_date FROM employees WHERE department_id = 1 AND hire_date >= '2019-01-01';",
     "orderMatters": false
-  }
+  },
+  "order": 12
 }

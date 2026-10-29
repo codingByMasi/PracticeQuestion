@@ -1,0 +1,123 @@
+{
+  "slug": "queue-via-two-stacks",
+  "track": "python",
+  "title": "Queue via two stacks",
+  "difficulty": "Medium",
+  "tags": [
+    "design"
+  ],
+  "statementMd": "Simulate a FIFO queue with `['enqueue', x]` and `['dequeue']`. Return the list of values returned by dequeues (dequeues only happen on non-empty queues).\n\n**Example:** `queue_ops([[\"enqueue\", 1], [\"enqueue\", 2], [\"dequeue\"], [\"enqueue\", 3…)` returns `[1, 2, 3]`.",
+  "hints": [
+    "Two stacks: input and output."
+  ],
+  "solutionMd": "```python\ndef queue_ops(ops):\n    inbox, outbox, out = [], [], []\n    for op in ops:\n        if op[0] == 'enqueue':\n            inbox.append(op[1])\n        else:\n            if not outbox:\n                while inbox:\n                    outbox.append(inbox.pop())\n            out.append(outbox.pop())\n    return out\n```\n\nMove items only when the output stack is empty.",
+  "starterCode": "def queue_ops(ops):\n    # Write your code here\n    pass\n",
+  "functionName": "queue_ops",
+  "referenceSolution": "def queue_ops(ops):\n    inbox, outbox, out = [], [], []\n    for op in ops:\n        if op[0] == 'enqueue':\n            inbox.append(op[1])\n        else:\n            if not outbox:\n                while inbox:\n                    outbox.append(inbox.pop())\n            out.append(outbox.pop())\n    return out\n",
+  "tests": [
+    {
+      "args": [
+        [
+          [
+            "enqueue",
+            1
+          ],
+          [
+            "enqueue",
+            2
+          ],
+          [
+            "dequeue"
+          ],
+          [
+            "enqueue",
+            3
+          ],
+          [
+            "dequeue"
+          ],
+          [
+            "dequeue"
+          ]
+        ]
+      ],
+      "expected": [
+        1,
+        2,
+        3
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            "enqueue",
+            7
+          ],
+          [
+            "dequeue"
+          ]
+        ]
+      ],
+      "expected": [
+        7
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": [],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            "enqueue",
+            "a"
+          ],
+          [
+            "enqueue",
+            "b"
+          ],
+          [
+            "dequeue"
+          ]
+        ]
+      ],
+      "expected": [
+        "a"
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            "enqueue",
+            1
+          ],
+          [
+            "dequeue"
+          ],
+          [
+            "enqueue",
+            2
+          ],
+          [
+            "dequeue"
+          ]
+        ]
+      ],
+      "expected": [
+        1,
+        2
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 370
+}

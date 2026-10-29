@@ -1,0 +1,21 @@
+{
+  "slug": "free-plan-listeners",
+  "track": "sql",
+  "title": "Free plan listeners",
+  "difficulty": "Easy",
+  "tags": [
+    "where"
+  ],
+  "statementMd": "List the names of listeners on the `free` plan.\n\nExpected columns: `name`.\n\nTables: `artists`, `albums`, `tracks`, `listeners`, `plays`.\n\nRow order does not matter.",
+  "hints": [
+    "`plan = 'free'`."
+  ],
+  "solutionMd": "```sql\nSELECT name FROM listeners WHERE plan = 'free';\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: artists, albums, tracks, listeners, plays\nSELECT\n",
+  "datasetId": "music",
+  "expected": {
+    "query": "SELECT name FROM listeners WHERE plan = 'free';",
+    "orderMatters": false
+  },
+  "order": 43
+}

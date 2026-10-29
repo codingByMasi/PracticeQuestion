@@ -1,0 +1,21 @@
+{
+  "slug": "weekly-volume",
+  "track": "sql",
+  "title": "Weekly volume",
+  "difficulty": "Medium",
+  "tags": [
+    "dates"
+  ],
+  "statementMd": "Total volume per ISO week of the year (`strftime('%W')`) for symbol `FOOD`. Show week and volume, ordered by week.\n\nExpected columns: `week`, `volume`.\n\nTables: `tickers`, `prices`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "`strftime('%W', trade_date)`."
+  ],
+  "solutionMd": "```sql\nSELECT strftime('%W', trade_date) AS week, SUM(volume) AS volume FROM prices WHERE symbol = 'FOOD' GROUP BY week ORDER BY week;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: tickers, prices\nSELECT\n",
+  "datasetId": "stocks",
+  "expected": {
+    "query": "SELECT strftime('%W', trade_date) AS week, SUM(volume) AS volume FROM prices WHERE symbol = 'FOOD' GROUP BY week ORDER BY week;",
+    "orderMatters": true
+  },
+  "order": 206
+}

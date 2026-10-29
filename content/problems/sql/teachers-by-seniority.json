@@ -1,0 +1,21 @@
+{
+  "slug": "teachers-by-seniority",
+  "track": "sql",
+  "title": "Teachers by seniority",
+  "difficulty": "Easy",
+  "tags": [
+    "order-by"
+  ],
+  "statementMd": "List teachers with the year they were hired, longest-serving first (ties by name).\n\nExpected columns: `name`, `hired_year`.\n\nTables: `teachers`, `courses`, `students`, `enrollments`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Sort by `hired_year` then `name`."
+  ],
+  "solutionMd": "```sql\nSELECT name, hired_year FROM teachers ORDER BY hired_year, name;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: teachers, courses, students, enrollments\nSELECT\n",
+  "datasetId": "school",
+  "expected": {
+    "query": "SELECT name, hired_year FROM teachers ORDER BY hired_year, name;",
+    "orderMatters": true
+  },
+  "order": 75
+}

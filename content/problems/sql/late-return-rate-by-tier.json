@@ -1,0 +1,21 @@
+{
+  "slug": "late-return-rate-by-tier",
+  "track": "sql",
+  "title": "Late return rate by tier",
+  "difficulty": "Medium",
+  "tags": [
+    "join"
+  ],
+  "statementMd": "For each member tier show the percentage of returned loans that were late, rounded to 1 decimal.\n\nExpected columns: `tier`, `late_pct`.\n\nTables: `authors`, `books`, `members`, `loans`.\n\nRow order does not matter.",
+  "hints": [
+    "Average a 0/1 flag over returned loans."
+  ],
+  "solutionMd": "```sql\nSELECT m.tier, ROUND(100.0 * SUM(CASE WHEN l.return_date > l.due_date THEN 1 ELSE 0 END) / COUNT(*), 1) AS late_pct FROM loans l JOIN members m ON m.id = l.member_id WHERE l.return_date IS NOT NULL GROUP BY m.tier;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: authors, books, members, loans\nSELECT\n",
+  "datasetId": "library",
+  "expected": {
+    "query": "SELECT m.tier, ROUND(100.0 * SUM(CASE WHEN l.return_date > l.due_date THEN 1 ELSE 0 END) / COUNT(*), 1) AS late_pct FROM loans l JOIN members m ON m.id = l.member_id WHERE l.return_date IS NOT NULL GROUP BY m.tier;",
+    "orderMatters": false
+  },
+  "order": 269
+}

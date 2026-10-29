@@ -1,0 +1,83 @@
+{
+  "slug": "swap-values",
+  "track": "python",
+  "title": "Swap values",
+  "difficulty": "Easy",
+  "tags": [
+    "basics"
+  ],
+  "statementMd": "Return the two values swapped as a list `[b, a]`.\n\n**Example:** `swap_pair(1, 2)` returns `[2, 1]`.",
+  "hints": [
+    "Return them in reverse order."
+  ],
+  "solutionMd": "```python\ndef swap_pair(a, b):\n    return [b, a]\n```\n\nPython can also swap in place with `a, b = b, a`.",
+  "starterCode": "def swap_pair(a, b):\n    # Write your code here\n    pass\n",
+  "functionName": "swap_pair",
+  "referenceSolution": "def swap_pair(a, b):\n    return [b, a]\n",
+  "tests": [
+    {
+      "args": [
+        1,
+        2
+      ],
+      "expected": [
+        2,
+        1
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        "x",
+        "y"
+      ],
+      "expected": [
+        "y",
+        "x"
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        0,
+        0
+      ],
+      "expected": [
+        0,
+        0
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1
+        ],
+        [
+          2
+        ]
+      ],
+      "expected": [
+        [
+          2
+        ],
+        [
+          1
+        ]
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        null,
+        5
+      ],
+      "expected": [
+        5,
+        null
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 5
+}

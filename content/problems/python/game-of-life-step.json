@@ -1,0 +1,187 @@
+{
+  "slug": "game-of-life-step",
+  "track": "python",
+  "title": "Game of life step",
+  "difficulty": "Hard",
+  "tags": [
+    "matrix"
+  ],
+  "statementMd": "Apply one step of Conway's Game of Life on a finite board (cells outside are dead): a live cell with 2 or 3 live neighbours survives; a dead cell with exactly 3 live neighbours becomes live; all others are dead. Return the new board.\n\n**Example:** `life_step([[0, 1, 0], [0, 1, 0], [0, 1, 0]])` returns `[[0, 0, 0], [1, 1, 1], [0, 0, 0]]`.",
+  "hints": [
+    "Count the 8 neighbours from the original board."
+  ],
+  "solutionMd": "```python\ndef life_step(board):\n    R, C = len(board), len(board[0])\n    def n(r, c):\n        return sum(board[r + dr][c + dc] for dr in (-1, 0, 1) for dc in (-1, 0, 1) if (dr or dc) and 0 <= r + dr < R and 0 <= c + dc < C)\n    return [[1 if (board[r][c] and n(r, c) in (2, 3)) or (not board[r][c] and n(r, c) == 3) else 0 for c in range(C)] for r in range(R)]\n```\n\nCompute from a snapshot to avoid order effects.",
+  "starterCode": "def life_step(board):\n    # Write your code here\n    pass\n",
+  "functionName": "life_step",
+  "referenceSolution": "def life_step(board):\n    R, C = len(board), len(board[0])\n    def n(r, c):\n        return sum(board[r + dr][c + dc] for dr in (-1, 0, 1) for dc in (-1, 0, 1) if (dr or dc) and 0 <= r + dr < R and 0 <= c + dc < C)\n    return [[1 if (board[r][c] and n(r, c) in (2, 3)) or (not board[r][c] and n(r, c) == 3) else 0 for c in range(C)] for r in range(R)]\n",
+  "tests": [
+    {
+      "args": [
+        [
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ]
+        ]
+      ],
+      "expected": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      ],
+      "expected": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            0
+          ]
+        ]
+      ],
+      "expected": [
+        [
+          0
+        ]
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ]
+      ],
+      "expected": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      ],
+      "expected": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          0,
+          1,
+          1
+        ],
+        [
+          0,
+          1,
+          0
+        ]
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 420
+}

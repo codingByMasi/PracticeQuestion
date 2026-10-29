@@ -1,0 +1,60 @@
+{
+  "slug": "common-characters",
+  "track": "python",
+  "title": "Common characters",
+  "difficulty": "Easy",
+  "tags": [
+    "sets"
+  ],
+  "statementMd": "Return a sorted string of the distinct characters present in both `a` and `b`.\n\n**Example:** `common_chars(\"hello\", \"world\")` returns `\"lo\"`.",
+  "hints": [
+    "Set intersection."
+  ],
+  "solutionMd": "```python\ndef common_chars(a, b):\n    return ''.join(sorted(set(a) & set(b)))\n```\n\n`&` intersects sets.",
+  "starterCode": "def common_chars(a, b):\n    # Write your code here\n    pass\n",
+  "functionName": "common_chars",
+  "referenceSolution": "def common_chars(a, b):\n    return ''.join(sorted(set(a) & set(b)))\n",
+  "tests": [
+    {
+      "args": [
+        "hello",
+        "world"
+      ],
+      "expected": "lo",
+      "hidden": false
+    },
+    {
+      "args": [
+        "abc",
+        "xyz"
+      ],
+      "expected": "",
+      "hidden": false
+    },
+    {
+      "args": [
+        "",
+        "a"
+      ],
+      "expected": "",
+      "hidden": true
+    },
+    {
+      "args": [
+        "aab",
+        "baa"
+      ],
+      "expected": "ab",
+      "hidden": true
+    },
+    {
+      "args": [
+        "python",
+        "typhon"
+      ],
+      "expected": "hnopty",
+      "hidden": true
+    }
+  ],
+  "order": 91
+}

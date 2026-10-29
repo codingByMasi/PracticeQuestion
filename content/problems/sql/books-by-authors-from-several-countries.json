@@ -1,0 +1,21 @@
+{
+  "slug": "books-by-authors-from-several-countries",
+  "track": "sql",
+  "title": "Books by authors from several countries",
+  "difficulty": "Easy",
+  "tags": [
+    "join"
+  ],
+  "statementMd": "How many books are by authors from each country? Most first, ties by country.\n\nExpected columns: `country`, `books`.\n\nTables: `authors`, `books`, `members`, `loans`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Join books to authors."
+  ],
+  "solutionMd": "```sql\nSELECT a.country, COUNT(*) AS books FROM books b JOIN authors a ON a.id = b.author_id GROUP BY a.country ORDER BY books DESC, a.country;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: authors, books, members, loans\nSELECT\n",
+  "datasetId": "library",
+  "expected": {
+    "query": "SELECT a.country, COUNT(*) AS books FROM books b JOIN authors a ON a.id = b.author_id GROUP BY a.country ORDER BY books DESC, a.country;",
+    "orderMatters": true
+  },
+  "order": 165
+}

@@ -1,0 +1,21 @@
+{
+  "slug": "genre-rank-per-country",
+  "track": "sql",
+  "title": "Genre rank per country",
+  "difficulty": "Hard",
+  "tags": [
+    "ranking"
+  ],
+  "statementMd": "For each listener country show the most played album genre and its plays (ties: alphabetically first genre).\n\nExpected columns: `country`, `genre`, `plays`.\n\nTables: `artists`, `albums`, `tracks`, `listeners`, `plays`.\n\nRow order does not matter.",
+  "hints": [
+    "Count by country and genre, rank."
+  ],
+  "solutionMd": "```sql\nWITH c AS (SELECT l.country, al.genre, COUNT(*) AS plays FROM plays p JOIN listeners l ON l.id = p.listener_id JOIN tracks t ON t.id = p.track_id JOIN albums al ON al.id = t.album_id GROUP BY l.country, al.genre), r AS (SELECT *, ROW_NUMBER() OVER (PARTITION BY country ORDER BY plays DESC, genre) AS rn FROM c) SELECT country, genre, plays FROM r WHERE rn = 1;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: artists, albums, tracks, listeners, plays\nSELECT\n",
+  "datasetId": "music",
+  "expected": {
+    "query": "WITH c AS (SELECT l.country, al.genre, COUNT(*) AS plays FROM plays p JOIN listeners l ON l.id = p.listener_id JOIN tracks t ON t.id = p.track_id JOIN albums al ON al.id = t.album_id GROUP BY l.country, al.genre), r AS (SELECT *, ROW_NUMBER() OVER (PARTITION BY country ORDER BY plays DESC, genre) AS rn FROM c) SELECT country, genre, plays FROM r WHERE rn = 1;",
+    "orderMatters": false
+  },
+  "order": 458
+}

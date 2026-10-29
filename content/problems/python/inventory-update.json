@@ -1,0 +1,103 @@
+{
+  "slug": "inventory-update",
+  "track": "python",
+  "title": "Inventory update",
+  "difficulty": "Medium",
+  "tags": [
+    "dicts"
+  ],
+  "statementMd": "Apply a list of `[item, delta]` updates to the `stock` dict (missing items start at 0). Remove items whose quantity becomes 0 or less. Return the new dict and do not mutate the input.\n\n**Example:** `apply_updates({\"a\": 2}, [[\"a\", 1], [\"b\", 3]])` returns `{\"a\": 3, \"b\": 3}`.",
+  "hints": [
+    "Copy first, then update."
+  ],
+  "solutionMd": "```python\ndef apply_updates(stock, updates):\n    new = dict(stock)\n    for item, delta in updates:\n        new[item] = new.get(item, 0) + delta\n    return {k: v for k, v in new.items() if v > 0}\n```\n\nFiltering at the end handles every item once.",
+  "starterCode": "def apply_updates(stock, updates):\n    # Write your code here\n    pass\n",
+  "functionName": "apply_updates",
+  "referenceSolution": "def apply_updates(stock, updates):\n    new = dict(stock)\n    for item, delta in updates:\n        new[item] = new.get(item, 0) + delta\n    return {k: v for k, v in new.items() if v > 0}\n",
+  "tests": [
+    {
+      "args": [
+        {
+          "a": 2
+        },
+        [
+          [
+            "a",
+            1
+          ],
+          [
+            "b",
+            3
+          ]
+        ]
+      ],
+      "expected": {
+        "a": 3,
+        "b": 3
+      },
+      "hidden": false
+    },
+    {
+      "args": [
+        {
+          "a": 1
+        },
+        [
+          [
+            "a",
+            -1
+          ]
+        ]
+      ],
+      "expected": {},
+      "hidden": false
+    },
+    {
+      "args": [
+        {},
+        []
+      ],
+      "expected": {},
+      "hidden": true
+    },
+    {
+      "args": [
+        {
+          "x": 5
+        },
+        [
+          [
+            "x",
+            -9
+          ]
+        ]
+      ],
+      "expected": {},
+      "hidden": true
+    },
+    {
+      "args": [
+        {
+          "p": 1,
+          "q": 2
+        },
+        [
+          [
+            "q",
+            -1
+          ],
+          [
+            "p",
+            4
+          ]
+        ]
+      ],
+      "expected": {
+        "p": 5,
+        "q": 1
+      },
+      "hidden": true
+    }
+  ],
+  "order": 215
+}

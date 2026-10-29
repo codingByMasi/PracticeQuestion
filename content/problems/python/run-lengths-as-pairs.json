@@ -1,0 +1,99 @@
+{
+  "slug": "run-lengths-as-pairs",
+  "track": "python",
+  "title": "Run lengths as pairs",
+  "difficulty": "Medium",
+  "tags": [
+    "strings"
+  ],
+  "statementMd": "Return the runs of identical consecutive characters as a list of `[char, count]` pairs.\n\n**Example:** `run_pairs(\"aaabcc\")` returns `[[\"a\", 3], [\"b\", 1], [\"c\", 2]]`.",
+  "hints": [
+    "Walk the string, extending the last run when the character repeats."
+  ],
+  "solutionMd": "```python\ndef run_pairs(s):\n    out = []\n    for c in s:\n        if out and out[-1][0] == c:\n            out[-1][1] += 1\n        else:\n            out.append([c, 1])\n    return out\n```\n\nMutate the last pair in place.",
+  "starterCode": "def run_pairs(s):\n    # Write your code here\n    pass\n",
+  "functionName": "run_pairs",
+  "referenceSolution": "def run_pairs(s):\n    out = []\n    for c in s:\n        if out and out[-1][0] == c:\n            out[-1][1] += 1\n        else:\n            out.append([c, 1])\n    return out\n",
+  "tests": [
+    {
+      "args": [
+        "aaabcc"
+      ],
+      "expected": [
+        [
+          "a",
+          3
+        ],
+        [
+          "b",
+          1
+        ],
+        [
+          "c",
+          2
+        ]
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        "z"
+      ],
+      "expected": [
+        [
+          "z",
+          1
+        ]
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        ""
+      ],
+      "expected": [],
+      "hidden": true
+    },
+    {
+      "args": [
+        "abc"
+      ],
+      "expected": [
+        [
+          "a",
+          1
+        ],
+        [
+          "b",
+          1
+        ],
+        [
+          "c",
+          1
+        ]
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        "aabbaa"
+      ],
+      "expected": [
+        [
+          "a",
+          2
+        ],
+        [
+          "b",
+          2
+        ],
+        [
+          "a",
+          2
+        ]
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 191
+}

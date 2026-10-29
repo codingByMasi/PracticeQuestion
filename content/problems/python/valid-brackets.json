@@ -1,0 +1,69 @@
+{
+  "slug": "valid-brackets",
+  "track": "python",
+  "title": "Valid brackets",
+  "difficulty": "Medium",
+  "tags": [
+    "stacks"
+  ],
+  "statementMd": "The string contains only `()[]{}`. Return whether brackets are correctly nested and closed.\n\n**Example:** `valid_brackets(\"()[]{}\")` returns `true`.",
+  "hints": [
+    "Push openers; pop and match on closers."
+  ],
+  "solutionMd": "```python\ndef valid_brackets(s):\n    pairs = {')': '(', ']': '[', '}': '{'}\n    stack = []\n    for c in s:\n        if c in pairs:\n            if not stack or stack.pop() != pairs[c]:\n                return False\n        else:\n            stack.append(c)\n    return not stack\n```\n\nA stack tracks the expected closer.",
+  "starterCode": "def valid_brackets(s):\n    # Write your code here\n    pass\n",
+  "functionName": "valid_brackets",
+  "referenceSolution": "def valid_brackets(s):\n    pairs = {')': '(', ']': '[', '}': '{'}\n    stack = []\n    for c in s:\n        if c in pairs:\n            if not stack or stack.pop() != pairs[c]:\n                return False\n        else:\n            stack.append(c)\n    return not stack\n",
+  "tests": [
+    {
+      "args": [
+        "()[]{}"
+      ],
+      "expected": true,
+      "hidden": false
+    },
+    {
+      "args": [
+        "(]"
+      ],
+      "expected": false,
+      "hidden": false
+    },
+    {
+      "args": [
+        ""
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        "([{}])"
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        "(("
+      ],
+      "expected": false,
+      "hidden": true
+    },
+    {
+      "args": [
+        "{[}]"
+      ],
+      "expected": false,
+      "hidden": true
+    },
+    {
+      "args": [
+        "]"
+      ],
+      "expected": false,
+      "hidden": true
+    }
+  ],
+  "order": 260
+}

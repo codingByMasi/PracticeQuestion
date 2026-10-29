@@ -1,0 +1,21 @@
+{
+  "slug": "longest-book-per-genre",
+  "track": "sql",
+  "title": "Longest book per genre",
+  "difficulty": "Medium",
+  "tags": [
+    "correlated-subquery"
+  ],
+  "statementMd": "For each genre show its longest book (genre, title, pages).\n\nExpected columns: `genre`, `title`, `pages`.\n\nTables: `authors`, `books`, `members`, `loans`.\n\nRow order does not matter.",
+  "hints": [
+    "Compare to `MAX(pages)` of the same genre."
+  ],
+  "solutionMd": "```sql\nSELECT b.genre, b.title, b.pages FROM books b WHERE b.pages = (SELECT MAX(b2.pages) FROM books b2 WHERE b2.genre = b.genre);\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: authors, books, members, loans\nSELECT\n",
+  "datasetId": "library",
+  "expected": {
+    "query": "SELECT b.genre, b.title, b.pages FROM books b WHERE b.pages = (SELECT MAX(b2.pages) FROM books b2 WHERE b2.genre = b.genre);",
+    "orderMatters": false
+  },
+  "order": 347
+}

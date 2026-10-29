@@ -1,0 +1,21 @@
+{
+  "slug": "page-statistics",
+  "track": "sql",
+  "title": "Page statistics",
+  "difficulty": "Easy",
+  "tags": [
+    "aggregate"
+  ],
+  "statementMd": "Show the minimum, maximum and average page count across all books (average rounded to 1 decimal).\n\nExpected columns: `shortest`, `longest`, `average`.\n\nTables: `authors`, `books`, `members`, `loans`.\n\nRow order does not matter.",
+  "hints": [
+    "Three aggregates."
+  ],
+  "solutionMd": "```sql\nSELECT MIN(pages) AS shortest, MAX(pages) AS longest, ROUND(AVG(pages), 1) AS average FROM books;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: authors, books, members, loans\nSELECT\n",
+  "datasetId": "library",
+  "expected": {
+    "query": "SELECT MIN(pages) AS shortest, MAX(pages) AS longest, ROUND(AVG(pages), 1) AS average FROM books;",
+    "orderMatters": false
+  },
+  "order": 117
+}

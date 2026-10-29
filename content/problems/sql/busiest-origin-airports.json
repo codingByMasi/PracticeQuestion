@@ -1,0 +1,21 @@
+{
+  "slug": "busiest-origin-airports",
+  "track": "sql",
+  "title": "Busiest origin airports",
+  "difficulty": "Medium",
+  "tags": [
+    "group-by"
+  ],
+  "statementMd": "The five airports with the most departures. Show city and departures, ties by city.\n\nExpected columns: `city`, `departures`.\n\nTables: `airlines`, `airports`, `flights`, `bookings`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Join airports to flights by origin."
+  ],
+  "solutionMd": "```sql\nSELECT a.city, COUNT(*) AS departures FROM flights f JOIN airports a ON a.code = f.origin GROUP BY a.code, a.city ORDER BY departures DESC, a.city LIMIT 5;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: airlines, airports, flights, bookings\nSELECT\n",
+  "datasetId": "flights",
+  "expected": {
+    "query": "SELECT a.city, COUNT(*) AS departures FROM flights f JOIN airports a ON a.code = f.origin GROUP BY a.code, a.city ORDER BY departures DESC, a.city LIMIT 5;",
+    "orderMatters": true
+  },
+  "order": 231
+}

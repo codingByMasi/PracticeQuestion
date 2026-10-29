@@ -1,0 +1,80 @@
+{
+  "slug": "remove-value",
+  "track": "python",
+  "title": "Remove value",
+  "difficulty": "Easy",
+  "tags": [
+    "lists"
+  ],
+  "statementMd": "Return a new list without any occurrences of `val`.\n\n**Example:** `remove_all([3, 2, 2, 3], 3)` returns `[2, 2]`.",
+  "hints": [
+    "Comprehension with `!=`."
+  ],
+  "solutionMd": "```python\ndef remove_all(nums, val):\n    return [x for x in nums if x != val]\n```\n\nBuild a filtered copy.",
+  "starterCode": "def remove_all(nums, val):\n    # Write your code here\n    pass\n",
+  "functionName": "remove_all",
+  "referenceSolution": "def remove_all(nums, val):\n    return [x for x in nums if x != val]\n",
+  "tests": [
+    {
+      "args": [
+        [
+          3,
+          2,
+          2,
+          3
+        ],
+        3
+      ],
+      "expected": [
+        2,
+        2
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          1
+        ],
+        2
+      ],
+      "expected": [
+        1
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [],
+        1
+      ],
+      "expected": [],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          2,
+          2
+        ],
+        2
+      ],
+      "expected": [],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          "a",
+          "b"
+        ],
+        "a"
+      ],
+      "expected": [
+        "b"
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 79
+}

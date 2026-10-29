@@ -1,0 +1,55 @@
+{
+  "slug": "mask-a-card-number",
+  "track": "python",
+  "title": "Mask a card number",
+  "difficulty": "Easy",
+  "tags": [
+    "strings"
+  ],
+  "statementMd": "Replace all but the last four characters with `*`. Strings of 4 or fewer characters are returned unchanged.\n\n**Example:** `mask_card(\"1234567890123456\")` returns `\"************3456\"`.",
+  "hints": [
+    "`'*' * (len - 4) + s[-4:]`."
+  ],
+  "solutionMd": "```python\ndef mask_card(number):\n    if len(number) <= 4:\n        return number\n    return '*' * (len(number) - 4) + number[-4:]\n```\n\nSlicing from the end keeps the last four.",
+  "starterCode": "def mask_card(number):\n    # Write your code here\n    pass\n",
+  "functionName": "mask_card",
+  "referenceSolution": "def mask_card(number):\n    if len(number) <= 4:\n        return number\n    return '*' * (len(number) - 4) + number[-4:]\n",
+  "tests": [
+    {
+      "args": [
+        "1234567890123456"
+      ],
+      "expected": "************3456",
+      "hidden": false
+    },
+    {
+      "args": [
+        "123"
+      ],
+      "expected": "123",
+      "hidden": false
+    },
+    {
+      "args": [
+        ""
+      ],
+      "expected": "",
+      "hidden": true
+    },
+    {
+      "args": [
+        "12345"
+      ],
+      "expected": "*2345",
+      "hidden": true
+    },
+    {
+      "args": [
+        "4444"
+      ],
+      "expected": "4444",
+      "hidden": true
+    }
+  ],
+  "order": 66
+}

@@ -1,0 +1,96 @@
+{
+  "slug": "top-k-frequent",
+  "track": "python",
+  "title": "Top k frequent",
+  "difficulty": "Medium",
+  "tags": [
+    "counting"
+  ],
+  "statementMd": "Return the `k` most frequent values, most frequent first. Ties are broken by smaller value first.\n\n**Example:** `top_k_frequent([1, 1, 1, 2, 2, 3], 2)` returns `[1, 2]`.",
+  "hints": [
+    "Sort by (-count, value)."
+  ],
+  "solutionMd": "```python\ndef top_k_frequent(nums, k):\n    counts = {}\n    for x in nums:\n        counts[x] = counts.get(x, 0) + 1\n    ordered = sorted(counts, key=lambda v: (-counts[v], v))\n    return ordered[:k]\n```\n\nSort key encodes the tie-break.",
+  "starterCode": "def top_k_frequent(nums, k):\n    # Write your code here\n    pass\n",
+  "functionName": "top_k_frequent",
+  "referenceSolution": "def top_k_frequent(nums, k):\n    counts = {}\n    for x in nums:\n        counts[x] = counts.get(x, 0) + 1\n    ordered = sorted(counts, key=lambda v: (-counts[v], v))\n    return ordered[:k]\n",
+  "tests": [
+    {
+      "args": [
+        [
+          1,
+          1,
+          1,
+          2,
+          2,
+          3
+        ],
+        2
+      ],
+      "expected": [
+        1,
+        2
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          1
+        ],
+        1
+      ],
+      "expected": [
+        1
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          4,
+          4,
+          5,
+          5
+        ],
+        2
+      ],
+      "expected": [
+        4,
+        5
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          3,
+          1,
+          2
+        ],
+        3
+      ],
+      "expected": [
+        1,
+        2,
+        3
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          7,
+          7,
+          8
+        ],
+        1
+      ],
+      "expected": [
+        7
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 223
+}

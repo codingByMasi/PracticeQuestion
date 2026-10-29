@@ -1,0 +1,80 @@
+{
+  "slug": "pairwise-differences",
+  "track": "python",
+  "title": "Pairwise differences",
+  "difficulty": "Easy",
+  "tags": [
+    "lists"
+  ],
+  "statementMd": "Return the differences between consecutive elements: `[1, 4, 9]` -> `[3, 5]`. Fewer than two elements gives `[]`.\n\n**Example:** `differences([1, 4, 9])` returns `[3, 5]`.",
+  "hints": [
+    "Zip the list with itself shifted by one."
+  ],
+  "solutionMd": "```python\ndef differences(nums):\n    return [b - a for a, b in zip(nums, nums[1:])]\n```\n\n`zip` stops at the shorter sequence.",
+  "starterCode": "def differences(nums):\n    # Write your code here\n    pass\n",
+  "functionName": "differences",
+  "referenceSolution": "def differences(nums):\n    return [b - a for a, b in zip(nums, nums[1:])]\n",
+  "tests": [
+    {
+      "args": [
+        [
+          1,
+          4,
+          9
+        ]
+      ],
+      "expected": [
+        3,
+        5
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          7
+        ]
+      ],
+      "expected": [],
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": [],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          5,
+          5,
+          5
+        ]
+      ],
+      "expected": [
+        0,
+        0
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          10,
+          3,
+          8,
+          1
+        ]
+      ],
+      "expected": [
+        -7,
+        5,
+        -7
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 77
+}

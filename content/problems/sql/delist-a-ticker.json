@@ -1,0 +1,21 @@
+{
+  "slug": "delist-a-ticker",
+  "track": "sql",
+  "title": "Delist a ticker",
+  "difficulty": "Medium",
+  "tags": [
+    "dml"
+  ],
+  "statementMd": "Delete all price rows of the `HOME` ticker and the ticker itself, then count the remaining tickers.\n\nExpected columns: `tickers`.\n\nTables: `tickers`, `prices`.\n\nRow order does not matter.",
+  "hints": [
+    "Two `DELETE` statements."
+  ],
+  "solutionMd": "```sql\nDELETE FROM prices WHERE symbol = 'HOME'; DELETE FROM tickers WHERE symbol = 'HOME'; SELECT COUNT(*) AS tickers FROM tickers;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: tickers, prices\nSELECT\n",
+  "datasetId": "stocks",
+  "expected": {
+    "query": "DELETE FROM prices WHERE symbol = 'HOME'; DELETE FROM tickers WHERE symbol = 'HOME'; SELECT COUNT(*) AS tickers FROM tickers;",
+    "orderMatters": false
+  },
+  "order": 371
+}

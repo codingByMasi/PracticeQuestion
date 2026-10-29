@@ -1,0 +1,76 @@
+{
+  "slug": "days-in-month",
+  "track": "python",
+  "title": "Days in month",
+  "difficulty": "Easy",
+  "tags": [
+    "conditionals"
+  ],
+  "statementMd": "Return the number of days in `month` (1-12) of `year`, handling leap years.\n\n**Example:** `days_in_month(2024, 2)` returns `29`.",
+  "hints": [
+    "February has 29 days in leap years."
+  ],
+  "solutionMd": "```python\ndef days_in_month(year, month):\n    if month == 2:\n        leap = year % 4 == 0 and (year % 100 != 0 or year % 400 == 0)\n        return 29 if leap else 28\n    return 30 if month in (4, 6, 9, 11) else 31\n```\n\nOnly February depends on the year.",
+  "starterCode": "def days_in_month(year, month):\n    # Write your code here\n    pass\n",
+  "functionName": "days_in_month",
+  "referenceSolution": "def days_in_month(year, month):\n    if month == 2:\n        leap = year % 4 == 0 and (year % 100 != 0 or year % 400 == 0)\n        return 29 if leap else 28\n    return 30 if month in (4, 6, 9, 11) else 31\n",
+  "tests": [
+    {
+      "args": [
+        2024,
+        2
+      ],
+      "expected": 29,
+      "hidden": false
+    },
+    {
+      "args": [
+        2023,
+        2
+      ],
+      "expected": 28,
+      "hidden": false
+    },
+    {
+      "args": [
+        2023,
+        1
+      ],
+      "expected": 31,
+      "hidden": true
+    },
+    {
+      "args": [
+        2023,
+        4
+      ],
+      "expected": 30,
+      "hidden": true
+    },
+    {
+      "args": [
+        1900,
+        2
+      ],
+      "expected": 28,
+      "hidden": true
+    },
+    {
+      "args": [
+        2000,
+        2
+      ],
+      "expected": 29,
+      "hidden": true
+    },
+    {
+      "args": [
+        2023,
+        12
+      ],
+      "expected": 31,
+      "hidden": true
+    }
+  ],
+  "order": 15
+}

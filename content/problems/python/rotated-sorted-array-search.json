@@ -1,0 +1,103 @@
+{
+  "slug": "rotated-sorted-array-search",
+  "track": "python",
+  "title": "Rotated sorted array search",
+  "difficulty": "Hard",
+  "tags": [
+    "searching"
+  ],
+  "statementMd": "A sorted array of distinct integers was rotated at an unknown pivot. Return the index of `target` or `-1`, in O(log n).\n\n**Example:** `search_rotated([4, 5, 6, 7, 0, 1, 2], 0)` returns `4`.",
+  "hints": [
+    "One half is always sorted; decide which side holds the target."
+  ],
+  "solutionMd": "```python\ndef search_rotated(nums, target):\n    lo, hi = 0, len(nums) - 1\n    while lo <= hi:\n        mid = (lo + hi) // 2\n        if nums[mid] == target:\n            return mid\n        if nums[lo] <= nums[mid]:\n            if nums[lo] <= target < nums[mid]:\n                hi = mid - 1\n            else:\n                lo = mid + 1\n        else:\n            if nums[mid] < target <= nums[hi]:\n                lo = mid + 1\n            else:\n                hi = mid - 1\n    return -1\n```\n\nCheck which half is sorted, then test whether target lies in it.",
+  "starterCode": "def search_rotated(nums, target):\n    # Write your code here\n    pass\n",
+  "functionName": "search_rotated",
+  "referenceSolution": "def search_rotated(nums, target):\n    lo, hi = 0, len(nums) - 1\n    while lo <= hi:\n        mid = (lo + hi) // 2\n        if nums[mid] == target:\n            return mid\n        if nums[lo] <= nums[mid]:\n            if nums[lo] <= target < nums[mid]:\n                hi = mid - 1\n            else:\n                lo = mid + 1\n        else:\n            if nums[mid] < target <= nums[hi]:\n                lo = mid + 1\n            else:\n                hi = mid - 1\n    return -1\n",
+  "tests": [
+    {
+      "args": [
+        [
+          4,
+          5,
+          6,
+          7,
+          0,
+          1,
+          2
+        ],
+        0
+      ],
+      "expected": 4,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          4,
+          5,
+          6,
+          7,
+          0,
+          1,
+          2
+        ],
+        3
+      ],
+      "expected": -1,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          1
+        ],
+        1
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1
+        ],
+        0
+      ],
+      "expected": -1,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          3,
+          1
+        ],
+        1
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          5,
+          1,
+          3
+        ],
+        5
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [],
+        1
+      ],
+      "expected": -1,
+      "hidden": true
+    }
+  ],
+  "order": 392
+}

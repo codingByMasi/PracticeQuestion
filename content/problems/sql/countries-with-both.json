@@ -1,0 +1,21 @@
+{
+  "slug": "countries-with-both",
+  "track": "sql",
+  "title": "Countries with both",
+  "difficulty": "Medium",
+  "tags": [
+    "set-ops"
+  ],
+  "statementMd": "List countries that have both an airline and an airport.\n\nExpected columns: `country`.\n\nTables: `airlines`, `airports`, `flights`, `bookings`.\n\nRow order does not matter.",
+  "hints": [
+    "`INTERSECT`."
+  ],
+  "solutionMd": "```sql\nSELECT country FROM airlines INTERSECT SELECT country FROM airports;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: airlines, airports, flights, bookings\nSELECT\n",
+  "datasetId": "flights",
+  "expected": {
+    "query": "SELECT country FROM airlines INTERSECT SELECT country FROM airports;",
+    "orderMatters": false
+  },
+  "order": 332
+}

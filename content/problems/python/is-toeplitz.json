@@ -1,0 +1,99 @@
+{
+  "slug": "is-toeplitz",
+  "track": "python",
+  "title": "Is Toeplitz",
+  "difficulty": "Easy",
+  "tags": [
+    "matrix"
+  ],
+  "statementMd": "A matrix is Toeplitz if every diagonal (top-left to bottom-right) has the same value. Return whether it is.\n\n**Example:** `is_toeplitz([[1, 2, 3], [4, 1, 2], [7, 4, 1]])` returns `true`.",
+  "hints": [
+    "Compare each cell with its upper-left neighbour."
+  ],
+  "solutionMd": "```python\ndef is_toeplitz(m):\n    return all(m[r][c] == m[r - 1][c - 1] for r in range(1, len(m)) for c in range(1, len(m[0])))\n```\n\nA one-line check.",
+  "starterCode": "def is_toeplitz(m):\n    # Write your code here\n    pass\n",
+  "functionName": "is_toeplitz",
+  "referenceSolution": "def is_toeplitz(m):\n    return all(m[r][c] == m[r - 1][c - 1] for r in range(1, len(m)) for c in range(1, len(m[0])))\n",
+  "tests": [
+    {
+      "args": [
+        [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            4,
+            1,
+            2
+          ],
+          [
+            7,
+            4,
+            1
+          ]
+        ]
+      ],
+      "expected": true,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      ],
+      "expected": false,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            1
+          ]
+        ]
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            1,
+            2,
+            3
+          ]
+        ]
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            5,
+            6
+          ],
+          [
+            7,
+            5
+          ]
+        ]
+      ],
+      "expected": true,
+      "hidden": true
+    }
+  ],
+  "order": 132
+}

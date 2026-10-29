@@ -1,0 +1,21 @@
+{
+  "slug": "courses-per-department",
+  "track": "sql",
+  "title": "Courses per department",
+  "difficulty": "Easy",
+  "tags": [
+    "group-by"
+  ],
+  "statementMd": "How many courses does each department offer, and how many credits in total?\n\nExpected columns: `department`, `courses`, `credits`.\n\nTables: `teachers`, `courses`, `students`, `enrollments`.\n\nRow order does not matter.",
+  "hints": [
+    "Two aggregates."
+  ],
+  "solutionMd": "```sql\nSELECT department, COUNT(*) AS courses, SUM(credits) AS credits FROM courses GROUP BY department;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: teachers, courses, students, enrollments\nSELECT\n",
+  "datasetId": "school",
+  "expected": {
+    "query": "SELECT department, COUNT(*) AS courses, SUM(credits) AS credits FROM courses GROUP BY department;",
+    "orderMatters": false
+  },
+  "order": 143
+}

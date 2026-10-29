@@ -1,0 +1,21 @@
+{
+  "slug": "age-of-students",
+  "track": "sql",
+  "title": "Age of students",
+  "difficulty": "Medium",
+  "tags": [
+    "dates"
+  ],
+  "statementMd": "Show each student's age in whole years as of 2024-09-01. List the five oldest (ties by name).\n\nExpected columns: `name`, `age`.\n\nTables: `teachers`, `courses`, `students`, `enrollments`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Days difference / 365.25."
+  ],
+  "solutionMd": "```sql\nSELECT name, CAST((julianday('2024-09-01') - julianday(birth_date)) / 365.25 AS INTEGER) AS age FROM students ORDER BY age DESC, name LIMIT 5;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: teachers, courses, students, enrollments\nSELECT\n",
+  "datasetId": "school",
+  "expected": {
+    "query": "SELECT name, CAST((julianday('2024-09-01') - julianday(birth_date)) / 365.25 AS INTEGER) AS age FROM students ORDER BY age DESC, name LIMIT 5;",
+    "orderMatters": true
+  },
+  "order": 204
+}

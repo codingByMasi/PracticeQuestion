@@ -1,0 +1,62 @@
+{
+  "slug": "count-primes-below-n",
+  "track": "python",
+  "title": "Count primes below n",
+  "difficulty": "Medium",
+  "tags": [
+    "number-theory"
+  ],
+  "statementMd": "Return the number of primes strictly less than `n`.\n\n**Example:** `count_primes_below(10)` returns `4`.",
+  "hints": [
+    "Use a sieve."
+  ],
+  "solutionMd": "```python\ndef count_primes_below(n):\n    if n < 3:\n        return 0\n    sieve = [True] * n\n    sieve[0] = sieve[1] = False\n    for i in range(2, int(n ** 0.5) + 1):\n        if sieve[i]:\n            sieve[i * i::i] = [False] * len(range(i * i, n, i))\n    return sum(sieve)\n```\n\nSlice assignment clears multiples quickly.",
+  "starterCode": "def count_primes_below(n):\n    # Write your code here\n    pass\n",
+  "functionName": "count_primes_below",
+  "referenceSolution": "def count_primes_below(n):\n    if n < 3:\n        return 0\n    sieve = [True] * n\n    sieve[0] = sieve[1] = False\n    for i in range(2, int(n ** 0.5) + 1):\n        if sieve[i]:\n            sieve[i * i::i] = [False] * len(range(i * i, n, i))\n    return sum(sieve)\n",
+  "tests": [
+    {
+      "args": [
+        10
+      ],
+      "expected": 4,
+      "hidden": false
+    },
+    {
+      "args": [
+        2
+      ],
+      "expected": 0,
+      "hidden": false
+    },
+    {
+      "args": [
+        0
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        3
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        100
+      ],
+      "expected": 25,
+      "hidden": true
+    },
+    {
+      "args": [
+        1000
+      ],
+      "expected": 168,
+      "hidden": true
+    }
+  ],
+  "order": 286
+}

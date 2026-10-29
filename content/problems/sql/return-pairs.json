@@ -1,0 +1,21 @@
+{
+  "slug": "return-pairs",
+  "track": "sql",
+  "title": "Return pairs",
+  "difficulty": "Hard",
+  "tags": [
+    "self-join"
+  ],
+  "statementMd": "Find city pairs that have flights in both directions. List each pair once as (origin, destination) with origin alphabetically smaller.\n\nExpected columns: `city_a`, `city_b`.\n\nTables: `airlines`, `airports`, `flights`, `bookings`.\n\nRow order does not matter.",
+  "hints": [
+    "Self-join flights where origin/destination are swapped; use `DISTINCT`."
+  ],
+  "solutionMd": "```sql\nSELECT DISTINCT a.origin AS city_a, a.destination AS city_b FROM flights a JOIN flights b ON a.origin = b.destination AND a.destination = b.origin WHERE a.origin < a.destination;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: airlines, airports, flights, bookings\nSELECT\n",
+  "datasetId": "flights",
+  "expected": {
+    "query": "SELECT DISTINCT a.origin AS city_a, a.destination AS city_b FROM flights a JOIN flights b ON a.origin = b.destination AND a.destination = b.origin WHERE a.origin < a.destination;",
+    "orderMatters": false
+  },
+  "order": 385
+}

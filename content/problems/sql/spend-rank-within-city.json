@@ -1,0 +1,21 @@
+{
+  "slug": "spend-rank-within-city",
+  "track": "sql",
+  "title": "Spend rank within city",
+  "difficulty": "Hard",
+  "tags": [
+    "ranking"
+  ],
+  "statementMd": "Rank customers within their city by total purchase spending (1 = highest spender) using `RANK()`. Show city, rank, name and spend rounded to 2 decimals. Keep ranks 1 and 2, ordered by city, rank, name.\n\nExpected columns: `city`, `rk`, `name`, `spent`.\n\nTables: `customers`, `accounts`, `transactions`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Totals per customer, then rank by city."
+  ],
+  "solutionMd": "```sql\nWITH s AS (SELECT c.city, c.name, -SUM(t.amount) AS spent FROM transactions t JOIN accounts a ON a.id = t.account_id JOIN customers c ON c.id = a.customer_id WHERE t.kind = 'purchase' GROUP BY c.id), r AS (SELECT *, RANK() OVER (PARTITION BY city ORDER BY spent DESC) AS rk FROM s) SELECT city, rk, name, ROUND(spent, 2) AS spent FROM r WHERE rk <= 2 ORDER BY city, rk, name;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, accounts, transactions\nSELECT\n",
+  "datasetId": "bank",
+  "expected": {
+    "query": "WITH s AS (SELECT c.city, c.name, -SUM(t.amount) AS spent FROM transactions t JOIN accounts a ON a.id = t.account_id JOIN customers c ON c.id = a.customer_id WHERE t.kind = 'purchase' GROUP BY c.id), r AS (SELECT *, RANK() OVER (PARTITION BY city ORDER BY spent DESC) AS rk FROM s) SELECT city, rk, name, ROUND(spent, 2) AS spent FROM r WHERE rk <= 2 ORDER BY city, rk, name;",
+    "orderMatters": true
+  },
+  "order": 444
+}

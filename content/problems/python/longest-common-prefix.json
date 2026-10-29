@@ -1,0 +1,81 @@
+{
+  "slug": "longest-common-prefix",
+  "track": "python",
+  "title": "Longest common prefix",
+  "difficulty": "Medium",
+  "tags": [
+    "strings"
+  ],
+  "statementMd": "Return the longest string that is a prefix of every string in the non-empty list `words` (`\"\"` if none).\n\n**Example:** `longest_common_prefix([\"flower\", \"flow\", \"flight\"])` returns `\"fl\"`.",
+  "hints": [
+    "Shrink the first word until all start with it."
+  ],
+  "solutionMd": "```python\ndef longest_common_prefix(words):\n    prefix = words[0]\n    for w in words[1:]:\n        while not w.startswith(prefix):\n            prefix = prefix[:-1]\n    return prefix\n```\n\nThe empty string is a prefix of everything, so the loop ends.",
+  "starterCode": "def longest_common_prefix(words):\n    # Write your code here\n    pass\n",
+  "functionName": "longest_common_prefix",
+  "referenceSolution": "def longest_common_prefix(words):\n    prefix = words[0]\n    for w in words[1:]:\n        while not w.startswith(prefix):\n            prefix = prefix[:-1]\n    return prefix\n",
+  "tests": [
+    {
+      "args": [
+        [
+          "flower",
+          "flow",
+          "flight"
+        ]
+      ],
+      "expected": "fl",
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          "dog",
+          "car"
+        ]
+      ],
+      "expected": "",
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          "a"
+        ]
+      ],
+      "expected": "a",
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          "same",
+          "same"
+        ]
+      ],
+      "expected": "same",
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          "ab",
+          "abc",
+          "abcd"
+        ]
+      ],
+      "expected": "ab",
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          "",
+          "x"
+        ]
+      ],
+      "expected": "",
+      "hidden": true
+    }
+  ],
+  "order": 183
+}

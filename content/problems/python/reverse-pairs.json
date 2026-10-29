@@ -1,0 +1,84 @@
+{
+  "slug": "reverse-pairs",
+  "track": "python",
+  "title": "Reverse pairs",
+  "difficulty": "Hard",
+  "tags": [
+    "sorting"
+  ],
+  "statementMd": "Count pairs `i < j` with `nums[i] > 2 * nums[j]`.\n\n**Example:** `reverse_pairs([1, 3, 2, 3, 1])` returns `2`.",
+  "hints": [
+    "Merge sort while counting."
+  ],
+  "solutionMd": "```python\ndef reverse_pairs(nums):\n    def sort(a):\n        if len(a) <= 1:\n            return a, 0\n        mid = len(a) // 2\n        l, x = sort(a[:mid])\n        r, y = sort(a[mid:])\n        cnt = x + y\n        j = 0\n        for v in l:\n            while j < len(r) and v > 2 * r[j]:\n                j += 1\n            cnt += j\n        return sorted(l + r), cnt\n    return sort(nums)[1]\n```\n\nCount across the halves before merging.",
+  "starterCode": "def reverse_pairs(nums):\n    # Write your code here\n    pass\n",
+  "functionName": "reverse_pairs",
+  "referenceSolution": "def reverse_pairs(nums):\n    def sort(a):\n        if len(a) <= 1:\n            return a, 0\n        mid = len(a) // 2\n        l, x = sort(a[:mid])\n        r, y = sort(a[mid:])\n        cnt = x + y\n        j = 0\n        for v in l:\n            while j < len(r) and v > 2 * r[j]:\n                j += 1\n            cnt += j\n        return sorted(l + r), cnt\n    return sort(nums)[1]\n",
+  "tests": [
+    {
+      "args": [
+        [
+          1,
+          3,
+          2,
+          3,
+          1
+        ]
+      ],
+      "expected": 2,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          2,
+          4,
+          3,
+          5,
+          1
+        ]
+      ],
+      "expected": 3,
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          5
+        ]
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          -5,
+          -5
+        ]
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          3,
+          1,
+          0,
+          0
+        ]
+      ],
+      "expected": 5,
+      "hidden": true
+    }
+  ],
+  "order": 391
+}

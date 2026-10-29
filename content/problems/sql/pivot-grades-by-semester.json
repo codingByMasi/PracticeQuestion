@@ -1,0 +1,21 @@
+{
+  "slug": "pivot-grades-by-semester",
+  "track": "sql",
+  "title": "Pivot grades by semester",
+  "difficulty": "Hard",
+  "tags": [
+    "pivot"
+  ],
+  "statementMd": "For each department show the average score in `2023-fall` and `2024-spring` as two columns rounded to 1 decimal.\n\nExpected columns: `department`, `fall`, `spring`.\n\nTables: `teachers`, `courses`, `students`, `enrollments`.\n\nRow order does not matter.",
+  "hints": [
+    "Conditional `AVG(CASE WHEN ... THEN score END)`."
+  ],
+  "solutionMd": "```sql\nSELECT c.department, ROUND(AVG(CASE WHEN e.semester = '2023-fall' THEN e.score END), 1) AS fall, ROUND(AVG(CASE WHEN e.semester = '2024-spring' THEN e.score END), 1) AS spring FROM enrollments e JOIN courses c ON c.id = e.course_id GROUP BY c.department;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: teachers, courses, students, enrollments\nSELECT\n",
+  "datasetId": "school",
+  "expected": {
+    "query": "SELECT c.department, ROUND(AVG(CASE WHEN e.semester = '2023-fall' THEN e.score END), 1) AS fall, ROUND(AVG(CASE WHEN e.semester = '2024-spring' THEN e.score END), 1) AS spring FROM enrollments e JOIN courses c ON c.id = e.course_id GROUP BY c.department;",
+    "orderMatters": false
+  },
+  "order": 486
+}

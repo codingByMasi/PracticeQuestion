@@ -1,0 +1,21 @@
+{
+  "slug": "directors-with-a-perfect-ten",
+  "track": "sql",
+  "title": "Directors with a perfect ten",
+  "difficulty": "Medium",
+  "tags": [
+    "exists"
+  ],
+  "statementMd": "List directors who have at least one movie that received a rating of 10.\n\nExpected columns: `name`.\n\nTables: `movies`, `directors`, `reviews`.\n\nRow order does not matter.",
+  "hints": [
+    "`EXISTS` over movies and reviews."
+  ],
+  "solutionMd": "```sql\nSELECT d.name FROM directors d WHERE EXISTS (SELECT 1 FROM movies m JOIN reviews r ON r.movie_id = m.id WHERE m.director_id = d.id AND r.rating = 10);\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: movies, directors, reviews\nSELECT\n",
+  "datasetId": "movies",
+  "expected": {
+    "query": "SELECT d.name FROM directors d WHERE EXISTS (SELECT 1 FROM movies m JOIN reviews r ON r.movie_id = m.id WHERE m.director_id = d.id AND r.rating = 10);",
+    "orderMatters": false
+  },
+  "order": 326
+}

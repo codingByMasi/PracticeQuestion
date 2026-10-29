@@ -1,0 +1,21 @@
+{
+  "slug": "closed-accounts",
+  "track": "sql",
+  "title": "Closed accounts",
+  "difficulty": "Easy",
+  "tags": [
+    "where"
+  ],
+  "statementMd": "How many accounts are closed (`closed = 1`)?\n\nExpected columns: `closed_accounts`.\n\nTables: `customers`, `accounts`, `transactions`.\n\nRow order does not matter.",
+  "hints": [
+    "Count rows with `closed = 1`."
+  ],
+  "solutionMd": "```sql\nSELECT COUNT(*) AS closed_accounts FROM accounts WHERE closed = 1;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, accounts, transactions\nSELECT\n",
+  "datasetId": "bank",
+  "expected": {
+    "query": "SELECT COUNT(*) AS closed_accounts FROM accounts WHERE closed = 1;",
+    "orderMatters": false
+  },
+  "order": 16
+}

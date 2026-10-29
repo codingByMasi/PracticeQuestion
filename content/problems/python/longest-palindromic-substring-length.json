@@ -1,0 +1,83 @@
+{
+  "slug": "longest-palindromic-substring-length",
+  "track": "python",
+  "title": "Longest palindromic substring length",
+  "difficulty": "Hard",
+  "tags": [
+    "strings"
+  ],
+  "statementMd": "Return the length of the longest palindromic substring of `s` (`s` non-empty).\n\n**Example:** `longest_palindrome_len(\"babad\")` returns `3`.",
+  "hints": [
+    "Expand around each centre (odd and even)."
+  ],
+  "solutionMd": "```python\ndef longest_palindrome_len(s):\n    best = 1\n    for c in range(len(s)):\n        for l, r in ((c, c), (c, c + 1)):\n            while l >= 0 and r < len(s) and s[l] == s[r]:\n                best = max(best, r - l + 1)\n                l -= 1\n                r += 1\n    return best\n```\n\nExpanding around 2n-1 centres is O(n²).",
+  "starterCode": "def longest_palindrome_len(s):\n    # Write your code here\n    pass\n",
+  "functionName": "longest_palindrome_len",
+  "referenceSolution": "def longest_palindrome_len(s):\n    best = 1\n    for c in range(len(s)):\n        for l, r in ((c, c), (c, c + 1)):\n            while l >= 0 and r < len(s) and s[l] == s[r]:\n                best = max(best, r - l + 1)\n                l -= 1\n                r += 1\n    return best\n",
+  "tests": [
+    {
+      "args": [
+        "babad"
+      ],
+      "expected": 3,
+      "hidden": false
+    },
+    {
+      "args": [
+        "cbbd"
+      ],
+      "expected": 2,
+      "hidden": false
+    },
+    {
+      "args": [
+        "a"
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        "abcd"
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        "forgeeksskeegfor"
+      ],
+      "expected": 10,
+      "hidden": true
+    },
+    {
+      "args": [
+        "aaaa"
+      ],
+      "expected": 4,
+      "hidden": true
+    },
+    {
+      "args": [
+        "bababbaaabaaaaababbb"
+      ],
+      "expected": 9,
+      "hidden": true
+    },
+    {
+      "args": [
+        "aaaababbabab"
+      ],
+      "expected": 8,
+      "hidden": true
+    },
+    {
+      "args": [
+        "aaabbabbbaaaabaabb"
+      ],
+      "expected": 6,
+      "hidden": true
+    }
+  ],
+  "order": 381
+}

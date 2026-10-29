@@ -1,0 +1,21 @@
+{
+  "slug": "books-per-genre",
+  "track": "sql",
+  "title": "Books per genre",
+  "difficulty": "Easy",
+  "tags": [
+    "group-by"
+  ],
+  "statementMd": "Count books per genre.\n\nExpected columns: `genre`, `books`.\n\nTables: `authors`, `books`, `members`, `loans`.\n\nRow order does not matter.",
+  "hints": [
+    "`GROUP BY genre`."
+  ],
+  "solutionMd": "```sql\nSELECT genre, COUNT(*) AS books FROM books GROUP BY genre;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: authors, books, members, loans\nSELECT\n",
+  "datasetId": "library",
+  "expected": {
+    "query": "SELECT genre, COUNT(*) AS books FROM books GROUP BY genre;",
+    "orderMatters": false
+  },
+  "order": 135
+}

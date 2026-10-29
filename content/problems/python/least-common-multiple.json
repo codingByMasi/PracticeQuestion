@@ -1,0 +1,60 @@
+{
+  "slug": "least-common-multiple",
+  "track": "python",
+  "title": "Least common multiple",
+  "difficulty": "Easy",
+  "tags": [
+    "number-theory"
+  ],
+  "statementMd": "Return the least common multiple of two positive integers.\n\n**Example:** `lcm(4, 6)` returns `12`.",
+  "hints": [
+    "`a * b // gcd(a, b)`."
+  ],
+  "solutionMd": "```python\ndef lcm(a, b):\n    x, y = a, b\n    while y:\n        x, y = y, x % y\n    return a * b // x\n```\n\nUse the GCD to avoid searching.",
+  "starterCode": "def lcm(a, b):\n    # Write your code here\n    pass\n",
+  "functionName": "lcm",
+  "referenceSolution": "def lcm(a, b):\n    x, y = a, b\n    while y:\n        x, y = y, x % y\n    return a * b // x\n",
+  "tests": [
+    {
+      "args": [
+        4,
+        6
+      ],
+      "expected": 12,
+      "hidden": false
+    },
+    {
+      "args": [
+        3,
+        5
+      ],
+      "expected": 15,
+      "hidden": false
+    },
+    {
+      "args": [
+        1,
+        9
+      ],
+      "expected": 9,
+      "hidden": true
+    },
+    {
+      "args": [
+        12,
+        18
+      ],
+      "expected": 36,
+      "hidden": true
+    },
+    {
+      "args": [
+        21,
+        6
+      ],
+      "expected": 42,
+      "hidden": true
+    }
+  ],
+  "order": 142
+}

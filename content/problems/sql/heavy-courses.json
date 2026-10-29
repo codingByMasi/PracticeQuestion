@@ -1,0 +1,21 @@
+{
+  "slug": "heavy-courses",
+  "track": "sql",
+  "title": "Heavy courses",
+  "difficulty": "Easy",
+  "tags": [
+    "where"
+  ],
+  "statementMd": "List courses worth 4 credits.\n\nExpected columns: `title`, `department`.\n\nTables: `teachers`, `courses`, `students`, `enrollments`.\n\nRow order does not matter.",
+  "hints": [
+    "`credits = 4`."
+  ],
+  "solutionMd": "```sql\nSELECT title, department FROM courses WHERE credits = 4;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: teachers, courses, students, enrollments\nSELECT\n",
+  "datasetId": "school",
+  "expected": {
+    "query": "SELECT title, department FROM courses WHERE credits = 4;",
+    "orderMatters": false
+  },
+  "order": 46
+}

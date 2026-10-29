@@ -1,0 +1,21 @@
+{
+  "slug": "average-score-per-course",
+  "track": "sql",
+  "title": "Average score per course",
+  "difficulty": "Medium",
+  "tags": [
+    "join"
+  ],
+  "statementMd": "For each course with graded enrollments show its title and average score rounded to 1 decimal. Highest first (ties by title).\n\nExpected columns: `title`, `avg_score`.\n\nTables: `teachers`, `courses`, `students`, `enrollments`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Join and group."
+  ],
+  "solutionMd": "```sql\nSELECT c.title, ROUND(AVG(e.score), 1) AS avg_score FROM enrollments e JOIN courses c ON c.id = e.course_id GROUP BY c.id, c.title ORDER BY avg_score DESC, c.title;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: teachers, courses, students, enrollments\nSELECT\n",
+  "datasetId": "school",
+  "expected": {
+    "query": "SELECT c.title, ROUND(AVG(e.score), 1) AS avg_score FROM enrollments e JOIN courses c ON c.id = e.course_id GROUP BY c.id, c.title ORDER BY avg_score DESC, c.title;",
+    "orderMatters": true
+  },
+  "order": 272
+}

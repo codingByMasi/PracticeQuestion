@@ -1,0 +1,146 @@
+{
+  "slug": "k-closest-points",
+  "track": "python",
+  "title": "K closest points",
+  "difficulty": "Medium",
+  "tags": [
+    "heaps"
+  ],
+  "statementMd": "Return the `k` points closest to the origin (Euclidean), sorted by distance then by x then y. Distances are unique enough that ties are broken by (x, y).\n\n**Example:** `k_closest([[1, 3], [-2, 2]], 1)` returns `[[-2, 2]]`.",
+  "hints": [
+    "Sort by squared distance."
+  ],
+  "solutionMd": "```python\ndef k_closest(points, k):\n    return sorted(points, key=lambda p: (p[0] ** 2 + p[1] ** 2, p[0], p[1]))[:k]\n```\n\nCompare squared distances to avoid roots.",
+  "starterCode": "def k_closest(points, k):\n    # Write your code here\n    pass\n",
+  "functionName": "k_closest",
+  "referenceSolution": "def k_closest(points, k):\n    return sorted(points, key=lambda p: (p[0] ** 2 + p[1] ** 2, p[0], p[1]))[:k]\n",
+  "tests": [
+    {
+      "args": [
+        [
+          [
+            1,
+            3
+          ],
+          [
+            -2,
+            2
+          ]
+        ],
+        1
+      ],
+      "expected": [
+        [
+          -2,
+          2
+        ]
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            3,
+            3
+          ],
+          [
+            5,
+            -1
+          ],
+          [
+            -2,
+            4
+          ]
+        ],
+        2
+      ],
+      "expected": [
+        [
+          3,
+          3
+        ],
+        [
+          -2,
+          4
+        ]
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            0,
+            0
+          ]
+        ],
+        1
+      ],
+      "expected": [
+        [
+          0,
+          0
+        ]
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            1,
+            1
+          ],
+          [
+            -1,
+            -1
+          ]
+        ],
+        2
+      ],
+      "expected": [
+        [
+          -1,
+          -1
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            2,
+            0
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        2
+      ],
+      "expected": [
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          2
+        ]
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 365
+}

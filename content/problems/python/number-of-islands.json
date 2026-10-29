@@ -1,0 +1,95 @@
+{
+  "slug": "number-of-islands",
+  "track": "python",
+  "title": "Number of islands",
+  "difficulty": "Medium",
+  "tags": [
+    "graphs"
+  ],
+  "statementMd": "In a grid of `\"1\"` (land) and `\"0\"` (water) strings, count islands: groups of land connected up/down/left/right.\n\n**Example:** `num_islands([[\"1\", \"1\", \"0\"], [\"0\", \"1\", \"0\"], [\"0\", \"0\", \"1\"]])` returns `2`.",
+  "hints": [
+    "Flood fill from each unvisited land cell."
+  ],
+  "solutionMd": "```python\nfrom collections import deque, defaultdict\n\n\ndef num_islands(grid):\n    if not grid:\n        return 0\n    R, C = len(grid), len(grid[0])\n    seen = set()\n    count = 0\n    for r in range(R):\n        for c in range(C):\n            if grid[r][c] == '1' and (r, c) not in seen:\n                count += 1\n                stack = [(r, c)]\n                seen.add((r, c))\n                while stack:\n                    y, x = stack.pop()\n                    for dy, dx in ((1, 0), (-1, 0), (0, 1), (0, -1)):\n                        ny, nx = y + dy, x + dx\n                        if 0 <= ny < R and 0 <= nx < C and grid[ny][nx] == '1' and (ny, nx) not in seen:\n                            seen.add((ny, nx)); stack.append((ny, nx))\n    return count\n```\n\nEach flood fill consumes one island.",
+  "starterCode": "def num_islands(grid):\n    # Write your code here\n    pass\n",
+  "functionName": "num_islands",
+  "referenceSolution": "from collections import deque, defaultdict\n\n\ndef num_islands(grid):\n    if not grid:\n        return 0\n    R, C = len(grid), len(grid[0])\n    seen = set()\n    count = 0\n    for r in range(R):\n        for c in range(C):\n            if grid[r][c] == '1' and (r, c) not in seen:\n                count += 1\n                stack = [(r, c)]\n                seen.add((r, c))\n                while stack:\n                    y, x = stack.pop()\n                    for dy, dx in ((1, 0), (-1, 0), (0, 1), (0, -1)):\n                        ny, nx = y + dy, x + dx\n                        if 0 <= ny < R and 0 <= nx < C and grid[ny][nx] == '1' and (ny, nx) not in seen:\n                            seen.add((ny, nx)); stack.append((ny, nx))\n    return count\n",
+  "tests": [
+    {
+      "args": [
+        [
+          [
+            "1",
+            "1",
+            "0"
+          ],
+          [
+            "0",
+            "1",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1"
+          ]
+        ]
+      ],
+      "expected": 2,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            "0"
+          ]
+        ]
+      ],
+      "expected": 0,
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            "1"
+          ]
+        ]
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            "1",
+            "0",
+            "1"
+          ],
+          [
+            "0",
+            "1",
+            "0"
+          ],
+          [
+            "1",
+            "0",
+            "1"
+          ]
+        ]
+      ],
+      "expected": 5,
+      "hidden": true
+    }
+  ],
+  "order": 344
+}

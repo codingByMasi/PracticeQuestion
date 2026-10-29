@@ -1,0 +1,21 @@
+{
+  "slug": "most-played-artists",
+  "track": "sql",
+  "title": "Most played artists",
+  "difficulty": "Medium",
+  "tags": [
+    "multi-join"
+  ],
+  "statementMd": "Total plays per artist, top 5 (ties by name).\n\nExpected columns: `name`, `plays`.\n\nTables: `artists`, `albums`, `tracks`, `listeners`, `plays`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Join plays to tracks to albums to artists."
+  ],
+  "solutionMd": "```sql\nSELECT ar.name, COUNT(*) AS plays FROM plays p JOIN tracks t ON t.id = p.track_id JOIN albums al ON al.id = t.album_id JOIN artists ar ON ar.id = al.artist_id GROUP BY ar.id, ar.name ORDER BY plays DESC, ar.name LIMIT 5;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: artists, albums, tracks, listeners, plays\nSELECT\n",
+  "datasetId": "music",
+  "expected": {
+    "query": "SELECT ar.name, COUNT(*) AS plays FROM plays p JOIN tracks t ON t.id = p.track_id JOIN albums al ON al.id = t.album_id JOIN artists ar ON ar.id = al.artist_id GROUP BY ar.id, ar.name ORDER BY plays DESC, ar.name LIMIT 5;",
+    "orderMatters": true
+  },
+  "order": 304
+}

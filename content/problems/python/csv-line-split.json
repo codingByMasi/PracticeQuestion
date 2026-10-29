@@ -1,0 +1,81 @@
+{
+  "slug": "csv-line-split",
+  "track": "python",
+  "title": "CSV line split",
+  "difficulty": "Hard",
+  "tags": [
+    "parsing"
+  ],
+  "statementMd": "Split one CSV line into fields: commas separate fields, fields may be wrapped in double quotes (then they may contain commas, and `\"\"` inside quotes is one literal quote). Return the list of field strings.\n\n**Example:** `split_csv(\"a,b,c\")` returns `[\"a\", \"b\", \"c\"]`.",
+  "hints": [
+    "Walk the characters with an `in_quotes` flag."
+  ],
+  "solutionMd": "```python\ndef split_csv(line):\n    fields, cur, in_q, i = [], [], False, 0\n    while i < len(line):\n        c = line[i]\n        if in_q:\n            if c == '\"':\n                if i + 1 < len(line) and line[i + 1] == '\"':\n                    cur.append('\"'); i += 1\n                else:\n                    in_q = False\n            else:\n                cur.append(c)\n        elif c == '\"':\n            in_q = True\n        elif c == ',':\n            fields.append(''.join(cur)); cur = []\n        else:\n            cur.append(c)\n        i += 1\n    fields.append(''.join(cur))\n    return fields\n```\n\nA small state machine handles quotes.",
+  "starterCode": "def split_csv(line):\n    # Write your code here\n    pass\n",
+  "functionName": "split_csv",
+  "referenceSolution": "def split_csv(line):\n    fields, cur, in_q, i = [], [], False, 0\n    while i < len(line):\n        c = line[i]\n        if in_q:\n            if c == '\"':\n                if i + 1 < len(line) and line[i + 1] == '\"':\n                    cur.append('\"'); i += 1\n                else:\n                    in_q = False\n            else:\n                cur.append(c)\n        elif c == '\"':\n            in_q = True\n        elif c == ',':\n            fields.append(''.join(cur)); cur = []\n        else:\n            cur.append(c)\n        i += 1\n    fields.append(''.join(cur))\n    return fields\n",
+  "tests": [
+    {
+      "args": [
+        "a,b,c"
+      ],
+      "expected": [
+        "a",
+        "b",
+        "c"
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        "x,\"y,z\",w"
+      ],
+      "expected": [
+        "x",
+        "y,z",
+        "w"
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        ""
+      ],
+      "expected": [
+        ""
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        "\"say \"\"hi\"\"\",2"
+      ],
+      "expected": [
+        "say \"hi\"",
+        "2"
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        ",,"
+      ],
+      "expected": [
+        "",
+        "",
+        ""
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        "\"a\""
+      ],
+      "expected": [
+        "a"
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 429
+}

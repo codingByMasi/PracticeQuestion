@@ -1,0 +1,21 @@
+{
+  "slug": "class-rank-within-grade-level",
+  "track": "sql",
+  "title": "Class rank within grade level",
+  "difficulty": "Hard",
+  "tags": [
+    "ranking"
+  ],
+  "statementMd": "Rank students within their grade level by average score (1 = best) using `RANK()`. Show grade level, rank, name and average rounded to 1 decimal. Keep ranks 1 to 3, ordered by grade level, rank, name.\n\nExpected columns: `grade_level`, `rk`, `name`, `avg_score`.\n\nTables: `teachers`, `courses`, `students`, `enrollments`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Average per student, then `RANK() OVER (PARTITION BY grade_level ...)`."
+  ],
+  "solutionMd": "```sql\nWITH a AS (SELECT s.grade_level, s.name, AVG(e.score) AS avg_score FROM students s JOIN enrollments e ON e.student_id = s.id GROUP BY s.id), r AS (SELECT *, RANK() OVER (PARTITION BY grade_level ORDER BY avg_score DESC) AS rk FROM a) SELECT grade_level, rk, name, ROUND(avg_score, 1) AS avg_score FROM r WHERE rk <= 3 ORDER BY grade_level, rk, name;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: teachers, courses, students, enrollments\nSELECT\n",
+  "datasetId": "school",
+  "expected": {
+    "query": "WITH a AS (SELECT s.grade_level, s.name, AVG(e.score) AS avg_score FROM students s JOIN enrollments e ON e.student_id = s.id GROUP BY s.id), r AS (SELECT *, RANK() OVER (PARTITION BY grade_level ORDER BY avg_score DESC) AS rk FROM a) SELECT grade_level, rk, name, ROUND(avg_score, 1) AS avg_score FROM r WHERE rk <= 3 ORDER BY grade_level, rk, name;",
+    "orderMatters": true
+  },
+  "order": 460
+}

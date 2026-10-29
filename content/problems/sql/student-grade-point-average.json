@@ -1,0 +1,21 @@
+{
+  "slug": "student-grade-point-average",
+  "track": "sql",
+  "title": "Student grade point average",
+  "difficulty": "Medium",
+  "tags": [
+    "join"
+  ],
+  "statementMd": "Compute each student's average score (graded enrollments), rounded to 1 decimal. Show the top five students; break ties by name.\n\nExpected columns: `name`, `avg_score`.\n\nTables: `teachers`, `courses`, `students`, `enrollments`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Group by student."
+  ],
+  "solutionMd": "```sql\nSELECT s.name, ROUND(AVG(e.score), 1) AS avg_score FROM students s JOIN enrollments e ON e.student_id = s.id GROUP BY s.id, s.name ORDER BY avg_score DESC, s.name LIMIT 5;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: teachers, courses, students, enrollments\nSELECT\n",
+  "datasetId": "school",
+  "expected": {
+    "query": "SELECT s.name, ROUND(AVG(e.score), 1) AS avg_score FROM students s JOIN enrollments e ON e.student_id = s.id GROUP BY s.id, s.name ORDER BY avg_score DESC, s.name LIMIT 5;",
+    "orderMatters": true
+  },
+  "order": 274
+}

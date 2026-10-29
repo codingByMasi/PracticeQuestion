@@ -1,0 +1,99 @@
+{
+  "slug": "group-by-length",
+  "track": "python",
+  "title": "Group by length",
+  "difficulty": "Medium",
+  "tags": [
+    "dicts"
+  ],
+  "statementMd": "Group words by their length: return a dict whose keys are the lengths as strings and values are lists of words in input order.\n\n**Example:** `group_by_length([\"a\", \"bb\", \"c\", \"dd\"])` returns `{\"1\": [\"a\", \"c\"], \"2\": [\"bb\", \"dd\"]}`.",
+  "hints": [
+    "Use `str(len(w))` as the key."
+  ],
+  "solutionMd": "```python\ndef group_by_length(words):\n    groups = {}\n    for w in words:\n        groups.setdefault(str(len(w)), []).append(w)\n    return groups\n```\n\nJSON keys must be strings, hence `str(len(w))`.",
+  "starterCode": "def group_by_length(words):\n    # Write your code here\n    pass\n",
+  "functionName": "group_by_length",
+  "referenceSolution": "def group_by_length(words):\n    groups = {}\n    for w in words:\n        groups.setdefault(str(len(w)), []).append(w)\n    return groups\n",
+  "tests": [
+    {
+      "args": [
+        [
+          "a",
+          "bb",
+          "c",
+          "dd"
+        ]
+      ],
+      "expected": {
+        "1": [
+          "a",
+          "c"
+        ],
+        "2": [
+          "bb",
+          "dd"
+        ]
+      },
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": {},
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          "hello"
+        ]
+      ],
+      "expected": {
+        "5": [
+          "hello"
+        ]
+      },
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          "ab",
+          "cd",
+          "ef"
+        ]
+      ],
+      "expected": {
+        "2": [
+          "ab",
+          "cd",
+          "ef"
+        ]
+      },
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          "a",
+          "bcd",
+          "e",
+          "fgh"
+        ]
+      ],
+      "expected": {
+        "1": [
+          "a",
+          "e"
+        ],
+        "3": [
+          "bcd",
+          "fgh"
+        ]
+      },
+      "hidden": true
+    }
+  ],
+  "order": 212
+}

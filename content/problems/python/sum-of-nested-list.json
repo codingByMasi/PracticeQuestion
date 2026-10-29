@@ -1,0 +1,81 @@
+{
+  "slug": "sum-of-nested-list",
+  "track": "python",
+  "title": "Sum of nested list",
+  "difficulty": "Medium",
+  "tags": [
+    "recursion"
+  ],
+  "statementMd": "`data` is a list that may contain integers and further (arbitrarily deep) lists. Return the sum of all integers.\n\n**Example:** `nested_sum([1, [2, [3]]])` returns `6`.",
+  "hints": [
+    "Recurse on lists."
+  ],
+  "solutionMd": "```python\ndef nested_sum(data):\n    total = 0\n    for x in data:\n        total += nested_sum(x) if isinstance(x, list) else x\n    return total\n```\n\nType-check each element.",
+  "starterCode": "def nested_sum(data):\n    # Write your code here\n    pass\n",
+  "functionName": "nested_sum",
+  "referenceSolution": "def nested_sum(data):\n    total = 0\n    for x in data:\n        total += nested_sum(x) if isinstance(x, list) else x\n    return total\n",
+  "tests": [
+    {
+      "args": [
+        [
+          1,
+          [
+            2,
+            [
+              3
+            ]
+          ]
+        ]
+      ],
+      "expected": 6,
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": 0,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            []
+          ]
+        ]
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          5
+        ]
+      ],
+      "expected": 5,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            [
+              4,
+              5
+            ]
+          ]
+        ]
+      ],
+      "expected": 15,
+      "hidden": true
+    }
+  ],
+  "order": 246
+}

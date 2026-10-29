@@ -1,0 +1,55 @@
+{
+  "slug": "camel-to-snake",
+  "track": "python",
+  "title": "Camel to snake",
+  "difficulty": "Medium",
+  "tags": [
+    "strings"
+  ],
+  "statementMd": "Convert `camelCase` to `snake_case`: insert `_` before each uppercase letter and lowercase everything.\n\n**Example:** `camel_to_snake(\"helloWorld\")` returns `\"hello_world\"`.",
+  "hints": [
+    "Handle each uppercase letter separately."
+  ],
+  "solutionMd": "```python\ndef camel_to_snake(s):\n    out = []\n    for c in s:\n        if c.isupper():\n            out.append('_')\n            out.append(c.lower())\n        else:\n            out.append(c)\n    return ''.join(out)\n```\n\nAssumes input starts with a lowercase letter.",
+  "starterCode": "def camel_to_snake(s):\n    # Write your code here\n    pass\n",
+  "functionName": "camel_to_snake",
+  "referenceSolution": "def camel_to_snake(s):\n    out = []\n    for c in s:\n        if c.isupper():\n            out.append('_')\n            out.append(c.lower())\n        else:\n            out.append(c)\n    return ''.join(out)\n",
+  "tests": [
+    {
+      "args": [
+        "helloWorld"
+      ],
+      "expected": "hello_world",
+      "hidden": false
+    },
+    {
+      "args": [
+        "a"
+      ],
+      "expected": "a",
+      "hidden": false
+    },
+    {
+      "args": [
+        "makeItWorkNow"
+      ],
+      "expected": "make_it_work_now",
+      "hidden": true
+    },
+    {
+      "args": [
+        "simple"
+      ],
+      "expected": "simple",
+      "hidden": true
+    },
+    {
+      "args": [
+        "xY"
+      ],
+      "expected": "x_y",
+      "hidden": true
+    }
+  ],
+  "order": 186
+}

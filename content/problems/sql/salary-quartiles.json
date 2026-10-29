@@ -1,0 +1,21 @@
+{
+  "slug": "salary-quartiles",
+  "track": "sql",
+  "title": "Salary quartiles",
+  "difficulty": "Hard",
+  "tags": [
+    "window-functions"
+  ],
+  "statementMd": "Split employees into four salary quartiles with `NTILE(4)` (1 = lowest paid). Show first name, salary and quartile.\n\nExpected columns: `first_name`, `salary`, `quartile`.\n\nTables: `employees`, `departments`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "`NTILE(4) OVER (ORDER BY salary)`."
+  ],
+  "solutionMd": "```sql\nSELECT first_name, salary, NTILE(4) OVER (ORDER BY salary) AS quartile FROM employees ORDER BY salary;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "SELECT first_name, salary, NTILE(4) OVER (ORDER BY salary) AS quartile FROM employees ORDER BY salary;",
+    "orderMatters": true
+  },
+  "order": 411
+}

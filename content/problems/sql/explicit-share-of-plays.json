@@ -1,0 +1,21 @@
+{
+  "slug": "explicit-share-of-plays",
+  "track": "sql",
+  "title": "Explicit share of plays",
+  "difficulty": "Medium",
+  "tags": [
+    "aggregate"
+  ],
+  "statementMd": "What percentage of all plays were of explicit tracks (rounded to 1 decimal)?\n\nExpected columns: `explicit_pct`.\n\nTables: `artists`, `albums`, `tracks`, `listeners`, `plays`.\n\nRow order does not matter.",
+  "hints": [
+    "Join and average a flag."
+  ],
+  "solutionMd": "```sql\nSELECT ROUND(100.0 * SUM(t.explicit) / COUNT(*), 1) AS explicit_pct FROM plays p JOIN tracks t ON t.id = p.track_id;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: artists, albums, tracks, listeners, plays\nSELECT\n",
+  "datasetId": "music",
+  "expected": {
+    "query": "SELECT ROUND(100.0 * SUM(t.explicit) / COUNT(*), 1) AS explicit_pct FROM plays p JOIN tracks t ON t.id = p.track_id;",
+    "orderMatters": false
+  },
+  "order": 217
+}

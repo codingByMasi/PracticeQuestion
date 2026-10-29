@@ -1,0 +1,21 @@
+{
+  "slug": "album-running-time",
+  "track": "sql",
+  "title": "Album running time",
+  "difficulty": "Medium",
+  "tags": [
+    "aggregate"
+  ],
+  "statementMd": "For each album show total running time in minutes (rounded to 1 decimal). List the 5 longest, ties by title.\n\nExpected columns: `title`, `minutes`.\n\nTables: `artists`, `albums`, `tracks`, `listeners`, `plays`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "`SUM(seconds) / 60.0`."
+  ],
+  "solutionMd": "```sql\nSELECT al.title, ROUND(SUM(t.seconds) / 60.0, 1) AS minutes FROM tracks t JOIN albums al ON al.id = t.album_id GROUP BY al.id, al.title ORDER BY minutes DESC, al.title LIMIT 5;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: artists, albums, tracks, listeners, plays\nSELECT\n",
+  "datasetId": "music",
+  "expected": {
+    "query": "SELECT al.title, ROUND(SUM(t.seconds) / 60.0, 1) AS minutes FROM tracks t JOIN albums al ON al.id = t.album_id GROUP BY al.id, al.title ORDER BY minutes DESC, al.title LIMIT 5;",
+    "orderMatters": true
+  },
+  "order": 215
+}

@@ -1,0 +1,21 @@
+{
+  "slug": "cumulative-share-of-spending",
+  "track": "sql",
+  "title": "Cumulative share of spending",
+  "difficulty": "Hard",
+  "tags": [
+    "window-functions"
+  ],
+  "statementMd": "Order merchants by spending (largest first, ties by name) and show the cumulative percentage of total spend after each merchant, rounded to 1 decimal.\n\nExpected columns: `merchant`, `cumulative_pct`.\n\nTables: `customers`, `accounts`, `transactions`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Running sum divided by the grand total."
+  ],
+  "solutionMd": "```sql\nWITH m AS (SELECT merchant, -SUM(amount) AS spent FROM transactions WHERE kind = 'purchase' GROUP BY merchant) SELECT merchant, ROUND(100.0 * SUM(spent) OVER (ORDER BY spent DESC, merchant) / SUM(spent) OVER (), 1) AS cumulative_pct FROM m ORDER BY spent DESC, merchant;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, accounts, transactions\nSELECT\n",
+  "datasetId": "bank",
+  "expected": {
+    "query": "WITH m AS (SELECT merchant, -SUM(amount) AS spent FROM transactions WHERE kind = 'purchase' GROUP BY merchant) SELECT merchant, ROUND(100.0 * SUM(spent) OVER (ORDER BY spent DESC, merchant) / SUM(spent) OVER (), 1) AS cumulative_pct FROM m ORDER BY spent DESC, merchant;",
+    "orderMatters": true
+  },
+  "order": 403
+}

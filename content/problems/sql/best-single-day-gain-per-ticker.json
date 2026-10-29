@@ -1,0 +1,21 @@
+{
+  "slug": "best-single-day-gain-per-ticker",
+  "track": "sql",
+  "title": "Best single-day gain per ticker",
+  "difficulty": "Hard",
+  "tags": [
+    "window-functions"
+  ],
+  "statementMd": "For each ticker find the trading day with the largest close-to-previous-close percentage gain. Show symbol, trade_date, gain_pct (rounded to 2 decimals).\n\nExpected columns: `symbol`, `trade_date`, `gain_pct`.\n\nTables: `tickers`, `prices`.\n\nRow order does not matter.",
+  "hints": [
+    "`LAG(close)` per symbol, then rank gains per symbol."
+  ],
+  "solutionMd": "```sql\nWITH g AS (SELECT symbol, trade_date, 100.0 * (close - LAG(close) OVER (PARTITION BY symbol ORDER BY trade_date)) / LAG(close) OVER (PARTITION BY symbol ORDER BY trade_date) AS gain FROM prices), r AS (SELECT *, ROW_NUMBER() OVER (PARTITION BY symbol ORDER BY gain DESC, trade_date) AS rn FROM g WHERE gain IS NOT NULL) SELECT symbol, trade_date, ROUND(gain, 2) AS gain_pct FROM r WHERE rn = 1;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: tickers, prices\nSELECT\n",
+  "datasetId": "stocks",
+  "expected": {
+    "query": "WITH g AS (SELECT symbol, trade_date, 100.0 * (close - LAG(close) OVER (PARTITION BY symbol ORDER BY trade_date)) / LAG(close) OVER (PARTITION BY symbol ORDER BY trade_date) AS gain FROM prices), r AS (SELECT *, ROW_NUMBER() OVER (PARTITION BY symbol ORDER BY gain DESC, trade_date) AS rn FROM g WHERE gain IS NOT NULL) SELECT symbol, trade_date, ROUND(gain, 2) AS gain_pct FROM r WHERE rn = 1;",
+    "orderMatters": false
+  },
+  "order": 437
+}

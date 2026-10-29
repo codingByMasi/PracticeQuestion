@@ -1,0 +1,201 @@
+{
+  "slug": "skyline-problem",
+  "track": "python",
+  "title": "Skyline problem",
+  "difficulty": "Hard",
+  "tags": [
+    "heaps"
+  ],
+  "statementMd": "Each building is `[left, right, height]`. Return the skyline as key points `[x, height]` where the height changes (the last point has height 0). Buildings are sorted by `left`.\n\n**Example:** `skyline([[2, 9, 10], [3, 7, 15], [5, 12, 12], [15, 20, 10], [19, 24…)` returns `[[2, 10], [3, 15], [7, 12], [12, 0], [15, 10], [20, 8], [24, 0]]`.",
+  "hints": [
+    "Sweep events with a max-heap of active heights."
+  ],
+  "solutionMd": "```python\ndef skyline(buildings):\n    import heapq\n    events = sorted({(l, -h, r) for l, r, h in buildings} | {(r, 0, 0) for _, r, _ in buildings})\n    res = [[0, 0]]\n    live = [(0, float('inf'))]\n    for x, negh, r in events:\n        while live[0][1] <= x:\n            heapq.heappop(live)\n        if negh:\n            heapq.heappush(live, (negh, r))\n        h = -live[0][0]\n        if res[-1][1] != h:\n            res.append([x, h])\n    return res[1:]\n```\n\nHeap lazily discards buildings that ended.",
+  "starterCode": "def skyline(buildings):\n    # Write your code here\n    pass\n",
+  "functionName": "skyline",
+  "referenceSolution": "def skyline(buildings):\n    import heapq\n    events = sorted({(l, -h, r) for l, r, h in buildings} | {(r, 0, 0) for _, r, _ in buildings})\n    res = [[0, 0]]\n    live = [(0, float('inf'))]\n    for x, negh, r in events:\n        while live[0][1] <= x:\n            heapq.heappop(live)\n        if negh:\n            heapq.heappush(live, (negh, r))\n        h = -live[0][0]\n        if res[-1][1] != h:\n            res.append([x, h])\n    return res[1:]\n",
+  "tests": [
+    {
+      "args": [
+        [
+          [
+            2,
+            9,
+            10
+          ],
+          [
+            3,
+            7,
+            15
+          ],
+          [
+            5,
+            12,
+            12
+          ],
+          [
+            15,
+            20,
+            10
+          ],
+          [
+            19,
+            24,
+            8
+          ]
+        ]
+      ],
+      "expected": [
+        [
+          2,
+          10
+        ],
+        [
+          3,
+          15
+        ],
+        [
+          7,
+          12
+        ],
+        [
+          12,
+          0
+        ],
+        [
+          15,
+          10
+        ],
+        [
+          20,
+          8
+        ],
+        [
+          24,
+          0
+        ]
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            0,
+            2,
+            3
+          ],
+          [
+            2,
+            5,
+            3
+          ]
+        ]
+      ],
+      "expected": [
+        [
+          0,
+          3
+        ],
+        [
+          5,
+          0
+        ]
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            1,
+            2,
+            1
+          ]
+        ]
+      ],
+      "expected": [
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          0
+        ]
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            1,
+            5,
+            3
+          ],
+          [
+            2,
+            4,
+            5
+          ]
+        ]
+      ],
+      "expected": [
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          5,
+          0
+        ]
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            0,
+            3,
+            2
+          ],
+          [
+            1,
+            2,
+            4
+          ]
+        ]
+      ],
+      "expected": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          0
+        ]
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 487
+}

@@ -1,0 +1,89 @@
+{
+  "slug": "subset-sums-by-bits",
+  "track": "python",
+  "title": "Subset sums by bits",
+  "difficulty": "Medium",
+  "tags": [
+    "bit-manipulation"
+  ],
+  "statementMd": "Return the sorted list of distinct sums of all subsets of `nums` (including the empty subset).\n\n**Example:** `all_subset_sums([1, 2, 3])` returns `[0, 1, 2, 3, 4, 5, 6]`.",
+  "hints": [
+    "Enumerate masks or grow a set."
+  ],
+  "solutionMd": "```python\ndef all_subset_sums(nums):\n    sums = {0}\n    for x in nums:\n        sums |= {s + x for s in sums}\n    return sorted(sums)\n```\n\nEach new number doubles the options.",
+  "starterCode": "def all_subset_sums(nums):\n    # Write your code here\n    pass\n",
+  "functionName": "all_subset_sums",
+  "referenceSolution": "def all_subset_sums(nums):\n    sums = {0}\n    for x in nums:\n        sums |= {s + x for s in sums}\n    return sorted(sums)\n",
+  "tests": [
+    {
+      "args": [
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "expected": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": [
+        0
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          5
+        ]
+      ],
+      "expected": [
+        0,
+        5
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          1
+        ]
+      ],
+      "expected": [
+        0,
+        1,
+        2
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          -1,
+          2
+        ]
+      ],
+      "expected": [
+        -1,
+        0,
+        1,
+        2
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 281
+}

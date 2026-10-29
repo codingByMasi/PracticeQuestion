@@ -1,0 +1,204 @@
+{
+  "slug": "pacific-atlantic-water-flow",
+  "track": "python",
+  "title": "Pacific Atlantic water flow",
+  "difficulty": "Hard",
+  "tags": [
+    "graphs"
+  ],
+  "statementMd": "Water flows from a cell to 4-adjacent cells with height less than or equal. The Pacific touches the top and left edges, the Atlantic the bottom and right edges. Return the sorted list of `[row, col]` cells from which water can reach both.\n\n**Example:** `pacific_atlantic([[1, 2, 2, 3, 5], [3, 2, 3, 4, 4], [2, 4, 5, 3, 1], [6, 7, …)` returns `[[0, 4], [1, 3], [1, 4], [2, 2], [3, 0], [3, 1], [4, 0]]`.",
+  "hints": [
+    "Reverse search from each ocean's border."
+  ],
+  "solutionMd": "```python\ndef pacific_atlantic(heights):\n    if not heights:\n        return []\n    R, C = len(heights), len(heights[0])\n    def reach(starts):\n        seen = set(starts)\n        stack = list(starts)\n        while stack:\n            r, c = stack.pop()\n            for dr, dc in ((1, 0), (-1, 0), (0, 1), (0, -1)):\n                nr, nc = r + dr, c + dc\n                if 0 <= nr < R and 0 <= nc < C and (nr, nc) not in seen and heights[nr][nc] >= heights[r][c]:\n                    seen.add((nr, nc)); stack.append((nr, nc))\n        return seen\n    pac = reach([(0, c) for c in range(C)] + [(r, 0) for r in range(R)])\n    atl = reach([(R - 1, c) for c in range(C)] + [(r, C - 1) for r in range(R)])\n    return sorted([r, c] for r, c in pac & atl)\n```\n\nClimb uphill from the oceans instead of simulating every cell.",
+  "starterCode": "def pacific_atlantic(heights):\n    # Write your code here\n    pass\n",
+  "functionName": "pacific_atlantic",
+  "referenceSolution": "def pacific_atlantic(heights):\n    if not heights:\n        return []\n    R, C = len(heights), len(heights[0])\n    def reach(starts):\n        seen = set(starts)\n        stack = list(starts)\n        while stack:\n            r, c = stack.pop()\n            for dr, dc in ((1, 0), (-1, 0), (0, 1), (0, -1)):\n                nr, nc = r + dr, c + dc\n                if 0 <= nr < R and 0 <= nc < C and (nr, nc) not in seen and heights[nr][nc] >= heights[r][c]:\n                    seen.add((nr, nc)); stack.append((nr, nc))\n        return seen\n    pac = reach([(0, c) for c in range(C)] + [(r, 0) for r in range(R)])\n    atl = reach([(R - 1, c) for c in range(C)] + [(r, C - 1) for r in range(R)])\n    return sorted([r, c] for r, c in pac & atl)\n",
+  "tests": [
+    {
+      "args": [
+        [
+          [
+            1,
+            2,
+            2,
+            3,
+            5
+          ],
+          [
+            3,
+            2,
+            3,
+            4,
+            4
+          ],
+          [
+            2,
+            4,
+            5,
+            3,
+            1
+          ],
+          [
+            6,
+            7,
+            1,
+            4,
+            5
+          ],
+          [
+            5,
+            1,
+            1,
+            2,
+            4
+          ]
+        ]
+      ],
+      "expected": [
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          4,
+          0
+        ]
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            1
+          ]
+        ]
+      ],
+      "expected": [
+        [
+          0,
+          0
+        ]
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": [],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      ],
+      "expected": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            3,
+            3,
+            3
+          ],
+          [
+            3,
+            1,
+            3
+          ],
+          [
+            0,
+            2,
+            4
+          ]
+        ]
+      ],
+      "expected": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          2
+        ]
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 481
+}

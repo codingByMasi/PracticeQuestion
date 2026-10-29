@@ -1,0 +1,118 @@
+{
+  "slug": "snake-game-steps",
+  "track": "python",
+  "title": "Snake game steps",
+  "difficulty": "Hard",
+  "tags": [
+    "simulation"
+  ],
+  "statementMd": "A snake of length 1 starts at (row 0, col 0) on a `height x width` grid. `food` is a list of `[row, col]` cells appearing one at a time: the next food appears only after the previous is eaten. `moves` is a string of `U D L R`. Return the score (food eaten) after each move, or `-1` for that move and stop when the snake hits a wall or itself (it may move into the cell its tail is leaving).\n\n**Example:** `snake_game(3, 2, [[1, 2], [0, 1]], \"RRDULU\")` returns `[0, 0, 1, 1, 2, -1]`.",
+  "hints": [
+    "Deque for the body plus a set for occupancy."
+  ],
+  "solutionMd": "```python\ndef snake_game(width, height, food, moves):\n    from collections import deque\n    body = deque([(0, 0)])\n    occ = {(0, 0)}\n    score = 0\n    out = []\n    d = {'U': (-1, 0), 'D': (1, 0), 'L': (0, -1), 'R': (0, 1)}\n    for m in moves:\n        dr, dc = d[m]\n        r, c = body[0][0] + dr, body[0][1] + dc\n        if not (0 <= r < height and 0 <= c < width):\n            out.append(-1)\n            break\n        eat = score < len(food) and [r, c] == food[score]\n        if not eat:\n            tail = body.pop()\n            occ.discard(tail)\n        if (r, c) in occ:\n            out.append(-1)\n            break\n        body.appendleft((r, c))\n        occ.add((r, c))\n        if eat:\n            score += 1\n        out.append(score)\n    return out\n```\n\nRemove the tail before testing for self-collision unless food was eaten.",
+  "starterCode": "def snake_game(width, height, food, moves):\n    # Write your code here\n    pass\n",
+  "functionName": "snake_game",
+  "referenceSolution": "def snake_game(width, height, food, moves):\n    from collections import deque\n    body = deque([(0, 0)])\n    occ = {(0, 0)}\n    score = 0\n    out = []\n    d = {'U': (-1, 0), 'D': (1, 0), 'L': (0, -1), 'R': (0, 1)}\n    for m in moves:\n        dr, dc = d[m]\n        r, c = body[0][0] + dr, body[0][1] + dc\n        if not (0 <= r < height and 0 <= c < width):\n            out.append(-1)\n            break\n        eat = score < len(food) and [r, c] == food[score]\n        if not eat:\n            tail = body.pop()\n            occ.discard(tail)\n        if (r, c) in occ:\n            out.append(-1)\n            break\n        body.appendleft((r, c))\n        occ.add((r, c))\n        if eat:\n            score += 1\n        out.append(score)\n    return out\n",
+  "tests": [
+    {
+      "args": [
+        3,
+        2,
+        [
+          [
+            1,
+            2
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "RRDULU"
+      ],
+      "expected": [
+        0,
+        0,
+        1,
+        1,
+        2,
+        -1
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        2,
+        2,
+        [],
+        "RR"
+      ],
+      "expected": [
+        0,
+        -1
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        2,
+        2,
+        [
+          [
+            0,
+            1
+          ]
+        ],
+        "RD"
+      ],
+      "expected": [
+        1,
+        1
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        3,
+        3,
+        [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "RRDLU"
+      ],
+      "expected": [
+        1,
+        2,
+        3,
+        3,
+        3
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        1,
+        1,
+        [],
+        "U"
+      ],
+      "expected": [
+        -1
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 432
+}

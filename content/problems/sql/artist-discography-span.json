@@ -1,0 +1,21 @@
+{
+  "slug": "artist-discography-span",
+  "track": "sql",
+  "title": "Artist discography span",
+  "difficulty": "Medium",
+  "tags": [
+    "aggregate"
+  ],
+  "statementMd": "For each artist with albums show first and last album year and the span in years. Ties are fine; list all.\n\nExpected columns: `name`, `first_album`, `last_album`, `span`.\n\nTables: `artists`, `albums`, `tracks`, `listeners`, `plays`.\n\nRow order does not matter.",
+  "hints": [
+    "`MIN` and `MAX` of year."
+  ],
+  "solutionMd": "```sql\nSELECT ar.name, MIN(al.release_year) AS first_album, MAX(al.release_year) AS last_album, MAX(al.release_year) - MIN(al.release_year) AS span FROM artists ar JOIN albums al ON al.artist_id = ar.id GROUP BY ar.id, ar.name;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: artists, albums, tracks, listeners, plays\nSELECT\n",
+  "datasetId": "music",
+  "expected": {
+    "query": "SELECT ar.name, MIN(al.release_year) AS first_album, MAX(al.release_year) AS last_album, MAX(al.release_year) - MIN(al.release_year) AS span FROM artists ar JOIN albums al ON al.artist_id = ar.id GROUP BY ar.id, ar.name;",
+    "orderMatters": false
+  },
+  "order": 218
+}

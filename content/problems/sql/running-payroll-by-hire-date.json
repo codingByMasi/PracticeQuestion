@@ -1,0 +1,21 @@
+{
+  "slug": "running-payroll-by-hire-date",
+  "track": "sql",
+  "title": "Running payroll by hire date",
+  "difficulty": "Medium",
+  "tags": [
+    "running-total"
+  ],
+  "statementMd": "In order of hire date, show each employee's first name, hire date and the running total of salaries of everyone hired up to and including them.\n\nExpected columns: `first_name`, `hire_date`, `running_payroll`.\n\nTables: `employees`, `departments`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "`SUM(salary) OVER (ORDER BY hire_date)`."
+  ],
+  "solutionMd": "```sql\nSELECT first_name, hire_date, SUM(salary) OVER (ORDER BY hire_date) AS running_payroll FROM employees ORDER BY hire_date;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "SELECT first_name, hire_date, SUM(salary) OVER (ORDER BY hire_date) AS running_payroll FROM employees ORDER BY hire_date;",
+    "orderMatters": true
+  },
+  "order": 353
+}

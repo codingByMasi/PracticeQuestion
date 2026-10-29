@@ -1,0 +1,21 @@
+{
+  "slug": "titles-in-engineering",
+  "track": "sql",
+  "title": "Titles in Engineering",
+  "difficulty": "Easy",
+  "tags": [
+    "group-by"
+  ],
+  "statementMd": "In Engineering (`department_id = 1`), how many employees hold each title?\n\nExpected columns: `title`, `n`.\n\nTables: `employees`, `departments`.\n\nRow order does not matter.",
+  "hints": [
+    "Filter first, then `GROUP BY title`."
+  ],
+  "solutionMd": "```sql\nSELECT title, COUNT(*) AS n FROM employees WHERE department_id = 1 GROUP BY title;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "SELECT title, COUNT(*) AS n FROM employees WHERE department_id = 1 GROUP BY title;",
+    "orderMatters": false
+  },
+  "order": 132
+}

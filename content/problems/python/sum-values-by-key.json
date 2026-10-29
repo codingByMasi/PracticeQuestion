@@ -1,0 +1,100 @@
+{
+  "slug": "sum-values-by-key",
+  "track": "python",
+  "title": "Sum values by key",
+  "difficulty": "Medium",
+  "tags": [
+    "dicts"
+  ],
+  "statementMd": "Given a list of `[key, number]` pairs return a dict with the sum of numbers per key.\n\n**Example:** `sum_by_key([[\"a\", 1], [\"b\", 2], [\"a\", 3]])` returns `{\"a\": 4, \"b\": 2}`.",
+  "hints": [
+    "Accumulate with `get`."
+  ],
+  "solutionMd": "```python\ndef sum_by_key(pairs):\n    totals = {}\n    for k, v in pairs:\n        totals[k] = totals.get(k, 0) + v\n    return totals\n```\n\nGroup-by-and-sum in a single pass.",
+  "starterCode": "def sum_by_key(pairs):\n    # Write your code here\n    pass\n",
+  "functionName": "sum_by_key",
+  "referenceSolution": "def sum_by_key(pairs):\n    totals = {}\n    for k, v in pairs:\n        totals[k] = totals.get(k, 0) + v\n    return totals\n",
+  "tests": [
+    {
+      "args": [
+        [
+          [
+            "a",
+            1
+          ],
+          [
+            "b",
+            2
+          ],
+          [
+            "a",
+            3
+          ]
+        ]
+      ],
+      "expected": {
+        "a": 4,
+        "b": 2
+      },
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": {},
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            "x",
+            5
+          ]
+        ]
+      ],
+      "expected": {
+        "x": 5
+      },
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            "a",
+            -1
+          ],
+          [
+            "a",
+            1
+          ]
+        ]
+      ],
+      "expected": {
+        "a": 0
+      },
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            "k",
+            0.5
+          ],
+          [
+            "k",
+            0.25
+          ]
+        ]
+      ],
+      "expected": {
+        "k": 0.75
+      },
+      "hidden": true
+    }
+  ],
+  "order": 211
+}

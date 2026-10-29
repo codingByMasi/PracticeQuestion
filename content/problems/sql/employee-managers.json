@@ -18,5 +18,6 @@
   "expected": {
     "query": "SELECT e.first_name AS employee, m.first_name AS manager\nFROM employees e\nJOIN employees m ON m.id = e.manager_id;",
     "orderMatters": false
-  }
+  },
+  "order": 258
 }

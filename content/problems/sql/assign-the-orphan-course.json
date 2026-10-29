@@ -1,0 +1,21 @@
+{
+  "slug": "assign-the-orphan-course",
+  "track": "sql",
+  "title": "Assign the orphan course",
+  "difficulty": "Medium",
+  "tags": [
+    "dml"
+  ],
+  "statementMd": "Assign teacher 5 to every course that has no teacher, then list the courses taught by teacher 5.\n\nExpected columns: `title`.\n\nTables: `teachers`, `courses`, `students`, `enrollments`.\n\nRow order does not matter.",
+  "hints": [
+    "`UPDATE courses SET teacher_id = 5 WHERE teacher_id IS NULL`."
+  ],
+  "solutionMd": "```sql\nUPDATE courses SET teacher_id = 5 WHERE teacher_id IS NULL; SELECT title FROM courses WHERE teacher_id = 5;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: teachers, courses, students, enrollments\nSELECT\n",
+  "datasetId": "school",
+  "expected": {
+    "query": "UPDATE courses SET teacher_id = 5 WHERE teacher_id IS NULL; SELECT title FROM courses WHERE teacher_id = 5;",
+    "orderMatters": false
+  },
+  "order": 369
+}

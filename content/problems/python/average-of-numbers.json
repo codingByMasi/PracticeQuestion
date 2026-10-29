@@ -1,0 +1,71 @@
+{
+  "slug": "average-of-numbers",
+  "track": "python",
+  "title": "Average of numbers",
+  "difficulty": "Easy",
+  "tags": [
+    "basics"
+  ],
+  "statementMd": "Return the arithmetic mean of a non-empty list of numbers.\n\n**Example:** `mean([1, 2, 3])` returns `2.0`.",
+  "hints": [
+    "`sum(numbers) / len(numbers)`."
+  ],
+  "solutionMd": "```python\ndef mean(numbers):\n    return sum(numbers) / len(numbers)\n```\n\nTrue division returns a float.",
+  "starterCode": "def mean(numbers):\n    # Write your code here\n    pass\n",
+  "functionName": "mean",
+  "referenceSolution": "def mean(numbers):\n    return sum(numbers) / len(numbers)\n",
+  "tests": [
+    {
+      "args": [
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "expected": 2.0,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          10
+        ]
+      ],
+      "expected": 10.0,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          1,
+          2
+        ]
+      ],
+      "expected": 1.5,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          -4,
+          4
+        ]
+      ],
+      "expected": 0.0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          2.5,
+          3.5,
+          4.5
+        ]
+      ],
+      "expected": 3.5,
+      "hidden": true
+    }
+  ],
+  "order": 7
+}

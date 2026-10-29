@@ -1,0 +1,62 @@
+{
+  "slug": "swap-odd-and-even-bits",
+  "track": "python",
+  "title": "Swap odd and even bits",
+  "difficulty": "Medium",
+  "tags": [
+    "bit-manipulation"
+  ],
+  "statementMd": "Swap each pair of adjacent bits (bit 0 with bit 1, bit 2 with bit 3, ...) of a 32-bit unsigned integer.\n\n**Example:** `swap_bits(43)` returns `23`.",
+  "hints": [
+    "Mask odd and even bits separately and shift."
+  ],
+  "solutionMd": "```python\ndef swap_bits(n):\n    return ((n & 0xAAAAAAAA) >> 1) | ((n & 0x55555555) << 1)\n```\n\nTwo masks and two shifts.",
+  "starterCode": "def swap_bits(n):\n    # Write your code here\n    pass\n",
+  "functionName": "swap_bits",
+  "referenceSolution": "def swap_bits(n):\n    return ((n & 0xAAAAAAAA) >> 1) | ((n & 0x55555555) << 1)\n",
+  "tests": [
+    {
+      "args": [
+        43
+      ],
+      "expected": 23,
+      "hidden": false
+    },
+    {
+      "args": [
+        0
+      ],
+      "expected": 0,
+      "hidden": false
+    },
+    {
+      "args": [
+        1
+      ],
+      "expected": 2,
+      "hidden": true
+    },
+    {
+      "args": [
+        2
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        170
+      ],
+      "expected": 85,
+      "hidden": true
+    },
+    {
+      "args": [
+        4294967295
+      ],
+      "expected": 4294967295,
+      "hidden": true
+    }
+  ],
+  "order": 280
+}

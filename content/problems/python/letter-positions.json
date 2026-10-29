@@ -1,0 +1,95 @@
+{
+  "slug": "letter-positions",
+  "track": "python",
+  "title": "Letter positions",
+  "difficulty": "Medium",
+  "tags": [
+    "dicts"
+  ],
+  "statementMd": "Return a dict mapping each character to the list of indices where it occurs.\n\n**Example:** `char_positions(\"abca\")` returns `{\"a\": [0, 3], \"b\": [1], \"c\": [2]}`.",
+  "hints": [
+    "Append the index in a loop."
+  ],
+  "solutionMd": "```python\ndef char_positions(s):\n    out = {}\n    for i, c in enumerate(s):\n        out.setdefault(c, []).append(i)\n    return out\n```\n\nGroup indices by character.",
+  "starterCode": "def char_positions(s):\n    # Write your code here\n    pass\n",
+  "functionName": "char_positions",
+  "referenceSolution": "def char_positions(s):\n    out = {}\n    for i, c in enumerate(s):\n        out.setdefault(c, []).append(i)\n    return out\n",
+  "tests": [
+    {
+      "args": [
+        "abca"
+      ],
+      "expected": {
+        "a": [
+          0,
+          3
+        ],
+        "b": [
+          1
+        ],
+        "c": [
+          2
+        ]
+      },
+      "hidden": false
+    },
+    {
+      "args": [
+        ""
+      ],
+      "expected": {},
+      "hidden": false
+    },
+    {
+      "args": [
+        "aaa"
+      ],
+      "expected": {
+        "a": [
+          0,
+          1,
+          2
+        ]
+      },
+      "hidden": true
+    },
+    {
+      "args": [
+        "xyz"
+      ],
+      "expected": {
+        "x": [
+          0
+        ],
+        "y": [
+          1
+        ],
+        "z": [
+          2
+        ]
+      },
+      "hidden": true
+    },
+    {
+      "args": [
+        "banana"
+      ],
+      "expected": {
+        "b": [
+          0
+        ],
+        "a": [
+          1,
+          3,
+          5
+        ],
+        "n": [
+          2,
+          4
+        ]
+      },
+      "hidden": true
+    }
+  ],
+  "order": 218
+}

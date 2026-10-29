@@ -1,0 +1,62 @@
+{
+  "slug": "first-unique-character",
+  "track": "python",
+  "title": "First unique character",
+  "difficulty": "Medium",
+  "tags": [
+    "strings"
+  ],
+  "statementMd": "Return the index of the first character that appears exactly once in `s`, or `-1` if none.\n\n**Example:** `first_unique_char(\"leetcode\")` returns `0`.",
+  "hints": [
+    "Count first, then scan."
+  ],
+  "solutionMd": "```python\ndef first_unique_char(s):\n    counts = {}\n    for c in s:\n        counts[c] = counts.get(c, 0) + 1\n    for i, c in enumerate(s):\n        if counts[c] == 1:\n            return i\n    return -1\n```\n\nTwo passes: count, then find.",
+  "starterCode": "def first_unique_char(s):\n    # Write your code here\n    pass\n",
+  "functionName": "first_unique_char",
+  "referenceSolution": "def first_unique_char(s):\n    counts = {}\n    for c in s:\n        counts[c] = counts.get(c, 0) + 1\n    for i, c in enumerate(s):\n        if counts[c] == 1:\n            return i\n    return -1\n",
+  "tests": [
+    {
+      "args": [
+        "leetcode"
+      ],
+      "expected": 0,
+      "hidden": false
+    },
+    {
+      "args": [
+        "aabb"
+      ],
+      "expected": -1,
+      "hidden": false
+    },
+    {
+      "args": [
+        ""
+      ],
+      "expected": -1,
+      "hidden": true
+    },
+    {
+      "args": [
+        "z"
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        "loveleetcode"
+      ],
+      "expected": 2,
+      "hidden": true
+    },
+    {
+      "args": [
+        "abcabc"
+      ],
+      "expected": -1,
+      "hidden": true
+    }
+  ],
+  "order": 181
+}

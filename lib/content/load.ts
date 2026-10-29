@@ -165,5 +165,5 @@ export function loadContent(root: string = DEFAULT_CONTENT_ROOT): Content {
 }
 
 export function toSummary(p: Problem): ProblemSummary {
-  return { slug: p.slug, track: p.track, title: p.title, difficulty: p.difficulty, tags: p.tags };
+  return { slug: p.slug, track: p.track, title: p.title, difficulty: p.difficulty, tags: p.tags, order: p.order };
 }

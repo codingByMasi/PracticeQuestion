@@ -1,0 +1,21 @@
+{
+  "slug": "products-ordered-by-every-customer-who-ordered",
+  "track": "sql",
+  "title": "Products ordered by every customer who ordered",
+  "difficulty": "Hard",
+  "tags": [
+    "having"
+  ],
+  "statementMd": "List products that were ordered (any status) by at least 3 different customers. Show name and customer count.\n\nExpected columns: `name`, `customers`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\nRow order does not matter.",
+  "hints": [
+    "`COUNT(DISTINCT o.customer_id)`."
+  ],
+  "solutionMd": "```sql\nSELECT p.name, COUNT(DISTINCT o.customer_id) AS customers FROM products p JOIN order_items oi ON oi.product_id = p.id JOIN orders o ON o.id = oi.order_id GROUP BY p.id, p.name HAVING COUNT(DISTINCT o.customer_id) >= 3;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "SELECT p.name, COUNT(DISTINCT o.customer_id) AS customers FROM products p JOIN order_items oi ON oi.product_id = p.id JOIN orders o ON o.id = oi.order_id GROUP BY p.id, p.name HAVING COUNT(DISTINCT o.customer_id) >= 3;",
+    "orderMatters": false
+  },
+  "order": 382
+}

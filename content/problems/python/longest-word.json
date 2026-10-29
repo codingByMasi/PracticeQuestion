@@ -1,0 +1,55 @@
+{
+  "slug": "longest-word",
+  "track": "python",
+  "title": "Longest word",
+  "difficulty": "Easy",
+  "tags": [
+    "strings"
+  ],
+  "statementMd": "Return the longest word in a sentence of space-separated words. On ties return the first one.\n\n**Example:** `longest_word(\"I love programming\")` returns `\"programming\"`.",
+  "hints": [
+    "`max(..., key=len)` keeps the first maximum."
+  ],
+  "solutionMd": "```python\ndef longest_word(sentence):\n    return max(sentence.split(), key=len)\n```\n\n`max` returns the first of equal maxima.",
+  "starterCode": "def longest_word(sentence):\n    # Write your code here\n    pass\n",
+  "functionName": "longest_word",
+  "referenceSolution": "def longest_word(sentence):\n    return max(sentence.split(), key=len)\n",
+  "tests": [
+    {
+      "args": [
+        "I love programming"
+      ],
+      "expected": "programming",
+      "hidden": false
+    },
+    {
+      "args": [
+        "a bb cc"
+      ],
+      "expected": "bb",
+      "hidden": false
+    },
+    {
+      "args": [
+        "one"
+      ],
+      "expected": "one",
+      "hidden": true
+    },
+    {
+      "args": [
+        "aa bb cc"
+      ],
+      "expected": "aa",
+      "hidden": true
+    },
+    {
+      "args": [
+        "short longest mid"
+      ],
+      "expected": "longest",
+      "hidden": true
+    }
+  ],
+  "order": 55
+}

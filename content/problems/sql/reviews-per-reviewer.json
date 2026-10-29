@@ -1,0 +1,21 @@
+{
+  "slug": "reviews-per-reviewer",
+  "track": "sql",
+  "title": "Reviews per reviewer",
+  "difficulty": "Easy",
+  "tags": [
+    "group-by"
+  ],
+  "statementMd": "How many reviews did each reviewer write?\n\nExpected columns: `reviewer`, `reviews`.\n\nTables: `movies`, `directors`, `reviews`.\n\nRow order does not matter.",
+  "hints": [
+    "`GROUP BY reviewer`."
+  ],
+  "solutionMd": "```sql\nSELECT reviewer, COUNT(*) AS reviews FROM reviews GROUP BY reviewer;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: movies, directors, reviews\nSELECT\n",
+  "datasetId": "movies",
+  "expected": {
+    "query": "SELECT reviewer, COUNT(*) AS reviews FROM reviews GROUP BY reviewer;",
+    "orderMatters": false
+  },
+  "order": 138
+}

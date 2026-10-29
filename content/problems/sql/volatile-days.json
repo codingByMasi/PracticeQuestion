@@ -1,0 +1,21 @@
+{
+  "slug": "volatile-days",
+  "track": "sql",
+  "title": "Volatile days",
+  "difficulty": "Medium",
+  "tags": [
+    "expressions"
+  ],
+  "statementMd": "List the 5 days with the largest intraday range as a percentage of the open price (high minus low divided by open), with symbol, date and percentage rounded to 2 decimals. Ties by symbol then date.\n\nExpected columns: `symbol`, `trade_date`, `range_pct`.\n\nTables: `tickers`, `prices`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Compute the ratio in the `ORDER BY`."
+  ],
+  "solutionMd": "```sql\nSELECT symbol, trade_date, ROUND(100.0 * (high - low) / open, 2) AS range_pct FROM prices ORDER BY range_pct DESC, symbol, trade_date LIMIT 5;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: tickers, prices\nSELECT\n",
+  "datasetId": "stocks",
+  "expected": {
+    "query": "SELECT symbol, trade_date, ROUND(100.0 * (high - low) / open, 2) AS range_pct FROM prices ORDER BY range_pct DESC, symbol, trade_date LIMIT 5;",
+    "orderMatters": true
+  },
+  "order": 178
+}

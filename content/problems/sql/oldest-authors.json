@@ -1,0 +1,21 @@
+{
+  "slug": "oldest-authors",
+  "track": "sql",
+  "title": "Oldest authors",
+  "difficulty": "Easy",
+  "tags": [
+    "order-by"
+  ],
+  "statementMd": "List the five authors born earliest, with birth year, earliest first.\n\nExpected columns: `name`, `birth_year`.\n\nTables: `authors`, `books`, `members`, `loans`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "`ORDER BY birth_year LIMIT 5`; years may tie, so also order by name."
+  ],
+  "solutionMd": "```sql\nSELECT name, birth_year FROM authors ORDER BY birth_year, name LIMIT 5;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: authors, books, members, loans\nSELECT\n",
+  "datasetId": "library",
+  "expected": {
+    "query": "SELECT name, birth_year FROM authors ORDER BY birth_year, name LIMIT 5;",
+    "orderMatters": true
+  },
+  "order": 70
+}

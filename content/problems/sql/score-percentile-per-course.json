@@ -1,0 +1,21 @@
+{
+  "slug": "score-percentile-per-course",
+  "track": "sql",
+  "title": "Score percentile per course",
+  "difficulty": "Hard",
+  "tags": [
+    "window-functions"
+  ],
+  "statementMd": "For each enrollment in course 1 with a score, show student id, score and `PERCENT_RANK` among course 1 scores rounded to 3 decimals. Order by score, student id.\n\nExpected columns: `student_id`, `score`, `pct_rank`.\n\nTables: `teachers`, `courses`, `students`, `enrollments`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "`PERCENT_RANK() OVER (ORDER BY score)`."
+  ],
+  "solutionMd": "```sql\nSELECT student_id, score, ROUND(PERCENT_RANK() OVER (ORDER BY score), 3) AS pct_rank FROM enrollments WHERE course_id = 1 AND score IS NOT NULL ORDER BY score, student_id;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: teachers, courses, students, enrollments\nSELECT\n",
+  "datasetId": "school",
+  "expected": {
+    "query": "SELECT student_id, score, ROUND(PERCENT_RANK() OVER (ORDER BY score), 3) AS pct_rank FROM enrollments WHERE course_id = 1 AND score IS NOT NULL ORDER BY score, student_id;",
+    "orderMatters": true
+  },
+  "order": 422
+}

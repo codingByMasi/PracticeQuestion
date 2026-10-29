@@ -1,0 +1,89 @@
+{
+  "slug": "subarrays-with-at-most-k-distinct",
+  "track": "python",
+  "title": "Subarrays with at most k distinct",
+  "difficulty": "Hard",
+  "tags": [
+    "sliding-window"
+  ],
+  "statementMd": "Count contiguous subarrays containing at most `k` distinct values.\n\n**Example:** `count_at_most_k_distinct([1, 2, 1, 2, 3], 2)` returns `12`.",
+  "hints": [
+    "For each right end, count valid left starts."
+  ],
+  "solutionMd": "```python\ndef count_at_most_k_distinct(nums, k):\n    counts = {}\n    left = total = 0\n    for right, x in enumerate(nums):\n        counts[x] = counts.get(x, 0) + 1\n        while len(counts) > k:\n            counts[nums[left]] -= 1\n            if counts[nums[left]] == 0:\n                del counts[nums[left]]\n            left += 1\n        total += right - left + 1\n    return total\n```\n\nEvery window ending at right with start >= left is valid.",
+  "starterCode": "def count_at_most_k_distinct(nums, k):\n    # Write your code here\n    pass\n",
+  "functionName": "count_at_most_k_distinct",
+  "referenceSolution": "def count_at_most_k_distinct(nums, k):\n    counts = {}\n    left = total = 0\n    for right, x in enumerate(nums):\n        counts[x] = counts.get(x, 0) + 1\n        while len(counts) > k:\n            counts[nums[left]] -= 1\n            if counts[nums[left]] == 0:\n                del counts[nums[left]]\n            left += 1\n        total += right - left + 1\n    return total\n",
+  "tests": [
+    {
+      "args": [
+        [
+          1,
+          2,
+          1,
+          2,
+          3
+        ],
+        2
+      ],
+      "expected": 12,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          1,
+          1
+        ],
+        1
+      ],
+      "expected": 3,
+      "hidden": false
+    },
+    {
+      "args": [
+        [],
+        1
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          2,
+          3
+        ],
+        1
+      ],
+      "expected": 3,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          2,
+          3
+        ],
+        3
+      ],
+      "expected": 6,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          2,
+          2,
+          2
+        ],
+        1
+      ],
+      "expected": 6,
+      "hidden": true
+    }
+  ],
+  "order": 409
+}

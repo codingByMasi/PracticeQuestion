@@ -1,0 +1,21 @@
+{
+  "slug": "grade-distribution",
+  "track": "sql",
+  "title": "Grade distribution",
+  "difficulty": "Medium",
+  "tags": [
+    "case"
+  ],
+  "statementMd": "How many graded enrollments earned each letter grade (A 90+, B 80+, C 70+, D 60+, otherwise F)?\n\nExpected columns: `letter`, `n`.\n\nTables: `teachers`, `courses`, `students`, `enrollments`.\n\nRow order does not matter.",
+  "hints": [
+    "Group by the CASE expression."
+  ],
+  "solutionMd": "```sql\nSELECT CASE WHEN score >= 90 THEN 'A' WHEN score >= 80 THEN 'B' WHEN score >= 70 THEN 'C' WHEN score >= 60 THEN 'D' ELSE 'F' END AS letter, COUNT(*) AS n FROM enrollments WHERE score IS NOT NULL GROUP BY letter;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: teachers, courses, students, enrollments\nSELECT\n",
+  "datasetId": "school",
+  "expected": {
+    "query": "SELECT CASE WHEN score >= 90 THEN 'A' WHEN score >= 80 THEN 'B' WHEN score >= 70 THEN 'C' WHEN score >= 60 THEN 'D' ELSE 'F' END AS letter, COUNT(*) AS n FROM enrollments WHERE score IS NOT NULL GROUP BY letter;",
+    "orderMatters": false
+  },
+  "order": 172
+}

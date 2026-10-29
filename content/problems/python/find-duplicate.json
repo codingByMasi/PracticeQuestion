@@ -1,0 +1,74 @@
+{
+  "slug": "find-duplicate",
+  "track": "python",
+  "title": "Find duplicate",
+  "difficulty": "Medium",
+  "tags": [
+    "sets"
+  ],
+  "statementMd": "Return the first value that appears a second time while scanning left to right, or `None` if all are unique.\n\n**Example:** `first_duplicate([2, 1, 3, 1, 2])` returns `1`.",
+  "hints": [
+    "Keep a set of seen values."
+  ],
+  "solutionMd": "```python\ndef first_duplicate(nums):\n    seen = set()\n    for x in nums:\n        if x in seen:\n            return x\n        seen.add(x)\n    return None\n```\n\nDetect the second sighting.",
+  "starterCode": "def first_duplicate(nums):\n    # Write your code here\n    pass\n",
+  "functionName": "first_duplicate",
+  "referenceSolution": "def first_duplicate(nums):\n    seen = set()\n    for x in nums:\n        if x in seen:\n            return x\n        seen.add(x)\n    return None\n",
+  "tests": [
+    {
+      "args": [
+        [
+          2,
+          1,
+          3,
+          1,
+          2
+        ]
+      ],
+      "expected": 1,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "expected": null,
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": null,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          5,
+          5
+        ]
+      ],
+      "expected": 5,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          2,
+          3,
+          3,
+          2
+        ]
+      ],
+      "expected": 3,
+      "hidden": true
+    }
+  ],
+  "order": 199
+}

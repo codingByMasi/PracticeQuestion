@@ -1,0 +1,21 @@
+{
+  "slug": "top-track-per-album",
+  "track": "sql",
+  "title": "Top track per album",
+  "difficulty": "Hard",
+  "tags": [
+    "ranking"
+  ],
+  "statementMd": "For each album, show its most played track (album title, track title, plays). Break ties by track title. Only albums with at least one play.\n\nExpected columns: `album`, `track`, `plays`.\n\nTables: `artists`, `albums`, `tracks`, `listeners`, `plays`.\n\nRow order does not matter.",
+  "hints": [
+    "Rank tracks within album."
+  ],
+  "solutionMd": "```sql\nWITH c AS (SELECT t.album_id, t.title, COUNT(*) AS plays FROM plays p JOIN tracks t ON t.id = p.track_id GROUP BY t.id), r AS (SELECT *, ROW_NUMBER() OVER (PARTITION BY album_id ORDER BY plays DESC, title) AS rn FROM c) SELECT al.title AS album, r.title AS track, r.plays FROM r JOIN albums al ON al.id = r.album_id WHERE r.rn = 1;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: artists, albums, tracks, listeners, plays\nSELECT\n",
+  "datasetId": "music",
+  "expected": {
+    "query": "WITH c AS (SELECT t.album_id, t.title, COUNT(*) AS plays FROM plays p JOIN tracks t ON t.id = p.track_id GROUP BY t.id), r AS (SELECT *, ROW_NUMBER() OVER (PARTITION BY album_id ORDER BY plays DESC, title) AS rn FROM c) SELECT al.title AS album, r.title AS track, r.plays FROM r JOIN albums al ON al.id = r.album_id WHERE r.rn = 1;",
+    "orderMatters": false
+  },
+  "order": 456
+}

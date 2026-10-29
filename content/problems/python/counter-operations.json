@@ -1,0 +1,82 @@
+{
+  "slug": "counter-operations",
+  "track": "python",
+  "title": "Counter operations",
+  "difficulty": "Easy",
+  "tags": [
+    "design"
+  ],
+  "statementMd": "A counter starts at 0. Operations: `'inc'` adds 1, `'dec'` subtracts 1 but never goes below 0, `'reset'` sets 0, `'get'` records the current value. Return the recorded values.\n\n**Example:** `counter_ops([\"inc\", \"inc\", \"get\", \"dec\", \"get\"])` returns `[2, 1]`.",
+  "hints": [
+    "Clamp at zero on decrement."
+  ],
+  "solutionMd": "```python\ndef counter_ops(ops):\n    v, out = 0, []\n    for op in ops:\n        if op == 'inc':\n            v += 1\n        elif op == 'dec':\n            v = max(0, v - 1)\n        elif op == 'reset':\n            v = 0\n        else:\n            out.append(v)\n    return out\n```\n\nA tiny state machine.",
+  "starterCode": "def counter_ops(ops):\n    # Write your code here\n    pass\n",
+  "functionName": "counter_ops",
+  "referenceSolution": "def counter_ops(ops):\n    v, out = 0, []\n    for op in ops:\n        if op == 'inc':\n            v += 1\n        elif op == 'dec':\n            v = max(0, v - 1)\n        elif op == 'reset':\n            v = 0\n        else:\n            out.append(v)\n    return out\n",
+  "tests": [
+    {
+      "args": [
+        [
+          "inc",
+          "inc",
+          "get",
+          "dec",
+          "get"
+        ]
+      ],
+      "expected": [
+        2,
+        1
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          "dec",
+          "get"
+        ]
+      ],
+      "expected": [
+        0
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": [],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          "inc",
+          "reset",
+          "get"
+        ]
+      ],
+      "expected": [
+        0
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          "inc",
+          "dec",
+          "dec",
+          "get"
+        ]
+      ],
+      "expected": [
+        0
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 166
+}

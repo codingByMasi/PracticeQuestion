@@ -1,0 +1,21 @@
+{
+  "slug": "total-team-payroll-per-manager",
+  "track": "sql",
+  "title": "Total team payroll per manager",
+  "difficulty": "Hard",
+  "tags": [
+    "recursive"
+  ],
+  "statementMd": "For each manager with reports, compute the total salary of everyone who reports to them directly or indirectly (not including the manager). Show first name and team payroll, highest first.\n\nExpected columns: `first_name`, `team_payroll`.\n\nTables: `employees`, `departments`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Recursive CTE listing (ancestor, descendant) pairs."
+  ],
+  "solutionMd": "```sql\nWITH RECURSIVE tree(root, id) AS (SELECT manager_id, id FROM employees WHERE manager_id IS NOT NULL UNION ALL SELECT t.root, e.id FROM tree t JOIN employees e ON e.manager_id = t.id) SELECT m.first_name, SUM(e.salary) AS team_payroll FROM tree t JOIN employees m ON m.id = t.root JOIN employees e ON e.id = t.id GROUP BY m.id, m.first_name ORDER BY team_payroll DESC;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "WITH RECURSIVE tree(root, id) AS (SELECT manager_id, id FROM employees WHERE manager_id IS NOT NULL UNION ALL SELECT t.root, e.id FROM tree t JOIN employees e ON e.manager_id = t.id) SELECT m.first_name, SUM(e.salary) AS team_payroll FROM tree t JOIN employees m ON m.id = t.root JOIN employees e ON e.id = t.id GROUP BY m.id, m.first_name ORDER BY team_payroll DESC;",
+    "orderMatters": true
+  },
+  "order": 493
+}

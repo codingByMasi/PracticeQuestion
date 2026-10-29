@@ -1,0 +1,79 @@
+{
+  "slug": "armstrong-numbers-in-range",
+  "track": "python",
+  "title": "Armstrong numbers in range",
+  "difficulty": "Medium",
+  "tags": [
+    "numbers"
+  ],
+  "statementMd": "Return the Armstrong numbers (each equals the sum of its digits to the power of the digit count) between `lo` and `hi` inclusive.\n\n**Example:** `armstrong_in_range(100, 500)` returns `[153, 370, 371, 407]`.",
+  "hints": [
+    "Test each number."
+  ],
+  "solutionMd": "```python\ndef armstrong_in_range(lo, hi):\n    out = []\n    for n in range(lo, hi + 1):\n        s = str(n)\n        if sum(int(c) ** len(s) for c in s) == n:\n            out.append(n)\n    return out\n```\n\nBrute force is fine for small ranges.",
+  "starterCode": "def armstrong_in_range(lo, hi):\n    # Write your code here\n    pass\n",
+  "functionName": "armstrong_in_range",
+  "referenceSolution": "def armstrong_in_range(lo, hi):\n    out = []\n    for n in range(lo, hi + 1):\n        s = str(n)\n        if sum(int(c) ** len(s) for c in s) == n:\n            out.append(n)\n    return out\n",
+  "tests": [
+    {
+      "args": [
+        100,
+        500
+      ],
+      "expected": [
+        153,
+        370,
+        371,
+        407
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        1,
+        9
+      ],
+      "expected": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        500,
+        1000
+      ],
+      "expected": [],
+      "hidden": true
+    },
+    {
+      "args": [
+        0,
+        0
+      ],
+      "expected": [
+        0
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        9000,
+        9999
+      ],
+      "expected": [
+        9474
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 169
+}

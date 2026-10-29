@@ -1,0 +1,79 @@
+{
+  "slug": "jump-game-minimum-jumps",
+  "track": "python",
+  "title": "Jump game minimum jumps",
+  "difficulty": "Medium",
+  "tags": [
+    "greedy"
+  ],
+  "statementMd": "Same setting; the last index is always reachable. Return the minimum number of jumps.\n\n**Example:** `min_jumps([2, 3, 1, 1, 4])` returns `2`.",
+  "hints": [
+    "Greedy by BFS levels."
+  ],
+  "solutionMd": "```python\ndef min_jumps(nums):\n    jumps = end = far = 0\n    for i in range(len(nums) - 1):\n        far = max(far, i + nums[i])\n        if i == end:\n            jumps += 1\n            end = far\n    return jumps\n```\n\nEach time you pass the current range, take a jump.",
+  "starterCode": "def min_jumps(nums):\n    # Write your code here\n    pass\n",
+  "functionName": "min_jumps",
+  "referenceSolution": "def min_jumps(nums):\n    jumps = end = far = 0\n    for i in range(len(nums) - 1):\n        far = max(far, i + nums[i])\n        if i == end:\n            jumps += 1\n            end = far\n    return jumps\n",
+  "tests": [
+    {
+      "args": [
+        [
+          2,
+          3,
+          1,
+          1,
+          4
+        ]
+      ],
+      "expected": 2,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          2,
+          3,
+          0,
+          1,
+          4
+        ]
+      ],
+      "expected": 2,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          0
+        ]
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          1,
+          1
+        ]
+      ],
+      "expected": 2,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          5,
+          1,
+          1,
+          1,
+          1
+        ]
+      ],
+      "expected": 1,
+      "hidden": true
+    }
+  ],
+  "order": 310
+}

@@ -1,0 +1,139 @@
+{
+  "slug": "number-of-distinct-islands",
+  "track": "python",
+  "title": "Number of distinct islands",
+  "difficulty": "Hard",
+  "tags": [
+    "graphs"
+  ],
+  "statementMd": "Count islands (4-connected groups of `1`) that are distinct up to translation only (no rotation or reflection).\n\n**Example:** `distinct_islands([[1, 1, 0, 0, 0], [1, 1, 0, 0, 0], [0, 0, 0, 1, 1], [0, 0, …)` returns `1`.",
+  "hints": [
+    "Record each island's cells relative to its first cell."
+  ],
+  "solutionMd": "```python\ndef distinct_islands(grid):\n    R, C = len(grid), len(grid[0]) if grid else 0\n    seen = set()\n    shapes = set()\n    for r in range(R):\n        for c in range(C):\n            if grid[r][c] == 1 and (r, c) not in seen:\n                stack, cells = [(r, c)], []\n                seen.add((r, c))\n                while stack:\n                    y, x = stack.pop()\n                    cells.append((y - r, x - c))\n                    for dy, dx in ((1, 0), (-1, 0), (0, 1), (0, -1)):\n                        ny, nx = y + dy, x + dx\n                        if 0 <= ny < R and 0 <= nx < C and grid[ny][nx] == 1 and (ny, nx) not in seen:\n                            seen.add((ny, nx)); stack.append((ny, nx))\n                shapes.add(tuple(sorted(cells)))\n    return len(shapes)\n```\n\nThe normalised cell set identifies a shape.",
+  "starterCode": "def distinct_islands(grid):\n    # Write your code here\n    pass\n",
+  "functionName": "distinct_islands",
+  "referenceSolution": "def distinct_islands(grid):\n    R, C = len(grid), len(grid[0]) if grid else 0\n    seen = set()\n    shapes = set()\n    for r in range(R):\n        for c in range(C):\n            if grid[r][c] == 1 and (r, c) not in seen:\n                stack, cells = [(r, c)], []\n                seen.add((r, c))\n                while stack:\n                    y, x = stack.pop()\n                    cells.append((y - r, x - c))\n                    for dy, dx in ((1, 0), (-1, 0), (0, 1), (0, -1)):\n                        ny, nx = y + dy, x + dx\n                        if 0 <= ny < R and 0 <= nx < C and grid[ny][nx] == 1 and (ny, nx) not in seen:\n                            seen.add((ny, nx)); stack.append((ny, nx))\n                shapes.add(tuple(sorted(cells)))\n    return len(shapes)\n",
+  "tests": [
+    {
+      "args": [
+        [
+          [
+            1,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            1,
+            1
+          ]
+        ]
+      ],
+      "expected": 1,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            1,
+            1,
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            0,
+            1,
+            1
+          ]
+        ]
+      ],
+      "expected": 3,
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            0
+          ]
+        ]
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            1,
+            0,
+            1
+          ]
+        ]
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ]
+      ],
+      "expected": 1,
+      "hidden": true
+    }
+  ],
+  "order": 482
+}

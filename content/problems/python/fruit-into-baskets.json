@@ -1,0 +1,91 @@
+{
+  "slug": "fruit-into-baskets",
+  "track": "python",
+  "title": "Fruit into baskets",
+  "difficulty": "Medium",
+  "tags": [
+    "sliding-window"
+  ],
+  "statementMd": "Pick the longest contiguous run of trees containing at most two distinct fruit types. Return its length.\n\n**Example:** `total_fruit([1, 2, 1])` returns `3`.",
+  "hints": [
+    "Window with a counter of at most two keys."
+  ],
+  "solutionMd": "```python\ndef total_fruit(fruits):\n    counts = {}\n    left = best = 0\n    for right, f in enumerate(fruits):\n        counts[f] = counts.get(f, 0) + 1\n        while len(counts) > 2:\n            counts[fruits[left]] -= 1\n            if counts[fruits[left]] == 0:\n                del counts[fruits[left]]\n            left += 1\n        best = max(best, right - left + 1)\n    return best\n```\n\nShrink until at most two types remain.",
+  "starterCode": "def total_fruit(fruits):\n    # Write your code here\n    pass\n",
+  "functionName": "total_fruit",
+  "referenceSolution": "def total_fruit(fruits):\n    counts = {}\n    left = best = 0\n    for right, f in enumerate(fruits):\n        counts[f] = counts.get(f, 0) + 1\n        while len(counts) > 2:\n            counts[fruits[left]] -= 1\n            if counts[fruits[left]] == 0:\n                del counts[fruits[left]]\n            left += 1\n        best = max(best, right - left + 1)\n    return best\n",
+  "tests": [
+    {
+      "args": [
+        [
+          1,
+          2,
+          1
+        ]
+      ],
+      "expected": 3,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          0,
+          1,
+          2,
+          2
+        ]
+      ],
+      "expected": 3,
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1
+        ]
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          2,
+          3,
+          2,
+          2
+        ]
+      ],
+      "expected": 4,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          3,
+          3,
+          3,
+          1,
+          2,
+          1,
+          1,
+          2,
+          3,
+          3,
+          4
+        ]
+      ],
+      "expected": 5,
+      "hidden": true
+    }
+  ],
+  "order": 255
+}

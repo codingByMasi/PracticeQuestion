@@ -1,0 +1,21 @@
+{
+  "slug": "gap-to-the-department-head",
+  "track": "sql",
+  "title": "Gap to the department head",
+  "difficulty": "Medium",
+  "tags": [
+    "join"
+  ],
+  "statementMd": "For each employee with a department, show how much less they earn than the head of their department (the department member whose `manager_id` is NULL). Exclude the heads themselves. Show first name and the gap.\n\nExpected columns: `first_name`, `gap`.\n\nTables: `employees`, `departments`.\n\nRow order does not matter.",
+  "hints": [
+    "Join employees to employees of the same department where `manager_id IS NULL`."
+  ],
+  "solutionMd": "```sql\nSELECT e.first_name, h.salary - e.salary AS gap FROM employees e JOIN employees h ON h.department_id = e.department_id AND h.manager_id IS NULL WHERE e.manager_id IS NOT NULL;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "SELECT e.first_name, h.salary - e.salary AS gap FROM employees e JOIN employees h ON h.department_id = e.department_id AND h.manager_id IS NULL WHERE e.manager_id IS NOT NULL;",
+    "orderMatters": false
+  },
+  "order": 265
+}

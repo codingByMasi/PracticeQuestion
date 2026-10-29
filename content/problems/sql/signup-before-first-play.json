@@ -1,0 +1,21 @@
+{
+  "slug": "signup-before-first-play",
+  "track": "sql",
+  "title": "Signup before first play",
+  "difficulty": "Medium",
+  "tags": [
+    "dates"
+  ],
+  "statementMd": "Count listeners whose first play happened within 30 days of signing up.\n\nExpected columns: `quick_starters`.\n\nTables: `artists`, `albums`, `tracks`, `listeners`, `plays`.\n\nRow order does not matter.",
+  "hints": [
+    "Per-listener minimum played date."
+  ],
+  "solutionMd": "```sql\nSELECT COUNT(*) AS quick_starters FROM (SELECT l.id FROM listeners l JOIN plays p ON p.listener_id = l.id GROUP BY l.id, l.signup_date HAVING julianday(MIN(substr(p.played_at, 1, 10))) - julianday(l.signup_date) <= 30);\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: artists, albums, tracks, listeners, plays\nSELECT\n",
+  "datasetId": "music",
+  "expected": {
+    "query": "SELECT COUNT(*) AS quick_starters FROM (SELECT l.id FROM listeners l JOIN plays p ON p.listener_id = l.id GROUP BY l.id, l.signup_date HAVING julianday(MIN(substr(p.played_at, 1, 10))) - julianday(l.signup_date) <= 30);",
+    "orderMatters": false
+  },
+  "order": 203
+}

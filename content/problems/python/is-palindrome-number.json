@@ -1,0 +1,62 @@
+{
+  "slug": "is-palindrome-number",
+  "track": "python",
+  "title": "Is palindrome number",
+  "difficulty": "Easy",
+  "tags": [
+    "numbers"
+  ],
+  "statementMd": "Return `True` if the non-negative integer `n` reads the same forwards and backwards.\n\n**Example:** `is_palindrome_number(121)` returns `true`.",
+  "hints": [
+    "Compare the string with its reverse."
+  ],
+  "solutionMd": "```python\ndef is_palindrome_number(n):\n    s = str(n)\n    return s == s[::-1]\n```\n\n`s[::-1]` reverses a string.",
+  "starterCode": "def is_palindrome_number(n):\n    # Write your code here\n    pass\n",
+  "functionName": "is_palindrome_number",
+  "referenceSolution": "def is_palindrome_number(n):\n    s = str(n)\n    return s == s[::-1]\n",
+  "tests": [
+    {
+      "args": [
+        121
+      ],
+      "expected": true,
+      "hidden": false
+    },
+    {
+      "args": [
+        123
+      ],
+      "expected": false,
+      "hidden": false
+    },
+    {
+      "args": [
+        0
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        10
+      ],
+      "expected": false,
+      "hidden": true
+    },
+    {
+      "args": [
+        1221
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        12321
+      ],
+      "expected": true,
+      "hidden": true
+    }
+  ],
+  "order": 20
+}

@@ -1,0 +1,84 @@
+{
+  "slug": "greatest-common-divisor",
+  "track": "python",
+  "title": "Greatest common divisor",
+  "difficulty": "Easy",
+  "tags": [
+    "number-theory"
+  ],
+  "statementMd": "Return the greatest common divisor of two positive integers without using `math.gcd`.\n\n**Example:** `gcd(12, 18)` returns `6`.",
+  "hints": [
+    "Euclid: replace `(a, b)` by `(b, a % b)` until `b` is 0."
+  ],
+  "solutionMd": "```python\ndef gcd(a, b):\n    while b:\n        a, b = b, a % b\n    return a\n```\n\nEuclid's algorithm runs in logarithmic time.",
+  "starterCode": "def gcd(a, b):\n    # Write your code here\n    pass\n",
+  "functionName": "gcd",
+  "referenceSolution": "def gcd(a, b):\n    while b:\n        a, b = b, a % b\n    return a\n",
+  "tests": [
+    {
+      "args": [
+        12,
+        18
+      ],
+      "expected": 6,
+      "hidden": false
+    },
+    {
+      "args": [
+        7,
+        13
+      ],
+      "expected": 1,
+      "hidden": false
+    },
+    {
+      "args": [
+        100,
+        75
+      ],
+      "expected": 25,
+      "hidden": true
+    },
+    {
+      "args": [
+        1,
+        1
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        48,
+        36
+      ],
+      "expected": 12,
+      "hidden": true
+    },
+    {
+      "args": [
+        43,
+        58
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        175,
+        105
+      ],
+      "expected": 35,
+      "hidden": true
+    },
+    {
+      "args": [
+        200,
+        137
+      ],
+      "expected": 1,
+      "hidden": true
+    }
+  ],
+  "order": 141
+}

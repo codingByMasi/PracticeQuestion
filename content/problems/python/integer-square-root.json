@@ -1,0 +1,69 @@
+{
+  "slug": "integer-square-root",
+  "track": "python",
+  "title": "Integer square root",
+  "difficulty": "Medium",
+  "tags": [
+    "math"
+  ],
+  "statementMd": "Return the largest integer `r` with `r * r <= n` (`n >= 0`) without using `math.sqrt` or `**0.5`.\n\n**Example:** `int_sqrt(16)` returns `4`.",
+  "hints": [
+    "Binary search on r between 0 and n."
+  ],
+  "solutionMd": "```python\ndef int_sqrt(n):\n    lo, hi = 0, n\n    while lo < hi:\n        mid = (lo + hi + 1) // 2\n        if mid * mid <= n:\n            lo = mid\n        else:\n            hi = mid - 1\n    return lo\n```\n\nBinary search avoids floating point errors.",
+  "starterCode": "def int_sqrt(n):\n    # Write your code here\n    pass\n",
+  "functionName": "int_sqrt",
+  "referenceSolution": "def int_sqrt(n):\n    lo, hi = 0, n\n    while lo < hi:\n        mid = (lo + hi + 1) // 2\n        if mid * mid <= n:\n            lo = mid\n        else:\n            hi = mid - 1\n    return lo\n",
+  "tests": [
+    {
+      "args": [
+        16
+      ],
+      "expected": 4,
+      "hidden": false
+    },
+    {
+      "args": [
+        17
+      ],
+      "expected": 4,
+      "hidden": false
+    },
+    {
+      "args": [
+        0
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        1
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        2
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        99
+      ],
+      "expected": 9,
+      "hidden": true
+    },
+    {
+      "args": [
+        1000000000000
+      ],
+      "expected": 1000000,
+      "hidden": true
+    }
+  ],
+  "order": 172
+}

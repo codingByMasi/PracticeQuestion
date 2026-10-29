@@ -1,0 +1,21 @@
+{
+  "slug": "second-most-expensive-product-per-category",
+  "track": "sql",
+  "title": "Second most expensive product per category",
+  "difficulty": "Hard",
+  "tags": [
+    "ranking"
+  ],
+  "statementMd": "For each category with at least two products show the second most expensive product (category, name, price).\n\nExpected columns: `category`, `name`, `price`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\nRow order does not matter.",
+  "hints": [
+    "`DENSE_RANK() OVER (PARTITION BY category ORDER BY price DESC)` = 2."
+  ],
+  "solutionMd": "```sql\nWITH r AS (SELECT category, name, price, DENSE_RANK() OVER (PARTITION BY category ORDER BY price DESC) AS rk FROM products) SELECT category, name, price FROM r WHERE rk = 2;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "WITH r AS (SELECT category, name, price, DENSE_RANK() OVER (PARTITION BY category ORDER BY price DESC) AS rk FROM products) SELECT category, name, price FROM r WHERE rk = 2;",
+    "orderMatters": false
+  },
+  "order": 463
+}

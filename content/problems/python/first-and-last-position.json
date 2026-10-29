@@ -1,0 +1,110 @@
+{
+  "slug": "first-and-last-position",
+  "track": "python",
+  "title": "First and last position",
+  "difficulty": "Medium",
+  "tags": [
+    "searching"
+  ],
+  "statementMd": "`nums` is sorted ascending. Return `[first, last]` indices of `target`, or `[-1, -1]` if absent.\n\n**Example:** `search_range([5, 7, 7, 8, 8, 10], 8)` returns `[3, 4]`.",
+  "hints": [
+    "Two binary searches: lower bound and upper bound."
+  ],
+  "solutionMd": "```python\ndef search_range(nums, target):\n    def bound(right):\n        lo, hi = 0, len(nums)\n        while lo < hi:\n            mid = (lo + hi) // 2\n            if nums[mid] < target or (right and nums[mid] == target):\n                lo = mid + 1\n            else:\n                hi = mid\n        return lo\n    first = bound(False)\n    if first == len(nums) or nums[first] != target:\n        return [-1, -1]\n    return [first, bound(True) - 1]\n```\n\nUpper bound minus one is the last occurrence.",
+  "starterCode": "def search_range(nums, target):\n    # Write your code here\n    pass\n",
+  "functionName": "search_range",
+  "referenceSolution": "def search_range(nums, target):\n    def bound(right):\n        lo, hi = 0, len(nums)\n        while lo < hi:\n            mid = (lo + hi) // 2\n            if nums[mid] < target or (right and nums[mid] == target):\n                lo = mid + 1\n            else:\n                hi = mid\n        return lo\n    first = bound(False)\n    if first == len(nums) or nums[first] != target:\n        return [-1, -1]\n    return [first, bound(True) - 1]\n",
+  "tests": [
+    {
+      "args": [
+        [
+          5,
+          7,
+          7,
+          8,
+          8,
+          10
+        ],
+        8
+      ],
+      "expected": [
+        3,
+        4
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          5,
+          7,
+          7,
+          8,
+          8,
+          10
+        ],
+        6
+      ],
+      "expected": [
+        -1,
+        -1
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [],
+        0
+      ],
+      "expected": [
+        -1,
+        -1
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1
+        ],
+        1
+      ],
+      "expected": [
+        0,
+        0
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          2,
+          2,
+          2
+        ],
+        2
+      ],
+      "expected": [
+        0,
+        2
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          2,
+          3
+        ],
+        4
+      ],
+      "expected": [
+        -1,
+        -1
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 239
+}

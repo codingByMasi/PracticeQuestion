@@ -1,0 +1,92 @@
+{
+  "slug": "extended-gcd",
+  "track": "python",
+  "title": "Extended gcd",
+  "difficulty": "Hard",
+  "tags": [
+    "number-theory"
+  ],
+  "statementMd": "Return `[g, x, y]` where `g = gcd(a, b)` and `a*x + b*y = g`, using the standard recursive extended Euclid algorithm (`extended_gcd(a, 0) = [a, 1, 0]`).\n\n**Example:** `extended_gcd(30, 20)` returns `[10, 1, -1]`.",
+  "hints": [
+    "Recurse on `(b, a % b)` and adjust coefficients."
+  ],
+  "solutionMd": "```python\ndef extended_gcd(a, b):\n    if b == 0:\n        return [a, 1, 0]\n    g, x, y = extended_gcd(b, a % b)\n    return [g, y, x - (a // b) * y]\n```\n\nThe coefficients of the smaller problem map back.",
+  "starterCode": "def extended_gcd(a, b):\n    # Write your code here\n    pass\n",
+  "functionName": "extended_gcd",
+  "referenceSolution": "def extended_gcd(a, b):\n    if b == 0:\n        return [a, 1, 0]\n    g, x, y = extended_gcd(b, a % b)\n    return [g, y, x - (a // b) * y]\n",
+  "tests": [
+    {
+      "args": [
+        30,
+        20
+      ],
+      "expected": [
+        10,
+        1,
+        -1
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        7,
+        0
+      ],
+      "expected": [
+        7,
+        1,
+        0
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        1,
+        1
+      ],
+      "expected": [
+        1,
+        0,
+        1
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        240,
+        46
+      ],
+      "expected": [
+        2,
+        -9,
+        47
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        17,
+        5
+      ],
+      "expected": [
+        1,
+        -2,
+        7
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        12,
+        18
+      ],
+      "expected": [
+        6,
+        -1,
+        1
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 425
+}

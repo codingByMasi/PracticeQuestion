@@ -1,0 +1,21 @@
+{
+  "slug": "flights-from-london",
+  "track": "sql",
+  "title": "Flights from London",
+  "difficulty": "Easy",
+  "tags": [
+    "where"
+  ],
+  "statementMd": "List flights departing from `LHR`: id, destination and date.\n\nExpected columns: `id`, `destination`, `depart_date`.\n\nTables: `airlines`, `airports`, `flights`, `bookings`.\n\nRow order does not matter.",
+  "hints": [
+    "`origin = 'LHR'`."
+  ],
+  "solutionMd": "```sql\nSELECT id, destination, depart_date FROM flights WHERE origin = 'LHR';\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: airlines, airports, flights, bookings\nSELECT\n",
+  "datasetId": "flights",
+  "expected": {
+    "query": "SELECT id, destination, depart_date FROM flights WHERE origin = 'LHR';",
+    "orderMatters": false
+  },
+  "order": 29
+}

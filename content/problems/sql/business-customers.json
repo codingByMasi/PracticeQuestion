@@ -1,0 +1,21 @@
+{
+  "slug": "business-customers",
+  "track": "sql",
+  "title": "Business customers",
+  "difficulty": "Easy",
+  "tags": [
+    "where"
+  ],
+  "statementMd": "List the names of customers in the `business` segment.\n\nExpected columns: `name`.\n\nTables: `customers`, `accounts`, `transactions`.\n\nRow order does not matter.",
+  "hints": [
+    "`segment = 'business'`."
+  ],
+  "solutionMd": "```sql\nSELECT name FROM customers WHERE segment = 'business';\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, accounts, transactions\nSELECT\n",
+  "datasetId": "bank",
+  "expected": {
+    "query": "SELECT name FROM customers WHERE segment = 'business';",
+    "orderMatters": false
+  },
+  "order": 15
+}

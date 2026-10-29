@@ -1,0 +1,149 @@
+{
+  "slug": "snapshot-array",
+  "track": "python",
+  "title": "Snapshot array",
+  "difficulty": "Hard",
+  "tags": [
+    "design"
+  ],
+  "statementMd": "An array of `length` zeros. `['set', i, v]` sets an element, `['snap']` takes a snapshot and returns its id (0, 1, ...), `['get', i, id]` returns the element's value at that snapshot. Return the results of snap and get.\n\n**Example:** `snapshot_array(3, [[\"set\", 0, 5], [\"snap\"], [\"set\", 0, 6], [\"get\", 0, 0], [\"s…)` returns `[0, 5, 1, 6]`.",
+  "hints": [
+    "Store (snapshot id, value) history per index and binary search."
+  ],
+  "solutionMd": "```python\ndef snapshot_array(length, ops):\n    import bisect\n    hist = [[(0, 0)] for _ in range(length)]\n    snap_id = 0\n    out = []\n    for op in ops:\n        if op[0] == 'set':\n            h = hist[op[1]]\n            if h[-1][0] == snap_id:\n                h[-1] = (snap_id, op[2])\n            else:\n                h.append((snap_id, op[2]))\n        elif op[0] == 'snap':\n            out.append(snap_id)\n            snap_id += 1\n        else:\n            h = hist[op[1]]\n            i = bisect.bisect_right(h, (op[2], float('inf'))) - 1\n            out.append(h[i][1])\n    return out\n```\n\nOnly record changes.",
+  "starterCode": "def snapshot_array(length, ops):\n    # Write your code here\n    pass\n",
+  "functionName": "snapshot_array",
+  "referenceSolution": "def snapshot_array(length, ops):\n    import bisect\n    hist = [[(0, 0)] for _ in range(length)]\n    snap_id = 0\n    out = []\n    for op in ops:\n        if op[0] == 'set':\n            h = hist[op[1]]\n            if h[-1][0] == snap_id:\n                h[-1] = (snap_id, op[2])\n            else:\n                h.append((snap_id, op[2]))\n        elif op[0] == 'snap':\n            out.append(snap_id)\n            snap_id += 1\n        else:\n            h = hist[op[1]]\n            i = bisect.bisect_right(h, (op[2], float('inf'))) - 1\n            out.append(h[i][1])\n    return out\n",
+  "tests": [
+    {
+      "args": [
+        3,
+        [
+          [
+            "set",
+            0,
+            5
+          ],
+          [
+            "snap"
+          ],
+          [
+            "set",
+            0,
+            6
+          ],
+          [
+            "get",
+            0,
+            0
+          ],
+          [
+            "snap"
+          ],
+          [
+            "get",
+            0,
+            1
+          ]
+        ]
+      ],
+      "expected": [
+        0,
+        5,
+        1,
+        6
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        1,
+        [
+          [
+            "get",
+            0,
+            0
+          ]
+        ]
+      ],
+      "expected": [
+        0
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        2,
+        []
+      ],
+      "expected": [],
+      "hidden": true
+    },
+    {
+      "args": [
+        2,
+        [
+          [
+            "snap"
+          ],
+          [
+            "set",
+            1,
+            9
+          ],
+          [
+            "snap"
+          ],
+          [
+            "get",
+            1,
+            0
+          ],
+          [
+            "get",
+            1,
+            1
+          ]
+        ]
+      ],
+      "expected": [
+        0,
+        1,
+        0,
+        9
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        1,
+        [
+          [
+            "set",
+            0,
+            1
+          ],
+          [
+            "set",
+            0,
+            2
+          ],
+          [
+            "snap"
+          ],
+          [
+            "get",
+            0,
+            0
+          ]
+        ]
+      ],
+      "expected": [
+        0,
+        2
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 498
+}

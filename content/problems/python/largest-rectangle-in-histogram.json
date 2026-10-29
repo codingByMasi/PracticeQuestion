@@ -1,0 +1,126 @@
+{
+  "slug": "largest-rectangle-in-histogram",
+  "track": "python",
+  "title": "Largest rectangle in histogram",
+  "difficulty": "Hard",
+  "tags": [
+    "stacks"
+  ],
+  "statementMd": "Given bar heights of a histogram (width 1 each), return the area of the largest rectangle.\n\n**Example:** `largest_rectangle([2, 1, 5, 6, 2, 3])` returns `10`.",
+  "hints": [
+    "Monotonic stack of increasing heights."
+  ],
+  "solutionMd": "```python\ndef largest_rectangle(heights):\n    stack, best = [], 0\n    for i, h in enumerate(heights + [0]):\n        start = i\n        while stack and stack[-1][1] >= h:\n            idx, height = stack.pop()\n            best = max(best, height * (i - idx))\n            start = idx\n        stack.append((start, h))\n    return best\n```\n\nPop taller bars when a shorter one arrives and compute their area.",
+  "starterCode": "def largest_rectangle(heights):\n    # Write your code here\n    pass\n",
+  "functionName": "largest_rectangle",
+  "referenceSolution": "def largest_rectangle(heights):\n    stack, best = [], 0\n    for i, h in enumerate(heights + [0]):\n        start = i\n        while stack and stack[-1][1] >= h:\n            idx, height = stack.pop()\n            best = max(best, height * (i - idx))\n            start = idx\n        stack.append((start, h))\n    return best\n",
+  "tests": [
+    {
+      "args": [
+        [
+          2,
+          1,
+          5,
+          6,
+          2,
+          3
+        ]
+      ],
+      "expected": 10,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          2,
+          4
+        ]
+      ],
+      "expected": 4,
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1
+        ]
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          2,
+          2,
+          2
+        ]
+      ],
+      "expected": 6,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          6,
+          2,
+          5,
+          4,
+          5,
+          1,
+          6
+        ]
+      ],
+      "expected": 12,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          5,
+          8,
+          5,
+          7,
+          3
+        ]
+      ],
+      "expected": 20,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          3,
+          7,
+          3,
+          4,
+          6,
+          8,
+          2,
+          1,
+          2
+        ]
+      ],
+      "expected": 18,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          8,
+          7
+        ]
+      ],
+      "expected": 14,
+      "hidden": true
+    }
+  ],
+  "order": 412
+}

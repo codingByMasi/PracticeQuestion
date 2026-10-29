@@ -1,0 +1,21 @@
+{
+  "slug": "salary-spread-per-department",
+  "track": "sql",
+  "title": "Salary spread per department",
+  "difficulty": "Medium",
+  "tags": [
+    "aggregate"
+  ],
+  "statementMd": "For each department with employees show the gap between its highest and lowest salary.\n\nExpected columns: `name`, `spread`.\n\nTables: `employees`, `departments`.\n\nRow order does not matter.",
+  "hints": [
+    "`MAX(salary) - MIN(salary)`."
+  ],
+  "solutionMd": "```sql\nSELECT d.name, MAX(e.salary) - MIN(e.salary) AS spread FROM employees e JOIN departments d ON d.id = e.department_id GROUP BY d.id, d.name;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "SELECT d.name, MAX(e.salary) - MIN(e.salary) AS spread FROM employees e JOIN departments d ON d.id = e.department_id GROUP BY d.id, d.name;",
+    "orderMatters": false
+  },
+  "order": 222
+}

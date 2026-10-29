@@ -1,0 +1,75 @@
+{
+  "slug": "closest-pair-of-numbers",
+  "track": "python",
+  "title": "Closest pair of numbers",
+  "difficulty": "Medium",
+  "tags": [
+    "sorting"
+  ],
+  "statementMd": "Return the smallest absolute difference between any two elements (at least two elements).\n\n**Example:** `min_abs_difference([4, 9, 1, 7])` returns `2`.",
+  "hints": [
+    "Sort, then check neighbours."
+  ],
+  "solutionMd": "```python\ndef min_abs_difference(nums):\n    s = sorted(nums)\n    return min(b - a for a, b in zip(s, s[1:]))\n```\n\nAfter sorting only neighbours matter.",
+  "starterCode": "def min_abs_difference(nums):\n    # Write your code here\n    pass\n",
+  "functionName": "min_abs_difference",
+  "referenceSolution": "def min_abs_difference(nums):\n    s = sorted(nums)\n    return min(b - a for a, b in zip(s, s[1:]))\n",
+  "tests": [
+    {
+      "args": [
+        [
+          4,
+          9,
+          1,
+          7
+        ]
+      ],
+      "expected": 2,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          5,
+          5
+        ]
+      ],
+      "expected": 0,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          1,
+          2
+        ]
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          10,
+          -10,
+          0
+        ]
+      ],
+      "expected": 10,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          100,
+          3,
+          50,
+          4
+        ]
+      ],
+      "expected": 1,
+      "hidden": true
+    }
+  ],
+  "order": 229
+}

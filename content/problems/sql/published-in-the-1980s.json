@@ -1,0 +1,21 @@
+{
+  "slug": "published-in-the-1980s",
+  "track": "sql",
+  "title": "Published in the 1980s",
+  "difficulty": "Easy",
+  "tags": [
+    "where"
+  ],
+  "statementMd": "List books published from 1980 to 1989 inclusive.\n\nExpected columns: `title`, `published_year`.\n\nTables: `authors`, `books`, `members`, `loans`.\n\nRow order does not matter.",
+  "hints": [
+    "`BETWEEN`."
+  ],
+  "solutionMd": "```sql\nSELECT title, published_year FROM books WHERE published_year BETWEEN 1980 AND 1989;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: authors, books, members, loans\nSELECT\n",
+  "datasetId": "library",
+  "expected": {
+    "query": "SELECT title, published_year FROM books WHERE published_year BETWEEN 1980 AND 1989;",
+    "orderMatters": false
+  },
+  "order": 34
+}

@@ -1,0 +1,68 @@
+{
+  "slug": "longest-repeating-character-replacement",
+  "track": "python",
+  "title": "Longest repeating character replacement",
+  "difficulty": "Hard",
+  "tags": [
+    "sliding-window"
+  ],
+  "statementMd": "You may change at most `k` characters of `s` to any letter. Return the length of the longest substring of identical letters you can get.\n\n**Example:** `character_replacement(\"ABAB\", 2)` returns `4`.",
+  "hints": [
+    "Window length minus the max frequency must be <= k."
+  ],
+  "solutionMd": "```python\ndef character_replacement(s, k):\n    counts = {}\n    left = best = maxf = 0\n    for right, c in enumerate(s):\n        counts[c] = counts.get(c, 0) + 1\n        maxf = max(maxf, counts[c])\n        while right - left + 1 - maxf > k:\n            counts[s[left]] -= 1\n            left += 1\n        best = max(best, right - left + 1)\n    return best\n```\n\nTrack the most common letter in the window.",
+  "starterCode": "def character_replacement(s, k):\n    # Write your code here\n    pass\n",
+  "functionName": "character_replacement",
+  "referenceSolution": "def character_replacement(s, k):\n    counts = {}\n    left = best = maxf = 0\n    for right, c in enumerate(s):\n        counts[c] = counts.get(c, 0) + 1\n        maxf = max(maxf, counts[c])\n        while right - left + 1 - maxf > k:\n            counts[s[left]] -= 1\n            left += 1\n        best = max(best, right - left + 1)\n    return best\n",
+  "tests": [
+    {
+      "args": [
+        "ABAB",
+        2
+      ],
+      "expected": 4,
+      "hidden": false
+    },
+    {
+      "args": [
+        "AABABBA",
+        1
+      ],
+      "expected": 4,
+      "hidden": false
+    },
+    {
+      "args": [
+        "",
+        3
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        "A",
+        0
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        "ABC",
+        0
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        "AAAA",
+        2
+      ],
+      "expected": 4,
+      "hidden": true
+    }
+  ],
+  "order": 406
+}

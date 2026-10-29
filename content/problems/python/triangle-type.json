@@ -1,0 +1,74 @@
+{
+  "slug": "triangle-type",
+  "track": "python",
+  "title": "Triangle type",
+  "difficulty": "Easy",
+  "tags": [
+    "conditionals"
+  ],
+  "statementMd": "Given three side lengths return `\"invalid\"` if they cannot form a triangle (sum of two sides must exceed the third), otherwise `\"equilateral\"`, `\"isosceles\"` or `\"scalene\"`.\n\n**Example:** `triangle_type(3, 3, 3)` returns `\"equilateral\"`.",
+  "hints": [
+    "Validate first, then count equal sides."
+  ],
+  "solutionMd": "```python\ndef triangle_type(a, b, c):\n    if a + b <= c or a + c <= b or b + c <= a:\n        return 'invalid'\n    if a == b == c:\n        return 'equilateral'\n    if a == b or b == c or a == c:\n        return 'isosceles'\n    return 'scalene'\n```\n\nStrict inequality rejects degenerate triangles.",
+  "starterCode": "def triangle_type(a, b, c):\n    # Write your code here\n    pass\n",
+  "functionName": "triangle_type",
+  "referenceSolution": "def triangle_type(a, b, c):\n    if a + b <= c or a + c <= b or b + c <= a:\n        return 'invalid'\n    if a == b == c:\n        return 'equilateral'\n    if a == b or b == c or a == c:\n        return 'isosceles'\n    return 'scalene'\n",
+  "tests": [
+    {
+      "args": [
+        3,
+        3,
+        3
+      ],
+      "expected": "equilateral",
+      "hidden": false
+    },
+    {
+      "args": [
+        3,
+        4,
+        5
+      ],
+      "expected": "scalene",
+      "hidden": false
+    },
+    {
+      "args": [
+        2,
+        2,
+        3
+      ],
+      "expected": "isosceles",
+      "hidden": true
+    },
+    {
+      "args": [
+        1,
+        2,
+        3
+      ],
+      "expected": "invalid",
+      "hidden": true
+    },
+    {
+      "args": [
+        5,
+        5,
+        1
+      ],
+      "expected": "isosceles",
+      "hidden": true
+    },
+    {
+      "args": [
+        1,
+        1,
+        10
+      ],
+      "expected": "invalid",
+      "hidden": true
+    }
+  ],
+  "order": 14
+}

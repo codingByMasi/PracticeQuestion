@@ -1,0 +1,21 @@
+{
+  "slug": "average-review-rating",
+  "track": "sql",
+  "title": "Average review rating",
+  "difficulty": "Easy",
+  "tags": [
+    "aggregate"
+  ],
+  "statementMd": "What is the average review rating across all reviews, rounded to 2 decimals?\n\nExpected columns: `avg_rating`.\n\nTables: `movies`, `directors`, `reviews`.\n\nRow order does not matter.",
+  "hints": [
+    "`ROUND(AVG(rating), 2)`."
+  ],
+  "solutionMd": "```sql\nSELECT ROUND(AVG(rating), 2) AS avg_rating FROM reviews;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: movies, directors, reviews\nSELECT\n",
+  "datasetId": "movies",
+  "expected": {
+    "query": "SELECT ROUND(AVG(rating), 2) AS avg_rating FROM reviews;",
+    "orderMatters": false
+  },
+  "order": 118
+}

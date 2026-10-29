@@ -1,0 +1,98 @@
+{
+  "slug": "gas-station",
+  "track": "python",
+  "title": "Gas station",
+  "difficulty": "Hard",
+  "tags": [
+    "greedy"
+  ],
+  "statementMd": "Stations in a circle: station `i` gives `gas[i]` fuel and the trip to the next costs `cost[i]`. Return the starting index from which you can complete the circle once, or `-1`. The answer is unique if it exists.\n\n**Example:** `can_complete_circuit([1, 2, 3, 4, 5], [3, 4, 5, 1, 2])` returns `3`.",
+  "hints": [
+    "If the total is non-negative, restart whenever the tank goes negative."
+  ],
+  "solutionMd": "```python\ndef can_complete_circuit(gas, cost):\n    if sum(gas) < sum(cost):\n        return -1\n    start = tank = 0\n    for i in range(len(gas)):\n        tank += gas[i] - cost[i]\n        if tank < 0:\n            start, tank = i + 1, 0\n    return start\n```\n\nA failed segment cannot contain a valid start.",
+  "starterCode": "def can_complete_circuit(gas, cost):\n    # Write your code here\n    pass\n",
+  "functionName": "can_complete_circuit",
+  "referenceSolution": "def can_complete_circuit(gas, cost):\n    if sum(gas) < sum(cost):\n        return -1\n    start = tank = 0\n    for i in range(len(gas)):\n        tank += gas[i] - cost[i]\n        if tank < 0:\n            start, tank = i + 1, 0\n    return start\n",
+  "tests": [
+    {
+      "args": [
+        [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        [
+          3,
+          4,
+          5,
+          1,
+          2
+        ]
+      ],
+      "expected": 3,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          2,
+          3,
+          4
+        ],
+        [
+          3,
+          4,
+          3
+        ]
+      ],
+      "expected": -1,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          5
+        ],
+        [
+          4
+        ]
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          1
+        ]
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          3,
+          1,
+          1
+        ],
+        [
+          1,
+          2,
+          2
+        ]
+      ],
+      "expected": 0,
+      "hidden": true
+    }
+  ],
+  "order": 433
+}

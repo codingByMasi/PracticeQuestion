@@ -1,0 +1,129 @@
+{
+  "slug": "minimum-spanning-tree-weight",
+  "track": "python",
+  "title": "Minimum spanning tree weight",
+  "difficulty": "Hard",
+  "tags": [
+    "graphs"
+  ],
+  "statementMd": "Weighted undirected connected graph; edges are `[a, b, w]`. Return the total weight of a minimum spanning tree.\n\n**Example:** `mst_weight(4, [[0, 1, 1], [1, 2, 2], [0, 2, 3], [2, 3, 1]])` returns `4`.",
+  "hints": [
+    "Kruskal with union-find."
+  ],
+  "solutionMd": "```python\nfrom collections import deque, defaultdict\n\n\ndef mst_weight(n, edges):\n    parent = list(range(n))\n    def find(x):\n        while parent[x] != x:\n            parent[x] = parent[parent[x]]\n            x = parent[x]\n        return x\n    total = 0\n    for a, b, w in sorted(edges, key=lambda e: e[2]):\n        ra, rb = find(a), find(b)\n        if ra != rb:\n            parent[ra] = rb\n            total += w\n    return total\n```\n\nTake the cheapest edge that joins two components.",
+  "starterCode": "def mst_weight(n, edges):\n    # Write your code here\n    pass\n",
+  "functionName": "mst_weight",
+  "referenceSolution": "from collections import deque, defaultdict\n\n\ndef mst_weight(n, edges):\n    parent = list(range(n))\n    def find(x):\n        while parent[x] != x:\n            parent[x] = parent[parent[x]]\n            x = parent[x]\n        return x\n    total = 0\n    for a, b, w in sorted(edges, key=lambda e: e[2]):\n        ra, rb = find(a), find(b)\n        if ra != rb:\n            parent[ra] = rb\n            total += w\n    return total\n",
+  "tests": [
+    {
+      "args": [
+        4,
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            2,
+            2
+          ],
+          [
+            0,
+            2,
+            3
+          ],
+          [
+            2,
+            3,
+            1
+          ]
+        ]
+      ],
+      "expected": 4,
+      "hidden": false
+    },
+    {
+      "args": [
+        2,
+        [
+          [
+            0,
+            1,
+            7
+          ]
+        ]
+      ],
+      "expected": 7,
+      "hidden": false
+    },
+    {
+      "args": [
+        1,
+        []
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        3,
+        [
+          [
+            0,
+            1,
+            5
+          ],
+          [
+            1,
+            2,
+            5
+          ],
+          [
+            0,
+            2,
+            5
+          ]
+        ]
+      ],
+      "expected": 10,
+      "hidden": true
+    },
+    {
+      "args": [
+        5,
+        [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            2,
+            3,
+            4
+          ],
+          [
+            3,
+            4,
+            5
+          ],
+          [
+            0,
+            4,
+            1
+          ]
+        ]
+      ],
+      "expected": 10,
+      "hidden": true
+    }
+  ],
+  "order": 470
+}

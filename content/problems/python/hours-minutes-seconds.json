@@ -1,0 +1,62 @@
+{
+  "slug": "hours-minutes-seconds",
+  "track": "python",
+  "title": "Hours minutes seconds",
+  "difficulty": "Easy",
+  "tags": [
+    "numbers"
+  ],
+  "statementMd": "Convert a non-negative number of seconds to `\"H:MM:SS\"` (hours not zero-padded, minutes and seconds two digits).\n\n**Example:** `format_duration(3661)` returns `\"1:01:01\"`.",
+  "hints": [
+    "Use `divmod` twice and format with `:02d`."
+  ],
+  "solutionMd": "```python\ndef format_duration(seconds):\n    m, s = divmod(seconds, 60)\n    h, m = divmod(m, 60)\n    return f'{h}:{m:02d}:{s:02d}'\n```\n\n`divmod` returns quotient and remainder at once.",
+  "starterCode": "def format_duration(seconds):\n    # Write your code here\n    pass\n",
+  "functionName": "format_duration",
+  "referenceSolution": "def format_duration(seconds):\n    m, s = divmod(seconds, 60)\n    h, m = divmod(m, 60)\n    return f'{h}:{m:02d}:{s:02d}'\n",
+  "tests": [
+    {
+      "args": [
+        3661
+      ],
+      "expected": "1:01:01",
+      "hidden": false
+    },
+    {
+      "args": [
+        59
+      ],
+      "expected": "0:00:59",
+      "hidden": false
+    },
+    {
+      "args": [
+        0
+      ],
+      "expected": "0:00:00",
+      "hidden": true
+    },
+    {
+      "args": [
+        3600
+      ],
+      "expected": "1:00:00",
+      "hidden": true
+    },
+    {
+      "args": [
+        86399
+      ],
+      "expected": "23:59:59",
+      "hidden": true
+    },
+    {
+      "args": [
+        360000
+      ],
+      "expected": "100:00:00",
+      "hidden": true
+    }
+  ],
+  "order": 23
+}

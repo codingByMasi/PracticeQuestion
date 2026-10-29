@@ -1,0 +1,21 @@
+{
+  "slug": "calendar-of-missing-days",
+  "track": "sql",
+  "title": "Calendar of missing days",
+  "difficulty": "Hard",
+  "tags": [
+    "recursive"
+  ],
+  "statementMd": "Generate every calendar date from 2024-03-01 to 2024-03-10 with a recursive CTE and list those that have no price rows for any ticker. These are the weekends.\n\nExpected columns: `missing_date`.\n\nTables: `tickers`, `prices`.\n\nRow order does not matter.",
+  "hints": [
+    "Recursive CTE with `date(d, '+1 day')`."
+  ],
+  "solutionMd": "```sql\nWITH RECURSIVE cal(d) AS (SELECT '2024-03-01' UNION ALL SELECT date(d, '+1 day') FROM cal WHERE d < '2024-03-10') SELECT d AS missing_date FROM cal WHERE d NOT IN (SELECT trade_date FROM prices);\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: tickers, prices\nSELECT\n",
+  "datasetId": "stocks",
+  "expected": {
+    "query": "WITH RECURSIVE cal(d) AS (SELECT '2024-03-01' UNION ALL SELECT date(d, '+1 day') FROM cal WHERE d < '2024-03-10') SELECT d AS missing_date FROM cal WHERE d NOT IN (SELECT trade_date FROM prices);",
+    "orderMatters": false
+  },
+  "order": 492
+}

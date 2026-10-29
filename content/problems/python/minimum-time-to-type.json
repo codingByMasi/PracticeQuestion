@@ -1,0 +1,60 @@
+{
+  "slug": "minimum-time-to-type",
+  "track": "python",
+  "title": "Minimum time to type",
+  "difficulty": "Medium",
+  "tags": [
+    "simulation"
+  ],
+  "statementMd": "`keyboard` is a string of 26 distinct letters laid out on a single row. Your finger starts at index 0 and moving between indices costs the absolute difference. Return the total time to type `word`.\n\n**Example:** `typing_time(\"abcdefghijklmnopqrstuvwxyz\", \"cba\")` returns `4`.",
+  "hints": [
+    "Map each letter to its index."
+  ],
+  "solutionMd": "```python\ndef typing_time(keyboard, word):\n    pos = {c: i for i, c in enumerate(keyboard)}\n    cur = total = 0\n    for c in word:\n        total += abs(pos[c] - cur)\n        cur = pos[c]\n    return total\n```\n\nSum of distances between consecutive keys.",
+  "starterCode": "def typing_time(keyboard, word):\n    # Write your code here\n    pass\n",
+  "functionName": "typing_time",
+  "referenceSolution": "def typing_time(keyboard, word):\n    pos = {c: i for i, c in enumerate(keyboard)}\n    cur = total = 0\n    for c in word:\n        total += abs(pos[c] - cur)\n        cur = pos[c]\n    return total\n",
+  "tests": [
+    {
+      "args": [
+        "abcdefghijklmnopqrstuvwxyz",
+        "cba"
+      ],
+      "expected": 4,
+      "hidden": false
+    },
+    {
+      "args": [
+        "pqrstuvwxyzabcdefghijklmno",
+        "a"
+      ],
+      "expected": 11,
+      "hidden": false
+    },
+    {
+      "args": [
+        "abcdefghijklmnopqrstuvwxyz",
+        ""
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        "zyxwvutsrqponmlkjihgfedcba",
+        "az"
+      ],
+      "expected": 50,
+      "hidden": true
+    },
+    {
+      "args": [
+        "abcdefghijklmnopqrstuvwxyz",
+        "zzz"
+      ],
+      "expected": 25,
+      "hidden": true
+    }
+  ],
+  "order": 306
+}

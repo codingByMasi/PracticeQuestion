@@ -1,0 +1,91 @@
+{
+  "slug": "sort-colors",
+  "track": "python",
+  "title": "Sort colors",
+  "difficulty": "Medium",
+  "tags": [
+    "two-pointers"
+  ],
+  "statementMd": "The list contains only 0, 1 and 2. Return it sorted without using `sort` or `sorted`.\n\n**Example:** `sort_colors([2, 0, 2, 1, 1, 0])` returns `[0, 0, 1, 1, 2, 2]`.",
+  "hints": [
+    "Count each value, or use the Dutch national flag."
+  ],
+  "solutionMd": "```python\ndef sort_colors(nums):\n    counts = [0, 0, 0]\n    for x in nums:\n        counts[x] += 1\n    return [0] * counts[0] + [1] * counts[1] + [2] * counts[2]\n```\n\nCounting sort for three values.",
+  "starterCode": "def sort_colors(nums):\n    # Write your code here\n    pass\n",
+  "functionName": "sort_colors",
+  "referenceSolution": "def sort_colors(nums):\n    counts = [0, 0, 0]\n    for x in nums:\n        counts[x] += 1\n    return [0] * counts[0] + [1] * counts[1] + [2] * counts[2]\n",
+  "tests": [
+    {
+      "args": [
+        [
+          2,
+          0,
+          2,
+          1,
+          1,
+          0
+        ]
+      ],
+      "expected": [
+        0,
+        0,
+        1,
+        1,
+        2,
+        2
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          1
+        ]
+      ],
+      "expected": [
+        1
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": [],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          2,
+          2,
+          0
+        ]
+      ],
+      "expected": [
+        0,
+        2,
+        2
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          0,
+          1,
+          2,
+          0
+        ]
+      ],
+      "expected": [
+        0,
+        0,
+        1,
+        2
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 253
+}

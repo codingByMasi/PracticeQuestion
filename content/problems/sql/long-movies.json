@@ -1,0 +1,21 @@
+{
+  "slug": "long-movies",
+  "track": "sql",
+  "title": "Long movies",
+  "difficulty": "Easy",
+  "tags": [
+    "where"
+  ],
+  "statementMd": "Find movies longer than 150 minutes. Show title and runtime.\n\nExpected columns: `title`, `runtime_minutes`.\n\nTables: `movies`, `directors`, `reviews`.\n\nRow order does not matter.",
+  "hints": [
+    "Compare `runtime_minutes`."
+  ],
+  "solutionMd": "```sql\nSELECT title, runtime_minutes FROM movies WHERE runtime_minutes > 150;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: movies, directors, reviews\nSELECT\n",
+  "datasetId": "movies",
+  "expected": {
+    "query": "SELECT title, runtime_minutes FROM movies WHERE runtime_minutes > 150;",
+    "orderMatters": false
+  },
+  "order": 36
+}

@@ -1,0 +1,21 @@
+{
+  "slug": "consecutive-high-scorers",
+  "track": "sql",
+  "title": "Consecutive high scorers",
+  "difficulty": "Hard",
+  "tags": [
+    "gaps-islands"
+  ],
+  "statementMd": "Look at student 2's graded enrollments in order of semester then course id. Mark each row whether the score is at least 80 and report the longest run of consecutive rows that are at least 80 as `longest_run`.\n\nExpected columns: `longest_run`.\n\nTables: `teachers`, `courses`, `students`, `enrollments`.\n\nRow order does not matter.",
+  "hints": [
+    "Number the rows and the 'good' rows separately; difference identifies runs."
+  ],
+  "solutionMd": "```sql\nWITH r AS (SELECT score >= 80 AS good, ROW_NUMBER() OVER (ORDER BY semester, course_id) AS rn FROM enrollments WHERE student_id = 2 AND score IS NOT NULL), g AS (SELECT rn - ROW_NUMBER() OVER (ORDER BY rn) AS grp, rn FROM r WHERE good = 1) SELECT COALESCE(MAX(c), 0) AS longest_run FROM (SELECT COUNT(*) AS c FROM g GROUP BY grp);\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: teachers, courses, students, enrollments\nSELECT\n",
+  "datasetId": "school",
+  "expected": {
+    "query": "WITH r AS (SELECT score >= 80 AS good, ROW_NUMBER() OVER (ORDER BY semester, course_id) AS rn FROM enrollments WHERE student_id = 2 AND score IS NOT NULL), g AS (SELECT rn - ROW_NUMBER() OVER (ORDER BY rn) AS grp, rn FROM r WHERE good = 1) SELECT COALESCE(MAX(c), 0) AS longest_run FROM (SELECT COUNT(*) AS c FROM g GROUP BY grp);",
+    "orderMatters": false
+  },
+  "order": 498
+}

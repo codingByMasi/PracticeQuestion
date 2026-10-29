@@ -1,0 +1,82 @@
+{
+  "slug": "min-cost-climbing-stairs",
+  "track": "python",
+  "title": "Min cost climbing stairs",
+  "difficulty": "Easy",
+  "tags": [
+    "dynamic-programming"
+  ],
+  "statementMd": "`cost[i]` is the price to step off stair `i`; you may start at index 0 or 1 and climb 1 or 2 steps. Return the minimum cost to reach the top (just past the last index).\n\n**Example:** `min_cost_stairs([10, 15, 20])` returns `15`.",
+  "hints": [
+    "Roll the two last best costs."
+  ],
+  "solutionMd": "```python\ndef min_cost_stairs(cost):\n    a = b = 0\n    for c in cost:\n        a, b = b, min(a, b) + c\n    return min(a, b)\n```\n\nCost to reach step i is cost[i] plus the cheaper way in.",
+  "starterCode": "def min_cost_stairs(cost):\n    # Write your code here\n    pass\n",
+  "functionName": "min_cost_stairs",
+  "referenceSolution": "def min_cost_stairs(cost):\n    a = b = 0\n    for c in cost:\n        a, b = b, min(a, b) + c\n    return min(a, b)\n",
+  "tests": [
+    {
+      "args": [
+        [
+          10,
+          15,
+          20
+        ]
+      ],
+      "expected": 15,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          1,
+          100,
+          1,
+          1,
+          1,
+          100,
+          1,
+          1,
+          100,
+          1
+        ]
+      ],
+      "expected": 6,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          5,
+          5
+        ]
+      ],
+      "expected": 5,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          3,
+          2,
+          1,
+          4
+        ]
+      ],
+      "expected": 3,
+      "hidden": true
+    }
+  ],
+  "order": 150
+}

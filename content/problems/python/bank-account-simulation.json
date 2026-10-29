@@ -1,0 +1,133 @@
+{
+  "slug": "bank-account-simulation",
+  "track": "python",
+  "title": "Bank account simulation",
+  "difficulty": "Medium",
+  "tags": [
+    "simulation"
+  ],
+  "statementMd": "Simulate accounts: `['open', name, amount]`, `['deposit', name, amount]`, `['withdraw', name, amount]` (fails if funds are insufficient or the account is missing) and `['balance', name]`. For `open`, `deposit` and `withdraw` return `True`/`False` for success (opening an existing account fails); for `balance` return the number or `-1` for an unknown account.\n\n**Example:** `bank_ops([[\"open\", \"a\", 10], [\"withdraw\", \"a\", 15], [\"deposit\", \"a\",…)` returns `[true, false, true, 15]`.",
+  "hints": [
+    "Dict of balances."
+  ],
+  "solutionMd": "```python\ndef bank_ops(ops):\n    acct = {}\n    out = []\n    for op in ops:\n        k = op[0]\n        if k == 'open':\n            if op[1] in acct:\n                out.append(False)\n            else:\n                acct[op[1]] = op[2]; out.append(True)\n        elif k == 'deposit':\n            if op[1] in acct:\n                acct[op[1]] += op[2]; out.append(True)\n            else:\n                out.append(False)\n        elif k == 'withdraw':\n            if op[1] in acct and acct[op[1]] >= op[2]:\n                acct[op[1]] -= op[2]; out.append(True)\n            else:\n                out.append(False)\n        else:\n            out.append(acct.get(op[1], -1))\n    return out\n```\n\nValidate each operation before changing state.",
+  "starterCode": "def bank_ops(ops):\n    # Write your code here\n    pass\n",
+  "functionName": "bank_ops",
+  "referenceSolution": "def bank_ops(ops):\n    acct = {}\n    out = []\n    for op in ops:\n        k = op[0]\n        if k == 'open':\n            if op[1] in acct:\n                out.append(False)\n            else:\n                acct[op[1]] = op[2]; out.append(True)\n        elif k == 'deposit':\n            if op[1] in acct:\n                acct[op[1]] += op[2]; out.append(True)\n            else:\n                out.append(False)\n        elif k == 'withdraw':\n            if op[1] in acct and acct[op[1]] >= op[2]:\n                acct[op[1]] -= op[2]; out.append(True)\n            else:\n                out.append(False)\n        else:\n            out.append(acct.get(op[1], -1))\n    return out\n",
+  "tests": [
+    {
+      "args": [
+        [
+          [
+            "open",
+            "a",
+            10
+          ],
+          [
+            "withdraw",
+            "a",
+            15
+          ],
+          [
+            "deposit",
+            "a",
+            5
+          ],
+          [
+            "balance",
+            "a"
+          ]
+        ]
+      ],
+      "expected": [
+        true,
+        false,
+        true,
+        15
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            "balance",
+            "z"
+          ]
+        ]
+      ],
+      "expected": [
+        -1
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            "open",
+            "a",
+            1
+          ],
+          [
+            "open",
+            "a",
+            2
+          ],
+          [
+            "balance",
+            "a"
+          ]
+        ]
+      ],
+      "expected": [
+        true,
+        false,
+        1
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            "withdraw",
+            "q",
+            1
+          ]
+        ]
+      ],
+      "expected": [
+        false
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            "open",
+            "x",
+            5
+          ],
+          [
+            "withdraw",
+            "x",
+            5
+          ],
+          [
+            "balance",
+            "x"
+          ]
+        ]
+      ],
+      "expected": [
+        true,
+        true,
+        0
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 300
+}

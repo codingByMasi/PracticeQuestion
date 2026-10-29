@@ -1,0 +1,90 @@
+{
+  "slug": "common-keys",
+  "track": "python",
+  "title": "Common keys",
+  "difficulty": "Easy",
+  "tags": [
+    "dicts"
+  ],
+  "statementMd": "Return the sorted list of keys present in both dicts.\n\n**Example:** `common_keys({\"a\": 1, \"b\": 2}, {\"b\": 3, \"c\": 4})` returns `[\"b\"]`.",
+  "hints": [
+    "Intersect the key sets."
+  ],
+  "solutionMd": "```python\ndef common_keys(a, b):\n    return sorted(a.keys() & b.keys())\n```\n\nDict key views support set operations.",
+  "starterCode": "def common_keys(a, b):\n    # Write your code here\n    pass\n",
+  "functionName": "common_keys",
+  "referenceSolution": "def common_keys(a, b):\n    return sorted(a.keys() & b.keys())\n",
+  "tests": [
+    {
+      "args": [
+        {
+          "a": 1,
+          "b": 2
+        },
+        {
+          "b": 3,
+          "c": 4
+        }
+      ],
+      "expected": [
+        "b"
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        {},
+        {
+          "a": 1
+        }
+      ],
+      "expected": [],
+      "hidden": false
+    },
+    {
+      "args": [
+        {
+          "x": 1
+        },
+        {
+          "x": 2
+        }
+      ],
+      "expected": [
+        "x"
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        {
+          "p": 0
+        },
+        {
+          "q": 0
+        }
+      ],
+      "expected": [],
+      "hidden": true
+    },
+    {
+      "args": [
+        {
+          "a": 1,
+          "b": 1,
+          "c": 1
+        },
+        {
+          "c": 1,
+          "a": 1
+        }
+      ],
+      "expected": [
+        "a",
+        "c"
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 104
+}

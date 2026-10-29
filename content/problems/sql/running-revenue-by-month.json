@@ -1,0 +1,21 @@
+{
+  "slug": "running-revenue-by-month",
+  "track": "sql",
+  "title": "Running revenue by month",
+  "difficulty": "Hard",
+  "tags": [
+    "running-total"
+  ],
+  "statementMd": "Monthly booking revenue (by departure month) with a cumulative total, both rounded to 2 decimals. Earliest first.\n\nExpected columns: `month`, `revenue`, `cumulative`.\n\nTables: `airlines`, `airports`, `flights`, `bookings`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Monthly sum in a CTE, then running sum."
+  ],
+  "solutionMd": "```sql\nWITH m AS (SELECT strftime('%Y-%m', f.depart_date) AS month, SUM(b.fare) AS revenue FROM bookings b JOIN flights f ON f.id = b.flight_id GROUP BY month) SELECT month, ROUND(revenue, 2) AS revenue, ROUND(SUM(revenue) OVER (ORDER BY month), 2) AS cumulative FROM m ORDER BY month;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: airlines, airports, flights, bookings\nSELECT\n",
+  "datasetId": "flights",
+  "expected": {
+    "query": "WITH m AS (SELECT strftime('%Y-%m', f.depart_date) AS month, SUM(b.fare) AS revenue FROM bookings b JOIN flights f ON f.id = b.flight_id GROUP BY month) SELECT month, ROUND(revenue, 2) AS revenue, ROUND(SUM(revenue) OVER (ORDER BY month), 2) AS cumulative FROM m ORDER BY month;",
+    "orderMatters": true
+  },
+  "order": 471
+}

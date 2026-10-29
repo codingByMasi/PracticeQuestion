@@ -1,0 +1,55 @@
+{
+  "slug": "square-a-number",
+  "track": "python",
+  "title": "Square a number",
+  "difficulty": "Easy",
+  "tags": [
+    "basics"
+  ],
+  "statementMd": "Return `n` multiplied by itself.\n\n**Example:** `square(3)` returns `9`.",
+  "hints": [
+    "Use `n * n` or `n ** 2`."
+  ],
+  "solutionMd": "```python\ndef square(n):\n    return n * n\n```\n\n`**` is the power operator; `n * n` works equally well.",
+  "starterCode": "def square(n):\n    # Write your code here\n    pass\n",
+  "functionName": "square",
+  "referenceSolution": "def square(n):\n    return n * n\n",
+  "tests": [
+    {
+      "args": [
+        3
+      ],
+      "expected": 9,
+      "hidden": false
+    },
+    {
+      "args": [
+        -4
+      ],
+      "expected": 16,
+      "hidden": false
+    },
+    {
+      "args": [
+        0
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        12
+      ],
+      "expected": 144,
+      "hidden": true
+    },
+    {
+      "args": [
+        1.5
+      ],
+      "expected": 2.25,
+      "hidden": true
+    }
+  ],
+  "order": 3
+}

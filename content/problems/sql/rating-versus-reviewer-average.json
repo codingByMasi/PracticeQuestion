@@ -1,0 +1,21 @@
+{
+  "slug": "rating-versus-reviewer-average",
+  "track": "sql",
+  "title": "Rating versus reviewer average",
+  "difficulty": "Hard",
+  "tags": [
+    "window-functions"
+  ],
+  "statementMd": "For every review show the reviewer, the movie id, the rating and how far it is from that reviewer's own average rating (rounded to 2 decimals). Order by reviewer then review id.\n\nExpected columns: `reviewer`, `movie_id`, `rating`, `vs_own_avg`.\n\nTables: `movies`, `directors`, `reviews`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "`AVG(rating) OVER (PARTITION BY reviewer)`."
+  ],
+  "solutionMd": "```sql\nSELECT reviewer, movie_id, rating, ROUND(rating - AVG(rating) OVER (PARTITION BY reviewer), 2) AS vs_own_avg FROM reviews ORDER BY reviewer, id;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: movies, directors, reviews\nSELECT\n",
+  "datasetId": "movies",
+  "expected": {
+    "query": "SELECT reviewer, movie_id, rating, ROUND(rating - AVG(rating) OVER (PARTITION BY reviewer), 2) AS vs_own_avg FROM reviews ORDER BY reviewer, id;",
+    "orderMatters": true
+  },
+  "order": 419
+}

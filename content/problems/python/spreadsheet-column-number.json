@@ -1,0 +1,62 @@
+{
+  "slug": "spreadsheet-column-number",
+  "track": "python",
+  "title": "Spreadsheet column number",
+  "difficulty": "Easy",
+  "tags": [
+    "parsing"
+  ],
+  "statementMd": "Convert an Excel column title (`\"A\"`, `\"Z\"`, `\"AA\"`, ...) to its number.\n\n**Example:** `column_number(\"A\")` returns `1`.",
+  "hints": [
+    "Treat it as base 26 with digits 1..26."
+  ],
+  "solutionMd": "```python\ndef column_number(title):\n    n = 0\n    for c in title:\n        n = n * 26 + ord(c) - 64\n    return n\n```\n\nHorner's method.",
+  "starterCode": "def column_number(title):\n    # Write your code here\n    pass\n",
+  "functionName": "column_number",
+  "referenceSolution": "def column_number(title):\n    n = 0\n    for c in title:\n        n = n * 26 + ord(c) - 64\n    return n\n",
+  "tests": [
+    {
+      "args": [
+        "A"
+      ],
+      "expected": 1,
+      "hidden": false
+    },
+    {
+      "args": [
+        "AB"
+      ],
+      "expected": 28,
+      "hidden": false
+    },
+    {
+      "args": [
+        "Z"
+      ],
+      "expected": 26,
+      "hidden": true
+    },
+    {
+      "args": [
+        "AA"
+      ],
+      "expected": 27,
+      "hidden": true
+    },
+    {
+      "args": [
+        "ZY"
+      ],
+      "expected": 701,
+      "hidden": true
+    },
+    {
+      "args": [
+        "FXSHRXW"
+      ],
+      "expected": 2147483647,
+      "hidden": true
+    }
+  ],
+  "order": 145
+}

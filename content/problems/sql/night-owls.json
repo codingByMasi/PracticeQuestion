@@ -1,0 +1,21 @@
+{
+  "slug": "night-owls",
+  "track": "sql",
+  "title": "Night owls",
+  "difficulty": "Medium",
+  "tags": [
+    "dates"
+  ],
+  "statementMd": "Count plays between midnight and 05:59 for each plan.\n\nExpected columns: `plan`, `night_plays`.\n\nTables: `artists`, `albums`, `tracks`, `listeners`, `plays`.\n\nRow order does not matter.",
+  "hints": [
+    "Hour below 06."
+  ],
+  "solutionMd": "```sql\nSELECT l.plan, COUNT(*) AS night_plays FROM plays p JOIN listeners l ON l.id = p.listener_id WHERE strftime('%H', p.played_at) < '06' GROUP BY l.plan;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: artists, albums, tracks, listeners, plays\nSELECT\n",
+  "datasetId": "music",
+  "expected": {
+    "query": "SELECT l.plan, COUNT(*) AS night_plays FROM plays p JOIN listeners l ON l.id = p.listener_id WHERE strftime('%H', p.played_at) < '06' GROUP BY l.plan;",
+    "orderMatters": false
+  },
+  "order": 202
+}

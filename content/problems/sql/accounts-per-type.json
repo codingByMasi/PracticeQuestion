@@ -1,0 +1,21 @@
+{
+  "slug": "accounts-per-type",
+  "track": "sql",
+  "title": "Accounts per type",
+  "difficulty": "Easy",
+  "tags": [
+    "group-by"
+  ],
+  "statementMd": "Count accounts of each type.\n\nExpected columns: `type`, `accounts`.\n\nTables: `customers`, `accounts`, `transactions`.\n\nRow order does not matter.",
+  "hints": [
+    "`GROUP BY type`."
+  ],
+  "solutionMd": "```sql\nSELECT type, COUNT(*) AS accounts FROM accounts GROUP BY type;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, accounts, transactions\nSELECT\n",
+  "datasetId": "bank",
+  "expected": {
+    "query": "SELECT type, COUNT(*) AS accounts FROM accounts GROUP BY type;",
+    "orderMatters": false
+  },
+  "order": 125
+}

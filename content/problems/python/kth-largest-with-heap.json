@@ -1,0 +1,81 @@
+{
+  "slug": "kth-largest-with-heap",
+  "track": "python",
+  "title": "Kth largest with heap",
+  "difficulty": "Medium",
+  "tags": [
+    "heaps"
+  ],
+  "statementMd": "Return the k-th largest element using a min-heap of size `k`.\n\n**Example:** `kth_largest_heap([3, 2, 1, 5, 6, 4], 2)` returns `5`.",
+  "hints": [
+    "Keep only the k largest in the heap."
+  ],
+  "solutionMd": "```python\ndef kth_largest_heap(nums, k):\n    import heapq\n    heap = nums[:k]\n    heapq.heapify(heap)\n    for x in nums[k:]:\n        if x > heap[0]:\n            heapq.heapreplace(heap, x)\n    return heap[0]\n```\n\nThe heap root is the k-th largest.",
+  "starterCode": "def kth_largest_heap(nums, k):\n    # Write your code here\n    pass\n",
+  "functionName": "kth_largest_heap",
+  "referenceSolution": "def kth_largest_heap(nums, k):\n    import heapq\n    heap = nums[:k]\n    heapq.heapify(heap)\n    for x in nums[k:]:\n        if x > heap[0]:\n            heapq.heapreplace(heap, x)\n    return heap[0]\n",
+  "tests": [
+    {
+      "args": [
+        [
+          3,
+          2,
+          1,
+          5,
+          6,
+          4
+        ],
+        2
+      ],
+      "expected": 5,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          1
+        ],
+        1
+      ],
+      "expected": 1,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          2,
+          1
+        ],
+        2
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          5,
+          5,
+          5
+        ],
+        2
+      ],
+      "expected": 5,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          9,
+          8,
+          7,
+          6
+        ],
+        4
+      ],
+      "expected": 6,
+      "hidden": true
+    }
+  ],
+  "order": 364
+}

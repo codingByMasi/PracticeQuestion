@@ -1,0 +1,21 @@
+{
+  "slug": "longest-quiet-period",
+  "track": "sql",
+  "title": "Longest quiet period",
+  "difficulty": "Hard",
+  "tags": [
+    "window-functions"
+  ],
+  "statementMd": "For account 3 find the longest gap in days between two consecutive transaction dates.\n\nExpected columns: `longest_gap_days`.\n\nTables: `customers`, `accounts`, `transactions`.\n\nRow order does not matter.",
+  "hints": [
+    "`LAG(tx_date)` then `MAX` of the difference."
+  ],
+  "solutionMd": "```sql\nWITH d AS (SELECT tx_date, julianday(tx_date) - julianday(LAG(tx_date) OVER (ORDER BY tx_date, id)) AS gap FROM transactions WHERE account_id = 3) SELECT CAST(MAX(gap) AS INTEGER) AS longest_gap_days FROM d;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, accounts, transactions\nSELECT\n",
+  "datasetId": "bank",
+  "expected": {
+    "query": "WITH d AS (SELECT tx_date, julianday(tx_date) - julianday(LAG(tx_date) OVER (ORDER BY tx_date, id)) AS gap FROM transactions WHERE account_id = 3) SELECT CAST(MAX(gap) AS INTEGER) AS longest_gap_days FROM d;",
+    "orderMatters": false
+  },
+  "order": 404
+}

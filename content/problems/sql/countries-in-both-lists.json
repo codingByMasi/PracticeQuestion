@@ -1,0 +1,21 @@
+{
+  "slug": "countries-in-both-lists",
+  "track": "sql",
+  "title": "Countries in both lists",
+  "difficulty": "Medium",
+  "tags": [
+    "set-ops"
+  ],
+  "statementMd": "Which countries appear among both artists and listeners?\n\nExpected columns: `country`.\n\nTables: `artists`, `albums`, `tracks`, `listeners`, `plays`.\n\nRow order does not matter.",
+  "hints": [
+    "`INTERSECT`."
+  ],
+  "solutionMd": "```sql\nSELECT country FROM artists INTERSECT SELECT country FROM listeners;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: artists, albums, tracks, listeners, plays\nSELECT\n",
+  "datasetId": "music",
+  "expected": {
+    "query": "SELECT country FROM artists INTERSECT SELECT country FROM listeners;",
+    "orderMatters": false
+  },
+  "order": 335
+}

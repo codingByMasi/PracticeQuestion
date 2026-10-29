@@ -1,0 +1,62 @@
+{
+  "slug": "trailing-zeros-of-factorial",
+  "track": "python",
+  "title": "Trailing zeros of factorial",
+  "difficulty": "Medium",
+  "tags": [
+    "math"
+  ],
+  "statementMd": "Return the number of trailing zeros in `n!`.\n\n**Example:** `trailing_zeros(5)` returns `1`.",
+  "hints": [
+    "Count factors of 5."
+  ],
+  "solutionMd": "```python\ndef trailing_zeros(n):\n    count = 0\n    while n:\n        n //= 5\n        count += n\n    return count\n```\n\nEach zero needs a 2 and a 5; fives are scarcer.",
+  "starterCode": "def trailing_zeros(n):\n    # Write your code here\n    pass\n",
+  "functionName": "trailing_zeros",
+  "referenceSolution": "def trailing_zeros(n):\n    count = 0\n    while n:\n        n //= 5\n        count += n\n    return count\n",
+  "tests": [
+    {
+      "args": [
+        5
+      ],
+      "expected": 1,
+      "hidden": false
+    },
+    {
+      "args": [
+        3
+      ],
+      "expected": 0,
+      "hidden": false
+    },
+    {
+      "args": [
+        0
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        25
+      ],
+      "expected": 6,
+      "hidden": true
+    },
+    {
+      "args": [
+        100
+      ],
+      "expected": 24,
+      "hidden": true
+    },
+    {
+      "args": [
+        1000
+      ],
+      "expected": 249,
+      "hidden": true
+    }
+  ],
+  "order": 174
+}

@@ -1,0 +1,87 @@
+{
+  "slug": "coin-change-minimum",
+  "track": "python",
+  "title": "Coin change minimum",
+  "difficulty": "Medium",
+  "tags": [
+    "dynamic-programming"
+  ],
+  "statementMd": "Return the fewest coins needed to make `amount` (unlimited coins of each denomination), or `-1` if impossible.\n\n**Example:** `coin_change([1, 2, 5], 11)` returns `3`.",
+  "hints": [
+    "dp[a] = 1 + min(dp[a - c])."
+  ],
+  "solutionMd": "```python\ndef coin_change(coins, amount):\n    INF = float('inf')\n    dp = [0] + [INF] * amount\n    for a in range(1, amount + 1):\n        for c in coins:\n            if c <= a and dp[a - c] + 1 < dp[a]:\n                dp[a] = dp[a - c] + 1\n    return -1 if dp[amount] == INF else dp[amount]\n```\n\nBottom-up over amounts.",
+  "starterCode": "def coin_change(coins, amount):\n    # Write your code here\n    pass\n",
+  "functionName": "coin_change",
+  "referenceSolution": "def coin_change(coins, amount):\n    INF = float('inf')\n    dp = [0] + [INF] * amount\n    for a in range(1, amount + 1):\n        for c in coins:\n            if c <= a and dp[a - c] + 1 < dp[a]:\n                dp[a] = dp[a - c] + 1\n    return -1 if dp[amount] == INF else dp[amount]\n",
+  "tests": [
+    {
+      "args": [
+        [
+          1,
+          2,
+          5
+        ],
+        11
+      ],
+      "expected": 3,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          2
+        ],
+        3
+      ],
+      "expected": -1,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          1
+        ],
+        0
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          186,
+          419,
+          83,
+          408
+        ],
+        6249
+      ],
+      "expected": 20,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          2,
+          5
+        ],
+        3
+      ],
+      "expected": -1,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          3,
+          7
+        ],
+        14
+      ],
+      "expected": 2,
+      "hidden": true
+    }
+  ],
+  "order": 315
+}

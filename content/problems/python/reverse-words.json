@@ -1,0 +1,55 @@
+{
+  "slug": "reverse-words",
+  "track": "python",
+  "title": "Reverse words",
+  "difficulty": "Easy",
+  "tags": [
+    "strings"
+  ],
+  "statementMd": "Reverse the order of the space-separated words in `s`. Words are separated by single spaces.\n\n**Example:** `reverse_words(\"the sky is blue\")` returns `\"blue is sky the\"`.",
+  "hints": [
+    "`split`, reverse, `join`."
+  ],
+  "solutionMd": "```python\ndef reverse_words(s):\n    return ' '.join(reversed(s.split(' ')))\n```\n\nSplitting on one space preserves empty strings only for malformed input.",
+  "starterCode": "def reverse_words(s):\n    # Write your code here\n    pass\n",
+  "functionName": "reverse_words",
+  "referenceSolution": "def reverse_words(s):\n    return ' '.join(reversed(s.split(' ')))\n",
+  "tests": [
+    {
+      "args": [
+        "the sky is blue"
+      ],
+      "expected": "blue is sky the",
+      "hidden": false
+    },
+    {
+      "args": [
+        "one"
+      ],
+      "expected": "one",
+      "hidden": false
+    },
+    {
+      "args": [
+        "a b"
+      ],
+      "expected": "b a",
+      "hidden": true
+    },
+    {
+      "args": [
+        "hello world foo"
+      ],
+      "expected": "foo world hello",
+      "hidden": true
+    },
+    {
+      "args": [
+        "x y z w"
+      ],
+      "expected": "w z y x",
+      "hidden": true
+    }
+  ],
+  "order": 53
+}

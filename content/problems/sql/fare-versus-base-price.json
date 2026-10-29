@@ -1,0 +1,21 @@
+{
+  "slug": "fare-versus-base-price",
+  "track": "sql",
+  "title": "Fare versus base price",
+  "difficulty": "Medium",
+  "tags": [
+    "join"
+  ],
+  "statementMd": "For each booking made in economy class on flight 1 to 20, show the booking id and the ratio of fare to the flight's base price rounded to 2 decimals.\n\nExpected columns: `id`, `ratio`.\n\nTables: `airlines`, `airports`, `flights`, `bookings`.\n\nRow order does not matter.",
+  "hints": [
+    "Join bookings to flights."
+  ],
+  "solutionMd": "```sql\nSELECT b.id, ROUND(b.fare / f.base_price, 2) AS ratio FROM bookings b JOIN flights f ON f.id = b.flight_id WHERE b.seat_class = 'economy' AND f.id <= 20;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: airlines, airports, flights, bookings\nSELECT\n",
+  "datasetId": "flights",
+  "expected": {
+    "query": "SELECT b.id, ROUND(b.fare / f.base_price, 2) AS ratio FROM bookings b JOIN flights f ON f.id = b.flight_id WHERE b.seat_class = 'economy' AND f.id <= 20;",
+    "orderMatters": false
+  },
+  "order": 267
+}

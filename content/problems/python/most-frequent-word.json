@@ -1,0 +1,55 @@
+{
+  "slug": "most-frequent-word",
+  "track": "python",
+  "title": "Most frequent word",
+  "difficulty": "Medium",
+  "tags": [
+    "counting"
+  ],
+  "statementMd": "Return the most frequent word in a non-empty text (case-insensitive, words separated by whitespace). On ties return the alphabetically smallest.\n\n**Example:** `most_frequent_word(\"the cat and the dog\")` returns `\"the\"`.",
+  "hints": [
+    "Count lowercase words, then choose by (-count, word)."
+  ],
+  "solutionMd": "```python\ndef most_frequent_word(text):\n    counts = {}\n    for w in text.lower().split():\n        counts[w] = counts.get(w, 0) + 1\n    return min(counts, key=lambda w: (-counts[w], w))\n```\n\nA composite key handles the tie-break.",
+  "starterCode": "def most_frequent_word(text):\n    # Write your code here\n    pass\n",
+  "functionName": "most_frequent_word",
+  "referenceSolution": "def most_frequent_word(text):\n    counts = {}\n    for w in text.lower().split():\n        counts[w] = counts.get(w, 0) + 1\n    return min(counts, key=lambda w: (-counts[w], w))\n",
+  "tests": [
+    {
+      "args": [
+        "the cat and the dog"
+      ],
+      "expected": "the",
+      "hidden": false
+    },
+    {
+      "args": [
+        "a b a b"
+      ],
+      "expected": "a",
+      "hidden": false
+    },
+    {
+      "args": [
+        "Hello hello HELLO"
+      ],
+      "expected": "hello",
+      "hidden": true
+    },
+    {
+      "args": [
+        "x"
+      ],
+      "expected": "x",
+      "hidden": true
+    },
+    {
+      "args": [
+        "b a"
+      ],
+      "expected": "a",
+      "hidden": true
+    }
+  ],
+  "order": 224
+}

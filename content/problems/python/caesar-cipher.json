@@ -1,0 +1,68 @@
+{
+  "slug": "caesar-cipher",
+  "track": "python",
+  "title": "Caesar cipher",
+  "difficulty": "Medium",
+  "tags": [
+    "strings"
+  ],
+  "statementMd": "Shift each letter forward by `shift` positions in the alphabet (wrapping around, preserving case). Non-letters stay unchanged. `shift` may be negative.\n\n**Example:** `caesar(\"abc\", 1)` returns `\"bcd\"`.",
+  "hints": [
+    "Use `ord` and modulo 26."
+  ],
+  "solutionMd": "```python\ndef caesar(s, shift):\n    out = []\n    for c in s:\n        if 'a' <= c <= 'z':\n            out.append(chr((ord(c) - 97 + shift) % 26 + 97))\n        elif 'A' <= c <= 'Z':\n            out.append(chr((ord(c) - 65 + shift) % 26 + 65))\n        else:\n            out.append(c)\n    return ''.join(out)\n```\n\nModulo handles wrap-around in both directions.",
+  "starterCode": "def caesar(s, shift):\n    # Write your code here\n    pass\n",
+  "functionName": "caesar",
+  "referenceSolution": "def caesar(s, shift):\n    out = []\n    for c in s:\n        if 'a' <= c <= 'z':\n            out.append(chr((ord(c) - 97 + shift) % 26 + 97))\n        elif 'A' <= c <= 'Z':\n            out.append(chr((ord(c) - 65 + shift) % 26 + 65))\n        else:\n            out.append(c)\n    return ''.join(out)\n",
+  "tests": [
+    {
+      "args": [
+        "abc",
+        1
+      ],
+      "expected": "bcd",
+      "hidden": false
+    },
+    {
+      "args": [
+        "xyz",
+        3
+      ],
+      "expected": "abc",
+      "hidden": false
+    },
+    {
+      "args": [
+        "Hello, World!",
+        5
+      ],
+      "expected": "Mjqqt, Btwqi!",
+      "hidden": true
+    },
+    {
+      "args": [
+        "abc",
+        -1
+      ],
+      "expected": "zab",
+      "hidden": true
+    },
+    {
+      "args": [
+        "abc",
+        26
+      ],
+      "expected": "abc",
+      "hidden": true
+    },
+    {
+      "args": [
+        "Zz",
+        13
+      ],
+      "expected": "Mm",
+      "hidden": true
+    }
+  ],
+  "order": 180
+}

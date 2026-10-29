@@ -1,0 +1,71 @@
+{
+  "slug": "palindrome-pairs-count",
+  "track": "python",
+  "title": "Palindrome pairs count",
+  "difficulty": "Hard",
+  "tags": [
+    "strings"
+  ],
+  "statementMd": "Count index pairs `i < j` such that `words[i] + words[j]` or `words[j] + words[i]` is a palindrome (count the pair once if either holds).\n\n**Example:** `count_palindrome_pairs([\"abcd\", \"dcba\", \"lls\", \"s\", \"sssll\"])` returns `3`.",
+  "hints": [
+    "Brute force over pairs with a palindrome test."
+  ],
+  "solutionMd": "```python\ndef count_palindrome_pairs(words):\n    def pal(s):\n        return s == s[::-1]\n    return sum(1 for i in range(len(words)) for j in range(i + 1, len(words)) if pal(words[i] + words[j]) or pal(words[j] + words[i]))\n```\n\nQuadratic but clear.",
+  "starterCode": "def count_palindrome_pairs(words):\n    # Write your code here\n    pass\n",
+  "functionName": "count_palindrome_pairs",
+  "referenceSolution": "def count_palindrome_pairs(words):\n    def pal(s):\n        return s == s[::-1]\n    return sum(1 for i in range(len(words)) for j in range(i + 1, len(words)) if pal(words[i] + words[j]) or pal(words[j] + words[i]))\n",
+  "tests": [
+    {
+      "args": [
+        [
+          "abcd",
+          "dcba",
+          "lls",
+          "s",
+          "sssll"
+        ]
+      ],
+      "expected": 3,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          "a",
+          "b"
+        ]
+      ],
+      "expected": 0,
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          "a",
+          ""
+        ]
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          "ab",
+          "ba",
+          "a"
+        ]
+      ],
+      "expected": 3,
+      "hidden": true
+    }
+  ],
+  "order": 383
+}

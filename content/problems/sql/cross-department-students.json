@@ -1,0 +1,21 @@
+{
+  "slug": "cross-department-students",
+  "track": "sql",
+  "title": "Cross-department students",
+  "difficulty": "Medium",
+  "tags": [
+    "having"
+  ],
+  "statementMd": "List students enrolled in courses from at least four different departments.\n\nExpected columns: `name`, `departments`.\n\nTables: `teachers`, `courses`, `students`, `enrollments`.\n\nRow order does not matter.",
+  "hints": [
+    "`COUNT(DISTINCT c.department)`."
+  ],
+  "solutionMd": "```sql\nSELECT s.name, COUNT(DISTINCT c.department) AS departments FROM students s JOIN enrollments e ON e.student_id = s.id JOIN courses c ON c.id = e.course_id GROUP BY s.id, s.name HAVING COUNT(DISTINCT c.department) >= 4;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: teachers, courses, students, enrollments\nSELECT\n",
+  "datasetId": "school",
+  "expected": {
+    "query": "SELECT s.name, COUNT(DISTINCT c.department) AS departments FROM students s JOIN enrollments e ON e.student_id = s.id JOIN courses c ON c.id = e.course_id GROUP BY s.id, s.name HAVING COUNT(DISTINCT c.department) >= 4;",
+    "orderMatters": false
+  },
+  "order": 253
+}

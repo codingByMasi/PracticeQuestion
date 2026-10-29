@@ -1,0 +1,90 @@
+{
+  "slug": "valid-number-string",
+  "track": "python",
+  "title": "Valid number string",
+  "difficulty": "Hard",
+  "tags": [
+    "parsing"
+  ],
+  "statementMd": "Return whether `s` is a valid decimal number: optional sign, digits with an optional single `.` (at least one digit overall), and an optional exponent `e`/`E` followed by an optional sign and at least one digit. No spaces.\n\n**Example:** `is_number(\"3.14\")` returns `true`.",
+  "hints": [
+    "Scan in stages with a position index."
+  ],
+  "solutionMd": "```python\ndef is_number(s):\n    i, n = 0, len(s)\n    if i < n and s[i] in '+-':\n        i += 1\n    digits = 0\n    while i < n and s[i].isdigit():\n        i += 1; digits += 1\n    if i < n and s[i] == '.':\n        i += 1\n        while i < n and s[i].isdigit():\n            i += 1; digits += 1\n    if digits == 0:\n        return False\n    if i < n and s[i] in 'eE':\n        i += 1\n        if i < n and s[i] in '+-':\n            i += 1\n        exp = 0\n        while i < n and s[i].isdigit():\n            i += 1; exp += 1\n        if exp == 0:\n            return False\n    return i == n\n```\n\nMantissa first, then the exponent.",
+  "starterCode": "def is_number(s):\n    # Write your code here\n    pass\n",
+  "functionName": "is_number",
+  "referenceSolution": "def is_number(s):\n    i, n = 0, len(s)\n    if i < n and s[i] in '+-':\n        i += 1\n    digits = 0\n    while i < n and s[i].isdigit():\n        i += 1; digits += 1\n    if i < n and s[i] == '.':\n        i += 1\n        while i < n and s[i].isdigit():\n            i += 1; digits += 1\n    if digits == 0:\n        return False\n    if i < n and s[i] in 'eE':\n        i += 1\n        if i < n and s[i] in '+-':\n            i += 1\n        exp = 0\n        while i < n and s[i].isdigit():\n            i += 1; exp += 1\n        if exp == 0:\n            return False\n    return i == n\n",
+  "tests": [
+    {
+      "args": [
+        "3.14"
+      ],
+      "expected": true,
+      "hidden": false
+    },
+    {
+      "args": [
+        "1e"
+      ],
+      "expected": false,
+      "hidden": false
+    },
+    {
+      "args": [
+        "-.5"
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        "."
+      ],
+      "expected": false,
+      "hidden": true
+    },
+    {
+      "args": [
+        "2e10"
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        "abc"
+      ],
+      "expected": false,
+      "hidden": true
+    },
+    {
+      "args": [
+        "+5."
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        "1e+5"
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        "--1"
+      ],
+      "expected": false,
+      "hidden": true
+    },
+    {
+      "args": [
+        ""
+      ],
+      "expected": false,
+      "hidden": true
+    }
+  ],
+  "order": 430
+}

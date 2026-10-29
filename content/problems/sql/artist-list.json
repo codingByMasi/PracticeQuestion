@@ -1,0 +1,21 @@
+{
+  "slug": "artist-list",
+  "track": "sql",
+  "title": "Artist list",
+  "difficulty": "Easy",
+  "tags": [
+    "select"
+  ],
+  "statementMd": "List every artist's name and country.\n\nExpected columns: `name`, `country`.\n\nTables: `artists`, `albums`, `tracks`, `listeners`, `plays`.\n\nRow order does not matter.",
+  "hints": [
+    "Two columns."
+  ],
+  "solutionMd": "```sql\nSELECT name, country FROM artists;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: artists, albums, tracks, listeners, plays\nSELECT\n",
+  "datasetId": "music",
+  "expected": {
+    "query": "SELECT name, country FROM artists;",
+    "orderMatters": false
+  },
+  "order": 9
+}

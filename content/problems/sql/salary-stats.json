@@ -17,5 +17,6 @@
   "expected": {
     "query": "SELECT MIN(salary) AS min_salary, MAX(salary) AS max_salary, ROUND(AVG(salary), 2) AS avg_salary FROM employees;",
     "orderMatters": false
-  }
+  },
+  "order": 109
 }

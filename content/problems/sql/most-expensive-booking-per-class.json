@@ -1,0 +1,21 @@
+{
+  "slug": "most-expensive-booking-per-class",
+  "track": "sql",
+  "title": "Most expensive booking per class",
+  "difficulty": "Hard",
+  "tags": [
+    "ranking"
+  ],
+  "statementMd": "For each seat class show the booking with the highest fare (booking id, passenger, fare).\n\nExpected columns: `seat_class`, `id`, `passenger`, `fare`.\n\nTables: `airlines`, `airports`, `flights`, `bookings`.\n\nRow order does not matter.",
+  "hints": [
+    "`ROW_NUMBER() OVER (PARTITION BY seat_class ORDER BY fare DESC)`."
+  ],
+  "solutionMd": "```sql\nWITH r AS (SELECT id, passenger, seat_class, fare, ROW_NUMBER() OVER (PARTITION BY seat_class ORDER BY fare DESC, id) AS rn FROM bookings) SELECT seat_class, id, passenger, fare FROM r WHERE rn = 1;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: airlines, airports, flights, bookings\nSELECT\n",
+  "datasetId": "flights",
+  "expected": {
+    "query": "WITH r AS (SELECT id, passenger, seat_class, fare, ROW_NUMBER() OVER (PARTITION BY seat_class ORDER BY fare DESC, id) AS rn FROM bookings) SELECT seat_class, id, passenger, fare FROM r WHERE rn = 1;",
+    "orderMatters": false
+  },
+  "order": 450
+}

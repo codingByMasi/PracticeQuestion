@@ -1,0 +1,21 @@
+{
+  "slug": "track-length-in-minutes",
+  "track": "sql",
+  "title": "Track length in minutes",
+  "difficulty": "Easy",
+  "tags": [
+    "expressions"
+  ],
+  "statementMd": "For tracks 1 to 5 show title and length as minutes rounded to 2 decimals.\n\nExpected columns: `title`, `minutes`.\n\nTables: `artists`, `albums`, `tracks`, `listeners`, `plays`.\n\nRow order does not matter.",
+  "hints": [
+    "`seconds / 60.0`."
+  ],
+  "solutionMd": "```sql\nSELECT title, ROUND(seconds / 60.0, 2) AS minutes FROM tracks WHERE id <= 5;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: artists, albums, tracks, listeners, plays\nSELECT\n",
+  "datasetId": "music",
+  "expected": {
+    "query": "SELECT title, ROUND(seconds / 60.0, 2) AS minutes FROM tracks WHERE id <= 5;",
+    "orderMatters": false
+  },
+  "order": 94
+}

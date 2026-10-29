@@ -1,0 +1,55 @@
+{
+  "slug": "simplify-path",
+  "track": "python",
+  "title": "Simplify path",
+  "difficulty": "Medium",
+  "tags": [
+    "stacks"
+  ],
+  "statementMd": "Simplify an absolute Unix path: collapse multiple `/`, resolve `.` and `..`, and no trailing slash (root is `/`).\n\n**Example:** `simplify_path(\"/home//foo/\")` returns `\"/home/foo\"`.",
+  "hints": [
+    "Split on `/` and use a stack."
+  ],
+  "solutionMd": "```python\ndef simplify_path(path):\n    stack = []\n    for part in path.split('/'):\n        if part == '..':\n            if stack:\n                stack.pop()\n        elif part and part != '.':\n            stack.append(part)\n    return '/' + '/'.join(stack)\n```\n\n`..` pops, `.` and empty segments are ignored.",
+  "starterCode": "def simplify_path(path):\n    # Write your code here\n    pass\n",
+  "functionName": "simplify_path",
+  "referenceSolution": "def simplify_path(path):\n    stack = []\n    for part in path.split('/'):\n        if part == '..':\n            if stack:\n                stack.pop()\n        elif part and part != '.':\n            stack.append(part)\n    return '/' + '/'.join(stack)\n",
+  "tests": [
+    {
+      "args": [
+        "/home//foo/"
+      ],
+      "expected": "/home/foo",
+      "hidden": false
+    },
+    {
+      "args": [
+        "/../"
+      ],
+      "expected": "/",
+      "hidden": false
+    },
+    {
+      "args": [
+        "/"
+      ],
+      "expected": "/",
+      "hidden": true
+    },
+    {
+      "args": [
+        "/a/./b/../../c/"
+      ],
+      "expected": "/c",
+      "hidden": true
+    },
+    {
+      "args": [
+        "/a//b////c/d//././/.."
+      ],
+      "expected": "/a/b/c",
+      "hidden": true
+    }
+  ],
+  "order": 262
+}

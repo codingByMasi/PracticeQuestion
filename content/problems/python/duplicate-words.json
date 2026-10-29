@@ -1,0 +1,63 @@
+{
+  "slug": "duplicate-words",
+  "track": "python",
+  "title": "Duplicate words",
+  "difficulty": "Easy",
+  "tags": [
+    "counting"
+  ],
+  "statementMd": "Return the sorted list of words (lowercased) that appear more than once in `text`.\n\n**Example:** `duplicate_words(\"the cat and The dog and\")` returns `[\"and\", \"the\"]`.",
+  "hints": [
+    "Count lowercase words."
+  ],
+  "solutionMd": "```python\ndef duplicate_words(text):\n    counts = {}\n    for w in text.lower().split():\n        counts[w] = counts.get(w, 0) + 1\n    return sorted(w for w, n in counts.items() if n > 1)\n```\n\nFilter counts above one.",
+  "starterCode": "def duplicate_words(text):\n    # Write your code here\n    pass\n",
+  "functionName": "duplicate_words",
+  "referenceSolution": "def duplicate_words(text):\n    counts = {}\n    for w in text.lower().split():\n        counts[w] = counts.get(w, 0) + 1\n    return sorted(w for w, n in counts.items() if n > 1)\n",
+  "tests": [
+    {
+      "args": [
+        "the cat and The dog and"
+      ],
+      "expected": [
+        "and",
+        "the"
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        "a b c"
+      ],
+      "expected": [],
+      "hidden": false
+    },
+    {
+      "args": [
+        ""
+      ],
+      "expected": [],
+      "hidden": true
+    },
+    {
+      "args": [
+        "x x x"
+      ],
+      "expected": [
+        "x"
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        "A a B b c"
+      ],
+      "expected": [
+        "a",
+        "b"
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 107
+}

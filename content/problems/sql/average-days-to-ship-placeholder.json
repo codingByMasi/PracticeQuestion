@@ -1,0 +1,21 @@
+{
+  "slug": "average-days-to-ship-placeholder",
+  "track": "sql",
+  "title": "Average days to ship placeholder",
+  "difficulty": "Medium",
+  "tags": [
+    "dates"
+  ],
+  "statementMd": "How many days are there between each customer's signup and their first order? Show customer name and days, customers with orders only.\n\nExpected columns: `name`, `days_to_first_order`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\nRow order does not matter.",
+  "hints": [
+    "`MIN(order_date)` per customer, then `julianday` difference."
+  ],
+  "solutionMd": "```sql\nSELECT c.name, CAST(julianday(MIN(o.order_date)) - julianday(c.signup_date) AS INTEGER) AS days_to_first_order FROM customers c JOIN orders o ON o.customer_id = c.id GROUP BY c.id, c.name;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "SELECT c.name, CAST(julianday(MIN(o.order_date)) - julianday(c.signup_date) AS INTEGER) AS days_to_first_order FROM customers c JOIN orders o ON o.customer_id = c.id GROUP BY c.id, c.name;",
+    "orderMatters": false
+  },
+  "order": 187
+}

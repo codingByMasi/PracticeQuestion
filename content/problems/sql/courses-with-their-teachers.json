@@ -1,0 +1,21 @@
+{
+  "slug": "courses-with-their-teachers",
+  "track": "sql",
+  "title": "Courses with their teachers",
+  "difficulty": "Easy",
+  "tags": [
+    "join"
+  ],
+  "statementMd": "List each course title with its teacher's name (courses without a teacher are omitted).\n\nExpected columns: `title`, `teacher`.\n\nTables: `teachers`, `courses`, `students`, `enrollments`.\n\nRow order does not matter.",
+  "hints": [
+    "Inner join on `teacher_id`."
+  ],
+  "solutionMd": "```sql\nSELECT c.title, t.name AS teacher FROM courses c JOIN teachers t ON t.id = c.teacher_id;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: teachers, courses, students, enrollments\nSELECT\n",
+  "datasetId": "school",
+  "expected": {
+    "query": "SELECT c.title, t.name AS teacher FROM courses c JOIN teachers t ON t.id = c.teacher_id;",
+    "orderMatters": false
+  },
+  "order": 163
+}

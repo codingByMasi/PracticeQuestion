@@ -1,0 +1,87 @@
+{
+  "slug": "jump-game",
+  "track": "python",
+  "title": "Jump game",
+  "difficulty": "Medium",
+  "tags": [
+    "greedy"
+  ],
+  "statementMd": "`nums[i]` is the maximum jump length from index `i`. Starting at index 0, return whether you can reach the last index.\n\n**Example:** `can_jump([2, 3, 1, 1, 4])` returns `true`.",
+  "hints": [
+    "Track the farthest reachable index."
+  ],
+  "solutionMd": "```python\ndef can_jump(nums):\n    far = 0\n    for i, x in enumerate(nums):\n        if i > far:\n            return False\n        far = max(far, i + x)\n    return True\n```\n\nIf you can reach i, you can reach everything before it.",
+  "starterCode": "def can_jump(nums):\n    # Write your code here\n    pass\n",
+  "functionName": "can_jump",
+  "referenceSolution": "def can_jump(nums):\n    far = 0\n    for i, x in enumerate(nums):\n        if i > far:\n            return False\n        far = max(far, i + x)\n    return True\n",
+  "tests": [
+    {
+      "args": [
+        [
+          2,
+          3,
+          1,
+          1,
+          4
+        ]
+      ],
+      "expected": true,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          3,
+          2,
+          1,
+          0,
+          4
+        ]
+      ],
+      "expected": false,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          0
+        ]
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          0,
+          1
+        ]
+      ],
+      "expected": false,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          0,
+          0
+        ]
+      ],
+      "expected": false,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          2,
+          0,
+          0
+        ]
+      ],
+      "expected": true,
+      "hidden": true
+    }
+  ],
+  "order": 309
+}

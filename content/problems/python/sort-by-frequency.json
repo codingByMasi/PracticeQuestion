@@ -1,0 +1,93 @@
+{
+  "slug": "sort-by-frequency",
+  "track": "python",
+  "title": "Sort by frequency",
+  "difficulty": "Medium",
+  "tags": [
+    "sorting"
+  ],
+  "statementMd": "Sort values by frequency descending; values with the same frequency appear in ascending order (each value repeated by its frequency).\n\n**Example:** `sort_by_frequency([1, 1, 2, 2, 2, 3])` returns `[2, 2, 2, 1, 1, 3]`.",
+  "hints": [
+    "Key `(-count, value)`."
+  ],
+  "solutionMd": "```python\ndef sort_by_frequency(nums):\n    counts = {}\n    for x in nums:\n        counts[x] = counts.get(x, 0) + 1\n    return sorted(nums, key=lambda x: (-counts[x], x))\n```\n\nSort the original list with a frequency-aware key.",
+  "starterCode": "def sort_by_frequency(nums):\n    # Write your code here\n    pass\n",
+  "functionName": "sort_by_frequency",
+  "referenceSolution": "def sort_by_frequency(nums):\n    counts = {}\n    for x in nums:\n        counts[x] = counts.get(x, 0) + 1\n    return sorted(nums, key=lambda x: (-counts[x], x))\n",
+  "tests": [
+    {
+      "args": [
+        [
+          1,
+          1,
+          2,
+          2,
+          2,
+          3
+        ]
+      ],
+      "expected": [
+        2,
+        2,
+        2,
+        1,
+        1,
+        3
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": [],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          5
+        ]
+      ],
+      "expected": [
+        5
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          3,
+          1,
+          2
+        ]
+      ],
+      "expected": [
+        1,
+        2,
+        3
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          4,
+          4,
+          3,
+          3,
+          1
+        ]
+      ],
+      "expected": [
+        3,
+        3,
+        4,
+        4,
+        1
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 236
+}

@@ -1,0 +1,62 @@
+{
+  "slug": "weekday-name",
+  "track": "python",
+  "title": "Weekday name",
+  "difficulty": "Medium",
+  "tags": [
+    "numbers"
+  ],
+  "statementMd": "Given the number of days since a known Monday (any non-negative integer), return the weekday name (`\"Monday\"`, ..., `\"Sunday\"`).\n\n**Example:** `weekday_name(0)` returns `\"Monday\"`.",
+  "hints": [
+    "Index a list with `n % 7`."
+  ],
+  "solutionMd": "```python\ndef weekday_name(days_since_monday):\n    names = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']\n    return names[days_since_monday % 7]\n```\n\nModulo wraps the week around.",
+  "starterCode": "def weekday_name(days_since_monday):\n    # Write your code here\n    pass\n",
+  "functionName": "weekday_name",
+  "referenceSolution": "def weekday_name(days_since_monday):\n    names = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']\n    return names[days_since_monday % 7]\n",
+  "tests": [
+    {
+      "args": [
+        0
+      ],
+      "expected": "Monday",
+      "hidden": false
+    },
+    {
+      "args": [
+        6
+      ],
+      "expected": "Sunday",
+      "hidden": false
+    },
+    {
+      "args": [
+        7
+      ],
+      "expected": "Monday",
+      "hidden": true
+    },
+    {
+      "args": [
+        10
+      ],
+      "expected": "Thursday",
+      "hidden": true
+    },
+    {
+      "args": [
+        100
+      ],
+      "expected": "Wednesday",
+      "hidden": true
+    },
+    {
+      "args": [
+        3
+      ],
+      "expected": "Thursday",
+      "hidden": true
+    }
+  ],
+  "order": 168
+}

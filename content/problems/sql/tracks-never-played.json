@@ -1,0 +1,21 @@
+{
+  "slug": "tracks-never-played",
+  "track": "sql",
+  "title": "Tracks never played",
+  "difficulty": "Medium",
+  "tags": [
+    "left-join"
+  ],
+  "statementMd": "How many tracks have never been played?\n\nExpected columns: `never_played`.\n\nTables: `artists`, `albums`, `tracks`, `listeners`, `plays`.\n\nRow order does not matter.",
+  "hints": [
+    "Anti-join and count."
+  ],
+  "solutionMd": "```sql\nSELECT COUNT(*) AS never_played FROM tracks t LEFT JOIN plays p ON p.track_id = t.id WHERE p.id IS NULL;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: artists, albums, tracks, listeners, plays\nSELECT\n",
+  "datasetId": "music",
+  "expected": {
+    "query": "SELECT COUNT(*) AS never_played FROM tracks t LEFT JOIN plays p ON p.track_id = t.id WHERE p.id IS NULL;",
+    "orderMatters": false
+  },
+  "order": 287
+}

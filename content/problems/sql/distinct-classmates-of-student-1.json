@@ -1,0 +1,21 @@
+{
+  "slug": "distinct-classmates-of-student-1",
+  "track": "sql",
+  "title": "Distinct classmates of student 1",
+  "difficulty": "Hard",
+  "tags": [
+    "self-join"
+  ],
+  "statementMd": "List students who share at least one course in the same semester with student 1 (excluding student 1). Show student id and how many shared course-semesters.\n\nExpected columns: `student_id`, `shared`.\n\nTables: `teachers`, `courses`, `students`, `enrollments`.\n\nRow order does not matter.",
+  "hints": [
+    "Self-join enrollments on course and semester."
+  ],
+  "solutionMd": "```sql\nSELECT b.student_id, COUNT(*) AS shared FROM enrollments a JOIN enrollments b ON a.course_id = b.course_id AND a.semester = b.semester AND b.student_id <> a.student_id WHERE a.student_id = 1 GROUP BY b.student_id;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: teachers, courses, students, enrollments\nSELECT\n",
+  "datasetId": "school",
+  "expected": {
+    "query": "SELECT b.student_id, COUNT(*) AS shared FROM enrollments a JOIN enrollments b ON a.course_id = b.course_id AND a.semester = b.semester AND b.student_id <> a.student_id WHERE a.student_id = 1 GROUP BY b.student_id;",
+    "orderMatters": false
+  },
+  "order": 389
+}

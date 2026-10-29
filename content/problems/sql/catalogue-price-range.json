@@ -1,0 +1,21 @@
+{
+  "slug": "catalogue-price-range",
+  "track": "sql",
+  "title": "Catalogue price range",
+  "difficulty": "Easy",
+  "tags": [
+    "aggregate"
+  ],
+  "statementMd": "Show the cheapest price, the most expensive price and the average price (rounded to 2 decimals) across all products.\n\nExpected columns: `cheapest`, `priciest`, `avg_price`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\nRow order does not matter.",
+  "hints": [
+    "`MIN`, `MAX`, `AVG`."
+  ],
+  "solutionMd": "```sql\nSELECT MIN(price) AS cheapest, MAX(price) AS priciest, ROUND(AVG(price), 2) AS avg_price FROM products;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "SELECT MIN(price) AS cheapest, MAX(price) AS priciest, ROUND(AVG(price), 2) AS avg_price FROM products;",
+    "orderMatters": false
+  },
+  "order": 112
+}

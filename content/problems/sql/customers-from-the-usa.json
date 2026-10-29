@@ -1,0 +1,21 @@
+{
+  "slug": "customers-from-the-usa",
+  "track": "sql",
+  "title": "Customers from the USA",
+  "difficulty": "Easy",
+  "tags": [
+    "where"
+  ],
+  "statementMd": "List the names of customers whose country is `USA`.\n\nExpected columns: `name`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\nRow order does not matter.",
+  "hints": [
+    "Strings use single quotes."
+  ],
+  "solutionMd": "```sql\nSELECT name FROM customers WHERE country = 'USA';\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "SELECT name FROM customers WHERE country = 'USA';",
+    "orderMatters": false
+  },
+  "order": 18
+}

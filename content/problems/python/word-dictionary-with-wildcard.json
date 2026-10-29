@@ -1,0 +1,135 @@
+{
+  "slug": "word-dictionary-with-wildcard",
+  "track": "python",
+  "title": "Word dictionary with wildcard",
+  "difficulty": "Hard",
+  "tags": [
+    "design"
+  ],
+  "statementMd": "Simulate a dictionary: `['add', word]` and `['search', pattern]` where `.` in the pattern matches any one letter. Return the results of the search operations.\n\n**Example:** `wildcard_dictionary([[\"add\", \"bad\"], [\"add\", \"dad\"], [\"add\", \"mad\"], [\"search\",…)` returns `[false, true, true, true]`.",
+  "hints": [
+    "Trie with DFS on dots."
+  ],
+  "solutionMd": "```python\ndef wildcard_dictionary(ops):\n    root = {}\n    out = []\n    def find(node, pat, i):\n        if i == len(pat):\n            return '$' in node\n        c = pat[i]\n        if c == '.':\n            return any(find(child, pat, i + 1) for k, child in node.items() if k != '$')\n        return c in node and find(node[c], pat, i + 1)\n    for op in ops:\n        if op[0] == 'add':\n            node = root\n            for c in op[1]:\n                node = node.setdefault(c, {})\n            node['$'] = True\n        else:\n            out.append(find(root, op[1], 0))\n    return out\n```\n\nA dot branches into every child.",
+  "starterCode": "def wildcard_dictionary(ops):\n    # Write your code here\n    pass\n",
+  "functionName": "wildcard_dictionary",
+  "referenceSolution": "def wildcard_dictionary(ops):\n    root = {}\n    out = []\n    def find(node, pat, i):\n        if i == len(pat):\n            return '$' in node\n        c = pat[i]\n        if c == '.':\n            return any(find(child, pat, i + 1) for k, child in node.items() if k != '$')\n        return c in node and find(node[c], pat, i + 1)\n    for op in ops:\n        if op[0] == 'add':\n            node = root\n            for c in op[1]:\n                node = node.setdefault(c, {})\n            node['$'] = True\n        else:\n            out.append(find(root, op[1], 0))\n    return out\n",
+  "tests": [
+    {
+      "args": [
+        [
+          [
+            "add",
+            "bad"
+          ],
+          [
+            "add",
+            "dad"
+          ],
+          [
+            "add",
+            "mad"
+          ],
+          [
+            "search",
+            "pad"
+          ],
+          [
+            "search",
+            "bad"
+          ],
+          [
+            "search",
+            ".ad"
+          ],
+          [
+            "search",
+            "b.."
+          ]
+        ]
+      ],
+      "expected": [
+        false,
+        true,
+        true,
+        true
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            "search",
+            "a"
+          ]
+        ]
+      ],
+      "expected": [
+        false
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            "add",
+            "a"
+          ],
+          [
+            "search",
+            "."
+          ],
+          [
+            "search",
+            ".."
+          ]
+        ]
+      ],
+      "expected": [
+        true,
+        false
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            "add",
+            "abc"
+          ],
+          [
+            "search",
+            "a.c"
+          ],
+          [
+            "search",
+            "ab"
+          ]
+        ]
+      ],
+      "expected": [
+        true,
+        false
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            "search",
+            ""
+          ]
+        ]
+      ],
+      "expected": [
+        false
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 496
+}

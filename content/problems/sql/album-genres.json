@@ -1,0 +1,21 @@
+{
+  "slug": "album-genres",
+  "track": "sql",
+  "title": "Album genres",
+  "difficulty": "Easy",
+  "tags": [
+    "distinct"
+  ],
+  "statementMd": "List each album genre once.\n\nExpected columns: `genre`.\n\nTables: `artists`, `albums`, `tracks`, `listeners`, `plays`.\n\nRow order does not matter.",
+  "hints": [
+    "`DISTINCT`."
+  ],
+  "solutionMd": "```sql\nSELECT DISTINCT genre FROM albums;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: artists, albums, tracks, listeners, plays\nSELECT\n",
+  "datasetId": "music",
+  "expected": {
+    "query": "SELECT DISTINCT genre FROM albums;",
+    "orderMatters": false
+  },
+  "order": 84
+}

@@ -1,0 +1,62 @@
+{
+  "slug": "roman-to-integer",
+  "track": "python",
+  "title": "Roman to integer",
+  "difficulty": "Medium",
+  "tags": [
+    "parsing"
+  ],
+  "statementMd": "Convert a valid Roman numeral (up to 3999) to an integer.\n\n**Example:** `roman_to_int(\"III\")` returns `3`.",
+  "hints": [
+    "If a symbol is smaller than the next one, subtract it."
+  ],
+  "solutionMd": "```python\ndef roman_to_int(s):\n    v = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}\n    total = 0\n    for i, c in enumerate(s):\n        if i + 1 < len(s) and v[c] < v[s[i + 1]]:\n            total -= v[c]\n        else:\n            total += v[c]\n    return total\n```\n\nSubtractive notation means a smaller value before a bigger one.",
+  "starterCode": "def roman_to_int(s):\n    # Write your code here\n    pass\n",
+  "functionName": "roman_to_int",
+  "referenceSolution": "def roman_to_int(s):\n    v = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}\n    total = 0\n    for i, c in enumerate(s):\n        if i + 1 < len(s) and v[c] < v[s[i + 1]]:\n            total -= v[c]\n        else:\n            total += v[c]\n    return total\n",
+  "tests": [
+    {
+      "args": [
+        "III"
+      ],
+      "expected": 3,
+      "hidden": false
+    },
+    {
+      "args": [
+        "MCMXCIV"
+      ],
+      "expected": 1994,
+      "hidden": false
+    },
+    {
+      "args": [
+        "IV"
+      ],
+      "expected": 4,
+      "hidden": true
+    },
+    {
+      "args": [
+        "LVIII"
+      ],
+      "expected": 58,
+      "hidden": true
+    },
+    {
+      "args": [
+        "MMMCMXCIX"
+      ],
+      "expected": 3999,
+      "hidden": true
+    },
+    {
+      "args": [
+        "IX"
+      ],
+      "expected": 9,
+      "hidden": true
+    }
+  ],
+  "order": 290
+}

@@ -1,0 +1,114 @@
+{
+  "slug": "chunk-a-list",
+  "track": "python",
+  "title": "Chunk a list",
+  "difficulty": "Easy",
+  "tags": [
+    "lists"
+  ],
+  "statementMd": "Split `items` into consecutive chunks of length `size` (the last may be shorter).\n\n**Example:** `chunk([1, 2, 3, 4, 5], 2)` returns `[[1, 2], [3, 4], [5]]`.",
+  "hints": [
+    "Step through with `range(0, len, size)`."
+  ],
+  "solutionMd": "```python\ndef chunk(items, size):\n    return [items[i:i + size] for i in range(0, len(items), size)]\n```\n\nSlicing past the end is safe.",
+  "starterCode": "def chunk(items, size):\n    # Write your code here\n    pass\n",
+  "functionName": "chunk",
+  "referenceSolution": "def chunk(items, size):\n    return [items[i:i + size] for i in range(0, len(items), size)]\n",
+  "tests": [
+    {
+      "args": [
+        [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        2
+      ],
+      "expected": [
+        [
+          1,
+          2
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          5
+        ]
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [],
+        3
+      ],
+      "expected": [],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          1,
+          2
+        ],
+        5
+      ],
+      "expected": [
+        [
+          1,
+          2
+        ]
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          2,
+          3
+        ],
+        1
+      ],
+      "expected": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          3
+        ]
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          "a",
+          "b",
+          "c",
+          "d"
+        ],
+        2
+      ],
+      "expected": [
+        [
+          "a",
+          "b"
+        ],
+        [
+          "c",
+          "d"
+        ]
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 83
+}

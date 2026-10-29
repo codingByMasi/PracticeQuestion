@@ -1,0 +1,80 @@
+{
+  "slug": "vowels-and-consonants",
+  "track": "python",
+  "title": "Vowels and consonants",
+  "difficulty": "Easy",
+  "tags": [
+    "strings"
+  ],
+  "statementMd": "Return `[vowels, consonants]`, counting only English letters (case-insensitive; `aeiou` are vowels).\n\n**Example:** `vowel_consonant_counts(\"Hello World\")` returns `[3, 7]`.",
+  "hints": [
+    "Skip non-letters."
+  ],
+  "solutionMd": "```python\ndef vowel_consonant_counts(s):\n    v = c = 0\n    for ch in s.lower():\n        if ch.isalpha() and ch.isascii():\n            if ch in 'aeiou':\n                v += 1\n            else:\n                c += 1\n    return [v, c]\n```\n\nTwo counters.",
+  "starterCode": "def vowel_consonant_counts(s):\n    # Write your code here\n    pass\n",
+  "functionName": "vowel_consonant_counts",
+  "referenceSolution": "def vowel_consonant_counts(s):\n    v = c = 0\n    for ch in s.lower():\n        if ch.isalpha() and ch.isascii():\n            if ch in 'aeiou':\n                v += 1\n            else:\n                c += 1\n    return [v, c]\n",
+  "tests": [
+    {
+      "args": [
+        "Hello World"
+      ],
+      "expected": [
+        3,
+        7
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        "aeiou"
+      ],
+      "expected": [
+        5,
+        0
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        ""
+      ],
+      "expected": [
+        0,
+        0
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        "123!"
+      ],
+      "expected": [
+        0,
+        0
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        "rhythm"
+      ],
+      "expected": [
+        0,
+        6
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        "Python 3"
+      ],
+      "expected": [
+        1,
+        5
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 69
+}

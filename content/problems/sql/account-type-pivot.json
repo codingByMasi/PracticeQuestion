@@ -1,0 +1,21 @@
+{
+  "slug": "account-type-pivot",
+  "track": "sql",
+  "title": "Account type pivot",
+  "difficulty": "Hard",
+  "tags": [
+    "pivot"
+  ],
+  "statementMd": "For each customer segment show total balance in `checking`, `savings` and `credit` accounts as three columns (rounded to 2 decimals, NULL treated as 0).\n\nExpected columns: `segment`, `checking`, `savings`, `credit`.\n\nTables: `customers`, `accounts`, `transactions`.\n\nRow order does not matter.",
+  "hints": [
+    "Conditional sums over account type."
+  ],
+  "solutionMd": "```sql\nSELECT c.segment, ROUND(COALESCE(SUM(CASE WHEN a.type = 'checking' THEN t.amount END), 0), 2) AS checking, ROUND(COALESCE(SUM(CASE WHEN a.type = 'savings' THEN t.amount END), 0), 2) AS savings, ROUND(COALESCE(SUM(CASE WHEN a.type = 'credit' THEN t.amount END), 0), 2) AS credit FROM transactions t JOIN accounts a ON a.id = t.account_id JOIN customers c ON c.id = a.customer_id GROUP BY c.segment;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, accounts, transactions\nSELECT\n",
+  "datasetId": "bank",
+  "expected": {
+    "query": "SELECT c.segment, ROUND(COALESCE(SUM(CASE WHEN a.type = 'checking' THEN t.amount END), 0), 2) AS checking, ROUND(COALESCE(SUM(CASE WHEN a.type = 'savings' THEN t.amount END), 0), 2) AS savings, ROUND(COALESCE(SUM(CASE WHEN a.type = 'credit' THEN t.amount END), 0), 2) AS credit FROM transactions t JOIN accounts a ON a.id = t.account_id JOIN customers c ON c.id = a.customer_id GROUP BY c.segment;",
+    "orderMatters": false
+  },
+  "order": 479
+}

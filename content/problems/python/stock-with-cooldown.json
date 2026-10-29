@@ -1,0 +1,75 @@
+{
+  "slug": "stock-with-cooldown",
+  "track": "python",
+  "title": "Stock with cooldown",
+  "difficulty": "Hard",
+  "tags": [
+    "dynamic-programming"
+  ],
+  "statementMd": "Unlimited transactions, but after selling you must wait one day before buying again. Return the maximum profit.\n\n**Example:** `max_profit_cooldown([1, 2, 3, 0, 2])` returns `3`.",
+  "hints": [
+    "Three states: hold, sold, rest."
+  ],
+  "solutionMd": "```python\ndef max_profit_cooldown(prices):\n    hold, sold, rest = float('-inf'), 0, 0\n    for p in prices:\n        hold, sold, rest = max(hold, rest - p), hold + p, max(rest, sold)\n    return max(sold, rest)\n```\n\nState machine DP.",
+  "starterCode": "def max_profit_cooldown(prices):\n    # Write your code here\n    pass\n",
+  "functionName": "max_profit_cooldown",
+  "referenceSolution": "def max_profit_cooldown(prices):\n    hold, sold, rest = float('-inf'), 0, 0\n    for p in prices:\n        hold, sold, rest = max(hold, rest - p), hold + p, max(rest, sold)\n    return max(sold, rest)\n",
+  "tests": [
+    {
+      "args": [
+        [
+          1,
+          2,
+          3,
+          0,
+          2
+        ]
+      ],
+      "expected": 3,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          1
+        ]
+      ],
+      "expected": 0,
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          2,
+          4
+        ]
+      ],
+      "expected": 3,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          6,
+          1,
+          6,
+          4,
+          3,
+          0,
+          2
+        ]
+      ],
+      "expected": 7,
+      "hidden": true
+    }
+  ],
+  "order": 448
+}

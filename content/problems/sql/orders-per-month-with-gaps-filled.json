@@ -1,0 +1,21 @@
+{
+  "slug": "orders-per-month-with-gaps-filled",
+  "track": "sql",
+  "title": "Orders per month with gaps filled",
+  "difficulty": "Hard",
+  "tags": [
+    "recursive"
+  ],
+  "statementMd": "For each month from 2024-01 to 2024-06 show the number of orders (0 for empty months). Use a recursive CTE for the month list. Earliest first.\n\nExpected columns: `month`, `orders`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "`LEFT JOIN` orders onto the generated months."
+  ],
+  "solutionMd": "```sql\nWITH RECURSIVE months(m) AS (SELECT '2024-01' UNION ALL SELECT strftime('%Y-%m', date(m || '-01', '+1 month')) FROM months WHERE m < '2024-06') SELECT m AS month, COUNT(o.id) AS orders FROM months LEFT JOIN orders o ON strftime('%Y-%m', o.order_date) = m GROUP BY m ORDER BY m;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "WITH RECURSIVE months(m) AS (SELECT '2024-01' UNION ALL SELECT strftime('%Y-%m', date(m || '-01', '+1 month')) FROM months WHERE m < '2024-06') SELECT m AS month, COUNT(o.id) AS orders FROM months LEFT JOIN orders o ON strftime('%Y-%m', o.order_date) = m GROUP BY m ORDER BY m;",
+    "orderMatters": true
+  },
+  "order": 487
+}

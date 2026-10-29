@@ -1,0 +1,21 @@
+{
+  "slug": "monthly-cashflow",
+  "track": "sql",
+  "title": "Monthly cashflow",
+  "difficulty": "Hard",
+  "tags": [
+    "pivot"
+  ],
+  "statementMd": "For each month show `income` (sum of deposits) and `outgoing` (sum of everything else, as a positive number) with the net difference, all rounded to 2 decimals. Earliest first.\n\nExpected columns: `month`, `income`, `outgoing`, `net`.\n\nTables: `customers`, `accounts`, `transactions`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Conditional aggregation per month."
+  ],
+  "solutionMd": "```sql\nSELECT strftime('%Y-%m', tx_date) AS month, ROUND(SUM(CASE WHEN kind = 'deposit' THEN amount ELSE 0 END), 2) AS income, ROUND(-SUM(CASE WHEN kind <> 'deposit' THEN amount ELSE 0 END), 2) AS outgoing, ROUND(SUM(amount), 2) AS net FROM transactions GROUP BY month ORDER BY month;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, accounts, transactions\nSELECT\n",
+  "datasetId": "bank",
+  "expected": {
+    "query": "SELECT strftime('%Y-%m', tx_date) AS month, ROUND(SUM(CASE WHEN kind = 'deposit' THEN amount ELSE 0 END), 2) AS income, ROUND(-SUM(CASE WHEN kind <> 'deposit' THEN amount ELSE 0 END), 2) AS outgoing, ROUND(SUM(amount), 2) AS net FROM transactions GROUP BY month ORDER BY month;",
+    "orderMatters": true
+  },
+  "order": 480
+}

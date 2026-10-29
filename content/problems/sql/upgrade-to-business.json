@@ -1,0 +1,21 @@
+{
+  "slug": "upgrade-to-business",
+  "track": "sql",
+  "title": "Upgrade to business",
+  "difficulty": "Medium",
+  "tags": [
+    "dml"
+  ],
+  "statementMd": "Upgrade all economy bookings on flight 1 to `business` and then list the seat class counts for flight 1.\n\nExpected columns: `seat_class`, `n`.\n\nTables: `airlines`, `airports`, `flights`, `bookings`.\n\nRow order does not matter.",
+  "hints": [
+    "`UPDATE bookings SET seat_class = 'business' ...`."
+  ],
+  "solutionMd": "```sql\nUPDATE bookings SET seat_class = 'business' WHERE flight_id = 1 AND seat_class = 'economy'; SELECT seat_class, COUNT(*) AS n FROM bookings WHERE flight_id = 1 GROUP BY seat_class;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: airlines, airports, flights, bookings\nSELECT\n",
+  "datasetId": "flights",
+  "expected": {
+    "query": "UPDATE bookings SET seat_class = 'business' WHERE flight_id = 1 AND seat_class = 'economy'; SELECT seat_class, COUNT(*) AS n FROM bookings WHERE flight_id = 1 GROUP BY seat_class;",
+    "orderMatters": false
+  },
+  "order": 361
+}

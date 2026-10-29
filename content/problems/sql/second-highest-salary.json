@@ -1,0 +1,21 @@
+{
+  "slug": "second-highest-salary",
+  "track": "sql",
+  "title": "Second highest salary",
+  "difficulty": "Medium",
+  "tags": [
+    "subquery"
+  ],
+  "statementMd": "What is the second highest distinct salary?\n\nExpected columns: `second_highest`.\n\nTables: `employees`, `departments`.\n\nRow order does not matter.",
+  "hints": [
+    "Find the maximum salary strictly below the overall maximum."
+  ],
+  "solutionMd": "```sql\nSELECT MAX(salary) AS second_highest FROM employees WHERE salary < (SELECT MAX(salary) FROM employees);\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "SELECT MAX(salary) AS second_highest FROM employees WHERE salary < (SELECT MAX(salary) FROM employees);",
+    "orderMatters": false
+  },
+  "order": 312
+}

@@ -1,0 +1,21 @@
+{
+  "slug": "late-returns",
+  "track": "sql",
+  "title": "Late returns",
+  "difficulty": "Medium",
+  "tags": [
+    "dates"
+  ],
+  "statementMd": "Count loans returned after their due date.\n\nExpected columns: `late_returns`.\n\nTables: `authors`, `books`, `members`, `loans`.\n\nRow order does not matter.",
+  "hints": [
+    "Compare `return_date` to `due_date` (NULL returns excluded automatically)."
+  ],
+  "solutionMd": "```sql\nSELECT COUNT(*) AS late_returns FROM loans WHERE return_date > due_date;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: authors, books, members, loans\nSELECT\n",
+  "datasetId": "library",
+  "expected": {
+    "query": "SELECT COUNT(*) AS late_returns FROM loans WHERE return_date > due_date;",
+    "orderMatters": false
+  },
+  "order": 194
+}

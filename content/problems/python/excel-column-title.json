@@ -1,0 +1,69 @@
+{
+  "slug": "excel-column-title",
+  "track": "python",
+  "title": "Excel column title",
+  "difficulty": "Medium",
+  "tags": [
+    "parsing"
+  ],
+  "statementMd": "Convert a column number to its Excel title: 1 -> `\"A\"`, 26 -> `\"Z\"`, 27 -> `\"AA\"`, 701 -> `\"ZY\"`.\n\n**Example:** `column_title(1)` returns `\"A\"`.",
+  "hints": [
+    "It is bijective base-26: subtract 1 each step."
+  ],
+  "solutionMd": "```python\ndef column_title(n):\n    out = []\n    while n > 0:\n        n -= 1\n        out.append(chr(65 + n % 26))\n        n //= 26\n    return ''.join(reversed(out))\n```\n\nSubtracting one first turns 1..26 into 0..25.",
+  "starterCode": "def column_title(n):\n    # Write your code here\n    pass\n",
+  "functionName": "column_title",
+  "referenceSolution": "def column_title(n):\n    out = []\n    while n > 0:\n        n -= 1\n        out.append(chr(65 + n % 26))\n        n //= 26\n    return ''.join(reversed(out))\n",
+  "tests": [
+    {
+      "args": [
+        1
+      ],
+      "expected": "A",
+      "hidden": false
+    },
+    {
+      "args": [
+        28
+      ],
+      "expected": "AB",
+      "hidden": false
+    },
+    {
+      "args": [
+        26
+      ],
+      "expected": "Z",
+      "hidden": true
+    },
+    {
+      "args": [
+        27
+      ],
+      "expected": "AA",
+      "hidden": true
+    },
+    {
+      "args": [
+        52
+      ],
+      "expected": "AZ",
+      "hidden": true
+    },
+    {
+      "args": [
+        701
+      ],
+      "expected": "ZY",
+      "hidden": true
+    },
+    {
+      "args": [
+        703
+      ],
+      "expected": "AAA",
+      "hidden": true
+    }
+  ],
+  "order": 292
+}

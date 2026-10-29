@@ -1,0 +1,74 @@
+{
+  "slug": "modular-exponentiation",
+  "track": "python",
+  "title": "Modular exponentiation",
+  "difficulty": "Medium",
+  "tags": [
+    "number-theory"
+  ],
+  "statementMd": "Compute `(base ** exp) % mod` efficiently for non-negative `exp` and `mod >= 1` (no built-in `pow` with three arguments).\n\n**Example:** `mod_pow(2, 10, 1000)` returns `24`.",
+  "hints": [
+    "Square and multiply, reducing each step."
+  ],
+  "solutionMd": "```python\ndef mod_pow(base, exp, mod):\n    result = 1 % mod\n    base %= mod\n    while exp:\n        if exp & 1:\n            result = result * base % mod\n        base = base * base % mod\n        exp >>= 1\n    return result\n```\n\nReduce after every multiplication.",
+  "starterCode": "def mod_pow(base, exp, mod):\n    # Write your code here\n    pass\n",
+  "functionName": "mod_pow",
+  "referenceSolution": "def mod_pow(base, exp, mod):\n    result = 1 % mod\n    base %= mod\n    while exp:\n        if exp & 1:\n            result = result * base % mod\n        base = base * base % mod\n        exp >>= 1\n    return result\n",
+  "tests": [
+    {
+      "args": [
+        2,
+        10,
+        1000
+      ],
+      "expected": 24,
+      "hidden": false
+    },
+    {
+      "args": [
+        3,
+        0,
+        7
+      ],
+      "expected": 1,
+      "hidden": false
+    },
+    {
+      "args": [
+        5,
+        3,
+        13
+      ],
+      "expected": 8,
+      "hidden": true
+    },
+    {
+      "args": [
+        7,
+        100,
+        1
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        2,
+        1000,
+        1000007
+      ],
+      "expected": 783922,
+      "hidden": true
+    },
+    {
+      "args": [
+        10,
+        9,
+        6
+      ],
+      "expected": 4,
+      "hidden": true
+    }
+  ],
+  "order": 287
+}

@@ -1,0 +1,21 @@
+{
+  "slug": "titles-starting-with-the",
+  "track": "sql",
+  "title": "Titles starting with The",
+  "difficulty": "Easy",
+  "tags": [
+    "like"
+  ],
+  "statementMd": "List movies whose title starts with `The`.\n\nExpected columns: `title`.\n\nTables: `movies`, `directors`, `reviews`.\n\nRow order does not matter.",
+  "hints": [
+    "`LIKE 'The %'`."
+  ],
+  "solutionMd": "```sql\nSELECT title FROM movies WHERE title LIKE 'The %';\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: movies, directors, reviews\nSELECT\n",
+  "datasetId": "movies",
+  "expected": {
+    "query": "SELECT title FROM movies WHERE title LIKE 'The %';",
+    "orderMatters": false
+  },
+  "order": 60
+}

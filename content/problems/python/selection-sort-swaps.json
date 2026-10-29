@@ -1,0 +1,112 @@
+{
+  "slug": "selection-sort-swaps",
+  "track": "python",
+  "title": "Selection sort swaps",
+  "difficulty": "Medium",
+  "tags": [
+    "sorting"
+  ],
+  "statementMd": "Run selection sort (each pass swaps the minimum of the unsorted part into place, only when it is at a different index). Return how many swaps were made.\n\n**Example:** `selection_sort_swaps([3, 1, 2])` returns `2`.",
+  "hints": [
+    "Count a swap only when the min index differs."
+  ],
+  "solutionMd": "```python\ndef selection_sort_swaps(nums):\n    a = nums[:]\n    swaps = 0\n    for i in range(len(a)):\n        m = i\n        for j in range(i + 1, len(a)):\n            if a[j] < a[m]:\n                m = j\n        if m != i:\n            a[i], a[m] = a[m], a[i]\n            swaps += 1\n    return swaps\n```\n\nStrict < picks the first minimum.",
+  "starterCode": "def selection_sort_swaps(nums):\n    # Write your code here\n    pass\n",
+  "functionName": "selection_sort_swaps",
+  "referenceSolution": "def selection_sort_swaps(nums):\n    a = nums[:]\n    swaps = 0\n    for i in range(len(a)):\n        m = i\n        for j in range(i + 1, len(a)):\n            if a[j] < a[m]:\n                m = j\n        if m != i:\n            a[i], a[m] = a[m], a[i]\n            swaps += 1\n    return swaps\n",
+  "tests": [
+    {
+      "args": [
+        [
+          3,
+          1,
+          2
+        ]
+      ],
+      "expected": 2,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "expected": 0,
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          2,
+          1
+        ]
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      ],
+      "expected": 2,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          9,
+          9,
+          1,
+          1,
+          7,
+          2
+        ]
+      ],
+      "expected": 4,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          8,
+          3
+        ]
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          9,
+          6,
+          8,
+          6,
+          8,
+          8,
+          0,
+          9
+        ]
+      ],
+      "expected": 2,
+      "hidden": true
+    }
+  ],
+  "order": 232
+}

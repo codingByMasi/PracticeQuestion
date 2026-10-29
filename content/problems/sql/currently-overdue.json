@@ -1,0 +1,21 @@
+{
+  "slug": "currently-overdue",
+  "track": "sql",
+  "title": "Currently overdue",
+  "difficulty": "Medium",
+  "tags": [
+    "dates"
+  ],
+  "statementMd": "As of 2024-07-01, list loans that are still out and past their due date. Show loan id and days overdue.\n\nExpected columns: `id`, `days_overdue`.\n\nTables: `authors`, `books`, `members`, `loans`.\n\nRow order does not matter.",
+  "hints": [
+    "Unreturned and `due_date < '2024-07-01'`."
+  ],
+  "solutionMd": "```sql\nSELECT id, CAST(julianday('2024-07-01') - julianday(due_date) AS INTEGER) AS days_overdue FROM loans WHERE return_date IS NULL AND due_date < '2024-07-01';\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: authors, books, members, loans\nSELECT\n",
+  "datasetId": "library",
+  "expected": {
+    "query": "SELECT id, CAST(julianday('2024-07-01') - julianday(due_date) AS INTEGER) AS days_overdue FROM loans WHERE return_date IS NULL AND due_date < '2024-07-01';",
+    "orderMatters": false
+  },
+  "order": 195
+}

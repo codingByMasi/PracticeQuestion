@@ -1,0 +1,21 @@
+{
+  "slug": "spend-per-passenger-tier",
+  "track": "sql",
+  "title": "Spend per passenger tier",
+  "difficulty": "Hard",
+  "tags": [
+    "case"
+  ],
+  "statementMd": "Classify passengers by total fare spent: `bronze` under 1000, `silver` 1000 to under 3000, `gold` 3000 or more. Count passengers per tier.\n\nExpected columns: `tier`, `passengers`.\n\nTables: `airlines`, `airports`, `flights`, `bookings`.\n\nRow order does not matter.",
+  "hints": [
+    "Aggregate per passenger in a subquery, then CASE."
+  ],
+  "solutionMd": "```sql\nSELECT CASE WHEN total < 1000 THEN 'bronze' WHEN total < 3000 THEN 'silver' ELSE 'gold' END AS tier, COUNT(*) AS passengers FROM (SELECT passenger, SUM(fare) AS total FROM bookings GROUP BY passenger) GROUP BY tier;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: airlines, airports, flights, bookings\nSELECT\n",
+  "datasetId": "flights",
+  "expected": {
+    "query": "SELECT CASE WHEN total < 1000 THEN 'bronze' WHEN total < 3000 THEN 'silver' ELSE 'gold' END AS tier, COUNT(*) AS passengers FROM (SELECT passenger, SUM(fare) AS total FROM bookings GROUP BY passenger) GROUP BY tier;",
+    "orderMatters": false
+  },
+  "order": 372
+}

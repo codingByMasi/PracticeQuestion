@@ -1,0 +1,83 @@
+{
+  "slug": "unflatten-dict",
+  "track": "python",
+  "title": "Unflatten dict",
+  "difficulty": "Hard",
+  "tags": [
+    "dicts"
+  ],
+  "statementMd": "Reverse of flattening: turn `{'a.b': 1, 'c': 2}` into `{'a': {'b': 1}, 'c': 2}`.\n\n**Example:** `unflatten_dict({\"a.b\": 1, \"c\": 2})` returns `{\"a\": {\"b\": 1}, \"c\": 2}`.",
+  "hints": [
+    "Split keys on `.` and create nested dicts as you go."
+  ],
+  "solutionMd": "```python\ndef unflatten_dict(d):\n    out = {}\n    for key, value in d.items():\n        parts = key.split('.')\n        cur = out\n        for part in parts[:-1]:\n            cur = cur.setdefault(part, {})\n        cur[parts[-1]] = value\n    return out\n```\n\n`setdefault` creates intermediate levels.",
+  "starterCode": "def unflatten_dict(d):\n    # Write your code here\n    pass\n",
+  "functionName": "unflatten_dict",
+  "referenceSolution": "def unflatten_dict(d):\n    out = {}\n    for key, value in d.items():\n        parts = key.split('.')\n        cur = out\n        for part in parts[:-1]:\n            cur = cur.setdefault(part, {})\n        cur[parts[-1]] = value\n    return out\n",
+  "tests": [
+    {
+      "args": [
+        {
+          "a.b": 1,
+          "c": 2
+        }
+      ],
+      "expected": {
+        "a": {
+          "b": 1
+        },
+        "c": 2
+      },
+      "hidden": false
+    },
+    {
+      "args": [
+        {}
+      ],
+      "expected": {},
+      "hidden": false
+    },
+    {
+      "args": [
+        {
+          "x.y.z": 0
+        }
+      ],
+      "expected": {
+        "x": {
+          "y": {
+            "z": 0
+          }
+        }
+      },
+      "hidden": true
+    },
+    {
+      "args": [
+        {
+          "a.b": 1,
+          "a.c": 2
+        }
+      ],
+      "expected": {
+        "a": {
+          "b": 1,
+          "c": 2
+        }
+      },
+      "hidden": true
+    },
+    {
+      "args": [
+        {
+          "k": null
+        }
+      ],
+      "expected": {
+        "k": null
+      },
+      "hidden": true
+    }
+  ],
+  "order": 388
+}

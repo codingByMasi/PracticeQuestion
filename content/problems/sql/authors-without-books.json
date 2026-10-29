@@ -1,0 +1,21 @@
+{
+  "slug": "authors-without-books",
+  "track": "sql",
+  "title": "Authors without books",
+  "difficulty": "Medium",
+  "tags": [
+    "left-join"
+  ],
+  "statementMd": "List authors who have no books in the catalogue.\n\nExpected columns: `name`.\n\nTables: `authors`, `books`, `members`, `loans`.\n\nRow order does not matter.",
+  "hints": [
+    "Anti-join with `LEFT JOIN`."
+  ],
+  "solutionMd": "```sql\nSELECT a.name FROM authors a LEFT JOIN books b ON b.author_id = a.id WHERE b.id IS NULL;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: authors, books, members, loans\nSELECT\n",
+  "datasetId": "library",
+  "expected": {
+    "query": "SELECT a.name FROM authors a LEFT JOIN books b ON b.author_id = a.id WHERE b.id IS NULL;",
+    "orderMatters": false
+  },
+  "order": 282
+}

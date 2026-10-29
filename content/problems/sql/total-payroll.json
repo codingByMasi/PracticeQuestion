@@ -1,0 +1,21 @@
+{
+  "slug": "total-payroll",
+  "track": "sql",
+  "title": "Total payroll",
+  "difficulty": "Easy",
+  "tags": [
+    "aggregate"
+  ],
+  "statementMd": "What is the total of all salaries?\n\nExpected columns: `total_payroll`.\n\nTables: `employees`, `departments`.\n\nRow order does not matter.",
+  "hints": [
+    "`SUM(salary)`."
+  ],
+  "solutionMd": "```sql\nSELECT SUM(salary) AS total_payroll FROM employees;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "SELECT SUM(salary) AS total_payroll FROM employees;",
+    "orderMatters": false
+  },
+  "order": 113
+}

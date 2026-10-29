@@ -17,5 +17,6 @@
   "expected": {
     "query": "SELECT department_id, COUNT(*) AS headcount FROM employees WHERE department_id IS NOT NULL GROUP BY department_id;",
     "orderMatters": false
-  }
+  },
+  "order": 124
 }

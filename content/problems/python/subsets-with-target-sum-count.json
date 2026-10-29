@@ -1,0 +1,75 @@
+{
+  "slug": "subsets-with-target-sum-count",
+  "track": "python",
+  "title": "Subsets with target sum count",
+  "difficulty": "Medium",
+  "tags": [
+    "backtracking"
+  ],
+  "statementMd": "Count subsets (by index choice, so equal values count separately) whose elements sum to `target`.\n\n**Example:** `count_subsets_sum([1, 2, 3], 3)` returns `2`.",
+  "hints": [
+    "Include/exclude recursion."
+  ],
+  "solutionMd": "```python\ndef count_subsets_sum(nums, target):\n    def go(i, rest):\n        if i == len(nums):\n            return 1 if rest == 0 else 0\n        return go(i + 1, rest) + go(i + 1, rest - nums[i])\n    return go(0, target)\n```\n\nExponential but fine for small inputs.",
+  "starterCode": "def count_subsets_sum(nums, target):\n    # Write your code here\n    pass\n",
+  "functionName": "count_subsets_sum",
+  "referenceSolution": "def count_subsets_sum(nums, target):\n    def go(i, rest):\n        if i == len(nums):\n            return 1 if rest == 0 else 0\n        return go(i + 1, rest) + go(i + 1, rest - nums[i])\n    return go(0, target)\n",
+  "tests": [
+    {
+      "args": [
+        [
+          1,
+          2,
+          3
+        ],
+        3
+      ],
+      "expected": 2,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          1,
+          1,
+          1
+        ],
+        2
+      ],
+      "expected": 3,
+      "hidden": false
+    },
+    {
+      "args": [
+        [],
+        0
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          5
+        ],
+        5
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          2,
+          4,
+          6,
+          10
+        ],
+        16
+      ],
+      "expected": 2,
+      "hidden": true
+    }
+  ],
+  "order": 337
+}

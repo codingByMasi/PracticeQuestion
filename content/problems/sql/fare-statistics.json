@@ -1,0 +1,21 @@
+{
+  "slug": "fare-statistics",
+  "track": "sql",
+  "title": "Fare statistics",
+  "difficulty": "Easy",
+  "tags": [
+    "aggregate"
+  ],
+  "statementMd": "Show the number of bookings, total fare and average fare (rounded to 2 decimals).\n\nExpected columns: `bookings`, `total_fare`, `avg_fare`.\n\nTables: `airlines`, `airports`, `flights`, `bookings`.\n\nRow order does not matter.",
+  "hints": [
+    "Three aggregates."
+  ],
+  "solutionMd": "```sql\nSELECT COUNT(*) AS bookings, ROUND(SUM(fare), 2) AS total_fare, ROUND(AVG(fare), 2) AS avg_fare FROM bookings;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: airlines, airports, flights, bookings\nSELECT\n",
+  "datasetId": "flights",
+  "expected": {
+    "query": "SELECT COUNT(*) AS bookings, ROUND(SUM(fare), 2) AS total_fare, ROUND(AVG(fare), 2) AS avg_fare FROM bookings;",
+    "orderMatters": false
+  },
+  "order": 114
+}

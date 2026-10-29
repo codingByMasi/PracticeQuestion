@@ -1,0 +1,91 @@
+{
+  "slug": "reverse-a-list",
+  "track": "python",
+  "title": "Reverse a list",
+  "difficulty": "Easy",
+  "tags": [
+    "lists"
+  ],
+  "statementMd": "Return a new list with the elements in reverse order, leaving the input unchanged.\n\n**Example:** `reverse_list([1, 2, 3])` returns `[3, 2, 1]`.",
+  "hints": [
+    "Slicing with a negative step."
+  ],
+  "solutionMd": "```python\ndef reverse_list(items):\n    return items[::-1]\n```\n\nSlicing creates a copy.",
+  "starterCode": "def reverse_list(items):\n    # Write your code here\n    pass\n",
+  "functionName": "reverse_list",
+  "referenceSolution": "def reverse_list(items):\n    return items[::-1]\n",
+  "tests": [
+    {
+      "args": [
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "expected": [
+        3,
+        2,
+        1
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": [],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          "a"
+        ]
+      ],
+      "expected": [
+        "a"
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          "b",
+          3.5
+        ]
+      ],
+      "expected": [
+        3.5,
+        "b",
+        1
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            1,
+            2
+          ],
+          [
+            3
+          ]
+        ]
+      ],
+      "expected": [
+        [
+          3
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 75
+}

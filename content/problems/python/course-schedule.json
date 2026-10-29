@@ -1,0 +1,96 @@
+{
+  "slug": "course-schedule",
+  "track": "python",
+  "title": "Course schedule",
+  "difficulty": "Medium",
+  "tags": [
+    "graphs"
+  ],
+  "statementMd": "Courses `0..n-1`; each pair `[a, b]` means course b must be taken before a. Return whether all courses can be finished (no cycle).\n\n**Example:** `can_finish(2, [[1, 0]])` returns `true`.",
+  "hints": [
+    "Topological sort with in-degrees."
+  ],
+  "solutionMd": "```python\nfrom collections import deque, defaultdict\n\n\ndef can_finish(num_courses, prerequisites):\n    adj = defaultdict(list)\n    indeg = [0] * num_courses\n    for a, b in prerequisites:\n        adj[b].append(a)\n        indeg[a] += 1\n    q = deque(i for i in range(num_courses) if indeg[i] == 0)\n    done = 0\n    while q:\n        u = q.popleft()\n        done += 1\n        for v in adj[u]:\n            indeg[v] -= 1\n            if indeg[v] == 0:\n                q.append(v)\n    return done == num_courses\n```\n\nA cycle blocks the topological order.",
+  "starterCode": "def can_finish(num_courses, prerequisites):\n    # Write your code here\n    pass\n",
+  "functionName": "can_finish",
+  "referenceSolution": "from collections import deque, defaultdict\n\n\ndef can_finish(num_courses, prerequisites):\n    adj = defaultdict(list)\n    indeg = [0] * num_courses\n    for a, b in prerequisites:\n        adj[b].append(a)\n        indeg[a] += 1\n    q = deque(i for i in range(num_courses) if indeg[i] == 0)\n    done = 0\n    while q:\n        u = q.popleft()\n        done += 1\n        for v in adj[u]:\n            indeg[v] -= 1\n            if indeg[v] == 0:\n                q.append(v)\n    return done == num_courses\n",
+  "tests": [
+    {
+      "args": [
+        2,
+        [
+          [
+            1,
+            0
+          ]
+        ]
+      ],
+      "expected": true,
+      "hidden": false
+    },
+    {
+      "args": [
+        2,
+        [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ]
+      ],
+      "expected": false,
+      "hidden": false
+    },
+    {
+      "args": [
+        1,
+        []
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        3,
+        [
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            1
+          ]
+        ]
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        3,
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            0
+          ]
+        ]
+      ],
+      "expected": false,
+      "hidden": true
+    }
+  ],
+  "order": 346
+}

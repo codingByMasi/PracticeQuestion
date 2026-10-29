@@ -19,5 +19,6 @@
   "expected": {
     "query": "SELECT m.title, ROUND(AVG(r.rating), 2) AS avg_rating\nFROM movies m\nJOIN reviews r ON r.movie_id = m.id\nGROUP BY m.id, m.title\nORDER BY AVG(r.rating) DESC, m.title\nLIMIT 3;",
     "orderMatters": true
-  }
+  },
+  "order": 257
 }

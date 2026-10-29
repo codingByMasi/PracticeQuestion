@@ -1,0 +1,84 @@
+{
+  "slug": "custom-order-sort",
+  "track": "python",
+  "title": "Custom order sort",
+  "difficulty": "Medium",
+  "tags": [
+    "sorting"
+  ],
+  "statementMd": "`order` is a string defining the alphabet order. Sort lowercase words according to it (lexicographically using that alphabet).\n\n**Example:** `sort_by_order([\"hello\", \"leetcode\"], \"hlabcdefgijkmnopqrstuvwxyz\")` returns `[\"hello\", \"leetcode\"]`.",
+  "hints": [
+    "Map each letter to its position."
+  ],
+  "solutionMd": "```python\ndef sort_by_order(words, order):\n    rank = {c: i for i, c in enumerate(order)}\n    return sorted(words, key=lambda w: [rank[c] for c in w])\n```\n\nLists of ranks compare lexicographically.",
+  "starterCode": "def sort_by_order(words, order):\n    # Write your code here\n    pass\n",
+  "functionName": "sort_by_order",
+  "referenceSolution": "def sort_by_order(words, order):\n    rank = {c: i for i, c in enumerate(order)}\n    return sorted(words, key=lambda w: [rank[c] for c in w])\n",
+  "tests": [
+    {
+      "args": [
+        [
+          "hello",
+          "leetcode"
+        ],
+        "hlabcdefgijkmnopqrstuvwxyz"
+      ],
+      "expected": [
+        "hello",
+        "leetcode"
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          "b",
+          "a"
+        ],
+        "ba"
+      ],
+      "expected": [
+        "b",
+        "a"
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [],
+        "abc"
+      ],
+      "expected": [],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          "ab",
+          "a"
+        ],
+        "abc"
+      ],
+      "expected": [
+        "a",
+        "ab"
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          "cab",
+          "abc"
+        ],
+        "cba"
+      ],
+      "expected": [
+        "cab",
+        "abc"
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 237
+}

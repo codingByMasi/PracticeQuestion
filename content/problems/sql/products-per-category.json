@@ -1,0 +1,21 @@
+{
+  "slug": "products-per-category",
+  "track": "sql",
+  "title": "Products per category",
+  "difficulty": "Easy",
+  "tags": [
+    "group-by"
+  ],
+  "statementMd": "For each category, show the number of products and the average price rounded to 2 decimals.\n\nExpected columns: `category`, `products`, `avg_price`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\nRow order does not matter.",
+  "hints": [
+    "Two aggregates in one query."
+  ],
+  "solutionMd": "```sql\nSELECT category, COUNT(*) AS products, ROUND(AVG(price), 2) AS avg_price FROM products GROUP BY category;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "SELECT category, COUNT(*) AS products, ROUND(AVG(price), 2) AS avg_price FROM products GROUP BY category;",
+    "orderMatters": false
+  },
+  "order": 130
+}

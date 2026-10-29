@@ -1,0 +1,21 @@
+{
+  "slug": "longest-film-per-director-country",
+  "track": "sql",
+  "title": "Longest film per director country",
+  "difficulty": "Hard",
+  "tags": [
+    "correlated-subquery"
+  ],
+  "statementMd": "For each director country, show the longest movie (title and runtime) made by a director from that country.\n\nExpected columns: `country`, `title`, `runtime_minutes`.\n\nTables: `movies`, `directors`, `reviews`.\n\nRow order does not matter.",
+  "hints": [
+    "Compare runtime to the max per country."
+  ],
+  "solutionMd": "```sql\nSELECT d.country, m.title, m.runtime_minutes FROM movies m JOIN directors d ON d.id = m.director_id WHERE m.runtime_minutes = (SELECT MAX(m2.runtime_minutes) FROM movies m2 JOIN directors d2 ON d2.id = m2.director_id WHERE d2.country = d.country);\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: movies, directors, reviews\nSELECT\n",
+  "datasetId": "movies",
+  "expected": {
+    "query": "SELECT d.country, m.title, m.runtime_minutes FROM movies m JOIN directors d ON d.id = m.director_id WHERE m.runtime_minutes = (SELECT MAX(m2.runtime_minutes) FROM movies m2 JOIN directors d2 ON d2.id = m2.director_id WHERE d2.country = d.country);",
+    "orderMatters": false
+  },
+  "order": 395
+}

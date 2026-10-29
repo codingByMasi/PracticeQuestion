@@ -1,0 +1,21 @@
+{
+  "slug": "largest-transaction-per-customer",
+  "track": "sql",
+  "title": "Largest transaction per customer",
+  "difficulty": "Hard",
+  "tags": [
+    "ranking"
+  ],
+  "statementMd": "For each customer, find the transaction with the largest absolute amount (customer name, transaction id, amount). Ties go to the lowest id.\n\nExpected columns: `name`, `transaction_id`, `amount`.\n\nTables: `customers`, `accounts`, `transactions`.\n\nRow order does not matter.",
+  "hints": [
+    "`ROW_NUMBER()` by `ABS(amount) DESC, id`."
+  ],
+  "solutionMd": "```sql\nWITH r AS (SELECT a.customer_id, t.id, t.amount, ROW_NUMBER() OVER (PARTITION BY a.customer_id ORDER BY ABS(t.amount) DESC, t.id) AS rn FROM transactions t JOIN accounts a ON a.id = t.account_id) SELECT c.name, r.id AS transaction_id, r.amount FROM r JOIN customers c ON c.id = r.customer_id WHERE r.rn = 1;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, accounts, transactions\nSELECT\n",
+  "datasetId": "bank",
+  "expected": {
+    "query": "WITH r AS (SELECT a.customer_id, t.id, t.amount, ROW_NUMBER() OVER (PARTITION BY a.customer_id ORDER BY ABS(t.amount) DESC, t.id) AS rn FROM transactions t JOIN accounts a ON a.id = t.account_id) SELECT c.name, r.id AS transaction_id, r.amount FROM r JOIN customers c ON c.id = r.customer_id WHERE r.rn = 1;",
+    "orderMatters": false
+  },
+  "order": 443
+}

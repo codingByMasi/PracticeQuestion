@@ -1,0 +1,21 @@
+{
+  "slug": "cancellation-rate",
+  "track": "sql",
+  "title": "Cancellation rate",
+  "difficulty": "Medium",
+  "tags": [
+    "aggregate"
+  ],
+  "statementMd": "What percentage of orders were cancelled? Round to 1 decimal.\n\nExpected columns: `cancelled_pct`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\nRow order does not matter.",
+  "hints": [
+    "Average a 0/1 flag, or divide counts."
+  ],
+  "solutionMd": "```sql\nSELECT ROUND(100.0 * SUM(CASE WHEN status = 'cancelled' THEN 1 ELSE 0 END) / COUNT(*), 1) AS cancelled_pct FROM orders;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "SELECT ROUND(100.0 * SUM(CASE WHEN status = 'cancelled' THEN 1 ELSE 0 END) / COUNT(*), 1) AS cancelled_pct FROM orders;",
+    "orderMatters": false
+  },
+  "order": 211
+}

@@ -1,0 +1,97 @@
+{
+  "slug": "flatten-deeply",
+  "track": "python",
+  "title": "Flatten deeply",
+  "difficulty": "Medium",
+  "tags": [
+    "recursion"
+  ],
+  "statementMd": "Flatten arbitrarily nested lists into a single flat list, keeping order.\n\n**Example:** `flatten_deep([1, [2, [3, [4]]]])` returns `[1, 2, 3, 4]`.",
+  "hints": [
+    "Recurse into list elements."
+  ],
+  "solutionMd": "```python\ndef flatten_deep(data):\n    out = []\n    for x in data:\n        if isinstance(x, list):\n            out.extend(flatten_deep(x))\n        else:\n            out.append(x)\n    return out\n```\n\nExtend with the flattened child.",
+  "starterCode": "def flatten_deep(data):\n    # Write your code here\n    pass\n",
+  "functionName": "flatten_deep",
+  "referenceSolution": "def flatten_deep(data):\n    out = []\n    for x in data:\n        if isinstance(x, list):\n            out.extend(flatten_deep(x))\n        else:\n            out.append(x)\n    return out\n",
+  "tests": [
+    {
+      "args": [
+        [
+          1,
+          [
+            2,
+            [
+              3,
+              [
+                4
+              ]
+            ]
+          ]
+        ]
+      ],
+      "expected": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": [],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            []
+          ]
+        ]
+      ],
+      "expected": [],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          "a",
+          [
+            "b"
+          ]
+        ]
+      ],
+      "expected": [
+        "a",
+        "b"
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            1,
+            2
+          ],
+          [
+            3
+          ],
+          4
+        ]
+      ],
+      "expected": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 248
+}

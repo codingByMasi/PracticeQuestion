@@ -1,0 +1,111 @@
+{
+  "slug": "character-frequency-sorted",
+  "track": "python",
+  "title": "Character frequency sorted",
+  "difficulty": "Medium",
+  "tags": [
+    "counting"
+  ],
+  "statementMd": "Return a list of `[char, count]` pairs sorted by count descending, then by character ascending.\n\n**Example:** `char_freq_sorted(\"hello\")` returns `[[\"l\", 2], [\"e\", 1], [\"h\", 1], [\"o\", 1]]`.",
+  "hints": [
+    "Count, then sort with a tuple key."
+  ],
+  "solutionMd": "```python\ndef char_freq_sorted(s):\n    counts = {}\n    for c in s:\n        counts[c] = counts.get(c, 0) + 1\n    return [[c, n] for c, n in sorted(counts.items(), key=lambda kv: (-kv[1], kv[0]))]\n```\n\nNegating the count sorts it descending.",
+  "starterCode": "def char_freq_sorted(s):\n    # Write your code here\n    pass\n",
+  "functionName": "char_freq_sorted",
+  "referenceSolution": "def char_freq_sorted(s):\n    counts = {}\n    for c in s:\n        counts[c] = counts.get(c, 0) + 1\n    return [[c, n] for c, n in sorted(counts.items(), key=lambda kv: (-kv[1], kv[0]))]\n",
+  "tests": [
+    {
+      "args": [
+        "hello"
+      ],
+      "expected": [
+        [
+          "l",
+          2
+        ],
+        [
+          "e",
+          1
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "o",
+          1
+        ]
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        ""
+      ],
+      "expected": [],
+      "hidden": false
+    },
+    {
+      "args": [
+        "aabb"
+      ],
+      "expected": [
+        [
+          "a",
+          2
+        ],
+        [
+          "b",
+          2
+        ]
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        "zzyx"
+      ],
+      "expected": [
+        [
+          "z",
+          2
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "y",
+          1
+        ]
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        "mississippi"
+      ],
+      "expected": [
+        [
+          "i",
+          4
+        ],
+        [
+          "s",
+          4
+        ],
+        [
+          "p",
+          2
+        ],
+        [
+          "m",
+          1
+        ]
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 225
+}

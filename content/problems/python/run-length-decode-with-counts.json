@@ -1,0 +1,55 @@
+{
+  "slug": "run-length-decode-with-counts",
+  "track": "python",
+  "title": "Run-length decode with counts",
+  "difficulty": "Medium",
+  "tags": [
+    "parsing"
+  ],
+  "statementMd": "Decode strings like `\"3a2b1c\"` where each number applies to the following single character. Counts may have several digits.\n\n**Example:** `rle_decode(\"3a2b1c\")` returns `\"aaabbc\"`.",
+  "hints": [
+    "Collect digits, then expand on a letter."
+  ],
+  "solutionMd": "```python\ndef rle_decode(s):\n    out, num = [], ''\n    for c in s:\n        if c.isdigit():\n            num += c\n        else:\n            out.append(c * int(num))\n            num = ''\n    return ''.join(out)\n```\n\nNumber then character.",
+  "starterCode": "def rle_decode(s):\n    # Write your code here\n    pass\n",
+  "functionName": "rle_decode",
+  "referenceSolution": "def rle_decode(s):\n    out, num = [], ''\n    for c in s:\n        if c.isdigit():\n            num += c\n        else:\n            out.append(c * int(num))\n            num = ''\n    return ''.join(out)\n",
+  "tests": [
+    {
+      "args": [
+        "3a2b1c"
+      ],
+      "expected": "aaabbc",
+      "hidden": false
+    },
+    {
+      "args": [
+        ""
+      ],
+      "expected": "",
+      "hidden": false
+    },
+    {
+      "args": [
+        "1z"
+      ],
+      "expected": "z",
+      "hidden": true
+    },
+    {
+      "args": [
+        "12x"
+      ],
+      "expected": "xxxxxxxxxxxx",
+      "hidden": true
+    },
+    {
+      "args": [
+        "0a2b"
+      ],
+      "expected": "bb",
+      "hidden": true
+    }
+  ],
+  "order": 299
+}

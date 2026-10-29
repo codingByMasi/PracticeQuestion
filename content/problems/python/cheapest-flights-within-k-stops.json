@@ -1,0 +1,144 @@
+{
+  "slug": "cheapest-flights-within-k-stops",
+  "track": "python",
+  "title": "Cheapest flights within k stops",
+  "difficulty": "Hard",
+  "tags": [
+    "graphs"
+  ],
+  "statementMd": "Flights `[from, to, price]` between cities `0..n-1`. Return the cheapest price from `src` to `dst` using at most `k` stops (so at most `k + 1` flights), or `-1`.\n\n**Example:** `cheapest_flight(4, [[0, 1, 100], [1, 2, 100], [2, 0, 100], [1, 3, 600], [2, 3,…, 0, 3, 1)` returns `700`.",
+  "hints": [
+    "Bellman-Ford limited to k + 1 rounds."
+  ],
+  "solutionMd": "```python\nfrom collections import deque, defaultdict\n\n\ndef cheapest_flight(n, flights, src, dst, k):\n    INF = float('inf')\n    dist = [INF] * n\n    dist[src] = 0\n    for _ in range(k + 1):\n        new = dist[:]\n        for a, b, w in flights:\n            if dist[a] + w < new[b]:\n                new[b] = dist[a] + w\n        dist = new\n    return -1 if dist[dst] == INF else dist[dst]\n```\n\nRelax edges in rounds, copying the array each round.",
+  "starterCode": "def cheapest_flight(n, flights, src, dst, k):\n    # Write your code here\n    pass\n",
+  "functionName": "cheapest_flight",
+  "referenceSolution": "from collections import deque, defaultdict\n\n\ndef cheapest_flight(n, flights, src, dst, k):\n    INF = float('inf')\n    dist = [INF] * n\n    dist[src] = 0\n    for _ in range(k + 1):\n        new = dist[:]\n        for a, b, w in flights:\n            if dist[a] + w < new[b]:\n                new[b] = dist[a] + w\n        dist = new\n    return -1 if dist[dst] == INF else dist[dst]\n",
+  "tests": [
+    {
+      "args": [
+        4,
+        [
+          [
+            0,
+            1,
+            100
+          ],
+          [
+            1,
+            2,
+            100
+          ],
+          [
+            2,
+            0,
+            100
+          ],
+          [
+            1,
+            3,
+            600
+          ],
+          [
+            2,
+            3,
+            200
+          ]
+        ],
+        0,
+        3,
+        1
+      ],
+      "expected": 700,
+      "hidden": false
+    },
+    {
+      "args": [
+        3,
+        [
+          [
+            0,
+            1,
+            100
+          ],
+          [
+            1,
+            2,
+            100
+          ],
+          [
+            0,
+            2,
+            500
+          ]
+        ],
+        0,
+        2,
+        0
+      ],
+      "expected": 500,
+      "hidden": false
+    },
+    {
+      "args": [
+        3,
+        [
+          [
+            0,
+            1,
+            100
+          ],
+          [
+            1,
+            2,
+            100
+          ],
+          [
+            0,
+            2,
+            500
+          ]
+        ],
+        0,
+        2,
+        1
+      ],
+      "expected": 200,
+      "hidden": true
+    },
+    {
+      "args": [
+        2,
+        [],
+        0,
+        1,
+        3
+      ],
+      "expected": -1,
+      "hidden": true
+    },
+    {
+      "args": [
+        3,
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            2,
+            1
+          ]
+        ],
+        0,
+        2,
+        0
+      ],
+      "expected": -1,
+      "hidden": true
+    }
+  ],
+  "order": 469
+}

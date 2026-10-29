@@ -1,0 +1,21 @@
+{
+  "slug": "biggest-merchant-per-city",
+  "track": "sql",
+  "title": "Biggest merchant per city",
+  "difficulty": "Hard",
+  "tags": [
+    "ranking"
+  ],
+  "statementMd": "For each city find the merchant with the highest total purchase spend (purchases are negative amounts; use absolute values). Show city, merchant, spend rounded to 2 decimals.\n\nExpected columns: `city`, `merchant`, `spend`.\n\nTables: `customers`, `accounts`, `transactions`.\n\nRow order does not matter.",
+  "hints": [
+    "Join up to customers, group by city and merchant, rank within city."
+  ],
+  "solutionMd": "```sql\nWITH s AS (SELECT c.city, t.merchant, SUM(-t.amount) AS spend FROM transactions t JOIN accounts a ON a.id = t.account_id JOIN customers c ON c.id = a.customer_id WHERE t.kind = 'purchase' GROUP BY c.city, t.merchant), r AS (SELECT *, ROW_NUMBER() OVER (PARTITION BY city ORDER BY spend DESC, merchant) AS rn FROM s) SELECT city, merchant, ROUND(spend, 2) AS spend FROM r WHERE rn = 1;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, accounts, transactions\nSELECT\n",
+  "datasetId": "bank",
+  "expected": {
+    "query": "WITH s AS (SELECT c.city, t.merchant, SUM(-t.amount) AS spend FROM transactions t JOIN accounts a ON a.id = t.account_id JOIN customers c ON c.id = a.customer_id WHERE t.kind = 'purchase' GROUP BY c.city, t.merchant), r AS (SELECT *, ROW_NUMBER() OVER (PARTITION BY city ORDER BY spend DESC, merchant) AS rn FROM s) SELECT city, merchant, ROUND(spend, 2) AS spend FROM r WHERE rn = 1;",
+    "orderMatters": false
+  },
+  "order": 465
+}

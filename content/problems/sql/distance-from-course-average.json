@@ -1,0 +1,21 @@
+{
+  "slug": "distance-from-course-average",
+  "track": "sql",
+  "title": "Distance from course average",
+  "difficulty": "Hard",
+  "tags": [
+    "window-functions"
+  ],
+  "statementMd": "For every graded enrollment of course 2 show student id, score and the difference from that course's average score (rounded to 1 decimal). Order by student id and semester.\n\nExpected columns: `student_id`, `semester`, `score`, `vs_avg`.\n\nTables: `teachers`, `courses`, `students`, `enrollments`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "`AVG(score) OVER ()`."
+  ],
+  "solutionMd": "```sql\nSELECT student_id, semester, score, ROUND(score - AVG(score) OVER (), 1) AS vs_avg FROM enrollments WHERE course_id = 2 AND score IS NOT NULL ORDER BY student_id, semester;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: teachers, courses, students, enrollments\nSELECT\n",
+  "datasetId": "school",
+  "expected": {
+    "query": "SELECT student_id, semester, score, ROUND(score - AVG(score) OVER (), 1) AS vs_avg FROM enrollments WHERE course_id = 2 AND score IS NOT NULL ORDER BY student_id, semester;",
+    "orderMatters": true
+  },
+  "order": 423
+}

@@ -1,0 +1,55 @@
+{
+  "slug": "reverse-each-word",
+  "track": "python",
+  "title": "Reverse each word",
+  "difficulty": "Easy",
+  "tags": [
+    "strings"
+  ],
+  "statementMd": "Reverse every word's letters but keep the word order. Words are separated by single spaces.\n\n**Example:** `reverse_each_word(\"hello world\")` returns `\"olleh dlrow\"`.",
+  "hints": [
+    "Reverse each piece with `[::-1]`."
+  ],
+  "solutionMd": "```python\ndef reverse_each_word(s):\n    return ' '.join(w[::-1] for w in s.split(' '))\n```\n\nWord order stays; only letters flip.",
+  "starterCode": "def reverse_each_word(s):\n    # Write your code here\n    pass\n",
+  "functionName": "reverse_each_word",
+  "referenceSolution": "def reverse_each_word(s):\n    return ' '.join(w[::-1] for w in s.split(' '))\n",
+  "tests": [
+    {
+      "args": [
+        "hello world"
+      ],
+      "expected": "olleh dlrow",
+      "hidden": false
+    },
+    {
+      "args": [
+        "abc"
+      ],
+      "expected": "cba",
+      "hidden": false
+    },
+    {
+      "args": [
+        "a bc def"
+      ],
+      "expected": "a cb fed",
+      "hidden": true
+    },
+    {
+      "args": [
+        "racecar noon"
+      ],
+      "expected": "racecar noon",
+      "hidden": true
+    },
+    {
+      "args": [
+        ""
+      ],
+      "expected": "",
+      "hidden": true
+    }
+  ],
+  "order": 54
+}

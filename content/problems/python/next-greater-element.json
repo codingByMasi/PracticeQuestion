@@ -1,0 +1,95 @@
+{
+  "slug": "next-greater-element",
+  "track": "python",
+  "title": "Next greater element",
+  "difficulty": "Medium",
+  "tags": [
+    "stacks"
+  ],
+  "statementMd": "For each element find the next element to its right that is strictly greater, or `-1` if none.\n\n**Example:** `next_greater([2, 1, 2, 4, 3])` returns `[4, 2, 4, -1, -1]`.",
+  "hints": [
+    "Monotonic stack of indices."
+  ],
+  "solutionMd": "```python\ndef next_greater(nums):\n    out = [-1] * len(nums)\n    stack = []\n    for i, x in enumerate(nums):\n        while stack and nums[stack[-1]] < x:\n            out[stack.pop()] = x\n        stack.append(i)\n    return out\n```\n\nEach element is pushed and popped once.",
+  "starterCode": "def next_greater(nums):\n    # Write your code here\n    pass\n",
+  "functionName": "next_greater",
+  "referenceSolution": "def next_greater(nums):\n    out = [-1] * len(nums)\n    stack = []\n    for i, x in enumerate(nums):\n        while stack and nums[stack[-1]] < x:\n            out[stack.pop()] = x\n        stack.append(i)\n    return out\n",
+  "tests": [
+    {
+      "args": [
+        [
+          2,
+          1,
+          2,
+          4,
+          3
+        ]
+      ],
+      "expected": [
+        4,
+        2,
+        4,
+        -1,
+        -1
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          5,
+          4,
+          3
+        ]
+      ],
+      "expected": [
+        -1,
+        -1,
+        -1
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": [],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "expected": [
+        2,
+        3,
+        -1
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          3,
+          1,
+          4,
+          1,
+          5
+        ]
+      ],
+      "expected": [
+        4,
+        4,
+        5,
+        5,
+        -1
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 258
+}

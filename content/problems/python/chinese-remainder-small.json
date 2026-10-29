@@ -1,0 +1,90 @@
+{
+  "slug": "chinese-remainder-small",
+  "track": "python",
+  "title": "Chinese remainder small",
+  "difficulty": "Hard",
+  "tags": [
+    "number-theory"
+  ],
+  "statementMd": "Find the smallest non-negative `x` with `x % moduli[i] == remainders[i]` for all i. The moduli are pairwise coprime.\n\n**Example:** `crt_smallest([2, 3, 2], [3, 5, 7])` returns `23`.",
+  "hints": [
+    "Combine congruences one at a time."
+  ],
+  "solutionMd": "```python\ndef crt_smallest(remainders, moduli):\n    x, step = 0, 1\n    for r, m in zip(remainders, moduli):\n        while x % m != r:\n            x += step\n        step *= m\n    return x\n```\n\nAfter each step x satisfies all earlier congruences, so we step by their product.",
+  "starterCode": "def crt_smallest(remainders, moduli):\n    # Write your code here\n    pass\n",
+  "functionName": "crt_smallest",
+  "referenceSolution": "def crt_smallest(remainders, moduli):\n    x, step = 0, 1\n    for r, m in zip(remainders, moduli):\n        while x % m != r:\n            x += step\n        step *= m\n    return x\n",
+  "tests": [
+    {
+      "args": [
+        [
+          2,
+          3,
+          2
+        ],
+        [
+          3,
+          5,
+          7
+        ]
+      ],
+      "expected": 23,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          0
+        ],
+        [
+          5
+        ]
+      ],
+      "expected": 0,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "expected": 5,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          4,
+          6
+        ],
+        [
+          5,
+          7
+        ]
+      ],
+      "expected": 34,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          0,
+          0
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "expected": 0,
+      "hidden": true
+    }
+  ],
+  "order": 426
+}

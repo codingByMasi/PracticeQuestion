@@ -1,0 +1,95 @@
+{
+  "slug": "asteroid-collision",
+  "track": "python",
+  "title": "Asteroid collision",
+  "difficulty": "Hard",
+  "tags": [
+    "stacks"
+  ],
+  "statementMd": "Asteroids move along a line; positive values move right, negative left, magnitude is size, all move at the same speed. When two meet the smaller explodes (equal sizes both explode). Return the survivors in order.\n\n**Example:** `asteroid_collision([5, 10, -5])` returns `[5, 10]`.",
+  "hints": [
+    "Stack: resolve collisions when the new one moves left."
+  ],
+  "solutionMd": "```python\ndef asteroid_collision(asteroids):\n    stack = []\n    for a in asteroids:\n        alive = True\n        while alive and a < 0 and stack and stack[-1] > 0:\n            if stack[-1] < -a:\n                stack.pop()\n            elif stack[-1] == -a:\n                stack.pop()\n                alive = False\n            else:\n                alive = False\n        if alive:\n            stack.append(a)\n    return stack\n```\n\nOnly a right-mover followed by a left-mover collide.",
+  "starterCode": "def asteroid_collision(asteroids):\n    # Write your code here\n    pass\n",
+  "functionName": "asteroid_collision",
+  "referenceSolution": "def asteroid_collision(asteroids):\n    stack = []\n    for a in asteroids:\n        alive = True\n        while alive and a < 0 and stack and stack[-1] > 0:\n            if stack[-1] < -a:\n                stack.pop()\n            elif stack[-1] == -a:\n                stack.pop()\n                alive = False\n            else:\n                alive = False\n        if alive:\n            stack.append(a)\n    return stack\n",
+  "tests": [
+    {
+      "args": [
+        [
+          5,
+          10,
+          -5
+        ]
+      ],
+      "expected": [
+        5,
+        10
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          8,
+          -8
+        ]
+      ],
+      "expected": [],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          10,
+          2,
+          -5
+        ]
+      ],
+      "expected": [
+        10
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          -2,
+          -1,
+          1,
+          2
+        ]
+      ],
+      "expected": [
+        -2,
+        -1,
+        1,
+        2
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": [],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          -1,
+          2,
+          -3
+        ]
+      ],
+      "expected": [
+        -3
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 414
+}

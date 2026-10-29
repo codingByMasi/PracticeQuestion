@@ -1,0 +1,62 @@
+{
+  "slug": "robot-bounded-in-circle",
+  "track": "python",
+  "title": "Robot bounded in circle",
+  "difficulty": "Medium",
+  "tags": [
+    "simulation"
+  ],
+  "statementMd": "A robot at (0, 0) facing north repeats the instruction string forever (`G` go forward 1, `L` turn left, `R` turn right). Return whether it stays within a bounded circle.\n\n**Example:** `is_robot_bounded(\"GGLLGG\")` returns `true`.",
+  "hints": [
+    "After one cycle it is bounded if it is back at the origin or not facing north."
+  ],
+  "solutionMd": "```python\ndef is_robot_bounded(instructions):\n    x = y = 0\n    dx, dy = 0, 1\n    for c in instructions:\n        if c == 'G':\n            x, y = x + dx, y + dy\n        elif c == 'L':\n            dx, dy = -dy, dx\n        else:\n            dx, dy = dy, -dx\n    return (x, y) == (0, 0) or (dx, dy) != (0, 1)\n```\n\nFour cycles bring a turned robot home.",
+  "starterCode": "def is_robot_bounded(instructions):\n    # Write your code here\n    pass\n",
+  "functionName": "is_robot_bounded",
+  "referenceSolution": "def is_robot_bounded(instructions):\n    x = y = 0\n    dx, dy = 0, 1\n    for c in instructions:\n        if c == 'G':\n            x, y = x + dx, y + dy\n        elif c == 'L':\n            dx, dy = -dy, dx\n        else:\n            dx, dy = dy, -dx\n    return (x, y) == (0, 0) or (dx, dy) != (0, 1)\n",
+  "tests": [
+    {
+      "args": [
+        "GGLLGG"
+      ],
+      "expected": true,
+      "hidden": false
+    },
+    {
+      "args": [
+        "GG"
+      ],
+      "expected": false,
+      "hidden": false
+    },
+    {
+      "args": [
+        "GL"
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        "GLGLGGLGL"
+      ],
+      "expected": false,
+      "hidden": true
+    },
+    {
+      "args": [
+        "L"
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        "GRGL"
+      ],
+      "expected": false,
+      "hidden": true
+    }
+  ],
+  "order": 301
+}

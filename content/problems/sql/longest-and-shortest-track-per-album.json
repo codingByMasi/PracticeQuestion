@@ -1,0 +1,21 @@
+{
+  "slug": "longest-and-shortest-track-per-album",
+  "track": "sql",
+  "title": "Longest and shortest track per album",
+  "difficulty": "Medium",
+  "tags": [
+    "aggregate"
+  ],
+  "statementMd": "For albums 1 to 5 show the album title, the shortest and the longest track length in seconds.\n\nExpected columns: `title`, `shortest`, `longest`.\n\nTables: `artists`, `albums`, `tracks`, `listeners`, `plays`.\n\nRow order does not matter.",
+  "hints": [
+    "Two aggregates per album."
+  ],
+  "solutionMd": "```sql\nSELECT al.title, MIN(t.seconds) AS shortest, MAX(t.seconds) AS longest FROM albums al JOIN tracks t ON t.album_id = al.id WHERE al.id <= 5 GROUP BY al.id, al.title;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: artists, albums, tracks, listeners, plays\nSELECT\n",
+  "datasetId": "music",
+  "expected": {
+    "query": "SELECT al.title, MIN(t.seconds) AS shortest, MAX(t.seconds) AS longest FROM albums al JOIN tracks t ON t.album_id = al.id WHERE al.id <= 5 GROUP BY al.id, al.title;",
+    "orderMatters": false
+  },
+  "order": 219
+}

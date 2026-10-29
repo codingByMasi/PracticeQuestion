@@ -1,0 +1,21 @@
+{
+  "slug": "salary-ranges-per-title-level",
+  "track": "sql",
+  "title": "Salary ranges per title level",
+  "difficulty": "Easy",
+  "tags": [
+    "case"
+  ],
+  "statementMd": "Count employees whose title contains `Head`, `Senior` or `Junior`, labelled by that keyword (use `other` for the rest).\n\nExpected columns: `level`, `employees`.\n\nTables: `employees`, `departments`.\n\nRow order does not matter.",
+  "hints": [
+    "`CASE WHEN title LIKE '%Head%' ...`."
+  ],
+  "solutionMd": "```sql\nSELECT CASE WHEN title LIKE '%Head%' THEN 'Head' WHEN title LIKE '%Senior%' THEN 'Senior' WHEN title LIKE '%Junior%' THEN 'Junior' ELSE 'other' END AS level, COUNT(*) AS employees FROM employees GROUP BY level;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "SELECT CASE WHEN title LIKE '%Head%' THEN 'Head' WHEN title LIKE '%Senior%' THEN 'Senior' WHEN title LIKE '%Junior%' THEN 'Junior' ELSE 'other' END AS level, COUNT(*) AS employees FROM employees GROUP BY level;",
+    "orderMatters": false
+  },
+  "order": 89
+}

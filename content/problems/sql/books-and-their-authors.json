@@ -1,0 +1,21 @@
+{
+  "slug": "books-and-their-authors",
+  "track": "sql",
+  "title": "Books and their authors",
+  "difficulty": "Easy",
+  "tags": [
+    "join"
+  ],
+  "statementMd": "List each book title with its author's name.\n\nExpected columns: `title`, `author`.\n\nTables: `authors`, `books`, `members`, `loans`.\n\nRow order does not matter.",
+  "hints": [
+    "Join `books` to `authors`."
+  ],
+  "solutionMd": "```sql\nSELECT b.title, a.name AS author FROM books b JOIN authors a ON a.id = b.author_id;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: authors, books, members, loans\nSELECT\n",
+  "datasetId": "library",
+  "expected": {
+    "query": "SELECT b.title, a.name AS author FROM books b JOIN authors a ON a.id = b.author_id;",
+    "orderMatters": false
+  },
+  "order": 158
+}

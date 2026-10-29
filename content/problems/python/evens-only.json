@@ -1,0 +1,77 @@
+{
+  "slug": "evens-only",
+  "track": "python",
+  "title": "Evens only",
+  "difficulty": "Easy",
+  "tags": [
+    "comprehensions"
+  ],
+  "statementMd": "Return a list with only the even numbers of `nums`, in the original order.\n\n**Example:** `keep_evens([1, 2, 3, 4])` returns `[2, 4]`.",
+  "hints": [
+    "Comprehension with a condition."
+  ],
+  "solutionMd": "```python\ndef keep_evens(nums):\n    return [x for x in nums if x % 2 == 0]\n```\n\nFilter with `if`.",
+  "starterCode": "def keep_evens(nums):\n    # Write your code here\n    pass\n",
+  "functionName": "keep_evens",
+  "referenceSolution": "def keep_evens(nums):\n    return [x for x in nums if x % 2 == 0]\n",
+  "tests": [
+    {
+      "args": [
+        [
+          1,
+          2,
+          3,
+          4
+        ]
+      ],
+      "expected": [
+        2,
+        4
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          1,
+          3
+        ]
+      ],
+      "expected": [],
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": [],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          0,
+          -2,
+          5
+        ]
+      ],
+      "expected": [
+        0,
+        -2
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          8
+        ]
+      ],
+      "expected": [
+        8
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 112
+}

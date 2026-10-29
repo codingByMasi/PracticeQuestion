@@ -1,0 +1,21 @@
+{
+  "slug": "flights-nobody-booked",
+  "track": "sql",
+  "title": "Flights nobody booked",
+  "difficulty": "Medium",
+  "tags": [
+    "left-join"
+  ],
+  "statementMd": "Count flights that have no bookings.\n\nExpected columns: `empty_flights`.\n\nTables: `airlines`, `airports`, `flights`, `bookings`.\n\nRow order does not matter.",
+  "hints": [
+    "Anti-join then count."
+  ],
+  "solutionMd": "```sql\nSELECT COUNT(*) AS empty_flights FROM flights f LEFT JOIN bookings b ON b.flight_id = f.id WHERE b.id IS NULL;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: airlines, airports, flights, bookings\nSELECT\n",
+  "datasetId": "flights",
+  "expected": {
+    "query": "SELECT COUNT(*) AS empty_flights FROM flights f LEFT JOIN bookings b ON b.flight_id = f.id WHERE b.id IS NULL;",
+    "orderMatters": false
+  },
+  "order": 281
+}

@@ -1,0 +1,21 @@
+{
+  "slug": "most-profitable-movie-per-decade",
+  "track": "sql",
+  "title": "Most profitable movie per decade",
+  "difficulty": "Hard",
+  "tags": [
+    "ranking"
+  ],
+  "statementMd": "For each decade of release show the movie with the highest profit (gross minus budget). Show decade, title, profit. Ignore movies missing budget or gross.\n\nExpected columns: `decade`, `title`, `profit`.\n\nTables: `directors`, `movies`, `reviews`.\n\nRow order does not matter.",
+  "hints": [
+    "Rank by profit within `release_year / 10 * 10`."
+  ],
+  "solutionMd": "```sql\nWITH r AS (SELECT release_year / 10 * 10 AS decade, title, gross_millions - budget_millions AS profit, ROW_NUMBER() OVER (PARTITION BY release_year / 10 * 10 ORDER BY gross_millions - budget_millions DESC, title) AS rn FROM movies WHERE budget_millions IS NOT NULL AND gross_millions IS NOT NULL) SELECT decade, title, ROUND(profit, 1) AS profit FROM r WHERE rn = 1;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: directors, movies, reviews\nSELECT\n",
+  "datasetId": "movies",
+  "expected": {
+    "query": "WITH r AS (SELECT release_year / 10 * 10 AS decade, title, gross_millions - budget_millions AS profit, ROW_NUMBER() OVER (PARTITION BY release_year / 10 * 10 ORDER BY gross_millions - budget_millions DESC, title) AS rn FROM movies WHERE budget_millions IS NOT NULL AND gross_millions IS NOT NULL) SELECT decade, title, ROUND(profit, 1) AS profit FROM r WHERE rn = 1;",
+    "orderMatters": false
+  },
+  "order": 466
+}

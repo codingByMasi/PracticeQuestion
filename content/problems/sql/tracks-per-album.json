@@ -1,0 +1,21 @@
+{
+  "slug": "tracks-per-album",
+  "track": "sql",
+  "title": "Tracks per album",
+  "difficulty": "Medium",
+  "tags": [
+    "group-by"
+  ],
+  "statementMd": "For each album with tracks show title and track count; list the five largest albums, ties by title.\n\nExpected columns: `title`, `tracks`.\n\nTables: `artists`, `albums`, `tracks`, `listeners`, `plays`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Group by album."
+  ],
+  "solutionMd": "```sql\nSELECT al.title, COUNT(*) AS tracks FROM tracks t JOIN albums al ON al.id = t.album_id GROUP BY al.id, al.title ORDER BY tracks DESC, al.title LIMIT 5;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: artists, albums, tracks, listeners, plays\nSELECT\n",
+  "datasetId": "music",
+  "expected": {
+    "query": "SELECT al.title, COUNT(*) AS tracks FROM tracks t JOIN albums al ON al.id = t.album_id GROUP BY al.id, al.title ORDER BY tracks DESC, al.title LIMIT 5;",
+    "orderMatters": true
+  },
+  "order": 237
+}

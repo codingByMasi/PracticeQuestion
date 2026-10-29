@@ -1,0 +1,21 @@
+{
+  "slug": "customers-without-orders",
+  "track": "sql",
+  "title": "Customers without orders",
+  "difficulty": "Medium",
+  "tags": [
+    "left-join"
+  ],
+  "statementMd": "List customers who have never placed an order.\n\nExpected columns: `name`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\nRow order does not matter.",
+  "hints": [
+    "`LEFT JOIN orders` and test for NULL."
+  ],
+  "solutionMd": "```sql\nSELECT c.name FROM customers c LEFT JOIN orders o ON o.customer_id = c.id WHERE o.id IS NULL;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "SELECT c.name FROM customers c LEFT JOIN orders o ON o.customer_id = c.id WHERE o.id IS NULL;",
+    "orderMatters": false
+  },
+  "order": 278
+}

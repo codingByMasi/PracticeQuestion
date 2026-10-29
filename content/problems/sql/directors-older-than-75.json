@@ -1,0 +1,21 @@
+{
+  "slug": "directors-older-than-75",
+  "track": "sql",
+  "title": "Directors older than 75",
+  "difficulty": "Medium",
+  "tags": [
+    "dates"
+  ],
+  "statementMd": "List directors who were born in 1950 or earlier, with their age in 2024.\n\nExpected columns: `name`, `age`.\n\nTables: `movies`, `directors`, `reviews`.\n\nRow order does not matter.",
+  "hints": [
+    "Subtract birth year from 2024."
+  ],
+  "solutionMd": "```sql\nSELECT name, 2024 - birth_year AS age FROM directors WHERE birth_year <= 1950;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: movies, directors, reviews\nSELECT\n",
+  "datasetId": "movies",
+  "expected": {
+    "query": "SELECT name, 2024 - birth_year AS age FROM directors WHERE birth_year <= 1950;",
+    "orderMatters": false
+  },
+  "order": 199
+}

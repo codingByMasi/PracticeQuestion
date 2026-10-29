@@ -1,0 +1,21 @@
+{
+  "slug": "honor-roll",
+  "track": "sql",
+  "title": "Honor roll",
+  "difficulty": "Medium",
+  "tags": [
+    "having"
+  ],
+  "statementMd": "List students who have at least three graded enrollments and an average of at least 85. Show name, count and average rounded to 1 decimal.\n\nExpected columns: `name`, `graded`, `avg_score`.\n\nTables: `teachers`, `courses`, `students`, `enrollments`.\n\nRow order does not matter.",
+  "hints": [
+    "Two aggregate conditions in `HAVING`."
+  ],
+  "solutionMd": "```sql\nSELECT s.name, COUNT(e.score) AS graded, ROUND(AVG(e.score), 1) AS avg_score FROM students s JOIN enrollments e ON e.student_id = s.id GROUP BY s.id, s.name HAVING COUNT(e.score) >= 3 AND AVG(e.score) >= 85;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: teachers, courses, students, enrollments\nSELECT\n",
+  "datasetId": "school",
+  "expected": {
+    "query": "SELECT s.name, COUNT(e.score) AS graded, ROUND(AVG(e.score), 1) AS avg_score FROM students s JOIN enrollments e ON e.student_id = s.id GROUP BY s.id, s.name HAVING COUNT(e.score) >= 3 AND AVG(e.score) >= 85;",
+    "orderMatters": false
+  },
+  "order": 254
+}

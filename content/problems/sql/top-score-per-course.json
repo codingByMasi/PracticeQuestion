@@ -1,0 +1,21 @@
+{
+  "slug": "top-score-per-course",
+  "track": "sql",
+  "title": "Top score per course",
+  "difficulty": "Medium",
+  "tags": [
+    "correlated-subquery"
+  ],
+  "statementMd": "For each course show the highest score and the student id who earned it (all students if tied).\n\nExpected columns: `course_id`, `student_id`, `score`.\n\nTables: `teachers`, `courses`, `students`, `enrollments`.\n\nRow order does not matter.",
+  "hints": [
+    "Compare to `MAX(score)` of the course."
+  ],
+  "solutionMd": "```sql\nSELECT e.course_id, e.student_id, e.score FROM enrollments e WHERE e.score = (SELECT MAX(e2.score) FROM enrollments e2 WHERE e2.course_id = e.course_id);\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: teachers, courses, students, enrollments\nSELECT\n",
+  "datasetId": "school",
+  "expected": {
+    "query": "SELECT e.course_id, e.student_id, e.score FROM enrollments e WHERE e.score = (SELECT MAX(e2.score) FROM enrollments e2 WHERE e2.course_id = e.course_id);",
+    "orderMatters": false
+  },
+  "order": 344
+}

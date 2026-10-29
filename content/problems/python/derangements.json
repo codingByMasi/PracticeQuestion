@@ -1,0 +1,62 @@
+{
+  "slug": "derangements",
+  "track": "python",
+  "title": "Derangements",
+  "difficulty": "Hard",
+  "tags": [
+    "combinatorics"
+  ],
+  "statementMd": "Return the number of permutations of `n` items where nobody stays in their original position.\n\n**Example:** `derangements(3)` returns `2`.",
+  "hints": [
+    "D(n) = (n-1) * (D(n-1) + D(n-2))."
+  ],
+  "solutionMd": "```python\ndef derangements(n):\n    if n == 0:\n        return 1\n    a, b = 1, 0\n    for i in range(2, n + 1):\n        a, b = b, (i - 1) * (a + b)\n    return b\n```\n\nA classic recurrence.",
+  "starterCode": "def derangements(n):\n    # Write your code here\n    pass\n",
+  "functionName": "derangements",
+  "referenceSolution": "def derangements(n):\n    if n == 0:\n        return 1\n    a, b = 1, 0\n    for i in range(2, n + 1):\n        a, b = b, (i - 1) * (a + b)\n    return b\n",
+  "tests": [
+    {
+      "args": [
+        3
+      ],
+      "expected": 2,
+      "hidden": false
+    },
+    {
+      "args": [
+        1
+      ],
+      "expected": 0,
+      "hidden": false
+    },
+    {
+      "args": [
+        0
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        2
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        4
+      ],
+      "expected": 9,
+      "hidden": true
+    },
+    {
+      "args": [
+        10
+      ],
+      "expected": 1334961,
+      "hidden": true
+    }
+  ],
+  "order": 464
+}

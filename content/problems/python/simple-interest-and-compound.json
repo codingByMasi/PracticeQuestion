@@ -1,0 +1,65 @@
+{
+  "slug": "simple-interest-and-compound",
+  "track": "python",
+  "title": "Simple interest and compound",
+  "difficulty": "Easy",
+  "tags": [
+    "math"
+  ],
+  "statementMd": "Return the final amount after compounding once a year: `principal * (1 + rate) ** years`, rounded to 2 decimals. `rate` is a fraction like `0.05`.\n\n**Example:** `compound_interest(1000, 0.05, 2)` returns `1102.5`.",
+  "hints": [
+    "Use `round(x, 2)`."
+  ],
+  "solutionMd": "```python\ndef compound_interest(principal, rate, years):\n    return round(principal * (1 + rate) ** years, 2)\n```\n\nRounding happens once at the end.",
+  "starterCode": "def compound_interest(principal, rate, years):\n    # Write your code here\n    pass\n",
+  "functionName": "compound_interest",
+  "referenceSolution": "def compound_interest(principal, rate, years):\n    return round(principal * (1 + rate) ** years, 2)\n",
+  "tests": [
+    {
+      "args": [
+        1000,
+        0.05,
+        2
+      ],
+      "expected": 1102.5,
+      "hidden": false
+    },
+    {
+      "args": [
+        500,
+        0.1,
+        1
+      ],
+      "expected": 550.0,
+      "hidden": false
+    },
+    {
+      "args": [
+        100,
+        0.0,
+        10
+      ],
+      "expected": 100.0,
+      "hidden": true
+    },
+    {
+      "args": [
+        2000,
+        0.03,
+        5
+      ],
+      "expected": 2318.55,
+      "hidden": true
+    },
+    {
+      "args": [
+        1,
+        1,
+        10
+      ],
+      "expected": 1024,
+      "hidden": true
+    }
+  ],
+  "order": 28
+}

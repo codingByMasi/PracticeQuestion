@@ -19,5 +19,6 @@
   "expected": {
     "query": "SELECT d.name AS department, ROUND(AVG(e.salary), 2) AS avg_salary\nFROM employees e\nJOIN departments d ON d.id = e.department_id\nGROUP BY d.id, d.name\nHAVING AVG(e.salary) > 110000;",
     "orderMatters": false
-  }
+  },
+  "order": 224
 }

@@ -1,0 +1,21 @@
+{
+  "slug": "month-over-month-deposit-growth",
+  "track": "sql",
+  "title": "Month-over-month deposit growth",
+  "difficulty": "Hard",
+  "tags": [
+    "window-functions"
+  ],
+  "statementMd": "Total deposits per month and the percentage change from the previous month (1 decimal; NULL for the first month). Show month (YYYY-MM), total, growth_pct.\n\nExpected columns: `month`, `total`, `growth_pct`.\n\nTables: `customers`, `accounts`, `transactions`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Aggregate by `substr(tx_date,1,7)`, then `LAG`."
+  ],
+  "solutionMd": "```sql\nWITH m AS (SELECT substr(tx_date, 1, 7) AS month, SUM(amount) AS total FROM transactions WHERE kind = 'deposit' GROUP BY 1) SELECT month, ROUND(total, 2) AS total, ROUND(100.0 * (total - LAG(total) OVER (ORDER BY month)) / LAG(total) OVER (ORDER BY month), 1) AS growth_pct FROM m ORDER BY month;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, accounts, transactions\nSELECT\n",
+  "datasetId": "bank",
+  "expected": {
+    "query": "WITH m AS (SELECT substr(tx_date, 1, 7) AS month, SUM(amount) AS total FROM transactions WHERE kind = 'deposit' GROUP BY 1) SELECT month, ROUND(total, 2) AS total, ROUND(100.0 * (total - LAG(total) OVER (ORDER BY month)) / LAG(total) OVER (ORDER BY month), 1) AS growth_pct FROM m ORDER BY month;",
+    "orderMatters": true
+  },
+  "order": 440
+}

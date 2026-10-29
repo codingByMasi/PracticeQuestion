@@ -1,0 +1,21 @@
+{
+  "slug": "month-over-month-change",
+  "track": "sql",
+  "title": "Month over month change",
+  "difficulty": "Hard",
+  "tags": [
+    "window-functions"
+  ],
+  "statementMd": "For each month show loans and the percentage change from the previous month (rounded to 1 decimal, NULL for the first).\n\nExpected columns: `month`, `loans`, `pct_change`.\n\nTables: `authors`, `books`, `members`, `loans`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "`LAG(loans)`."
+  ],
+  "solutionMd": "```sql\nWITH m AS (SELECT strftime('%Y-%m', loan_date) AS month, COUNT(*) AS loans FROM loans GROUP BY month) SELECT month, loans, ROUND(100.0 * (loans - LAG(loans) OVER (ORDER BY month)) / LAG(loans) OVER (ORDER BY month), 1) AS pct_change FROM m ORDER BY month;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: authors, books, members, loans\nSELECT\n",
+  "datasetId": "library",
+  "expected": {
+    "query": "WITH m AS (SELECT strftime('%Y-%m', loan_date) AS month, COUNT(*) AS loans FROM loans GROUP BY month) SELECT month, loans, ROUND(100.0 * (loans - LAG(loans) OVER (ORDER BY month)) / LAG(loans) OVER (ORDER BY month), 1) AS pct_change FROM m ORDER BY month;",
+    "orderMatters": true
+  },
+  "order": 418
+}

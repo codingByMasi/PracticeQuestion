@@ -1,0 +1,21 @@
+{
+  "slug": "biggest-daily-gains",
+  "track": "sql",
+  "title": "Biggest daily gains",
+  "difficulty": "Medium",
+  "tags": [
+    "window-functions"
+  ],
+  "statementMd": "The five biggest day-over-day closing price increases (in percent, rounded to 2 decimals) with symbol and date. Ties by symbol.\n\nExpected columns: `symbol`, `trade_date`, `change_pct`.\n\nTables: `tickers`, `prices`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "`LAG(close)` partitioned by symbol."
+  ],
+  "solutionMd": "```sql\nWITH g AS (SELECT symbol, trade_date, 100.0 * (close - LAG(close) OVER (PARTITION BY symbol ORDER BY trade_date)) / LAG(close) OVER (PARTITION BY symbol ORDER BY trade_date) AS chg FROM prices) SELECT symbol, trade_date, ROUND(chg, 2) AS change_pct FROM g WHERE chg IS NOT NULL ORDER BY chg DESC, symbol LIMIT 5;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: tickers, prices\nSELECT\n",
+  "datasetId": "stocks",
+  "expected": {
+    "query": "WITH g AS (SELECT symbol, trade_date, 100.0 * (close - LAG(close) OVER (PARTITION BY symbol ORDER BY trade_date)) / LAG(close) OVER (PARTITION BY symbol ORDER BY trade_date) AS chg FROM prices) SELECT symbol, trade_date, ROUND(chg, 2) AS change_pct FROM g WHERE chg IS NOT NULL ORDER BY chg DESC, symbol LIMIT 5;",
+    "orderMatters": true
+  },
+  "order": 351
+}

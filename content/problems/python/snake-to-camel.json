@@ -1,0 +1,55 @@
+{
+  "slug": "snake-to-camel",
+  "track": "python",
+  "title": "Snake to camel",
+  "difficulty": "Medium",
+  "tags": [
+    "strings"
+  ],
+  "statementMd": "Convert `snake_case` to `camelCase`: first word lowercase, each following word capitalised, underscores removed.\n\n**Example:** `snake_to_camel(\"hello_world\")` returns `\"helloWorld\"`.",
+  "hints": [
+    "Split on `_`."
+  ],
+  "solutionMd": "```python\ndef snake_to_camel(s):\n    parts = s.split('_')\n    return parts[0] + ''.join(w.capitalize() for w in parts[1:])\n```\n\nCapitalise all but the first part.",
+  "starterCode": "def snake_to_camel(s):\n    # Write your code here\n    pass\n",
+  "functionName": "snake_to_camel",
+  "referenceSolution": "def snake_to_camel(s):\n    parts = s.split('_')\n    return parts[0] + ''.join(w.capitalize() for w in parts[1:])\n",
+  "tests": [
+    {
+      "args": [
+        "hello_world"
+      ],
+      "expected": "helloWorld",
+      "hidden": false
+    },
+    {
+      "args": [
+        "a_b_c"
+      ],
+      "expected": "aBC",
+      "hidden": false
+    },
+    {
+      "args": [
+        "single"
+      ],
+      "expected": "single",
+      "hidden": true
+    },
+    {
+      "args": [
+        "make_it_work_now"
+      ],
+      "expected": "makeItWorkNow",
+      "hidden": true
+    },
+    {
+      "args": [
+        "x_1"
+      ],
+      "expected": "x1",
+      "hidden": true
+    }
+  ],
+  "order": 185
+}

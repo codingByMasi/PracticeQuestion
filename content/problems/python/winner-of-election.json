@@ -1,0 +1,73 @@
+{
+  "slug": "winner-of-election",
+  "track": "python",
+  "title": "Winner of election",
+  "difficulty": "Medium",
+  "tags": [
+    "counting"
+  ],
+  "statementMd": "Given a list of candidate names, return the one with the most votes. Break ties alphabetically (smallest name wins).\n\n**Example:** `election_winner([\"b\", \"a\", \"b\"])` returns `\"b\"`.",
+  "hints": [
+    "Count, then `min` with a (-count, name) key."
+  ],
+  "solutionMd": "```python\ndef election_winner(votes):\n    counts = {}\n    for v in votes:\n        counts[v] = counts.get(v, 0) + 1\n    return min(counts, key=lambda c: (-counts[c], c))\n```\n\nThe same pattern as most-frequent word.",
+  "starterCode": "def election_winner(votes):\n    # Write your code here\n    pass\n",
+  "functionName": "election_winner",
+  "referenceSolution": "def election_winner(votes):\n    counts = {}\n    for v in votes:\n        counts[v] = counts.get(v, 0) + 1\n    return min(counts, key=lambda c: (-counts[c], c))\n",
+  "tests": [
+    {
+      "args": [
+        [
+          "b",
+          "a",
+          "b"
+        ]
+      ],
+      "expected": "b",
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          "x"
+        ]
+      ],
+      "expected": "x",
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          "a",
+          "b"
+        ]
+      ],
+      "expected": "a",
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          "z",
+          "z",
+          "y",
+          "y"
+        ]
+      ],
+      "expected": "y",
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          "q",
+          "r",
+          "q"
+        ]
+      ],
+      "expected": "q",
+      "hidden": true
+    }
+  ],
+  "order": 226
+}

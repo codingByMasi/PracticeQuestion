@@ -1,0 +1,21 @@
+{
+  "slug": "track-titles-with-again",
+  "track": "sql",
+  "title": "Track titles with 'Again'",
+  "difficulty": "Easy",
+  "tags": [
+    "like"
+  ],
+  "statementMd": "List tracks whose title ends with the word `Again`. Show the first ten by id.\n\nExpected columns: `id`, `title`.\n\nTables: `artists`, `albums`, `tracks`, `listeners`, `plays`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "`LIKE '% Again'`."
+  ],
+  "solutionMd": "```sql\nSELECT id, title FROM tracks WHERE title LIKE '% Again' ORDER BY id LIMIT 10;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: artists, albums, tracks, listeners, plays\nSELECT\n",
+  "datasetId": "music",
+  "expected": {
+    "query": "SELECT id, title FROM tracks WHERE title LIKE '% Again' ORDER BY id LIMIT 10;",
+    "orderMatters": true
+  },
+  "order": 61
+}

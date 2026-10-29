@@ -1,0 +1,74 @@
+{
+  "slug": "quadratic-roots-count",
+  "track": "python",
+  "title": "Quadratic roots count",
+  "difficulty": "Easy",
+  "tags": [
+    "math"
+  ],
+  "statementMd": "For `a*x² + b*x + c = 0` with `a != 0` return the number of distinct real roots (0, 1 or 2).\n\n**Example:** `count_real_roots(1, -3, 2)` returns `2`.",
+  "hints": [
+    "Use the discriminant `b*b - 4*a*c`."
+  ],
+  "solutionMd": "```python\ndef count_real_roots(a, b, c):\n    d = b * b - 4 * a * c\n    if d > 0:\n        return 2\n    if d == 0:\n        return 1\n    return 0\n```\n\nSign of the discriminant decides.",
+  "starterCode": "def count_real_roots(a, b, c):\n    # Write your code here\n    pass\n",
+  "functionName": "count_real_roots",
+  "referenceSolution": "def count_real_roots(a, b, c):\n    d = b * b - 4 * a * c\n    if d > 0:\n        return 2\n    if d == 0:\n        return 1\n    return 0\n",
+  "tests": [
+    {
+      "args": [
+        1,
+        -3,
+        2
+      ],
+      "expected": 2,
+      "hidden": false
+    },
+    {
+      "args": [
+        1,
+        2,
+        1
+      ],
+      "expected": 1,
+      "hidden": false
+    },
+    {
+      "args": [
+        1,
+        0,
+        1
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        2,
+        4,
+        2
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        -1,
+        0,
+        4
+      ],
+      "expected": 2,
+      "hidden": true
+    },
+    {
+      "args": [
+        1,
+        1,
+        1
+      ],
+      "expected": 0,
+      "hidden": true
+    }
+  ],
+  "order": 29
+}

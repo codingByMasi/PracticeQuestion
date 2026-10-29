@@ -1,0 +1,21 @@
+{
+  "slug": "business-and-first-class-bookings",
+  "track": "sql",
+  "title": "Business and first class bookings",
+  "difficulty": "Easy",
+  "tags": [
+    "where"
+  ],
+  "statementMd": "Count bookings in the business or first seat classes.\n\nExpected columns: `premium_bookings`.\n\nTables: `airlines`, `airports`, `flights`, `bookings`.\n\nRow order does not matter.",
+  "hints": [
+    "`IN ('business', 'first')`."
+  ],
+  "solutionMd": "```sql\nSELECT COUNT(*) AS premium_bookings FROM bookings WHERE seat_class IN ('business', 'first');\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: airlines, airports, flights, bookings\nSELECT\n",
+  "datasetId": "flights",
+  "expected": {
+    "query": "SELECT COUNT(*) AS premium_bookings FROM bookings WHERE seat_class IN ('business', 'first');",
+    "orderMatters": false
+  },
+  "order": 30
+}

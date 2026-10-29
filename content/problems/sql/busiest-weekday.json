@@ -1,0 +1,21 @@
+{
+  "slug": "busiest-weekday",
+  "track": "sql",
+  "title": "Busiest weekday",
+  "difficulty": "Medium",
+  "tags": [
+    "dates"
+  ],
+  "statementMd": "Which weekday (0 = Sunday) has the most loans started? Show weekday and count; there is no tie.\n\nExpected columns: `weekday`, `loans`.\n\nTables: `authors`, `books`, `members`, `loans`.\n\nRow order does not matter.",
+  "hints": [
+    "`strftime('%w', loan_date)`."
+  ],
+  "solutionMd": "```sql\nSELECT strftime('%w', loan_date) AS weekday, COUNT(*) AS loans FROM loans GROUP BY weekday ORDER BY loans DESC LIMIT 1;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: authors, books, members, loans\nSELECT\n",
+  "datasetId": "library",
+  "expected": {
+    "query": "SELECT strftime('%w', loan_date) AS weekday, COUNT(*) AS loans FROM loans GROUP BY weekday ORDER BY loans DESC LIMIT 1;",
+    "orderMatters": false
+  },
+  "order": 197
+}

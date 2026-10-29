@@ -1,0 +1,22 @@
+{
+  "slug": "whole-years-of-service",
+  "track": "sql",
+  "title": "Whole years of service",
+  "difficulty": "Medium",
+  "tags": [
+    "dates"
+  ],
+  "statementMd": "For each employee show first name and completed years of service as of 2024-06-30 (round down).\n\nExpected columns: `first_name`, `years`.\n\nTables: `employees`, `departments`.\n\nRow order does not matter.",
+  "hints": [
+    "`julianday(a) - julianday(b)` gives days.",
+    "Divide by 365.25 and `CAST(... AS INTEGER)`."
+  ],
+  "solutionMd": "```sql\nSELECT first_name, CAST((julianday('2024-06-30') - julianday(hire_date)) / 365.25 AS INTEGER) AS years FROM employees;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "SELECT first_name, CAST((julianday('2024-06-30') - julianday(hire_date)) / 365.25 AS INTEGER) AS years FROM employees;",
+    "orderMatters": false
+  },
+  "order": 189
+}

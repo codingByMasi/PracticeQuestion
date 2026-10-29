@@ -1,0 +1,21 @@
+{
+  "slug": "orders-per-status",
+  "track": "sql",
+  "title": "Orders per status",
+  "difficulty": "Easy",
+  "tags": [
+    "group-by"
+  ],
+  "statementMd": "Count orders in each status.\n\nExpected columns: `status`, `orders`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\nRow order does not matter.",
+  "hints": [
+    "`GROUP BY status`."
+  ],
+  "solutionMd": "```sql\nSELECT status, COUNT(*) AS orders FROM orders GROUP BY status;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "SELECT status, COUNT(*) AS orders FROM orders GROUP BY status;",
+    "orderMatters": false
+  },
+  "order": 128
+}

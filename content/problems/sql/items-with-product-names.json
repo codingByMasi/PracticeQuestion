@@ -1,0 +1,21 @@
+{
+  "slug": "items-with-product-names",
+  "track": "sql",
+  "title": "Items with product names",
+  "difficulty": "Easy",
+  "tags": [
+    "join"
+  ],
+  "statementMd": "For each order line show the order id, the product name and the quantity.\n\nExpected columns: `order_id`, `name`, `quantity`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\nRow order does not matter.",
+  "hints": [
+    "Join `order_items` to `products`."
+  ],
+  "solutionMd": "```sql\nSELECT oi.order_id, p.name, oi.quantity FROM order_items oi JOIN products p ON p.id = oi.product_id;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "SELECT oi.order_id, p.name, oi.quantity FROM order_items oi JOIN products p ON p.id = oi.product_id;",
+    "orderMatters": false
+  },
+  "order": 155
+}

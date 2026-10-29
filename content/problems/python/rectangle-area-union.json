@@ -1,0 +1,121 @@
+{
+  "slug": "rectangle-area-union",
+  "track": "python",
+  "title": "Rectangle area union",
+  "difficulty": "Hard",
+  "tags": [
+    "intervals"
+  ],
+  "statementMd": "Given axis-aligned rectangles `[x1, y1, x2, y2]` (bottom-left and top-right), return the total area covered by their union.\n\n**Example:** `union_area([[0, 0, 2, 2], [1, 1, 3, 3]])` returns `7`.",
+  "hints": [
+    "Coordinate-compress x and sweep."
+  ],
+  "solutionMd": "```python\ndef union_area(rects):\n    xs = sorted({x for r in rects for x in (r[0], r[2])})\n    total = 0\n    for a, b in zip(xs, xs[1:]):\n        spans = sorted((r[1], r[3]) for r in rects if r[0] <= a and r[2] >= b)\n        covered, end = 0, float('-inf')\n        for y1, y2 in spans:\n            if y1 > end:\n                covered += y2 - y1\n                end = y2\n            elif y2 > end:\n                covered += y2 - end\n                end = y2\n        total += covered * (b - a)\n    return total\n```\n\nFor each vertical slab merge the y-intervals.",
+  "starterCode": "def union_area(rects):\n    # Write your code here\n    pass\n",
+  "functionName": "union_area",
+  "referenceSolution": "def union_area(rects):\n    xs = sorted({x for r in rects for x in (r[0], r[2])})\n    total = 0\n    for a, b in zip(xs, xs[1:]):\n        spans = sorted((r[1], r[3]) for r in rects if r[0] <= a and r[2] >= b)\n        covered, end = 0, float('-inf')\n        for y1, y2 in spans:\n            if y1 > end:\n                covered += y2 - y1\n                end = y2\n            elif y2 > end:\n                covered += y2 - end\n                end = y2\n        total += covered * (b - a)\n    return total\n",
+  "tests": [
+    {
+      "args": [
+        [
+          [
+            0,
+            0,
+            2,
+            2
+          ],
+          [
+            1,
+            1,
+            3,
+            3
+          ]
+        ]
+      ],
+      "expected": 7,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            0,
+            0,
+            1,
+            1
+          ]
+        ]
+      ],
+      "expected": 1,
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            0,
+            0,
+            2,
+            2
+          ],
+          [
+            0,
+            0,
+            2,
+            2
+          ]
+        ]
+      ],
+      "expected": 4,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            0,
+            0,
+            1,
+            1
+          ],
+          [
+            2,
+            2,
+            3,
+            3
+          ]
+        ]
+      ],
+      "expected": 2,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            0,
+            0,
+            4,
+            1
+          ],
+          [
+            1,
+            0,
+            2,
+            4
+          ]
+        ]
+      ],
+      "expected": 7,
+      "hidden": true
+    }
+  ],
+  "order": 419
+}

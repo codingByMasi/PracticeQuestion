@@ -1,0 +1,106 @@
+{
+  "slug": "online-stock-span",
+  "track": "python",
+  "title": "Online stock span",
+  "difficulty": "Medium",
+  "tags": [
+    "stacks"
+  ],
+  "statementMd": "For each day, the span is the number of consecutive days up to and including today with price <= today's price. Return the spans for all days.\n\n**Example:** `stock_spans([100, 80, 60, 70, 60, 75, 85])` returns `[1, 1, 1, 2, 1, 4, 6]`.",
+  "hints": [
+    "Monotonic stack of (price, span)."
+  ],
+  "solutionMd": "```python\ndef stock_spans(prices):\n    stack, out = [], []\n    for p in prices:\n        span = 1\n        while stack and stack[-1][0] <= p:\n            span += stack.pop()[1]\n        stack.append((p, span))\n        out.append(span)\n    return out\n```\n\nMerge spans of smaller or equal prices.",
+  "starterCode": "def stock_spans(prices):\n    # Write your code here\n    pass\n",
+  "functionName": "stock_spans",
+  "referenceSolution": "def stock_spans(prices):\n    stack, out = [], []\n    for p in prices:\n        span = 1\n        while stack and stack[-1][0] <= p:\n            span += stack.pop()[1]\n        stack.append((p, span))\n        out.append(span)\n    return out\n",
+  "tests": [
+    {
+      "args": [
+        [
+          100,
+          80,
+          60,
+          70,
+          60,
+          75,
+          85
+        ]
+      ],
+      "expected": [
+        1,
+        1,
+        1,
+        2,
+        1,
+        4,
+        6
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          1
+        ]
+      ],
+      "expected": [
+        1
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": [],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          3,
+          2,
+          1
+        ]
+      ],
+      "expected": [
+        1,
+        1,
+        1
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "expected": [
+        1,
+        2,
+        3
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          5,
+          5,
+          5
+        ]
+      ],
+      "expected": [
+        1,
+        2,
+        3
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 263
+}

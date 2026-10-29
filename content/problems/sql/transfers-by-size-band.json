@@ -1,0 +1,21 @@
+{
+  "slug": "transfers-by-size-band",
+  "track": "sql",
+  "title": "Transfers by size band",
+  "difficulty": "Medium",
+  "tags": [
+    "case"
+  ],
+  "statementMd": "Classify transfers (negative amounts, kind `transfer`) as `small` (under 50), `medium` (50 to under 200) or `large`, and count each band.\n\nExpected columns: `band`, `transfers`.\n\nTables: `customers`, `accounts`, `transactions`.\n\nRow order does not matter.",
+  "hints": [
+    "Use the absolute value."
+  ],
+  "solutionMd": "```sql\nSELECT CASE WHEN -amount < 50 THEN 'small' WHEN -amount < 200 THEN 'medium' ELSE 'large' END AS band, COUNT(*) AS transfers FROM transactions WHERE kind = 'transfer' GROUP BY band;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, accounts, transactions\nSELECT\n",
+  "datasetId": "bank",
+  "expected": {
+    "query": "SELECT CASE WHEN -amount < 50 THEN 'small' WHEN -amount < 200 THEN 'medium' ELSE 'large' END AS band, COUNT(*) AS transfers FROM transactions WHERE kind = 'transfer' GROUP BY band;",
+    "orderMatters": false
+  },
+  "order": 169
+}

@@ -1,0 +1,21 @@
+{
+  "slug": "class-sizes",
+  "track": "sql",
+  "title": "Class sizes",
+  "difficulty": "Medium",
+  "tags": [
+    "join"
+  ],
+  "statementMd": "How many enrollments does each course have? Show title and count, largest first (ties by title).\n\nExpected columns: `title`, `enrolled`.\n\nTables: `teachers`, `courses`, `students`, `enrollments`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Count enrollment rows per course."
+  ],
+  "solutionMd": "```sql\nSELECT c.title, COUNT(*) AS enrolled FROM enrollments e JOIN courses c ON c.id = e.course_id GROUP BY c.id, c.title ORDER BY enrolled DESC, c.title;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: teachers, courses, students, enrollments\nSELECT\n",
+  "datasetId": "school",
+  "expected": {
+    "query": "SELECT c.title, COUNT(*) AS enrolled FROM enrollments e JOIN courses c ON c.id = e.course_id GROUP BY c.id, c.title ORDER BY enrolled DESC, c.title;",
+    "orderMatters": true
+  },
+  "order": 273
+}

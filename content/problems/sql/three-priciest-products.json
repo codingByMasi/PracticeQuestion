@@ -1,0 +1,21 @@
+{
+  "slug": "three-priciest-products",
+  "track": "sql",
+  "title": "Three priciest products",
+  "difficulty": "Easy",
+  "tags": [
+    "order-by"
+  ],
+  "statementMd": "Which three products have the highest price? Highest first.\n\nExpected columns: `name`, `price`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "`ORDER BY price DESC LIMIT 3`."
+  ],
+  "solutionMd": "```sql\nSELECT name, price FROM products ORDER BY price DESC LIMIT 3;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "SELECT name, price FROM products ORDER BY price DESC LIMIT 3;",
+    "orderMatters": true
+  },
+  "order": 65
+}

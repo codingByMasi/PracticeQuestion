@@ -1,0 +1,21 @@
+{
+  "slug": "customers-per-city",
+  "track": "sql",
+  "title": "Customers per city",
+  "difficulty": "Easy",
+  "tags": [
+    "group-by"
+  ],
+  "statementMd": "Count customers in each city.\n\nExpected columns: `city`, `customers`.\n\nTables: `customers`, `accounts`, `transactions`.\n\nRow order does not matter.",
+  "hints": [
+    "Group by city."
+  ],
+  "solutionMd": "```sql\nSELECT city, COUNT(*) AS customers FROM customers GROUP BY city;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, accounts, transactions\nSELECT\n",
+  "datasetId": "bank",
+  "expected": {
+    "query": "SELECT city, COUNT(*) AS customers FROM customers GROUP BY city;",
+    "orderMatters": false
+  },
+  "order": 127
+}

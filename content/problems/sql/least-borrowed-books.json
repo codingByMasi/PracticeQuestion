@@ -1,0 +1,22 @@
+{
+  "slug": "least-borrowed-books",
+  "track": "sql",
+  "title": "Least borrowed books",
+  "difficulty": "Medium",
+  "tags": [
+    "left-join"
+  ],
+  "statementMd": "List books with fewer than 3 loans, including books never loaned. Show title and loan count.\n\nExpected columns: `title`, `loans`.\n\nTables: `authors`, `books`, `members`, `loans`.\n\nRow order does not matter.",
+  "hints": [
+    "`LEFT JOIN` and count a column of the right table.",
+    "Filter groups with `HAVING`."
+  ],
+  "solutionMd": "```sql\nSELECT b.title, COUNT(l.id) AS loans FROM books b LEFT JOIN loans l ON l.book_id = b.id GROUP BY b.id, b.title HAVING COUNT(l.id) < 3;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: authors, books, members, loans\nSELECT\n",
+  "datasetId": "library",
+  "expected": {
+    "query": "SELECT b.title, COUNT(l.id) AS loans FROM books b LEFT JOIN loans l ON l.book_id = b.id GROUP BY b.id, b.title HAVING COUNT(l.id) < 3;",
+    "orderMatters": false
+  },
+  "order": 283
+}

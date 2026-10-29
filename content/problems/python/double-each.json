@@ -1,0 +1,83 @@
+{
+  "slug": "double-each",
+  "track": "python",
+  "title": "Double each",
+  "difficulty": "Easy",
+  "tags": [
+    "comprehensions"
+  ],
+  "statementMd": "Return a new list with each number doubled.\n\n**Example:** `double_all([1, 2, 3])` returns `[2, 4, 6]`.",
+  "hints": [
+    "List comprehension."
+  ],
+  "solutionMd": "```python\ndef double_all(nums):\n    return [x * 2 for x in nums]\n```\n\nOne expression per element.",
+  "starterCode": "def double_all(nums):\n    # Write your code here\n    pass\n",
+  "functionName": "double_all",
+  "referenceSolution": "def double_all(nums):\n    return [x * 2 for x in nums]\n",
+  "tests": [
+    {
+      "args": [
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "expected": [
+        2,
+        4,
+        6
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": [],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          -1,
+          0
+        ]
+      ],
+      "expected": [
+        -2,
+        0
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1.5
+        ]
+      ],
+      "expected": [
+        3.0
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          10,
+          20,
+          30,
+          40
+        ]
+      ],
+      "expected": [
+        20,
+        40,
+        60,
+        80
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 113
+}

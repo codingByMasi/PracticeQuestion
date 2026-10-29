@@ -1,0 +1,93 @@
+{
+  "slug": "split-array-largest-sum",
+  "track": "python",
+  "title": "Split array largest sum",
+  "difficulty": "Hard",
+  "tags": [
+    "searching"
+  ],
+  "statementMd": "Split the list of non-negative integers into `k` non-empty contiguous parts to minimise the largest part sum. Return that minimum.\n\n**Example:** `split_array([7, 2, 5, 10, 8], 2)` returns `18`.",
+  "hints": [
+    "Binary search on the answer."
+  ],
+  "solutionMd": "```python\ndef split_array(nums, k):\n    def parts(limit):\n        count, cur = 1, 0\n        for x in nums:\n            if cur + x > limit:\n                count += 1\n                cur = 0\n            cur += x\n        return count\n    lo, hi = max(nums), sum(nums)\n    while lo < hi:\n        mid = (lo + hi) // 2\n        if parts(mid) <= k:\n            hi = mid\n        else:\n            lo = mid + 1\n    return lo\n```\n\nFeasibility is monotone in the limit.",
+  "starterCode": "def split_array(nums, k):\n    # Write your code here\n    pass\n",
+  "functionName": "split_array",
+  "referenceSolution": "def split_array(nums, k):\n    def parts(limit):\n        count, cur = 1, 0\n        for x in nums:\n            if cur + x > limit:\n                count += 1\n                cur = 0\n            cur += x\n        return count\n    lo, hi = max(nums), sum(nums)\n    while lo < hi:\n        mid = (lo + hi) // 2\n        if parts(mid) <= k:\n            hi = mid\n        else:\n            lo = mid + 1\n    return lo\n",
+  "tests": [
+    {
+      "args": [
+        [
+          7,
+          2,
+          5,
+          10,
+          8
+        ],
+        2
+      ],
+      "expected": 18,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        2
+      ],
+      "expected": 9,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          5
+        ],
+        1
+      ],
+      "expected": 5,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          1,
+          1
+        ],
+        3
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          10,
+          5,
+          13,
+          4,
+          8,
+          4,
+          5,
+          11,
+          14,
+          9,
+          16,
+          10,
+          20,
+          8
+        ],
+        8
+      ],
+      "expected": 25,
+      "hidden": true
+    }
+  ],
+  "order": 396
+}

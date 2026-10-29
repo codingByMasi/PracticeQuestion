@@ -1,0 +1,21 @@
+{
+  "slug": "customers-with-all-three-account-types",
+  "track": "sql",
+  "title": "Customers with all three account types",
+  "difficulty": "Medium",
+  "tags": [
+    "having"
+  ],
+  "statementMd": "Which customers hold all three account types (savings, checking, credit)? Show name.\n\nExpected columns: `name`.\n\nTables: `customers`, `accounts`, `transactions`.\n\nRow order does not matter.",
+  "hints": [
+    "Count distinct account types per customer."
+  ],
+  "solutionMd": "```sql\nSELECT c.name FROM customers c JOIN accounts a ON a.customer_id = c.id GROUP BY c.id HAVING COUNT(DISTINCT a.type) = 3;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, accounts, transactions\nSELECT\n",
+  "datasetId": "bank",
+  "expected": {
+    "query": "SELECT c.name FROM customers c JOIN accounts a ON a.customer_id = c.id GROUP BY c.id HAVING COUNT(DISTINCT a.type) = 3;",
+    "orderMatters": false
+  },
+  "order": 255
+}

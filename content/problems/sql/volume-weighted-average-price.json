@@ -1,0 +1,21 @@
+{
+  "slug": "volume-weighted-average-price",
+  "track": "sql",
+  "title": "Volume weighted average price",
+  "difficulty": "Medium",
+  "tags": [
+    "expressions"
+  ],
+  "statementMd": "Volume-weighted average close per symbol (sum of close times volume divided by total volume), rounded to 2 decimals.\n\nExpected columns: `symbol`, `vwap`.\n\nTables: `tickers`, `prices`.\n\nRow order does not matter.",
+  "hints": [
+    "Weighted average formula."
+  ],
+  "solutionMd": "```sql\nSELECT symbol, ROUND(SUM(close * volume) * 1.0 / SUM(volume), 2) AS vwap FROM prices GROUP BY symbol;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: tickers, prices\nSELECT\n",
+  "datasetId": "stocks",
+  "expected": {
+    "query": "SELECT symbol, ROUND(SUM(close * volume) * 1.0 / SUM(volume), 2) AS vwap FROM prices GROUP BY symbol;",
+    "orderMatters": false
+  },
+  "order": 179
+}

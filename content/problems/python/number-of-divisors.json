@@ -1,0 +1,62 @@
+{
+  "slug": "number-of-divisors",
+  "track": "python",
+  "title": "Number of divisors",
+  "difficulty": "Medium",
+  "tags": [
+    "number-theory"
+  ],
+  "statementMd": "Return how many positive integers divide `n` evenly (`n >= 1`).\n\n**Example:** `count_divisors(12)` returns `6`.",
+  "hints": [
+    "Pair each divisor `d` with `n // d`."
+  ],
+  "solutionMd": "```python\ndef count_divisors(n):\n    count = 0\n    i = 1\n    while i * i <= n:\n        if n % i == 0:\n            count += 1 if i * i == n else 2\n        i += 1\n    return count\n```\n\nDivisors come in pairs below and above the square root.",
+  "starterCode": "def count_divisors(n):\n    # Write your code here\n    pass\n",
+  "functionName": "count_divisors",
+  "referenceSolution": "def count_divisors(n):\n    count = 0\n    i = 1\n    while i * i <= n:\n        if n % i == 0:\n            count += 1 if i * i == n else 2\n        i += 1\n    return count\n",
+  "tests": [
+    {
+      "args": [
+        12
+      ],
+      "expected": 6,
+      "hidden": false
+    },
+    {
+      "args": [
+        16
+      ],
+      "expected": 5,
+      "hidden": false
+    },
+    {
+      "args": [
+        1
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        97
+      ],
+      "expected": 2,
+      "hidden": true
+    },
+    {
+      "args": [
+        360
+      ],
+      "expected": 24,
+      "hidden": true
+    },
+    {
+      "args": [
+        1000
+      ],
+      "expected": 16,
+      "hidden": true
+    }
+  ],
+  "order": 284
+}

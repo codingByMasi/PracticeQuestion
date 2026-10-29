@@ -1,0 +1,21 @@
+{
+  "slug": "country-with-the-biggest-basket",
+  "track": "sql",
+  "title": "Country with the biggest basket",
+  "difficulty": "Medium",
+  "tags": [
+    "group-by"
+  ],
+  "statementMd": "Which customer country has the highest average order value (orders with items, non-cancelled)? Show country and the average rounded to 2 decimals.\n\nExpected columns: `country`, `avg_order`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\nRow order does not matter.",
+  "hints": [
+    "Per-order totals, then average by country."
+  ],
+  "solutionMd": "```sql\nWITH t AS (SELECT o.customer_id, SUM(oi.quantity * oi.unit_price) AS total FROM orders o JOIN order_items oi ON oi.order_id = o.id WHERE o.status <> 'cancelled' GROUP BY o.id) SELECT c.country, ROUND(AVG(t.total), 2) AS avg_order FROM t JOIN customers c ON c.id = t.customer_id GROUP BY c.country ORDER BY AVG(t.total) DESC LIMIT 1;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "WITH t AS (SELECT o.customer_id, SUM(oi.quantity * oi.unit_price) AS total FROM orders o JOIN order_items oi ON oi.order_id = o.id WHERE o.status <> 'cancelled' GROUP BY o.id) SELECT c.country, ROUND(AVG(t.total), 2) AS avg_order FROM t JOIN customers c ON c.id = t.customer_id GROUP BY c.country ORDER BY AVG(t.total) DESC LIMIT 1;",
+    "orderMatters": false
+  },
+  "order": 243
+}

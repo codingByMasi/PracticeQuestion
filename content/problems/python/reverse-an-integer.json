@@ -1,0 +1,62 @@
+{
+  "slug": "reverse-an-integer",
+  "track": "python",
+  "title": "Reverse an integer",
+  "difficulty": "Easy",
+  "tags": [
+    "numbers"
+  ],
+  "statementMd": "Reverse the digits of a non-negative integer. `120` becomes `21`.\n\n**Example:** `reverse_int(123)` returns `321`.",
+  "hints": [
+    "Build the result with `% 10` and `// 10`, or reverse the string."
+  ],
+  "solutionMd": "```python\ndef reverse_int(n):\n    r = 0\n    while n > 0:\n        r = r * 10 + n % 10\n        n //= 10\n    return r\n```\n\nPeel off the last digit each time and append it to the result.",
+  "starterCode": "def reverse_int(n):\n    # Write your code here\n    pass\n",
+  "functionName": "reverse_int",
+  "referenceSolution": "def reverse_int(n):\n    r = 0\n    while n > 0:\n        r = r * 10 + n % 10\n        n //= 10\n    return r\n",
+  "tests": [
+    {
+      "args": [
+        123
+      ],
+      "expected": 321,
+      "hidden": false
+    },
+    {
+      "args": [
+        120
+      ],
+      "expected": 21,
+      "hidden": false
+    },
+    {
+      "args": [
+        0
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        5
+      ],
+      "expected": 5,
+      "hidden": true
+    },
+    {
+      "args": [
+        9001
+      ],
+      "expected": 1009,
+      "hidden": true
+    },
+    {
+      "args": [
+        987654321
+      ],
+      "expected": 123456789,
+      "hidden": true
+    }
+  ],
+  "order": 19
+}

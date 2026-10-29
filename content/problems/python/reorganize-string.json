@@ -1,0 +1,62 @@
+{
+  "slug": "reorganize-string",
+  "track": "python",
+  "title": "Reorganize string",
+  "difficulty": "Hard",
+  "tags": [
+    "heaps"
+  ],
+  "statementMd": "Rearrange the letters so no two adjacent characters are equal, choosing at each step the most frequent available letter (ties alphabetical, never repeating the previous letter). Return `\"\"` if impossible.\n\n**Example:** `reorganize_string(\"aab\")` returns `\"aba\"`.",
+  "hints": [
+    "Max-heap on (-count, letter)."
+  ],
+  "solutionMd": "```python\ndef reorganize_string(s):\n    import heapq\n    counts = {}\n    for c in s:\n        counts[c] = counts.get(c, 0) + 1\n    heap = [(-n, c) for c, n in counts.items()]\n    heapq.heapify(heap)\n    out = []\n    prev = None\n    while heap or prev:\n        if not heap:\n            return ''\n        n, c = heapq.heappop(heap)\n        out.append(c)\n        if prev:\n            heapq.heappush(heap, prev)\n        prev = (n + 1, c) if n + 1 else None\n    return ''.join(out)\n```\n\nHold the last used letter out for one round.",
+  "starterCode": "def reorganize_string(s):\n    # Write your code here\n    pass\n",
+  "functionName": "reorganize_string",
+  "referenceSolution": "def reorganize_string(s):\n    import heapq\n    counts = {}\n    for c in s:\n        counts[c] = counts.get(c, 0) + 1\n    heap = [(-n, c) for c, n in counts.items()]\n    heapq.heapify(heap)\n    out = []\n    prev = None\n    while heap or prev:\n        if not heap:\n            return ''\n        n, c = heapq.heappop(heap)\n        out.append(c)\n        if prev:\n            heapq.heappush(heap, prev)\n        prev = (n + 1, c) if n + 1 else None\n    return ''.join(out)\n",
+  "tests": [
+    {
+      "args": [
+        "aab"
+      ],
+      "expected": "aba",
+      "hidden": false
+    },
+    {
+      "args": [
+        "aaab"
+      ],
+      "expected": "",
+      "hidden": false
+    },
+    {
+      "args": [
+        "a"
+      ],
+      "expected": "a",
+      "hidden": true
+    },
+    {
+      "args": [
+        "ab"
+      ],
+      "expected": "ab",
+      "hidden": true
+    },
+    {
+      "args": [
+        "aabb"
+      ],
+      "expected": "abab",
+      "hidden": true
+    },
+    {
+      "args": [
+        "vvvlo"
+      ],
+      "expected": "vlvov",
+      "hidden": true
+    }
+  ],
+  "order": 486
+}

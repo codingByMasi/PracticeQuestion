@@ -1,0 +1,21 @@
+{
+  "slug": "days-between-orders",
+  "track": "sql",
+  "title": "Days between orders",
+  "difficulty": "Hard",
+  "tags": [
+    "window-functions"
+  ],
+  "statementMd": "For each customer's orders, show the customer id, order id, date and the number of days since their previous order (NULL for the first).\n\nExpected columns: `customer_id`, `order_id`, `order_date`, `days_since_previous`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "`LAG(order_date)` and `julianday`."
+  ],
+  "solutionMd": "```sql\nSELECT customer_id, id AS order_id, order_date, CAST(julianday(order_date) - julianday(LAG(order_date) OVER (PARTITION BY customer_id ORDER BY order_date)) AS INTEGER) AS days_since_previous FROM orders ORDER BY customer_id, order_date;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "SELECT customer_id, id AS order_id, order_date, CAST(julianday(order_date) - julianday(LAG(order_date) OVER (PARTITION BY customer_id ORDER BY order_date)) AS INTEGER) AS days_since_previous FROM orders ORDER BY customer_id, order_date;",
+    "orderMatters": true
+  },
+  "order": 408
+}

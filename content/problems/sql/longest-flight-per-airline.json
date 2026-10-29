@@ -1,0 +1,21 @@
+{
+  "slug": "longest-flight-per-airline",
+  "track": "sql",
+  "title": "Longest flight per airline",
+  "difficulty": "Medium",
+  "tags": [
+    "correlated-subquery"
+  ],
+  "statementMd": "For each airline code show its longest flight (id and duration).\n\nExpected columns: `airline_code`, `id`, `duration_min`.\n\nTables: `airlines`, `airports`, `flights`, `bookings`.\n\nRow order does not matter.",
+  "hints": [
+    "Compare with the airline's maximum duration."
+  ],
+  "solutionMd": "```sql\nSELECT f.airline_code, f.id, f.duration_min FROM flights f WHERE f.duration_min = (SELECT MAX(f2.duration_min) FROM flights f2 WHERE f2.airline_code = f.airline_code);\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: airlines, airports, flights, bookings\nSELECT\n",
+  "datasetId": "flights",
+  "expected": {
+    "query": "SELECT f.airline_code, f.id, f.duration_min FROM flights f WHERE f.duration_min = (SELECT MAX(f2.duration_min) FROM flights f2 WHERE f2.airline_code = f.airline_code);",
+    "orderMatters": false
+  },
+  "order": 341
+}

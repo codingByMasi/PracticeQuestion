@@ -1,0 +1,21 @@
+{
+  "slug": "book-catalogue",
+  "track": "sql",
+  "title": "Book catalogue",
+  "difficulty": "Easy",
+  "tags": [
+    "select"
+  ],
+  "statementMd": "List the title, genre and number of pages of every book.\n\nExpected columns: `title`, `genre`, `pages`.\n\nTables: `authors`, `books`, `members`, `loans`.\n\nRow order does not matter.",
+  "hints": [
+    "Select three columns."
+  ],
+  "solutionMd": "```sql\nSELECT title, genre, pages FROM books;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: authors, books, members, loans\nSELECT\n",
+  "datasetId": "library",
+  "expected": {
+    "query": "SELECT title, genre, pages FROM books;",
+    "orderMatters": false
+  },
+  "order": 7
+}

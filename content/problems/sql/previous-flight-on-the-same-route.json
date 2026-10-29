@@ -1,0 +1,21 @@
+{
+  "slug": "previous-flight-on-the-same-route",
+  "track": "sql",
+  "title": "Previous flight on the same route",
+  "difficulty": "Hard",
+  "tags": [
+    "window-functions"
+  ],
+  "statementMd": "For flights departing from `LHR`, ordered by date then id, show the id of the previous LHR departure and the days between them (NULL for the first).\n\nExpected columns: `id`, `depart_date`, `previous_id`, `gap_days`.\n\nTables: `airlines`, `airports`, `flights`, `bookings`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "`LAG` over all flights from LHR."
+  ],
+  "solutionMd": "```sql\nSELECT id, depart_date, LAG(id) OVER (ORDER BY depart_date, id) AS previous_id, CAST(julianday(depart_date) - julianday(LAG(depart_date) OVER (ORDER BY depart_date, id)) AS INTEGER) AS gap_days FROM flights WHERE origin = 'LHR' ORDER BY depart_date, id;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: airlines, airports, flights, bookings\nSELECT\n",
+  "datasetId": "flights",
+  "expected": {
+    "query": "SELECT id, depart_date, LAG(id) OVER (ORDER BY depart_date, id) AS previous_id, CAST(julianday(depart_date) - julianday(LAG(depart_date) OVER (ORDER BY depart_date, id)) AS INTEGER) AS gap_days FROM flights WHERE origin = 'LHR' ORDER BY depart_date, id;",
+    "orderMatters": true
+  },
+  "order": 416
+}

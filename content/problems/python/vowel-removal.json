@@ -1,0 +1,55 @@
+{
+  "slug": "vowel-removal",
+  "track": "python",
+  "title": "Vowel removal",
+  "difficulty": "Easy",
+  "tags": [
+    "strings"
+  ],
+  "statementMd": "Remove all vowels (`aeiouAEIOU`) from `s`.\n\n**Example:** `remove_vowels(\"hello world\")` returns `\"hll wrld\"`.",
+  "hints": [
+    "Filter characters not in the vowel string."
+  ],
+  "solutionMd": "```python\ndef remove_vowels(s):\n    return ''.join(c for c in s if c not in 'aeiouAEIOU')\n```\n\nMembership test on a string.",
+  "starterCode": "def remove_vowels(s):\n    # Write your code here\n    pass\n",
+  "functionName": "remove_vowels",
+  "referenceSolution": "def remove_vowels(s):\n    return ''.join(c for c in s if c not in 'aeiouAEIOU')\n",
+  "tests": [
+    {
+      "args": [
+        "hello world"
+      ],
+      "expected": "hll wrld",
+      "hidden": false
+    },
+    {
+      "args": [
+        "AEIOU"
+      ],
+      "expected": "",
+      "hidden": false
+    },
+    {
+      "args": [
+        ""
+      ],
+      "expected": "",
+      "hidden": true
+    },
+    {
+      "args": [
+        "rhythm"
+      ],
+      "expected": "rhythm",
+      "hidden": true
+    },
+    {
+      "args": [
+        "Programming"
+      ],
+      "expected": "Prgrmmng",
+      "hidden": true
+    }
+  ],
+  "order": 61
+}

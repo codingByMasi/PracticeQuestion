@@ -1,0 +1,21 @@
+{
+  "slug": "movies-above-their-genre-s-average-runtime",
+  "track": "sql",
+  "title": "Movies above their genre's average runtime",
+  "difficulty": "Medium",
+  "tags": [
+    "correlated-subquery"
+  ],
+  "statementMd": "List movies longer than the average runtime of their own genre.\n\nExpected columns: `title`, `genre`, `runtime_minutes`.\n\nTables: `movies`, `directors`, `reviews`.\n\nRow order does not matter.",
+  "hints": [
+    "Correlated subquery on genre."
+  ],
+  "solutionMd": "```sql\nSELECT m.title, m.genre, m.runtime_minutes FROM movies m WHERE m.runtime_minutes > (SELECT AVG(m2.runtime_minutes) FROM movies m2 WHERE m2.genre = m.genre);\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: movies, directors, reviews\nSELECT\n",
+  "datasetId": "movies",
+  "expected": {
+    "query": "SELECT m.title, m.genre, m.runtime_minutes FROM movies m WHERE m.runtime_minutes > (SELECT AVG(m2.runtime_minutes) FROM movies m2 WHERE m2.genre = m.genre);",
+    "orderMatters": false
+  },
+  "order": 343
+}

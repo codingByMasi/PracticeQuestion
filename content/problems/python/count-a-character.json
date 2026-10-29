@@ -1,0 +1,60 @@
+{
+  "slug": "count-a-character",
+  "track": "python",
+  "title": "Count a character",
+  "difficulty": "Easy",
+  "tags": [
+    "strings"
+  ],
+  "statementMd": "Count how many times the single character `ch` occurs in `s` (case-sensitive).\n\n**Example:** `count_char(\"banana\", \"a\")` returns `3`.",
+  "hints": [
+    "Loop or use `str.count`."
+  ],
+  "solutionMd": "```python\ndef count_char(s, ch):\n    return sum(1 for c in s if c == ch)\n```\n\nSumming booleans counts matches.",
+  "starterCode": "def count_char(s, ch):\n    # Write your code here\n    pass\n",
+  "functionName": "count_char",
+  "referenceSolution": "def count_char(s, ch):\n    return sum(1 for c in s if c == ch)\n",
+  "tests": [
+    {
+      "args": [
+        "banana",
+        "a"
+      ],
+      "expected": 3,
+      "hidden": false
+    },
+    {
+      "args": [
+        "banana",
+        "z"
+      ],
+      "expected": 0,
+      "hidden": false
+    },
+    {
+      "args": [
+        "",
+        "a"
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        "Aa",
+        "a"
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        "mississippi",
+        "s"
+      ],
+      "expected": 4,
+      "hidden": true
+    }
+  ],
+  "order": 49
+}

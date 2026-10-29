@@ -1,0 +1,21 @@
+{
+  "slug": "fines-owed",
+  "track": "sql",
+  "title": "Fines owed",
+  "difficulty": "Medium",
+  "tags": [
+    "expressions"
+  ],
+  "statementMd": "Charge 0.25 per day late for returned loans. List members with their total fine, rounded to 2 decimals, only members who owe something. Largest first (ties by name).\n\nExpected columns: `name`, `fine`.\n\nTables: `authors`, `books`, `members`, `loans`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Sum the late days per member."
+  ],
+  "solutionMd": "```sql\nSELECT m.name, ROUND(SUM((julianday(l.return_date) - julianday(l.due_date)) * 0.25), 2) AS fine FROM loans l JOIN members m ON m.id = l.member_id WHERE l.return_date > l.due_date GROUP BY m.id, m.name ORDER BY fine DESC, m.name;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: authors, books, members, loans\nSELECT\n",
+  "datasetId": "library",
+  "expected": {
+    "query": "SELECT m.name, ROUND(SUM((julianday(l.return_date) - julianday(l.due_date)) * 0.25), 2) AS fine FROM loans l JOIN members m ON m.id = l.member_id WHERE l.return_date > l.due_date GROUP BY m.id, m.name ORDER BY fine DESC, m.name;",
+    "orderMatters": true
+  },
+  "order": 174
+}

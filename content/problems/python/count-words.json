@@ -1,0 +1,62 @@
+{
+  "slug": "count-words",
+  "track": "python",
+  "title": "Count words",
+  "difficulty": "Easy",
+  "tags": [
+    "strings"
+  ],
+  "statementMd": "Return the number of words in `s`, where words are separated by one or more spaces (leading and trailing spaces allowed).\n\n**Example:** `word_count(\"hello world\")` returns `2`.",
+  "hints": [
+    "`str.split()` without arguments collapses whitespace."
+  ],
+  "solutionMd": "```python\ndef word_count(s):\n    return len(s.split())\n```\n\nDefault `split` ignores runs of whitespace.",
+  "starterCode": "def word_count(s):\n    # Write your code here\n    pass\n",
+  "functionName": "word_count",
+  "referenceSolution": "def word_count(s):\n    return len(s.split())\n",
+  "tests": [
+    {
+      "args": [
+        "hello world"
+      ],
+      "expected": 2,
+      "hidden": false
+    },
+    {
+      "args": [
+        "  a   b  "
+      ],
+      "expected": 2,
+      "hidden": false
+    },
+    {
+      "args": [
+        ""
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        "   "
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        "one"
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        "a b c d e"
+      ],
+      "expected": 5,
+      "hidden": true
+    }
+  ],
+  "order": 56
+}

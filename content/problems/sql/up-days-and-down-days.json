@@ -1,0 +1,21 @@
+{
+  "slug": "up-days-and-down-days",
+  "track": "sql",
+  "title": "Up days and down days",
+  "difficulty": "Easy",
+  "tags": [
+    "case"
+  ],
+  "statementMd": "For symbol `CLOUD`, count days that closed above their open (`up`), below (`down`) or equal (`flat`).\n\nExpected columns: `direction`, `days`.\n\nTables: `tickers`, `prices`.\n\nRow order does not matter.",
+  "hints": [
+    "`CASE` and group."
+  ],
+  "solutionMd": "```sql\nSELECT CASE WHEN close > open THEN 'up' WHEN close < open THEN 'down' ELSE 'flat' END AS direction, COUNT(*) AS days FROM prices WHERE symbol = 'CLOUD' GROUP BY direction;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: tickers, prices\nSELECT\n",
+  "datasetId": "stocks",
+  "expected": {
+    "query": "SELECT CASE WHEN close > open THEN 'up' WHEN close < open THEN 'down' ELSE 'flat' END AS direction, COUNT(*) AS days FROM prices WHERE symbol = 'CLOUD' GROUP BY direction;",
+    "orderMatters": false
+  },
+  "order": 88
+}

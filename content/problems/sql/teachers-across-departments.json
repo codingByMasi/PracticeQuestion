@@ -1,0 +1,21 @@
+{
+  "slug": "teachers-across-departments",
+  "track": "sql",
+  "title": "Teachers across departments",
+  "difficulty": "Medium",
+  "tags": [
+    "multi-join"
+  ],
+  "statementMd": "Show the average score of students in each teacher's courses. Show teacher name and average rounded to 1 decimal.\n\nExpected columns: `name`, `avg_score`.\n\nTables: `teachers`, `courses`, `students`, `enrollments`.\n\nRow order does not matter.",
+  "hints": [
+    "Join teachers, courses, enrollments."
+  ],
+  "solutionMd": "```sql\nSELECT t.name, ROUND(AVG(e.score), 1) AS avg_score FROM teachers t JOIN courses c ON c.teacher_id = t.id JOIN enrollments e ON e.course_id = c.id GROUP BY t.id, t.name;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: teachers, courses, students, enrollments\nSELECT\n",
+  "datasetId": "school",
+  "expected": {
+    "query": "SELECT t.name, ROUND(AVG(e.score), 1) AS avg_score FROM teachers t JOIN courses c ON c.teacher_id = t.id JOIN enrollments e ON e.course_id = c.id GROUP BY t.id, t.name;",
+    "orderMatters": false
+  },
+  "order": 306
+}

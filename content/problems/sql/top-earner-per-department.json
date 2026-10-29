@@ -19,5 +19,6 @@
   "expected": {
     "query": "SELECT d.name AS department, e.first_name, e.salary\nFROM employees e\nJOIN departments d ON d.id = e.department_id\nWHERE e.salary = (\n  SELECT MAX(e2.salary) FROM employees e2 WHERE e2.department_id = e.department_id\n);",
     "orderMatters": false
-  }
+  },
+  "order": 392
 }

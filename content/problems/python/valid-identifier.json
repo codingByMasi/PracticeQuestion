@@ -1,0 +1,69 @@
+{
+  "slug": "valid-identifier",
+  "track": "python",
+  "title": "Valid identifier",
+  "difficulty": "Medium",
+  "tags": [
+    "strings"
+  ],
+  "statementMd": "Return `True` if `s` is a valid simple identifier: non-empty, starts with a letter or underscore, and contains only letters, digits and underscores (ASCII).\n\n**Example:** `is_valid_identifier(\"var_1\")` returns `true`.",
+  "hints": [
+    "Check the first character separately."
+  ],
+  "solutionMd": "```python\ndef is_valid_identifier(s):\n    if not s or not (s[0].isalpha() or s[0] == '_') or not s[0].isascii():\n        return False\n    return all(c.isascii() and (c.isalnum() or c == '_') for c in s)\n```\n\nFirst char differs from the rest.",
+  "starterCode": "def is_valid_identifier(s):\n    # Write your code here\n    pass\n",
+  "functionName": "is_valid_identifier",
+  "referenceSolution": "def is_valid_identifier(s):\n    if not s or not (s[0].isalpha() or s[0] == '_') or not s[0].isascii():\n        return False\n    return all(c.isascii() and (c.isalnum() or c == '_') for c in s)\n",
+  "tests": [
+    {
+      "args": [
+        "var_1"
+      ],
+      "expected": true,
+      "hidden": false
+    },
+    {
+      "args": [
+        "1var"
+      ],
+      "expected": false,
+      "hidden": false
+    },
+    {
+      "args": [
+        ""
+      ],
+      "expected": false,
+      "hidden": true
+    },
+    {
+      "args": [
+        "_"
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        "a-b"
+      ],
+      "expected": false,
+      "hidden": true
+    },
+    {
+      "args": [
+        "x y"
+      ],
+      "expected": false,
+      "hidden": true
+    },
+    {
+      "args": [
+        "Name2"
+      ],
+      "expected": true,
+      "hidden": true
+    }
+  ],
+  "order": 190
+}

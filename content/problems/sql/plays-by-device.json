@@ -1,0 +1,21 @@
+{
+  "slug": "plays-by-device",
+  "track": "sql",
+  "title": "Plays by device",
+  "difficulty": "Easy",
+  "tags": [
+    "group-by"
+  ],
+  "statementMd": "Count plays per device.\n\nExpected columns: `device`, `plays`.\n\nTables: `artists`, `albums`, `tracks`, `listeners`, `plays`.\n\nRow order does not matter.",
+  "hints": [
+    "`GROUP BY device`."
+  ],
+  "solutionMd": "```sql\nSELECT device, COUNT(*) AS plays FROM plays GROUP BY device;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: artists, albums, tracks, listeners, plays\nSELECT\n",
+  "datasetId": "music",
+  "expected": {
+    "query": "SELECT device, COUNT(*) AS plays FROM plays GROUP BY device;",
+    "orderMatters": false
+  },
+  "order": 139
+}

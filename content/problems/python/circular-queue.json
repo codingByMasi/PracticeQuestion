@@ -1,0 +1,145 @@
+{
+  "slug": "circular-queue",
+  "track": "python",
+  "title": "Circular queue",
+  "difficulty": "Medium",
+  "tags": [
+    "design"
+  ],
+  "statementMd": "A bounded FIFO queue. `['enqueue', x]` returns `True` and adds if there is room, else `False`; `['dequeue']` returns the removed value or `-1` if empty; `['is_full']` returns a bool. Return the results of all operations.\n\n**Example:** `circular_queue_ops(2, [[\"enqueue\", 1], [\"enqueue\", 2], [\"enqueue\", 3], [\"is_full\"…)` returns `[true, true, false, true, 1]`.",
+  "hints": [
+    "Track head index and size."
+  ],
+  "solutionMd": "```python\ndef circular_queue_ops(capacity, ops):\n    buf = [None] * capacity\n    head = size = 0\n    out = []\n    for op in ops:\n        if op[0] == 'enqueue':\n            if size == capacity:\n                out.append(False)\n            else:\n                buf[(head + size) % capacity] = op[1]\n                size += 1\n                out.append(True)\n        elif op[0] == 'dequeue':\n            if size == 0:\n                out.append(-1)\n            else:\n                out.append(buf[head])\n                head = (head + 1) % capacity\n                size -= 1\n        else:\n            out.append(size == capacity)\n    return out\n```\n\nModular arithmetic wraps the buffer.",
+  "starterCode": "def circular_queue_ops(capacity, ops):\n    # Write your code here\n    pass\n",
+  "functionName": "circular_queue_ops",
+  "referenceSolution": "def circular_queue_ops(capacity, ops):\n    buf = [None] * capacity\n    head = size = 0\n    out = []\n    for op in ops:\n        if op[0] == 'enqueue':\n            if size == capacity:\n                out.append(False)\n            else:\n                buf[(head + size) % capacity] = op[1]\n                size += 1\n                out.append(True)\n        elif op[0] == 'dequeue':\n            if size == 0:\n                out.append(-1)\n            else:\n                out.append(buf[head])\n                head = (head + 1) % capacity\n                size -= 1\n        else:\n            out.append(size == capacity)\n    return out\n",
+  "tests": [
+    {
+      "args": [
+        2,
+        [
+          [
+            "enqueue",
+            1
+          ],
+          [
+            "enqueue",
+            2
+          ],
+          [
+            "enqueue",
+            3
+          ],
+          [
+            "is_full"
+          ],
+          [
+            "dequeue"
+          ]
+        ]
+      ],
+      "expected": [
+        true,
+        true,
+        false,
+        true,
+        1
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        1,
+        [
+          [
+            "dequeue"
+          ]
+        ]
+      ],
+      "expected": [
+        -1
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        1,
+        [
+          [
+            "enqueue",
+            7
+          ],
+          [
+            "is_full"
+          ],
+          [
+            "dequeue"
+          ],
+          [
+            "enqueue",
+            8
+          ],
+          [
+            "dequeue"
+          ]
+        ]
+      ],
+      "expected": [
+        true,
+        true,
+        7,
+        true,
+        8
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        3,
+        [
+          [
+            "enqueue",
+            1
+          ],
+          [
+            "enqueue",
+            2
+          ],
+          [
+            "dequeue"
+          ],
+          [
+            "enqueue",
+            3
+          ],
+          [
+            "enqueue",
+            4
+          ],
+          [
+            "is_full"
+          ]
+        ]
+      ],
+      "expected": [
+        true,
+        true,
+        1,
+        true,
+        true,
+        true
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        2,
+        []
+      ],
+      "expected": [],
+      "hidden": true
+    }
+  ],
+  "order": 372
+}

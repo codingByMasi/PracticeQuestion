@@ -1,0 +1,86 @@
+{
+  "slug": "dict-difference",
+  "track": "python",
+  "title": "Dict difference",
+  "difficulty": "Medium",
+  "tags": [
+    "dicts"
+  ],
+  "statementMd": "Return a sorted list of keys whose values differ between `a` and `b`, including keys present in only one of them.\n\n**Example:** `dict_diff({\"a\": 1, \"b\": 2}, {\"a\": 1, \"b\": 3})` returns `[\"b\"]`.",
+  "hints": [
+    "Iterate over the union of keys."
+  ],
+  "solutionMd": "```python\ndef dict_diff(a, b):\n    keys = set(a) | set(b)\n    return sorted(k for k in keys if a.get(k, object()) != b.get(k, object()) or (k in a) != (k in b))\n```\n\nMissing keys count as different.",
+  "starterCode": "def dict_diff(a, b):\n    # Write your code here\n    pass\n",
+  "functionName": "dict_diff",
+  "referenceSolution": "def dict_diff(a, b):\n    keys = set(a) | set(b)\n    return sorted(k for k in keys if a.get(k, object()) != b.get(k, object()) or (k in a) != (k in b))\n",
+  "tests": [
+    {
+      "args": [
+        {
+          "a": 1,
+          "b": 2
+        },
+        {
+          "a": 1,
+          "b": 3
+        }
+      ],
+      "expected": [
+        "b"
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        {
+          "a": 1
+        },
+        {
+          "a": 1,
+          "c": 2
+        }
+      ],
+      "expected": [
+        "c"
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        {},
+        {}
+      ],
+      "expected": [],
+      "hidden": true
+    },
+    {
+      "args": [
+        {
+          "k": null
+        },
+        {}
+      ],
+      "expected": [
+        "k"
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        {
+          "x": 1
+        },
+        {
+          "x": 1.0,
+          "y": 2
+        }
+      ],
+      "expected": [
+        "y"
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 217
+}

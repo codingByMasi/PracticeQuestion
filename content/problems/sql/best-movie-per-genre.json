@@ -1,0 +1,21 @@
+{
+  "slug": "best-movie-per-genre",
+  "track": "sql",
+  "title": "Best movie per genre",
+  "difficulty": "Hard",
+  "tags": [
+    "ranking"
+  ],
+  "statementMd": "For each genre show its best-reviewed movie by average rating (title and average). If two tie, pick the alphabetically first title.\n\nExpected columns: `genre`, `title`, `avg_rating`.\n\nTables: `movies`, `directors`, `reviews`.\n\nRow order does not matter.",
+  "hints": [
+    "Rank within genre using average rating desc, title asc."
+  ],
+  "solutionMd": "```sql\nWITH s AS (SELECT m.genre, m.title, AVG(r.rating) AS avg_rating FROM movies m JOIN reviews r ON r.movie_id = m.id GROUP BY m.id), k AS (SELECT *, ROW_NUMBER() OVER (PARTITION BY genre ORDER BY avg_rating DESC, title) AS rn FROM s) SELECT genre, title, ROUND(avg_rating, 2) AS avg_rating FROM k WHERE rn = 1;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: movies, directors, reviews\nSELECT\n",
+  "datasetId": "movies",
+  "expected": {
+    "query": "WITH s AS (SELECT m.genre, m.title, AVG(r.rating) AS avg_rating FROM movies m JOIN reviews r ON r.movie_id = m.id GROUP BY m.id), k AS (SELECT *, ROW_NUMBER() OVER (PARTITION BY genre ORDER BY avg_rating DESC, title) AS rn FROM s) SELECT genre, title, ROUND(avg_rating, 2) AS avg_rating FROM k WHERE rn = 1;",
+    "orderMatters": false
+  },
+  "order": 454
+}

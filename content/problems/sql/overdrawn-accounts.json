@@ -1,0 +1,21 @@
+{
+  "slug": "overdrawn-accounts",
+  "track": "sql",
+  "title": "Overdrawn accounts",
+  "difficulty": "Medium",
+  "tags": [
+    "having"
+  ],
+  "statementMd": "List accounts whose transaction total is negative. Show account id and balance rounded to 2 decimals.\n\nExpected columns: `account_id`, `balance`.\n\nTables: `customers`, `accounts`, `transactions`.\n\nRow order does not matter.",
+  "hints": [
+    "`HAVING SUM(amount) < 0`."
+  ],
+  "solutionMd": "```sql\nSELECT account_id, ROUND(SUM(amount), 2) AS balance FROM transactions GROUP BY account_id HAVING SUM(amount) < 0;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, accounts, transactions\nSELECT\n",
+  "datasetId": "bank",
+  "expected": {
+    "query": "SELECT account_id, ROUND(SUM(amount), 2) AS balance FROM transactions GROUP BY account_id HAVING SUM(amount) < 0;",
+    "orderMatters": false
+  },
+  "order": 244
+}

@@ -1,0 +1,155 @@
+{
+  "slug": "accounts-merge",
+  "track": "python",
+  "title": "Accounts merge",
+  "difficulty": "Hard",
+  "tags": [
+    "graphs"
+  ],
+  "statementMd": "Each account is `[name, email1, email2, ...]`. Accounts belong to the same person if they share an email. Return merged accounts as `[name, sorted unique emails...]`, with the whole list sorted by name then by the email list.\n\n**Example:** `accounts_merge([[\"John\", \"a@x\", \"b@x\"], [\"John\", \"b@x\", \"c@x\"], [\"Mary\", \"…)` returns `[[\"John\", \"a@x\", \"b@x\", \"c@x\"], [\"Mary\", \"m@x\"]]`.",
+  "hints": [
+    "Union-find over emails."
+  ],
+  "solutionMd": "```python\ndef accounts_merge(accounts):\n    parent = {}\n    def find(x):\n        while parent[x] != x:\n            parent[x] = parent[parent[x]]\n            x = parent[x]\n        return x\n    owner = {}\n    for acc in accounts:\n        for e in acc[1:]:\n            parent.setdefault(e, e)\n            owner[e] = acc[0]\n        for e in acc[2:]:\n            parent[find(e)] = find(acc[1])\n    groups = {}\n    for e in parent:\n        groups.setdefault(find(e), []).append(e)\n    return sorted([owner[r]] + sorted(es) for r, es in groups.items())\n```\n\nEmails are nodes; each account links its emails.",
+  "starterCode": "def accounts_merge(accounts):\n    # Write your code here\n    pass\n",
+  "functionName": "accounts_merge",
+  "referenceSolution": "def accounts_merge(accounts):\n    parent = {}\n    def find(x):\n        while parent[x] != x:\n            parent[x] = parent[parent[x]]\n            x = parent[x]\n        return x\n    owner = {}\n    for acc in accounts:\n        for e in acc[1:]:\n            parent.setdefault(e, e)\n            owner[e] = acc[0]\n        for e in acc[2:]:\n            parent[find(e)] = find(acc[1])\n    groups = {}\n    for e in parent:\n        groups.setdefault(find(e), []).append(e)\n    return sorted([owner[r]] + sorted(es) for r, es in groups.items())\n",
+  "tests": [
+    {
+      "args": [
+        [
+          [
+            "John",
+            "a@x",
+            "b@x"
+          ],
+          [
+            "John",
+            "b@x",
+            "c@x"
+          ],
+          [
+            "Mary",
+            "m@x"
+          ]
+        ]
+      ],
+      "expected": [
+        [
+          "John",
+          "a@x",
+          "b@x",
+          "c@x"
+        ],
+        [
+          "Mary",
+          "m@x"
+        ]
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            "A",
+            "a@x"
+          ],
+          [
+            "A",
+            "z@x"
+          ]
+        ]
+      ],
+      "expected": [
+        [
+          "A",
+          "a@x"
+        ],
+        [
+          "A",
+          "z@x"
+        ]
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            "A",
+            "a@x",
+            "b@x"
+          ],
+          [
+            "B",
+            "c@x"
+          ]
+        ]
+      ],
+      "expected": [
+        [
+          "A",
+          "a@x",
+          "b@x"
+        ],
+        [
+          "B",
+          "c@x"
+        ]
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            "X",
+            "p@x"
+          ],
+          [
+            "X",
+            "q@x"
+          ],
+          [
+            "X",
+            "p@x",
+            "q@x"
+          ]
+        ]
+      ],
+      "expected": [
+        [
+          "X",
+          "p@x",
+          "q@x"
+        ]
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            "Zed",
+            "k@x",
+            "l@x"
+          ],
+          [
+            "Amy",
+            "l@x"
+          ]
+        ]
+      ],
+      "expected": [
+        [
+          "Zed",
+          "k@x",
+          "l@x"
+        ]
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 476
+}

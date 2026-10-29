@@ -1,0 +1,21 @@
+{
+  "slug": "high-altitude-airports",
+  "track": "sql",
+  "title": "High-altitude airports",
+  "difficulty": "Easy",
+  "tags": [
+    "where"
+  ],
+  "statementMd": "List airports with elevation above 1,000 feet, highest first.\n\nExpected columns: `code`, `city`, `elevation_ft`.\n\nTables: `airlines`, `airports`, `flights`, `bookings`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Sort descending."
+  ],
+  "solutionMd": "```sql\nSELECT code, city, elevation_ft FROM airports WHERE elevation_ft > 1000 ORDER BY elevation_ft DESC;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: airlines, airports, flights, bookings\nSELECT\n",
+  "datasetId": "flights",
+  "expected": {
+    "query": "SELECT code, city, elevation_ft FROM airports WHERE elevation_ft > 1000 ORDER BY elevation_ft DESC;",
+    "orderMatters": true
+  },
+  "order": 28
+}

@@ -1,0 +1,21 @@
+{
+  "slug": "countries-with-airports-but-no-airlines",
+  "track": "sql",
+  "title": "Countries with airports but no airlines",
+  "difficulty": "Medium",
+  "tags": [
+    "set-ops"
+  ],
+  "statementMd": "List countries that have an airport but no airline based there.\n\nExpected columns: `country`.\n\nTables: `airlines`, `airports`, `flights`, `bookings`.\n\nRow order does not matter.",
+  "hints": [
+    "`EXCEPT`."
+  ],
+  "solutionMd": "```sql\nSELECT country FROM airports EXCEPT SELECT country FROM airlines;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: airlines, airports, flights, bookings\nSELECT\n",
+  "datasetId": "flights",
+  "expected": {
+    "query": "SELECT country FROM airports EXCEPT SELECT country FROM airlines;",
+    "orderMatters": false
+  },
+  "order": 331
+}

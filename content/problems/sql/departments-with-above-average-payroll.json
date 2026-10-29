@@ -1,0 +1,21 @@
+{
+  "slug": "departments-with-above-average-payroll",
+  "track": "sql",
+  "title": "Departments with above-average payroll",
+  "difficulty": "Medium",
+  "tags": [
+    "subquery"
+  ],
+  "statementMd": "List departments whose total payroll is above the average department payroll. Show name and payroll.\n\nExpected columns: `name`, `payroll`.\n\nTables: `employees`, `departments`.\n\nRow order does not matter.",
+  "hints": [
+    "Aggregate in a CTE first."
+  ],
+  "solutionMd": "```sql\nWITH p AS (SELECT department_id, SUM(salary) AS payroll FROM employees WHERE department_id IS NOT NULL GROUP BY department_id) SELECT d.name, p.payroll FROM p JOIN departments d ON d.id = p.department_id WHERE p.payroll > (SELECT AVG(payroll) FROM p);\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "WITH p AS (SELECT department_id, SUM(salary) AS payroll FROM employees WHERE department_id IS NOT NULL GROUP BY department_id) SELECT d.name, p.payroll FROM p JOIN departments d ON d.id = p.department_id WHERE p.payroll > (SELECT AVG(payroll) FROM p);",
+    "orderMatters": false
+  },
+  "order": 320
+}

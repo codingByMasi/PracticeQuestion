@@ -1,0 +1,21 @@
+{
+  "slug": "sector-normalised-index",
+  "track": "sql",
+  "title": "Sector normalised index",
+  "difficulty": "Hard",
+  "tags": [
+    "window-functions"
+  ],
+  "statementMd": "For each sector and trading date compute the average close across its tickers, then index it to 100 on the first date. Show sector, date, index rounded to 2 decimals for dates in the first week (2024-03-01 to 2024-03-07). Order by sector, date.\n\nExpected columns: `sector`, `trade_date`, `idx`.\n\nTables: `tickers`, `prices`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Average per sector-date, divide by `FIRST_VALUE` over the sector."
+  ],
+  "solutionMd": "```sql\nWITH s AS (SELECT t.sector, p.trade_date, AVG(p.close) AS avg_close FROM prices p JOIN tickers t ON t.symbol = p.symbol GROUP BY t.sector, p.trade_date) SELECT sector, trade_date, ROUND(100.0 * avg_close / FIRST_VALUE(avg_close) OVER (PARTITION BY sector ORDER BY trade_date), 2) AS idx FROM s WHERE trade_date <= '2024-03-07' ORDER BY sector, trade_date;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: tickers, prices\nSELECT\n",
+  "datasetId": "stocks",
+  "expected": {
+    "query": "WITH s AS (SELECT t.sector, p.trade_date, AVG(p.close) AS avg_close FROM prices p JOIN tickers t ON t.symbol = p.symbol GROUP BY t.sector, p.trade_date) SELECT sector, trade_date, ROUND(100.0 * avg_close / FIRST_VALUE(avg_close) OVER (PARTITION BY sector ORDER BY trade_date), 2) AS idx FROM s WHERE trade_date <= '2024-03-07' ORDER BY sector, trade_date;",
+    "orderMatters": true
+  },
+  "order": 430
+}

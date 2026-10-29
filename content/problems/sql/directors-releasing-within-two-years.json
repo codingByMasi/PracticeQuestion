@@ -1,0 +1,21 @@
+{
+  "slug": "directors-releasing-within-two-years",
+  "track": "sql",
+  "title": "Directors releasing within two years",
+  "difficulty": "Hard",
+  "tags": [
+    "self-join"
+  ],
+  "statementMd": "Directors who released two movies at most two calendar years apart (the second one 1 or 2 years after the first). Show name and the earliest such first release year as first_year.\n\nExpected columns: `name`, `first_year`.\n\nTables: `directors`, `movies`, `reviews`.\n\nRow order does not matter.",
+  "hints": [
+    "Self-join movies on the same director with `b.release_year BETWEEN a.release_year + 1 AND a.release_year + 2`."
+  ],
+  "solutionMd": "```sql\nSELECT d.name, MIN(a.release_year) AS first_year FROM movies a JOIN movies b ON b.director_id = a.director_id AND b.release_year BETWEEN a.release_year + 1 AND a.release_year + 2 JOIN directors d ON d.id = a.director_id GROUP BY d.id;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: directors, movies, reviews\nSELECT\n",
+  "datasetId": "movies",
+  "expected": {
+    "query": "SELECT d.name, MIN(a.release_year) AS first_year FROM movies a JOIN movies b ON b.director_id = a.director_id AND b.release_year BETWEEN a.release_year + 1 AND a.release_year + 2 JOIN directors d ON d.id = a.director_id GROUP BY d.id;",
+    "orderMatters": false
+  },
+  "order": 391
+}

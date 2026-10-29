@@ -1,0 +1,21 @@
+{
+  "slug": "big-deposits",
+  "track": "sql",
+  "title": "Big deposits",
+  "difficulty": "Easy",
+  "tags": [
+    "where"
+  ],
+  "statementMd": "List deposits of more than 2000. Show id, date and amount, and keep the first 10 by id.\n\nExpected columns: `id`, `tx_date`, `amount`.\n\nTables: `customers`, `accounts`, `transactions`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Filter on kind and amount."
+  ],
+  "solutionMd": "```sql\nSELECT id, tx_date, amount FROM transactions WHERE kind = 'deposit' AND amount > 2000 ORDER BY id LIMIT 10;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, accounts, transactions\nSELECT\n",
+  "datasetId": "bank",
+  "expected": {
+    "query": "SELECT id, tx_date, amount FROM transactions WHERE kind = 'deposit' AND amount > 2000 ORDER BY id LIMIT 10;",
+    "orderMatters": true
+  },
+  "order": 17
+}

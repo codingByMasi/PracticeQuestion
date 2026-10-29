@@ -1,0 +1,21 @@
+{
+  "slug": "mid-range-salaries",
+  "track": "sql",
+  "title": "Mid-range salaries",
+  "difficulty": "Easy",
+  "tags": [
+    "where"
+  ],
+  "statementMd": "Return employees earning between 90,000 and 110,000 inclusive.\n\nExpected columns: `first_name`, `last_name`, `salary`.\n\nTables: `employees`, `departments`.\n\nRow order does not matter.",
+  "hints": [
+    "`BETWEEN a AND b` includes both ends."
+  ],
+  "solutionMd": "```sql\nSELECT first_name, last_name, salary FROM employees WHERE salary BETWEEN 90000 AND 110000;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "SELECT first_name, last_name, salary FROM employees WHERE salary BETWEEN 90000 AND 110000;",
+    "orderMatters": false
+  },
+  "order": 23
+}

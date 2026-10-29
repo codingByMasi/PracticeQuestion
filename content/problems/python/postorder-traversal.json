@@ -1,0 +1,98 @@
+{
+  "slug": "postorder-traversal",
+  "track": "python",
+  "title": "Postorder traversal",
+  "difficulty": "Easy",
+  "tags": [
+    "trees"
+  ],
+  "statementMd": "Return the values in postorder (left, right, node). The tree is given as a level-order list where `None` marks a missing child (like `[3, 9, 20, None, None, 15, 7]`); the helper `build_tree` in the solution shows how it is read, and in your function the argument is already that list.\n\n**Example:** `postorder([3, 9, 20, null, null, 15, 7])` returns `[9, 15, 7, 20, 3]`.",
+  "hints": [
+    "Visit after both children."
+  ],
+  "solutionMd": "```python\nclass Node:\n    def __init__(self, val, left=None, right=None):\n        self.val, self.left, self.right = val, left, right\n\n\ndef build_tree(values):\n    \"\"\"Build a binary tree from a level-order list where None marks a missing child.\"\"\"\n    if not values or values[0] is None:\n        return None\n    root = Node(values[0])\n    queue, i = [root], 1\n    while queue and i < len(values):\n        node = queue.pop(0)\n        if i < len(values) and values[i] is not None:\n            node.left = Node(values[i])\n            queue.append(node.left)\n        i += 1\n        if i < len(values) and values[i] is not None:\n            node.right = Node(values[i])\n            queue.append(node.right)\n        i += 1\n    return root\n\n\ndef postorder(values):\n    out = []\n    def go(n):\n        if n:\n            go(n.left); go(n.right); out.append(n.val)\n    go(build_tree(values))\n    return out\n```\n\nRoot last.",
+  "starterCode": "def postorder(values):\n    # Write your code here\n    pass\n",
+  "functionName": "postorder",
+  "referenceSolution": "class Node:\n    def __init__(self, val, left=None, right=None):\n        self.val, self.left, self.right = val, left, right\n\n\ndef build_tree(values):\n    \"\"\"Build a binary tree from a level-order list where None marks a missing child.\"\"\"\n    if not values or values[0] is None:\n        return None\n    root = Node(values[0])\n    queue, i = [root], 1\n    while queue and i < len(values):\n        node = queue.pop(0)\n        if i < len(values) and values[i] is not None:\n            node.left = Node(values[i])\n            queue.append(node.left)\n        i += 1\n        if i < len(values) and values[i] is not None:\n            node.right = Node(values[i])\n            queue.append(node.right)\n        i += 1\n    return root\n\n\ndef postorder(values):\n    out = []\n    def go(n):\n        if n:\n            go(n.left); go(n.right); out.append(n.val)\n    go(build_tree(values))\n    return out\n",
+  "tests": [
+    {
+      "args": [
+        [
+          3,
+          9,
+          20,
+          null,
+          null,
+          15,
+          7
+        ]
+      ],
+      "expected": [
+        9,
+        15,
+        7,
+        20,
+        3
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          1,
+          null,
+          2,
+          3
+        ]
+      ],
+      "expected": [
+        3,
+        2,
+        1
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": [],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1
+        ]
+      ],
+      "expected": [
+        1
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      ],
+      "expected": [
+        4,
+        5,
+        2,
+        6,
+        7,
+        3,
+        1
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 158
+}

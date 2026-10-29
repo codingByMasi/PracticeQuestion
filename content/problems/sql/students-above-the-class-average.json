@@ -1,0 +1,21 @@
+{
+  "slug": "students-above-the-class-average",
+  "track": "sql",
+  "title": "Students above the class average",
+  "difficulty": "Medium",
+  "tags": [
+    "subquery"
+  ],
+  "statementMd": "List students whose average score exceeds the average of all scores. Show name and average rounded to 1 decimal.\n\nExpected columns: `name`, `avg_score`.\n\nTables: `teachers`, `courses`, `students`, `enrollments`.\n\nRow order does not matter.",
+  "hints": [
+    "Compare `AVG(score)` per student with a scalar subquery."
+  ],
+  "solutionMd": "```sql\nSELECT s.name, ROUND(AVG(e.score), 1) AS avg_score FROM students s JOIN enrollments e ON e.student_id = s.id GROUP BY s.id, s.name HAVING AVG(e.score) > (SELECT AVG(score) FROM enrollments);\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: teachers, courses, students, enrollments\nSELECT\n",
+  "datasetId": "school",
+  "expected": {
+    "query": "SELECT s.name, ROUND(AVG(e.score), 1) AS avg_score FROM students s JOIN enrollments e ON e.student_id = s.id GROUP BY s.id, s.name HAVING AVG(e.score) > (SELECT AVG(score) FROM enrollments);",
+    "orderMatters": false
+  },
+  "order": 316
+}

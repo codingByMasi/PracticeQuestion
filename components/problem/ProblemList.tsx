@@ -9,6 +9,8 @@ import type { Status } from "@/lib/progress/types";
 
 type StatusFilter = "all" | "solved" | "unsolved";
 
+const PAGE_SIZE = 50;
+
 const selectClass =
   "rounded-md border border-zinc-300 bg-white px-2 py-1.5 text-sm dark:border-zinc-700 dark:bg-zinc-900";
 
@@ -30,7 +32,7 @@ export function ProblemList({ problems, tracks }: { problems: ProblemSummary[]; 
     () => [...new Set(problems.filter((p) => track === "all" || p.track === track).flatMap((p) => p.tags))].sort(),
     [problems, track],
   );
-  const order = (d: string) => DIFFICULTIES.indexOf(d as (typeof DIFFICULTIES)[number]);
+  const difficultyRank = (d: string) => DIFFICULTIES.indexOf(d as (typeof DIFFICULTIES)[number]);
 
   const statusOf = (slug: string): Status => (ready ? store.getProblemStatus(slug) : "unsolved");
   const filtered = problems
@@ -39,7 +41,19 @@ export function ProblemList({ problems, tracks }: { problems: ProblemSummary[]; 
     .filter((p) => tag === "all" || p.tags.includes(tag))
     .filter((p) => status === "all" || (status === "solved") === (statusOf(p.slug) === "solved"))
     .filter((p) => !query || p.title.toLowerCase().includes(query.toLowerCase()))
-    .sort((a, b) => a.track.localeCompare(b.track) || order(a.difficulty) - order(b.difficulty) || a.title.localeCompare(b.title));
+    .sort(
+      (a, b) =>
+        a.track.localeCompare(b.track) ||
+        (a.order ?? Number.MAX_SAFE_INTEGER) - (b.order ?? Number.MAX_SAFE_INTEGER) ||
+        difficultyRank(a.difficulty) - difficultyRank(b.difficulty) ||
+        a.title.localeCompare(b.title),
+    );
+
+  // The page size resets whenever a filter changes (the pager remembers which filters it was grown for).
+  const filterKey = [track, difficulty, tag, status, query].join("|");
+  const [pager, setPager] = useState({ key: filterKey, count: PAGE_SIZE });
+  const visible = pager.key === filterKey ? pager.count : PAGE_SIZE;
+  const shown = filtered.slice(0, visible);
 
   return (
     <div className="mt-6 space-y-4">
@@ -99,7 +113,7 @@ export function ProblemList({ problems, tracks }: { problems: ProblemSummary[]; 
           </select>
         </label>
         <p className="ml-auto text-sm text-zinc-500 dark:text-zinc-400" aria-live="polite">
-          {filtered.length} shown
+          {shown.length} of {filtered.length} shown
         </p>
       </form>
 
@@ -125,7 +139,7 @@ export function ProblemList({ problems, tracks }: { problems: ProblemSummary[]; 
             </tr>
           </thead>
           <tbody>
-            {filtered.map((p) => {
+            {shown.map((p) => {
               const s = STATUS_ICON[statusOf(p.slug)];
               return (
                 <tr key={p.slug} className="border-t border-zinc-100 hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-900/60">
@@ -164,6 +178,17 @@ export function ProblemList({ problems, tracks }: { problems: ProblemSummary[]; 
           </tbody>
         </table>
       </div>
+      {filtered.length > shown.length && (
+        <div className="flex justify-center">
+          <button
+            type="button"
+            onClick={() => setPager({ key: filterKey, count: visible + PAGE_SIZE })}
+            className="rounded-md border border-zinc-300 bg-white px-4 py-2 text-sm font-medium hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 dark:hover:bg-zinc-800"
+          >
+            Show {Math.min(PAGE_SIZE, filtered.length - shown.length)} more
+          </button>
+        </div>
+      )}
     </div>
   );
 }

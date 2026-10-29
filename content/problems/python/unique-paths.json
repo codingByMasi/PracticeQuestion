@@ -1,0 +1,76 @@
+{
+  "slug": "unique-paths",
+  "track": "python",
+  "title": "Unique paths",
+  "difficulty": "Medium",
+  "tags": [
+    "dynamic-programming"
+  ],
+  "statementMd": "A robot moves only right or down from the top-left to the bottom-right of a `rows x cols` grid. Return the number of unique paths.\n\n**Example:** `unique_paths(3, 7)` returns `28`.",
+  "hints": [
+    "paths[r][c] = paths[r-1][c] + paths[r][c-1]."
+  ],
+  "solutionMd": "```python\ndef unique_paths(rows, cols):\n    row = [1] * cols\n    for _ in range(1, rows):\n        for c in range(1, cols):\n            row[c] += row[c - 1]\n    return row[-1]\n```\n\nA single rolling row is enough.",
+  "starterCode": "def unique_paths(rows, cols):\n    # Write your code here\n    pass\n",
+  "functionName": "unique_paths",
+  "referenceSolution": "def unique_paths(rows, cols):\n    row = [1] * cols\n    for _ in range(1, rows):\n        for c in range(1, cols):\n            row[c] += row[c - 1]\n    return row[-1]\n",
+  "tests": [
+    {
+      "args": [
+        3,
+        7
+      ],
+      "expected": 28,
+      "hidden": false
+    },
+    {
+      "args": [
+        3,
+        2
+      ],
+      "expected": 3,
+      "hidden": false
+    },
+    {
+      "args": [
+        1,
+        1
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        1,
+        5
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        5,
+        1
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        7,
+        3
+      ],
+      "expected": 28,
+      "hidden": true
+    },
+    {
+      "args": [
+        10,
+        10
+      ],
+      "expected": 48620,
+      "hidden": true
+    }
+  ],
+  "order": 317
+}

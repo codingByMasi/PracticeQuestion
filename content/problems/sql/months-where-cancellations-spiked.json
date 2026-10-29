@@ -1,0 +1,21 @@
+{
+  "slug": "months-where-cancellations-spiked",
+  "track": "sql",
+  "title": "Months where cancellations spiked",
+  "difficulty": "Hard",
+  "tags": [
+    "having"
+  ],
+  "statementMd": "List months (YYYY-MM) in which more than 5% of departing flights were cancelled. Show month and the percentage rounded to 1 decimal.\n\nExpected columns: `month`, `cancelled_pct`.\n\nTables: `airlines`, `airports`, `flights`, `bookings`.\n\nRow order does not matter.",
+  "hints": [
+    "Average a 0/1 flag per month and filter in `HAVING`."
+  ],
+  "solutionMd": "```sql\nSELECT strftime('%Y-%m', depart_date) AS month, ROUND(100.0 * SUM(status = 'cancelled') / COUNT(*), 1) AS cancelled_pct FROM flights GROUP BY month HAVING 100.0 * SUM(status = 'cancelled') / COUNT(*) > 5;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: airlines, airports, flights, bookings\nSELECT\n",
+  "datasetId": "flights",
+  "expected": {
+    "query": "SELECT strftime('%Y-%m', depart_date) AS month, ROUND(100.0 * SUM(status = 'cancelled') / COUNT(*), 1) AS cancelled_pct FROM flights GROUP BY month HAVING 100.0 * SUM(status = 'cancelled') / COUNT(*) > 5;",
+    "orderMatters": false
+  },
+  "order": 378
+}

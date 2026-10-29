@@ -1,0 +1,21 @@
+{
+  "slug": "repeat-customers",
+  "track": "sql",
+  "title": "Repeat customers",
+  "difficulty": "Medium",
+  "tags": [
+    "having"
+  ],
+  "statementMd": "List customers with at least two non-cancelled orders. Show name and order count.\n\nExpected columns: `name`, `orders`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\nRow order does not matter.",
+  "hints": [
+    "Filter cancelled orders before grouping."
+  ],
+  "solutionMd": "```sql\nSELECT c.name, COUNT(*) AS orders FROM customers c JOIN orders o ON o.customer_id = c.id WHERE o.status <> 'cancelled' GROUP BY c.id, c.name HAVING COUNT(*) >= 2;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "SELECT c.name, COUNT(*) AS orders FROM customers c JOIN orders o ON o.customer_id = c.id WHERE o.status <> 'cancelled' GROUP BY c.id, c.name HAVING COUNT(*) >= 2;",
+    "orderMatters": false
+  },
+  "order": 248
+}

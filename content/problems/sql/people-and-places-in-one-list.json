@@ -1,0 +1,21 @@
+{
+  "slug": "people-and-places-in-one-list",
+  "track": "sql",
+  "title": "People and places in one list",
+  "difficulty": "Medium",
+  "tags": [
+    "set-ops"
+  ],
+  "statementMd": "Produce a single list of text values containing every employee's first name and every department name. Show the column once and keep duplicates out.\n\nExpected columns: `label`.\n\nTables: `employees`, `departments`.\n\nRow order does not matter.",
+  "hints": [
+    "`UNION` removes duplicates; `UNION ALL` keeps them."
+  ],
+  "solutionMd": "```sql\nSELECT first_name AS label FROM employees UNION SELECT name FROM departments;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "SELECT first_name AS label FROM employees UNION SELECT name FROM departments;",
+    "orderMatters": false
+  },
+  "order": 329
+}

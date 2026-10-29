@@ -1,0 +1,85 @@
+{
+  "slug": "merge-two-dicts",
+  "track": "python",
+  "title": "Merge two dicts",
+  "difficulty": "Easy",
+  "tags": [
+    "dicts"
+  ],
+  "statementMd": "Return a new dict with all keys of `a` and `b`; on conflict the value from `b` wins.\n\n**Example:** `merge_dicts({\"a\": 1}, {\"b\": 2})` returns `{\"a\": 1, \"b\": 2}`.",
+  "hints": [
+    "`{**a, **b}`."
+  ],
+  "solutionMd": "```python\ndef merge_dicts(a, b):\n    return {**a, **b}\n```\n\nLater entries override earlier ones.",
+  "starterCode": "def merge_dicts(a, b):\n    # Write your code here\n    pass\n",
+  "functionName": "merge_dicts",
+  "referenceSolution": "def merge_dicts(a, b):\n    return {**a, **b}\n",
+  "tests": [
+    {
+      "args": [
+        {
+          "a": 1
+        },
+        {
+          "b": 2
+        }
+      ],
+      "expected": {
+        "a": 1,
+        "b": 2
+      },
+      "hidden": false
+    },
+    {
+      "args": [
+        {
+          "a": 1
+        },
+        {
+          "a": 9
+        }
+      ],
+      "expected": {
+        "a": 9
+      },
+      "hidden": false
+    },
+    {
+      "args": [
+        {},
+        {}
+      ],
+      "expected": {},
+      "hidden": true
+    },
+    {
+      "args": [
+        {
+          "x": 1,
+          "y": 2
+        },
+        {
+          "y": 3
+        }
+      ],
+      "expected": {
+        "x": 1,
+        "y": 3
+      },
+      "hidden": true
+    },
+    {
+      "args": [
+        {},
+        {
+          "k": "v"
+        }
+      ],
+      "expected": {
+        "k": "v"
+      },
+      "hidden": true
+    }
+  ],
+  "order": 101
+}

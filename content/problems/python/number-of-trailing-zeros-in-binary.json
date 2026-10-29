@@ -1,0 +1,62 @@
+{
+  "slug": "number-of-trailing-zeros-in-binary",
+  "track": "python",
+  "title": "Number of trailing zeros in binary",
+  "difficulty": "Easy",
+  "tags": [
+    "bit-manipulation"
+  ],
+  "statementMd": "Return the number of trailing zero bits in the positive integer `n`.\n\n**Example:** `trailing_zero_bits(8)` returns `3`.",
+  "hints": [
+    "`n & -n` isolates the lowest set bit."
+  ],
+  "solutionMd": "```python\ndef trailing_zero_bits(n):\n    return (n & -n).bit_length() - 1\n```\n\nThe position of the lowest set bit.",
+  "starterCode": "def trailing_zero_bits(n):\n    # Write your code here\n    pass\n",
+  "functionName": "trailing_zero_bits",
+  "referenceSolution": "def trailing_zero_bits(n):\n    return (n & -n).bit_length() - 1\n",
+  "tests": [
+    {
+      "args": [
+        8
+      ],
+      "expected": 3,
+      "hidden": false
+    },
+    {
+      "args": [
+        7
+      ],
+      "expected": 0,
+      "hidden": false
+    },
+    {
+      "args": [
+        1
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        12
+      ],
+      "expected": 2,
+      "hidden": true
+    },
+    {
+      "args": [
+        1024
+      ],
+      "expected": 10,
+      "hidden": true
+    },
+    {
+      "args": [
+        96
+      ],
+      "expected": 5,
+      "hidden": true
+    }
+  ],
+  "order": 139
+}

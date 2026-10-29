@@ -1,0 +1,21 @@
+{
+  "slug": "airports-with-no-departures",
+  "track": "sql",
+  "title": "Airports with no departures",
+  "difficulty": "Medium",
+  "tags": [
+    "left-join"
+  ],
+  "statementMd": "List airports with fewer than 8 departures (zero counts). Show city and departures.\n\nExpected columns: `city`, `departures`.\n\nTables: `airlines`, `airports`, `flights`, `bookings`.\n\nRow order does not matter.",
+  "hints": [
+    "Left join and `HAVING COUNT(f.id) < 8`."
+  ],
+  "solutionMd": "```sql\nSELECT a.city, COUNT(f.id) AS departures FROM airports a LEFT JOIN flights f ON f.origin = a.code GROUP BY a.code, a.city HAVING COUNT(f.id) < 8;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: airlines, airports, flights, bookings\nSELECT\n",
+  "datasetId": "flights",
+  "expected": {
+    "query": "SELECT a.city, COUNT(f.id) AS departures FROM airports a LEFT JOIN flights f ON f.origin = a.code GROUP BY a.code, a.city HAVING COUNT(f.id) < 8;",
+    "orderMatters": false
+  },
+  "order": 280
+}

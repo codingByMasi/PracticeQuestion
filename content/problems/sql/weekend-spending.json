@@ -1,0 +1,21 @@
+{
+  "slug": "weekend-spending",
+  "track": "sql",
+  "title": "Weekend spending",
+  "difficulty": "Medium",
+  "tags": [
+    "dates"
+  ],
+  "statementMd": "Total purchase spending (positive) on weekends versus weekdays: two rows `weekend` / `weekday`.\n\nExpected columns: `day_type`, `spent`.\n\nTables: `customers`, `accounts`, `transactions`.\n\nRow order does not matter.",
+  "hints": [
+    "Weekday from `strftime('%w')`."
+  ],
+  "solutionMd": "```sql\nSELECT CASE WHEN strftime('%w', tx_date) IN ('0', '6') THEN 'weekend' ELSE 'weekday' END AS day_type, ROUND(-SUM(amount), 2) AS spent FROM transactions WHERE kind = 'purchase' GROUP BY day_type;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, accounts, transactions\nSELECT\n",
+  "datasetId": "bank",
+  "expected": {
+    "query": "SELECT CASE WHEN strftime('%w', tx_date) IN ('0', '6') THEN 'weekend' ELSE 'weekday' END AS day_type, ROUND(-SUM(amount), 2) AS spent FROM transactions WHERE kind = 'purchase' GROUP BY day_type;",
+    "orderMatters": false
+  },
+  "order": 184
+}

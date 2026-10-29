@@ -1,0 +1,21 @@
+{
+  "slug": "artists-with-several-genres",
+  "track": "sql",
+  "title": "Artists with several genres",
+  "difficulty": "Medium",
+  "tags": [
+    "having"
+  ],
+  "statementMd": "List artists who released albums in at least two different genres.\n\nExpected columns: `name`, `genres`.\n\nTables: `artists`, `albums`, `tracks`, `listeners`, `plays`.\n\nRow order does not matter.",
+  "hints": [
+    "`COUNT(DISTINCT genre) >= 2`."
+  ],
+  "solutionMd": "```sql\nSELECT ar.name, COUNT(DISTINCT al.genre) AS genres FROM artists ar JOIN albums al ON al.artist_id = ar.id GROUP BY ar.id, ar.name HAVING COUNT(DISTINCT al.genre) >= 2;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: artists, albums, tracks, listeners, plays\nSELECT\n",
+  "datasetId": "music",
+  "expected": {
+    "query": "SELECT ar.name, COUNT(DISTINCT al.genre) AS genres FROM artists ar JOIN albums al ON al.artist_id = ar.id GROUP BY ar.id, ar.name HAVING COUNT(DISTINCT al.genre) >= 2;",
+    "orderMatters": false
+  },
+  "order": 252
+}

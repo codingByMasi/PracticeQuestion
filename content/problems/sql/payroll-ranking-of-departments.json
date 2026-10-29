@@ -1,0 +1,21 @@
+{
+  "slug": "payroll-ranking-of-departments",
+  "track": "sql",
+  "title": "Payroll ranking of departments",
+  "difficulty": "Medium",
+  "tags": [
+    "group-by"
+  ],
+  "statementMd": "Rank departments by total salary, highest first. Show the department name and total.\n\nExpected columns: `department`, `payroll`.\n\nTables: `employees`, `departments`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Sum salaries per department and sort by the sum."
+  ],
+  "solutionMd": "```sql\nSELECT d.name AS department, SUM(e.salary) AS payroll FROM employees e JOIN departments d ON d.id = e.department_id GROUP BY d.id, d.name ORDER BY payroll DESC;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "SELECT d.name AS department, SUM(e.salary) AS payroll FROM employees e JOIN departments d ON d.id = e.department_id GROUP BY d.id, d.name ORDER BY payroll DESC;",
+    "orderMatters": true
+  },
+  "order": 229
+}

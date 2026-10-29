@@ -1,0 +1,104 @@
+{
+  "slug": "plus-one",
+  "track": "python",
+  "title": "Plus one",
+  "difficulty": "Easy",
+  "tags": [
+    "lists"
+  ],
+  "statementMd": "A non-negative integer is given as a list of digits (most significant first, no leading zeros except for 0 itself). Return the digits of the number plus one.\n\n**Example:** `plus_one([1, 2, 3])` returns `[1, 2, 4]`.",
+  "hints": [
+    "Carry from the right."
+  ],
+  "solutionMd": "```python\ndef plus_one(digits):\n    digits = digits[:]\n    for i in range(len(digits) - 1, -1, -1):\n        if digits[i] < 9:\n            digits[i] += 1\n            return digits\n        digits[i] = 0\n    return [1] + digits\n```\n\nAll nines roll over to a new leading digit.",
+  "starterCode": "def plus_one(digits):\n    # Write your code here\n    pass\n",
+  "functionName": "plus_one",
+  "referenceSolution": "def plus_one(digits):\n    digits = digits[:]\n    for i in range(len(digits) - 1, -1, -1):\n        if digits[i] < 9:\n            digits[i] += 1\n            return digits\n        digits[i] = 0\n    return [1] + digits\n",
+  "tests": [
+    {
+      "args": [
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "expected": [
+        1,
+        2,
+        4
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          9,
+          9
+        ]
+      ],
+      "expected": [
+        1,
+        0,
+        0
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          0
+        ]
+      ],
+      "expected": [
+        1
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          9
+        ]
+      ],
+      "expected": [
+        1,
+        0
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          9,
+          9
+        ]
+      ],
+      "expected": [
+        2,
+        0,
+        0
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          8,
+          9,
+          9,
+          9
+        ]
+      ],
+      "expected": [
+        9,
+        0,
+        0,
+        0
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 88
+}

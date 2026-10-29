@@ -1,0 +1,142 @@
+{
+  "slug": "grid-paths-modulo",
+  "track": "python",
+  "title": "Grid paths modulo",
+  "difficulty": "Medium",
+  "tags": [
+    "matrix"
+  ],
+  "statementMd": "A robot at the top-left moves right or down through a grid of `0` (free) and `1` (blocked) cells to the bottom-right. Return the number of paths modulo 1000007.\n\n**Example:** `count_paths_grid([[0, 0], [0, 0]])` returns `2`.",
+  "hints": [
+    "Standard grid DP with a modulus."
+  ],
+  "solutionMd": "```python\ndef count_paths_grid(grid):\n    R, C = len(grid), len(grid[0])\n    dp = [[0] * C for _ in range(R)]\n    for r in range(R):\n        for c in range(C):\n            if grid[r][c]:\n                continue\n            if r == c == 0:\n                dp[r][c] = 1\n            else:\n                dp[r][c] = ((dp[r - 1][c] if r else 0) + (dp[r][c - 1] if c else 0)) % 1000007\n    return dp[-1][-1]\n```\n\nMod keeps numbers small.",
+  "starterCode": "def count_paths_grid(grid):\n    # Write your code here\n    pass\n",
+  "functionName": "count_paths_grid",
+  "referenceSolution": "def count_paths_grid(grid):\n    R, C = len(grid), len(grid[0])\n    dp = [[0] * C for _ in range(R)]\n    for r in range(R):\n        for c in range(C):\n            if grid[r][c]:\n                continue\n            if r == c == 0:\n                dp[r][c] = 1\n            else:\n                dp[r][c] = ((dp[r - 1][c] if r else 0) + (dp[r][c - 1] if c else 0)) % 1000007\n    return dp[-1][-1]\n",
+  "tests": [
+    {
+      "args": [
+        [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      ],
+      "expected": 2,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      ],
+      "expected": 0,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            0
+          ]
+        ]
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      ],
+      "expected": 252,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      ],
+      "expected": 2,
+      "hidden": true
+    }
+  ],
+  "order": 275
+}

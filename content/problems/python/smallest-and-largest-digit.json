@@ -1,0 +1,80 @@
+{
+  "slug": "smallest-and-largest-digit",
+  "track": "python",
+  "title": "Smallest and largest digit",
+  "difficulty": "Easy",
+  "tags": [
+    "numbers"
+  ],
+  "statementMd": "Return `[smallest digit, largest digit]` of the non-negative integer `n`.\n\n**Example:** `digit_extremes(4071)` returns `[0, 7]`.",
+  "hints": [
+    "Turn the number into digits."
+  ],
+  "solutionMd": "```python\ndef digit_extremes(n):\n    ds = [int(c) for c in str(n)]\n    return [min(ds), max(ds)]\n```\n\nDigits as a list.",
+  "starterCode": "def digit_extremes(n):\n    # Write your code here\n    pass\n",
+  "functionName": "digit_extremes",
+  "referenceSolution": "def digit_extremes(n):\n    ds = [int(c) for c in str(n)]\n    return [min(ds), max(ds)]\n",
+  "tests": [
+    {
+      "args": [
+        4071
+      ],
+      "expected": [
+        0,
+        7
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        5
+      ],
+      "expected": [
+        5,
+        5
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        0
+      ],
+      "expected": [
+        0,
+        0
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        99
+      ],
+      "expected": [
+        9,
+        9
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        102030
+      ],
+      "expected": [
+        0,
+        3
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        987654
+      ],
+      "expected": [
+        4,
+        9
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 27
+}

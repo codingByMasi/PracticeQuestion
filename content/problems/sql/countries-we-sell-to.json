@@ -1,0 +1,21 @@
+{
+  "slug": "countries-we-sell-to",
+  "track": "sql",
+  "title": "Countries we sell to",
+  "difficulty": "Easy",
+  "tags": [
+    "distinct"
+  ],
+  "statementMd": "List each customer country once.\n\nExpected columns: `country`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\nRow order does not matter.",
+  "hints": [
+    "`SELECT DISTINCT country`."
+  ],
+  "solutionMd": "```sql\nSELECT DISTINCT country FROM customers;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "SELECT DISTINCT country FROM customers;",
+    "orderMatters": false
+  },
+  "order": 79
+}

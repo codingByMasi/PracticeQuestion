@@ -1,0 +1,21 @@
+{
+  "slug": "most-borrowed-books",
+  "track": "sql",
+  "title": "Most borrowed books",
+  "difficulty": "Medium",
+  "tags": [
+    "join"
+  ],
+  "statementMd": "The five books with the most loans (title and loan count). Break ties by title.\n\nExpected columns: `title`, `loans`.\n\nTables: `authors`, `books`, `members`, `loans`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Group loans by book."
+  ],
+  "solutionMd": "```sql\nSELECT b.title, COUNT(*) AS loans FROM loans l JOIN books b ON b.id = l.book_id GROUP BY b.id, b.title ORDER BY loans DESC, b.title LIMIT 5;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: authors, books, members, loans\nSELECT\n",
+  "datasetId": "library",
+  "expected": {
+    "query": "SELECT b.title, COUNT(*) AS loans FROM loans l JOIN books b ON b.id = l.book_id GROUP BY b.id, b.title ORDER BY loans DESC, b.title LIMIT 5;",
+    "orderMatters": true
+  },
+  "order": 268
+}

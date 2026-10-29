@@ -1,0 +1,68 @@
+{
+  "slug": "josephus-survivor",
+  "track": "python",
+  "title": "Josephus survivor",
+  "difficulty": "Medium",
+  "tags": [
+    "simulation"
+  ],
+  "statementMd": "`n` people stand in a circle numbered 1..n; starting from 1 every k-th person is eliminated. Return the number of the last survivor.\n\n**Example:** `josephus(7, 3)` returns `4`.",
+  "hints": [
+    "Recurrence: J(n) = (J(n-1) + k) % n."
+  ],
+  "solutionMd": "```python\ndef josephus(n, k):\n    pos = 0\n    for m in range(2, n + 1):\n        pos = (pos + k) % m\n    return pos + 1\n```\n\nBuild the answer from the one-person circle upwards.",
+  "starterCode": "def josephus(n, k):\n    # Write your code here\n    pass\n",
+  "functionName": "josephus",
+  "referenceSolution": "def josephus(n, k):\n    pos = 0\n    for m in range(2, n + 1):\n        pos = (pos + k) % m\n    return pos + 1\n",
+  "tests": [
+    {
+      "args": [
+        7,
+        3
+      ],
+      "expected": 4,
+      "hidden": false
+    },
+    {
+      "args": [
+        1,
+        5
+      ],
+      "expected": 1,
+      "hidden": false
+    },
+    {
+      "args": [
+        5,
+        2
+      ],
+      "expected": 3,
+      "hidden": true
+    },
+    {
+      "args": [
+        10,
+        1
+      ],
+      "expected": 10,
+      "hidden": true
+    },
+    {
+      "args": [
+        6,
+        6
+      ],
+      "expected": 4,
+      "hidden": true
+    },
+    {
+      "args": [
+        41,
+        3
+      ],
+      "expected": 31,
+      "hidden": true
+    }
+  ],
+  "order": 304
+}

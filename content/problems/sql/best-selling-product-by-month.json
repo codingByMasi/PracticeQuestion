@@ -1,0 +1,21 @@
+{
+  "slug": "best-selling-product-by-month",
+  "track": "sql",
+  "title": "Best selling product by month",
+  "difficulty": "Hard",
+  "tags": [
+    "ranking"
+  ],
+  "statementMd": "For each month of 2024 that has non-cancelled sales, show the product with the most units sold (month, product name, units). Break ties by product name.\n\nExpected columns: `month`, `name`, `units`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Group by month and product, rank with `ROW_NUMBER` ordered by units desc then name."
+  ],
+  "solutionMd": "```sql\nWITH m AS (SELECT strftime('%Y-%m', o.order_date) AS month, p.name, SUM(oi.quantity) AS units FROM orders o JOIN order_items oi ON oi.order_id = o.id JOIN products p ON p.id = oi.product_id WHERE o.status <> 'cancelled' GROUP BY month, p.id), r AS (SELECT *, ROW_NUMBER() OVER (PARTITION BY month ORDER BY units DESC, name) AS rn FROM m) SELECT month, name, units FROM r WHERE rn = 1 ORDER BY month;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "WITH m AS (SELECT strftime('%Y-%m', o.order_date) AS month, p.name, SUM(oi.quantity) AS units FROM orders o JOIN order_items oi ON oi.order_id = o.id JOIN products p ON p.id = oi.product_id WHERE o.status <> 'cancelled' GROUP BY month, p.id), r AS (SELECT *, ROW_NUMBER() OVER (PARTITION BY month ORDER BY units DESC, name) AS rn FROM m) SELECT month, name, units FROM r WHERE rn = 1 ORDER BY month;",
+    "orderMatters": true
+  },
+  "order": 448
+}

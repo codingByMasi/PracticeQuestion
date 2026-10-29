@@ -1,0 +1,55 @@
+{
+  "slug": "digit-sum-recursion",
+  "track": "python",
+  "title": "Digit sum recursion",
+  "difficulty": "Easy",
+  "tags": [
+    "recursion"
+  ],
+  "statementMd": "Return the sum of the digits of non-negative `n` recursively.\n\n**Example:** `rec_digit_sum(123)` returns `6`.",
+  "hints": [
+    "`n % 10 + digit_sum(n // 10)`."
+  ],
+  "solutionMd": "```python\ndef rec_digit_sum(n):\n    if n < 10:\n        return n\n    return n % 10 + rec_digit_sum(n // 10)\n```\n\nStrip one digit per call.",
+  "starterCode": "def rec_digit_sum(n):\n    # Write your code here\n    pass\n",
+  "functionName": "rec_digit_sum",
+  "referenceSolution": "def rec_digit_sum(n):\n    if n < 10:\n        return n\n    return n % 10 + rec_digit_sum(n // 10)\n",
+  "tests": [
+    {
+      "args": [
+        123
+      ],
+      "expected": 6,
+      "hidden": false
+    },
+    {
+      "args": [
+        0
+      ],
+      "expected": 0,
+      "hidden": false
+    },
+    {
+      "args": [
+        9
+      ],
+      "expected": 9,
+      "hidden": true
+    },
+    {
+      "args": [
+        1000
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        98765
+      ],
+      "expected": 35,
+      "hidden": true
+    }
+  ],
+  "order": 124
+}

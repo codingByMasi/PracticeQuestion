@@ -1,0 +1,21 @@
+{
+  "slug": "total-plays",
+  "track": "sql",
+  "title": "Total plays",
+  "difficulty": "Easy",
+  "tags": [
+    "aggregate"
+  ],
+  "statementMd": "How many plays are recorded in total?\n\nExpected columns: `plays`.\n\nTables: `artists`, `albums`, `tracks`, `listeners`, `plays`.\n\nRow order does not matter.",
+  "hints": [
+    "`COUNT(*)`."
+  ],
+  "solutionMd": "```sql\nSELECT COUNT(*) AS plays FROM plays;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: artists, albums, tracks, listeners, plays\nSELECT\n",
+  "datasetId": "music",
+  "expected": {
+    "query": "SELECT COUNT(*) AS plays FROM plays;",
+    "orderMatters": false
+  },
+  "order": 119
+}

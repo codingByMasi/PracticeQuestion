@@ -1,0 +1,90 @@
+{
+  "slug": "difference-of-two-lists",
+  "track": "python",
+  "title": "Difference of two lists",
+  "difficulty": "Easy",
+  "tags": [
+    "sets"
+  ],
+  "statementMd": "Return the sorted distinct values that appear in `a` but not in `b`.\n\n**Example:** `difference_sorted([1, 2, 3], [2])` returns `[1, 3]`.",
+  "hints": [
+    "`set(a) - set(b)`."
+  ],
+  "solutionMd": "```python\ndef difference_sorted(a, b):\n    return sorted(set(a) - set(b))\n```\n\nSet difference.",
+  "starterCode": "def difference_sorted(a, b):\n    # Write your code here\n    pass\n",
+  "functionName": "difference_sorted",
+  "referenceSolution": "def difference_sorted(a, b):\n    return sorted(set(a) - set(b))\n",
+  "tests": [
+    {
+      "args": [
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          2
+        ]
+      ],
+      "expected": [
+        1,
+        3
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          1
+        ],
+        [
+          1
+        ]
+      ],
+      "expected": [],
+      "hidden": false
+    },
+    {
+      "args": [
+        [],
+        [
+          1
+        ]
+      ],
+      "expected": [],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          4,
+          4,
+          5
+        ],
+        []
+      ],
+      "expected": [
+        4,
+        5
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          2
+        ],
+        [
+          3
+        ]
+      ],
+      "expected": [
+        1,
+        2
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 94
+}

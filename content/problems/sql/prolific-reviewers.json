@@ -18,5 +18,6 @@
   "expected": {
     "query": "SELECT reviewer, COUNT(*) AS review_count FROM reviews GROUP BY reviewer HAVING COUNT(*) >= 6;",
     "orderMatters": false
-  }
+  },
+  "order": 225
 }

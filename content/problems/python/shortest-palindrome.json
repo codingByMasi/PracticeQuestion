@@ -1,0 +1,62 @@
+{
+  "slug": "shortest-palindrome",
+  "track": "python",
+  "title": "Shortest palindrome",
+  "difficulty": "Hard",
+  "tags": [
+    "strings"
+  ],
+  "statementMd": "Add characters only at the **front** of `s` to make it a palindrome; return the shortest result.\n\n**Example:** `shortest_palindrome(\"aacecaaa\")` returns `\"aaacecaaa\"`.",
+  "hints": [
+    "Find the longest palindromic prefix."
+  ],
+  "solutionMd": "```python\ndef shortest_palindrome(s):\n    for end in range(len(s), 0, -1):\n        if s[:end] == s[:end][::-1]:\n            return s[end:][::-1] + s\n    return s\n```\n\nReverse the non-palindromic suffix onto the front.",
+  "starterCode": "def shortest_palindrome(s):\n    # Write your code here\n    pass\n",
+  "functionName": "shortest_palindrome",
+  "referenceSolution": "def shortest_palindrome(s):\n    for end in range(len(s), 0, -1):\n        if s[:end] == s[:end][::-1]:\n            return s[end:][::-1] + s\n    return s\n",
+  "tests": [
+    {
+      "args": [
+        "aacecaaa"
+      ],
+      "expected": "aaacecaaa",
+      "hidden": false
+    },
+    {
+      "args": [
+        "abcd"
+      ],
+      "expected": "dcbabcd",
+      "hidden": false
+    },
+    {
+      "args": [
+        ""
+      ],
+      "expected": "",
+      "hidden": true
+    },
+    {
+      "args": [
+        "a"
+      ],
+      "expected": "a",
+      "hidden": true
+    },
+    {
+      "args": [
+        "aba"
+      ],
+      "expected": "aba",
+      "hidden": true
+    },
+    {
+      "args": [
+        "ab"
+      ],
+      "expected": "bab",
+      "hidden": true
+    }
+  ],
+  "order": 385
+}

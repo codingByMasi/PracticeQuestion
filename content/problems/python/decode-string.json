@@ -1,0 +1,62 @@
+{
+  "slug": "decode-string",
+  "track": "python",
+  "title": "Decode string",
+  "difficulty": "Hard",
+  "tags": [
+    "stacks"
+  ],
+  "statementMd": "Decode strings like `3[a2[c]]` into `accaccacc`: `k[encoded]` repeats the encoded part `k` times; nesting is allowed.\n\n**Example:** `decode_string(\"3[a]2[bc]\")` returns `\"aaabcbc\"`.",
+  "hints": [
+    "Stack of (previous string, repeat count)."
+  ],
+  "solutionMd": "```python\ndef decode_string(s):\n    stack = []\n    cur, k = '', 0\n    for c in s:\n        if c.isdigit():\n            k = k * 10 + int(c)\n        elif c == '[':\n            stack.append((cur, k))\n            cur, k = '', 0\n        elif c == ']':\n            prev, times = stack.pop()\n            cur = prev + cur * times\n        else:\n            cur += c\n    return cur\n```\n\nOn `]` multiply the inner string and attach it to the previous.",
+  "starterCode": "def decode_string(s):\n    # Write your code here\n    pass\n",
+  "functionName": "decode_string",
+  "referenceSolution": "def decode_string(s):\n    stack = []\n    cur, k = '', 0\n    for c in s:\n        if c.isdigit():\n            k = k * 10 + int(c)\n        elif c == '[':\n            stack.append((cur, k))\n            cur, k = '', 0\n        elif c == ']':\n            prev, times = stack.pop()\n            cur = prev + cur * times\n        else:\n            cur += c\n    return cur\n",
+  "tests": [
+    {
+      "args": [
+        "3[a]2[bc]"
+      ],
+      "expected": "aaabcbc",
+      "hidden": false
+    },
+    {
+      "args": [
+        "3[a2[c]]"
+      ],
+      "expected": "accaccacc",
+      "hidden": false
+    },
+    {
+      "args": [
+        "abc"
+      ],
+      "expected": "abc",
+      "hidden": true
+    },
+    {
+      "args": [
+        ""
+      ],
+      "expected": "",
+      "hidden": true
+    },
+    {
+      "args": [
+        "2[ab3[c]]d"
+      ],
+      "expected": "abcccabcccd",
+      "hidden": true
+    },
+    {
+      "args": [
+        "10[z]"
+      ],
+      "expected": "zzzzzzzzzz",
+      "hidden": true
+    }
+  ],
+  "order": 413
+}

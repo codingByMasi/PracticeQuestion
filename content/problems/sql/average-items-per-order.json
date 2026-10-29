@@ -1,0 +1,21 @@
+{
+  "slug": "average-items-per-order",
+  "track": "sql",
+  "title": "Average items per order",
+  "difficulty": "Medium",
+  "tags": [
+    "aggregate"
+  ],
+  "statementMd": "On average how many units does an order contain? Round to 2 decimals (orders with items only).\n\nExpected columns: `avg_units`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\nRow order does not matter.",
+  "hints": [
+    "Sum quantity per order first."
+  ],
+  "solutionMd": "```sql\nWITH o AS (SELECT order_id, SUM(quantity) AS units FROM order_items GROUP BY order_id) SELECT ROUND(AVG(units), 2) AS avg_units FROM o;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "WITH o AS (SELECT order_id, SUM(quantity) AS units FROM order_items GROUP BY order_id) SELECT ROUND(AVG(units), 2) AS avg_units FROM o;",
+    "orderMatters": false
+  },
+  "order": 221
+}

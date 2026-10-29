@@ -1,0 +1,60 @@
+{
+  "slug": "version-compare",
+  "track": "python",
+  "title": "Version compare",
+  "difficulty": "Medium",
+  "tags": [
+    "parsing"
+  ],
+  "statementMd": "Compare dotted version strings like `\"1.2.10\"` and `\"1.2.9\"` numerically part by part (missing parts count as 0). Return `1`, `-1` or `0`.\n\n**Example:** `compare_versions(\"1.2.10\", \"1.2.9\")` returns `1`.",
+  "hints": [
+    "Pad the shorter list with zeros."
+  ],
+  "solutionMd": "```python\ndef compare_versions(a, b):\n    x = [int(p) for p in a.split('.')]\n    y = [int(p) for p in b.split('.')]\n    n = max(len(x), len(y))\n    x += [0] * (n - len(x))\n    y += [0] * (n - len(y))\n    return (x > y) - (x < y)\n```\n\nList comparison is lexicographic.",
+  "starterCode": "def compare_versions(a, b):\n    # Write your code here\n    pass\n",
+  "functionName": "compare_versions",
+  "referenceSolution": "def compare_versions(a, b):\n    x = [int(p) for p in a.split('.')]\n    y = [int(p) for p in b.split('.')]\n    n = max(len(x), len(y))\n    x += [0] * (n - len(x))\n    y += [0] * (n - len(y))\n    return (x > y) - (x < y)\n",
+  "tests": [
+    {
+      "args": [
+        "1.2.10",
+        "1.2.9"
+      ],
+      "expected": 1,
+      "hidden": false
+    },
+    {
+      "args": [
+        "1.0",
+        "1.0.0"
+      ],
+      "expected": 0,
+      "hidden": false
+    },
+    {
+      "args": [
+        "0.1",
+        "1.1"
+      ],
+      "expected": -1,
+      "hidden": true
+    },
+    {
+      "args": [
+        "1.01",
+        "1.001"
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        "2",
+        "1.9.9"
+      ],
+      "expected": 1,
+      "hidden": true
+    }
+  ],
+  "order": 296
+}

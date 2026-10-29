@@ -1,0 +1,69 @@
+{
+  "slug": "is-power-of-two",
+  "track": "python",
+  "title": "Is power of two",
+  "difficulty": "Easy",
+  "tags": [
+    "bit-manipulation"
+  ],
+  "statementMd": "Return `True` if the integer `n` is a positive power of two.\n\n**Example:** `is_power_of_two(16)` returns `true`.",
+  "hints": [
+    "A power of two has exactly one bit set: `n & (n - 1) == 0`."
+  ],
+  "solutionMd": "```python\ndef is_power_of_two(n):\n    return n > 0 and n & (n - 1) == 0\n```\n\nClearing the lowest bit leaves zero only for powers of two.",
+  "starterCode": "def is_power_of_two(n):\n    # Write your code here\n    pass\n",
+  "functionName": "is_power_of_two",
+  "referenceSolution": "def is_power_of_two(n):\n    return n > 0 and n & (n - 1) == 0\n",
+  "tests": [
+    {
+      "args": [
+        16
+      ],
+      "expected": true,
+      "hidden": false
+    },
+    {
+      "args": [
+        18
+      ],
+      "expected": false,
+      "hidden": false
+    },
+    {
+      "args": [
+        1
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        0
+      ],
+      "expected": false,
+      "hidden": true
+    },
+    {
+      "args": [
+        -8
+      ],
+      "expected": false,
+      "hidden": true
+    },
+    {
+      "args": [
+        1024
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        1023
+      ],
+      "expected": false,
+      "hidden": true
+    }
+  ],
+  "order": 134
+}

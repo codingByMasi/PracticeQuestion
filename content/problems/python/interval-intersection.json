@@ -1,0 +1,136 @@
+{
+  "slug": "interval-intersection",
+  "track": "python",
+  "title": "Interval intersection",
+  "difficulty": "Medium",
+  "tags": [
+    "intervals"
+  ],
+  "statementMd": "`a` and `b` are lists of closed, pairwise disjoint, sorted intervals. Return their intersections as a sorted list.\n\n**Example:** `interval_intersection([[0, 2], [5, 10]], [[1, 5], [8, 12]])` returns `[[1, 2], [5, 5], [8, 10]]`.",
+  "hints": [
+    "Two pointers; advance the one ending first."
+  ],
+  "solutionMd": "```python\ndef interval_intersection(a, b):\n    i = j = 0\n    out = []\n    while i < len(a) and j < len(b):\n        lo, hi = max(a[i][0], b[j][0]), min(a[i][1], b[j][1])\n        if lo <= hi:\n            out.append([lo, hi])\n        if a[i][1] < b[j][1]:\n            i += 1\n        else:\n            j += 1\n    return out\n```\n\nCompare the overlap of the current pair.",
+  "starterCode": "def interval_intersection(a, b):\n    # Write your code here\n    pass\n",
+  "functionName": "interval_intersection",
+  "referenceSolution": "def interval_intersection(a, b):\n    i = j = 0\n    out = []\n    while i < len(a) and j < len(b):\n        lo, hi = max(a[i][0], b[j][0]), min(a[i][1], b[j][1])\n        if lo <= hi:\n            out.append([lo, hi])\n        if a[i][1] < b[j][1]:\n            i += 1\n        else:\n            j += 1\n    return out\n",
+  "tests": [
+    {
+      "args": [
+        [
+          [
+            0,
+            2
+          ],
+          [
+            5,
+            10
+          ]
+        ],
+        [
+          [
+            1,
+            5
+          ],
+          [
+            8,
+            12
+          ]
+        ]
+      ],
+      "expected": [
+        [
+          1,
+          2
+        ],
+        [
+          5,
+          5
+        ],
+        [
+          8,
+          10
+        ]
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [],
+        [
+          [
+            1,
+            2
+          ]
+        ]
+      ],
+      "expected": [],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            1,
+            3
+          ]
+        ],
+        [
+          [
+            3,
+            5
+          ]
+        ]
+      ],
+      "expected": [
+        [
+          3,
+          3
+        ]
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            1,
+            7
+          ]
+        ],
+        [
+          [
+            3,
+            10
+          ]
+        ]
+      ],
+      "expected": [
+        [
+          3,
+          7
+        ]
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            1,
+            2
+          ]
+        ],
+        [
+          [
+            3,
+            4
+          ]
+        ]
+      ],
+      "expected": [],
+      "hidden": true
+    }
+  ],
+  "order": 268
+}

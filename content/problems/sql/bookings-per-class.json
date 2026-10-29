@@ -1,0 +1,21 @@
+{
+  "slug": "bookings-per-class",
+  "track": "sql",
+  "title": "Bookings per class",
+  "difficulty": "Easy",
+  "tags": [
+    "group-by"
+  ],
+  "statementMd": "Average fare per seat class, rounded to 2 decimals.\n\nExpected columns: `seat_class`, `avg_fare`.\n\nTables: `airlines`, `airports`, `flights`, `bookings`.\n\nRow order does not matter.",
+  "hints": [
+    "Group by seat class."
+  ],
+  "solutionMd": "```sql\nSELECT seat_class, ROUND(AVG(fare), 2) AS avg_fare FROM bookings GROUP BY seat_class;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: airlines, airports, flights, bookings\nSELECT\n",
+  "datasetId": "flights",
+  "expected": {
+    "query": "SELECT seat_class, ROUND(AVG(fare), 2) AS avg_fare FROM bookings GROUP BY seat_class;",
+    "orderMatters": false
+  },
+  "order": 134
+}

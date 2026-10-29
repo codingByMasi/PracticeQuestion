@@ -1,0 +1,83 @@
+{
+  "slug": "longest-substring-without-repeats",
+  "track": "python",
+  "title": "Longest substring without repeats",
+  "difficulty": "Hard",
+  "tags": [
+    "sliding-window"
+  ],
+  "statementMd": "Return the length of the longest substring of `s` without repeated characters.\n\n**Example:** `longest_unique_substring(\"abcabcbb\")` returns `3`.",
+  "hints": [
+    "Sliding window with last-seen indices."
+  ],
+  "solutionMd": "```python\ndef longest_unique_substring(s):\n    last, start, best = {}, 0, 0\n    for i, c in enumerate(s):\n        if c in last and last[c] >= start:\n            start = last[c] + 1\n        last[c] = i\n        best = max(best, i - start + 1)\n    return best\n```\n\nMove the window start just past the previous occurrence.",
+  "starterCode": "def longest_unique_substring(s):\n    # Write your code here\n    pass\n",
+  "functionName": "longest_unique_substring",
+  "referenceSolution": "def longest_unique_substring(s):\n    last, start, best = {}, 0, 0\n    for i, c in enumerate(s):\n        if c in last and last[c] >= start:\n            start = last[c] + 1\n        last[c] = i\n        best = max(best, i - start + 1)\n    return best\n",
+  "tests": [
+    {
+      "args": [
+        "abcabcbb"
+      ],
+      "expected": 3,
+      "hidden": false
+    },
+    {
+      "args": [
+        "bbbbb"
+      ],
+      "expected": 1,
+      "hidden": false
+    },
+    {
+      "args": [
+        ""
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        "pwwkew"
+      ],
+      "expected": 3,
+      "hidden": true
+    },
+    {
+      "args": [
+        "abcdef"
+      ],
+      "expected": 6,
+      "hidden": true
+    },
+    {
+      "args": [
+        "dvdf"
+      ],
+      "expected": 3,
+      "hidden": true
+    },
+    {
+      "args": [
+        "acccddc"
+      ],
+      "expected": 2,
+      "hidden": true
+    },
+    {
+      "args": [
+        "dacbbaadbdddd"
+      ],
+      "expected": 4,
+      "hidden": true
+    },
+    {
+      "args": [
+        "bcdbca"
+      ],
+      "expected": 4,
+      "hidden": true
+    }
+  ],
+  "order": 403
+}

@@ -1,0 +1,21 @@
+{
+  "slug": "top-product-per-category-by-revenue",
+  "track": "sql",
+  "title": "Top product per category by revenue",
+  "difficulty": "Hard",
+  "tags": [
+    "ranking"
+  ],
+  "statementMd": "For each category, show the product with the highest revenue (non-cancelled lines). Show category, product name and revenue rounded to 2 decimals.\n\nExpected columns: `category`, `name`, `revenue`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\nRow order does not matter.",
+  "hints": [
+    "Rank products within category with `RANK()`."
+  ],
+  "solutionMd": "```sql\nWITH r AS (SELECT p.category, p.name, SUM(oi.quantity * oi.unit_price) AS revenue FROM order_items oi JOIN orders o ON o.id = oi.order_id JOIN products p ON p.id = oi.product_id WHERE o.status <> 'cancelled' GROUP BY p.id), k AS (SELECT *, RANK() OVER (PARTITION BY category ORDER BY revenue DESC) AS rk FROM r) SELECT category, name, ROUND(revenue, 2) AS revenue FROM k WHERE rk = 1;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "WITH r AS (SELECT p.category, p.name, SUM(oi.quantity * oi.unit_price) AS revenue FROM order_items oi JOIN orders o ON o.id = oi.order_id JOIN products p ON p.id = oi.product_id WHERE o.status <> 'cancelled' GROUP BY p.id), k AS (SELECT *, RANK() OVER (PARTITION BY category ORDER BY revenue DESC) AS rk FROM r) SELECT category, name, ROUND(revenue, 2) AS revenue FROM k WHERE rk = 1;",
+    "orderMatters": false
+  },
+  "order": 446
+}

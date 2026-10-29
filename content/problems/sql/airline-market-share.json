@@ -1,0 +1,21 @@
+{
+  "slug": "airline-market-share",
+  "track": "sql",
+  "title": "Airline market share",
+  "difficulty": "Hard",
+  "tags": [
+    "window-functions"
+  ],
+  "statementMd": "Each airline's share of total booking revenue as a percentage rounded to 1 decimal. Highest first.\n\nExpected columns: `name`, `share_pct`.\n\nTables: `airlines`, `airports`, `flights`, `bookings`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Window total over grouped rows."
+  ],
+  "solutionMd": "```sql\nWITH r AS (SELECT a.name, SUM(b.fare) AS revenue FROM bookings b JOIN flights f ON f.id = b.flight_id JOIN airlines a ON a.code = f.airline_code GROUP BY a.code, a.name) SELECT name, ROUND(100.0 * revenue / SUM(revenue) OVER (), 1) AS share_pct FROM r ORDER BY share_pct DESC;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: airlines, airports, flights, bookings\nSELECT\n",
+  "datasetId": "flights",
+  "expected": {
+    "query": "WITH r AS (SELECT a.name, SUM(b.fare) AS revenue FROM bookings b JOIN flights f ON f.id = b.flight_id JOIN airlines a ON a.code = f.airline_code GROUP BY a.code, a.name) SELECT name, ROUND(100.0 * revenue / SUM(revenue) OVER (), 1) AS share_pct FROM r ORDER BY share_pct DESC;",
+    "orderMatters": true
+  },
+  "order": 415
+}

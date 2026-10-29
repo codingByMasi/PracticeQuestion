@@ -1,0 +1,21 @@
+{
+  "slug": "hours-and-minutes",
+  "track": "sql",
+  "title": "Hours and minutes",
+  "difficulty": "Easy",
+  "tags": [
+    "expressions"
+  ],
+  "statementMd": "Show each flight id (first 5 ids only) with its duration as hours, rounded to 1 decimal.\n\nExpected columns: `id`, `hours`.\n\nTables: `airlines`, `airports`, `flights`, `bookings`.\n\nRow order does not matter.",
+  "hints": [
+    "`ROUND(duration_min / 60.0, 1)` and `LIMIT`."
+  ],
+  "solutionMd": "```sql\nSELECT id, ROUND(duration_min / 60.0, 1) AS hours FROM flights WHERE id <= 5;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: airlines, airports, flights, bookings\nSELECT\n",
+  "datasetId": "flights",
+  "expected": {
+    "query": "SELECT id, ROUND(duration_min / 60.0, 1) AS hours FROM flights WHERE id <= 5;",
+    "orderMatters": false
+  },
+  "order": 92
+}

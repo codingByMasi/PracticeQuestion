@@ -1,0 +1,68 @@
+{
+  "slug": "modular-inverse",
+  "track": "python",
+  "title": "Modular inverse",
+  "difficulty": "Hard",
+  "tags": [
+    "number-theory"
+  ],
+  "statementMd": "Return the multiplicative inverse of `a` modulo `m` (with `gcd(a, m) = 1`, `m > 1`), as a value in `[1, m-1]`.\n\n**Example:** `mod_inverse(3, 11)` returns `4`.",
+  "hints": [
+    "Extended Euclid."
+  ],
+  "solutionMd": "```python\ndef mod_inverse(a, m):\n    def egcd(x, y):\n        if y == 0:\n            return x, 1, 0\n        g, s, t = egcd(y, x % y)\n        return g, t, s - (x // y) * t\n    _, s, _ = egcd(a % m, m)\n    return s % m\n```\n\nBezout coefficients give the inverse.",
+  "starterCode": "def mod_inverse(a, m):\n    # Write your code here\n    pass\n",
+  "functionName": "mod_inverse",
+  "referenceSolution": "def mod_inverse(a, m):\n    def egcd(x, y):\n        if y == 0:\n            return x, 1, 0\n        g, s, t = egcd(y, x % y)\n        return g, t, s - (x // y) * t\n    _, s, _ = egcd(a % m, m)\n    return s % m\n",
+  "tests": [
+    {
+      "args": [
+        3,
+        11
+      ],
+      "expected": 4,
+      "hidden": false
+    },
+    {
+      "args": [
+        10,
+        17
+      ],
+      "expected": 12,
+      "hidden": false
+    },
+    {
+      "args": [
+        1,
+        2
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        7,
+        40
+      ],
+      "expected": 23,
+      "hidden": true
+    },
+    {
+      "args": [
+        5,
+        18
+      ],
+      "expected": 11,
+      "hidden": true
+    },
+    {
+      "args": [
+        123,
+        1009
+      ],
+      "expected": 484,
+      "hidden": true
+    }
+  ],
+  "order": 424
+}

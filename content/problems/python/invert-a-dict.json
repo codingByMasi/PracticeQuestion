@@ -1,0 +1,77 @@
+{
+  "slug": "invert-a-dict",
+  "track": "python",
+  "title": "Invert a dict",
+  "difficulty": "Easy",
+  "tags": [
+    "dicts"
+  ],
+  "statementMd": "Swap keys and values of a dict whose values are unique strings.\n\n**Example:** `invert({\"a\": \"x\", \"b\": \"y\"})` returns `{\"x\": \"a\", \"y\": \"b\"}`.",
+  "hints": [
+    "Dict comprehension with swapped pair."
+  ],
+  "solutionMd": "```python\ndef invert(d):\n    return {v: k for k, v in d.items()}\n```\n\nValues become keys.",
+  "starterCode": "def invert(d):\n    # Write your code here\n    pass\n",
+  "functionName": "invert",
+  "referenceSolution": "def invert(d):\n    return {v: k for k, v in d.items()}\n",
+  "tests": [
+    {
+      "args": [
+        {
+          "a": "x",
+          "b": "y"
+        }
+      ],
+      "expected": {
+        "x": "a",
+        "y": "b"
+      },
+      "hidden": false
+    },
+    {
+      "args": [
+        {}
+      ],
+      "expected": {},
+      "hidden": false
+    },
+    {
+      "args": [
+        {
+          "k": "v"
+        }
+      ],
+      "expected": {
+        "v": "k"
+      },
+      "hidden": true
+    },
+    {
+      "args": [
+        {
+          "one": "un",
+          "two": "deux",
+          "three": "trois"
+        }
+      ],
+      "expected": {
+        "un": "one",
+        "deux": "two",
+        "trois": "three"
+      },
+      "hidden": true
+    },
+    {
+      "args": [
+        {
+          "x": "y"
+        }
+      ],
+      "expected": {
+        "y": "x"
+      },
+      "hidden": true
+    }
+  ],
+  "order": 100
+}

@@ -1,0 +1,21 @@
+{
+  "slug": "distinct-job-titles",
+  "track": "sql",
+  "title": "Distinct job titles",
+  "difficulty": "Easy",
+  "tags": [
+    "distinct"
+  ],
+  "statementMd": "List each job title that appears among employees, once.\n\nExpected columns: `title`.\n\nTables: `employees`, `departments`.\n\nRow order does not matter.",
+  "hints": [
+    "`SELECT DISTINCT` removes duplicate rows."
+  ],
+  "solutionMd": "```sql\nSELECT DISTINCT title FROM employees;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "SELECT DISTINCT title FROM employees;",
+    "orderMatters": false
+  },
+  "order": 80
+}

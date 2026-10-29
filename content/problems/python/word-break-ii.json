@@ -1,0 +1,90 @@
+{
+  "slug": "word-break-ii",
+  "track": "python",
+  "title": "Word break II",
+  "difficulty": "Hard",
+  "tags": [
+    "backtracking"
+  ],
+  "statementMd": "Return all sentences (words joined by single spaces) that segment `s` into words from `words`, sorted alphabetically.\n\n**Example:** `word_break_all(\"catsanddog\", [\"cat\", \"cats\", \"and\", \"sand\", \"dog\"])` returns `[\"cat sand dog\", \"cats and dog\"]`.",
+  "hints": [
+    "Memoised recursion on the start index."
+  ],
+  "solutionMd": "```python\ndef word_break_all(s, words):\n    ws = set(words)\n    memo = {}\n    def go(i):\n        if i == len(s):\n            return ['']\n        if i in memo:\n            return memo[i]\n        res = []\n        for j in range(i + 1, len(s) + 1):\n            if s[i:j] in ws:\n                for rest in go(j):\n                    res.append(s[i:j] + (' ' + rest if rest else ''))\n        memo[i] = res\n        return res\n    return sorted(go(0)) if s else []\n```\n\nCombine each valid first word with the segmentations of the rest.",
+  "starterCode": "def word_break_all(s, words):\n    # Write your code here\n    pass\n",
+  "functionName": "word_break_all",
+  "referenceSolution": "def word_break_all(s, words):\n    ws = set(words)\n    memo = {}\n    def go(i):\n        if i == len(s):\n            return ['']\n        if i in memo:\n            return memo[i]\n        res = []\n        for j in range(i + 1, len(s) + 1):\n            if s[i:j] in ws:\n                for rest in go(j):\n                    res.append(s[i:j] + (' ' + rest if rest else ''))\n        memo[i] = res\n        return res\n    return sorted(go(0)) if s else []\n",
+  "tests": [
+    {
+      "args": [
+        "catsanddog",
+        [
+          "cat",
+          "cats",
+          "and",
+          "sand",
+          "dog"
+        ]
+      ],
+      "expected": [
+        "cat sand dog",
+        "cats and dog"
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        "pineapplepenapple",
+        [
+          "apple",
+          "pen",
+          "applepen",
+          "pine",
+          "pineapple"
+        ]
+      ],
+      "expected": [
+        "pine apple pen apple",
+        "pine applepen apple",
+        "pineapple pen apple"
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        "",
+        [
+          "a"
+        ]
+      ],
+      "expected": [],
+      "hidden": true
+    },
+    {
+      "args": [
+        "a",
+        [
+          "b"
+        ]
+      ],
+      "expected": [],
+      "hidden": true
+    },
+    {
+      "args": [
+        "aaa",
+        [
+          "a",
+          "aa"
+        ]
+      ],
+      "expected": [
+        "a a a",
+        "a aa",
+        "aa a"
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 459
+}

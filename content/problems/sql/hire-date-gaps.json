@@ -1,0 +1,21 @@
+{
+  "slug": "hire-date-gaps",
+  "track": "sql",
+  "title": "Hire date gaps",
+  "difficulty": "Hard",
+  "tags": [
+    "window-functions"
+  ],
+  "statementMd": "Order employees by hire date and show, for each, the number of days since the previous hire. List the five largest gaps (ties by name).\n\nExpected columns: `first_name`, `gap`.\n\nTables: `employees`, `departments`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "`LAG(hire_date)`."
+  ],
+  "solutionMd": "```sql\nWITH g AS (SELECT first_name, CAST(julianday(hire_date) - julianday(LAG(hire_date) OVER (ORDER BY hire_date)) AS INTEGER) AS gap FROM employees) SELECT first_name, gap FROM g WHERE gap IS NOT NULL ORDER BY gap DESC, first_name LIMIT 5;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "WITH g AS (SELECT first_name, CAST(julianday(hire_date) - julianday(LAG(hire_date) OVER (ORDER BY hire_date)) AS INTEGER) AS gap FROM employees) SELECT first_name, gap FROM g WHERE gap IS NOT NULL ORDER BY gap DESC, first_name LIMIT 5;",
+    "orderMatters": true
+  },
+  "order": 435
+}

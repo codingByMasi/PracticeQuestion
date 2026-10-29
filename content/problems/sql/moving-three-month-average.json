@@ -1,0 +1,21 @@
+{
+  "slug": "moving-three-month-average",
+  "track": "sql",
+  "title": "Moving three-month average",
+  "difficulty": "Hard",
+  "tags": [
+    "window-functions"
+  ],
+  "statementMd": "For each month show loans and the average of that month and the two previous months (rounded to 1 decimal; fewer months at the start). Earliest first.\n\nExpected columns: `month`, `loans`, `moving_avg`.\n\nTables: `authors`, `books`, `members`, `loans`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "`ROWS BETWEEN 2 PRECEDING AND CURRENT ROW`."
+  ],
+  "solutionMd": "```sql\nWITH m AS (SELECT strftime('%Y-%m', loan_date) AS month, COUNT(*) AS loans FROM loans GROUP BY month) SELECT month, loans, ROUND(AVG(loans) OVER (ORDER BY month ROWS BETWEEN 2 PRECEDING AND CURRENT ROW), 1) AS moving_avg FROM m ORDER BY month;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: authors, books, members, loans\nSELECT\n",
+  "datasetId": "library",
+  "expected": {
+    "query": "WITH m AS (SELECT strftime('%Y-%m', loan_date) AS month, COUNT(*) AS loans FROM loans GROUP BY month) SELECT month, loans, ROUND(AVG(loans) OVER (ORDER BY month ROWS BETWEEN 2 PRECEDING AND CURRENT ROW), 1) AS moving_avg FROM m ORDER BY month;",
+    "orderMatters": true
+  },
+  "order": 417
+}

@@ -1,0 +1,21 @@
+{
+  "slug": "members-first-and-last-loan",
+  "track": "sql",
+  "title": "Members' first and last loan",
+  "difficulty": "Medium",
+  "tags": [
+    "aggregate"
+  ],
+  "statementMd": "For each member with loans show their first and last loan date and how many days separate them.\n\nExpected columns: `name`, `first_loan`, `last_loan`, `span_days`.\n\nTables: `authors`, `books`, `members`, `loans`.\n\nRow order does not matter.",
+  "hints": [
+    "`MIN`, `MAX` and `julianday`."
+  ],
+  "solutionMd": "```sql\nSELECT m.name, MIN(l.loan_date) AS first_loan, MAX(l.loan_date) AS last_loan, CAST(julianday(MAX(l.loan_date)) - julianday(MIN(l.loan_date)) AS INTEGER) AS span_days FROM members m JOIN loans l ON l.member_id = m.id GROUP BY m.id, m.name;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: authors, books, members, loans\nSELECT\n",
+  "datasetId": "library",
+  "expected": {
+    "query": "SELECT m.name, MIN(l.loan_date) AS first_loan, MAX(l.loan_date) AS last_loan, CAST(julianday(MAX(l.loan_date)) - julianday(MIN(l.loan_date)) AS INTEGER) AS span_days FROM members m JOIN loans l ON l.member_id = m.id GROUP BY m.id, m.name;",
+    "orderMatters": false
+  },
+  "order": 213
+}

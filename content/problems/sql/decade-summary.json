@@ -1,0 +1,21 @@
+{
+  "slug": "decade-summary",
+  "track": "sql",
+  "title": "Decade summary",
+  "difficulty": "Medium",
+  "tags": [
+    "expressions"
+  ],
+  "statementMd": "Group movies by decade (for example 2010 for 2010-2019) and show decade and count. Oldest first.\n\nExpected columns: `decade`, `movies`.\n\nTables: `movies`, `directors`, `reviews`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "`release_year / 10 * 10` uses integer division."
+  ],
+  "solutionMd": "```sql\nSELECT release_year / 10 * 10 AS decade, COUNT(*) AS movies FROM movies GROUP BY decade ORDER BY decade;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: movies, directors, reviews\nSELECT\n",
+  "datasetId": "movies",
+  "expected": {
+    "query": "SELECT release_year / 10 * 10 AS decade, COUNT(*) AS movies FROM movies GROUP BY decade ORDER BY decade;",
+    "orderMatters": true
+  },
+  "order": 176
+}

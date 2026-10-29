@@ -1,0 +1,21 @@
+{
+  "slug": "thick-books",
+  "track": "sql",
+  "title": "Thick books",
+  "difficulty": "Easy",
+  "tags": [
+    "where"
+  ],
+  "statementMd": "List books with more than 600 pages, with their page counts.\n\nExpected columns: `title`, `pages`.\n\nTables: `authors`, `books`, `members`, `loans`.\n\nRow order does not matter.",
+  "hints": [
+    "Numeric comparison."
+  ],
+  "solutionMd": "```sql\nSELECT title, pages FROM books WHERE pages > 600;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: authors, books, members, loans\nSELECT\n",
+  "datasetId": "library",
+  "expected": {
+    "query": "SELECT title, pages FROM books WHERE pages > 600;",
+    "orderMatters": false
+  },
+  "order": 32
+}

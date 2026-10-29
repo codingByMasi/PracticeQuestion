@@ -1,0 +1,21 @@
+{
+  "slug": "longest-winning-streak-per-ticker",
+  "track": "sql",
+  "title": "Longest winning streak per ticker",
+  "difficulty": "Hard",
+  "tags": [
+    "gaps-islands"
+  ],
+  "statementMd": "For each ticker find the longest run of consecutive trading days where close was higher than the previous day's close. Show symbol and streak length, ordered by length (desc) then symbol.\n\nExpected columns: `symbol`, `streak`.\n\nTables: `tickers`, `prices`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Flag up days, then group runs with a running count of non-up days."
+  ],
+  "solutionMd": "```sql\nWITH u AS (SELECT symbol, trade_date, CASE WHEN close > LAG(close) OVER (PARTITION BY symbol ORDER BY trade_date) THEN 1 ELSE 0 END AS up FROM prices), g AS (SELECT *, SUM(1 - up) OVER (PARTITION BY symbol ORDER BY trade_date) AS grp FROM u), s AS (SELECT symbol, grp, SUM(up) AS len FROM g GROUP BY symbol, grp) SELECT symbol, MAX(len) AS streak FROM s GROUP BY symbol ORDER BY streak DESC, symbol;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: tickers, prices\nSELECT\n",
+  "datasetId": "stocks",
+  "expected": {
+    "query": "WITH u AS (SELECT symbol, trade_date, CASE WHEN close > LAG(close) OVER (PARTITION BY symbol ORDER BY trade_date) THEN 1 ELSE 0 END AS up FROM prices), g AS (SELECT *, SUM(1 - up) OVER (PARTITION BY symbol ORDER BY trade_date) AS grp FROM u), s AS (SELECT symbol, grp, SUM(up) AS len FROM g GROUP BY symbol, grp) SELECT symbol, MAX(len) AS streak FROM s GROUP BY symbol ORDER BY streak DESC, symbol;",
+    "orderMatters": true
+  },
+  "order": 500
+}

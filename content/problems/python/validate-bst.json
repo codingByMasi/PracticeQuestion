@@ -1,0 +1,88 @@
+{
+  "slug": "validate-bst",
+  "track": "python",
+  "title": "Validate BST",
+  "difficulty": "Medium",
+  "tags": [
+    "trees"
+  ],
+  "statementMd": "Return whether the tree is a valid binary search tree (left values strictly smaller, right values strictly larger, for the whole subtree). The tree is given as a level-order list where `None` marks a missing child (like `[3, 9, 20, None, None, 15, 7]`); the helper `build_tree` in the solution shows how it is read, and in your function the argument is already that list.\n\n**Example:** `is_valid_bst([2, 1, 3])` returns `true`.",
+  "hints": [
+    "Pass down allowed (low, high) bounds."
+  ],
+  "solutionMd": "```python\nclass Node:\n    def __init__(self, val, left=None, right=None):\n        self.val, self.left, self.right = val, left, right\n\n\ndef build_tree(values):\n    \"\"\"Build a binary tree from a level-order list where None marks a missing child.\"\"\"\n    if not values or values[0] is None:\n        return None\n    root = Node(values[0])\n    queue, i = [root], 1\n    while queue and i < len(values):\n        node = queue.pop(0)\n        if i < len(values) and values[i] is not None:\n            node.left = Node(values[i])\n            queue.append(node.left)\n        i += 1\n        if i < len(values) and values[i] is not None:\n            node.right = Node(values[i])\n            queue.append(node.right)\n        i += 1\n    return root\n\n\ndef is_valid_bst(values):\n    def ok(n, lo, hi):\n        if n is None:\n            return True\n        if not (lo < n.val < hi):\n            return False\n        return ok(n.left, lo, n.val) and ok(n.right, n.val, hi)\n    return ok(build_tree(values), float('-inf'), float('inf'))\n```\n\nChecking only direct children is not enough.",
+  "starterCode": "def is_valid_bst(values):\n    # Write your code here\n    pass\n",
+  "functionName": "is_valid_bst",
+  "referenceSolution": "class Node:\n    def __init__(self, val, left=None, right=None):\n        self.val, self.left, self.right = val, left, right\n\n\ndef build_tree(values):\n    \"\"\"Build a binary tree from a level-order list where None marks a missing child.\"\"\"\n    if not values or values[0] is None:\n        return None\n    root = Node(values[0])\n    queue, i = [root], 1\n    while queue and i < len(values):\n        node = queue.pop(0)\n        if i < len(values) and values[i] is not None:\n            node.left = Node(values[i])\n            queue.append(node.left)\n        i += 1\n        if i < len(values) and values[i] is not None:\n            node.right = Node(values[i])\n            queue.append(node.right)\n        i += 1\n    return root\n\n\ndef is_valid_bst(values):\n    def ok(n, lo, hi):\n        if n is None:\n            return True\n        if not (lo < n.val < hi):\n            return False\n        return ok(n.left, lo, n.val) and ok(n.right, n.val, hi)\n    return ok(build_tree(values), float('-inf'), float('inf'))\n",
+  "tests": [
+    {
+      "args": [
+        [
+          2,
+          1,
+          3
+        ]
+      ],
+      "expected": true,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          5,
+          1,
+          4,
+          null,
+          null,
+          3,
+          6
+        ]
+      ],
+      "expected": false,
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1
+        ]
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          2,
+          2,
+          2
+        ]
+      ],
+      "expected": false,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          5,
+          4,
+          6,
+          null,
+          null,
+          3,
+          7
+        ]
+      ],
+      "expected": false,
+      "hidden": true
+    }
+  ],
+  "order": 358
+}

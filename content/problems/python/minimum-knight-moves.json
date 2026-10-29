@@ -1,0 +1,68 @@
+{
+  "slug": "minimum-knight-moves",
+  "track": "python",
+  "title": "Minimum knight moves",
+  "difficulty": "Hard",
+  "tags": [
+    "graphs"
+  ],
+  "statementMd": "A knight starts at (0, 0) on an infinite chessboard. Return the minimum moves to reach `(x, y)` (|x|, |y| small).\n\n**Example:** `knight_moves(2, 1)` returns `1`.",
+  "hints": [
+    "BFS over positions; by symmetry use absolute values."
+  ],
+  "solutionMd": "```python\nfrom collections import deque, defaultdict\n\n\ndef knight_moves(x, y):\n    x, y = abs(x), abs(y)\n    q = deque([(0, 0, 0)])\n    seen = {(0, 0)}\n    moves = ((1, 2), (2, 1), (-1, 2), (-2, 1), (1, -2), (2, -1), (-1, -2), (-2, -1))\n    while q:\n        a, b, d = q.popleft()\n        if (a, b) == (x, y):\n            return d\n        for dx, dy in moves:\n            n = (a + dx, b + dy)\n            if n not in seen and -2 <= n[0] <= x + 2 and -2 <= n[1] <= y + 2:\n                seen.add(n); q.append((n[0], n[1], d + 1))\n```\n\nA bounding box keeps the BFS finite.",
+  "starterCode": "def knight_moves(x, y):\n    # Write your code here\n    pass\n",
+  "functionName": "knight_moves",
+  "referenceSolution": "from collections import deque, defaultdict\n\n\ndef knight_moves(x, y):\n    x, y = abs(x), abs(y)\n    q = deque([(0, 0, 0)])\n    seen = {(0, 0)}\n    moves = ((1, 2), (2, 1), (-1, 2), (-2, 1), (1, -2), (2, -1), (-1, -2), (-2, -1))\n    while q:\n        a, b, d = q.popleft()\n        if (a, b) == (x, y):\n            return d\n        for dx, dy in moves:\n            n = (a + dx, b + dy)\n            if n not in seen and -2 <= n[0] <= x + 2 and -2 <= n[1] <= y + 2:\n                seen.add(n); q.append((n[0], n[1], d + 1))\n",
+  "tests": [
+    {
+      "args": [
+        2,
+        1
+      ],
+      "expected": 1,
+      "hidden": false
+    },
+    {
+      "args": [
+        5,
+        5
+      ],
+      "expected": 4,
+      "hidden": false
+    },
+    {
+      "args": [
+        0,
+        0
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        1,
+        1
+      ],
+      "expected": 2,
+      "hidden": true
+    },
+    {
+      "args": [
+        -3,
+        4
+      ],
+      "expected": 3,
+      "hidden": true
+    },
+    {
+      "args": [
+        7,
+        2
+      ],
+      "expected": 5,
+      "hidden": true
+    }
+  ],
+  "order": 475
+}

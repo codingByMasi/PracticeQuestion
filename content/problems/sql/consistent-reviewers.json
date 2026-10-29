@@ -1,0 +1,21 @@
+{
+  "slug": "consistent-reviewers",
+  "track": "sql",
+  "title": "Consistent reviewers",
+  "difficulty": "Medium",
+  "tags": [
+    "having"
+  ],
+  "statementMd": "List reviewers whose lowest rating is at least 7 and who wrote at least three reviews.\n\nExpected columns: `reviewer`, `reviews`, `lowest`.\n\nTables: `movies`, `directors`, `reviews`.\n\nRow order does not matter.",
+  "hints": [
+    "`HAVING MIN(rating) >= 7 AND COUNT(*) >= 3`."
+  ],
+  "solutionMd": "```sql\nSELECT reviewer, COUNT(*) AS reviews, MIN(rating) AS lowest FROM reviews GROUP BY reviewer HAVING MIN(rating) >= 7 AND COUNT(*) >= 3;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: movies, directors, reviews\nSELECT\n",
+  "datasetId": "movies",
+  "expected": {
+    "query": "SELECT reviewer, COUNT(*) AS reviews, MIN(rating) AS lowest FROM reviews GROUP BY reviewer HAVING MIN(rating) >= 7 AND COUNT(*) >= 3;",
+    "orderMatters": false
+  },
+  "order": 251
+}

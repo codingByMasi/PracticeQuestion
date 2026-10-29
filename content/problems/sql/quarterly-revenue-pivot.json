@@ -1,0 +1,21 @@
+{
+  "slug": "quarterly-revenue-pivot",
+  "track": "sql",
+  "title": "Quarterly revenue pivot",
+  "difficulty": "Hard",
+  "tags": [
+    "pivot"
+  ],
+  "statementMd": "Revenue of non-cancelled orders per quarter of 2024 as columns `q1` and `q2` (Jan-Mar, Apr-Jun), rounded to 2 decimals, in one row.\n\nExpected columns: `q1`, `q2`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\nRow order does not matter.",
+  "hints": [
+    "Conditional aggregation: `SUM(CASE WHEN ... THEN value END)`."
+  ],
+  "solutionMd": "```sql\nSELECT ROUND(SUM(CASE WHEN o.order_date < '2024-04-01' THEN oi.quantity * oi.unit_price END), 2) AS q1, ROUND(SUM(CASE WHEN o.order_date >= '2024-04-01' THEN oi.quantity * oi.unit_price END), 2) AS q2 FROM orders o JOIN order_items oi ON oi.order_id = o.id WHERE o.status <> 'cancelled';\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "SELECT ROUND(SUM(CASE WHEN o.order_date < '2024-04-01' THEN oi.quantity * oi.unit_price END), 2) AS q1, ROUND(SUM(CASE WHEN o.order_date >= '2024-04-01' THEN oi.quantity * oi.unit_price END), 2) AS q2 FROM orders o JOIN order_items oi ON oi.order_id = o.id WHERE o.status <> 'cancelled';",
+    "orderMatters": false
+  },
+  "order": 481
+}

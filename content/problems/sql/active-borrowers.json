@@ -1,0 +1,21 @@
+{
+  "slug": "active-borrowers",
+  "track": "sql",
+  "title": "Active borrowers",
+  "difficulty": "Medium",
+  "tags": [
+    "having"
+  ],
+  "statementMd": "List members who borrowed at least 10 books. Show name and loan count.\n\nExpected columns: `name`, `loans`.\n\nTables: `authors`, `books`, `members`, `loans`.\n\nRow order does not matter.",
+  "hints": [
+    "`HAVING COUNT(*) >= 10`."
+  ],
+  "solutionMd": "```sql\nSELECT m.name, COUNT(*) AS loans FROM members m JOIN loans l ON l.member_id = m.id GROUP BY m.id, m.name HAVING COUNT(*) >= 10;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: authors, books, members, loans\nSELECT\n",
+  "datasetId": "library",
+  "expected": {
+    "query": "SELECT m.name, COUNT(*) AS loans FROM members m JOIN loans l ON l.member_id = m.id GROUP BY m.id, m.name HAVING COUNT(*) >= 10;",
+    "orderMatters": false
+  },
+  "order": 250
+}

@@ -1,0 +1,21 @@
+{
+  "slug": "occasional-members",
+  "track": "sql",
+  "title": "Occasional members",
+  "difficulty": "Medium",
+  "tags": [
+    "left-join"
+  ],
+  "statementMd": "List members who borrowed fewer than 6 books in total (zero counts). Show name and loan count.\n\nExpected columns: `name`, `loans`.\n\nTables: `authors`, `books`, `members`, `loans`.\n\nRow order does not matter.",
+  "hints": [
+    "`LEFT JOIN` then `HAVING COUNT(l.id) < 6`."
+  ],
+  "solutionMd": "```sql\nSELECT m.name, COUNT(l.id) AS loans FROM members m LEFT JOIN loans l ON l.member_id = m.id GROUP BY m.id, m.name HAVING COUNT(l.id) < 6;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: authors, books, members, loans\nSELECT\n",
+  "datasetId": "library",
+  "expected": {
+    "query": "SELECT m.name, COUNT(l.id) AS loans FROM members m LEFT JOIN loans l ON l.member_id = m.id GROUP BY m.id, m.name HAVING COUNT(l.id) < 6;",
+    "orderMatters": false
+  },
+  "order": 284
+}

@@ -1,0 +1,55 @@
+{
+  "slug": "string-length-without-len",
+  "track": "python",
+  "title": "String length without len",
+  "difficulty": "Easy",
+  "tags": [
+    "strings"
+  ],
+  "statementMd": "Return the number of characters in `s` without calling `len`.\n\n**Example:** `my_len(\"hello\")` returns `5`.",
+  "hints": [
+    "Loop and count."
+  ],
+  "solutionMd": "```python\ndef my_len(s):\n    n = 0\n    for _ in s:\n        n += 1\n    return n\n```\n\nIterating a string yields its characters.",
+  "starterCode": "def my_len(s):\n    # Write your code here\n    pass\n",
+  "functionName": "my_len",
+  "referenceSolution": "def my_len(s):\n    n = 0\n    for _ in s:\n        n += 1\n    return n\n",
+  "tests": [
+    {
+      "args": [
+        "hello"
+      ],
+      "expected": 5,
+      "hidden": false
+    },
+    {
+      "args": [
+        ""
+      ],
+      "expected": 0,
+      "hidden": false
+    },
+    {
+      "args": [
+        "a"
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        "two words"
+      ],
+      "expected": 9,
+      "hidden": true
+    },
+    {
+      "args": [
+        "héllo"
+      ],
+      "expected": 5,
+      "hidden": true
+    }
+  ],
+  "order": 47
+}

@@ -1,0 +1,21 @@
+{
+  "slug": "best-student-per-department",
+  "track": "sql",
+  "title": "Best student per department",
+  "difficulty": "Hard",
+  "tags": [
+    "ranking"
+  ],
+  "statementMd": "For each course department find the student with the highest average score in that department's courses. Show department, student name and average rounded to 1 decimal. Break ties by name.\n\nExpected columns: `department`, `name`, `avg_score`.\n\nTables: `teachers`, `courses`, `students`, `enrollments`.\n\nRow order does not matter.",
+  "hints": [
+    "Aggregate by department and student, then `ROW_NUMBER`."
+  ],
+  "solutionMd": "```sql\nWITH a AS (SELECT c.department, s.name, AVG(e.score) AS avg_score FROM enrollments e JOIN courses c ON c.id = e.course_id JOIN students s ON s.id = e.student_id GROUP BY c.department, s.id), r AS (SELECT *, ROW_NUMBER() OVER (PARTITION BY department ORDER BY avg_score DESC, name) AS rn FROM a) SELECT department, name, ROUND(avg_score, 1) AS avg_score FROM r WHERE rn = 1;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: teachers, courses, students, enrollments\nSELECT\n",
+  "datasetId": "school",
+  "expected": {
+    "query": "WITH a AS (SELECT c.department, s.name, AVG(e.score) AS avg_score FROM enrollments e JOIN courses c ON c.id = e.course_id JOIN students s ON s.id = e.student_id GROUP BY c.department, s.id), r AS (SELECT *, ROW_NUMBER() OVER (PARTITION BY department ORDER BY avg_score DESC, name) AS rn FROM a) SELECT department, name, ROUND(avg_score, 1) AS avg_score FROM r WHERE rn = 1;",
+    "orderMatters": false
+  },
+  "order": 459
+}

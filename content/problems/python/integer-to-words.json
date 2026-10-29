@@ -1,0 +1,83 @@
+{
+  "slug": "integer-to-words",
+  "track": "python",
+  "title": "Integer to words",
+  "difficulty": "Hard",
+  "tags": [
+    "parsing"
+  ],
+  "statementMd": "Convert an integer `0 <= n < 10**9` to English words, e.g. `1234` -> `\"One Thousand Two Hundred Thirty Four\"`. No `and`, words capitalised and separated by single spaces; zero is `\"Zero\"`.\n\n**Example:** `number_to_words(123)` returns `\"One Hundred Twenty Three\"`.",
+  "hints": [
+    "Handle chunks of three digits with a scale word."
+  ],
+  "solutionMd": "```python\ndef number_to_words(n):\n    if n == 0:\n        return 'Zero'\n    ones = ['', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen', 'Seventeen', 'Eighteen', 'Nineteen']\n    tens = ['', '', 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety']\n    def below_1000(x):\n        words = []\n        if x >= 100:\n            words += [ones[x // 100], 'Hundred']\n            x %= 100\n        if x >= 20:\n            words.append(tens[x // 10])\n            x %= 10\n        if x:\n            words.append(ones[x])\n        return words\n    out = []\n    for scale, name in ((10**6, 'Million'), (1000, 'Thousand'), (1, '')):\n        chunk, n = divmod(n, scale)\n        if chunk:\n            out += below_1000(chunk) + ([name] if name else [])\n    return ' '.join(out)\n```\n\nThree-digit groups plus a scale name.",
+  "starterCode": "def number_to_words(n):\n    # Write your code here\n    pass\n",
+  "functionName": "number_to_words",
+  "referenceSolution": "def number_to_words(n):\n    if n == 0:\n        return 'Zero'\n    ones = ['', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen', 'Seventeen', 'Eighteen', 'Nineteen']\n    tens = ['', '', 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety']\n    def below_1000(x):\n        words = []\n        if x >= 100:\n            words += [ones[x // 100], 'Hundred']\n            x %= 100\n        if x >= 20:\n            words.append(tens[x // 10])\n            x %= 10\n        if x:\n            words.append(ones[x])\n        return words\n    out = []\n    for scale, name in ((10**6, 'Million'), (1000, 'Thousand'), (1, '')):\n        chunk, n = divmod(n, scale)\n        if chunk:\n            out += below_1000(chunk) + ([name] if name else [])\n    return ' '.join(out)\n",
+  "tests": [
+    {
+      "args": [
+        123
+      ],
+      "expected": "One Hundred Twenty Three",
+      "hidden": false
+    },
+    {
+      "args": [
+        1000
+      ],
+      "expected": "One Thousand",
+      "hidden": false
+    },
+    {
+      "args": [
+        0
+      ],
+      "expected": "Zero",
+      "hidden": true
+    },
+    {
+      "args": [
+        19
+      ],
+      "expected": "Nineteen",
+      "hidden": true
+    },
+    {
+      "args": [
+        20
+      ],
+      "expected": "Twenty",
+      "hidden": true
+    },
+    {
+      "args": [
+        100
+      ],
+      "expected": "One Hundred",
+      "hidden": true
+    },
+    {
+      "args": [
+        1234567
+      ],
+      "expected": "One Million Two Hundred Thirty Four Thousand Five Hundred Sixty Seven",
+      "hidden": true
+    },
+    {
+      "args": [
+        100000000
+      ],
+      "expected": "One Hundred Million",
+      "hidden": true
+    },
+    {
+      "args": [
+        45
+      ],
+      "expected": "Forty Five",
+      "hidden": true
+    }
+  ],
+  "order": 431
+}

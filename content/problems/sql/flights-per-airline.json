@@ -1,0 +1,21 @@
+{
+  "slug": "flights-per-airline",
+  "track": "sql",
+  "title": "Flights per airline",
+  "difficulty": "Easy",
+  "tags": [
+    "group-by"
+  ],
+  "statementMd": "Number of flights per airline code.\n\nExpected columns: `airline_code`, `flights`.\n\nTables: `airlines`, `airports`, `flights`, `bookings`.\n\nRow order does not matter.",
+  "hints": [
+    "Group by `airline_code`."
+  ],
+  "solutionMd": "```sql\nSELECT airline_code, COUNT(*) AS flights FROM flights GROUP BY airline_code;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: airlines, airports, flights, bookings\nSELECT\n",
+  "datasetId": "flights",
+  "expected": {
+    "query": "SELECT airline_code, COUNT(*) AS flights FROM flights GROUP BY airline_code;",
+    "orderMatters": false
+  },
+  "order": 133
+}

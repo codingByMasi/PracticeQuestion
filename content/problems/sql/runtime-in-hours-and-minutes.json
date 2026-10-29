@@ -1,0 +1,21 @@
+{
+  "slug": "runtime-in-hours-and-minutes",
+  "track": "sql",
+  "title": "Runtime in hours and minutes",
+  "difficulty": "Easy",
+  "tags": [
+    "strings"
+  ],
+  "statementMd": "Show each title with its runtime formatted like `2h 28m`.\n\nExpected columns: `title`, `runtime`.\n\nTables: `movies`, `directors`, `reviews`.\n\nRow order does not matter.",
+  "hints": [
+    "Integer division and `%`."
+  ],
+  "solutionMd": "```sql\nSELECT title, (runtime_minutes / 60) || 'h ' || (runtime_minutes % 60) || 'm' AS runtime FROM movies;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: movies, directors, reviews\nSELECT\n",
+  "datasetId": "movies",
+  "expected": {
+    "query": "SELECT title, (runtime_minutes / 60) || 'h ' || (runtime_minutes % 60) || 'm' AS runtime FROM movies;",
+    "orderMatters": false
+  },
+  "order": 102
+}

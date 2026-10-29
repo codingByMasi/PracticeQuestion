@@ -1,0 +1,21 @@
+{
+  "slug": "quiet-artists",
+  "track": "sql",
+  "title": "Quiet artists",
+  "difficulty": "Medium",
+  "tags": [
+    "left-join"
+  ],
+  "statementMd": "List artists whose tracks together have fewer than 30 plays (include zero). Show name and plays.\n\nExpected columns: `name`, `plays`.\n\nTables: `artists`, `albums`, `tracks`, `listeners`, `plays`.\n\nRow order does not matter.",
+  "hints": [
+    "Left join through albums and tracks."
+  ],
+  "solutionMd": "```sql\nSELECT ar.name, COUNT(p.id) AS plays FROM artists ar LEFT JOIN albums al ON al.artist_id = ar.id LEFT JOIN tracks t ON t.album_id = al.id LEFT JOIN plays p ON p.track_id = t.id GROUP BY ar.id, ar.name HAVING COUNT(p.id) < 30;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: artists, albums, tracks, listeners, plays\nSELECT\n",
+  "datasetId": "music",
+  "expected": {
+    "query": "SELECT ar.name, COUNT(p.id) AS plays FROM artists ar LEFT JOIN albums al ON al.artist_id = ar.id LEFT JOIN tracks t ON t.album_id = al.id LEFT JOIN plays p ON p.track_id = t.id GROUP BY ar.id, ar.name HAVING COUNT(p.id) < 30;",
+    "orderMatters": false
+  },
+  "order": 288
+}

@@ -1,0 +1,21 @@
+{
+  "slug": "number-of-members",
+  "track": "sql",
+  "title": "Number of members",
+  "difficulty": "Easy",
+  "tags": [
+    "aggregate"
+  ],
+  "statementMd": "How many members does the library have?\n\nExpected columns: `members`.\n\nTables: `authors`, `books`, `members`, `loans`.\n\nRow order does not matter.",
+  "hints": [
+    "`COUNT(*)`."
+  ],
+  "solutionMd": "```sql\nSELECT COUNT(*) AS members FROM members;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: authors, books, members, loans\nSELECT\n",
+  "datasetId": "library",
+  "expected": {
+    "query": "SELECT COUNT(*) AS members FROM members;",
+    "orderMatters": false
+  },
+  "order": 115
+}

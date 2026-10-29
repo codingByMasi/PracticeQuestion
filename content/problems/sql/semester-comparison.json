@@ -1,0 +1,21 @@
+{
+  "slug": "semester-comparison",
+  "track": "sql",
+  "title": "Semester comparison",
+  "difficulty": "Medium",
+  "tags": [
+    "group-by"
+  ],
+  "statementMd": "Average score per semester, rounded to 2 decimals.\n\nExpected columns: `semester`, `avg_score`.\n\nTables: `teachers`, `courses`, `students`, `enrollments`.\n\nRow order does not matter.",
+  "hints": [
+    "`GROUP BY semester`."
+  ],
+  "solutionMd": "```sql\nSELECT semester, ROUND(AVG(score), 2) AS avg_score FROM enrollments GROUP BY semester;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: teachers, courses, students, enrollments\nSELECT\n",
+  "datasetId": "school",
+  "expected": {
+    "query": "SELECT semester, ROUND(AVG(score), 2) AS avg_score FROM enrollments GROUP BY semester;",
+    "orderMatters": false
+  },
+  "order": 239
+}

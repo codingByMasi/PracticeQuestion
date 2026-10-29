@@ -1,0 +1,21 @@
+{
+  "slug": "students-from-lakeside-or-hillview",
+  "track": "sql",
+  "title": "Students from Lakeside or Hillview",
+  "difficulty": "Easy",
+  "tags": [
+    "where"
+  ],
+  "statementMd": "List students living in Lakeside or Hillview with their city.\n\nExpected columns: `name`, `city`.\n\nTables: `teachers`, `courses`, `students`, `enrollments`.\n\nRow order does not matter.",
+  "hints": [
+    "`IN ('Lakeside', 'Hillview')`."
+  ],
+  "solutionMd": "```sql\nSELECT name, city FROM students WHERE city IN ('Lakeside', 'Hillview');\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: teachers, courses, students, enrollments\nSELECT\n",
+  "datasetId": "school",
+  "expected": {
+    "query": "SELECT name, city FROM students WHERE city IN ('Lakeside', 'Hillview');",
+    "orderMatters": false
+  },
+  "order": 45
+}

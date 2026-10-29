@@ -1,0 +1,69 @@
+{
+  "slug": "perfect-number-check",
+  "track": "python",
+  "title": "Perfect number check",
+  "difficulty": "Easy",
+  "tags": [
+    "number-theory"
+  ],
+  "statementMd": "Return `True` if `n` equals the sum of its proper divisors (excluding itself). 6 and 28 are perfect.\n\n**Example:** `is_perfect(6)` returns `true`.",
+  "hints": [
+    "Sum divisors from 1 up to n // 2."
+  ],
+  "solutionMd": "```python\ndef is_perfect(n):\n    if n < 2:\n        return False\n    return sum(d for d in range(1, n // 2 + 1) if n % d == 0) == n\n```\n\nProper divisors are at most n / 2.",
+  "starterCode": "def is_perfect(n):\n    # Write your code here\n    pass\n",
+  "functionName": "is_perfect",
+  "referenceSolution": "def is_perfect(n):\n    if n < 2:\n        return False\n    return sum(d for d in range(1, n // 2 + 1) if n % d == 0) == n\n",
+  "tests": [
+    {
+      "args": [
+        6
+      ],
+      "expected": true,
+      "hidden": false
+    },
+    {
+      "args": [
+        12
+      ],
+      "expected": false,
+      "hidden": false
+    },
+    {
+      "args": [
+        28
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        1
+      ],
+      "expected": false,
+      "hidden": true
+    },
+    {
+      "args": [
+        496
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        8128
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        100
+      ],
+      "expected": false,
+      "hidden": true
+    }
+  ],
+  "order": 144
+}

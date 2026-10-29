@@ -1,0 +1,21 @@
+{
+  "slug": "hires-per-year",
+  "track": "sql",
+  "title": "Hires per year",
+  "difficulty": "Medium",
+  "tags": [
+    "dates"
+  ],
+  "statementMd": "How many people were hired in each calendar year? Show year and count, oldest year first.\n\nExpected columns: `year`, `hires`.\n\nTables: `employees`, `departments`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "`strftime('%Y', hire_date)` extracts the year."
+  ],
+  "solutionMd": "```sql\nSELECT strftime('%Y', hire_date) AS year, COUNT(*) AS hires FROM employees GROUP BY year ORDER BY year;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "SELECT strftime('%Y', hire_date) AS year, COUNT(*) AS hires FROM employees GROUP BY year ORDER BY year;",
+    "orderMatters": true
+  },
+  "order": 188
+}

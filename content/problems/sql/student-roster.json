@@ -1,0 +1,21 @@
+{
+  "slug": "student-roster",
+  "track": "sql",
+  "title": "Student roster",
+  "difficulty": "Easy",
+  "tags": [
+    "select"
+  ],
+  "statementMd": "List every student's name and grade level.\n\nExpected columns: `name`, `grade_level`.\n\nTables: `teachers`, `courses`, `students`, `enrollments`.\n\nRow order does not matter.",
+  "hints": [
+    "Select two columns."
+  ],
+  "solutionMd": "```sql\nSELECT name, grade_level FROM students;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: teachers, courses, students, enrollments\nSELECT\n",
+  "datasetId": "school",
+  "expected": {
+    "query": "SELECT name, grade_level FROM students;",
+    "orderMatters": false
+  },
+  "order": 10
+}

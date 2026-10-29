@@ -1,0 +1,114 @@
+{
+  "slug": "kth-smallest-in-sorted-matrix",
+  "track": "python",
+  "title": "Kth smallest in sorted matrix",
+  "difficulty": "Medium",
+  "tags": [
+    "heaps"
+  ],
+  "statementMd": "Each row and column of the square matrix is sorted ascending. Return the k-th smallest element overall (1-based, counting duplicates).\n\n**Example:** `kth_in_sorted_matrix([[1, 5, 9], [10, 11, 13], [12, 13, 15]], 8)` returns `13`.",
+  "hints": [
+    "Flatten and sort, or use a heap of row heads."
+  ],
+  "solutionMd": "```python\ndef kth_in_sorted_matrix(matrix, k):\n    import heapq\n    heap = [(row[0], r, 0) for r, row in enumerate(matrix)]\n    heapq.heapify(heap)\n    for _ in range(k - 1):\n        v, r, c = heapq.heappop(heap)\n        if c + 1 < len(matrix[r]):\n            heapq.heappush(heap, (matrix[r][c + 1], r, c + 1))\n    return heap[0][0]\n```\n\nPop the smallest k - 1 times.",
+  "starterCode": "def kth_in_sorted_matrix(matrix, k):\n    # Write your code here\n    pass\n",
+  "functionName": "kth_in_sorted_matrix",
+  "referenceSolution": "def kth_in_sorted_matrix(matrix, k):\n    import heapq\n    heap = [(row[0], r, 0) for r, row in enumerate(matrix)]\n    heapq.heapify(heap)\n    for _ in range(k - 1):\n        v, r, c = heapq.heappop(heap)\n        if c + 1 < len(matrix[r]):\n            heapq.heappush(heap, (matrix[r][c + 1], r, c + 1))\n    return heap[0][0]\n",
+  "tests": [
+    {
+      "args": [
+        [
+          [
+            1,
+            5,
+            9
+          ],
+          [
+            10,
+            11,
+            13
+          ],
+          [
+            12,
+            13,
+            15
+          ]
+        ],
+        8
+      ],
+      "expected": 13,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            -5
+          ]
+        ],
+        1
+      ],
+      "expected": -5,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ]
+        ],
+        2
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ]
+        ],
+        4
+      ],
+      "expected": 3,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            1,
+            3,
+            5
+          ],
+          [
+            6,
+            7,
+            12
+          ],
+          [
+            11,
+            14,
+            14
+          ]
+        ],
+        6
+      ],
+      "expected": 11,
+      "hidden": true
+    }
+  ],
+  "order": 368
+}

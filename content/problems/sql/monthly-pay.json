@@ -1,0 +1,22 @@
+{
+  "slug": "monthly-pay",
+  "track": "sql",
+  "title": "Monthly pay",
+  "difficulty": "Easy",
+  "tags": [
+    "expressions"
+  ],
+  "statementMd": "Show each employee's first name and monthly salary (annual salary divided by 12), rounded to 2 decimals.\n\nExpected columns: `first_name`, `monthly_salary`.\n\nTables: `employees`, `departments`.\n\nRow order does not matter.",
+  "hints": [
+    "`ROUND(x, 2)`.",
+    "Use `salary / 12.0` to avoid integer division."
+  ],
+  "solutionMd": "```sql\nSELECT first_name, ROUND(salary / 12.0, 2) AS monthly_salary FROM employees;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "SELECT first_name, ROUND(salary / 12.0, 2) AS monthly_salary FROM employees;",
+    "orderMatters": false
+  },
+  "order": 91
+}

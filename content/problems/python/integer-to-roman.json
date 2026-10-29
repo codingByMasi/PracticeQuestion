@@ -1,0 +1,69 @@
+{
+  "slug": "integer-to-roman",
+  "track": "python",
+  "title": "Integer to Roman",
+  "difficulty": "Medium",
+  "tags": [
+    "parsing"
+  ],
+  "statementMd": "Convert an integer from 1 to 3999 to a Roman numeral.\n\n**Example:** `int_to_roman(3)` returns `\"III\"`.",
+  "hints": [
+    "Greedily subtract the largest values, including 900, 400, 90, 40, 9, 4."
+  ],
+  "solutionMd": "```python\ndef int_to_roman(n):\n    table = [(1000, 'M'), (900, 'CM'), (500, 'D'), (400, 'CD'), (100, 'C'), (90, 'XC'), (50, 'L'), (40, 'XL'), (10, 'X'), (9, 'IX'), (5, 'V'), (4, 'IV'), (1, 'I')]\n    out = []\n    for value, sym in table:\n        while n >= value:\n            out.append(sym)\n            n -= value\n    return ''.join(out)\n```\n\nInclude subtractive pairs in the table and the greedy approach works.",
+  "starterCode": "def int_to_roman(n):\n    # Write your code here\n    pass\n",
+  "functionName": "int_to_roman",
+  "referenceSolution": "def int_to_roman(n):\n    table = [(1000, 'M'), (900, 'CM'), (500, 'D'), (400, 'CD'), (100, 'C'), (90, 'XC'), (50, 'L'), (40, 'XL'), (10, 'X'), (9, 'IX'), (5, 'V'), (4, 'IV'), (1, 'I')]\n    out = []\n    for value, sym in table:\n        while n >= value:\n            out.append(sym)\n            n -= value\n    return ''.join(out)\n",
+  "tests": [
+    {
+      "args": [
+        3
+      ],
+      "expected": "III",
+      "hidden": false
+    },
+    {
+      "args": [
+        1994
+      ],
+      "expected": "MCMXCIV",
+      "hidden": false
+    },
+    {
+      "args": [
+        4
+      ],
+      "expected": "IV",
+      "hidden": true
+    },
+    {
+      "args": [
+        9
+      ],
+      "expected": "IX",
+      "hidden": true
+    },
+    {
+      "args": [
+        58
+      ],
+      "expected": "LVIII",
+      "hidden": true
+    },
+    {
+      "args": [
+        3999
+      ],
+      "expected": "MMMCMXCIX",
+      "hidden": true
+    },
+    {
+      "args": [
+        444
+      ],
+      "expected": "CDXLIV",
+      "hidden": true
+    }
+  ],
+  "order": 291
+}

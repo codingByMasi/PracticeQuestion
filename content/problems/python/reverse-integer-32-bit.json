@@ -1,0 +1,62 @@
+{
+  "slug": "reverse-integer-32-bit",
+  "track": "python",
+  "title": "Reverse integer 32-bit",
+  "difficulty": "Medium",
+  "tags": [
+    "numbers"
+  ],
+  "statementMd": "Reverse the digits of a signed integer; return 0 if the result leaves the 32-bit signed range `[-2**31, 2**31 - 1]`.\n\n**Example:** `reverse_signed(123)` returns `321`.",
+  "hints": [
+    "Handle the sign separately."
+  ],
+  "solutionMd": "```python\ndef reverse_signed(x):\n    sign = -1 if x < 0 else 1\n    r = sign * int(str(abs(x))[::-1])\n    return r if -2**31 <= r <= 2**31 - 1 else 0\n```\n\nCheck the range at the end.",
+  "starterCode": "def reverse_signed(x):\n    # Write your code here\n    pass\n",
+  "functionName": "reverse_signed",
+  "referenceSolution": "def reverse_signed(x):\n    sign = -1 if x < 0 else 1\n    r = sign * int(str(abs(x))[::-1])\n    return r if -2**31 <= r <= 2**31 - 1 else 0\n",
+  "tests": [
+    {
+      "args": [
+        123
+      ],
+      "expected": 321,
+      "hidden": false
+    },
+    {
+      "args": [
+        -120
+      ],
+      "expected": -21,
+      "hidden": false
+    },
+    {
+      "args": [
+        0
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        1534236469
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        -2147483648
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        900000
+      ],
+      "expected": 9,
+      "hidden": true
+    }
+  ],
+  "order": 170
+}

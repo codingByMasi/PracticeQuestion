@@ -1,0 +1,78 @@
+{
+  "slug": "find-minimum-in-rotated-array",
+  "track": "python",
+  "title": "Find minimum in rotated array",
+  "difficulty": "Medium",
+  "tags": [
+    "searching"
+  ],
+  "statementMd": "Return the minimum of a rotated sorted array of distinct integers (non-empty).\n\n**Example:** `find_min_rotated([3, 4, 5, 1, 2])` returns `1`.",
+  "hints": [
+    "Compare the middle to the right end."
+  ],
+  "solutionMd": "```python\ndef find_min_rotated(nums):\n    lo, hi = 0, len(nums) - 1\n    while lo < hi:\n        mid = (lo + hi) // 2\n        if nums[mid] > nums[hi]:\n            lo = mid + 1\n        else:\n            hi = mid\n    return nums[lo]\n```\n\nThe minimum is where the order breaks.",
+  "starterCode": "def find_min_rotated(nums):\n    # Write your code here\n    pass\n",
+  "functionName": "find_min_rotated",
+  "referenceSolution": "def find_min_rotated(nums):\n    lo, hi = 0, len(nums) - 1\n    while lo < hi:\n        mid = (lo + hi) // 2\n        if nums[mid] > nums[hi]:\n            lo = mid + 1\n        else:\n            hi = mid\n    return nums[lo]\n",
+  "tests": [
+    {
+      "args": [
+        [
+          3,
+          4,
+          5,
+          1,
+          2
+        ]
+      ],
+      "expected": 1,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "expected": 1,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          2,
+          1
+        ]
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          7
+        ]
+      ],
+      "expected": 7,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          4,
+          5,
+          6,
+          7,
+          0,
+          1,
+          2
+        ]
+      ],
+      "expected": 0,
+      "hidden": true
+    }
+  ],
+  "order": 240
+}

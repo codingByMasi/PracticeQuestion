@@ -1,0 +1,62 @@
+{
+  "slug": "basic-calculator",
+  "track": "python",
+  "title": "Basic calculator",
+  "difficulty": "Hard",
+  "tags": [
+    "parsing"
+  ],
+  "statementMd": "Evaluate an expression with non-negative integers, `+`, `-`, `*`, `/` (integer division truncating toward zero) and spaces. No parentheses.\n\n**Example:** `calculate(\"3+2*2\")` returns `7`.",
+  "hints": [
+    "Defer + and - using a stack; apply * and / immediately."
+  ],
+  "solutionMd": "```python\ndef calculate(s):\n    stack = []\n    num = 0\n    op = '+'\n    s += '+'\n    for c in s:\n        if c.isdigit():\n            num = num * 10 + int(c)\n        elif c != ' ':\n            if op == '+':\n                stack.append(num)\n            elif op == '-':\n                stack.append(-num)\n            elif op == '*':\n                stack.append(stack.pop() * num)\n            else:\n                stack.append(int(stack.pop() / num))\n            op, num = c, 0\n    return sum(stack)\n```\n\nMultiplication binds tighter, so resolve it against the last stacked term.",
+  "starterCode": "def calculate(s):\n    # Write your code here\n    pass\n",
+  "functionName": "calculate",
+  "referenceSolution": "def calculate(s):\n    stack = []\n    num = 0\n    op = '+'\n    s += '+'\n    for c in s:\n        if c.isdigit():\n            num = num * 10 + int(c)\n        elif c != ' ':\n            if op == '+':\n                stack.append(num)\n            elif op == '-':\n                stack.append(-num)\n            elif op == '*':\n                stack.append(stack.pop() * num)\n            else:\n                stack.append(int(stack.pop() / num))\n            op, num = c, 0\n    return sum(stack)\n",
+  "tests": [
+    {
+      "args": [
+        "3+2*2"
+      ],
+      "expected": 7,
+      "hidden": false
+    },
+    {
+      "args": [
+        " 3/2 "
+      ],
+      "expected": 1,
+      "hidden": false
+    },
+    {
+      "args": [
+        "1"
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        "14-3/2"
+      ],
+      "expected": 13,
+      "hidden": true
+    },
+    {
+      "args": [
+        "2*3*4"
+      ],
+      "expected": 24,
+      "hidden": true
+    },
+    {
+      "args": [
+        "100/10/2"
+      ],
+      "expected": 5,
+      "hidden": true
+    }
+  ],
+  "order": 427
+}

@@ -1,0 +1,62 @@
+{
+  "slug": "euler-totient",
+  "track": "python",
+  "title": "Euler totient",
+  "difficulty": "Medium",
+  "tags": [
+    "number-theory"
+  ],
+  "statementMd": "Return the count of integers in `1..n` that are coprime to `n`.\n\n**Example:** `totient(10)` returns `4`.",
+  "hints": [
+    "Multiply by (1 - 1/p) for each prime factor."
+  ],
+  "solutionMd": "```python\ndef totient(n):\n    result = n\n    m = n\n    p = 2\n    while p * p <= m:\n        if m % p == 0:\n            while m % p == 0:\n                m //= p\n            result -= result // p\n        p += 1\n    if m > 1:\n        result -= result // m\n    return result\n```\n\nPhi is multiplicative over prime powers.",
+  "starterCode": "def totient(n):\n    # Write your code here\n    pass\n",
+  "functionName": "totient",
+  "referenceSolution": "def totient(n):\n    result = n\n    m = n\n    p = 2\n    while p * p <= m:\n        if m % p == 0:\n            while m % p == 0:\n                m //= p\n            result -= result // p\n        p += 1\n    if m > 1:\n        result -= result // m\n    return result\n",
+  "tests": [
+    {
+      "args": [
+        10
+      ],
+      "expected": 4,
+      "hidden": false
+    },
+    {
+      "args": [
+        1
+      ],
+      "expected": 1,
+      "hidden": false
+    },
+    {
+      "args": [
+        9
+      ],
+      "expected": 6,
+      "hidden": true
+    },
+    {
+      "args": [
+        36
+      ],
+      "expected": 12,
+      "hidden": true
+    },
+    {
+      "args": [
+        97
+      ],
+      "expected": 96,
+      "hidden": true
+    },
+    {
+      "args": [
+        100
+      ],
+      "expected": 40,
+      "hidden": true
+    }
+  ],
+  "order": 288
+}

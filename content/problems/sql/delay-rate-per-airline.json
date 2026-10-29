@@ -1,0 +1,21 @@
+{
+  "slug": "delay-rate-per-airline",
+  "track": "sql",
+  "title": "Delay rate per airline",
+  "difficulty": "Medium",
+  "tags": [
+    "group-by"
+  ],
+  "statementMd": "For each airline show the percentage of its flights that were delayed or cancelled, rounded to 1 decimal. Highest first (ties by name).\n\nExpected columns: `name`, `disrupted_pct`.\n\nTables: `airlines`, `airports`, `flights`, `bookings`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Average a 0/1 flag."
+  ],
+  "solutionMd": "```sql\nSELECT a.name, ROUND(100.0 * SUM(CASE WHEN f.status <> 'on_time' THEN 1 ELSE 0 END) / COUNT(*), 1) AS disrupted_pct FROM flights f JOIN airlines a ON a.code = f.airline_code GROUP BY a.code, a.name ORDER BY disrupted_pct DESC, a.name;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: airlines, airports, flights, bookings\nSELECT\n",
+  "datasetId": "flights",
+  "expected": {
+    "query": "SELECT a.name, ROUND(100.0 * SUM(CASE WHEN f.status <> 'on_time' THEN 1 ELSE 0 END) / COUNT(*), 1) AS disrupted_pct FROM flights f JOIN airlines a ON a.code = f.airline_code GROUP BY a.code, a.name ORDER BY disrupted_pct DESC, a.name;",
+    "orderMatters": true
+  },
+  "order": 232
+}

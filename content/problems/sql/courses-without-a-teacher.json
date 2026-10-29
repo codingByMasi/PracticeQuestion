@@ -1,0 +1,21 @@
+{
+  "slug": "courses-without-a-teacher",
+  "track": "sql",
+  "title": "Courses without a teacher",
+  "difficulty": "Easy",
+  "tags": [
+    "null"
+  ],
+  "statementMd": "Find courses that currently have no teacher assigned.\n\nExpected columns: `title`.\n\nTables: `teachers`, `courses`, `students`, `enrollments`.\n\nRow order does not matter.",
+  "hints": [
+    "`teacher_id IS NULL`."
+  ],
+  "solutionMd": "```sql\nSELECT title FROM courses WHERE teacher_id IS NULL;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: teachers, courses, students, enrollments\nSELECT\n",
+  "datasetId": "school",
+  "expected": {
+    "query": "SELECT title FROM courses WHERE teacher_id IS NULL;",
+    "orderMatters": false
+  },
+  "order": 54
+}

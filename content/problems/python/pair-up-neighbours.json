@@ -1,0 +1,95 @@
+{
+  "slug": "pair-up-neighbours",
+  "track": "python",
+  "title": "Pair up neighbours",
+  "difficulty": "Easy",
+  "tags": [
+    "lists"
+  ],
+  "statementMd": "Group elements into consecutive pairs `[[a0, a1], [a2, a3], ...]`; a final unpaired element forms a single-element list.\n\n**Example:** `pair_up([1, 2, 3, 4])` returns `[[1, 2], [3, 4]]`.",
+  "hints": [
+    "Chunk by 2."
+  ],
+  "solutionMd": "```python\ndef pair_up(items):\n    return [items[i:i + 2] for i in range(0, len(items), 2)]\n```\n\nA special case of chunking.",
+  "starterCode": "def pair_up(items):\n    # Write your code here\n    pass\n",
+  "functionName": "pair_up",
+  "referenceSolution": "def pair_up(items):\n    return [items[i:i + 2] for i in range(0, len(items), 2)]\n",
+  "tests": [
+    {
+      "args": [
+        [
+          1,
+          2,
+          3,
+          4
+        ]
+      ],
+      "expected": [
+        [
+          1,
+          2
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "expected": [
+        [
+          1,
+          2
+        ],
+        [
+          3
+        ]
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": [],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          9
+        ]
+      ],
+      "expected": [
+        [
+          9
+        ]
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          "a",
+          "b"
+        ]
+      ],
+      "expected": [
+        [
+          "a",
+          "b"
+        ]
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 85
+}

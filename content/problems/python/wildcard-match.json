@@ -1,0 +1,68 @@
+{
+  "slug": "wildcard-match",
+  "track": "python",
+  "title": "Wildcard match",
+  "difficulty": "Hard",
+  "tags": [
+    "dynamic-programming"
+  ],
+  "statementMd": "Pattern characters: `?` matches any single character, `*` matches any sequence (including empty). The pattern must match the entire string.\n\n**Example:** `wildcard_match(\"aa\", \"a\")` returns `false`.",
+  "hints": [
+    "Greedy with backtracking to the last star, or DP."
+  ],
+  "solutionMd": "```python\ndef wildcard_match(s, pattern):\n    i = j = 0\n    star = mark = -1\n    while i < len(s):\n        if j < len(pattern) and pattern[j] in (s[i], '?'):\n            i += 1; j += 1\n        elif j < len(pattern) and pattern[j] == '*':\n            star, mark = j, i\n            j += 1\n        elif star != -1:\n            j = star + 1\n            mark += 1\n            i = mark\n        else:\n            return False\n    while j < len(pattern) and pattern[j] == '*':\n        j += 1\n    return j == len(pattern)\n```\n\nRemember the last star and retry with one more character absorbed.",
+  "starterCode": "def wildcard_match(s, pattern):\n    # Write your code here\n    pass\n",
+  "functionName": "wildcard_match",
+  "referenceSolution": "def wildcard_match(s, pattern):\n    i = j = 0\n    star = mark = -1\n    while i < len(s):\n        if j < len(pattern) and pattern[j] in (s[i], '?'):\n            i += 1; j += 1\n        elif j < len(pattern) and pattern[j] == '*':\n            star, mark = j, i\n            j += 1\n        elif star != -1:\n            j = star + 1\n            mark += 1\n            i = mark\n        else:\n            return False\n    while j < len(pattern) and pattern[j] == '*':\n        j += 1\n    return j == len(pattern)\n",
+  "tests": [
+    {
+      "args": [
+        "aa",
+        "a"
+      ],
+      "expected": false,
+      "hidden": false
+    },
+    {
+      "args": [
+        "adceb",
+        "*a*b"
+      ],
+      "expected": true,
+      "hidden": false
+    },
+    {
+      "args": [
+        "",
+        "*"
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        "abc",
+        "a?c"
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        "acdcb",
+        "a*c?b"
+      ],
+      "expected": false,
+      "hidden": true
+    },
+    {
+      "args": [
+        "abc",
+        ""
+      ],
+      "expected": false,
+      "hidden": true
+    }
+  ],
+  "order": 446
+}

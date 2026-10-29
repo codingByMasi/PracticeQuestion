@@ -1,0 +1,21 @@
+{
+  "slug": "author-rank-within-country",
+  "track": "sql",
+  "title": "Author rank within country",
+  "difficulty": "Hard",
+  "tags": [
+    "ranking"
+  ],
+  "statementMd": "Rank authors within their country by number of books (most first) with `RANK()`. Show country, rank, author, books for ranks 1 only (ties allowed), ordered by country then author.\n\nExpected columns: `country`, `rk`, `name`, `books`.\n\nTables: `authors`, `books`, `members`, `loans`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Count books per author, rank by country."
+  ],
+  "solutionMd": "```sql\nWITH c AS (SELECT a.country, a.name, COUNT(*) AS books FROM authors a JOIN books b ON b.author_id = a.id GROUP BY a.id), r AS (SELECT *, RANK() OVER (PARTITION BY country ORDER BY books DESC) AS rk FROM c) SELECT country, rk, name, books FROM r WHERE rk = 1 ORDER BY country, name;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: authors, books, members, loans\nSELECT\n",
+  "datasetId": "library",
+  "expected": {
+    "query": "WITH c AS (SELECT a.country, a.name, COUNT(*) AS books FROM authors a JOIN books b ON b.author_id = a.id GROUP BY a.id), r AS (SELECT *, RANK() OVER (PARTITION BY country ORDER BY books DESC) AS rk FROM c) SELECT country, rk, name, books FROM r WHERE rk = 1 ORDER BY country, name;",
+    "orderMatters": true
+  },
+  "order": 464
+}

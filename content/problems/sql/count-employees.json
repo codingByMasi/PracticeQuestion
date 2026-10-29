@@ -17,5 +17,6 @@
   "expected": {
     "query": "SELECT COUNT(*) AS employee_count FROM employees;",
     "orderMatters": false
-  }
+  },
+  "order": 107
 }

@@ -1,0 +1,87 @@
+{
+  "slug": "valid-mountain-array",
+  "track": "python",
+  "title": "Valid mountain array",
+  "difficulty": "Easy",
+  "tags": [
+    "two-pointers"
+  ],
+  "statementMd": "Return whether the array strictly increases to a peak and then strictly decreases, with both sides non-empty.\n\n**Example:** `is_mountain([0, 3, 2, 1])` returns `true`.",
+  "hints": [
+    "Walk up, then walk down."
+  ],
+  "solutionMd": "```python\ndef is_mountain(nums):\n    n = len(nums)\n    i = 0\n    while i + 1 < n and nums[i] < nums[i + 1]:\n        i += 1\n    if i == 0 or i == n - 1:\n        return False\n    while i + 1 < n and nums[i] > nums[i + 1]:\n        i += 1\n    return i == n - 1\n```\n\nThe peak cannot be at either end.",
+  "starterCode": "def is_mountain(nums):\n    # Write your code here\n    pass\n",
+  "functionName": "is_mountain",
+  "referenceSolution": "def is_mountain(nums):\n    n = len(nums)\n    i = 0\n    while i + 1 < n and nums[i] < nums[i + 1]:\n        i += 1\n    if i == 0 or i == n - 1:\n        return False\n    while i + 1 < n and nums[i] > nums[i + 1]:\n        i += 1\n    return i == n - 1\n",
+  "tests": [
+    {
+      "args": [
+        [
+          0,
+          3,
+          2,
+          1
+        ]
+      ],
+      "expected": true,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          3,
+          5,
+          5
+        ]
+      ],
+      "expected": false,
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": false,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          2,
+          1
+        ]
+      ],
+      "expected": false,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "expected": false,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          0,
+          2,
+          3,
+          3,
+          5,
+          2,
+          1,
+          0
+        ]
+      ],
+      "expected": false,
+      "hidden": true
+    }
+  ],
+  "order": 126
+}

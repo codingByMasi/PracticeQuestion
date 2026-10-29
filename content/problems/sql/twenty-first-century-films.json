@@ -1,0 +1,21 @@
+{
+  "slug": "twenty-first-century-films",
+  "track": "sql",
+  "title": "Twenty-first century films",
+  "difficulty": "Easy",
+  "tags": [
+    "where"
+  ],
+  "statementMd": "List titles released in the year 2000 or later.\n\nExpected columns: `title`, `release_year`.\n\nTables: `movies`, `directors`, `reviews`.\n\nRow order does not matter.",
+  "hints": [
+    "`release_year >= 2000`."
+  ],
+  "solutionMd": "```sql\nSELECT title, release_year FROM movies WHERE release_year >= 2000;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: movies, directors, reviews\nSELECT\n",
+  "datasetId": "movies",
+  "expected": {
+    "query": "SELECT title, release_year FROM movies WHERE release_year >= 2000;",
+    "orderMatters": false
+  },
+  "order": 37
+}

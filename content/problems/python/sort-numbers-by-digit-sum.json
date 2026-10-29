@@ -1,0 +1,87 @@
+{
+  "slug": "sort-numbers-by-digit-sum",
+  "track": "python",
+  "title": "Sort numbers by digit sum",
+  "difficulty": "Medium",
+  "tags": [
+    "sorting"
+  ],
+  "statementMd": "Sort non-negative integers by the sum of their digits ascending; ties by value ascending.\n\n**Example:** `sort_by_digit_sum([19, 10, 2, 100])` returns `[10, 100, 2, 19]`.",
+  "hints": [
+    "Key `(digit_sum, n)`."
+  ],
+  "solutionMd": "```python\ndef sort_by_digit_sum(nums):\n    return sorted(nums, key=lambda n: (sum(int(c) for c in str(n)), n))\n```\n\nCompute the key per element.",
+  "starterCode": "def sort_by_digit_sum(nums):\n    # Write your code here\n    pass\n",
+  "functionName": "sort_by_digit_sum",
+  "referenceSolution": "def sort_by_digit_sum(nums):\n    return sorted(nums, key=lambda n: (sum(int(c) for c in str(n)), n))\n",
+  "tests": [
+    {
+      "args": [
+        [
+          19,
+          10,
+          2,
+          100
+        ]
+      ],
+      "expected": [
+        10,
+        100,
+        2,
+        19
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": [],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          5
+        ]
+      ],
+      "expected": [
+        5
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          11,
+          20,
+          2
+        ]
+      ],
+      "expected": [
+        2,
+        11,
+        20
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          99,
+          18,
+          81,
+          9
+        ]
+      ],
+      "expected": [
+        9,
+        18,
+        81,
+        99
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 230
+}

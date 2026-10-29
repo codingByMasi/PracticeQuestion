@@ -1,0 +1,21 @@
+{
+  "slug": "movies-per-genre-count",
+  "track": "sql",
+  "title": "Movies per genre count",
+  "difficulty": "Easy",
+  "tags": [
+    "group-by"
+  ],
+  "statementMd": "How many movies are there in each genre? Most first, ties by genre.\n\nExpected columns: `genre`, `movies`.\n\nTables: `directors`, `movies`, `reviews`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "`GROUP BY genre`."
+  ],
+  "solutionMd": "```sql\nSELECT genre, COUNT(*) AS movies FROM movies GROUP BY genre ORDER BY movies DESC, genre;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: directors, movies, reviews\nSELECT\n",
+  "datasetId": "movies",
+  "expected": {
+    "query": "SELECT genre, COUNT(*) AS movies FROM movies GROUP BY genre ORDER BY movies DESC, genre;",
+    "orderMatters": true
+  },
+  "order": 147
+}

@@ -1,0 +1,90 @@
+{
+  "slug": "union-of-two-lists",
+  "track": "python",
+  "title": "Union of two lists",
+  "difficulty": "Easy",
+  "tags": [
+    "sets"
+  ],
+  "statementMd": "Return the sorted list of distinct values present in either list.\n\n**Example:** `union_sorted([1, 2], [2, 3])` returns `[1, 2, 3]`.",
+  "hints": [
+    "`set(a) | set(b)`."
+  ],
+  "solutionMd": "```python\ndef union_sorted(a, b):\n    return sorted(set(a) | set(b))\n```\n\nThe pipe operator is set union.",
+  "starterCode": "def union_sorted(a, b):\n    # Write your code here\n    pass\n",
+  "functionName": "union_sorted",
+  "referenceSolution": "def union_sorted(a, b):\n    return sorted(set(a) | set(b))\n",
+  "tests": [
+    {
+      "args": [
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "expected": [
+        1,
+        2,
+        3
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [],
+        []
+      ],
+      "expected": [],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          1
+        ],
+        []
+      ],
+      "expected": [
+        1
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          3,
+          3
+        ],
+        [
+          3
+        ]
+      ],
+      "expected": [
+        3
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          5,
+          1
+        ],
+        [
+          4
+        ]
+      ],
+      "expected": [
+        1,
+        4,
+        5
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 93
+}

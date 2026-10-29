@@ -1,0 +1,21 @@
+{
+  "slug": "price-with-tax",
+  "track": "sql",
+  "title": "Price with tax",
+  "difficulty": "Easy",
+  "tags": [
+    "expressions"
+  ],
+  "statementMd": "Show each product name and its price with 20% tax added, rounded to 2 decimals.\n\nExpected columns: `name`, `price_with_tax`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\nRow order does not matter.",
+  "hints": [
+    "`ROUND(price * 1.2, 2)`."
+  ],
+  "solutionMd": "```sql\nSELECT name, ROUND(price * 1.2, 2) AS price_with_tax FROM products;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "SELECT name, ROUND(price * 1.2, 2) AS price_with_tax FROM products;",
+    "orderMatters": false
+  },
+  "order": 90
+}

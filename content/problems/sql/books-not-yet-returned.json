@@ -1,0 +1,21 @@
+{
+  "slug": "books-not-yet-returned",
+  "track": "sql",
+  "title": "Books not yet returned",
+  "difficulty": "Easy",
+  "tags": [
+    "null"
+  ],
+  "statementMd": "List loan ids that have not been returned (no return date).\n\nExpected columns: `id`, `book_id`, `member_id`.\n\nTables: `authors`, `books`, `members`, `loans`.\n\nRow order does not matter.",
+  "hints": [
+    "`return_date IS NULL`."
+  ],
+  "solutionMd": "```sql\nSELECT id, book_id, member_id FROM loans WHERE return_date IS NULL;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: authors, books, members, loans\nSELECT\n",
+  "datasetId": "library",
+  "expected": {
+    "query": "SELECT id, book_id, member_id FROM loans WHERE return_date IS NULL;",
+    "orderMatters": false
+  },
+  "order": 51
+}

@@ -1,0 +1,21 @@
+{
+  "slug": "average-days-kept-per-genre",
+  "track": "sql",
+  "title": "Average days kept per genre",
+  "difficulty": "Medium",
+  "tags": [
+    "dates"
+  ],
+  "statementMd": "Average number of days a book is kept per genre (returned loans only), rounded to 1 decimal.\n\nExpected columns: `genre`, `avg_days`.\n\nTables: `authors`, `books`, `members`, `loans`.\n\nRow order does not matter.",
+  "hints": [
+    "`julianday` difference."
+  ],
+  "solutionMd": "```sql\nSELECT b.genre, ROUND(AVG(julianday(l.return_date) - julianday(l.loan_date)), 1) AS avg_days FROM loans l JOIN books b ON b.id = l.book_id WHERE l.return_date IS NOT NULL GROUP BY b.genre;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: authors, books, members, loans\nSELECT\n",
+  "datasetId": "library",
+  "expected": {
+    "query": "SELECT b.genre, ROUND(AVG(julianday(l.return_date) - julianday(l.loan_date)), 1) AS avg_days FROM loans l JOIN books b ON b.id = l.book_id WHERE l.return_date IS NOT NULL GROUP BY b.genre;",
+    "orderMatters": false
+  },
+  "order": 208
+}

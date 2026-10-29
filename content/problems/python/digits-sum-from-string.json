@@ -1,0 +1,55 @@
+{
+  "slug": "digits-sum-from-string",
+  "track": "python",
+  "title": "Digits sum from string",
+  "difficulty": "Easy",
+  "tags": [
+    "strings"
+  ],
+  "statementMd": "Return the sum of all single digit characters found in `s`, ignoring other characters.\n\n**Example:** `sum_digits_in_text(\"a1b2c3\")` returns `6`.",
+  "hints": [
+    "Filter with `isdigit`."
+  ],
+  "solutionMd": "```python\ndef sum_digits_in_text(s):\n    return sum(int(c) for c in s if c.isdigit())\n```\n\nOnly digit characters contribute.",
+  "starterCode": "def sum_digits_in_text(s):\n    # Write your code here\n    pass\n",
+  "functionName": "sum_digits_in_text",
+  "referenceSolution": "def sum_digits_in_text(s):\n    return sum(int(c) for c in s if c.isdigit())\n",
+  "tests": [
+    {
+      "args": [
+        "a1b2c3"
+      ],
+      "expected": 6,
+      "hidden": false
+    },
+    {
+      "args": [
+        "none"
+      ],
+      "expected": 0,
+      "hidden": false
+    },
+    {
+      "args": [
+        ""
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        "99"
+      ],
+      "expected": 18,
+      "hidden": true
+    },
+    {
+      "args": [
+        "x9y0z"
+      ],
+      "expected": 9,
+      "hidden": true
+    }
+  ],
+  "order": 67
+}

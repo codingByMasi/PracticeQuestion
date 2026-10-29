@@ -1,0 +1,125 @@
+{
+  "slug": "diagonal-sums",
+  "track": "python",
+  "title": "Diagonal sums",
+  "difficulty": "Easy",
+  "tags": [
+    "matrix"
+  ],
+  "statementMd": "For a square matrix return the sum of both diagonals (count the centre cell once).\n\n**Example:** `diagonal_sum([[1, 2], [3, 4]])` returns `10`.",
+  "hints": [
+    "Index `m[i][i]` and `m[i][n-1-i]`."
+  ],
+  "solutionMd": "```python\ndef diagonal_sum(m):\n    n = len(m)\n    total = sum(m[i][i] + m[i][n - 1 - i] for i in range(n))\n    if n % 2:\n        total -= m[n // 2][n // 2]\n    return total\n```\n\nThe centre of an odd matrix is on both diagonals.",
+  "starterCode": "def diagonal_sum(m):\n    # Write your code here\n    pass\n",
+  "functionName": "diagonal_sum",
+  "referenceSolution": "def diagonal_sum(m):\n    n = len(m)\n    total = sum(m[i][i] + m[i][n - 1 - i] for i in range(n))\n    if n % 2:\n        total -= m[n // 2][n // 2]\n    return total\n",
+  "tests": [
+    {
+      "args": [
+        [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      ],
+      "expected": 10,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            4,
+            5,
+            6
+          ],
+          [
+            7,
+            8,
+            9
+          ]
+        ]
+      ],
+      "expected": 25,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            5
+          ]
+        ]
+      ],
+      "expected": 5,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      ],
+      "expected": 5,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            2,
+            0,
+            0,
+            3
+          ],
+          [
+            0,
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            1,
+            0
+          ],
+          [
+            4,
+            0,
+            0,
+            5
+          ]
+        ]
+      ],
+      "expected": 18,
+      "hidden": true
+    }
+  ],
+  "order": 130
+}

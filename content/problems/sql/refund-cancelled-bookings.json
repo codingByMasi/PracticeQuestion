@@ -1,0 +1,21 @@
+{
+  "slug": "refund-cancelled-bookings",
+  "track": "sql",
+  "title": "Refund cancelled bookings",
+  "difficulty": "Medium",
+  "tags": [
+    "dml"
+  ],
+  "statementMd": "Delete bookings for cancelled flights, then report the total fare of the remaining bookings rounded to 2 decimals.\n\nExpected columns: `remaining_fare`.\n\nTables: `airlines`, `airports`, `flights`, `bookings`.\n\nRow order does not matter.",
+  "hints": [
+    "`DELETE FROM bookings WHERE flight_id IN (SELECT id FROM flights WHERE status = 'cancelled')`."
+  ],
+  "solutionMd": "```sql\nDELETE FROM bookings WHERE flight_id IN (SELECT id FROM flights WHERE status = 'cancelled'); SELECT ROUND(SUM(fare), 2) AS remaining_fare FROM bookings;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: airlines, airports, flights, bookings\nSELECT\n",
+  "datasetId": "flights",
+  "expected": {
+    "query": "DELETE FROM bookings WHERE flight_id IN (SELECT id FROM flights WHERE status = 'cancelled'); SELECT ROUND(SUM(fare), 2) AS remaining_fare FROM bookings;",
+    "orderMatters": false
+  },
+  "order": 360
+}

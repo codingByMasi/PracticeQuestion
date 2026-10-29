@@ -1,0 +1,21 @@
+{
+  "slug": "split-adjusted-prices",
+  "track": "sql",
+  "title": "Split-adjusted prices",
+  "difficulty": "Medium",
+  "tags": [
+    "dml"
+  ],
+  "statementMd": "Pretend `ACME` did a 2-for-1 split on 2024-03-15: halve the open/high/low/close prices of ACME rows before that date with an `UPDATE`, double the volume, then show ACME's average close rounded to 2 decimals.\n\nExpected columns: `avg_close`.\n\nTables: `tickers`, `prices`.\n\nRow order does not matter.",
+  "hints": [
+    "`UPDATE prices SET open = open / 2, ... WHERE symbol = 'ACME' AND trade_date < '2024-03-15'`."
+  ],
+  "solutionMd": "```sql\nUPDATE prices SET open = open / 2, high = high / 2, low = low / 2, close = close / 2, volume = volume * 2 WHERE symbol = 'ACME' AND trade_date < '2024-03-15'; SELECT ROUND(AVG(close), 2) AS avg_close FROM prices WHERE symbol = 'ACME';\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: tickers, prices\nSELECT\n",
+  "datasetId": "stocks",
+  "expected": {
+    "query": "UPDATE prices SET open = open / 2, high = high / 2, low = low / 2, close = close / 2, volume = volume * 2 WHERE symbol = 'ACME' AND trade_date < '2024-03-15'; SELECT ROUND(AVG(close), 2) AS avg_close FROM prices WHERE symbol = 'ACME';",
+    "orderMatters": false
+  },
+  "order": 370
+}

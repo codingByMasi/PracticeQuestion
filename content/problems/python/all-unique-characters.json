@@ -1,0 +1,62 @@
+{
+  "slug": "all-unique-characters",
+  "track": "python",
+  "title": "All unique characters",
+  "difficulty": "Easy",
+  "tags": [
+    "sets"
+  ],
+  "statementMd": "Return `True` if no character appears twice in `s`.\n\n**Example:** `all_unique_chars(\"abc\")` returns `true`.",
+  "hints": [
+    "Compare sizes of the string and its set."
+  ],
+  "solutionMd": "```python\ndef all_unique_chars(s):\n    return len(set(s)) == len(s)\n```\n\nDuplicates shrink the set.",
+  "starterCode": "def all_unique_chars(s):\n    # Write your code here\n    pass\n",
+  "functionName": "all_unique_chars",
+  "referenceSolution": "def all_unique_chars(s):\n    return len(set(s)) == len(s)\n",
+  "tests": [
+    {
+      "args": [
+        "abc"
+      ],
+      "expected": true,
+      "hidden": false
+    },
+    {
+      "args": [
+        "hello"
+      ],
+      "expected": false,
+      "hidden": false
+    },
+    {
+      "args": [
+        ""
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        "a"
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        "Aa"
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        "abcdefga"
+      ],
+      "expected": false,
+      "hidden": true
+    }
+  ],
+  "order": 99
+}

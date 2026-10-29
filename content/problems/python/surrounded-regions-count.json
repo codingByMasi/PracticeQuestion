@@ -1,0 +1,134 @@
+{
+  "slug": "surrounded-regions-count",
+  "track": "python",
+  "title": "Surrounded regions count",
+  "difficulty": "Hard",
+  "tags": [
+    "graphs"
+  ],
+  "statementMd": "In a grid of `0` (water) and `1` (land), count land cells that cannot reach the border by moving through land 4-directionally.\n\n**Example:** `count_enclosed([[0, 0, 0, 0], [1, 0, 1, 0], [0, 1, 1, 0], [0, 0, 0, 0]])` returns `3`.",
+  "hints": [
+    "Flood fill from border land cells and subtract."
+  ],
+  "solutionMd": "```python\nfrom collections import deque, defaultdict\n\n\ndef count_enclosed(grid):\n    R, C = len(grid), len(grid[0])\n    seen = set()\n    stack = [(r, c) for r in range(R) for c in range(C) if (r in (0, R - 1) or c in (0, C - 1)) and grid[r][c] == 1]\n    seen.update(stack)\n    while stack:\n        r, c = stack.pop()\n        for dr, dc in ((1, 0), (-1, 0), (0, 1), (0, -1)):\n            nr, nc = r + dr, c + dc\n            if 0 <= nr < R and 0 <= nc < C and grid[nr][nc] == 1 and (nr, nc) not in seen:\n                seen.add((nr, nc)); stack.append((nr, nc))\n    return sum(row.count(1) for row in grid) - len(seen)\n```\n\nEverything reachable from the border is not enclosed.",
+  "starterCode": "def count_enclosed(grid):\n    # Write your code here\n    pass\n",
+  "functionName": "count_enclosed",
+  "referenceSolution": "from collections import deque, defaultdict\n\n\ndef count_enclosed(grid):\n    R, C = len(grid), len(grid[0])\n    seen = set()\n    stack = [(r, c) for r in range(R) for c in range(C) if (r in (0, R - 1) or c in (0, C - 1)) and grid[r][c] == 1]\n    seen.update(stack)\n    while stack:\n        r, c = stack.pop()\n        for dr, dc in ((1, 0), (-1, 0), (0, 1), (0, -1)):\n            nr, nc = r + dr, c + dc\n            if 0 <= nr < R and 0 <= nc < C and grid[nr][nc] == 1 and (nr, nc) not in seen:\n                seen.add((nr, nc)); stack.append((nr, nc))\n    return sum(row.count(1) for row in grid) - len(seen)\n",
+  "tests": [
+    {
+      "args": [
+        [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      ],
+      "expected": 3,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            0,
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      ],
+      "expected": 0,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            1
+          ]
+        ]
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      ],
+      "expected": 1,
+      "hidden": true
+    }
+  ],
+  "order": 473
+}

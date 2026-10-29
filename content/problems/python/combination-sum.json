@@ -1,0 +1,107 @@
+{
+  "slug": "combination-sum",
+  "track": "python",
+  "title": "Combination sum",
+  "difficulty": "Medium",
+  "tags": [
+    "backtracking"
+  ],
+  "statementMd": "Distinct positive integers `candidates` can be reused unlimited times. Return all unique combinations (each sorted ascending) that sum to `target`, the list sorted.\n\n**Example:** `combination_sum([2, 3, 6, 7], 7)` returns `[[2, 2, 3], [7]]`.",
+  "hints": [
+    "Recurse with a start index so order is non-decreasing."
+  ],
+  "solutionMd": "```python\ndef combination_sum(candidates, target):\n    c = sorted(candidates)\n    out = []\n    def go(start, rest, cur):\n        if rest == 0:\n            out.append(cur[:])\n            return\n        for i in range(start, len(c)):\n            if c[i] > rest:\n                break\n            cur.append(c[i])\n            go(i, rest - c[i], cur)\n            cur.pop()\n    go(0, target, [])\n    return sorted(out)\n```\n\nAllow reuse by recursing with the same index.",
+  "starterCode": "def combination_sum(candidates, target):\n    # Write your code here\n    pass\n",
+  "functionName": "combination_sum",
+  "referenceSolution": "def combination_sum(candidates, target):\n    c = sorted(candidates)\n    out = []\n    def go(start, rest, cur):\n        if rest == 0:\n            out.append(cur[:])\n            return\n        for i in range(start, len(c)):\n            if c[i] > rest:\n                break\n            cur.append(c[i])\n            go(i, rest - c[i], cur)\n            cur.pop()\n    go(0, target, [])\n    return sorted(out)\n",
+  "tests": [
+    {
+      "args": [
+        [
+          2,
+          3,
+          6,
+          7
+        ],
+        7
+      ],
+      "expected": [
+        [
+          2,
+          2,
+          3
+        ],
+        [
+          7
+        ]
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          2
+        ],
+        1
+      ],
+      "expected": [],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          2,
+          3,
+          5
+        ],
+        8
+      ],
+      "expected": [
+        [
+          2,
+          2,
+          2,
+          2
+        ],
+        [
+          2,
+          3,
+          3
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1
+        ],
+        3
+      ],
+      "expected": [
+        [
+          1,
+          1,
+          1
+        ]
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          3,
+          5
+        ],
+        4
+      ],
+      "expected": [],
+      "hidden": true
+    }
+  ],
+  "order": 335
+}

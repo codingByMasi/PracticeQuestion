@@ -1,0 +1,21 @@
+{
+  "slug": "accounts-with-a-balance-dip-below-zero",
+  "track": "sql",
+  "title": "Accounts with a balance dip below zero",
+  "difficulty": "Hard",
+  "tags": [
+    "running-total"
+  ],
+  "statementMd": "Treat deposits as positive and withdrawals/purchases/fees as negative amounts (the `amount` column is already signed). For each account find the lowest running balance over time and show accounts whose lowest running balance is below 0: account_id, lowest.\n\nExpected columns: `account_id`, `lowest`.\n\nTables: `customers`, `accounts`, `transactions`.\n\nRow order does not matter.",
+  "hints": [
+    "Running `SUM(amount)` ordered by date then id, then `MIN` per account."
+  ],
+  "solutionMd": "```sql\nWITH r AS (SELECT account_id, SUM(amount) OVER (PARTITION BY account_id ORDER BY tx_date, id) AS bal FROM transactions) SELECT account_id, ROUND(MIN(bal), 2) AS lowest FROM r GROUP BY account_id HAVING MIN(bal) < 0;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, accounts, transactions\nSELECT\n",
+  "datasetId": "bank",
+  "expected": {
+    "query": "WITH r AS (SELECT account_id, SUM(amount) OVER (PARTITION BY account_id ORDER BY tx_date, id) AS bal FROM transactions) SELECT account_id, ROUND(MIN(bal), 2) AS lowest FROM r GROUP BY account_id HAVING MIN(bal) < 0;",
+    "orderMatters": false
+  },
+  "order": 477
+}

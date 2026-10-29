@@ -1,0 +1,21 @@
+{
+  "slug": "activity-by-month",
+  "track": "sql",
+  "title": "Activity by month",
+  "difficulty": "Medium",
+  "tags": [
+    "dates"
+  ],
+  "statementMd": "For each month show the number of transactions and total deposits. Earliest first.\n\nExpected columns: `month`, `transactions`, `deposits`.\n\nTables: `customers`, `accounts`, `transactions`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "`strftime('%Y-%m', tx_date)` and conditional sum."
+  ],
+  "solutionMd": "```sql\nSELECT strftime('%Y-%m', tx_date) AS month, COUNT(*) AS transactions, ROUND(SUM(CASE WHEN kind = 'deposit' THEN amount ELSE 0 END), 2) AS deposits FROM transactions GROUP BY month ORDER BY month;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, accounts, transactions\nSELECT\n",
+  "datasetId": "bank",
+  "expected": {
+    "query": "SELECT strftime('%Y-%m', tx_date) AS month, COUNT(*) AS transactions, ROUND(SUM(CASE WHEN kind = 'deposit' THEN amount ELSE 0 END), 2) AS deposits FROM transactions GROUP BY month ORDER BY month;",
+    "orderMatters": true
+  },
+  "order": 183
+}

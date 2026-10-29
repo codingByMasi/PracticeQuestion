@@ -1,0 +1,62 @@
+{
+  "slug": "remove-adjacent-duplicates-repeatedly",
+  "track": "python",
+  "title": "Remove adjacent duplicates repeatedly",
+  "difficulty": "Medium",
+  "tags": [
+    "stacks"
+  ],
+  "statementMd": "Repeatedly delete pairs of equal adjacent characters until none remain; return the final string.\n\n**Example:** `remove_adjacent_pairs(\"abbaca\")` returns `\"ca\"`.",
+  "hints": [
+    "A stack handles cascading removals."
+  ],
+  "solutionMd": "```python\ndef remove_adjacent_pairs(s):\n    stack = []\n    for c in s:\n        if stack and stack[-1] == c:\n            stack.pop()\n        else:\n            stack.append(c)\n    return ''.join(stack)\n```\n\nEach character either cancels the top or is pushed.",
+  "starterCode": "def remove_adjacent_pairs(s):\n    # Write your code here\n    pass\n",
+  "functionName": "remove_adjacent_pairs",
+  "referenceSolution": "def remove_adjacent_pairs(s):\n    stack = []\n    for c in s:\n        if stack and stack[-1] == c:\n            stack.pop()\n        else:\n            stack.append(c)\n    return ''.join(stack)\n",
+  "tests": [
+    {
+      "args": [
+        "abbaca"
+      ],
+      "expected": "ca",
+      "hidden": false
+    },
+    {
+      "args": [
+        "azxxzy"
+      ],
+      "expected": "ay",
+      "hidden": false
+    },
+    {
+      "args": [
+        ""
+      ],
+      "expected": "",
+      "hidden": true
+    },
+    {
+      "args": [
+        "aa"
+      ],
+      "expected": "",
+      "hidden": true
+    },
+    {
+      "args": [
+        "abc"
+      ],
+      "expected": "abc",
+      "hidden": true
+    },
+    {
+      "args": [
+        "aabbaa"
+      ],
+      "expected": "",
+      "hidden": true
+    }
+  ],
+  "order": 256
+}

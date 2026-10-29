@@ -1,0 +1,55 @@
+{
+  "slug": "title-case-words",
+  "track": "python",
+  "title": "Title case words",
+  "difficulty": "Easy",
+  "tags": [
+    "strings"
+  ],
+  "statementMd": "Capitalise the first letter of each space-separated word and lowercase the rest. Keep the spaces.\n\n**Example:** `capitalize_words(\"hello wORLD\")` returns `\"Hello World\"`.",
+  "hints": [
+    "Split on a single space to keep spacing."
+  ],
+  "solutionMd": "```python\ndef capitalize_words(s):\n    return ' '.join(w[:1].upper() + w[1:].lower() for w in s.split(' '))\n```\n\nPer word: first upper, rest lower.",
+  "starterCode": "def capitalize_words(s):\n    # Write your code here\n    pass\n",
+  "functionName": "capitalize_words",
+  "referenceSolution": "def capitalize_words(s):\n    return ' '.join(w[:1].upper() + w[1:].lower() for w in s.split(' '))\n",
+  "tests": [
+    {
+      "args": [
+        "hello wORLD"
+      ],
+      "expected": "Hello World",
+      "hidden": false
+    },
+    {
+      "args": [
+        "a"
+      ],
+      "expected": "A",
+      "hidden": false
+    },
+    {
+      "args": [
+        ""
+      ],
+      "expected": "",
+      "hidden": true
+    },
+    {
+      "args": [
+        "PYTHON IS fun"
+      ],
+      "expected": "Python Is Fun",
+      "hidden": true
+    },
+    {
+      "args": [
+        "one  two"
+      ],
+      "expected": "One  Two",
+      "hidden": true
+    }
+  ],
+  "order": 64
+}

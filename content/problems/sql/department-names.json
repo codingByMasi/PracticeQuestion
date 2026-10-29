@@ -1,0 +1,21 @@
+{
+  "slug": "department-names",
+  "track": "sql",
+  "title": "Department names",
+  "difficulty": "Easy",
+  "tags": [
+    "distinct"
+  ],
+  "statementMd": "List each department that offers courses, once.\n\nExpected columns: `department`.\n\nTables: `teachers`, `courses`, `students`, `enrollments`.\n\nRow order does not matter.",
+  "hints": [
+    "`DISTINCT department`."
+  ],
+  "solutionMd": "```sql\nSELECT DISTINCT department FROM courses;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: teachers, courses, students, enrollments\nSELECT\n",
+  "datasetId": "school",
+  "expected": {
+    "query": "SELECT DISTINCT department FROM courses;",
+    "orderMatters": false
+  },
+  "order": 85
+}

@@ -1,0 +1,55 @@
+{
+  "slug": "remove-spaces",
+  "track": "python",
+  "title": "Remove spaces",
+  "difficulty": "Easy",
+  "tags": [
+    "strings"
+  ],
+  "statementMd": "Return `s` with every space character removed.\n\n**Example:** `remove_spaces(\"a b c\")` returns `\"abc\"`.",
+  "hints": [
+    "`str.replace(' ', '')`."
+  ],
+  "solutionMd": "```python\ndef remove_spaces(s):\n    return s.replace(' ', '')\n```\n\nReplace with an empty string deletes characters.",
+  "starterCode": "def remove_spaces(s):\n    # Write your code here\n    pass\n",
+  "functionName": "remove_spaces",
+  "referenceSolution": "def remove_spaces(s):\n    return s.replace(' ', '')\n",
+  "tests": [
+    {
+      "args": [
+        "a b c"
+      ],
+      "expected": "abc",
+      "hidden": false
+    },
+    {
+      "args": [
+        "  x "
+      ],
+      "expected": "x",
+      "hidden": false
+    },
+    {
+      "args": [
+        ""
+      ],
+      "expected": "",
+      "hidden": true
+    },
+    {
+      "args": [
+        "nospace"
+      ],
+      "expected": "nospace",
+      "hidden": true
+    },
+    {
+      "args": [
+        "a  b"
+      ],
+      "expected": "ab",
+      "hidden": true
+    }
+  ],
+  "order": 50
+}

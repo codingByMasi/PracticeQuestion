@@ -1,0 +1,21 @@
+{
+  "slug": "students-taking-all-three-math-courses",
+  "track": "sql",
+  "title": "Students taking all three Math courses",
+  "difficulty": "Hard",
+  "tags": [
+    "having"
+  ],
+  "statementMd": "List students enrolled (any semester) in at least three different Math courses.\n\nExpected columns: `name`, `math_courses`.\n\nTables: `teachers`, `courses`, `students`, `enrollments`.\n\nRow order does not matter.",
+  "hints": [
+    "`COUNT(DISTINCT c.id)` for Math."
+  ],
+  "solutionMd": "```sql\nSELECT s.name, COUNT(DISTINCT c.id) AS math_courses FROM students s JOIN enrollments e ON e.student_id = s.id JOIN courses c ON c.id = e.course_id WHERE c.department = 'Math' GROUP BY s.id, s.name HAVING COUNT(DISTINCT c.id) >= 3;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: teachers, courses, students, enrollments\nSELECT\n",
+  "datasetId": "school",
+  "expected": {
+    "query": "SELECT s.name, COUNT(DISTINCT c.id) AS math_courses FROM students s JOIN enrollments e ON e.student_id = s.id JOIN courses c ON c.id = e.course_id WHERE c.department = 'Math' GROUP BY s.id, s.name HAVING COUNT(DISTINCT c.id) >= 3;",
+    "orderMatters": false
+  },
+  "order": 381
+}

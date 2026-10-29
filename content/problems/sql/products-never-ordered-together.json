@@ -1,0 +1,21 @@
+{
+  "slug": "products-never-ordered-together",
+  "track": "sql",
+  "title": "Products never ordered together",
+  "difficulty": "Hard",
+  "tags": [
+    "exists"
+  ],
+  "statementMd": "Count product pairs (a.id < b.id) that never appear in the same order, as a single number `unpaired`.\n\nExpected columns: `unpaired`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\nRow order does not matter.",
+  "hints": [
+    "All pairs minus pairs that co-occur; or `NOT EXISTS`."
+  ],
+  "solutionMd": "```sql\nSELECT COUNT(*) AS unpaired FROM products a JOIN products b ON a.id < b.id WHERE NOT EXISTS (SELECT 1 FROM order_items x JOIN order_items y ON y.order_id = x.order_id WHERE x.product_id = a.id AND y.product_id = b.id);\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "SELECT COUNT(*) AS unpaired FROM products a JOIN products b ON a.id < b.id WHERE NOT EXISTS (SELECT 1 FROM order_items x JOIN order_items y ON y.order_id = x.order_id WHERE x.product_id = a.id AND y.product_id = b.id);",
+    "orderMatters": false
+  },
+  "order": 393
+}

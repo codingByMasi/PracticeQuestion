@@ -1,0 +1,68 @@
+{
+  "slug": "distinct-subsequences",
+  "track": "python",
+  "title": "Distinct subsequences",
+  "difficulty": "Hard",
+  "tags": [
+    "dynamic-programming"
+  ],
+  "statementMd": "Return the number of distinct subsequences of `s` that equal `t`.\n\n**Example:** `num_distinct(\"rabbbit\", \"rabbit\")` returns `3`.",
+  "hints": [
+    "dp over prefixes of t."
+  ],
+  "solutionMd": "```python\ndef num_distinct(s, t):\n    dp = [1] + [0] * len(t)\n    for c in s:\n        for j in range(len(t), 0, -1):\n            if t[j - 1] == c:\n                dp[j] += dp[j - 1]\n    return dp[len(t)]\n```\n\nIterate j downwards to use each character of s once.",
+  "starterCode": "def num_distinct(s, t):\n    # Write your code here\n    pass\n",
+  "functionName": "num_distinct",
+  "referenceSolution": "def num_distinct(s, t):\n    dp = [1] + [0] * len(t)\n    for c in s:\n        for j in range(len(t), 0, -1):\n            if t[j - 1] == c:\n                dp[j] += dp[j - 1]\n    return dp[len(t)]\n",
+  "tests": [
+    {
+      "args": [
+        "rabbbit",
+        "rabbit"
+      ],
+      "expected": 3,
+      "hidden": false
+    },
+    {
+      "args": [
+        "babgbag",
+        "bag"
+      ],
+      "expected": 5,
+      "hidden": false
+    },
+    {
+      "args": [
+        "a",
+        "a"
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        "abc",
+        ""
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        "",
+        "a"
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        "aaa",
+        "aa"
+      ],
+      "expected": 3,
+      "hidden": true
+    }
+  ],
+  "order": 450
+}

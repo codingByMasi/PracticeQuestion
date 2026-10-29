@@ -1,0 +1,81 @@
+{
+  "slug": "sort-dict-by-value",
+  "track": "python",
+  "title": "Sort dict by value",
+  "difficulty": "Easy",
+  "tags": [
+    "sorting"
+  ],
+  "statementMd": "Return the keys of `d` ordered by their values ascending; ties by key ascending.\n\n**Example:** `sort_by_value({\"a\": 3, \"b\": 1, \"c\": 2})` returns `[\"b\", \"c\", \"a\"]`.",
+  "hints": [
+    "Sort with key `(d[k], k)`."
+  ],
+  "solutionMd": "```python\ndef sort_by_value(d):\n    return sorted(d, key=lambda k: (d[k], k))\n```\n\nA tuple key breaks ties.",
+  "starterCode": "def sort_by_value(d):\n    # Write your code here\n    pass\n",
+  "functionName": "sort_by_value",
+  "referenceSolution": "def sort_by_value(d):\n    return sorted(d, key=lambda k: (d[k], k))\n",
+  "tests": [
+    {
+      "args": [
+        {
+          "a": 3,
+          "b": 1,
+          "c": 2
+        }
+      ],
+      "expected": [
+        "b",
+        "c",
+        "a"
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        {}
+      ],
+      "expected": [],
+      "hidden": false
+    },
+    {
+      "args": [
+        {
+          "x": 1,
+          "y": 1
+        }
+      ],
+      "expected": [
+        "x",
+        "y"
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        {
+          "b": 0,
+          "a": 0,
+          "c": -1
+        }
+      ],
+      "expected": [
+        "c",
+        "a",
+        "b"
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        {
+          "z": 5
+        }
+      ],
+      "expected": [
+        "z"
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 108
+}

@@ -1,0 +1,21 @@
+{
+  "slug": "author-countries",
+  "track": "sql",
+  "title": "Author countries",
+  "difficulty": "Easy",
+  "tags": [
+    "distinct"
+  ],
+  "statementMd": "List each country that has at least one author.\n\nExpected columns: `country`.\n\nTables: `authors`, `books`, `members`, `loans`.\n\nRow order does not matter.",
+  "hints": [
+    "`DISTINCT`."
+  ],
+  "solutionMd": "```sql\nSELECT DISTINCT country FROM authors;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: authors, books, members, loans\nSELECT\n",
+  "datasetId": "library",
+  "expected": {
+    "query": "SELECT DISTINCT country FROM authors;",
+    "orderMatters": false
+  },
+  "order": 82
+}

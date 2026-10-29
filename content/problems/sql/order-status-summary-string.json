@@ -1,0 +1,21 @@
+{
+  "slug": "order-status-summary-string",
+  "track": "sql",
+  "title": "Order status summary string",
+  "difficulty": "Medium",
+  "tags": [
+    "strings"
+  ],
+  "statementMd": "For each status, produce one text value like `delivered: 10` using `||`. Name the column `summary`.\n\nExpected columns: `summary`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\nRow order does not matter.",
+  "hints": [
+    "Concatenate with `||`; cast the count as needed."
+  ],
+  "solutionMd": "```sql\nSELECT status || ': ' || COUNT(*) AS summary FROM orders GROUP BY status;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "SELECT status || ': ' || COUNT(*) AS summary FROM orders GROUP BY status;",
+    "orderMatters": false
+  },
+  "order": 182
+}

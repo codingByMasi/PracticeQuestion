@@ -1,0 +1,21 @@
+{
+  "slug": "albums-since-2015",
+  "track": "sql",
+  "title": "Albums since 2015",
+  "difficulty": "Easy",
+  "tags": [
+    "where"
+  ],
+  "statementMd": "List albums released in 2015 or later.\n\nExpected columns: `title`, `release_year`.\n\nTables: `artists`, `albums`, `tracks`, `listeners`, `plays`.\n\nRow order does not matter.",
+  "hints": [
+    "`release_year >= 2015`."
+  ],
+  "solutionMd": "```sql\nSELECT title, release_year FROM albums WHERE release_year >= 2015;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: artists, albums, tracks, listeners, plays\nSELECT\n",
+  "datasetId": "music",
+  "expected": {
+    "query": "SELECT title, release_year FROM albums WHERE release_year >= 2015;",
+    "orderMatters": false
+  },
+  "order": 40
+}

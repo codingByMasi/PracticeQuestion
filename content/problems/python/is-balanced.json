@@ -1,0 +1,80 @@
+{
+  "slug": "is-balanced",
+  "track": "python",
+  "title": "Is balanced",
+  "difficulty": "Medium",
+  "tags": [
+    "trees"
+  ],
+  "statementMd": "A tree is height-balanced if for every node the heights of its two subtrees differ by at most one. Return whether it is. The tree is given as a level-order list where `None` marks a missing child (like `[3, 9, 20, None, None, 15, 7]`); the helper `build_tree` in the solution shows how it is read, and in your function the argument is already that list.\n\n**Example:** `is_balanced([3, 9, 20, null, null, 15, 7])` returns `true`.",
+  "hints": [
+    "Compute heights bottom-up and return a sentinel for imbalance."
+  ],
+  "solutionMd": "```python\nclass Node:\n    def __init__(self, val, left=None, right=None):\n        self.val, self.left, self.right = val, left, right\n\n\ndef build_tree(values):\n    \"\"\"Build a binary tree from a level-order list where None marks a missing child.\"\"\"\n    if not values or values[0] is None:\n        return None\n    root = Node(values[0])\n    queue, i = [root], 1\n    while queue and i < len(values):\n        node = queue.pop(0)\n        if i < len(values) and values[i] is not None:\n            node.left = Node(values[i])\n            queue.append(node.left)\n        i += 1\n        if i < len(values) and values[i] is not None:\n            node.right = Node(values[i])\n            queue.append(node.right)\n        i += 1\n    return root\n\n\ndef is_balanced(values):\n    def h(n):\n        if n is None:\n            return 0\n        l = h(n.left)\n        r = h(n.right)\n        if l < 0 or r < 0 or abs(l - r) > 1:\n            return -1\n        return 1 + max(l, r)\n    return h(build_tree(values)) >= 0\n```\n\nUsing -1 as an early-exit flag keeps it linear.",
+  "starterCode": "def is_balanced(values):\n    # Write your code here\n    pass\n",
+  "functionName": "is_balanced",
+  "referenceSolution": "class Node:\n    def __init__(self, val, left=None, right=None):\n        self.val, self.left, self.right = val, left, right\n\n\ndef build_tree(values):\n    \"\"\"Build a binary tree from a level-order list where None marks a missing child.\"\"\"\n    if not values or values[0] is None:\n        return None\n    root = Node(values[0])\n    queue, i = [root], 1\n    while queue and i < len(values):\n        node = queue.pop(0)\n        if i < len(values) and values[i] is not None:\n            node.left = Node(values[i])\n            queue.append(node.left)\n        i += 1\n        if i < len(values) and values[i] is not None:\n            node.right = Node(values[i])\n            queue.append(node.right)\n        i += 1\n    return root\n\n\ndef is_balanced(values):\n    def h(n):\n        if n is None:\n            return 0\n        l = h(n.left)\n        r = h(n.right)\n        if l < 0 or r < 0 or abs(l - r) > 1:\n            return -1\n        return 1 + max(l, r)\n    return h(build_tree(values)) >= 0\n",
+  "tests": [
+    {
+      "args": [
+        [
+          3,
+          9,
+          20,
+          null,
+          null,
+          15,
+          7
+        ]
+      ],
+      "expected": true,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          1,
+          2,
+          2,
+          3,
+          3,
+          null,
+          null,
+          4,
+          4
+        ]
+      ],
+      "expected": false,
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1
+        ]
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          null,
+          2,
+          3
+        ]
+      ],
+      "expected": false,
+      "hidden": true
+    }
+  ],
+  "order": 356
+}

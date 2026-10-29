@@ -1,0 +1,87 @@
+{
+  "slug": "valid-anagram-counts",
+  "track": "python",
+  "title": "Valid anagram counts",
+  "difficulty": "Easy",
+  "tags": [
+    "counting"
+  ],
+  "statementMd": "Return `True` if two lists contain the same items with the same multiplicities (order ignored). Items are hashable.\n\n**Example:** `same_counts([1, 2, 2], [2, 1, 2])` returns `true`.",
+  "hints": [
+    "Compare count dicts."
+  ],
+  "solutionMd": "```python\ndef same_counts(a, b):\n    def count(xs):\n        d = {}\n        for x in xs:\n            d[x] = d.get(x, 0) + 1\n        return d\n    return count(a) == count(b)\n```\n\nDict equality ignores order.",
+  "starterCode": "def same_counts(a, b):\n    # Write your code here\n    pass\n",
+  "functionName": "same_counts",
+  "referenceSolution": "def same_counts(a, b):\n    def count(xs):\n        d = {}\n        for x in xs:\n            d[x] = d.get(x, 0) + 1\n        return d\n    return count(a) == count(b)\n",
+  "tests": [
+    {
+      "args": [
+        [
+          1,
+          2,
+          2
+        ],
+        [
+          2,
+          1,
+          2
+        ]
+      ],
+      "expected": true,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "expected": false,
+      "hidden": false
+    },
+    {
+      "args": [
+        [],
+        []
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          "a"
+        ],
+        [
+          "a",
+          "a"
+        ]
+      ],
+      "expected": false,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          3,
+          2,
+          1
+        ]
+      ],
+      "expected": true,
+      "hidden": true
+    }
+  ],
+  "order": 106
+}

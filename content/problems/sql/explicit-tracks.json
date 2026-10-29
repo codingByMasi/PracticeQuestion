@@ -1,0 +1,21 @@
+{
+  "slug": "explicit-tracks",
+  "track": "sql",
+  "title": "Explicit tracks",
+  "difficulty": "Easy",
+  "tags": [
+    "where"
+  ],
+  "statementMd": "How many tracks are marked explicit?\n\nExpected columns: `explicit_tracks`.\n\nTables: `artists`, `albums`, `tracks`, `listeners`, `plays`.\n\nRow order does not matter.",
+  "hints": [
+    "`explicit = 1`."
+  ],
+  "solutionMd": "```sql\nSELECT COUNT(*) AS explicit_tracks FROM tracks WHERE explicit = 1;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: artists, albums, tracks, listeners, plays\nSELECT\n",
+  "datasetId": "music",
+  "expected": {
+    "query": "SELECT COUNT(*) AS explicit_tracks FROM tracks WHERE explicit = 1;",
+    "orderMatters": false
+  },
+  "order": 41
+}

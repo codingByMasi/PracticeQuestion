@@ -1,0 +1,21 @@
+{
+  "slug": "org-chart-levels",
+  "track": "sql",
+  "title": "Org chart levels",
+  "difficulty": "Hard",
+  "tags": [
+    "recursive"
+  ],
+  "statementMd": "Compute each employee's level in the reporting tree: top managers (no manager) are level 1, their direct reports level 2, and so on. Show first name and level.\n\nExpected columns: `first_name`, `level`.\n\nTables: `employees`, `departments`.\n\nRow order does not matter.",
+  "hints": [
+    "A recursive CTE starts from employees with `manager_id IS NULL` and joins children each step."
+  ],
+  "solutionMd": "```sql\nWITH RECURSIVE tree(id, first_name, level) AS (SELECT id, first_name, 1 FROM employees WHERE manager_id IS NULL UNION ALL SELECT e.id, e.first_name, t.level + 1 FROM employees e JOIN tree t ON e.manager_id = t.id) SELECT first_name, level FROM tree;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "WITH RECURSIVE tree(id, first_name, level) AS (SELECT id, first_name, 1 FROM employees WHERE manager_id IS NULL UNION ALL SELECT e.id, e.first_name, t.level + 1 FROM employees e JOIN tree t ON e.manager_id = t.id) SELECT first_name, level FROM tree;",
+    "orderMatters": false
+  },
+  "order": 488
+}

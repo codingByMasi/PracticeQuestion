@@ -1,0 +1,21 @@
+{
+  "slug": "genres-list",
+  "track": "sql",
+  "title": "Genres list",
+  "difficulty": "Easy",
+  "tags": [
+    "distinct"
+  ],
+  "statementMd": "List each genre once.\n\nExpected columns: `genre`.\n\nTables: `movies`, `directors`, `reviews`.\n\nRow order does not matter.",
+  "hints": [
+    "`DISTINCT`."
+  ],
+  "solutionMd": "```sql\nSELECT DISTINCT genre FROM movies;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: movies, directors, reviews\nSELECT\n",
+  "datasetId": "movies",
+  "expected": {
+    "query": "SELECT DISTINCT genre FROM movies;",
+    "orderMatters": false
+  },
+  "order": 83
+}

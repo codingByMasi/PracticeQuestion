@@ -1,0 +1,62 @@
+{
+  "slug": "leap-year",
+  "track": "python",
+  "title": "Leap year",
+  "difficulty": "Easy",
+  "tags": [
+    "conditionals"
+  ],
+  "statementMd": "Return `True` if `year` is a leap year in the Gregorian calendar: divisible by 4, except century years which must be divisible by 400.\n\n**Example:** `is_leap_year(2024)` returns `true`.",
+  "hints": [
+    "Check 400 first, then 100, then 4."
+  ],
+  "solutionMd": "```python\ndef is_leap_year(year):\n    if year % 400 == 0:\n        return True\n    if year % 100 == 0:\n        return False\n    return year % 4 == 0\n```\n\nOrder the checks from most to least specific.",
+  "starterCode": "def is_leap_year(year):\n    # Write your code here\n    pass\n",
+  "functionName": "is_leap_year",
+  "referenceSolution": "def is_leap_year(year):\n    if year % 400 == 0:\n        return True\n    if year % 100 == 0:\n        return False\n    return year % 4 == 0\n",
+  "tests": [
+    {
+      "args": [
+        2024
+      ],
+      "expected": true,
+      "hidden": false
+    },
+    {
+      "args": [
+        1900
+      ],
+      "expected": false,
+      "hidden": false
+    },
+    {
+      "args": [
+        2000
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        2023
+      ],
+      "expected": false,
+      "hidden": true
+    },
+    {
+      "args": [
+        2100
+      ],
+      "expected": false,
+      "hidden": true
+    },
+    {
+      "args": [
+        1996
+      ],
+      "expected": true,
+      "hidden": true
+    }
+  ],
+  "order": 11
+}

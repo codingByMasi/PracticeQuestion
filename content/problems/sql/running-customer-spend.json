@@ -1,0 +1,21 @@
+{
+  "slug": "running-customer-spend",
+  "track": "sql",
+  "title": "Running customer spend",
+  "difficulty": "Hard",
+  "tags": [
+    "running-total"
+  ],
+  "statementMd": "For each customer, list their non-cancelled orders in date order with the order total and the customer's cumulative spend so far (both rounded to 2 decimals).\n\nExpected columns: `customer_id`, `order_id`, `total`, `cumulative`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Per-order totals in a CTE, then `SUM() OVER (PARTITION BY ... ORDER BY ...)`."
+  ],
+  "solutionMd": "```sql\nWITH t AS (SELECT o.customer_id, o.id AS order_id, o.order_date, SUM(oi.quantity * oi.unit_price) AS total FROM orders o JOIN order_items oi ON oi.order_id = o.id WHERE o.status <> 'cancelled' GROUP BY o.id) SELECT customer_id, order_id, ROUND(total, 2) AS total, ROUND(SUM(total) OVER (PARTITION BY customer_id ORDER BY order_date, order_id), 2) AS cumulative FROM t ORDER BY customer_id, order_date, order_id;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "WITH t AS (SELECT o.customer_id, o.id AS order_id, o.order_date, SUM(oi.quantity * oi.unit_price) AS total FROM orders o JOIN order_items oi ON oi.order_id = o.id WHERE o.status <> 'cancelled' GROUP BY o.id) SELECT customer_id, order_id, ROUND(total, 2) AS total, ROUND(SUM(total) OVER (PARTITION BY customer_id ORDER BY order_date, order_id), 2) AS cumulative FROM t ORDER BY customer_id, order_date, order_id;",
+    "orderMatters": true
+  },
+  "order": 470
+}

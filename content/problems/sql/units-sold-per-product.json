@@ -1,0 +1,21 @@
+{
+  "slug": "units-sold-per-product",
+  "track": "sql",
+  "title": "Units sold per product",
+  "difficulty": "Medium",
+  "tags": [
+    "join"
+  ],
+  "statementMd": "For every product that has been ordered, show its name and total units sold across all orders (cancelled included).\n\nExpected columns: `name`, `units`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\nRow order does not matter.",
+  "hints": [
+    "Join, then `SUM(quantity)` per product."
+  ],
+  "solutionMd": "```sql\nSELECT p.name, SUM(oi.quantity) AS units FROM order_items oi JOIN products p ON p.id = oi.product_id GROUP BY p.id, p.name;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "SELECT p.name, SUM(oi.quantity) AS units FROM order_items oi JOIN products p ON p.id = oi.product_id GROUP BY p.id, p.name;",
+    "orderMatters": false
+  },
+  "order": 260
+}

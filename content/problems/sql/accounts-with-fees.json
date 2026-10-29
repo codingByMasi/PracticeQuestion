@@ -1,0 +1,21 @@
+{
+  "slug": "accounts-with-fees",
+  "track": "sql",
+  "title": "Accounts with fees",
+  "difficulty": "Medium",
+  "tags": [
+    "having"
+  ],
+  "statementMd": "List accounts that were charged at least 2 fees, with the fee total (rounded to 2 decimals).\n\nExpected columns: `account_id`, `fees`.\n\nTables: `customers`, `accounts`, `transactions`.\n\nRow order does not matter.",
+  "hints": [
+    "Filter on fees then `HAVING COUNT(*) >= 2`."
+  ],
+  "solutionMd": "```sql\nSELECT account_id, ROUND(SUM(amount), 2) AS fees FROM transactions WHERE kind = 'fee' GROUP BY account_id HAVING COUNT(*) >= 2;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, accounts, transactions\nSELECT\n",
+  "datasetId": "bank",
+  "expected": {
+    "query": "SELECT account_id, ROUND(SUM(amount), 2) AS fees FROM transactions WHERE kind = 'fee' GROUP BY account_id HAVING COUNT(*) >= 2;",
+    "orderMatters": false
+  },
+  "order": 245
+}

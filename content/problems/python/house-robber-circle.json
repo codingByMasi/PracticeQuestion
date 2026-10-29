@@ -1,0 +1,75 @@
+{
+  "slug": "house-robber-circle",
+  "track": "python",
+  "title": "House robber circle",
+  "difficulty": "Medium",
+  "tags": [
+    "dynamic-programming"
+  ],
+  "statementMd": "Same as house robber but the houses form a circle (first and last are adjacent). Return the maximum.\n\n**Example:** `house_robber_circle([2, 3, 2])` returns `3`.",
+  "hints": [
+    "Solve twice: without the first house and without the last."
+  ],
+  "solutionMd": "```python\ndef house_robber_circle(nums):\n    def line(a):\n        take = skip = 0\n        for x in a:\n            take, skip = skip + x, max(skip, take)\n        return max(take, skip)\n    if len(nums) == 1:\n        return nums[0]\n    return max(line(nums[1:]), line(nums[:-1]))\n```\n\nExcluding one neighbour breaks the cycle.",
+  "starterCode": "def house_robber_circle(nums):\n    # Write your code here\n    pass\n",
+  "functionName": "house_robber_circle",
+  "referenceSolution": "def house_robber_circle(nums):\n    def line(a):\n        take = skip = 0\n        for x in a:\n            take, skip = skip + x, max(skip, take)\n        return max(take, skip)\n    if len(nums) == 1:\n        return nums[0]\n    return max(line(nums[1:]), line(nums[:-1]))\n",
+  "tests": [
+    {
+      "args": [
+        [
+          2,
+          3,
+          2
+        ]
+      ],
+      "expected": 3,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          1,
+          2,
+          3,
+          1
+        ]
+      ],
+      "expected": 4,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          5
+        ]
+      ],
+      "expected": 5,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          2
+        ]
+      ],
+      "expected": 2,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          200,
+          3,
+          140,
+          20,
+          10
+        ]
+      ],
+      "expected": 340,
+      "hidden": true
+    }
+  ],
+  "order": 314
+}

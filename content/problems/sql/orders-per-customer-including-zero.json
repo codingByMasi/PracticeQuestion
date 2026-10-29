@@ -1,0 +1,21 @@
+{
+  "slug": "orders-per-customer-including-zero",
+  "track": "sql",
+  "title": "Orders per customer including zero",
+  "difficulty": "Medium",
+  "tags": [
+    "left-join"
+  ],
+  "statementMd": "Show every customer and how many orders they placed (zero if none).\n\nExpected columns: `name`, `orders`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\nRow order does not matter.",
+  "hints": [
+    "Count a column from the right table, not `*`."
+  ],
+  "solutionMd": "```sql\nSELECT c.name, COUNT(o.id) AS orders FROM customers c LEFT JOIN orders o ON o.customer_id = c.id GROUP BY c.id, c.name;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "SELECT c.name, COUNT(o.id) AS orders FROM customers c LEFT JOIN orders o ON o.customer_id = c.id GROUP BY c.id, c.name;",
+    "orderMatters": false
+  },
+  "order": 279
+}

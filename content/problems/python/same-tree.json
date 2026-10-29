@@ -1,0 +1,85 @@
+{
+  "slug": "same-tree",
+  "track": "python",
+  "title": "Same tree",
+  "difficulty": "Easy",
+  "tags": [
+    "trees"
+  ],
+  "statementMd": "Given two trees as level-order lists return whether they have the same structure and values. The tree is given as a level-order list where `None` marks a missing child (like `[3, 9, 20, None, None, 15, 7]`); the helper `build_tree` in the solution shows how it is read, and in your function the argument is already that list.\n\n**Example:** `same_tree([1, 2, 3], [1, 2, 3])` returns `true`.",
+  "hints": [
+    "Recurse on both at once."
+  ],
+  "solutionMd": "```python\nclass Node:\n    def __init__(self, val, left=None, right=None):\n        self.val, self.left, self.right = val, left, right\n\n\ndef build_tree(values):\n    \"\"\"Build a binary tree from a level-order list where None marks a missing child.\"\"\"\n    if not values or values[0] is None:\n        return None\n    root = Node(values[0])\n    queue, i = [root], 1\n    while queue and i < len(values):\n        node = queue.pop(0)\n        if i < len(values) and values[i] is not None:\n            node.left = Node(values[i])\n            queue.append(node.left)\n        i += 1\n        if i < len(values) and values[i] is not None:\n            node.right = Node(values[i])\n            queue.append(node.right)\n        i += 1\n    return root\n\n\ndef same_tree(a, b):\n    def eq(x, y):\n        if x is None or y is None:\n            return x is y\n        return x.val == y.val and eq(x.left, y.left) and eq(x.right, y.right)\n    return eq(build_tree(a), build_tree(b))\n```\n\nBoth must be None together.",
+  "starterCode": "def same_tree(a, b):\n    # Write your code here\n    pass\n",
+  "functionName": "same_tree",
+  "referenceSolution": "class Node:\n    def __init__(self, val, left=None, right=None):\n        self.val, self.left, self.right = val, left, right\n\n\ndef build_tree(values):\n    \"\"\"Build a binary tree from a level-order list where None marks a missing child.\"\"\"\n    if not values or values[0] is None:\n        return None\n    root = Node(values[0])\n    queue, i = [root], 1\n    while queue and i < len(values):\n        node = queue.pop(0)\n        if i < len(values) and values[i] is not None:\n            node.left = Node(values[i])\n            queue.append(node.left)\n        i += 1\n        if i < len(values) and values[i] is not None:\n            node.right = Node(values[i])\n            queue.append(node.right)\n        i += 1\n    return root\n\n\ndef same_tree(a, b):\n    def eq(x, y):\n        if x is None or y is None:\n            return x is y\n        return x.val == y.val and eq(x.left, y.left) and eq(x.right, y.right)\n    return eq(build_tree(a), build_tree(b))\n",
+  "tests": [
+    {
+      "args": [
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "expected": true,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          null,
+          2
+        ]
+      ],
+      "expected": false,
+      "hidden": false
+    },
+    {
+      "args": [
+        [],
+        []
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1
+        ],
+        []
+      ],
+      "expected": false,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          2,
+          4
+        ]
+      ],
+      "expected": false,
+      "hidden": true
+    }
+  ],
+  "order": 162
+}

@@ -1,0 +1,21 @@
+{
+  "slug": "biggest-single-line",
+  "track": "sql",
+  "title": "Biggest single line",
+  "difficulty": "Medium",
+  "tags": [
+    "order-by"
+  ],
+  "statementMd": "Which order line has the highest value (quantity times unit price)? Show order id, product id and value.\n\nExpected columns: `order_id`, `product_id`, `value`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\nRow order does not matter.",
+  "hints": [
+    "Sort by the computed value, take one."
+  ],
+  "solutionMd": "```sql\nSELECT oi.order_id, oi.product_id, oi.quantity * oi.unit_price AS value FROM order_items oi ORDER BY value DESC LIMIT 1;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "SELECT oi.order_id, oi.product_id, oi.quantity * oi.unit_price AS value FROM order_items oi ORDER BY value DESC LIMIT 1;",
+    "orderMatters": false
+  },
+  "order": 168
+}

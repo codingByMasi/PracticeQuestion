@@ -1,0 +1,71 @@
+{
+  "slug": "missing-number-xor",
+  "track": "python",
+  "title": "Missing number xor",
+  "difficulty": "Easy",
+  "tags": [
+    "bit-manipulation"
+  ],
+  "statementMd": "`nums` has `n` distinct numbers from `0..n`; return the missing one using XOR.\n\n**Example:** `missing_xor([3, 0, 1])` returns `2`.",
+  "hints": [
+    "XOR all indices and values."
+  ],
+  "solutionMd": "```python\ndef missing_xor(nums):\n    r = len(nums)\n    for i, x in enumerate(nums):\n        r ^= i ^ x\n    return r\n```\n\nPairs cancel; the missing number remains.",
+  "starterCode": "def missing_xor(nums):\n    # Write your code here\n    pass\n",
+  "functionName": "missing_xor",
+  "referenceSolution": "def missing_xor(nums):\n    r = len(nums)\n    for i, x in enumerate(nums):\n        r ^= i ^ x\n    return r\n",
+  "tests": [
+    {
+      "args": [
+        [
+          3,
+          0,
+          1
+        ]
+      ],
+      "expected": 2,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          0,
+          1
+        ]
+      ],
+      "expected": 2,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          1
+        ]
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          0
+        ]
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          4,
+          2,
+          0,
+          1
+        ]
+      ],
+      "expected": 3,
+      "hidden": true
+    }
+  ],
+  "order": 138
+}

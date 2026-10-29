@@ -1,0 +1,21 @@
+{
+  "slug": "favourite-genre-per-member",
+  "track": "sql",
+  "title": "Favourite genre per member",
+  "difficulty": "Hard",
+  "tags": [
+    "ranking"
+  ],
+  "statementMd": "For each member with loans, show their most borrowed genre and the loan count (ties: alphabetically first genre).\n\nExpected columns: `name`, `genre`, `n`.\n\nTables: `authors`, `books`, `members`, `loans`.\n\nRow order does not matter.",
+  "hints": [
+    "Count per member and genre, `ROW_NUMBER` ordered by count desc, genre."
+  ],
+  "solutionMd": "```sql\nWITH c AS (SELECT l.member_id, b.genre, COUNT(*) AS n FROM loans l JOIN books b ON b.id = l.book_id GROUP BY l.member_id, b.genre), r AS (SELECT *, ROW_NUMBER() OVER (PARTITION BY member_id ORDER BY n DESC, genre) AS rn FROM c) SELECT m.name, r.genre, r.n FROM r JOIN members m ON m.id = r.member_id WHERE r.rn = 1;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: authors, books, members, loans\nSELECT\n",
+  "datasetId": "library",
+  "expected": {
+    "query": "WITH c AS (SELECT l.member_id, b.genre, COUNT(*) AS n FROM loans l JOIN books b ON b.id = l.book_id GROUP BY l.member_id, b.genre), r AS (SELECT *, ROW_NUMBER() OVER (PARTITION BY member_id ORDER BY n DESC, genre) AS rn FROM c) SELECT m.name, r.genre, r.n FROM r JOIN members m ON m.id = r.member_id WHERE r.rn = 1;",
+    "orderMatters": false
+  },
+  "order": 453
+}

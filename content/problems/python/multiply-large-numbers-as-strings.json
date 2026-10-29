@@ -1,0 +1,68 @@
+{
+  "slug": "multiply-large-numbers-as-strings",
+  "track": "python",
+  "title": "Multiply large numbers as strings",
+  "difficulty": "Hard",
+  "tags": [
+    "strings"
+  ],
+  "statementMd": "Multiply two non-negative integers given as decimal strings and return the product as a string, without converting the whole strings to integers.\n\n**Example:** `multiply_strings(\"2\", \"3\")` returns `\"6\"`.",
+  "hints": [
+    "Schoolbook multiplication into an array of digits."
+  ],
+  "solutionMd": "```python\ndef multiply_strings(a, b):\n    if a == '0' or b == '0':\n        return '0'\n    res = [0] * (len(a) + len(b))\n    for i in range(len(a) - 1, -1, -1):\n        for j in range(len(b) - 1, -1, -1):\n            s = int(a[i]) * int(b[j]) + res[i + j + 1]\n            res[i + j + 1] = s % 10\n            res[i + j] += s // 10\n    return ''.join(map(str, res)).lstrip('0')\n```\n\nEach digit pair contributes to two result positions.",
+  "starterCode": "def multiply_strings(a, b):\n    # Write your code here\n    pass\n",
+  "functionName": "multiply_strings",
+  "referenceSolution": "def multiply_strings(a, b):\n    if a == '0' or b == '0':\n        return '0'\n    res = [0] * (len(a) + len(b))\n    for i in range(len(a) - 1, -1, -1):\n        for j in range(len(b) - 1, -1, -1):\n            s = int(a[i]) * int(b[j]) + res[i + j + 1]\n            res[i + j + 1] = s % 10\n            res[i + j] += s // 10\n    return ''.join(map(str, res)).lstrip('0')\n",
+  "tests": [
+    {
+      "args": [
+        "2",
+        "3"
+      ],
+      "expected": "6",
+      "hidden": false
+    },
+    {
+      "args": [
+        "123",
+        "456"
+      ],
+      "expected": "56088",
+      "hidden": false
+    },
+    {
+      "args": [
+        "0",
+        "99"
+      ],
+      "expected": "0",
+      "hidden": true
+    },
+    {
+      "args": [
+        "999",
+        "999"
+      ],
+      "expected": "998001",
+      "hidden": true
+    },
+    {
+      "args": [
+        "1",
+        "1"
+      ],
+      "expected": "1",
+      "hidden": true
+    },
+    {
+      "args": [
+        "12345678901234567890",
+        "98765432109876543210"
+      ],
+      "expected": "1219326311370217952237463801111263526900",
+      "hidden": true
+    }
+  ],
+  "order": 384
+}

@@ -1,0 +1,68 @@
+{
+  "slug": "hamming-distance",
+  "track": "python",
+  "title": "Hamming distance",
+  "difficulty": "Easy",
+  "tags": [
+    "bit-manipulation"
+  ],
+  "statementMd": "Return the number of bit positions at which the binary representations of two non-negative integers differ.\n\n**Example:** `hamming_distance(1, 4)` returns `2`.",
+  "hints": [
+    "XOR then count ones."
+  ],
+  "solutionMd": "```python\ndef hamming_distance(a, b):\n    return bin(a ^ b).count('1')\n```\n\nXOR marks differing bits.",
+  "starterCode": "def hamming_distance(a, b):\n    # Write your code here\n    pass\n",
+  "functionName": "hamming_distance",
+  "referenceSolution": "def hamming_distance(a, b):\n    return bin(a ^ b).count('1')\n",
+  "tests": [
+    {
+      "args": [
+        1,
+        4
+      ],
+      "expected": 2,
+      "hidden": false
+    },
+    {
+      "args": [
+        3,
+        1
+      ],
+      "expected": 1,
+      "hidden": false
+    },
+    {
+      "args": [
+        0,
+        0
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        255,
+        0
+      ],
+      "expected": 8,
+      "hidden": true
+    },
+    {
+      "args": [
+        7,
+        8
+      ],
+      "expected": 4,
+      "hidden": true
+    },
+    {
+      "args": [
+        1023,
+        512
+      ],
+      "expected": 9,
+      "hidden": true
+    }
+  ],
+  "order": 137
+}

@@ -1,0 +1,21 @@
+{
+  "slug": "customers-who-bought-electronics",
+  "track": "sql",
+  "title": "Customers who bought electronics",
+  "difficulty": "Medium",
+  "tags": [
+    "exists"
+  ],
+  "statementMd": "List the names of customers who have ordered at least one Electronics product (any status).\n\nExpected columns: `name`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\nRow order does not matter.",
+  "hints": [
+    "`EXISTS` with a join inside."
+  ],
+  "solutionMd": "```sql\nSELECT c.name FROM customers c WHERE EXISTS (SELECT 1 FROM orders o JOIN order_items oi ON oi.order_id = o.id JOIN products p ON p.id = oi.product_id WHERE o.customer_id = c.id AND p.category = 'Electronics');\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "SELECT c.name FROM customers c WHERE EXISTS (SELECT 1 FROM orders o JOIN order_items oi ON oi.order_id = o.id JOIN products p ON p.id = oi.product_id WHERE o.customer_id = c.id AND p.category = 'Electronics');",
+    "orderMatters": false
+  },
+  "order": 323
+}

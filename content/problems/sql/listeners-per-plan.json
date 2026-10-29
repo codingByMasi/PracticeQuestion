@@ -1,0 +1,21 @@
+{
+  "slug": "listeners-per-plan",
+  "track": "sql",
+  "title": "Listeners per plan",
+  "difficulty": "Easy",
+  "tags": [
+    "group-by"
+  ],
+  "statementMd": "Count listeners per plan.\n\nExpected columns: `plan`, `listeners`.\n\nTables: `artists`, `albums`, `tracks`, `listeners`, `plays`.\n\nRow order does not matter.",
+  "hints": [
+    "`GROUP BY plan`."
+  ],
+  "solutionMd": "```sql\nSELECT plan, COUNT(*) AS listeners FROM listeners GROUP BY plan;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: artists, albums, tracks, listeners, plays\nSELECT\n",
+  "datasetId": "music",
+  "expected": {
+    "query": "SELECT plan, COUNT(*) AS listeners FROM listeners GROUP BY plan;",
+    "orderMatters": false
+  },
+  "order": 140
+}

@@ -1,0 +1,21 @@
+{
+  "slug": "drawdown-from-the-peak",
+  "track": "sql",
+  "title": "Drawdown from the peak",
+  "difficulty": "Hard",
+  "tags": [
+    "window-functions"
+  ],
+  "statementMd": "For `GRID`, show date, close and drawdown percent from the running high (zero at new highs), rounded to 2 decimals. Return the 5 days with the deepest drawdown (most negative first, ties by date).\n\nExpected columns: `trade_date`, `close`, `drawdown_pct`.\n\nTables: `tickers`, `prices`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Running max in a CTE."
+  ],
+  "solutionMd": "```sql\nWITH r AS (SELECT trade_date, close, MAX(close) OVER (ORDER BY trade_date) AS peak FROM prices WHERE symbol = 'GRID') SELECT trade_date, close, ROUND(100.0 * (close - peak) / peak, 2) AS drawdown_pct FROM r ORDER BY drawdown_pct, trade_date LIMIT 5;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: tickers, prices\nSELECT\n",
+  "datasetId": "stocks",
+  "expected": {
+    "query": "WITH r AS (SELECT trade_date, close, MAX(close) OVER (ORDER BY trade_date) AS peak FROM prices WHERE symbol = 'GRID') SELECT trade_date, close, ROUND(100.0 * (close - peak) / peak, 2) AS drawdown_pct FROM r ORDER BY drawdown_pct, trade_date LIMIT 5;",
+    "orderMatters": true
+  },
+  "order": 427
+}

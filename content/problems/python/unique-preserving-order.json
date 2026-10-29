@@ -1,0 +1,85 @@
+{
+  "slug": "unique-preserving-order",
+  "track": "python",
+  "title": "Unique preserving order",
+  "difficulty": "Easy",
+  "tags": [
+    "lists"
+  ],
+  "statementMd": "Remove duplicates while keeping the first occurrence of each element (elements are hashable).\n\n**Example:** `unique_ordered([1, 2, 1, 3, 2])` returns `[1, 2, 3]`.",
+  "hints": [
+    "Track seen items in a set."
+  ],
+  "solutionMd": "```python\ndef unique_ordered(items):\n    seen, out = set(), []\n    for x in items:\n        if x not in seen:\n            seen.add(x)\n            out.append(x)\n    return out\n```\n\nSets give O(1) membership.",
+  "starterCode": "def unique_ordered(items):\n    # Write your code here\n    pass\n",
+  "functionName": "unique_ordered",
+  "referenceSolution": "def unique_ordered(items):\n    seen, out = set(), []\n    for x in items:\n        if x not in seen:\n            seen.add(x)\n            out.append(x)\n    return out\n",
+  "tests": [
+    {
+      "args": [
+        [
+          1,
+          2,
+          1,
+          3,
+          2
+        ]
+      ],
+      "expected": [
+        1,
+        2,
+        3
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": [],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          "a",
+          "a"
+        ]
+      ],
+      "expected": [
+        "a"
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          3,
+          2,
+          1
+        ]
+      ],
+      "expected": [
+        3,
+        2,
+        1
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          "1",
+          1.0
+        ]
+      ],
+      "expected": [
+        1,
+        "1"
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 80
+}

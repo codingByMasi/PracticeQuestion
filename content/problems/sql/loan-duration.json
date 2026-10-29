@@ -1,0 +1,21 @@
+{
+  "slug": "loan-duration",
+  "track": "sql",
+  "title": "Loan duration",
+  "difficulty": "Medium",
+  "tags": [
+    "dates"
+  ],
+  "statementMd": "For returned loans show loan id and the number of days kept (return date minus loan date). Show the 5 longest, ties by loan id.\n\nExpected columns: `id`, `days_kept`.\n\nTables: `authors`, `books`, `members`, `loans`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "`julianday(return_date) - julianday(loan_date)`."
+  ],
+  "solutionMd": "```sql\nSELECT id, CAST(julianday(return_date) - julianday(loan_date) AS INTEGER) AS days_kept FROM loans WHERE return_date IS NOT NULL ORDER BY days_kept DESC, id LIMIT 5;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: authors, books, members, loans\nSELECT\n",
+  "datasetId": "library",
+  "expected": {
+    "query": "SELECT id, CAST(julianday(return_date) - julianday(loan_date) AS INTEGER) AS days_kept FROM loans WHERE return_date IS NOT NULL ORDER BY days_kept DESC, id LIMIT 5;",
+    "orderMatters": true
+  },
+  "order": 193
+}

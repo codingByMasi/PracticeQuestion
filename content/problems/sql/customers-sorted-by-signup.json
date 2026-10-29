@@ -1,0 +1,21 @@
+{
+  "slug": "customers-sorted-by-signup",
+  "track": "sql",
+  "title": "Customers sorted by signup",
+  "difficulty": "Easy",
+  "tags": [
+    "order-by"
+  ],
+  "statementMd": "List customer names with their signup date, earliest signup first.\n\nExpected columns: `name`, `signup_date`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "`ORDER BY signup_date`."
+  ],
+  "solutionMd": "```sql\nSELECT name, signup_date FROM customers ORDER BY signup_date;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "SELECT name, signup_date FROM customers ORDER BY signup_date;",
+    "orderMatters": true
+  },
+  "order": 64
+}

@@ -1,0 +1,60 @@
+{
+  "slug": "longest-common-substring",
+  "track": "python",
+  "title": "Longest common substring",
+  "difficulty": "Medium",
+  "tags": [
+    "dynamic-programming"
+  ],
+  "statementMd": "Return the length of the longest contiguous substring that appears in both strings.\n\n**Example:** `longest_common_substring(\"abcdxyz\", \"xyzabcd\")` returns `4`.",
+  "hints": [
+    "dp[i][j] = dp[i-1][j-1] + 1 on a match, else 0."
+  ],
+  "solutionMd": "```python\ndef longest_common_substring(a, b):\n    best = 0\n    prev = [0] * (len(b) + 1)\n    for x in a:\n        cur = [0]\n        for j, y in enumerate(b):\n            cur.append(prev[j] + 1 if x == y else 0)\n            best = max(best, cur[-1])\n        prev = cur\n    return best\n```\n\nReset to zero when characters differ.",
+  "starterCode": "def longest_common_substring(a, b):\n    # Write your code here\n    pass\n",
+  "functionName": "longest_common_substring",
+  "referenceSolution": "def longest_common_substring(a, b):\n    best = 0\n    prev = [0] * (len(b) + 1)\n    for x in a:\n        cur = [0]\n        for j, y in enumerate(b):\n            cur.append(prev[j] + 1 if x == y else 0)\n            best = max(best, cur[-1])\n        prev = cur\n    return best\n",
+  "tests": [
+    {
+      "args": [
+        "abcdxyz",
+        "xyzabcd"
+      ],
+      "expected": 4,
+      "hidden": false
+    },
+    {
+      "args": [
+        "abc",
+        "def"
+      ],
+      "expected": 0,
+      "hidden": false
+    },
+    {
+      "args": [
+        "",
+        "a"
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        "aaa",
+        "aa"
+      ],
+      "expected": 2,
+      "hidden": true
+    },
+    {
+      "args": [
+        "zxabcdezy",
+        "yzabcdezx"
+      ],
+      "expected": 6,
+      "hidden": true
+    }
+  ],
+  "order": 322
+}

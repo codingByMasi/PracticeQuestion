@@ -1,0 +1,62 @@
+{
+  "slug": "sum-of-even-numbers",
+  "track": "python",
+  "title": "Sum of even numbers",
+  "difficulty": "Easy",
+  "tags": [
+    "loops"
+  ],
+  "statementMd": "Return the sum of all even integers from 1 to `n` inclusive.\n\n**Example:** `sum_evens(10)` returns `30`.",
+  "hints": [
+    "Step by 2 starting at 2."
+  ],
+  "solutionMd": "```python\ndef sum_evens(n):\n    return sum(range(2, n + 1, 2))\n```\n\n`range(2, n + 1, 2)` yields only evens.",
+  "starterCode": "def sum_evens(n):\n    # Write your code here\n    pass\n",
+  "functionName": "sum_evens",
+  "referenceSolution": "def sum_evens(n):\n    return sum(range(2, n + 1, 2))\n",
+  "tests": [
+    {
+      "args": [
+        10
+      ],
+      "expected": 30,
+      "hidden": false
+    },
+    {
+      "args": [
+        7
+      ],
+      "expected": 12,
+      "hidden": false
+    },
+    {
+      "args": [
+        0
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        1
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        2
+      ],
+      "expected": 2,
+      "hidden": true
+    },
+    {
+      "args": [
+        50
+      ],
+      "expected": 650,
+      "hidden": true
+    }
+  ],
+  "order": 38
+}

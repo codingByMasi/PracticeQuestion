@@ -1,0 +1,68 @@
+{
+  "slug": "rock-paper-scissors",
+  "track": "python",
+  "title": "Rock paper scissors",
+  "difficulty": "Easy",
+  "tags": [
+    "conditionals"
+  ],
+  "statementMd": "Players choose `\"rock\"`, `\"paper\"` or `\"scissors\"`. Return `1` if player A wins, `2` if player B wins, `0` for a draw.\n\n**Example:** `rps_winner(\"rock\", \"paper\")` returns `2`.",
+  "hints": [
+    "Rock beats scissors, scissors beats paper, paper beats rock."
+  ],
+  "solutionMd": "```python\ndef rps_winner(a, b):\n    if a == b:\n        return 0\n    wins = {('rock', 'scissors'), ('scissors', 'paper'), ('paper', 'rock')}\n    return 1 if (a, b) in wins else 2\n```\n\nA set of winning pairs makes the rule data.",
+  "starterCode": "def rps_winner(a, b):\n    # Write your code here\n    pass\n",
+  "functionName": "rps_winner",
+  "referenceSolution": "def rps_winner(a, b):\n    if a == b:\n        return 0\n    wins = {('rock', 'scissors'), ('scissors', 'paper'), ('paper', 'rock')}\n    return 1 if (a, b) in wins else 2\n",
+  "tests": [
+    {
+      "args": [
+        "rock",
+        "paper"
+      ],
+      "expected": 2,
+      "hidden": false
+    },
+    {
+      "args": [
+        "rock",
+        "rock"
+      ],
+      "expected": 0,
+      "hidden": false
+    },
+    {
+      "args": [
+        "scissors",
+        "paper"
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        "paper",
+        "rock"
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        "scissors",
+        "rock"
+      ],
+      "expected": 2,
+      "hidden": true
+    },
+    {
+      "args": [
+        "paper",
+        "scissors"
+      ],
+      "expected": 2,
+      "hidden": true
+    }
+  ],
+  "order": 17
+}

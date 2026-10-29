@@ -1,0 +1,21 @@
+{
+  "slug": "price-percent-of-sector-leader",
+  "track": "sql",
+  "title": "Price percent of sector leader",
+  "difficulty": "Hard",
+  "tags": [
+    "window-functions"
+  ],
+  "statementMd": "On 2024-04-15 show each ticker's close as a percentage of the highest close within its sector that day (rounded to 1 decimal). Show symbol, sector and percentage.\n\nExpected columns: `symbol`, `sector`, `pct_of_leader`.\n\nTables: `tickers`, `prices`.\n\nRow order does not matter.",
+  "hints": [
+    "`MAX(close) OVER (PARTITION BY sector)`."
+  ],
+  "solutionMd": "```sql\nSELECT p.symbol, t.sector, ROUND(100.0 * p.close / MAX(p.close) OVER (PARTITION BY t.sector), 1) AS pct_of_leader FROM prices p JOIN tickers t ON t.symbol = p.symbol WHERE p.trade_date = '2024-04-15';\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: tickers, prices\nSELECT\n",
+  "datasetId": "stocks",
+  "expected": {
+    "query": "SELECT p.symbol, t.sector, ROUND(100.0 * p.close / MAX(p.close) OVER (PARTITION BY t.sector), 1) AS pct_of_leader FROM prices p JOIN tickers t ON t.symbol = p.symbol WHERE p.trade_date = '2024-04-15';",
+    "orderMatters": false
+  },
+  "order": 428
+}

@@ -1,0 +1,21 @@
+{
+  "slug": "initials-of-members",
+  "track": "sql",
+  "title": "Initials of members",
+  "difficulty": "Easy",
+  "tags": [
+    "strings"
+  ],
+  "statementMd": "Show each member's initials (first letter of the first name plus first letter of the last name, for example `AT` for Alan Turing).\n\nExpected columns: `name`, `initials`.\n\nTables: `authors`, `books`, `members`, `loans`.\n\nRow order does not matter.",
+  "hints": [
+    "`substr(name, 1, 1)` and the character after the space: `substr(name, instr(name, ' ') + 1, 1)`."
+  ],
+  "solutionMd": "```sql\nSELECT name, substr(name, 1, 1) || substr(name, instr(name, ' ') + 1, 1) AS initials FROM members;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: authors, books, members, loans\nSELECT\n",
+  "datasetId": "library",
+  "expected": {
+    "query": "SELECT name, substr(name, 1, 1) || substr(name, instr(name, ' ') + 1, 1) AS initials FROM members;",
+    "orderMatters": false
+  },
+  "order": 100
+}

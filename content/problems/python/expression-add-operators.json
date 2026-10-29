@@ -1,0 +1,83 @@
+{
+  "slug": "expression-add-operators",
+  "track": "python",
+  "title": "Expression add operators",
+  "difficulty": "Hard",
+  "tags": [
+    "backtracking"
+  ],
+  "statementMd": "Insert `+`, `-` or `*` between the digits of the string (or nothing, joining digits into a number with no leading zeros unless it is `0` itself) so the expression evaluates to `target`. Return all such expressions, sorted.\n\n**Example:** `add_operators(\"123\", 6)` returns `[\"1*2*3\", \"1+2+3\"]`.",
+  "hints": [
+    "Backtrack tracking the last multiplied term."
+  ],
+  "solutionMd": "```python\ndef add_operators(digits, target):\n    out = []\n    def go(i, expr, value, last):\n        if i == len(digits):\n            if value == target:\n                out.append(expr)\n            return\n        for j in range(i + 1, len(digits) + 1):\n            piece = digits[i:j]\n            if len(piece) > 1 and piece[0] == '0':\n                break\n            n = int(piece)\n            if i == 0:\n                go(j, piece, n, n)\n            else:\n                go(j, expr + '+' + piece, value + n, n)\n                go(j, expr + '-' + piece, value - n, -n)\n                go(j, expr + '*' + piece, value - last + last * n, last * n)\n    go(0, '', 0, 0)\n    return sorted(out)\n```\n\nTrack the last term to undo and redo it for multiplication.",
+  "starterCode": "def add_operators(digits, target):\n    # Write your code here\n    pass\n",
+  "functionName": "add_operators",
+  "referenceSolution": "def add_operators(digits, target):\n    out = []\n    def go(i, expr, value, last):\n        if i == len(digits):\n            if value == target:\n                out.append(expr)\n            return\n        for j in range(i + 1, len(digits) + 1):\n            piece = digits[i:j]\n            if len(piece) > 1 and piece[0] == '0':\n                break\n            n = int(piece)\n            if i == 0:\n                go(j, piece, n, n)\n            else:\n                go(j, expr + '+' + piece, value + n, n)\n                go(j, expr + '-' + piece, value - n, -n)\n                go(j, expr + '*' + piece, value - last + last * n, last * n)\n    go(0, '', 0, 0)\n    return sorted(out)\n",
+  "tests": [
+    {
+      "args": [
+        "123",
+        6
+      ],
+      "expected": [
+        "1*2*3",
+        "1+2+3"
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        "232",
+        8
+      ],
+      "expected": [
+        "2*3+2",
+        "2+3*2"
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        "105",
+        5
+      ],
+      "expected": [
+        "1*0+5",
+        "10-5"
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        "00",
+        0
+      ],
+      "expected": [
+        "0*0",
+        "0+0",
+        "0-0"
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        "3456237490",
+        9191
+      ],
+      "expected": [],
+      "hidden": true
+    },
+    {
+      "args": [
+        "1",
+        1
+      ],
+      "expected": [
+        "1"
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 461
+}

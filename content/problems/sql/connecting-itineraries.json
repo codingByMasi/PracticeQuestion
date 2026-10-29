@@ -1,0 +1,21 @@
+{
+  "slug": "connecting-itineraries",
+  "track": "sql",
+  "title": "Connecting itineraries",
+  "difficulty": "Hard",
+  "tags": [
+    "self-join"
+  ],
+  "statementMd": "Find two-leg itineraries starting at LHR: a first flight from LHR to some airport X, and a second flight leaving X on the same day or up to 30 days later (to anywhere except back to LHR). For each connecting airport X show the number of such (first, second) flight pairs. Show the top 5, ordered by pairs descending then airport.\n\nExpected columns: `via`, `pairs`.\n\nTables: `airlines`, `airports`, `flights`, `bookings`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Self-join flights on `a.destination = b.origin` with a date window."
+  ],
+  "solutionMd": "```sql\nSELECT a.destination AS via, COUNT(*) AS pairs FROM flights a JOIN flights b ON b.origin = a.destination AND b.destination <> 'LHR' AND b.depart_date >= a.depart_date AND julianday(b.depart_date) - julianday(a.depart_date) <= 30 WHERE a.origin = 'LHR' GROUP BY a.destination ORDER BY pairs DESC, via LIMIT 5;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: airlines, airports, flights, bookings\nSELECT\n",
+  "datasetId": "flights",
+  "expected": {
+    "query": "SELECT a.destination AS via, COUNT(*) AS pairs FROM flights a JOIN flights b ON b.origin = a.destination AND b.destination <> 'LHR' AND b.depart_date >= a.depart_date AND julianday(b.depart_date) - julianday(a.depart_date) <= 30 WHERE a.origin = 'LHR' GROUP BY a.destination ORDER BY pairs DESC, via LIMIT 5;",
+    "orderMatters": true
+  },
+  "order": 386
+}

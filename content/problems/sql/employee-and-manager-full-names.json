@@ -1,0 +1,22 @@
+{
+  "slug": "employee-and-manager-full-names",
+  "track": "sql",
+  "title": "Employee and manager full names",
+  "difficulty": "Medium",
+  "tags": [
+    "self-join"
+  ],
+  "statementMd": "For employees with a manager, show the employee's full name and the manager's full name (first and last separated by a space).\n\nExpected columns: `employee`, `manager`.\n\nTables: `employees`, `departments`.\n\nRow order does not matter.",
+  "hints": [
+    "Concatenate with `||`.",
+    "Join the table to itself."
+  ],
+  "solutionMd": "```sql\nSELECT e.first_name || ' ' || e.last_name AS employee, m.first_name || ' ' || m.last_name AS manager FROM employees e JOIN employees m ON m.id = e.manager_id;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "SELECT e.first_name || ' ' || e.last_name AS employee, m.first_name || ' ' || m.last_name AS manager FROM employees e JOIN employees m ON m.id = e.manager_id;",
+    "orderMatters": false
+  },
+  "order": 291
+}

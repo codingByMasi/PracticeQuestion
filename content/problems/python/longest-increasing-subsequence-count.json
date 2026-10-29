@@ -1,0 +1,89 @@
+{
+  "slug": "longest-increasing-subsequence-count",
+  "track": "python",
+  "title": "Longest increasing subsequence count",
+  "difficulty": "Hard",
+  "tags": [
+    "dynamic-programming"
+  ],
+  "statementMd": "Return the number of longest strictly increasing subsequences (counted by index choices).\n\n**Example:** `count_lis([1, 3, 5, 4, 7])` returns `2`.",
+  "hints": [
+    "Track length and count ending at each index."
+  ],
+  "solutionMd": "```python\ndef count_lis(nums):\n    n = len(nums)\n    length = [1] * n\n    count = [1] * n\n    for i in range(n):\n        for j in range(i):\n            if nums[j] < nums[i]:\n                if length[j] + 1 > length[i]:\n                    length[i], count[i] = length[j] + 1, count[j]\n                elif length[j] + 1 == length[i]:\n                    count[i] += count[j]\n    best = max(length, default=0)\n    return sum(c for l, c in zip(length, count) if l == best)\n```\n\nCombine counts from predecessors with the best length.",
+  "starterCode": "def count_lis(nums):\n    # Write your code here\n    pass\n",
+  "functionName": "count_lis",
+  "referenceSolution": "def count_lis(nums):\n    n = len(nums)\n    length = [1] * n\n    count = [1] * n\n    for i in range(n):\n        for j in range(i):\n            if nums[j] < nums[i]:\n                if length[j] + 1 > length[i]:\n                    length[i], count[i] = length[j] + 1, count[j]\n                elif length[j] + 1 == length[i]:\n                    count[i] += count[j]\n    best = max(length, default=0)\n    return sum(c for l, c in zip(length, count) if l == best)\n",
+  "tests": [
+    {
+      "args": [
+        [
+          1,
+          3,
+          5,
+          4,
+          7
+        ]
+      ],
+      "expected": 2,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          2,
+          2,
+          2,
+          2,
+          2
+        ]
+      ],
+      "expected": 5,
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1
+        ]
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          2,
+          4,
+          3,
+          5,
+          4,
+          7,
+          2
+        ]
+      ],
+      "expected": 3,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          3,
+          1,
+          2
+        ]
+      ],
+      "expected": 1,
+      "hidden": true
+    }
+  ],
+  "order": 453
+}

@@ -1,0 +1,167 @@
+{
+  "slug": "matrix-multiplication",
+  "track": "python",
+  "title": "Matrix multiplication",
+  "difficulty": "Medium",
+  "tags": [
+    "matrix"
+  ],
+  "statementMd": "Multiply matrices `a` (n x m) and `b` (m x p). Return the n x p result.\n\n**Example:** `mat_mul([[1, 2], [3, 4]], [[5, 6], [7, 8]])` returns `[[19, 22], [43, 50]]`.",
+  "hints": [
+    "`result[i][j] = sum(a[i][k] * b[k][j])`."
+  ],
+  "solutionMd": "```python\ndef mat_mul(a, b):\n    cols = list(zip(*b))\n    return [[sum(x * y for x, y in zip(row, col)) for col in cols] for row in a]\n```\n\nRows of a times columns of b.",
+  "starterCode": "def mat_mul(a, b):\n    # Write your code here\n    pass\n",
+  "functionName": "mat_mul",
+  "referenceSolution": "def mat_mul(a, b):\n    cols = list(zip(*b))\n    return [[sum(x * y for x, y in zip(row, col)) for col in cols] for row in a]\n",
+  "tests": [
+    {
+      "args": [
+        [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        [
+          [
+            5,
+            6
+          ],
+          [
+            7,
+            8
+          ]
+        ]
+      ],
+      "expected": [
+        [
+          19,
+          22
+        ],
+        [
+          43,
+          50
+        ]
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            1,
+            2,
+            3
+          ]
+        ],
+        [
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ]
+        ]
+      ],
+      "expected": [
+        [
+          14
+        ]
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            2
+          ]
+        ],
+        [
+          [
+            3
+          ]
+        ]
+      ],
+      "expected": [
+        [
+          6
+        ]
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        [
+          [
+            9,
+            8
+          ],
+          [
+            7,
+            6
+          ]
+        ]
+      ],
+      "expected": [
+        [
+          9,
+          8
+        ],
+        [
+          7,
+          6
+        ]
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            1
+          ],
+          [
+            2
+          ]
+        ],
+        [
+          [
+            3,
+            4
+          ]
+        ]
+      ],
+      "expected": [
+        [
+          3,
+          4
+        ],
+        [
+          6,
+          8
+        ]
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 273
+}

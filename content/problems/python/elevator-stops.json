@@ -1,0 +1,73 @@
+{
+  "slug": "elevator-stops",
+  "track": "python",
+  "title": "Elevator stops",
+  "difficulty": "Medium",
+  "tags": [
+    "simulation"
+  ],
+  "statementMd": "An elevator starts at floor `start` and serves `requests` (a list of floors) in the given order. Return the total number of floors it travels.\n\n**Example:** `elevator_travel(0, [3, 1, 5])` returns `9`.",
+  "hints": [
+    "Sum absolute differences."
+  ],
+  "solutionMd": "```python\ndef elevator_travel(start, requests):\n    total, cur = 0, start\n    for f in requests:\n        total += abs(f - cur)\n        cur = f\n    return total\n```\n\nDistance between successive floors.",
+  "starterCode": "def elevator_travel(start, requests):\n    # Write your code here\n    pass\n",
+  "functionName": "elevator_travel",
+  "referenceSolution": "def elevator_travel(start, requests):\n    total, cur = 0, start\n    for f in requests:\n        total += abs(f - cur)\n        cur = f\n    return total\n",
+  "tests": [
+    {
+      "args": [
+        0,
+        [
+          3,
+          1,
+          5
+        ]
+      ],
+      "expected": 9,
+      "hidden": false
+    },
+    {
+      "args": [
+        2,
+        []
+      ],
+      "expected": 0,
+      "hidden": false
+    },
+    {
+      "args": [
+        5,
+        [
+          5
+        ]
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        1,
+        [
+          10,
+          1
+        ]
+      ],
+      "expected": 18,
+      "hidden": true
+    },
+    {
+      "args": [
+        0,
+        [
+          2,
+          4,
+          6
+        ]
+      ],
+      "expected": 6,
+      "hidden": true
+    }
+  ],
+  "order": 303
+}

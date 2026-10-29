@@ -1,0 +1,21 @@
+{
+  "slug": "loans-per-genre",
+  "track": "sql",
+  "title": "Loans per genre",
+  "difficulty": "Medium",
+  "tags": [
+    "multi-join"
+  ],
+  "statementMd": "How many loans did each genre receive? Most popular first.\n\nExpected columns: `genre`, `loans`.\n\nTables: `authors`, `books`, `members`, `loans`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Join loans to books."
+  ],
+  "solutionMd": "```sql\nSELECT b.genre, COUNT(*) AS loans FROM loans l JOIN books b ON b.id = l.book_id GROUP BY b.genre ORDER BY loans DESC;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: authors, books, members, loans\nSELECT\n",
+  "datasetId": "library",
+  "expected": {
+    "query": "SELECT b.genre, COUNT(*) AS loans FROM loans l JOIN books b ON b.id = l.book_id GROUP BY b.genre ORDER BY loans DESC;",
+    "orderMatters": true
+  },
+  "order": 300
+}

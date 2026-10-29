@@ -1,0 +1,21 @@
+{
+  "slug": "acme-history-head",
+  "track": "sql",
+  "title": "ACME history head",
+  "difficulty": "Easy",
+  "tags": [
+    "order-by"
+  ],
+  "statementMd": "List the first five trading days of `ACME` with the closing price.\n\nExpected columns: `trade_date`, `close`.\n\nTables: `tickers`, `prices`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Order by date, limit 5."
+  ],
+  "solutionMd": "```sql\nSELECT trade_date, close FROM prices WHERE symbol = 'ACME' ORDER BY trade_date LIMIT 5;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: tickers, prices\nSELECT\n",
+  "datasetId": "stocks",
+  "expected": {
+    "query": "SELECT trade_date, close FROM prices WHERE symbol = 'ACME' ORDER BY trade_date LIMIT 5;",
+    "orderMatters": true
+  },
+  "order": 77
+}

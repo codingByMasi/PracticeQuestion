@@ -1,0 +1,21 @@
+{
+  "slug": "students-per-grade-level",
+  "track": "sql",
+  "title": "Students per grade level",
+  "difficulty": "Easy",
+  "tags": [
+    "group-by"
+  ],
+  "statementMd": "Count students in each grade level.\n\nExpected columns: `grade_level`, `students`.\n\nTables: `teachers`, `courses`, `students`, `enrollments`.\n\nRow order does not matter.",
+  "hints": [
+    "`GROUP BY grade_level`."
+  ],
+  "solutionMd": "```sql\nSELECT grade_level, COUNT(*) AS students FROM students GROUP BY grade_level;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: teachers, courses, students, enrollments\nSELECT\n",
+  "datasetId": "school",
+  "expected": {
+    "query": "SELECT grade_level, COUNT(*) AS students FROM students GROUP BY grade_level;",
+    "orderMatters": false
+  },
+  "order": 142
+}

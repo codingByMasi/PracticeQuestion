@@ -1,0 +1,77 @@
+{
+  "slug": "majority-element",
+  "track": "python",
+  "title": "Majority element",
+  "difficulty": "Medium",
+  "tags": [
+    "counting"
+  ],
+  "statementMd": "Return the element that appears more than `len(nums) / 2` times (it is guaranteed to exist).\n\n**Example:** `majority_element([3, 2, 3])` returns `3`.",
+  "hints": [
+    "Boyer-Moore voting, or count with a dict."
+  ],
+  "solutionMd": "```python\ndef majority_element(nums):\n    cand, count = None, 0\n    for x in nums:\n        if count == 0:\n            cand = x\n        count += 1 if x == cand else -1\n    return cand\n```\n\nPairs of different elements cancel out, the majority survives.",
+  "starterCode": "def majority_element(nums):\n    # Write your code here\n    pass\n",
+  "functionName": "majority_element",
+  "referenceSolution": "def majority_element(nums):\n    cand, count = None, 0\n    for x in nums:\n        if count == 0:\n            cand = x\n        count += 1 if x == cand else -1\n    return cand\n",
+  "tests": [
+    {
+      "args": [
+        [
+          3,
+          2,
+          3
+        ]
+      ],
+      "expected": 3,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          2,
+          2,
+          1,
+          1,
+          1,
+          2,
+          2
+        ]
+      ],
+      "expected": 2,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          1
+        ]
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          5,
+          5,
+          5
+        ]
+      ],
+      "expected": 5,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          2,
+          1
+        ]
+      ],
+      "expected": 1,
+      "hidden": true
+    }
+  ],
+  "order": 222
+}

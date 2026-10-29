@@ -1,0 +1,74 @@
+{
+  "slug": "binomial-coefficient-mod",
+  "track": "python",
+  "title": "Binomial coefficient mod",
+  "difficulty": "Hard",
+  "tags": [
+    "combinatorics"
+  ],
+  "statementMd": "Return `C(n, k) % mod` where `mod` is a prime larger than `n`.\n\n**Example:** `n_choose_k_mod(5, 2, 1000003)` returns `10`.",
+  "hints": [
+    "Compute with factorials and a modular inverse via Fermat."
+  ],
+  "solutionMd": "```python\ndef n_choose_k_mod(n, k, mod):\n    if k < 0 or k > n:\n        return 0\n    num = den = 1\n    for i in range(k):\n        num = num * (n - i) % mod\n        den = den * (i + 1) % mod\n    return num * pow(den, mod - 2, mod) % mod\n```\n\nFermat's little theorem gives the inverse.",
+  "starterCode": "def n_choose_k_mod(n, k, mod):\n    # Write your code here\n    pass\n",
+  "functionName": "n_choose_k_mod",
+  "referenceSolution": "def n_choose_k_mod(n, k, mod):\n    if k < 0 or k > n:\n        return 0\n    num = den = 1\n    for i in range(k):\n        num = num * (n - i) % mod\n        den = den * (i + 1) % mod\n    return num * pow(den, mod - 2, mod) % mod\n",
+  "tests": [
+    {
+      "args": [
+        5,
+        2,
+        1000003
+      ],
+      "expected": 10,
+      "hidden": false
+    },
+    {
+      "args": [
+        10,
+        0,
+        1000003
+      ],
+      "expected": 1,
+      "hidden": false
+    },
+    {
+      "args": [
+        10,
+        10,
+        1000003
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        52,
+        5,
+        1000003
+      ],
+      "expected": 598954,
+      "hidden": true
+    },
+    {
+      "args": [
+        6,
+        7,
+        1009
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        30,
+        15,
+        1000003
+      ],
+      "expected": 117055,
+      "hidden": true
+    }
+  ],
+  "order": 463
+}

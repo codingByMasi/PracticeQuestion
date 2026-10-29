@@ -1,0 +1,21 @@
+{
+  "slug": "correlated-sector-pairs",
+  "track": "sql",
+  "title": "Correlated sector pairs",
+  "difficulty": "Hard",
+  "tags": [
+    "self-join"
+  ],
+  "statementMd": "For each trading day compare the technology tickers: list days where BYTE and CLOUD both closed up (close above open). Show the count of such days as `both_up_days`.\n\nExpected columns: `both_up_days`.\n\nTables: `tickers`, `prices`.\n\nRow order does not matter.",
+  "hints": [
+    "Self-join prices on date."
+  ],
+  "solutionMd": "```sql\nSELECT COUNT(*) AS both_up_days FROM prices a JOIN prices b ON a.trade_date = b.trade_date AND a.symbol = 'BYTE' AND b.symbol = 'CLOUD' WHERE a.close > a.open AND b.close > b.open;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: tickers, prices\nSELECT\n",
+  "datasetId": "stocks",
+  "expected": {
+    "query": "SELECT COUNT(*) AS both_up_days FROM prices a JOIN prices b ON a.trade_date = b.trade_date AND a.symbol = 'BYTE' AND b.symbol = 'CLOUD' WHERE a.close > a.open AND b.close > b.open;",
+    "orderMatters": false
+  },
+  "order": 390
+}

@@ -1,0 +1,82 @@
+{
+  "slug": "count-down-recursion",
+  "track": "python",
+  "title": "Count down recursion",
+  "difficulty": "Easy",
+  "tags": [
+    "recursion"
+  ],
+  "statementMd": "Return `[n, n-1, ..., 1, 0]` using recursion (`n >= 0`).\n\n**Example:** `rec_countdown(3)` returns `[3, 2, 1, 0]`.",
+  "hints": [
+    "Prepend n to the result for n - 1."
+  ],
+  "solutionMd": "```python\ndef rec_countdown(n):\n    if n == 0:\n        return [0]\n    return [n] + rec_countdown(n - 1)\n```\n\nBase case returns [0].",
+  "starterCode": "def rec_countdown(n):\n    # Write your code here\n    pass\n",
+  "functionName": "rec_countdown",
+  "referenceSolution": "def rec_countdown(n):\n    if n == 0:\n        return [0]\n    return [n] + rec_countdown(n - 1)\n",
+  "tests": [
+    {
+      "args": [
+        3
+      ],
+      "expected": [
+        3,
+        2,
+        1,
+        0
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        0
+      ],
+      "expected": [
+        0
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        1
+      ],
+      "expected": [
+        1,
+        0
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        5
+      ],
+      "expected": [
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        8
+      ],
+      "expected": [
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 123
+}

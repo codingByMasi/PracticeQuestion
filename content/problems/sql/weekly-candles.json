@@ -1,0 +1,21 @@
+{
+  "slug": "weekly-candles",
+  "track": "sql",
+  "title": "Weekly candles",
+  "difficulty": "Hard",
+  "tags": [
+    "group-by"
+  ],
+  "statementMd": "Build weekly candles for `ENRG`: for each week (`strftime('%W')`) show the first open, highest high, lowest low and last close. Order by week.\n\nExpected columns: `week`, `open`, `high`, `low`, `close`.\n\nTables: `tickers`, `prices`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "`FIRST_VALUE`/`LAST_VALUE` or correlated subqueries for the first open and last close."
+  ],
+  "solutionMd": "```sql\nWITH w AS (SELECT strftime('%W', trade_date) AS week, trade_date, open, high, low, close FROM prices WHERE symbol = 'ENRG') SELECT week, (SELECT open FROM w x WHERE x.week = w.week ORDER BY trade_date LIMIT 1) AS open, MAX(high) AS high, MIN(low) AS low, (SELECT close FROM w x WHERE x.week = w.week ORDER BY trade_date DESC LIMIT 1) AS close FROM w GROUP BY week ORDER BY week;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: tickers, prices\nSELECT\n",
+  "datasetId": "stocks",
+  "expected": {
+    "query": "WITH w AS (SELECT strftime('%W', trade_date) AS week, trade_date, open, high, low, close FROM prices WHERE symbol = 'ENRG') SELECT week, (SELECT open FROM w x WHERE x.week = w.week ORDER BY trade_date LIMIT 1) AS open, MAX(high) AS high, MIN(low) AS low, (SELECT close FROM w x WHERE x.week = w.week ORDER BY trade_date DESC LIMIT 1) AS close FROM w GROUP BY week ORDER BY week;",
+    "orderMatters": true
+  },
+  "order": 376
+}

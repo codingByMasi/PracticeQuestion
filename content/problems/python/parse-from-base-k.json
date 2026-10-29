@@ -1,0 +1,68 @@
+{
+  "slug": "parse-from-base-k",
+  "track": "python",
+  "title": "Parse from base k",
+  "difficulty": "Easy",
+  "tags": [
+    "numbers"
+  ],
+  "statementMd": "Convert the string `s` (digits `0-9A-F`, uppercase) in the given base to an integer, without using `int(s, base)`.\n\n**Example:** `from_base(\"1010\", 2)` returns `10`.",
+  "hints": [
+    "Horner's method."
+  ],
+  "solutionMd": "```python\ndef from_base(s, base):\n    digits = '0123456789ABCDEF'\n    n = 0\n    for c in s:\n        n = n * base + digits.index(c)\n    return n\n```\n\nMultiply and add per digit.",
+  "starterCode": "def from_base(s, base):\n    # Write your code here\n    pass\n",
+  "functionName": "from_base",
+  "referenceSolution": "def from_base(s, base):\n    digits = '0123456789ABCDEF'\n    n = 0\n    for c in s:\n        n = n * base + digits.index(c)\n    return n\n",
+  "tests": [
+    {
+      "args": [
+        "1010",
+        2
+      ],
+      "expected": 10,
+      "hidden": false
+    },
+    {
+      "args": [
+        "FF",
+        16
+      ],
+      "expected": 255,
+      "hidden": false
+    },
+    {
+      "args": [
+        "0",
+        10
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        "777",
+        8
+      ],
+      "expected": 511,
+      "hidden": true
+    },
+    {
+      "args": [
+        "1A",
+        16
+      ],
+      "expected": 26,
+      "hidden": true
+    },
+    {
+      "args": [
+        "12",
+        3
+      ],
+      "expected": 5,
+      "hidden": true
+    }
+  ],
+  "order": 26
+}

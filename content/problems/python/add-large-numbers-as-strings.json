@@ -1,0 +1,60 @@
+{
+  "slug": "add-large-numbers-as-strings",
+  "track": "python",
+  "title": "Add large numbers as strings",
+  "difficulty": "Medium",
+  "tags": [
+    "strings"
+  ],
+  "statementMd": "Add two non-negative decimal integers given as strings; return the sum as a string without converting the whole strings to ints.\n\n**Example:** `add_strings(\"11\", \"123\")` returns `\"134\"`.",
+  "hints": [
+    "Add digit by digit from the right with a carry."
+  ],
+  "solutionMd": "```python\ndef add_strings(a, b):\n    i, j, carry = len(a) - 1, len(b) - 1, 0\n    out = []\n    while i >= 0 or j >= 0 or carry:\n        s = carry\n        if i >= 0:\n            s += int(a[i]); i -= 1\n        if j >= 0:\n            s += int(b[j]); j -= 1\n        out.append(str(s % 10))\n        carry = s // 10\n    return ''.join(reversed(out))\n```\n\nGrade-school addition.",
+  "starterCode": "def add_strings(a, b):\n    # Write your code here\n    pass\n",
+  "functionName": "add_strings",
+  "referenceSolution": "def add_strings(a, b):\n    i, j, carry = len(a) - 1, len(b) - 1, 0\n    out = []\n    while i >= 0 or j >= 0 or carry:\n        s = carry\n        if i >= 0:\n            s += int(a[i]); i -= 1\n        if j >= 0:\n            s += int(b[j]); j -= 1\n        out.append(str(s % 10))\n        carry = s // 10\n    return ''.join(reversed(out))\n",
+  "tests": [
+    {
+      "args": [
+        "11",
+        "123"
+      ],
+      "expected": "134",
+      "hidden": false
+    },
+    {
+      "args": [
+        "456",
+        "77"
+      ],
+      "expected": "533",
+      "hidden": false
+    },
+    {
+      "args": [
+        "0",
+        "0"
+      ],
+      "expected": "0",
+      "hidden": true
+    },
+    {
+      "args": [
+        "999",
+        "1"
+      ],
+      "expected": "1000",
+      "hidden": true
+    },
+    {
+      "args": [
+        "1",
+        "99999"
+      ],
+      "expected": "100000",
+      "hidden": true
+    }
+  ],
+  "order": 193
+}

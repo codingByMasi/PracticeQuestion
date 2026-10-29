@@ -1,0 +1,21 @@
+{
+  "slug": "cumulative-plays-by-day",
+  "track": "sql",
+  "title": "Cumulative plays by day",
+  "difficulty": "Hard",
+  "tags": [
+    "running-total"
+  ],
+  "statementMd": "For each of the first 10 days with plays (by date), show date, plays that day and the cumulative total.\n\nExpected columns: `day`, `plays`, `cumulative`.\n\nTables: `artists`, `albums`, `tracks`, `listeners`, `plays`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Daily counts in a CTE, then running sum, then limit."
+  ],
+  "solutionMd": "```sql\nWITH d AS (SELECT substr(played_at, 1, 10) AS day, COUNT(*) AS plays FROM plays GROUP BY day) SELECT day, plays, SUM(plays) OVER (ORDER BY day) AS cumulative FROM d ORDER BY day LIMIT 10;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: artists, albums, tracks, listeners, plays\nSELECT\n",
+  "datasetId": "music",
+  "expected": {
+    "query": "WITH d AS (SELECT substr(played_at, 1, 10) AS day, COUNT(*) AS plays FROM plays GROUP BY day) SELECT day, plays, SUM(plays) OVER (ORDER BY day) AS cumulative FROM d ORDER BY day LIMIT 10;",
+    "orderMatters": true
+  },
+  "order": 474
+}

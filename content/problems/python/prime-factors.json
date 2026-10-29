@@ -1,0 +1,95 @@
+{
+  "slug": "prime-factors",
+  "track": "python",
+  "title": "Prime factors",
+  "difficulty": "Medium",
+  "tags": [
+    "number-theory"
+  ],
+  "statementMd": "Return the prime factorisation of `n >= 2` as a sorted list with repeats, e.g. `12` -> `[2, 2, 3]`.\n\n**Example:** `prime_factors(12)` returns `[2, 2, 3]`.",
+  "hints": [
+    "Divide out each factor while it divides evenly."
+  ],
+  "solutionMd": "```python\ndef prime_factors(n):\n    out = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            out.append(d)\n            n //= d\n        d += 1\n    if n > 1:\n        out.append(n)\n    return out\n```\n\nAfter removing small factors, any remainder above 1 is prime.",
+  "starterCode": "def prime_factors(n):\n    # Write your code here\n    pass\n",
+  "functionName": "prime_factors",
+  "referenceSolution": "def prime_factors(n):\n    out = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            out.append(d)\n            n //= d\n        d += 1\n    if n > 1:\n        out.append(n)\n    return out\n",
+  "tests": [
+    {
+      "args": [
+        12
+      ],
+      "expected": [
+        2,
+        2,
+        3
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        13
+      ],
+      "expected": [
+        13
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        2
+      ],
+      "expected": [
+        2
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        100
+      ],
+      "expected": [
+        2,
+        2,
+        5,
+        5
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        360
+      ],
+      "expected": [
+        2,
+        2,
+        2,
+        3,
+        3,
+        5
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        9973
+      ],
+      "expected": [
+        9973
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        1001
+      ],
+      "expected": [
+        7,
+        11,
+        13
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 283
+}

@@ -1,0 +1,73 @@
+{
+  "slug": "minimum-of-list",
+  "track": "python",
+  "title": "Minimum of list",
+  "difficulty": "Easy",
+  "tags": [
+    "lists"
+  ],
+  "statementMd": "Return the smallest value in a non-empty list without using `min`.\n\n**Example:** `list_min([3, 1, 2])` returns `1`.",
+  "hints": [
+    "Track the best so far."
+  ],
+  "solutionMd": "```python\ndef list_min(nums):\n    best = nums[0]\n    for x in nums[1:]:\n        if x < best:\n            best = x\n    return best\n```\n\nStart from the first element.",
+  "starterCode": "def list_min(nums):\n    # Write your code here\n    pass\n",
+  "functionName": "list_min",
+  "referenceSolution": "def list_min(nums):\n    best = nums[0]\n    for x in nums[1:]:\n        if x < best:\n            best = x\n    return best\n",
+  "tests": [
+    {
+      "args": [
+        [
+          3,
+          1,
+          2
+        ]
+      ],
+      "expected": 1,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          5
+        ]
+      ],
+      "expected": 5,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          -1,
+          -5,
+          0
+        ]
+      ],
+      "expected": -5,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          2,
+          2
+        ]
+      ],
+      "expected": 2,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          9,
+          8,
+          7,
+          6
+        ]
+      ],
+      "expected": 6,
+      "hidden": true
+    }
+  ],
+  "order": 73
+}

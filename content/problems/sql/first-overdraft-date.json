@@ -1,0 +1,21 @@
+{
+  "slug": "first-overdraft-date",
+  "track": "sql",
+  "title": "First overdraft date",
+  "difficulty": "Hard",
+  "tags": [
+    "running-total"
+  ],
+  "statementMd": "For each account whose running balance ever goes below zero, show the account id and the date of the first transaction that makes it negative.\n\nExpected columns: `account_id`, `first_negative`.\n\nTables: `customers`, `accounts`, `transactions`.\n\nRow order does not matter.",
+  "hints": [
+    "Running sum per account, then the earliest negative row."
+  ],
+  "solutionMd": "```sql\nWITH r AS (SELECT account_id, tx_date, id, SUM(amount) OVER (PARTITION BY account_id ORDER BY tx_date, id) AS balance FROM transactions) SELECT account_id, MIN(tx_date) AS first_negative FROM r WHERE balance < 0 GROUP BY account_id;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, accounts, transactions\nSELECT\n",
+  "datasetId": "bank",
+  "expected": {
+    "query": "WITH r AS (SELECT account_id, tx_date, id, SUM(amount) OVER (PARTITION BY account_id ORDER BY tx_date, id) AS balance FROM transactions) SELECT account_id, MIN(tx_date) AS first_negative FROM r WHERE balance < 0 GROUP BY account_id;",
+    "orderMatters": false
+  },
+  "order": 469
+}

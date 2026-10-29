@@ -1,0 +1,62 @@
+{
+  "slug": "is-all-digits",
+  "track": "python",
+  "title": "Is all digits",
+  "difficulty": "Easy",
+  "tags": [
+    "strings"
+  ],
+  "statementMd": "Return `True` if `s` is non-empty and every character is a digit `0-9`.\n\n**Example:** `is_all_digits(\"123\")` returns `true`.",
+  "hints": [
+    "`str.isdigit()`, but remember the empty string."
+  ],
+  "solutionMd": "```python\ndef is_all_digits(s):\n    return len(s) > 0 and all('0' <= c <= '9' for c in s)\n```\n\nCompare characters directly for strict ASCII digits.",
+  "starterCode": "def is_all_digits(s):\n    # Write your code here\n    pass\n",
+  "functionName": "is_all_digits",
+  "referenceSolution": "def is_all_digits(s):\n    return len(s) > 0 and all('0' <= c <= '9' for c in s)\n",
+  "tests": [
+    {
+      "args": [
+        "123"
+      ],
+      "expected": true,
+      "hidden": false
+    },
+    {
+      "args": [
+        "12a"
+      ],
+      "expected": false,
+      "hidden": false
+    },
+    {
+      "args": [
+        ""
+      ],
+      "expected": false,
+      "hidden": true
+    },
+    {
+      "args": [
+        "0"
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        " 1"
+      ],
+      "expected": false,
+      "hidden": true
+    },
+    {
+      "args": [
+        "007"
+      ],
+      "expected": true,
+      "hidden": true
+    }
+  ],
+  "order": 51
+}

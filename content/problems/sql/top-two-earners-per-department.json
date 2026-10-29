@@ -1,0 +1,21 @@
+{
+  "slug": "top-two-earners-per-department",
+  "track": "sql",
+  "title": "Top two earners per department",
+  "difficulty": "Hard",
+  "tags": [
+    "ranking"
+  ],
+  "statementMd": "For each department, list its two highest-paid employees with their rank within the department (1 or 2). Show department id, first name, salary and rank.\n\nExpected columns: `department_id`, `first_name`, `salary`, `rnk`.\n\nTables: `employees`, `departments`.\n\nRow order does not matter.",
+  "hints": [
+    "`ROW_NUMBER() OVER (PARTITION BY department_id ORDER BY salary DESC)` in a CTE, then filter."
+  ],
+  "solutionMd": "```sql\nWITH ranked AS (SELECT department_id, first_name, salary, ROW_NUMBER() OVER (PARTITION BY department_id ORDER BY salary DESC) AS rnk FROM employees WHERE department_id IS NOT NULL) SELECT department_id, first_name, salary, rnk FROM ranked WHERE rnk <= 2;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "WITH ranked AS (SELECT department_id, first_name, salary, ROW_NUMBER() OVER (PARTITION BY department_id ORDER BY salary DESC) AS rnk FROM employees WHERE department_id IS NOT NULL) SELECT department_id, first_name, salary, rnk FROM ranked WHERE rnk <= 2;",
+    "orderMatters": false
+  },
+  "order": 449
+}

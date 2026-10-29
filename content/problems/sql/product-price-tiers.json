@@ -1,0 +1,21 @@
+{
+  "slug": "product-price-tiers",
+  "track": "sql",
+  "title": "Product price tiers",
+  "difficulty": "Easy",
+  "tags": [
+    "case"
+  ],
+  "statementMd": "Classify products: `cheap` under 20, `standard` from 20 to under 100, `premium` from 100. Show name and tier.\n\nExpected columns: `name`, `tier`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\nRow order does not matter.",
+  "hints": [
+    "Use a `CASE` expression."
+  ],
+  "solutionMd": "```sql\nSELECT name, CASE WHEN price < 20 THEN 'cheap' WHEN price < 100 THEN 'standard' ELSE 'premium' END AS tier FROM products;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "SELECT name, CASE WHEN price < 20 THEN 'cheap' WHEN price < 100 THEN 'standard' ELSE 'premium' END AS tier FROM products;",
+    "orderMatters": false
+  },
+  "order": 86
+}

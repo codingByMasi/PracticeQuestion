@@ -1,0 +1,110 @@
+{
+  "slug": "multiplication-table-row",
+  "track": "python",
+  "title": "Multiplication table row",
+  "difficulty": "Easy",
+  "tags": [
+    "loops"
+  ],
+  "statementMd": "Return the list of the first 10 multiples of `n`: `[n*1, n*2, ..., n*10]`.\n\n**Example:** `times_table(3)` returns `[3, 6, 9, 12, 15, 18, 21, 24, 27, 30]`.",
+  "hints": [
+    "Use a loop or a comprehension over `range(1, 11)`."
+  ],
+  "solutionMd": "```python\ndef times_table(n):\n    return [n * i for i in range(1, 11)]\n```\n\nA list comprehension builds it in one line.",
+  "starterCode": "def times_table(n):\n    # Write your code here\n    pass\n",
+  "functionName": "times_table",
+  "referenceSolution": "def times_table(n):\n    return [n * i for i in range(1, 11)]\n",
+  "tests": [
+    {
+      "args": [
+        3
+      ],
+      "expected": [
+        3,
+        6,
+        9,
+        12,
+        15,
+        18,
+        21,
+        24,
+        27,
+        30
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        7
+      ],
+      "expected": [
+        7,
+        14,
+        21,
+        28,
+        35,
+        42,
+        49,
+        56,
+        63,
+        70
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        0
+      ],
+      "expected": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        -2
+      ],
+      "expected": [
+        -2,
+        -4,
+        -6,
+        -8,
+        -10,
+        -12,
+        -14,
+        -16,
+        -18,
+        -20
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        12
+      ],
+      "expected": [
+        12,
+        24,
+        36,
+        48,
+        60,
+        72,
+        84,
+        96,
+        108,
+        120
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 37
+}

@@ -1,0 +1,21 @@
+{
+  "slug": "revenue-by-country",
+  "track": "sql",
+  "title": "Revenue by country",
+  "difficulty": "Medium",
+  "tags": [
+    "multi-join"
+  ],
+  "statementMd": "Total revenue per customer country, excluding cancelled orders, rounded to 2 decimals. Highest first.\n\nExpected columns: `country`, `revenue`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Join customers, orders and order items."
+  ],
+  "solutionMd": "```sql\nSELECT c.country, ROUND(SUM(oi.quantity * oi.unit_price), 2) AS revenue FROM customers c JOIN orders o ON o.customer_id = c.id JOIN order_items oi ON oi.order_id = o.id WHERE o.status <> 'cancelled' GROUP BY c.country ORDER BY revenue DESC;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "SELECT c.country, ROUND(SUM(oi.quantity * oi.unit_price), 2) AS revenue FROM customers c JOIN orders o ON o.customer_id = c.id JOIN order_items oi ON oi.order_id = o.id WHERE o.status <> 'cancelled' GROUP BY c.country ORDER BY revenue DESC;",
+    "orderMatters": true
+  },
+  "order": 297
+}

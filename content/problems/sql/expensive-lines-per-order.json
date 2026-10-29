@@ -1,0 +1,21 @@
+{
+  "slug": "expensive-lines-per-order",
+  "track": "sql",
+  "title": "Expensive lines per order",
+  "difficulty": "Medium",
+  "tags": [
+    "join"
+  ],
+  "statementMd": "For each order, count the lines where the unit price is at least 50. Show only orders with at least one such line.\n\nExpected columns: `order_id`, `expensive_lines`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\nRow order does not matter.",
+  "hints": [
+    "Filter lines with `WHERE`, then group."
+  ],
+  "solutionMd": "```sql\nSELECT order_id, COUNT(*) AS expensive_lines FROM order_items WHERE unit_price >= 50 GROUP BY order_id;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "SELECT order_id, COUNT(*) AS expensive_lines FROM order_items WHERE unit_price >= 50 GROUP BY order_id;",
+    "orderMatters": false
+  },
+  "order": 263
+}

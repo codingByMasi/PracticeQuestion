@@ -17,5 +17,6 @@
   "expected": {
     "query": "SELECT first_name, department_id, salary,\n  RANK() OVER (PARTITION BY department_id ORDER BY salary DESC) AS dept_rank\nFROM employees\nWHERE department_id IS NOT NULL;",
     "orderMatters": false
-  }
+  },
+  "order": 400
 }

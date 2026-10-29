@@ -1,0 +1,21 @@
+{
+  "slug": "unit-price-discounts",
+  "track": "sql",
+  "title": "Unit price discounts",
+  "difficulty": "Medium",
+  "tags": [
+    "expressions"
+  ],
+  "statementMd": "For lines where the paid unit price is below the list price, show order id, product name and the discount percentage rounded to 1 decimal.\n\nExpected columns: `order_id`, `name`, `discount_pct`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\nRow order does not matter.",
+  "hints": [
+    "`100 * (price - unit_price) / price`."
+  ],
+  "solutionMd": "```sql\nSELECT oi.order_id, p.name, ROUND(100.0 * (p.price - oi.unit_price) / p.price, 1) AS discount_pct FROM order_items oi JOIN products p ON p.id = oi.product_id WHERE oi.unit_price < p.price;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "SELECT oi.order_id, p.name, ROUND(100.0 * (p.price - oi.unit_price) / p.price, 1) AS discount_pct FROM order_items oi JOIN products p ON p.id = oi.product_id WHERE oi.unit_price < p.price;",
+    "orderMatters": false
+  },
+  "order": 180
+}

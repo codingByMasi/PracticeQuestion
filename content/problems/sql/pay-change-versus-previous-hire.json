@@ -1,0 +1,21 @@
+{
+  "slug": "pay-change-versus-previous-hire",
+  "track": "sql",
+  "title": "Pay change versus previous hire",
+  "difficulty": "Hard",
+  "tags": [
+    "window-functions"
+  ],
+  "statementMd": "Ordering employees by hire date, show each person's first name, salary, and the difference from the salary of the person hired just before them (NULL for the first hire).\n\nExpected columns: `first_name`, `salary`, `diff_from_previous`.\n\nTables: `employees`, `departments`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "`LAG(salary) OVER (ORDER BY hire_date)`."
+  ],
+  "solutionMd": "```sql\nSELECT first_name, salary, salary - LAG(salary) OVER (ORDER BY hire_date) AS diff_from_previous FROM employees ORDER BY hire_date;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "SELECT first_name, salary, salary - LAG(salary) OVER (ORDER BY hire_date) AS diff_from_previous FROM employees ORDER BY hire_date;",
+    "orderMatters": true
+  },
+  "order": 412
+}

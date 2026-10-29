@@ -1,0 +1,21 @@
+{
+  "slug": "average-purchase",
+  "track": "sql",
+  "title": "Average purchase",
+  "difficulty": "Medium",
+  "tags": [
+    "aggregate"
+  ],
+  "statementMd": "Average purchase size (positive) per merchant, rounded to 2 decimals, for merchants with at least 10 purchases.\n\nExpected columns: `merchant`, `avg_purchase`.\n\nTables: `customers`, `accounts`, `transactions`.\n\nRow order does not matter.",
+  "hints": [
+    "`HAVING COUNT(*) >= 10`."
+  ],
+  "solutionMd": "```sql\nSELECT merchant, ROUND(-AVG(amount), 2) AS avg_purchase FROM transactions WHERE kind = 'purchase' GROUP BY merchant HAVING COUNT(*) >= 10;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, accounts, transactions\nSELECT\n",
+  "datasetId": "bank",
+  "expected": {
+    "query": "SELECT merchant, ROUND(-AVG(amount), 2) AS avg_purchase FROM transactions WHERE kind = 'purchase' GROUP BY merchant HAVING COUNT(*) >= 10;",
+    "orderMatters": false
+  },
+  "order": 210
+}

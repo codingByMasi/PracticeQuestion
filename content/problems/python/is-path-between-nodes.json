@@ -1,0 +1,110 @@
+{
+  "slug": "is-path-between-nodes",
+  "track": "python",
+  "title": "Is path between nodes",
+  "difficulty": "Easy",
+  "tags": [
+    "graphs"
+  ],
+  "statementMd": "Return whether there is a path from `src` to `dst` in an undirected graph.\n\n**Example:** `has_path(3, [[0, 1], [1, 2]], 0, 2)` returns `true`.",
+  "hints": [
+    "BFS from src."
+  ],
+  "solutionMd": "```python\nfrom collections import deque, defaultdict\n\n\ndef has_path(n, edges, src, dst):\n    adj = defaultdict(list)\n    for a, b in edges:\n        adj[a].append(b); adj[b].append(a)\n    seen, q = {src}, deque([src])\n    while q:\n        u = q.popleft()\n        if u == dst:\n            return True\n        for v in adj[u]:\n            if v not in seen:\n                seen.add(v); q.append(v)\n    return False\n```\n\nBFS explores everything reachable.",
+  "starterCode": "def has_path(n, edges, src, dst):\n    # Write your code here\n    pass\n",
+  "functionName": "has_path",
+  "referenceSolution": "from collections import deque, defaultdict\n\n\ndef has_path(n, edges, src, dst):\n    adj = defaultdict(list)\n    for a, b in edges:\n        adj[a].append(b); adj[b].append(a)\n    seen, q = {src}, deque([src])\n    while q:\n        u = q.popleft()\n        if u == dst:\n            return True\n        for v in adj[u]:\n            if v not in seen:\n                seen.add(v); q.append(v)\n    return False\n",
+  "tests": [
+    {
+      "args": [
+        3,
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        0,
+        2
+      ],
+      "expected": true,
+      "hidden": false
+    },
+    {
+      "args": [
+        3,
+        [
+          [
+            0,
+            1
+          ]
+        ],
+        0,
+        2
+      ],
+      "expected": false,
+      "hidden": false
+    },
+    {
+      "args": [
+        1,
+        [],
+        0,
+        0
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        4,
+        [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        1,
+        2
+      ],
+      "expected": false,
+      "hidden": true
+    },
+    {
+      "args": [
+        5,
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        4,
+        0
+      ],
+      "expected": true,
+      "hidden": true
+    }
+  ],
+  "order": 151
+}

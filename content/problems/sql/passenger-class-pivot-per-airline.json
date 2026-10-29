@@ -1,0 +1,21 @@
+{
+  "slug": "passenger-class-pivot-per-airline",
+  "track": "sql",
+  "title": "Passenger class pivot per airline",
+  "difficulty": "Hard",
+  "tags": [
+    "pivot"
+  ],
+  "statementMd": "For each airline show the number of bookings by `economy`, `business` and `first` as three columns.\n\nExpected columns: `name`, `economy`, `business`, `first`.\n\nTables: `airlines`, `airports`, `flights`, `bookings`.\n\nRow order does not matter.",
+  "hints": [
+    "Conditional counts."
+  ],
+  "solutionMd": "```sql\nSELECT a.name, SUM(b.seat_class = 'economy') AS economy, SUM(b.seat_class = 'business') AS business, SUM(b.seat_class = 'first') AS first FROM bookings b JOIN flights f ON f.id = b.flight_id JOIN airlines a ON a.code = f.airline_code GROUP BY a.code, a.name;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: airlines, airports, flights, bookings\nSELECT\n",
+  "datasetId": "flights",
+  "expected": {
+    "query": "SELECT a.name, SUM(b.seat_class = 'economy') AS economy, SUM(b.seat_class = 'business') AS business, SUM(b.seat_class = 'first') AS first FROM bookings b JOIN flights f ON f.id = b.flight_id JOIN airlines a ON a.code = f.airline_code GROUP BY a.code, a.name;",
+    "orderMatters": false
+  },
+  "order": 483
+}

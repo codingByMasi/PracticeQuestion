@@ -1,0 +1,21 @@
+{
+  "slug": "all-courses-teacher-or-tba",
+  "track": "sql",
+  "title": "All courses, teacher or TBA",
+  "difficulty": "Easy",
+  "tags": [
+    "left-join"
+  ],
+  "statementMd": "List every course with its teacher's name, or `TBA` if none.\n\nExpected columns: `title`, `teacher`.\n\nTables: `teachers`, `courses`, `students`, `enrollments`.\n\nRow order does not matter.",
+  "hints": [
+    "`LEFT JOIN` and `COALESCE`."
+  ],
+  "solutionMd": "```sql\nSELECT c.title, COALESCE(t.name, 'TBA') AS teacher FROM courses c LEFT JOIN teachers t ON t.id = c.teacher_id;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: teachers, courses, students, enrollments\nSELECT\n",
+  "datasetId": "school",
+  "expected": {
+    "query": "SELECT c.title, COALESCE(t.name, 'TBA') AS teacher FROM courses c LEFT JOIN teachers t ON t.id = c.teacher_id;",
+    "orderMatters": false
+  },
+  "order": 166
+}

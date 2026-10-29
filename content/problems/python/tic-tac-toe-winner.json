@@ -1,0 +1,143 @@
+{
+  "slug": "tic-tac-toe-winner",
+  "track": "python",
+  "title": "Tic tac toe winner",
+  "difficulty": "Medium",
+  "tags": [
+    "simulation"
+  ],
+  "statementMd": "Players X and O alternate (X first) placing on a 3x3 board; `moves` is a list of `[row, col]`. Return `\"X\"` or `\"O\"` if someone has three in a row, `\"Draw\"` if the board is full with no winner, otherwise `\"Pending\"`.\n\n**Example:** `tictactoe_winner([[0, 0], [2, 0], [1, 1], [2, 1], [2, 2]])` returns `\"X\"`.",
+  "hints": [
+    "Check all 8 lines after replaying."
+  ],
+  "solutionMd": "```python\ndef tictactoe_winner(moves):\n    board = [[''] * 3 for _ in range(3)]\n    for i, (r, c) in enumerate(moves):\n        board[r][c] = 'X' if i % 2 == 0 else 'O'\n    lines = [[(r, c) for c in range(3)] for r in range(3)] + [[(r, c) for r in range(3)] for c in range(3)] + [[(i, i) for i in range(3)], [(i, 2 - i) for i in range(3)]]\n    for line in lines:\n        vals = {board[r][c] for r, c in line}\n        if len(vals) == 1 and '' not in vals:\n            return vals.pop()\n    return 'Draw' if len(moves) == 9 else 'Pending'\n```\n\nEnumerate winning lines.",
+  "starterCode": "def tictactoe_winner(moves):\n    # Write your code here\n    pass\n",
+  "functionName": "tictactoe_winner",
+  "referenceSolution": "def tictactoe_winner(moves):\n    board = [[''] * 3 for _ in range(3)]\n    for i, (r, c) in enumerate(moves):\n        board[r][c] = 'X' if i % 2 == 0 else 'O'\n    lines = [[(r, c) for c in range(3)] for r in range(3)] + [[(r, c) for r in range(3)] for c in range(3)] + [[(i, i) for i in range(3)], [(i, 2 - i) for i in range(3)]]\n    for line in lines:\n        vals = {board[r][c] for r, c in line}\n        if len(vals) == 1 and '' not in vals:\n            return vals.pop()\n    return 'Draw' if len(moves) == 9 else 'Pending'\n",
+  "tests": [
+    {
+      "args": [
+        [
+          [
+            0,
+            0
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      ],
+      "expected": "X",
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      ],
+      "expected": "Pending",
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": "Pending",
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            2
+          ]
+        ]
+      ],
+      "expected": "X",
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      ],
+      "expected": "Draw",
+      "hidden": true
+    }
+  ],
+  "order": 302
+}

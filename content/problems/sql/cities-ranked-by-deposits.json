@@ -1,0 +1,21 @@
+{
+  "slug": "cities-ranked-by-deposits",
+  "track": "sql",
+  "title": "Cities ranked by deposits",
+  "difficulty": "Medium",
+  "tags": [
+    "multi-join"
+  ],
+  "statementMd": "Total deposits per customer city, biggest first, rounded to 2 decimals.\n\nExpected columns: `city`, `deposits`.\n\nTables: `customers`, `accounts`, `transactions`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Join up to customers."
+  ],
+  "solutionMd": "```sql\nSELECT c.city, ROUND(SUM(t.amount), 2) AS deposits FROM transactions t JOIN accounts a ON a.id = t.account_id JOIN customers c ON c.id = a.customer_id WHERE t.kind = 'deposit' GROUP BY c.city ORDER BY deposits DESC;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, accounts, transactions\nSELECT\n",
+  "datasetId": "bank",
+  "expected": {
+    "query": "SELECT c.city, ROUND(SUM(t.amount), 2) AS deposits FROM transactions t JOIN accounts a ON a.id = t.account_id JOIN customers c ON c.id = a.customer_id WHERE t.kind = 'deposit' GROUP BY c.city ORDER BY deposits DESC;",
+    "orderMatters": true
+  },
+  "order": 296
+}

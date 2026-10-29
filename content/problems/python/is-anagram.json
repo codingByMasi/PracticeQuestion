@@ -1,0 +1,60 @@
+{
+  "slug": "is-anagram",
+  "track": "python",
+  "title": "Is anagram",
+  "difficulty": "Easy",
+  "tags": [
+    "strings"
+  ],
+  "statementMd": "Return `True` if `a` and `b` contain exactly the same letters (case-insensitive, ignoring spaces).\n\n**Example:** `is_anagram(\"listen\", \"silent\")` returns `true`.",
+  "hints": [
+    "Sort the cleaned characters."
+  ],
+  "solutionMd": "```python\ndef is_anagram(a, b):\n    clean = lambda s: sorted(s.replace(' ', '').lower())\n    return clean(a) == clean(b)\n```\n\nEqual sorted letters means anagram.",
+  "starterCode": "def is_anagram(a, b):\n    # Write your code here\n    pass\n",
+  "functionName": "is_anagram",
+  "referenceSolution": "def is_anagram(a, b):\n    clean = lambda s: sorted(s.replace(' ', '').lower())\n    return clean(a) == clean(b)\n",
+  "tests": [
+    {
+      "args": [
+        "listen",
+        "silent"
+      ],
+      "expected": true,
+      "hidden": false
+    },
+    {
+      "args": [
+        "abc",
+        "abd"
+      ],
+      "expected": false,
+      "hidden": false
+    },
+    {
+      "args": [
+        "Dormitory",
+        "dirty room"
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        "",
+        ""
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        "aab",
+        "abb"
+      ],
+      "expected": false,
+      "hidden": true
+    }
+  ],
+  "order": 59
+}

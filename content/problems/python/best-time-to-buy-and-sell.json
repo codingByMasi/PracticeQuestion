@@ -1,0 +1,114 @@
+{
+  "slug": "best-time-to-buy-and-sell",
+  "track": "python",
+  "title": "Best time to buy and sell",
+  "difficulty": "Medium",
+  "tags": [
+    "greedy"
+  ],
+  "statementMd": "Given daily prices, return the maximum profit from one buy followed by one later sell (0 if no profit is possible).\n\n**Example:** `max_profit([7, 1, 5, 3, 6, 4])` returns `5`.",
+  "hints": [
+    "Track the minimum price so far."
+  ],
+  "solutionMd": "```python\ndef max_profit(prices):\n    best, low = 0, float('inf')\n    for p in prices:\n        low = min(low, p)\n        best = max(best, p - low)\n    return best\n```\n\nThe best sell day uses the cheapest earlier buy.",
+  "starterCode": "def max_profit(prices):\n    # Write your code here\n    pass\n",
+  "functionName": "max_profit",
+  "referenceSolution": "def max_profit(prices):\n    best, low = 0, float('inf')\n    for p in prices:\n        low = min(low, p)\n        best = max(best, p - low)\n    return best\n",
+  "tests": [
+    {
+      "args": [
+        [
+          7,
+          1,
+          5,
+          3,
+          6,
+          4
+        ]
+      ],
+      "expected": 5,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          7,
+          6,
+          4,
+          3,
+          1
+        ]
+      ],
+      "expected": 0,
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          2
+        ]
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          2,
+          4,
+          1
+        ]
+      ],
+      "expected": 2,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          12,
+          11,
+          10
+        ]
+      ],
+      "expected": 11,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          20,
+          1,
+          5,
+          20,
+          18,
+          1,
+          14
+        ]
+      ],
+      "expected": 19,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          9,
+          6,
+          15,
+          11
+        ]
+      ],
+      "expected": 9,
+      "hidden": true
+    }
+  ],
+  "order": 307
+}

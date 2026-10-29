@@ -1,0 +1,62 @@
+{
+  "slug": "longest-palindromic-subsequence",
+  "track": "python",
+  "title": "Longest palindromic subsequence",
+  "difficulty": "Hard",
+  "tags": [
+    "dynamic-programming"
+  ],
+  "statementMd": "Return the length of the longest palindromic subsequence of `s`.\n\n**Example:** `lps_length(\"bbbab\")` returns `4`.",
+  "hints": [
+    "It equals the LCS of `s` and its reverse."
+  ],
+  "solutionMd": "```python\ndef lps_length(s):\n    t = s[::-1]\n    prev = [0] * (len(t) + 1)\n    for x in s:\n        cur = [0]\n        for j, y in enumerate(t):\n            cur.append(prev[j] + 1 if x == y else max(prev[j + 1], cur[j]))\n        prev = cur\n    return prev[-1]\n```\n\nA palindromic subsequence is a common subsequence with the reverse.",
+  "starterCode": "def lps_length(s):\n    # Write your code here\n    pass\n",
+  "functionName": "lps_length",
+  "referenceSolution": "def lps_length(s):\n    t = s[::-1]\n    prev = [0] * (len(t) + 1)\n    for x in s:\n        cur = [0]\n        for j, y in enumerate(t):\n            cur.append(prev[j] + 1 if x == y else max(prev[j + 1], cur[j]))\n        prev = cur\n    return prev[-1]\n",
+  "tests": [
+    {
+      "args": [
+        "bbbab"
+      ],
+      "expected": 4,
+      "hidden": false
+    },
+    {
+      "args": [
+        "cbbd"
+      ],
+      "expected": 2,
+      "hidden": false
+    },
+    {
+      "args": [
+        ""
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        "a"
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        "abcd"
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        "agbdba"
+      ],
+      "expected": 5,
+      "hidden": true
+    }
+  ],
+  "order": 443
+}

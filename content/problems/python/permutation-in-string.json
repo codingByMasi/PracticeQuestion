@@ -1,0 +1,68 @@
+{
+  "slug": "permutation-in-string",
+  "track": "python",
+  "title": "Permutation in string",
+  "difficulty": "Hard",
+  "tags": [
+    "sliding-window"
+  ],
+  "statementMd": "Return whether some permutation of `small` is a substring of `big`.\n\n**Example:** `check_inclusion(\"ab\", \"eidbaooo\")` returns `true`.",
+  "hints": [
+    "Compare letter counts over a window of len(small)."
+  ],
+  "solutionMd": "```python\ndef check_inclusion(small, big):\n    from collections import Counter\n    k = len(small)\n    need = Counter(small)\n    win = Counter(big[:k])\n    if win == need:\n        return True\n    for i in range(k, len(big)):\n        win[big[i]] += 1\n        win[big[i - k]] -= 1\n        if win[big[i - k]] == 0:\n            del win[big[i - k]]\n        if win == need:\n            return True\n    return False\n```\n\nSlide a fixed window while updating counts.",
+  "starterCode": "def check_inclusion(small, big):\n    # Write your code here\n    pass\n",
+  "functionName": "check_inclusion",
+  "referenceSolution": "def check_inclusion(small, big):\n    from collections import Counter\n    k = len(small)\n    need = Counter(small)\n    win = Counter(big[:k])\n    if win == need:\n        return True\n    for i in range(k, len(big)):\n        win[big[i]] += 1\n        win[big[i - k]] -= 1\n        if win[big[i - k]] == 0:\n            del win[big[i - k]]\n        if win == need:\n            return True\n    return False\n",
+  "tests": [
+    {
+      "args": [
+        "ab",
+        "eidbaooo"
+      ],
+      "expected": true,
+      "hidden": false
+    },
+    {
+      "args": [
+        "ab",
+        "eidboaoo"
+      ],
+      "expected": false,
+      "hidden": false
+    },
+    {
+      "args": [
+        "a",
+        "a"
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        "abc",
+        "ab"
+      ],
+      "expected": false,
+      "hidden": true
+    },
+    {
+      "args": [
+        "adc",
+        "dcda"
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        "",
+        "x"
+      ],
+      "expected": true,
+      "hidden": true
+    }
+  ],
+  "order": 407
+}

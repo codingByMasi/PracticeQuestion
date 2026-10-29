@@ -1,0 +1,75 @@
+{
+  "slug": "single-number",
+  "track": "python",
+  "title": "Single number",
+  "difficulty": "Easy",
+  "tags": [
+    "bit-manipulation"
+  ],
+  "statementMd": "Every element appears twice except one; return that one element.\n\n**Example:** `single_number([2, 2, 1])` returns `1`.",
+  "hints": [
+    "XOR cancels equal pairs."
+  ],
+  "solutionMd": "```python\ndef single_number(nums):\n    r = 0\n    for x in nums:\n        r ^= x\n    return r\n```\n\n`x ^ x == 0` and XOR is commutative.",
+  "starterCode": "def single_number(nums):\n    # Write your code here\n    pass\n",
+  "functionName": "single_number",
+  "referenceSolution": "def single_number(nums):\n    r = 0\n    for x in nums:\n        r ^= x\n    return r\n",
+  "tests": [
+    {
+      "args": [
+        [
+          2,
+          2,
+          1
+        ]
+      ],
+      "expected": 1,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          4,
+          1,
+          2,
+          1,
+          2
+        ]
+      ],
+      "expected": 4,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          7
+        ]
+      ],
+      "expected": 7,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          0,
+          3,
+          3
+        ]
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          -1,
+          5,
+          5
+        ]
+      ],
+      "expected": -1,
+      "hidden": true
+    }
+  ],
+  "order": 135
+}

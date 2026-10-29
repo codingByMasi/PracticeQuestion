@@ -1,0 +1,62 @@
+{
+  "slug": "minimum-parentheses-to-add",
+  "track": "python",
+  "title": "Minimum parentheses to add",
+  "difficulty": "Medium",
+  "tags": [
+    "stacks"
+  ],
+  "statementMd": "Given a string of `(` and `)`, return the minimum number of parentheses to add to make it balanced.\n\n**Example:** `min_parens_to_add(\"())\")` returns `1`.",
+  "hints": [
+    "Track open count and unmatched closers."
+  ],
+  "solutionMd": "```python\ndef min_parens_to_add(s):\n    open_, add = 0, 0\n    for c in s:\n        if c == '(':\n            open_ += 1\n        elif open_:\n            open_ -= 1\n        else:\n            add += 1\n    return add + open_\n```\n\nUnmatched ')' plus leftover '('.",
+  "starterCode": "def min_parens_to_add(s):\n    # Write your code here\n    pass\n",
+  "functionName": "min_parens_to_add",
+  "referenceSolution": "def min_parens_to_add(s):\n    open_, add = 0, 0\n    for c in s:\n        if c == '(':\n            open_ += 1\n        elif open_:\n            open_ -= 1\n        else:\n            add += 1\n    return add + open_\n",
+  "tests": [
+    {
+      "args": [
+        "())"
+      ],
+      "expected": 1,
+      "hidden": false
+    },
+    {
+      "args": [
+        "((("
+      ],
+      "expected": 3,
+      "hidden": false
+    },
+    {
+      "args": [
+        ""
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        "()"
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        ")("
+      ],
+      "expected": 2,
+      "hidden": true
+    },
+    {
+      "args": [
+        "()))(("
+      ],
+      "expected": 4,
+      "hidden": true
+    }
+  ],
+  "order": 257
+}

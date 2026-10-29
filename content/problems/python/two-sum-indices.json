@@ -1,0 +1,98 @@
+{
+  "slug": "two-sum-indices",
+  "track": "python",
+  "title": "Two sum indices",
+  "difficulty": "Medium",
+  "tags": [
+    "dicts"
+  ],
+  "statementMd": "Return the indices `[i, j]` (i < j) of the two numbers adding up to `target`; exactly one pair exists.\n\n**Example:** `two_sum([2, 7, 11, 15], 9)` returns `[0, 1]`.",
+  "hints": [
+    "Store values seen so far in a dict."
+  ],
+  "solutionMd": "```python\ndef two_sum(nums, target):\n    seen = {}\n    for j, x in enumerate(nums):\n        if target - x in seen:\n            return [seen[target - x], j]\n        seen[x] = j\n```\n\nOne pass with O(1) lookups.",
+  "starterCode": "def two_sum(nums, target):\n    # Write your code here\n    pass\n",
+  "functionName": "two_sum",
+  "referenceSolution": "def two_sum(nums, target):\n    seen = {}\n    for j, x in enumerate(nums):\n        if target - x in seen:\n            return [seen[target - x], j]\n        seen[x] = j\n",
+  "tests": [
+    {
+      "args": [
+        [
+          2,
+          7,
+          11,
+          15
+        ],
+        9
+      ],
+      "expected": [
+        0,
+        1
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          3,
+          2,
+          4
+        ],
+        6
+      ],
+      "expected": [
+        1,
+        2
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          3,
+          3
+        ],
+        6
+      ],
+      "expected": [
+        0,
+        1
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          -1,
+          -2,
+          -3,
+          -4,
+          -5
+        ],
+        -8
+      ],
+      "expected": [
+        2,
+        4
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          0,
+          4,
+          3,
+          0
+        ],
+        0
+      ],
+      "expected": [
+        0,
+        3
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 214
+}

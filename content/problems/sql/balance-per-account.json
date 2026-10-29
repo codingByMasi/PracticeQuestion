@@ -1,0 +1,21 @@
+{
+  "slug": "balance-per-account",
+  "track": "sql",
+  "title": "Balance per account",
+  "difficulty": "Medium",
+  "tags": [
+    "aggregate"
+  ],
+  "statementMd": "Compute each account's balance as the sum of its transactions (rounded to 2 decimals). Show the five lowest balances, ties by account id.\n\nExpected columns: `account_id`, `balance`.\n\nTables: `customers`, `accounts`, `transactions`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Group by account."
+  ],
+  "solutionMd": "```sql\nSELECT account_id, ROUND(SUM(amount), 2) AS balance FROM transactions GROUP BY account_id ORDER BY balance, account_id LIMIT 5;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, accounts, transactions\nSELECT\n",
+  "datasetId": "bank",
+  "expected": {
+    "query": "SELECT account_id, ROUND(SUM(amount), 2) AS balance FROM transactions GROUP BY account_id ORDER BY balance, account_id LIMIT 5;",
+    "orderMatters": true
+  },
+  "order": 209
+}

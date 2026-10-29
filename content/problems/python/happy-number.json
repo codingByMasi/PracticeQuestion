@@ -1,0 +1,69 @@
+{
+  "slug": "happy-number",
+  "track": "python",
+  "title": "Happy number",
+  "difficulty": "Medium",
+  "tags": [
+    "sets"
+  ],
+  "statementMd": "A number is happy if repeatedly replacing it by the sum of the squares of its digits reaches 1. Return whether `n >= 1` is happy.\n\n**Example:** `is_happy(19)` returns `true`.",
+  "hints": [
+    "Detect cycles with a set."
+  ],
+  "solutionMd": "```python\ndef is_happy(n):\n    seen = set()\n    while n != 1 and n not in seen:\n        seen.add(n)\n        n = sum(int(c) ** 2 for c in str(n))\n    return n == 1\n```\n\nUnhappy numbers enter a cycle.",
+  "starterCode": "def is_happy(n):\n    # Write your code here\n    pass\n",
+  "functionName": "is_happy",
+  "referenceSolution": "def is_happy(n):\n    seen = set()\n    while n != 1 and n not in seen:\n        seen.add(n)\n        n = sum(int(c) ** 2 for c in str(n))\n    return n == 1\n",
+  "tests": [
+    {
+      "args": [
+        19
+      ],
+      "expected": true,
+      "hidden": false
+    },
+    {
+      "args": [
+        2
+      ],
+      "expected": false,
+      "hidden": false
+    },
+    {
+      "args": [
+        1
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        7
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        4
+      ],
+      "expected": false,
+      "hidden": true
+    },
+    {
+      "args": [
+        100
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        20
+      ],
+      "expected": false,
+      "hidden": true
+    }
+  ],
+  "order": 202
+}

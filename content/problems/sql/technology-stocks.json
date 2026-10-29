@@ -1,0 +1,21 @@
+{
+  "slug": "technology-stocks",
+  "track": "sql",
+  "title": "Technology stocks",
+  "difficulty": "Easy",
+  "tags": [
+    "where"
+  ],
+  "statementMd": "List the symbols of stocks in the Technology sector.\n\nExpected columns: `symbol`, `company`.\n\nTables: `tickers`, `prices`.\n\nRow order does not matter.",
+  "hints": [
+    "`sector = 'Technology'`."
+  ],
+  "solutionMd": "```sql\nSELECT symbol, company FROM tickers WHERE sector = 'Technology';\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: tickers, prices\nSELECT\n",
+  "datasetId": "stocks",
+  "expected": {
+    "query": "SELECT symbol, company FROM tickers WHERE sector = 'Technology';",
+    "orderMatters": false
+  },
+  "order": 48
+}

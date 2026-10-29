@@ -1,0 +1,21 @@
+{
+  "slug": "movie-titles-and-years",
+  "track": "sql",
+  "title": "Movie titles and years",
+  "difficulty": "Easy",
+  "tags": [
+    "select"
+  ],
+  "statementMd": "List every movie title with its release year.\n\nExpected columns: `title`, `release_year`.\n\nTables: `movies`, `directors`, `reviews`.\n\nRow order does not matter.",
+  "hints": [
+    "Two columns from `movies`."
+  ],
+  "solutionMd": "```sql\nSELECT title, release_year FROM movies;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: movies, directors, reviews\nSELECT\n",
+  "datasetId": "movies",
+  "expected": {
+    "query": "SELECT title, release_year FROM movies;",
+    "orderMatters": false
+  },
+  "order": 8
+}

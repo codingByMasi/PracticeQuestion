@@ -1,0 +1,21 @@
+{
+  "slug": "airport-name-patterns",
+  "track": "sql",
+  "title": "Airport name patterns",
+  "difficulty": "Easy",
+  "tags": [
+    "like"
+  ],
+  "statementMd": "List airports whose city name has exactly 5 letters (`_____`).\n\nExpected columns: `code`, `city`.\n\nTables: `airlines`, `airports`, `flights`, `bookings`.\n\nRow order does not matter.",
+  "hints": [
+    "`LIKE '_____'` matches any five characters."
+  ],
+  "solutionMd": "```sql\nSELECT code, city FROM airports WHERE city LIKE '_____';\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: airlines, airports, flights, bookings\nSELECT\n",
+  "datasetId": "flights",
+  "expected": {
+    "query": "SELECT code, city FROM airports WHERE city LIKE '_____';",
+    "orderMatters": false
+  },
+  "order": 58
+}

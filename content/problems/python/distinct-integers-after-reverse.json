@@ -1,0 +1,70 @@
+{
+  "slug": "distinct-integers-after-reverse",
+  "track": "python",
+  "title": "Distinct integers after reverse",
+  "difficulty": "Medium",
+  "tags": [
+    "sets"
+  ],
+  "statementMd": "Add the reverse (digits reversed, e.g. 120 -> 21) of every number to the list, then return how many distinct values there are. Numbers are positive.\n\n**Example:** `distinct_with_reverses([1, 13, 10, 12, 31])` returns `6`.",
+  "hints": [
+    "Reverse via string slicing and `int`."
+  ],
+  "solutionMd": "```python\ndef distinct_with_reverses(nums):\n    vals = set(nums)\n    for x in nums:\n        vals.add(int(str(x)[::-1]))\n    return len(vals)\n```\n\nA set handles duplicates created by reversing.",
+  "starterCode": "def distinct_with_reverses(nums):\n    # Write your code here\n    pass\n",
+  "functionName": "distinct_with_reverses",
+  "referenceSolution": "def distinct_with_reverses(nums):\n    vals = set(nums)\n    for x in nums:\n        vals.add(int(str(x)[::-1]))\n    return len(vals)\n",
+  "tests": [
+    {
+      "args": [
+        [
+          1,
+          13,
+          10,
+          12,
+          31
+        ]
+      ],
+      "expected": 6,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          2,
+          2,
+          2
+        ]
+      ],
+      "expected": 1,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          120
+        ]
+      ],
+      "expected": 2,
+      "hidden": true
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          11,
+          22
+        ]
+      ],
+      "expected": 2,
+      "hidden": true
+    }
+  ],
+  "order": 203
+}

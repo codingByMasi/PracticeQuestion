@@ -1,0 +1,21 @@
+{
+  "slug": "accounts-per-customer",
+  "track": "sql",
+  "title": "Accounts per customer",
+  "difficulty": "Medium",
+  "tags": [
+    "left-join"
+  ],
+  "statementMd": "For every customer show the number of accounts they hold. Show only customers with 3 accounts.\n\nExpected columns: `name`, `accounts`.\n\nTables: `customers`, `accounts`, `transactions`.\n\nRow order does not matter.",
+  "hints": [
+    "Group and `HAVING`."
+  ],
+  "solutionMd": "```sql\nSELECT c.name, COUNT(*) AS accounts FROM customers c JOIN accounts a ON a.customer_id = c.id GROUP BY c.id, c.name HAVING COUNT(*) = 3;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, accounts, transactions\nSELECT\n",
+  "datasetId": "bank",
+  "expected": {
+    "query": "SELECT c.name, COUNT(*) AS accounts FROM customers c JOIN accounts a ON a.customer_id = c.id GROUP BY c.id, c.name HAVING COUNT(*) = 3;",
+    "orderMatters": false
+  },
+  "order": 277
+}

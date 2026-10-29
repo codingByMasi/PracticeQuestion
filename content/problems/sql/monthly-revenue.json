@@ -19,5 +19,6 @@
   "expected": {
     "query": "WITH order_totals AS (\n  SELECT o.id, strftime('%Y-%m', o.order_date) AS month, SUM(oi.quantity * oi.unit_price) AS total\n  FROM orders o\n  JOIN order_items oi ON oi.order_id = o.id\n  WHERE o.status = 'delivered'\n  GROUP BY o.id\n)\nSELECT month, ROUND(SUM(total), 2) AS revenue\nFROM order_totals\nGROUP BY month\nORDER BY month;",
     "orderMatters": true
-  }
+  },
+  "order": 348
 }

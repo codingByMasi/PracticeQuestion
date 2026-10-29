@@ -1,0 +1,21 @@
+{
+  "slug": "ticker-list",
+  "track": "sql",
+  "title": "Ticker list",
+  "difficulty": "Easy",
+  "tags": [
+    "select"
+  ],
+  "statementMd": "List every ticker symbol with its company and sector.\n\nExpected columns: `symbol`, `company`, `sector`.\n\nTables: `tickers`, `prices`.\n\nRow order does not matter.",
+  "hints": [
+    "Select three columns."
+  ],
+  "solutionMd": "```sql\nSELECT symbol, company, sector FROM tickers;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: tickers, prices\nSELECT\n",
+  "datasetId": "stocks",
+  "expected": {
+    "query": "SELECT symbol, company, sector FROM tickers;",
+    "orderMatters": false
+  },
+  "order": 11
+}

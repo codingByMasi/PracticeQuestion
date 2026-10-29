@@ -130,4 +130,14 @@ describe("content loader", () => {
     const c = loadContent();
     expect(c.tracks.length).toBeGreaterThanOrEqual(2);
   });
+
+  it("accepts an optional global order on problems", () => {
+    const root = fixture({
+      "tracks/sql.json": sqlTrack,
+      "datasets/tiny.json": dataset,
+      "datasets/tiny.sql": "CREATE TABLE t (x INTEGER); INSERT INTO t VALUES (1);",
+      "problems/sql/all-rows.json": { ...sqlProblem, order: 7 },
+    });
+    expect(loadContent(root).problems[0]?.order).toBe(7);
+  });
 });

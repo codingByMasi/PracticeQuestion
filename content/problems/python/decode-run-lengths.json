@@ -1,0 +1,91 @@
+{
+  "slug": "decode-run-lengths",
+  "track": "python",
+  "title": "Decode run lengths",
+  "difficulty": "Medium",
+  "tags": [
+    "strings"
+  ],
+  "statementMd": "Given a list of `[char, count]` pairs, return the decoded string.\n\n**Example:** `decode_runs([[\"a\", 3], [\"b\", 1]])` returns `\"aaab\"`.",
+  "hints": [
+    "Multiply each character by its count."
+  ],
+  "solutionMd": "```python\ndef decode_runs(pairs):\n    return ''.join(c * n for c, n in pairs)\n```\n\nString repetition does the work.",
+  "starterCode": "def decode_runs(pairs):\n    # Write your code here\n    pass\n",
+  "functionName": "decode_runs",
+  "referenceSolution": "def decode_runs(pairs):\n    return ''.join(c * n for c, n in pairs)\n",
+  "tests": [
+    {
+      "args": [
+        [
+          [
+            "a",
+            3
+          ],
+          [
+            "b",
+            1
+          ]
+        ]
+      ],
+      "expected": "aaab",
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": "",
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            "x",
+            0
+          ],
+          [
+            "y",
+            2
+          ]
+        ]
+      ],
+      "expected": "yy",
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            "z",
+            5
+          ]
+        ]
+      ],
+      "expected": "zzzzz",
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            "a",
+            1
+          ],
+          [
+            "b",
+            1
+          ],
+          [
+            "a",
+            1
+          ]
+        ]
+      ],
+      "expected": "aba",
+      "hidden": true
+    }
+  ],
+  "order": 192
+}

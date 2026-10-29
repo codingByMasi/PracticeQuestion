@@ -1,0 +1,84 @@
+{
+  "slug": "maximum-xor-pair",
+  "track": "python",
+  "title": "Maximum XOR pair",
+  "difficulty": "Hard",
+  "tags": [
+    "bit-manipulation"
+  ],
+  "statementMd": "Return the maximum XOR of two numbers from the list (at least one number; a number may pair with itself, giving 0).\n\n**Example:** `max_xor_pair([3, 10, 5, 25, 2, 8])` returns `28`.",
+  "hints": [
+    "Build the answer bit by bit using prefixes."
+  ],
+  "solutionMd": "```python\ndef max_xor_pair(nums):\n    best = 0\n    mask = 0\n    for bit in range(31, -1, -1):\n        mask |= 1 << bit\n        prefixes = {n & mask for n in nums}\n        cand = best | (1 << bit)\n        if any((cand ^ pre) in prefixes for pre in prefixes):\n            best = cand\n    return best\n```\n\nGreedily try to set each bit, checking with a prefix set.",
+  "starterCode": "def max_xor_pair(nums):\n    # Write your code here\n    pass\n",
+  "functionName": "max_xor_pair",
+  "referenceSolution": "def max_xor_pair(nums):\n    best = 0\n    mask = 0\n    for bit in range(31, -1, -1):\n        mask |= 1 << bit\n        prefixes = {n & mask for n in nums}\n        cand = best | (1 << bit)\n        if any((cand ^ pre) in prefixes for pre in prefixes):\n            best = cand\n    return best\n",
+  "tests": [
+    {
+      "args": [
+        [
+          3,
+          10,
+          5,
+          25,
+          2,
+          8
+        ]
+      ],
+      "expected": 28,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          1
+        ]
+      ],
+      "expected": 0,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          0,
+          0
+        ]
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          14,
+          70,
+          53,
+          83,
+          49,
+          91,
+          36,
+          80,
+          92,
+          51,
+          66,
+          70
+        ]
+      ],
+      "expected": 127,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          8,
+          10,
+          2
+        ]
+      ],
+      "expected": 10,
+      "hidden": true
+    }
+  ],
+  "order": 423
+}

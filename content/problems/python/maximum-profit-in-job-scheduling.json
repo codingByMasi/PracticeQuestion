@@ -1,0 +1,127 @@
+{
+  "slug": "maximum-profit-in-job-scheduling",
+  "track": "python",
+  "title": "Maximum profit in job scheduling",
+  "difficulty": "Hard",
+  "tags": [
+    "dynamic-programming"
+  ],
+  "statementMd": "Each job is `[start, end, profit]`. Choose non-overlapping jobs (a job may start exactly when another ends) to maximise total profit. Return that profit.\n\n**Example:** `job_scheduling([[1, 3, 50], [2, 4, 10], [3, 5, 40], [3, 6, 70]])` returns `120`.",
+  "hints": [
+    "Sort by end time; binary search the last compatible job."
+  ],
+  "solutionMd": "```python\ndef job_scheduling(jobs):\n    import bisect\n    jobs = sorted(jobs, key=lambda j: j[1])\n    ends = [j[1] for j in jobs]\n    dp = [0] * (len(jobs) + 1)\n    for i, (s, e, w) in enumerate(jobs):\n        k = bisect.bisect_right(ends, s, 0, i)\n        dp[i + 1] = max(dp[i], dp[k] + w)\n    return dp[-1]\n```\n\nDP over jobs sorted by end.",
+  "starterCode": "def job_scheduling(jobs):\n    # Write your code here\n    pass\n",
+  "functionName": "job_scheduling",
+  "referenceSolution": "def job_scheduling(jobs):\n    import bisect\n    jobs = sorted(jobs, key=lambda j: j[1])\n    ends = [j[1] for j in jobs]\n    dp = [0] * (len(jobs) + 1)\n    for i, (s, e, w) in enumerate(jobs):\n        k = bisect.bisect_right(ends, s, 0, i)\n        dp[i + 1] = max(dp[i], dp[k] + w)\n    return dp[-1]\n",
+  "tests": [
+    {
+      "args": [
+        [
+          [
+            1,
+            3,
+            50
+          ],
+          [
+            2,
+            4,
+            10
+          ],
+          [
+            3,
+            5,
+            40
+          ],
+          [
+            3,
+            6,
+            70
+          ]
+        ]
+      ],
+      "expected": 120,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            1,
+            2,
+            5
+          ]
+        ]
+      ],
+      "expected": 5,
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            1,
+            2,
+            5
+          ],
+          [
+            2,
+            3,
+            6
+          ]
+        ]
+      ],
+      "expected": 11,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            1,
+            5,
+            10
+          ],
+          [
+            2,
+            3,
+            6
+          ],
+          [
+            4,
+            6,
+            6
+          ]
+        ]
+      ],
+      "expected": 12,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            1,
+            3,
+            20
+          ],
+          [
+            1,
+            3,
+            30
+          ]
+        ]
+      ],
+      "expected": 30,
+      "hidden": true
+    }
+  ],
+  "order": 454
+}

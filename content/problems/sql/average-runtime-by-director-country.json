@@ -1,0 +1,21 @@
+{
+  "slug": "average-runtime-by-director-country",
+  "track": "sql",
+  "title": "Average runtime by director country",
+  "difficulty": "Medium",
+  "tags": [
+    "multi-join"
+  ],
+  "statementMd": "Average movie runtime per director country, rounded to 1 decimal.\n\nExpected columns: `country`, `avg_runtime`.\n\nTables: `movies`, `directors`, `reviews`.\n\nRow order does not matter.",
+  "hints": [
+    "Join movies to directors, group by country."
+  ],
+  "solutionMd": "```sql\nSELECT d.country, ROUND(AVG(m.runtime_minutes), 1) AS avg_runtime FROM movies m JOIN directors d ON d.id = m.director_id GROUP BY d.country;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: movies, directors, reviews\nSELECT\n",
+  "datasetId": "movies",
+  "expected": {
+    "query": "SELECT d.country, ROUND(AVG(m.runtime_minutes), 1) AS avg_runtime FROM movies m JOIN directors d ON d.id = m.director_id GROUP BY d.country;",
+    "orderMatters": false
+  },
+  "order": 303
+}

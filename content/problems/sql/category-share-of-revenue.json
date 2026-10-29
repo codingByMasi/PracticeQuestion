@@ -1,0 +1,21 @@
+{
+  "slug": "category-share-of-revenue",
+  "track": "sql",
+  "title": "Category share of revenue",
+  "difficulty": "Hard",
+  "tags": [
+    "window-functions"
+  ],
+  "statementMd": "Each category's revenue (non-cancelled orders) and its percentage of total revenue, rounded to 1 decimal. Highest share first.\n\nExpected columns: `category`, `revenue`, `pct`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Window `SUM(...) OVER ()` gives the grand total beside each group."
+  ],
+  "solutionMd": "```sql\nWITH rev AS (SELECT p.category, SUM(oi.quantity * oi.unit_price) AS revenue FROM order_items oi JOIN orders o ON o.id = oi.order_id JOIN products p ON p.id = oi.product_id WHERE o.status <> 'cancelled' GROUP BY p.category) SELECT category, ROUND(revenue, 2) AS revenue, ROUND(100.0 * revenue / SUM(revenue) OVER (), 1) AS pct FROM rev ORDER BY pct DESC;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "WITH rev AS (SELECT p.category, SUM(oi.quantity * oi.unit_price) AS revenue FROM order_items oi JOIN orders o ON o.id = oi.order_id JOIN products p ON p.id = oi.product_id WHERE o.status <> 'cancelled' GROUP BY p.category) SELECT category, ROUND(revenue, 2) AS revenue, ROUND(100.0 * revenue / SUM(revenue) OVER (), 1) AS pct FROM rev ORDER BY pct DESC;",
+    "orderMatters": true
+  },
+  "order": 406
+}

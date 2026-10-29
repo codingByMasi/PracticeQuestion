@@ -1,0 +1,21 @@
+{
+  "slug": "remove-explicit-tracks",
+  "track": "sql",
+  "title": "Remove explicit tracks",
+  "difficulty": "Medium",
+  "tags": [
+    "dml"
+  ],
+  "statementMd": "Delete all explicit tracks, then report how many tracks and how many plays of the remaining tracks exist (two columns).\n\nExpected columns: `tracks`, `plays`.\n\nTables: `artists`, `albums`, `tracks`, `listeners`, `plays`.\n\nRow order does not matter.",
+  "hints": [
+    "`DELETE FROM tracks WHERE explicit = 1`."
+  ],
+  "solutionMd": "```sql\nDELETE FROM tracks WHERE explicit = 1; SELECT (SELECT COUNT(*) FROM tracks) AS tracks, (SELECT COUNT(*) FROM plays WHERE track_id IN (SELECT id FROM tracks)) AS plays;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: artists, albums, tracks, listeners, plays\nSELECT\n",
+  "datasetId": "music",
+  "expected": {
+    "query": "DELETE FROM tracks WHERE explicit = 1; SELECT (SELECT COUNT(*) FROM tracks) AS tracks, (SELECT COUNT(*) FROM plays WHERE track_id IN (SELECT id FROM tracks)) AS plays;",
+    "orderMatters": false
+  },
+  "order": 366
+}

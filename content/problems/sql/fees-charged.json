@@ -1,0 +1,21 @@
+{
+  "slug": "fees-charged",
+  "track": "sql",
+  "title": "Fees charged",
+  "difficulty": "Easy",
+  "tags": [
+    "aggregate"
+  ],
+  "statementMd": "What is the total amount of fees charged (the sum is negative)?\n\nExpected columns: `total_fees`.\n\nTables: `customers`, `accounts`, `transactions`.\n\nRow order does not matter.",
+  "hints": [
+    "Sum amounts where `kind = 'fee'`."
+  ],
+  "solutionMd": "```sql\nSELECT SUM(amount) AS total_fees FROM transactions WHERE kind = 'fee';\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, accounts, transactions\nSELECT\n",
+  "datasetId": "bank",
+  "expected": {
+    "query": "SELECT SUM(amount) AS total_fees FROM transactions WHERE kind = 'fee';",
+    "orderMatters": false
+  },
+  "order": 110
+}

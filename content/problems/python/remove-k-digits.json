@@ -1,0 +1,68 @@
+{
+  "slug": "remove-k-digits",
+  "track": "python",
+  "title": "Remove k digits",
+  "difficulty": "Hard",
+  "tags": [
+    "greedy"
+  ],
+  "statementMd": "Remove `k` digits from the digit string `num` to get the smallest possible number. Return it as a string without leading zeros (`\"0\"` if empty).\n\n**Example:** `remove_k_digits(\"1432219\", 3)` returns `\"1219\"`.",
+  "hints": [
+    "Monotonic stack: drop bigger digits when a smaller one comes."
+  ],
+  "solutionMd": "```python\ndef remove_k_digits(num, k):\n    stack = []\n    for d in num:\n        while k and stack and stack[-1] > d:\n            stack.pop()\n            k -= 1\n        stack.append(d)\n    if k:\n        stack = stack[:-k]\n    return ''.join(stack).lstrip('0') or '0'\n```\n\nRemoving earlier larger digits helps most.",
+  "starterCode": "def remove_k_digits(num, k):\n    # Write your code here\n    pass\n",
+  "functionName": "remove_k_digits",
+  "referenceSolution": "def remove_k_digits(num, k):\n    stack = []\n    for d in num:\n        while k and stack and stack[-1] > d:\n            stack.pop()\n            k -= 1\n        stack.append(d)\n    if k:\n        stack = stack[:-k]\n    return ''.join(stack).lstrip('0') or '0'\n",
+  "tests": [
+    {
+      "args": [
+        "1432219",
+        3
+      ],
+      "expected": "1219",
+      "hidden": false
+    },
+    {
+      "args": [
+        "10200",
+        1
+      ],
+      "expected": "200",
+      "hidden": false
+    },
+    {
+      "args": [
+        "10",
+        2
+      ],
+      "expected": "0",
+      "hidden": true
+    },
+    {
+      "args": [
+        "9",
+        1
+      ],
+      "expected": "0",
+      "hidden": true
+    },
+    {
+      "args": [
+        "112",
+        1
+      ],
+      "expected": "11",
+      "hidden": true
+    },
+    {
+      "args": [
+        "12345",
+        2
+      ],
+      "expected": "123",
+      "hidden": true
+    }
+  ],
+  "order": 436
+}

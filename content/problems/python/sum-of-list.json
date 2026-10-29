@@ -1,0 +1,67 @@
+{
+  "slug": "sum-of-list",
+  "track": "python",
+  "title": "Sum of list",
+  "difficulty": "Easy",
+  "tags": [
+    "lists"
+  ],
+  "statementMd": "Return the sum of a list of numbers without using `sum` (empty list -> 0).\n\n**Example:** `list_sum([1, 2, 3])` returns `6`.",
+  "hints": [
+    "Accumulate in a loop."
+  ],
+  "solutionMd": "```python\ndef list_sum(nums):\n    total = 0\n    for x in nums:\n        total += x\n    return total\n```\n\nA running total.",
+  "starterCode": "def list_sum(nums):\n    # Write your code here\n    pass\n",
+  "functionName": "list_sum",
+  "referenceSolution": "def list_sum(nums):\n    total = 0\n    for x in nums:\n        total += x\n    return total\n",
+  "tests": [
+    {
+      "args": [
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "expected": 6,
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": 0,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          5
+        ]
+      ],
+      "expected": 5,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          -1,
+          1
+        ]
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          0.5,
+          0.25
+        ]
+      ],
+      "expected": 0.75,
+      "hidden": true
+    }
+  ],
+  "order": 72
+}

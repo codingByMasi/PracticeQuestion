@@ -1,0 +1,130 @@
+{
+  "slug": "palindrome-partitioning",
+  "track": "python",
+  "title": "Palindrome partitioning",
+  "difficulty": "Hard",
+  "tags": [
+    "backtracking"
+  ],
+  "statementMd": "Return all ways to split `s` into palindromic substrings, as a list of lists, sorted lexicographically.\n\n**Example:** `partition_palindromes(\"aab\")` returns `[[\"a\", \"a\", \"b\"], [\"aa\", \"b\"]]`.",
+  "hints": [
+    "Backtrack over cut positions with a palindrome test."
+  ],
+  "solutionMd": "```python\ndef partition_palindromes(s):\n    out = []\n    def go(start, cur):\n        if start == len(s):\n            out.append(cur[:])\n            return\n        for end in range(start + 1, len(s) + 1):\n            piece = s[start:end]\n            if piece == piece[::-1]:\n                cur.append(piece)\n                go(end, cur)\n                cur.pop()\n    go(0, [])\n    return sorted(out)\n```\n\nOnly recurse on palindromic prefixes.",
+  "starterCode": "def partition_palindromes(s):\n    # Write your code here\n    pass\n",
+  "functionName": "partition_palindromes",
+  "referenceSolution": "def partition_palindromes(s):\n    out = []\n    def go(start, cur):\n        if start == len(s):\n            out.append(cur[:])\n            return\n        for end in range(start + 1, len(s) + 1):\n            piece = s[start:end]\n            if piece == piece[::-1]:\n                cur.append(piece)\n                go(end, cur)\n                cur.pop()\n    go(0, [])\n    return sorted(out)\n",
+  "tests": [
+    {
+      "args": [
+        "aab"
+      ],
+      "expected": [
+        [
+          "a",
+          "a",
+          "b"
+        ],
+        [
+          "aa",
+          "b"
+        ]
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        "a"
+      ],
+      "expected": [
+        [
+          "a"
+        ]
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        ""
+      ],
+      "expected": [
+        []
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        "aba"
+      ],
+      "expected": [
+        [
+          "a",
+          "b",
+          "a"
+        ],
+        [
+          "aba"
+        ]
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        "abc"
+      ],
+      "expected": [
+        [
+          "a",
+          "b",
+          "c"
+        ]
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        "aaaa"
+      ],
+      "expected": [
+        [
+          "a",
+          "a",
+          "a",
+          "a"
+        ],
+        [
+          "a",
+          "a",
+          "aa"
+        ],
+        [
+          "a",
+          "aa",
+          "a"
+        ],
+        [
+          "a",
+          "aaa"
+        ],
+        [
+          "aa",
+          "a",
+          "a"
+        ],
+        [
+          "aa",
+          "aa"
+        ],
+        [
+          "aaa",
+          "a"
+        ],
+        [
+          "aaaa"
+        ]
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 458
+}

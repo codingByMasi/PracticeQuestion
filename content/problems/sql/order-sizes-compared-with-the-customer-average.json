@@ -1,0 +1,21 @@
+{
+  "slug": "order-sizes-compared-with-the-customer-average",
+  "track": "sql",
+  "title": "Order sizes compared with the customer average",
+  "difficulty": "Hard",
+  "tags": [
+    "window-functions"
+  ],
+  "statementMd": "For each customer's orders with items, show order id, order total and the customer's average order total (both rounded to 2 decimals) for customers with at least two orders.\n\nExpected columns: `customer_id`, `order_id`, `total`, `customer_avg`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Window `AVG` over per-order totals partitioned by customer."
+  ],
+  "solutionMd": "```sql\nWITH t AS (SELECT o.customer_id, o.id AS order_id, SUM(oi.quantity * oi.unit_price) AS total FROM orders o JOIN order_items oi ON oi.order_id = o.id GROUP BY o.id) SELECT customer_id, order_id, ROUND(total, 2) AS total, ROUND(AVG(total) OVER (PARTITION BY customer_id), 2) AS customer_avg FROM t WHERE customer_id IN (SELECT customer_id FROM t GROUP BY customer_id HAVING COUNT(*) >= 2) ORDER BY customer_id, order_id;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "WITH t AS (SELECT o.customer_id, o.id AS order_id, SUM(oi.quantity * oi.unit_price) AS total FROM orders o JOIN order_items oi ON oi.order_id = o.id GROUP BY o.id) SELECT customer_id, order_id, ROUND(total, 2) AS total, ROUND(AVG(total) OVER (PARTITION BY customer_id), 2) AS customer_avg FROM t WHERE customer_id IN (SELECT customer_id FROM t GROUP BY customer_id HAVING COUNT(*) >= 2) ORDER BY customer_id, order_id;",
+    "orderMatters": true
+  },
+  "order": 432
+}

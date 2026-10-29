@@ -1,0 +1,69 @@
+{
+  "slug": "palindrome-partition-min-cuts",
+  "track": "python",
+  "title": "Palindrome partition min cuts",
+  "difficulty": "Hard",
+  "tags": [
+    "dynamic-programming"
+  ],
+  "statementMd": "Return the minimum number of cuts needed to split `s` into palindromic substrings.\n\n**Example:** `min_cut_palindromes(\"aab\")` returns `1`.",
+  "hints": [
+    "Precompute palindromic substrings, then dp on prefixes."
+  ],
+  "solutionMd": "```python\ndef min_cut_palindromes(s):\n    n = len(s)\n    pal = [[False] * n for _ in range(n)]\n    for i in range(n - 1, -1, -1):\n        for j in range(i, n):\n            pal[i][j] = s[i] == s[j] and (j - i < 2 or pal[i + 1][j - 1])\n    cuts = [0] * n\n    for j in range(n):\n        if pal[0][j]:\n            cuts[j] = 0\n        else:\n            cuts[j] = min(cuts[i - 1] + 1 for i in range(1, j + 1) if pal[i][j])\n    return cuts[-1] if n else 0\n```\n\nCombine a palindrome table with prefix DP.",
+  "starterCode": "def min_cut_palindromes(s):\n    # Write your code here\n    pass\n",
+  "functionName": "min_cut_palindromes",
+  "referenceSolution": "def min_cut_palindromes(s):\n    n = len(s)\n    pal = [[False] * n for _ in range(n)]\n    for i in range(n - 1, -1, -1):\n        for j in range(i, n):\n            pal[i][j] = s[i] == s[j] and (j - i < 2 or pal[i + 1][j - 1])\n    cuts = [0] * n\n    for j in range(n):\n        if pal[0][j]:\n            cuts[j] = 0\n        else:\n            cuts[j] = min(cuts[i - 1] + 1 for i in range(1, j + 1) if pal[i][j])\n    return cuts[-1] if n else 0\n",
+  "tests": [
+    {
+      "args": [
+        "aab"
+      ],
+      "expected": 1,
+      "hidden": false
+    },
+    {
+      "args": [
+        "a"
+      ],
+      "expected": 0,
+      "hidden": false
+    },
+    {
+      "args": [
+        ""
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        "ab"
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        "abccba"
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        "abcde"
+      ],
+      "expected": 4,
+      "hidden": true
+    },
+    {
+      "args": [
+        "aabaa"
+      ],
+      "expected": 0,
+      "hidden": true
+    }
+  ],
+  "order": 442
+}

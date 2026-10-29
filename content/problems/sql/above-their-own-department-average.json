@@ -1,0 +1,21 @@
+{
+  "slug": "above-their-own-department-average",
+  "track": "sql",
+  "title": "Above their own department average",
+  "difficulty": "Medium",
+  "tags": [
+    "correlated-subquery"
+  ],
+  "statementMd": "List employees who earn more than the average salary of their own department. Show first name, department id and salary.\n\nExpected columns: `first_name`, `department_id`, `salary`.\n\nTables: `employees`, `departments`.\n\nRow order does not matter.",
+  "hints": [
+    "Compare with a correlated `(SELECT AVG(...) WHERE department_id = e.department_id)`."
+  ],
+  "solutionMd": "```sql\nSELECT e.first_name, e.department_id, e.salary FROM employees e WHERE e.salary > (SELECT AVG(e2.salary) FROM employees e2 WHERE e2.department_id = e.department_id);\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "SELECT e.first_name, e.department_id, e.salary FROM employees e WHERE e.salary > (SELECT AVG(e2.salary) FROM employees e2 WHERE e2.department_id = e.department_id);",
+    "orderMatters": false
+  },
+  "order": 339
+}

@@ -1,0 +1,68 @@
+{
+  "slug": "isomorphic-strings",
+  "track": "python",
+  "title": "Isomorphic strings",
+  "difficulty": "Medium",
+  "tags": [
+    "dicts"
+  ],
+  "statementMd": "Two strings are isomorphic if characters in `a` can be replaced to get `b` with a one-to-one mapping preserving order. Return whether `a` and `b` are isomorphic.\n\n**Example:** `is_isomorphic(\"egg\", \"add\")` returns `true`.",
+  "hints": [
+    "Track both directions of the mapping."
+  ],
+  "solutionMd": "```python\ndef is_isomorphic(a, b):\n    if len(a) != len(b):\n        return False\n    ab, ba = {}, {}\n    for x, y in zip(a, b):\n        if ab.setdefault(x, y) != y or ba.setdefault(y, x) != x:\n            return False\n    return True\n```\n\nBoth maps must be consistent.",
+  "starterCode": "def is_isomorphic(a, b):\n    # Write your code here\n    pass\n",
+  "functionName": "is_isomorphic",
+  "referenceSolution": "def is_isomorphic(a, b):\n    if len(a) != len(b):\n        return False\n    ab, ba = {}, {}\n    for x, y in zip(a, b):\n        if ab.setdefault(x, y) != y or ba.setdefault(y, x) != x:\n            return False\n    return True\n",
+  "tests": [
+    {
+      "args": [
+        "egg",
+        "add"
+      ],
+      "expected": true,
+      "hidden": false
+    },
+    {
+      "args": [
+        "foo",
+        "bar"
+      ],
+      "expected": false,
+      "hidden": false
+    },
+    {
+      "args": [
+        "paper",
+        "title"
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        "ab",
+        "aa"
+      ],
+      "expected": false,
+      "hidden": true
+    },
+    {
+      "args": [
+        "",
+        ""
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        "a",
+        "aa"
+      ],
+      "expected": false,
+      "hidden": true
+    }
+  ],
+  "order": 207
+}

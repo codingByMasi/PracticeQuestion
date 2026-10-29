@@ -1,0 +1,152 @@
+{
+  "slug": "generate-spiral-matrix",
+  "track": "python",
+  "title": "Generate spiral matrix",
+  "difficulty": "Medium",
+  "tags": [
+    "matrix"
+  ],
+  "statementMd": "Return an `n x n` matrix filled with `1..n*n` in clockwise spiral order.\n\n**Example:** `spiral_matrix(3)` returns `[[1, 2, 3], [8, 9, 4], [7, 6, 5]]`.",
+  "hints": [
+    "Walk with direction changes at the borders."
+  ],
+  "solutionMd": "```python\ndef spiral_matrix(n):\n    m = [[0] * n for _ in range(n)]\n    r = c = d = 0\n    dirs = [(0, 1), (1, 0), (0, -1), (-1, 0)]\n    for k in range(1, n * n + 1):\n        m[r][c] = k\n        nr, nc = r + dirs[d][0], c + dirs[d][1]\n        if not (0 <= nr < n and 0 <= nc < n) or m[nr][nc]:\n            d = (d + 1) % 4\n            nr, nc = r + dirs[d][0], c + dirs[d][1]\n        r, c = nr, nc\n    return m\n```\n\nTurn right when blocked.",
+  "starterCode": "def spiral_matrix(n):\n    # Write your code here\n    pass\n",
+  "functionName": "spiral_matrix",
+  "referenceSolution": "def spiral_matrix(n):\n    m = [[0] * n for _ in range(n)]\n    r = c = d = 0\n    dirs = [(0, 1), (1, 0), (0, -1), (-1, 0)]\n    for k in range(1, n * n + 1):\n        m[r][c] = k\n        nr, nc = r + dirs[d][0], c + dirs[d][1]\n        if not (0 <= nr < n and 0 <= nc < n) or m[nr][nc]:\n            d = (d + 1) % 4\n            nr, nc = r + dirs[d][0], c + dirs[d][1]\n        r, c = nr, nc\n    return m\n",
+  "tests": [
+    {
+      "args": [
+        3
+      ],
+      "expected": [
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          8,
+          9,
+          4
+        ],
+        [
+          7,
+          6,
+          5
+        ]
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        1
+      ],
+      "expected": [
+        [
+          1
+        ]
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        2
+      ],
+      "expected": [
+        [
+          1,
+          2
+        ],
+        [
+          4,
+          3
+        ]
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        4
+      ],
+      "expected": [
+        [
+          1,
+          2,
+          3,
+          4
+        ],
+        [
+          12,
+          13,
+          14,
+          5
+        ],
+        [
+          11,
+          16,
+          15,
+          6
+        ],
+        [
+          10,
+          9,
+          8,
+          7
+        ]
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        5
+      ],
+      "expected": [
+        [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        [
+          16,
+          17,
+          18,
+          19,
+          6
+        ],
+        [
+          15,
+          24,
+          25,
+          20,
+          7
+        ],
+        [
+          14,
+          23,
+          22,
+          21,
+          8
+        ],
+        [
+          13,
+          12,
+          11,
+          10,
+          9
+        ]
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        0
+      ],
+      "expected": [],
+      "hidden": true
+    }
+  ],
+  "order": 271
+}

@@ -1,0 +1,21 @@
+{
+  "slug": "best-and-worst-close-per-ticker",
+  "track": "sql",
+  "title": "Best and worst close per ticker",
+  "difficulty": "Medium",
+  "tags": [
+    "aggregate"
+  ],
+  "statementMd": "For each symbol show its lowest and highest closing price.\n\nExpected columns: `symbol`, `low_close`, `high_close`.\n\nTables: `tickers`, `prices`.\n\nRow order does not matter.",
+  "hints": [
+    "`MIN`/`MAX` per group."
+  ],
+  "solutionMd": "```sql\nSELECT symbol, MIN(close) AS low_close, MAX(close) AS high_close FROM prices GROUP BY symbol;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: tickers, prices\nSELECT\n",
+  "datasetId": "stocks",
+  "expected": {
+    "query": "SELECT symbol, MIN(close) AS low_close, MAX(close) AS high_close FROM prices GROUP BY symbol;",
+    "orderMatters": false
+  },
+  "order": 220
+}

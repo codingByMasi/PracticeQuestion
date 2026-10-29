@@ -1,0 +1,168 @@
+{
+  "slug": "flood-fill",
+  "track": "python",
+  "title": "Flood fill",
+  "difficulty": "Easy",
+  "tags": [
+    "graphs"
+  ],
+  "statementMd": "Starting at pixel `(sr, sc)`, repaint it and all 4-directionally connected pixels of the same original color with `color`. Return the new image.\n\n**Example:** `flood_fill([[1, 1, 1], [1, 1, 0], [1, 0, 1]], 1, 1, 2)` returns `[[2, 2, 2], [2, 2, 0], [2, 0, 1]]`.",
+  "hints": [
+    "DFS replacing the old colour."
+  ],
+  "solutionMd": "```python\nfrom collections import deque, defaultdict\n\n\ndef flood_fill(image, sr, sc, color):\n    old = image[sr][sc]\n    if old == color:\n        return image\n    R, C = len(image), len(image[0])\n    stack = [(sr, sc)]\n    while stack:\n        r, c = stack.pop()\n        if 0 <= r < R and 0 <= c < C and image[r][c] == old:\n            image[r][c] = color\n            stack += [(r + 1, c), (r - 1, c), (r, c + 1), (r, c - 1)]\n    return image\n```\n\nStop when the colour already equals the target.",
+  "starterCode": "def flood_fill(image, sr, sc, color):\n    # Write your code here\n    pass\n",
+  "functionName": "flood_fill",
+  "referenceSolution": "from collections import deque, defaultdict\n\n\ndef flood_fill(image, sr, sc, color):\n    old = image[sr][sc]\n    if old == color:\n        return image\n    R, C = len(image), len(image[0])\n    stack = [(sr, sc)]\n    while stack:\n        r, c = stack.pop()\n        if 0 <= r < R and 0 <= c < C and image[r][c] == old:\n            image[r][c] = color\n            stack += [(r + 1, c), (r - 1, c), (r, c + 1), (r, c - 1)]\n    return image\n",
+  "tests": [
+    {
+      "args": [
+        [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            0,
+            1
+          ]
+        ],
+        1,
+        1,
+        2
+      ],
+      "expected": [
+        [
+          2,
+          2,
+          2
+        ],
+        [
+          2,
+          2,
+          0
+        ],
+        [
+          2,
+          0,
+          1
+        ]
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        0,
+        0,
+        0
+      ],
+      "expected": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            1
+          ]
+        ],
+        0,
+        0,
+        5
+      ],
+      "expected": [
+        [
+          5
+        ]
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        0,
+        0,
+        3
+      ],
+      "expected": [
+        [
+          3,
+          2
+        ],
+        [
+          2,
+          1
+        ]
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        1,
+        1,
+        9
+      ],
+      "expected": [
+        [
+          9,
+          9
+        ],
+        [
+          9,
+          9
+        ]
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 152
+}

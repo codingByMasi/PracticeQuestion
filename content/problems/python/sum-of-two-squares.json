@@ -1,0 +1,76 @@
+{
+  "slug": "sum-of-two-squares",
+  "track": "python",
+  "title": "Sum of two squares",
+  "difficulty": "Medium",
+  "tags": [
+    "math"
+  ],
+  "statementMd": "Return whether the non-negative integer `n` can be written as `a*a + b*b` with integers `a, b >= 0`.\n\n**Example:** `is_sum_of_two_squares(5)` returns `true`.",
+  "hints": [
+    "Two pointers from 0 and sqrt(n)."
+  ],
+  "solutionMd": "```python\ndef is_sum_of_two_squares(n):\n    a, b = 0, int(n ** 0.5) + 1\n    while a <= b:\n        s = a * a + b * b\n        if s == n:\n            return True\n        if s < n:\n            a += 1\n        else:\n            b -= 1\n    return False\n```\n\nTwo-pointer search over squares.",
+  "starterCode": "def is_sum_of_two_squares(n):\n    # Write your code here\n    pass\n",
+  "functionName": "is_sum_of_two_squares",
+  "referenceSolution": "def is_sum_of_two_squares(n):\n    a, b = 0, int(n ** 0.5) + 1\n    while a <= b:\n        s = a * a + b * b\n        if s == n:\n            return True\n        if s < n:\n            a += 1\n        else:\n            b -= 1\n    return False\n",
+  "tests": [
+    {
+      "args": [
+        5
+      ],
+      "expected": true,
+      "hidden": false
+    },
+    {
+      "args": [
+        3
+      ],
+      "expected": false,
+      "hidden": false
+    },
+    {
+      "args": [
+        0
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        1
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        25
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        13
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        1000
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        999
+      ],
+      "expected": false,
+      "hidden": true
+    }
+  ],
+  "order": 176
+}

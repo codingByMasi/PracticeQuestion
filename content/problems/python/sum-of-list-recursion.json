@@ -1,0 +1,69 @@
+{
+  "slug": "sum-of-list-recursion",
+  "track": "python",
+  "title": "Sum of list recursion",
+  "difficulty": "Easy",
+  "tags": [
+    "recursion"
+  ],
+  "statementMd": "Return the sum of a list using recursion (no loops, no `sum`).\n\n**Example:** `rec_sum([1, 2, 3])` returns `6`.",
+  "hints": [
+    "Sum = first + sum of the rest."
+  ],
+  "solutionMd": "```python\ndef rec_sum(nums):\n    if not nums:\n        return 0\n    return nums[0] + rec_sum(nums[1:])\n```\n\nBase case: empty list.",
+  "starterCode": "def rec_sum(nums):\n    # Write your code here\n    pass\n",
+  "functionName": "rec_sum",
+  "referenceSolution": "def rec_sum(nums):\n    if not nums:\n        return 0\n    return nums[0] + rec_sum(nums[1:])\n",
+  "tests": [
+    {
+      "args": [
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "expected": 6,
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": 0,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          5
+        ]
+      ],
+      "expected": 5,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          -1,
+          1
+        ]
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          10,
+          20,
+          30,
+          40
+        ]
+      ],
+      "expected": 100,
+      "hidden": true
+    }
+  ],
+  "order": 120
+}

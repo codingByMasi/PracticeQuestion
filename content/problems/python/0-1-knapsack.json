@@ -1,0 +1,110 @@
+{
+  "slug": "0-1-knapsack",
+  "track": "python",
+  "title": "0/1 knapsack",
+  "difficulty": "Hard",
+  "tags": [
+    "dynamic-programming"
+  ],
+  "statementMd": "Choose items (each at most once) to maximise total value with total weight at most `capacity`. Return the maximum value.\n\n**Example:** `knapsack([1, 3, 4, 5], [1, 4, 5, 7], 7)` returns `9`.",
+  "hints": [
+    "Iterate capacity downwards for each item."
+  ],
+  "solutionMd": "```python\ndef knapsack(weights, values, capacity):\n    dp = [0] * (capacity + 1)\n    for w, v in zip(weights, values):\n        for c in range(capacity, w - 1, -1):\n            dp[c] = max(dp[c], dp[c - w] + v)\n    return dp[capacity]\n```\n\nReverse iteration prevents reusing an item.",
+  "starterCode": "def knapsack(weights, values, capacity):\n    # Write your code here\n    pass\n",
+  "functionName": "knapsack",
+  "referenceSolution": "def knapsack(weights, values, capacity):\n    dp = [0] * (capacity + 1)\n    for w, v in zip(weights, values):\n        for c in range(capacity, w - 1, -1):\n            dp[c] = max(dp[c], dp[c - w] + v)\n    return dp[capacity]\n",
+  "tests": [
+    {
+      "args": [
+        [
+          1,
+          3,
+          4,
+          5
+        ],
+        [
+          1,
+          4,
+          5,
+          7
+        ],
+        7
+      ],
+      "expected": 9,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          4
+        ],
+        1
+      ],
+      "expected": 0,
+      "hidden": false
+    },
+    {
+      "args": [
+        [],
+        [],
+        10
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          5
+        ],
+        [
+          10
+        ],
+        5
+      ],
+      "expected": 10,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        2
+      ],
+      "expected": 5,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          10,
+          20,
+          30
+        ],
+        [
+          60,
+          100,
+          120
+        ],
+        50
+      ],
+      "expected": 220,
+      "hidden": true
+    }
+  ],
+  "order": 439
+}

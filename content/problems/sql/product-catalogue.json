@@ -1,0 +1,21 @@
+{
+  "slug": "product-catalogue",
+  "track": "sql",
+  "title": "Product catalogue",
+  "difficulty": "Easy",
+  "tags": [
+    "select"
+  ],
+  "statementMd": "List the name and price of every product.\n\nExpected columns: `name`, `price`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\nRow order does not matter.",
+  "hints": [
+    "Select two columns from `products`."
+  ],
+  "solutionMd": "```sql\nSELECT name, price FROM products;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "SELECT name, price FROM products;",
+    "orderMatters": false
+  },
+  "order": 4
+}

@@ -1,0 +1,21 @@
+{
+  "slug": "salary-like-deposits",
+  "track": "sql",
+  "title": "Salary-like deposits",
+  "difficulty": "Medium",
+  "tags": [
+    "having"
+  ],
+  "statementMd": "Find accounts that received at least 3 deposits of 1000 or more. Show account id and number of such deposits.\n\nExpected columns: `account_id`, `big_deposits`.\n\nTables: `customers`, `accounts`, `transactions`.\n\nRow order does not matter.",
+  "hints": [
+    "Filter, group, having."
+  ],
+  "solutionMd": "```sql\nSELECT account_id, COUNT(*) AS big_deposits FROM transactions WHERE kind = 'deposit' AND amount >= 1000 GROUP BY account_id HAVING COUNT(*) >= 3;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, accounts, transactions\nSELECT\n",
+  "datasetId": "bank",
+  "expected": {
+    "query": "SELECT account_id, COUNT(*) AS big_deposits FROM transactions WHERE kind = 'deposit' AND amount >= 1000 GROUP BY account_id HAVING COUNT(*) >= 3;",
+    "orderMatters": false
+  },
+  "order": 246
+}

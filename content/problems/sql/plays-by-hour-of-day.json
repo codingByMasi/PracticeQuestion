@@ -1,0 +1,21 @@
+{
+  "slug": "plays-by-hour-of-day",
+  "track": "sql",
+  "title": "Plays by hour of day",
+  "difficulty": "Medium",
+  "tags": [
+    "dates"
+  ],
+  "statementMd": "How many plays started in each hour of the day? Show hour (00-23) and plays, ordered by hour.\n\nExpected columns: `hour`, `plays`.\n\nTables: `artists`, `albums`, `tracks`, `listeners`, `plays`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "`strftime('%H', played_at)`."
+  ],
+  "solutionMd": "```sql\nSELECT strftime('%H', played_at) AS hour, COUNT(*) AS plays FROM plays GROUP BY hour ORDER BY hour;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: artists, albums, tracks, listeners, plays\nSELECT\n",
+  "datasetId": "music",
+  "expected": {
+    "query": "SELECT strftime('%H', played_at) AS hour, COUNT(*) AS plays FROM plays GROUP BY hour ORDER BY hour;",
+    "orderMatters": true
+  },
+  "order": 200
+}

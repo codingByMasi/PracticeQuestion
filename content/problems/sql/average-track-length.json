@@ -1,0 +1,21 @@
+{
+  "slug": "average-track-length",
+  "track": "sql",
+  "title": "Average track length",
+  "difficulty": "Easy",
+  "tags": [
+    "aggregate"
+  ],
+  "statementMd": "Average track length in seconds, rounded to 1 decimal.\n\nExpected columns: `avg_seconds`.\n\nTables: `artists`, `albums`, `tracks`, `listeners`, `plays`.\n\nRow order does not matter.",
+  "hints": [
+    "`ROUND(AVG(seconds), 1)`."
+  ],
+  "solutionMd": "```sql\nSELECT ROUND(AVG(seconds), 1) AS avg_seconds FROM tracks;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: artists, albums, tracks, listeners, plays\nSELECT\n",
+  "datasetId": "music",
+  "expected": {
+    "query": "SELECT ROUND(AVG(seconds), 1) AS avg_seconds FROM tracks;",
+    "orderMatters": false
+  },
+  "order": 120
+}

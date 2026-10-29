@@ -1,0 +1,21 @@
+{
+  "slug": "price-rows-for-one-day",
+  "track": "sql",
+  "title": "Price rows for one day",
+  "difficulty": "Easy",
+  "tags": [
+    "where"
+  ],
+  "statementMd": "Show the closing price of every ticker on 2024-03-15.\n\nExpected columns: `symbol`, `close`.\n\nTables: `tickers`, `prices`.\n\nRow order does not matter.",
+  "hints": [
+    "Filter on `trade_date`."
+  ],
+  "solutionMd": "```sql\nSELECT symbol, close FROM prices WHERE trade_date = '2024-03-15';\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: tickers, prices\nSELECT\n",
+  "datasetId": "stocks",
+  "expected": {
+    "query": "SELECT symbol, close FROM prices WHERE trade_date = '2024-03-15';",
+    "orderMatters": false
+  },
+  "order": 49
+}

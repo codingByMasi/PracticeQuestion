@@ -1,0 +1,21 @@
+{
+  "slug": "loans-with-member-names",
+  "track": "sql",
+  "title": "Loans with member names",
+  "difficulty": "Easy",
+  "tags": [
+    "join"
+  ],
+  "statementMd": "For loans made in January 2024, show the loan id, member name and loan date.\n\nExpected columns: `id`, `name`, `loan_date`.\n\nTables: `authors`, `books`, `members`, `loans`.\n\nRow order does not matter.",
+  "hints": [
+    "Join `loans` to `members`, filter on the date."
+  ],
+  "solutionMd": "```sql\nSELECT l.id, m.name, l.loan_date FROM loans l JOIN members m ON m.id = l.member_id WHERE l.loan_date >= '2024-01-01' AND l.loan_date < '2024-02-01';\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: authors, books, members, loans\nSELECT\n",
+  "datasetId": "library",
+  "expected": {
+    "query": "SELECT l.id, m.name, l.loan_date FROM loans l JOIN members m ON m.id = l.member_id WHERE l.loan_date >= '2024-01-01' AND l.loan_date < '2024-02-01';",
+    "orderMatters": false
+  },
+  "order": 159
+}

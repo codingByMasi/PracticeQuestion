@@ -1,0 +1,21 @@
+{
+  "slug": "genre-revenue",
+  "track": "sql",
+  "title": "Genre revenue",
+  "difficulty": "Medium",
+  "tags": [
+    "aggregate"
+  ],
+  "statementMd": "Total gross per genre (ignoring unknown grosses), biggest first.\n\nExpected columns: `genre`, `total_gross`.\n\nTables: `movies`, `directors`, `reviews`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "`SUM` skips NULLs."
+  ],
+  "solutionMd": "```sql\nSELECT genre, SUM(gross_millions) AS total_gross FROM movies GROUP BY genre ORDER BY total_gross DESC;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: movies, directors, reviews\nSELECT\n",
+  "datasetId": "movies",
+  "expected": {
+    "query": "SELECT genre, SUM(gross_millions) AS total_gross FROM movies GROUP BY genre ORDER BY total_gross DESC;",
+    "orderMatters": true
+  },
+  "order": 214
+}

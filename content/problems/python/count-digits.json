@@ -1,0 +1,55 @@
+{
+  "slug": "count-digits",
+  "track": "python",
+  "title": "Count digits",
+  "difficulty": "Easy",
+  "tags": [
+    "numbers"
+  ],
+  "statementMd": "Return how many decimal digits the integer `n` has (ignore the sign; `0` has one digit).\n\n**Example:** `count_digits(12345)` returns `5`.",
+  "hints": [
+    "Convert `abs(n)` to a string."
+  ],
+  "solutionMd": "```python\ndef count_digits(n):\n    return len(str(abs(n)))\n```\n\nString length of the absolute value.",
+  "starterCode": "def count_digits(n):\n    # Write your code here\n    pass\n",
+  "functionName": "count_digits",
+  "referenceSolution": "def count_digits(n):\n    return len(str(abs(n)))\n",
+  "tests": [
+    {
+      "args": [
+        12345
+      ],
+      "expected": 5,
+      "hidden": false
+    },
+    {
+      "args": [
+        -90
+      ],
+      "expected": 2,
+      "hidden": false
+    },
+    {
+      "args": [
+        0
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        7
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        1000000
+      ],
+      "expected": 7,
+      "hidden": true
+    }
+  ],
+  "order": 18
+}

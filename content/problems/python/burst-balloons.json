@@ -1,0 +1,69 @@
+{
+  "slug": "burst-balloons",
+  "track": "python",
+  "title": "Burst balloons",
+  "difficulty": "Hard",
+  "tags": [
+    "dynamic-programming"
+  ],
+  "statementMd": "Bursting balloon `i` earns `left * nums[i] * right` coins where left/right are the current neighbours (outside the array counts as 1). Return the maximum coins from bursting them all.\n\n**Example:** `burst_balloons([3, 1, 5, 8])` returns `167`.",
+  "hints": [
+    "Interval DP: pick the last balloon to burst in each interval."
+  ],
+  "solutionMd": "```python\ndef burst_balloons(nums):\n    a = [1] + nums + [1]\n    n = len(a)\n    dp = [[0] * n for _ in range(n)]\n    for length in range(2, n):\n        for l in range(n - length):\n            r = l + length\n            dp[l][r] = max(dp[l][k] + a[l] * a[k] * a[r] + dp[k][r] for k in range(l + 1, r))\n    return dp[0][n - 1]\n```\n\nChoosing the last burst makes subproblems independent.",
+  "starterCode": "def burst_balloons(nums):\n    # Write your code here\n    pass\n",
+  "functionName": "burst_balloons",
+  "referenceSolution": "def burst_balloons(nums):\n    a = [1] + nums + [1]\n    n = len(a)\n    dp = [[0] * n for _ in range(n)]\n    for length in range(2, n):\n        for l in range(n - length):\n            r = l + length\n            dp[l][r] = max(dp[l][k] + a[l] * a[k] * a[r] + dp[k][r] for k in range(l + 1, r))\n    return dp[0][n - 1]\n",
+  "tests": [
+    {
+      "args": [
+        [
+          3,
+          1,
+          5,
+          8
+        ]
+      ],
+      "expected": 167,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          1,
+          5
+        ]
+      ],
+      "expected": 10,
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          7
+        ]
+      ],
+      "expected": 7,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          2,
+          2,
+          2
+        ]
+      ],
+      "expected": 14,
+      "hidden": true
+    }
+  ],
+  "order": 447
+}

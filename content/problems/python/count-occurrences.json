@@ -1,0 +1,76 @@
+{
+  "slug": "count-occurrences",
+  "track": "python",
+  "title": "Count occurrences",
+  "difficulty": "Easy",
+  "tags": [
+    "lists"
+  ],
+  "statementMd": "Return how many times `target` appears in `items`.\n\n**Example:** `count_item([1, 2, 1, 3], 1)` returns `2`.",
+  "hints": [
+    "Loop with a counter or use `list.count`."
+  ],
+  "solutionMd": "```python\ndef count_item(items, target):\n    return sum(1 for x in items if x == target)\n```\n\nBooleans add as 0/1.",
+  "starterCode": "def count_item(items, target):\n    # Write your code here\n    pass\n",
+  "functionName": "count_item",
+  "referenceSolution": "def count_item(items, target):\n    return sum(1 for x in items if x == target)\n",
+  "tests": [
+    {
+      "args": [
+        [
+          1,
+          2,
+          1,
+          3
+        ],
+        1
+      ],
+      "expected": 2,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          1,
+          2
+        ],
+        9
+      ],
+      "expected": 0,
+      "hidden": false
+    },
+    {
+      "args": [
+        [],
+        1
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          "a",
+          "b",
+          "a"
+        ],
+        "a"
+      ],
+      "expected": 2,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          true,
+          1,
+          1
+        ],
+        1
+      ],
+      "expected": 3,
+      "hidden": true
+    }
+  ],
+  "order": 74
+}

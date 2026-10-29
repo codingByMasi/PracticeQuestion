@@ -1,0 +1,103 @@
+{
+  "slug": "minimum-cost-to-connect-points",
+  "track": "python",
+  "title": "Minimum cost to connect points",
+  "difficulty": "Hard",
+  "tags": [
+    "graphs"
+  ],
+  "statementMd": "Connect all 2-D integer points with edges costing the Manhattan distance so that all points are connected with minimum total cost. Return that cost.\n\n**Example:** `min_cost_points([[0, 0], [2, 2], [3, 10], [5, 2], [7, 0]])` returns `20`.",
+  "hints": [
+    "Prim's algorithm on the complete graph."
+  ],
+  "solutionMd": "```python\ndef min_cost_points(points):\n    n = len(points)\n    if n <= 1:\n        return 0\n    dist = [float('inf')] * n\n    dist[0] = 0\n    used = [False] * n\n    total = 0\n    for _ in range(n):\n        u = min((i for i in range(n) if not used[i]), key=lambda i: dist[i])\n        used[u] = True\n        total += dist[u]\n        for v in range(n):\n            if not used[v]:\n                d = abs(points[u][0] - points[v][0]) + abs(points[u][1] - points[v][1])\n                if d < dist[v]:\n                    dist[v] = d\n    return total\n```\n\nO(n^2) Prim.",
+  "starterCode": "def min_cost_points(points):\n    # Write your code here\n    pass\n",
+  "functionName": "min_cost_points",
+  "referenceSolution": "def min_cost_points(points):\n    n = len(points)\n    if n <= 1:\n        return 0\n    dist = [float('inf')] * n\n    dist[0] = 0\n    used = [False] * n\n    total = 0\n    for _ in range(n):\n        u = min((i for i in range(n) if not used[i]), key=lambda i: dist[i])\n        used[u] = True\n        total += dist[u]\n        for v in range(n):\n            if not used[v]:\n                d = abs(points[u][0] - points[v][0]) + abs(points[u][1] - points[v][1])\n                if d < dist[v]:\n                    dist[v] = d\n    return total\n",
+  "tests": [
+    {
+      "args": [
+        [
+          [
+            0,
+            0
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            10
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            7,
+            0
+          ]
+        ]
+      ],
+      "expected": 20,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            0,
+            0
+          ]
+        ]
+      ],
+      "expected": 0,
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      ],
+      "expected": 2,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            3,
+            12
+          ],
+          [
+            -2,
+            5
+          ],
+          [
+            -4,
+            1
+          ]
+        ]
+      ],
+      "expected": 18,
+      "hidden": true
+    }
+  ],
+  "order": 479
+}

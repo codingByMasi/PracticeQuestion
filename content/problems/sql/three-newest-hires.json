@@ -1,0 +1,21 @@
+{
+  "slug": "three-newest-hires",
+  "track": "sql",
+  "title": "Three newest hires",
+  "difficulty": "Easy",
+  "tags": [
+    "order-by"
+  ],
+  "statementMd": "Who are the three most recently hired employees? Newest first.\n\nExpected columns: `first_name`, `hire_date`.\n\nTables: `employees`, `departments`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Sort by `hire_date DESC` and `LIMIT 3`."
+  ],
+  "solutionMd": "```sql\nSELECT first_name, hire_date FROM employees ORDER BY hire_date DESC LIMIT 3;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "SELECT first_name, hire_date FROM employees ORDER BY hire_date DESC LIMIT 3;",
+    "orderMatters": true
+  },
+  "order": 67
+}

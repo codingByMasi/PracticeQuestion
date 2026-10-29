@@ -1,0 +1,21 @@
+{
+  "slug": "transactions-per-kind",
+  "track": "sql",
+  "title": "Transactions per kind",
+  "difficulty": "Easy",
+  "tags": [
+    "group-by"
+  ],
+  "statementMd": "For each transaction kind show the count and the total amount rounded to 2 decimals.\n\nExpected columns: `kind`, `n`, `total`.\n\nTables: `customers`, `accounts`, `transactions`.\n\nRow order does not matter.",
+  "hints": [
+    "Two aggregates."
+  ],
+  "solutionMd": "```sql\nSELECT kind, COUNT(*) AS n, ROUND(SUM(amount), 2) AS total FROM transactions GROUP BY kind;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, accounts, transactions\nSELECT\n",
+  "datasetId": "bank",
+  "expected": {
+    "query": "SELECT kind, COUNT(*) AS n, ROUND(SUM(amount), 2) AS total FROM transactions GROUP BY kind;",
+    "orderMatters": false
+  },
+  "order": 126
+}

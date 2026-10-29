@@ -1,0 +1,21 @@
+{
+  "slug": "customers-quiet-since-mid-june",
+  "track": "sql",
+  "title": "Customers quiet since mid June",
+  "difficulty": "Medium",
+  "tags": [
+    "exists"
+  ],
+  "statementMd": "List customers who have accounts but none of their accounts has a transaction dated on or after 2024-06-20. Show name.\n\nExpected columns: `name`.\n\nTables: `customers`, `accounts`, `transactions`.\n\nRow order does not matter.",
+  "hints": [
+    "`NOT EXISTS` over accounts and transactions."
+  ],
+  "solutionMd": "```sql\nSELECT c.name FROM customers c WHERE EXISTS (SELECT 1 FROM accounts a WHERE a.customer_id = c.id) AND NOT EXISTS (SELECT 1 FROM accounts a JOIN transactions t ON t.account_id = a.id WHERE a.customer_id = c.id AND t.tx_date >= '2024-06-20');\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, accounts, transactions\nSELECT\n",
+  "datasetId": "bank",
+  "expected": {
+    "query": "SELECT c.name FROM customers c WHERE EXISTS (SELECT 1 FROM accounts a WHERE a.customer_id = c.id) AND NOT EXISTS (SELECT 1 FROM accounts a JOIN transactions t ON t.account_id = a.id WHERE a.customer_id = c.id AND t.tx_date >= '2024-06-20');",
+    "orderMatters": false
+  },
+  "order": 328
+}

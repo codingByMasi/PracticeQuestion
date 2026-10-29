@@ -1,0 +1,69 @@
+{
+  "slug": "is-sorted",
+  "track": "python",
+  "title": "Is sorted",
+  "difficulty": "Easy",
+  "tags": [
+    "lists"
+  ],
+  "statementMd": "Return `True` if the list is in non-decreasing order.\n\n**Example:** `is_sorted([1, 2, 2, 3])` returns `true`.",
+  "hints": [
+    "Compare each pair of neighbours."
+  ],
+  "solutionMd": "```python\ndef is_sorted(nums):\n    return all(a <= b for a, b in zip(nums, nums[1:]))\n```\n\nEmpty and single-element lists are sorted.",
+  "starterCode": "def is_sorted(nums):\n    # Write your code here\n    pass\n",
+  "functionName": "is_sorted",
+  "referenceSolution": "def is_sorted(nums):\n    return all(a <= b for a, b in zip(nums, nums[1:]))\n",
+  "tests": [
+    {
+      "args": [
+        [
+          1,
+          2,
+          2,
+          3
+        ]
+      ],
+      "expected": true,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          3,
+          1
+        ]
+      ],
+      "expected": false,
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1
+        ]
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          2,
+          1,
+          2
+        ]
+      ],
+      "expected": false,
+      "hidden": true
+    }
+  ],
+  "order": 81
+}

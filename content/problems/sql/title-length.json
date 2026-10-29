@@ -1,0 +1,21 @@
+{
+  "slug": "title-length",
+  "track": "sql",
+  "title": "Title length",
+  "difficulty": "Easy",
+  "tags": [
+    "strings"
+  ],
+  "statementMd": "Show the five books with the longest titles (by characters). Break ties by title.\n\nExpected columns: `title`, `chars`.\n\nTables: `authors`, `books`, `members`, `loans`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "`LENGTH(title)`."
+  ],
+  "solutionMd": "```sql\nSELECT title, LENGTH(title) AS chars FROM books ORDER BY chars DESC, title LIMIT 5;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: authors, books, members, loans\nSELECT\n",
+  "datasetId": "library",
+  "expected": {
+    "query": "SELECT title, LENGTH(title) AS chars FROM books ORDER BY chars DESC, title LIMIT 5;",
+    "orderMatters": true
+  },
+  "order": 101
+}

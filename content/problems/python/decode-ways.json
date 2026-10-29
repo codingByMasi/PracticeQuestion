@@ -1,0 +1,69 @@
+{
+  "slug": "decode-ways",
+  "track": "python",
+  "title": "Decode ways",
+  "difficulty": "Medium",
+  "tags": [
+    "dynamic-programming"
+  ],
+  "statementMd": "A digit string encodes letters `A=1 ... Z=26`. Return the number of ways to decode `s` (0 if impossible; `\"0\"` alone is invalid).\n\n**Example:** `num_decodings(\"12\")` returns `2`.",
+  "hints": [
+    "Like climbing stairs with validity checks."
+  ],
+  "solutionMd": "```python\ndef num_decodings(s):\n    if not s or s[0] == '0':\n        return 0\n    a, b = 1, 1\n    for i in range(1, len(s)):\n        c = 0\n        if s[i] != '0':\n            c += b\n        if 10 <= int(s[i - 1:i + 1]) <= 26:\n            c += a\n        a, b = b, c\n    return b\n```\n\nOne- and two-digit decodings.",
+  "starterCode": "def num_decodings(s):\n    # Write your code here\n    pass\n",
+  "functionName": "num_decodings",
+  "referenceSolution": "def num_decodings(s):\n    if not s or s[0] == '0':\n        return 0\n    a, b = 1, 1\n    for i in range(1, len(s)):\n        c = 0\n        if s[i] != '0':\n            c += b\n        if 10 <= int(s[i - 1:i + 1]) <= 26:\n            c += a\n        a, b = b, c\n    return b\n",
+  "tests": [
+    {
+      "args": [
+        "12"
+      ],
+      "expected": 2,
+      "hidden": false
+    },
+    {
+      "args": [
+        "226"
+      ],
+      "expected": 3,
+      "hidden": false
+    },
+    {
+      "args": [
+        "0"
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        "06"
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        "10"
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        "27"
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        "1111"
+      ],
+      "expected": 5,
+      "hidden": true
+    }
+  ],
+  "order": 325
+}

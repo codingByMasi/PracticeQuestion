@@ -1,0 +1,21 @@
+{
+  "slug": "close-dormant-accounts",
+  "track": "sql",
+  "title": "Close dormant accounts",
+  "difficulty": "Medium",
+  "tags": [
+    "dml"
+  ],
+  "statementMd": "Mark as closed (`closed = 1`) all accounts that have no transactions after 2024-05-31, then count open accounts.\n\nExpected columns: `open_accounts`.\n\nTables: `customers`, `accounts`, `transactions`.\n\nRow order does not matter.",
+  "hints": [
+    "`UPDATE accounts SET closed = 1 WHERE id NOT IN (...)`."
+  ],
+  "solutionMd": "```sql\nUPDATE accounts SET closed = 1 WHERE id NOT IN (SELECT account_id FROM transactions WHERE tx_date > '2024-05-31'); SELECT COUNT(*) AS open_accounts FROM accounts WHERE closed = 0;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, accounts, transactions\nSELECT\n",
+  "datasetId": "bank",
+  "expected": {
+    "query": "UPDATE accounts SET closed = 1 WHERE id NOT IN (SELECT account_id FROM transactions WHERE tx_date > '2024-05-31'); SELECT COUNT(*) AS open_accounts FROM accounts WHERE closed = 0;",
+    "orderMatters": false
+  },
+  "order": 355
+}

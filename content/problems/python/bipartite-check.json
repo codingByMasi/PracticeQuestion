@@ -1,0 +1,120 @@
+{
+  "slug": "bipartite-check",
+  "track": "python",
+  "title": "Bipartite check",
+  "difficulty": "Medium",
+  "tags": [
+    "graphs"
+  ],
+  "statementMd": "Return whether the undirected graph can be 2-coloured so every edge joins different colours.\n\n**Example:** `is_bipartite(4, [[0, 1], [1, 2], [2, 3], [3, 0]])` returns `true`.",
+  "hints": [
+    "BFS colouring each component."
+  ],
+  "solutionMd": "```python\nfrom collections import deque, defaultdict\n\n\ndef is_bipartite(n, edges):\n    adj = defaultdict(list)\n    for a, b in edges:\n        adj[a].append(b); adj[b].append(a)\n    color = {}\n    for s in range(n):\n        if s in color:\n            continue\n        color[s] = 0\n        q = deque([s])\n        while q:\n            u = q.popleft()\n            for v in adj[u]:\n                if v not in color:\n                    color[v] = 1 - color[u]\n                    q.append(v)\n                elif color[v] == color[u]:\n                    return False\n    return True\n```\n\nAn odd cycle makes it impossible.",
+  "starterCode": "def is_bipartite(n, edges):\n    # Write your code here\n    pass\n",
+  "functionName": "is_bipartite",
+  "referenceSolution": "from collections import deque, defaultdict\n\n\ndef is_bipartite(n, edges):\n    adj = defaultdict(list)\n    for a, b in edges:\n        adj[a].append(b); adj[b].append(a)\n    color = {}\n    for s in range(n):\n        if s in color:\n            continue\n        color[s] = 0\n        q = deque([s])\n        while q:\n            u = q.popleft()\n            for v in adj[u]:\n                if v not in color:\n                    color[v] = 1 - color[u]\n                    q.append(v)\n                elif color[v] == color[u]:\n                    return False\n    return True\n",
+  "tests": [
+    {
+      "args": [
+        4,
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            0
+          ]
+        ]
+      ],
+      "expected": true,
+      "hidden": false
+    },
+    {
+      "args": [
+        3,
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            0
+          ]
+        ]
+      ],
+      "expected": false,
+      "hidden": false
+    },
+    {
+      "args": [
+        1,
+        []
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        5,
+        [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        5,
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            0
+          ]
+        ]
+      ],
+      "expected": false,
+      "hidden": true
+    }
+  ],
+  "order": 348
+}

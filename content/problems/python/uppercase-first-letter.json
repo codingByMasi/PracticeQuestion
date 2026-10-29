@@ -1,0 +1,62 @@
+{
+  "slug": "uppercase-first-letter",
+  "track": "python",
+  "title": "Uppercase first letter",
+  "difficulty": "Easy",
+  "tags": [
+    "strings"
+  ],
+  "statementMd": "Return `s` with only its first character uppercased and the rest unchanged (empty string stays empty).\n\n**Example:** `capitalize_first(\"hello\")` returns `\"Hello\"`.",
+  "hints": [
+    "Slice: `s[0]` and `s[1:]`."
+  ],
+  "solutionMd": "```python\ndef capitalize_first(s):\n    return s[:1].upper() + s[1:]\n```\n\n`s[:1]` is safe for the empty string.",
+  "starterCode": "def capitalize_first(s):\n    # Write your code here\n    pass\n",
+  "functionName": "capitalize_first",
+  "referenceSolution": "def capitalize_first(s):\n    return s[:1].upper() + s[1:]\n",
+  "tests": [
+    {
+      "args": [
+        "hello"
+      ],
+      "expected": "Hello",
+      "hidden": false
+    },
+    {
+      "args": [
+        "hELLO"
+      ],
+      "expected": "HELLO",
+      "hidden": false
+    },
+    {
+      "args": [
+        ""
+      ],
+      "expected": "",
+      "hidden": true
+    },
+    {
+      "args": [
+        "a"
+      ],
+      "expected": "A",
+      "hidden": true
+    },
+    {
+      "args": [
+        "1abc"
+      ],
+      "expected": "1abc",
+      "hidden": true
+    },
+    {
+      "args": [
+        " x"
+      ],
+      "expected": " x",
+      "hidden": true
+    }
+  ],
+  "order": 48
+}

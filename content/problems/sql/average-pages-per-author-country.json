@@ -1,0 +1,21 @@
+{
+  "slug": "average-pages-per-author-country",
+  "track": "sql",
+  "title": "Average pages per author country",
+  "difficulty": "Medium",
+  "tags": [
+    "multi-join"
+  ],
+  "statementMd": "Average book length per author country, rounded to 1 decimal.\n\nExpected columns: `country`, `avg_pages`.\n\nTables: `authors`, `books`, `members`, `loans`.\n\nRow order does not matter.",
+  "hints": [
+    "Join books to authors."
+  ],
+  "solutionMd": "```sql\nSELECT a.country, ROUND(AVG(b.pages), 1) AS avg_pages FROM books b JOIN authors a ON a.id = b.author_id GROUP BY a.country;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: authors, books, members, loans\nSELECT\n",
+  "datasetId": "library",
+  "expected": {
+    "query": "SELECT a.country, ROUND(AVG(b.pages), 1) AS avg_pages FROM books b JOIN authors a ON a.id = b.author_id GROUP BY a.country;",
+    "orderMatters": false
+  },
+  "order": 301
+}

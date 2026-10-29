@@ -1,0 +1,21 @@
+{
+  "slug": "spending-by-merchant",
+  "track": "sql",
+  "title": "Spending by merchant",
+  "difficulty": "Medium",
+  "tags": [
+    "group-by"
+  ],
+  "statementMd": "Total spent per merchant (positive numbers), biggest first. Round to 2 decimals.\n\nExpected columns: `merchant`, `spent`.\n\nTables: `customers`, `accounts`, `transactions`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Negate the sum of purchases."
+  ],
+  "solutionMd": "```sql\nSELECT merchant, ROUND(-SUM(amount), 2) AS spent FROM transactions WHERE kind = 'purchase' GROUP BY merchant ORDER BY spent DESC;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, accounts, transactions\nSELECT\n",
+  "datasetId": "bank",
+  "expected": {
+    "query": "SELECT merchant, ROUND(-SUM(amount), 2) AS spent FROM transactions WHERE kind = 'purchase' GROUP BY merchant ORDER BY spent DESC;",
+    "orderMatters": true
+  },
+  "order": 226
+}

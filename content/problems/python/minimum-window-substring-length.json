@@ -1,0 +1,68 @@
+{
+  "slug": "minimum-window-substring-length",
+  "track": "python",
+  "title": "Minimum window substring length",
+  "difficulty": "Hard",
+  "tags": [
+    "sliding-window"
+  ],
+  "statementMd": "Return the length of the smallest substring of `s` containing every character of `t` (with multiplicity), or `0` if none exists. `t` is non-empty.\n\n**Example:** `min_window_len(\"ADOBECODEBANC\", \"ABC\")` returns `4`.",
+  "hints": [
+    "Expand right to satisfy, then shrink left."
+  ],
+  "solutionMd": "```python\ndef min_window_len(s, t):\n    from collections import Counter\n    need = Counter(t)\n    missing = len(t)\n    best = 0\n    left = 0\n    for right, c in enumerate(s):\n        if need[c] > 0:\n            missing -= 1\n        need[c] -= 1\n        if missing == 0:\n            while need[s[left]] < 0:\n                need[s[left]] += 1\n                left += 1\n            size = right - left + 1\n            if best == 0 or size < best:\n                best = size\n            need[s[left]] += 1\n            missing += 1\n            left += 1\n    return best\n```\n\nThe classic two-pointer window with a deficit counter.",
+  "starterCode": "def min_window_len(s, t):\n    # Write your code here\n    pass\n",
+  "functionName": "min_window_len",
+  "referenceSolution": "def min_window_len(s, t):\n    from collections import Counter\n    need = Counter(t)\n    missing = len(t)\n    best = 0\n    left = 0\n    for right, c in enumerate(s):\n        if need[c] > 0:\n            missing -= 1\n        need[c] -= 1\n        if missing == 0:\n            while need[s[left]] < 0:\n                need[s[left]] += 1\n                left += 1\n            size = right - left + 1\n            if best == 0 or size < best:\n                best = size\n            need[s[left]] += 1\n            missing += 1\n            left += 1\n    return best\n",
+  "tests": [
+    {
+      "args": [
+        "ADOBECODEBANC",
+        "ABC"
+      ],
+      "expected": 4,
+      "hidden": false
+    },
+    {
+      "args": [
+        "a",
+        "aa"
+      ],
+      "expected": 0,
+      "hidden": false
+    },
+    {
+      "args": [
+        "a",
+        "a"
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        "aa",
+        "aa"
+      ],
+      "expected": 2,
+      "hidden": true
+    },
+    {
+      "args": [
+        "abc",
+        "d"
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        "bba",
+        "ab"
+      ],
+      "expected": 2,
+      "hidden": true
+    }
+  ],
+  "order": 404
+}

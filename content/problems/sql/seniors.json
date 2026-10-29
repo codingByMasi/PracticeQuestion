@@ -1,0 +1,21 @@
+{
+  "slug": "seniors",
+  "track": "sql",
+  "title": "Seniors",
+  "difficulty": "Easy",
+  "tags": [
+    "where"
+  ],
+  "statementMd": "List the names of students in grade level 12.\n\nExpected columns: `name`.\n\nTables: `teachers`, `courses`, `students`, `enrollments`.\n\nRow order does not matter.",
+  "hints": [
+    "`grade_level = 12`."
+  ],
+  "solutionMd": "```sql\nSELECT name FROM students WHERE grade_level = 12;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: teachers, courses, students, enrollments\nSELECT\n",
+  "datasetId": "school",
+  "expected": {
+    "query": "SELECT name FROM students WHERE grade_level = 12;",
+    "orderMatters": false
+  },
+  "order": 44
+}

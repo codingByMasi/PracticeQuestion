@@ -1,0 +1,21 @@
+{
+  "slug": "highest-closing-price",
+  "track": "sql",
+  "title": "Highest closing price",
+  "difficulty": "Easy",
+  "tags": [
+    "aggregate"
+  ],
+  "statementMd": "What is the highest closing price ever recorded across all tickers? Show symbol, date and price.\n\nExpected columns: `symbol`, `trade_date`, `close`.\n\nTables: `tickers`, `prices`.\n\nRow order does not matter.",
+  "hints": [
+    "Order by close desc and take one."
+  ],
+  "solutionMd": "```sql\nSELECT symbol, trade_date, close FROM prices ORDER BY close DESC LIMIT 1;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: tickers, prices\nSELECT\n",
+  "datasetId": "stocks",
+  "expected": {
+    "query": "SELECT symbol, trade_date, close FROM prices ORDER BY close DESC LIMIT 1;",
+    "orderMatters": false
+  },
+  "order": 123
+}

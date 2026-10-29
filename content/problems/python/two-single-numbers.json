@@ -1,0 +1,93 @@
+{
+  "slug": "two-single-numbers",
+  "track": "python",
+  "title": "Two single numbers",
+  "difficulty": "Hard",
+  "tags": [
+    "bit-manipulation"
+  ],
+  "statementMd": "Every number appears twice except two that appear once. Return those two numbers as a sorted list.\n\n**Example:** `two_singles([1, 2, 1, 3, 2, 5])` returns `[3, 5]`.",
+  "hints": [
+    "XOR everything, then split by a set bit of the result."
+  ],
+  "solutionMd": "```python\ndef two_singles(nums):\n    x = 0\n    for n in nums:\n        x ^= n\n    low = x & -x\n    a = b = 0\n    for n in nums:\n        if n & low:\n            a ^= n\n        else:\n            b ^= n\n    return sorted([a, b])\n```\n\nThe two answers differ in at least one bit.",
+  "starterCode": "def two_singles(nums):\n    # Write your code here\n    pass\n",
+  "functionName": "two_singles",
+  "referenceSolution": "def two_singles(nums):\n    x = 0\n    for n in nums:\n        x ^= n\n    low = x & -x\n    a = b = 0\n    for n in nums:\n        if n & low:\n            a ^= n\n        else:\n            b ^= n\n    return sorted([a, b])\n",
+  "tests": [
+    {
+      "args": [
+        [
+          1,
+          2,
+          1,
+          3,
+          2,
+          5
+        ]
+      ],
+      "expected": [
+        3,
+        5
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          0,
+          1
+        ]
+      ],
+      "expected": [
+        0,
+        1
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          4,
+          4,
+          7,
+          9
+        ]
+      ],
+      "expected": [
+        7,
+        9
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          -1,
+          5,
+          5,
+          2
+        ]
+      ],
+      "expected": [
+        -1,
+        2
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          10,
+          20
+        ]
+      ],
+      "expected": [
+        10,
+        20
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 421
+}

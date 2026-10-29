@@ -1,0 +1,71 @@
+{
+  "slug": "longest-common-prefix-of-many-by-sorting",
+  "track": "python",
+  "title": "Longest common prefix of many by sorting",
+  "difficulty": "Easy",
+  "tags": [
+    "strings"
+  ],
+  "statementMd": "Return the longest common prefix of a non-empty list by comparing only the lexicographically smallest and largest word.\n\n**Example:** `common_prefix_sorted([\"flower\", \"flow\", \"flight\"])` returns `\"fl\"`.",
+  "hints": [
+    "After sorting only the extremes matter."
+  ],
+  "solutionMd": "```python\ndef common_prefix_sorted(words):\n    a, b = min(words), max(words)\n    i = 0\n    while i < len(a) and i < len(b) and a[i] == b[i]:\n        i += 1\n    return a[:i]\n```\n\nThe prefix of the extremes is shared by everything between.",
+  "starterCode": "def common_prefix_sorted(words):\n    # Write your code here\n    pass\n",
+  "functionName": "common_prefix_sorted",
+  "referenceSolution": "def common_prefix_sorted(words):\n    a, b = min(words), max(words)\n    i = 0\n    while i < len(a) and i < len(b) and a[i] == b[i]:\n        i += 1\n    return a[:i]\n",
+  "tests": [
+    {
+      "args": [
+        [
+          "flower",
+          "flow",
+          "flight"
+        ]
+      ],
+      "expected": "fl",
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          "dog",
+          "car"
+        ]
+      ],
+      "expected": "",
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          "a"
+        ]
+      ],
+      "expected": "a",
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          "abc",
+          "abc"
+        ]
+      ],
+      "expected": "abc",
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          "x",
+          "xy",
+          "xyz"
+        ]
+      ],
+      "expected": "x",
+      "hidden": true
+    }
+  ],
+  "order": 68
+}

@@ -1,0 +1,21 @@
+{
+  "slug": "passengers-by-first-letter",
+  "track": "sql",
+  "title": "Passengers by first letter",
+  "difficulty": "Easy",
+  "tags": [
+    "strings"
+  ],
+  "statementMd": "Count bookings by the first letter of the passenger's name. Show letter and count, letters in alphabetical order.\n\nExpected columns: `letter`, `bookings`.\n\nTables: `airlines`, `airports`, `flights`, `bookings`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "`substr(passenger, 1, 1)`."
+  ],
+  "solutionMd": "```sql\nSELECT substr(passenger, 1, 1) AS letter, COUNT(*) AS bookings FROM bookings GROUP BY letter ORDER BY letter;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: airlines, airports, flights, bookings\nSELECT\n",
+  "datasetId": "flights",
+  "expected": {
+    "query": "SELECT substr(passenger, 1, 1) AS letter, COUNT(*) AS bookings FROM bookings GROUP BY letter ORDER BY letter;",
+    "orderMatters": true
+  },
+  "order": 98
+}

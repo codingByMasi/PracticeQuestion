@@ -1,0 +1,140 @@
+{
+  "slug": "randomised-set-simulation",
+  "track": "python",
+  "title": "Randomised set simulation",
+  "difficulty": "Hard",
+  "tags": [
+    "design"
+  ],
+  "statementMd": "Simulate a multiset. `['add', x]` adds one copy, `['remove', x]` removes one copy if present and returns `True` else `False`, `['count', x]` returns the number of copies. Return the results of the `remove` and `count` operations in order.\n\n**Example:** `multiset_ops([[\"add\", 1], [\"add\", 1], [\"count\", 1], [\"remove\", 1], [\"cou…)` returns `[2, true, 1, false]`.",
+  "hints": [
+    "A dict of counts."
+  ],
+  "solutionMd": "```python\ndef multiset_ops(ops):\n    counts = {}\n    out = []\n    for op in ops:\n        name, x = op\n        if name == 'add':\n            counts[x] = counts.get(x, 0) + 1\n        elif name == 'remove':\n            if counts.get(x, 0) > 0:\n                counts[x] -= 1\n                out.append(True)\n            else:\n                out.append(False)\n        else:\n            out.append(counts.get(x, 0))\n    return out\n```\n\nEach operation is O(1).",
+  "starterCode": "def multiset_ops(ops):\n    # Write your code here\n    pass\n",
+  "functionName": "multiset_ops",
+  "referenceSolution": "def multiset_ops(ops):\n    counts = {}\n    out = []\n    for op in ops:\n        name, x = op\n        if name == 'add':\n            counts[x] = counts.get(x, 0) + 1\n        elif name == 'remove':\n            if counts.get(x, 0) > 0:\n                counts[x] -= 1\n                out.append(True)\n            else:\n                out.append(False)\n        else:\n            out.append(counts.get(x, 0))\n    return out\n",
+  "tests": [
+    {
+      "args": [
+        [
+          [
+            "add",
+            1
+          ],
+          [
+            "add",
+            1
+          ],
+          [
+            "count",
+            1
+          ],
+          [
+            "remove",
+            1
+          ],
+          [
+            "count",
+            1
+          ],
+          [
+            "remove",
+            2
+          ]
+        ]
+      ],
+      "expected": [
+        2,
+        true,
+        1,
+        false
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            "count",
+            5
+          ]
+        ]
+      ],
+      "expected": [
+        0
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            "remove",
+            1
+          ]
+        ]
+      ],
+      "expected": [
+        false
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            "add",
+            "a"
+          ],
+          [
+            "remove",
+            "a"
+          ],
+          [
+            "remove",
+            "a"
+          ],
+          [
+            "count",
+            "a"
+          ]
+        ]
+      ],
+      "expected": [
+        true,
+        false,
+        0
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            "add",
+            2
+          ],
+          [
+            "add",
+            3
+          ],
+          [
+            "count",
+            2
+          ],
+          [
+            "count",
+            3
+          ]
+        ]
+      ],
+      "expected": [
+        1,
+        1
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 492
+}

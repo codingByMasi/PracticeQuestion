@@ -1,0 +1,72 @@
+{
+  "slug": "count-down",
+  "track": "python",
+  "title": "Count down",
+  "difficulty": "Easy",
+  "tags": [
+    "loops"
+  ],
+  "statementMd": "Return the list `[n, n-1, ..., 1]`. For `n <= 0` return an empty list.\n\n**Example:** `count_down(5)` returns `[5, 4, 3, 2, 1]`.",
+  "hints": [
+    "`range(n, 0, -1)` counts down."
+  ],
+  "solutionMd": "```python\ndef count_down(n):\n    return list(range(n, 0, -1))\n```\n\nA negative step walks backwards.",
+  "starterCode": "def count_down(n):\n    # Write your code here\n    pass\n",
+  "functionName": "count_down",
+  "referenceSolution": "def count_down(n):\n    return list(range(n, 0, -1))\n",
+  "tests": [
+    {
+      "args": [
+        5
+      ],
+      "expected": [
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        1
+      ],
+      "expected": [
+        1
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        0
+      ],
+      "expected": [],
+      "hidden": true
+    },
+    {
+      "args": [
+        -2
+      ],
+      "expected": [],
+      "hidden": true
+    },
+    {
+      "args": [
+        8
+      ],
+      "expected": [
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 36
+}

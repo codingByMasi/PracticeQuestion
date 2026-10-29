@@ -1,0 +1,118 @@
+{
+  "slug": "number-of-provinces",
+  "track": "python",
+  "title": "Number of provinces",
+  "difficulty": "Medium",
+  "tags": [
+    "graphs"
+  ],
+  "statementMd": "`is_connected[i][j] == 1` means cities i and j are directly connected (the matrix is symmetric). Return the number of provinces (groups of directly or indirectly connected cities).\n\n**Example:** `find_provinces([[1, 1, 0], [1, 1, 0], [0, 0, 1]])` returns `2`.",
+  "hints": [
+    "Union-find or DFS on the matrix."
+  ],
+  "solutionMd": "```python\nfrom collections import deque, defaultdict\n\n\ndef find_provinces(is_connected):\n    n = len(is_connected)\n    seen = set()\n    count = 0\n    for s in range(n):\n        if s in seen:\n            continue\n        count += 1\n        stack = [s]\n        seen.add(s)\n        while stack:\n            u = stack.pop()\n            for v in range(n):\n                if is_connected[u][v] and v not in seen:\n                    seen.add(v); stack.append(v)\n    return count\n```\n\nSame as connected components with an adjacency matrix.",
+  "starterCode": "def find_provinces(is_connected):\n    # Write your code here\n    pass\n",
+  "functionName": "find_provinces",
+  "referenceSolution": "from collections import deque, defaultdict\n\n\ndef find_provinces(is_connected):\n    n = len(is_connected)\n    seen = set()\n    count = 0\n    for s in range(n):\n        if s in seen:\n            continue\n        count += 1\n        stack = [s]\n        seen.add(s)\n        while stack:\n            u = stack.pop()\n            for v in range(n):\n                if is_connected[u][v] and v not in seen:\n                    seen.add(v); stack.append(v)\n    return count\n",
+  "tests": [
+    {
+      "args": [
+        [
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ]
+      ],
+      "expected": 2,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ]
+      ],
+      "expected": 2,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            1
+          ]
+        ]
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            1,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            1
+          ]
+        ]
+      ],
+      "expected": 2,
+      "hidden": true
+    }
+  ],
+  "order": 349
+}

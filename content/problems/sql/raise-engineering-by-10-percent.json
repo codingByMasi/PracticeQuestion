@@ -1,0 +1,21 @@
+{
+  "slug": "raise-engineering-by-10-percent",
+  "track": "sql",
+  "title": "Raise Engineering by 10 percent",
+  "difficulty": "Medium",
+  "tags": [
+    "dml"
+  ],
+  "statementMd": "Give every Engineering employee (`department_id = 1`) a 10% raise with an `UPDATE`, then report the new total payroll of the whole company rounded to 2 decimals. (Each run starts from a fresh copy of the data.)\n\nExpected columns: `total_payroll`.\n\nTables: `employees`, `departments`.\n\nRow order does not matter.",
+  "hints": [
+    "Run the `UPDATE` first, then a `SELECT` in the same script."
+  ],
+  "solutionMd": "```sql\nUPDATE employees SET salary = salary * 1.10 WHERE department_id = 1; SELECT ROUND(SUM(salary), 2) AS total_payroll FROM employees;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "UPDATE employees SET salary = salary * 1.10 WHERE department_id = 1; SELECT ROUND(SUM(salary), 2) AS total_payroll FROM employees;",
+    "orderMatters": false
+  },
+  "order": 359
+}

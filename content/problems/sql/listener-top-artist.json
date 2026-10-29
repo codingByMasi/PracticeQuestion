@@ -1,0 +1,21 @@
+{
+  "slug": "listener-top-artist",
+  "track": "sql",
+  "title": "Listener top artist",
+  "difficulty": "Hard",
+  "tags": [
+    "ranking"
+  ],
+  "statementMd": "For each of listeners 1 to 5, show their most played artist and the play count (ties: alphabetically first artist).\n\nExpected columns: `listener_id`, `name`, `plays`.\n\nTables: `artists`, `albums`, `tracks`, `listeners`, `plays`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Count per listener and artist, then rank."
+  ],
+  "solutionMd": "```sql\nWITH c AS (SELECT p.listener_id, ar.name, COUNT(*) AS plays FROM plays p JOIN tracks t ON t.id = p.track_id JOIN albums al ON al.id = t.album_id JOIN artists ar ON ar.id = al.artist_id WHERE p.listener_id <= 5 GROUP BY p.listener_id, ar.id), r AS (SELECT *, ROW_NUMBER() OVER (PARTITION BY listener_id ORDER BY plays DESC, name) AS rn FROM c) SELECT listener_id, name, plays FROM r WHERE rn = 1 ORDER BY listener_id;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: artists, albums, tracks, listeners, plays\nSELECT\n",
+  "datasetId": "music",
+  "expected": {
+    "query": "WITH c AS (SELECT p.listener_id, ar.name, COUNT(*) AS plays FROM plays p JOIN tracks t ON t.id = p.track_id JOIN albums al ON al.id = t.album_id JOIN artists ar ON ar.id = al.artist_id WHERE p.listener_id <= 5 GROUP BY p.listener_id, ar.id), r AS (SELECT *, ROW_NUMBER() OVER (PARTITION BY listener_id ORDER BY plays DESC, name) AS rn FROM c) SELECT listener_id, name, plays FROM r WHERE rn = 1 ORDER BY listener_id;",
+    "orderMatters": true
+  },
+  "order": 457
+}

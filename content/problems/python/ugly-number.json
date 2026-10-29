@@ -1,0 +1,62 @@
+{
+  "slug": "ugly-number",
+  "track": "python",
+  "title": "Ugly number",
+  "difficulty": "Medium",
+  "tags": [
+    "dynamic-programming"
+  ],
+  "statementMd": "Ugly numbers have only prime factors 2, 3 and 5 (1 counts as the first). Return the n-th ugly number.\n\n**Example:** `nth_ugly(10)` returns `12`.",
+  "hints": [
+    "Three pointers merging multiples."
+  ],
+  "solutionMd": "```python\ndef nth_ugly(n):\n    ugly = [1]\n    i2 = i3 = i5 = 0\n    while len(ugly) < n:\n        nxt = min(ugly[i2] * 2, ugly[i3] * 3, ugly[i5] * 5)\n        ugly.append(nxt)\n        if nxt == ugly[i2] * 2: i2 += 1\n        if nxt == ugly[i3] * 3: i3 += 1\n        if nxt == ugly[i5] * 5: i5 += 1\n    return ugly[n - 1]\n```\n\nGenerate in order by merging three streams.",
+  "starterCode": "def nth_ugly(n):\n    # Write your code here\n    pass\n",
+  "functionName": "nth_ugly",
+  "referenceSolution": "def nth_ugly(n):\n    ugly = [1]\n    i2 = i3 = i5 = 0\n    while len(ugly) < n:\n        nxt = min(ugly[i2] * 2, ugly[i3] * 3, ugly[i5] * 5)\n        ugly.append(nxt)\n        if nxt == ugly[i2] * 2: i2 += 1\n        if nxt == ugly[i3] * 3: i3 += 1\n        if nxt == ugly[i5] * 5: i5 += 1\n    return ugly[n - 1]\n",
+  "tests": [
+    {
+      "args": [
+        10
+      ],
+      "expected": 12,
+      "hidden": false
+    },
+    {
+      "args": [
+        1
+      ],
+      "expected": 1,
+      "hidden": false
+    },
+    {
+      "args": [
+        2
+      ],
+      "expected": 2,
+      "hidden": true
+    },
+    {
+      "args": [
+        7
+      ],
+      "expected": 8,
+      "hidden": true
+    },
+    {
+      "args": [
+        15
+      ],
+      "expected": 24,
+      "hidden": true
+    },
+    {
+      "args": [
+        50
+      ],
+      "expected": 243,
+      "hidden": true
+    }
+  ],
+  "order": 328
+}

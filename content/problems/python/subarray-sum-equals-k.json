@@ -1,0 +1,131 @@
+{
+  "slug": "subarray-sum-equals-k",
+  "track": "python",
+  "title": "Subarray sum equals k",
+  "difficulty": "Medium",
+  "tags": [
+    "dicts"
+  ],
+  "statementMd": "Return the number of contiguous subarrays whose sum equals `k`.\n\n**Example:** `subarray_sum_k([1, 1, 1], 2)` returns `2`.",
+  "hints": [
+    "Prefix sums with a dictionary of counts."
+  ],
+  "solutionMd": "```python\ndef subarray_sum_k(nums, k):\n    seen = {0: 1}\n    total = count = 0\n    for x in nums:\n        total += x\n        count += seen.get(total - k, 0)\n        seen[total] = seen.get(total, 0) + 1\n    return count\n```\n\nA subarray sum is a difference of two prefix sums.",
+  "starterCode": "def subarray_sum_k(nums, k):\n    # Write your code here\n    pass\n",
+  "functionName": "subarray_sum_k",
+  "referenceSolution": "def subarray_sum_k(nums, k):\n    seen = {0: 1}\n    total = count = 0\n    for x in nums:\n        total += x\n        count += seen.get(total - k, 0)\n        seen[total] = seen.get(total, 0) + 1\n    return count\n",
+  "tests": [
+    {
+      "args": [
+        [
+          1,
+          1,
+          1
+        ],
+        2
+      ],
+      "expected": 2,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          1,
+          2,
+          3
+        ],
+        3
+      ],
+      "expected": 2,
+      "hidden": false
+    },
+    {
+      "args": [
+        [],
+        0
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          0,
+          0,
+          0
+        ],
+        0
+      ],
+      "expected": 6,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          -1,
+          1,
+          0
+        ],
+        0
+      ],
+      "expected": 3,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          3
+        ],
+        3
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          -3,
+          0
+        ],
+        -1
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          -1,
+          1,
+          0,
+          -2,
+          0,
+          0,
+          3,
+          -1,
+          0,
+          0
+        ],
+        -2
+      ],
+      "expected": 9,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          2,
+          -2,
+          3,
+          2
+        ],
+        -2
+      ],
+      "expected": 1,
+      "hidden": true
+    }
+  ],
+  "order": 210
+}

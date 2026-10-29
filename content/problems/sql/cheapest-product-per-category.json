@@ -1,0 +1,21 @@
+{
+  "slug": "cheapest-product-per-category",
+  "track": "sql",
+  "title": "Cheapest product per category",
+  "difficulty": "Medium",
+  "tags": [
+    "correlated-subquery"
+  ],
+  "statementMd": "For each category show the cheapest product (name and price).\n\nExpected columns: `category`, `name`, `price`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\nRow order does not matter.",
+  "hints": [
+    "Compare to `MIN(price)` in the same category."
+  ],
+  "solutionMd": "```sql\nSELECT p.category, p.name, p.price FROM products p WHERE p.price = (SELECT MIN(p2.price) FROM products p2 WHERE p2.category = p.category);\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "SELECT p.category, p.name, p.price FROM products p WHERE p.price = (SELECT MIN(p2.price) FROM products p2 WHERE p2.category = p.category);",
+    "orderMatters": false
+  },
+  "order": 338
+}

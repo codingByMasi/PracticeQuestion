@@ -1,0 +1,21 @@
+{
+  "slug": "prices-with-company-names",
+  "track": "sql",
+  "title": "Prices with company names",
+  "difficulty": "Easy",
+  "tags": [
+    "join"
+  ],
+  "statementMd": "Show company name and closing price for all rows on 2024-03-04.\n\nExpected columns: `company`, `close`.\n\nTables: `tickers`, `prices`.\n\nRow order does not matter.",
+  "hints": [
+    "Join prices to tickers."
+  ],
+  "solutionMd": "```sql\nSELECT t.company, p.close FROM prices p JOIN tickers t ON t.symbol = p.symbol WHERE p.trade_date = '2024-03-04';\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: tickers, prices\nSELECT\n",
+  "datasetId": "stocks",
+  "expected": {
+    "query": "SELECT t.company, p.close FROM prices p JOIN tickers t ON t.symbol = p.symbol WHERE p.trade_date = '2024-03-04';",
+    "orderMatters": false
+  },
+  "order": 164
+}

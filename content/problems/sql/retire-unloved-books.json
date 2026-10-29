@@ -1,0 +1,21 @@
+{
+  "slug": "retire-unloved-books",
+  "track": "sql",
+  "title": "Retire unloved books",
+  "difficulty": "Medium",
+  "tags": [
+    "dml"
+  ],
+  "statementMd": "Delete books that have never been loaned, then report how many books remain.\n\nExpected columns: `remaining`.\n\nTables: `authors`, `books`, `members`, `loans`.\n\nRow order does not matter.",
+  "hints": [
+    "`DELETE ... WHERE id NOT IN (SELECT book_id FROM loans)`."
+  ],
+  "solutionMd": "```sql\nDELETE FROM books WHERE id NOT IN (SELECT book_id FROM loans); SELECT COUNT(*) AS remaining FROM books;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: authors, books, members, loans\nSELECT\n",
+  "datasetId": "library",
+  "expected": {
+    "query": "DELETE FROM books WHERE id NOT IN (SELECT book_id FROM loans); SELECT COUNT(*) AS remaining FROM books;",
+    "orderMatters": false
+  },
+  "order": 363
+}

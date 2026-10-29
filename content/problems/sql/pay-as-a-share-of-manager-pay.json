@@ -1,0 +1,22 @@
+{
+  "slug": "pay-as-a-share-of-manager-pay",
+  "track": "sql",
+  "title": "Pay as a share of manager pay",
+  "difficulty": "Medium",
+  "tags": [
+    "self-join"
+  ],
+  "statementMd": "For every employee who has a manager, show their first name and their salary as a percentage of their manager's salary, rounded to 1 decimal.\n\nExpected columns: `first_name`, `pct_of_manager`.\n\nTables: `employees`, `departments`.\n\nRow order does not matter.",
+  "hints": [
+    "Join employees to their managers and divide.",
+    "Multiply by 100.0 to get a percentage."
+  ],
+  "solutionMd": "```sql\nSELECT e.first_name, ROUND(100.0 * e.salary / m.salary, 1) AS pct_of_manager FROM employees e JOIN employees m ON m.id = e.manager_id;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "SELECT e.first_name, ROUND(100.0 * e.salary / m.salary, 1) AS pct_of_manager FROM employees e JOIN employees m ON m.id = e.manager_id;",
+    "orderMatters": false
+  },
+  "order": 292
+}

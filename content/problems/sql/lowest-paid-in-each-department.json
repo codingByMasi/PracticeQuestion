@@ -1,0 +1,21 @@
+{
+  "slug": "lowest-paid-in-each-department",
+  "track": "sql",
+  "title": "Lowest paid in each department",
+  "difficulty": "Medium",
+  "tags": [
+    "correlated-subquery"
+  ],
+  "statementMd": "List the lowest-paid employee of each department (first name, department id, salary).\n\nExpected columns: `first_name`, `department_id`, `salary`.\n\nTables: `employees`, `departments`.\n\nRow order does not matter.",
+  "hints": [
+    "Compare to `MIN(salary)` of the same department."
+  ],
+  "solutionMd": "```sql\nSELECT e.first_name, e.department_id, e.salary FROM employees e WHERE e.department_id IS NOT NULL AND e.salary = (SELECT MIN(e2.salary) FROM employees e2 WHERE e2.department_id = e.department_id);\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "SELECT e.first_name, e.department_id, e.salary FROM employees e WHERE e.department_id IS NOT NULL AND e.salary = (SELECT MIN(e2.salary) FROM employees e2 WHERE e2.department_id = e.department_id);",
+    "orderMatters": false
+  },
+  "order": 346
+}

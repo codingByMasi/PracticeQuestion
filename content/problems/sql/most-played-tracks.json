@@ -1,0 +1,21 @@
+{
+  "slug": "most-played-tracks",
+  "track": "sql",
+  "title": "Most played tracks",
+  "difficulty": "Medium",
+  "tags": [
+    "join"
+  ],
+  "statementMd": "The 5 most played tracks with their play counts. Ties by track title then id.\n\nExpected columns: `title`, `plays`.\n\nTables: `artists`, `albums`, `tracks`, `listeners`, `plays`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Group plays by track."
+  ],
+  "solutionMd": "```sql\nSELECT t.title, COUNT(*) AS plays FROM plays p JOIN tracks t ON t.id = p.track_id GROUP BY t.id, t.title ORDER BY plays DESC, t.title, t.id LIMIT 5;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: artists, albums, tracks, listeners, plays\nSELECT\n",
+  "datasetId": "music",
+  "expected": {
+    "query": "SELECT t.title, COUNT(*) AS plays FROM plays p JOIN tracks t ON t.id = p.track_id GROUP BY t.id, t.title ORDER BY plays DESC, t.title, t.id LIMIT 5;",
+    "orderMatters": true
+  },
+  "order": 271
+}

@@ -1,0 +1,21 @@
+{
+  "slug": "ungraded-enrollments",
+  "track": "sql",
+  "title": "Ungraded enrollments",
+  "difficulty": "Easy",
+  "tags": [
+    "null"
+  ],
+  "statementMd": "How many enrollments have no score yet?\n\nExpected columns: `ungraded`.\n\nTables: `teachers`, `courses`, `students`, `enrollments`.\n\nRow order does not matter.",
+  "hints": [
+    "Count rows where `score IS NULL`."
+  ],
+  "solutionMd": "```sql\nSELECT COUNT(*) AS ungraded FROM enrollments WHERE score IS NULL;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: teachers, courses, students, enrollments\nSELECT\n",
+  "datasetId": "school",
+  "expected": {
+    "query": "SELECT COUNT(*) AS ungraded FROM enrollments WHERE score IS NULL;",
+    "orderMatters": false
+  },
+  "order": 55
+}

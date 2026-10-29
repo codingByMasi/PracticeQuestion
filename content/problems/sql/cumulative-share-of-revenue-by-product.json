@@ -1,0 +1,21 @@
+{
+  "slug": "cumulative-share-of-revenue-by-product",
+  "track": "sql",
+  "title": "Cumulative share of revenue by product",
+  "difficulty": "Hard",
+  "tags": [
+    "running-total"
+  ],
+  "statementMd": "Rank products by revenue (quantity * unit_price over non-cancelled orders), highest first, and show the cumulative percentage of total revenue (1 decimal). Show product name, revenue and cum_pct, with name as tie-break.\n\nExpected columns: `name`, `revenue`, `cum_pct`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Window `SUM` over a window `SUM`, ordered by revenue desc."
+  ],
+  "solutionMd": "```sql\nWITH r AS (SELECT p.name, SUM(oi.quantity * oi.unit_price) AS revenue FROM order_items oi JOIN orders o ON o.id = oi.order_id JOIN products p ON p.id = oi.product_id WHERE o.status <> 'cancelled' GROUP BY p.id) SELECT name, ROUND(revenue, 2) AS revenue, ROUND(100.0 * SUM(revenue) OVER (ORDER BY revenue DESC, name) / SUM(revenue) OVER (), 1) AS cum_pct FROM r ORDER BY revenue DESC, name;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "WITH r AS (SELECT p.name, SUM(oi.quantity * oi.unit_price) AS revenue FROM order_items oi JOIN orders o ON o.id = oi.order_id JOIN products p ON p.id = oi.product_id WHERE o.status <> 'cancelled' GROUP BY p.id) SELECT name, ROUND(revenue, 2) AS revenue, ROUND(100.0 * SUM(revenue) OVER (ORDER BY revenue DESC, name) / SUM(revenue) OVER (), 1) AS cum_pct FROM r ORDER BY revenue DESC, name;",
+    "orderMatters": true
+  },
+  "order": 478
+}

@@ -17,5 +17,6 @@
   "expected": {
     "query": "SELECT name, category, price FROM products ORDER BY category ASC, price DESC;",
     "orderMatters": true
-  }
+  },
+  "order": 167
 }

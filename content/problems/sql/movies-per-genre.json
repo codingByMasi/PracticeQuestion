@@ -1,0 +1,21 @@
+{
+  "slug": "movies-per-genre",
+  "track": "sql",
+  "title": "Movies per genre",
+  "difficulty": "Easy",
+  "tags": [
+    "group-by"
+  ],
+  "statementMd": "Count movies in each genre.\n\nExpected columns: `genre`, `movies`.\n\nTables: `movies`, `directors`, `reviews`.\n\nRow order does not matter.",
+  "hints": [
+    "`GROUP BY genre`."
+  ],
+  "solutionMd": "```sql\nSELECT genre, COUNT(*) AS movies FROM movies GROUP BY genre;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: movies, directors, reviews\nSELECT\n",
+  "datasetId": "movies",
+  "expected": {
+    "query": "SELECT genre, COUNT(*) AS movies FROM movies GROUP BY genre;",
+    "orderMatters": false
+  },
+  "order": 137
+}

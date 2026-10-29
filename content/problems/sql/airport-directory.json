@@ -1,0 +1,21 @@
+{
+  "slug": "airport-directory",
+  "track": "sql",
+  "title": "Airport directory",
+  "difficulty": "Easy",
+  "tags": [
+    "select"
+  ],
+  "statementMd": "List every airport's code, city and country.\n\nExpected columns: `code`, `city`, `country`.\n\nTables: `airlines`, `airports`, `flights`, `bookings`.\n\nRow order does not matter.",
+  "hints": [
+    "Select three columns."
+  ],
+  "solutionMd": "```sql\nSELECT code, city, country FROM airports;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: airlines, airports, flights, bookings\nSELECT\n",
+  "datasetId": "flights",
+  "expected": {
+    "query": "SELECT code, city, country FROM airports;",
+    "orderMatters": false
+  },
+  "order": 6
+}

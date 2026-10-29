@@ -1,0 +1,139 @@
+{
+  "slug": "max-points-on-a-line",
+  "track": "python",
+  "title": "Max points on a line",
+  "difficulty": "Hard",
+  "tags": [
+    "math"
+  ],
+  "statementMd": "Return the maximum number of points (distinct integer coordinates `[x, y]`) that lie on the same straight line.\n\n**Example:** `max_points_on_line([[1, 1], [2, 2], [3, 3]])` returns `3`.",
+  "hints": [
+    "For each point count slopes as reduced fractions."
+  ],
+  "solutionMd": "```python\ndef max_points_on_line(points):\n    from math import gcd\n    n = len(points)\n    if n <= 2:\n        return n\n    best = 1\n    for i in range(n):\n        slopes = {}\n        for j in range(i + 1, n):\n            dx, dy = points[j][0] - points[i][0], points[j][1] - points[i][1]\n            g = gcd(dx, dy)\n            dx, dy = dx // g, dy // g\n            if dx < 0 or (dx == 0 and dy < 0):\n                dx, dy = -dx, -dy\n            slopes[(dx, dy)] = slopes.get((dx, dy), 0) + 1\n        if slopes:\n            best = max(best, max(slopes.values()) + 1)\n    return best\n```\n\nNormalised direction vectors avoid float errors.",
+  "starterCode": "def max_points_on_line(points):\n    # Write your code here\n    pass\n",
+  "functionName": "max_points_on_line",
+  "referenceSolution": "def max_points_on_line(points):\n    from math import gcd\n    n = len(points)\n    if n <= 2:\n        return n\n    best = 1\n    for i in range(n):\n        slopes = {}\n        for j in range(i + 1, n):\n            dx, dy = points[j][0] - points[i][0], points[j][1] - points[i][1]\n            g = gcd(dx, dy)\n            dx, dy = dx // g, dy // g\n            if dx < 0 or (dx == 0 and dy < 0):\n                dx, dy = -dx, -dy\n            slopes[(dx, dy)] = slopes.get((dx, dy), 0) + 1\n        if slopes:\n            best = max(best, max(slopes.values()) + 1)\n    return best\n",
+  "tests": [
+    {
+      "args": [
+        [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            3
+          ]
+        ]
+      ],
+      "expected": 3,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            1,
+            1
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            5,
+            3
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            1,
+            4
+          ]
+        ]
+      ],
+      "expected": 4,
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            0,
+            0
+          ]
+        ]
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ]
+      ],
+      "expected": 3,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            0,
+            9
+          ],
+          [
+            3,
+            3
+          ]
+        ]
+      ],
+      "expected": 3,
+      "hidden": true
+    }
+  ],
+  "order": 380
+}

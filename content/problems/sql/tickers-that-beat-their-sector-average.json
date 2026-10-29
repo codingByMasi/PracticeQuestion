@@ -1,0 +1,21 @@
+{
+  "slug": "tickers-that-beat-their-sector-average",
+  "track": "sql",
+  "title": "Tickers that beat their sector average",
+  "difficulty": "Hard",
+  "tags": [
+    "correlated-subquery"
+  ],
+  "statementMd": "List tickers whose total return (last close vs first close, in percent, 2 decimals) beat the average total return of tickers in the same sector. Show symbol, sector, return_pct.\n\nExpected columns: `symbol`, `sector`, `return_pct`.\n\nTables: `tickers`, `prices`.\n\nRow order does not matter.",
+  "hints": [
+    "Compute return per ticker first, then window `AVG` per sector."
+  ],
+  "solutionMd": "```sql\nWITH f AS (SELECT symbol, FIRST_VALUE(close) OVER (PARTITION BY symbol ORDER BY trade_date) AS first_close, FIRST_VALUE(close) OVER (PARTITION BY symbol ORDER BY trade_date DESC) AS last_close FROM prices), r AS (SELECT DISTINCT symbol, 100.0 * (last_close - first_close) / first_close AS ret FROM f), j AS (SELECT r.symbol, t.sector, r.ret, AVG(r.ret) OVER (PARTITION BY t.sector) AS sector_avg FROM r JOIN tickers t ON t.symbol = r.symbol) SELECT symbol, sector, ROUND(ret, 2) AS return_pct FROM j WHERE ret > sector_avg;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: tickers, prices\nSELECT\n",
+  "datasetId": "stocks",
+  "expected": {
+    "query": "WITH f AS (SELECT symbol, FIRST_VALUE(close) OVER (PARTITION BY symbol ORDER BY trade_date) AS first_close, FIRST_VALUE(close) OVER (PARTITION BY symbol ORDER BY trade_date DESC) AS last_close FROM prices), r AS (SELECT DISTINCT symbol, 100.0 * (last_close - first_close) / first_close AS ret FROM f), j AS (SELECT r.symbol, t.sector, r.ret, AVG(r.ret) OVER (PARTITION BY t.sector) AS sector_avg FROM r JOIN tickers t ON t.symbol = r.symbol) SELECT symbol, sector, ROUND(ret, 2) AS return_pct FROM j WHERE ret > sector_avg;",
+    "orderMatters": false
+  },
+  "order": 396
+}

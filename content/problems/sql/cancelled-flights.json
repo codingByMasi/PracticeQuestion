@@ -1,0 +1,21 @@
+{
+  "slug": "cancelled-flights",
+  "track": "sql",
+  "title": "Cancelled flights",
+  "difficulty": "Easy",
+  "tags": [
+    "where"
+  ],
+  "statementMd": "How many flights were cancelled? Show the count.\n\nExpected columns: `cancelled`.\n\nTables: `airlines`, `airports`, `flights`, `bookings`.\n\nRow order does not matter.",
+  "hints": [
+    "Filter on status."
+  ],
+  "solutionMd": "```sql\nSELECT COUNT(*) AS cancelled FROM flights WHERE status = 'cancelled';\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: airlines, airports, flights, bookings\nSELECT\n",
+  "datasetId": "flights",
+  "expected": {
+    "query": "SELECT COUNT(*) AS cancelled FROM flights WHERE status = 'cancelled';",
+    "orderMatters": false
+  },
+  "order": 26
+}

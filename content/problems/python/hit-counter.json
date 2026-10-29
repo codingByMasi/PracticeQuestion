@@ -1,0 +1,137 @@
+{
+  "slug": "hit-counter",
+  "track": "python",
+  "title": "Hit counter",
+  "difficulty": "Medium",
+  "tags": [
+    "design"
+  ],
+  "statementMd": "Count hits in the last 300 seconds. `['hit', t]` records a hit at time `t`; `['count', t]` returns the number of hits with `t - 300 < time <= t`. Times are non-decreasing. Return the results of `count` operations.\n\n**Example:** `hit_counter([[\"hit\", 1], [\"hit\", 2], [\"hit\", 3], [\"count\", 4], [\"hit\", …)` returns `[3, 4, 3]`.",
+  "hints": [
+    "Keep a deque of timestamps and drop old ones."
+  ],
+  "solutionMd": "```python\ndef hit_counter(ops):\n    from collections import deque\n    hits = deque()\n    out = []\n    for op in ops:\n        t = op[1]\n        if op[0] == 'hit':\n            hits.append(t)\n        else:\n            while hits and hits[0] <= t - 300:\n                hits.popleft()\n            out.append(len(hits))\n    return out\n```\n\nExpire from the front.",
+  "starterCode": "def hit_counter(ops):\n    # Write your code here\n    pass\n",
+  "functionName": "hit_counter",
+  "referenceSolution": "def hit_counter(ops):\n    from collections import deque\n    hits = deque()\n    out = []\n    for op in ops:\n        t = op[1]\n        if op[0] == 'hit':\n            hits.append(t)\n        else:\n            while hits and hits[0] <= t - 300:\n                hits.popleft()\n            out.append(len(hits))\n    return out\n",
+  "tests": [
+    {
+      "args": [
+        [
+          [
+            "hit",
+            1
+          ],
+          [
+            "hit",
+            2
+          ],
+          [
+            "hit",
+            3
+          ],
+          [
+            "count",
+            4
+          ],
+          [
+            "hit",
+            300
+          ],
+          [
+            "count",
+            300
+          ],
+          [
+            "count",
+            301
+          ]
+        ]
+      ],
+      "expected": [
+        3,
+        4,
+        3
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            "count",
+            5
+          ]
+        ]
+      ],
+      "expected": [
+        0
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            "hit",
+            1
+          ],
+          [
+            "count",
+            301
+          ]
+        ]
+      ],
+      "expected": [
+        0
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            "hit",
+            1
+          ],
+          [
+            "hit",
+            1
+          ],
+          [
+            "count",
+            1
+          ]
+        ]
+      ],
+      "expected": [
+        2
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            "hit",
+            1
+          ],
+          [
+            "count",
+            300
+          ],
+          [
+            "count",
+            301
+          ]
+        ]
+      ],
+      "expected": [
+        1,
+        0
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 373
+}

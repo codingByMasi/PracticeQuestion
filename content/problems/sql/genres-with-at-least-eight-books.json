@@ -1,0 +1,21 @@
+{
+  "slug": "genres-with-at-least-eight-books",
+  "track": "sql",
+  "title": "Genres with at least eight books",
+  "difficulty": "Easy",
+  "tags": [
+    "having"
+  ],
+  "statementMd": "Which genres have at least 8 books?\n\nExpected columns: `genre`, `books`.\n\nTables: `authors`, `books`, `members`, `loans`.\n\nRow order does not matter.",
+  "hints": [
+    "`HAVING COUNT(*) >= 8`."
+  ],
+  "solutionMd": "```sql\nSELECT genre, COUNT(*) AS books FROM books GROUP BY genre HAVING COUNT(*) >= 8;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: authors, books, members, loans\nSELECT\n",
+  "datasetId": "library",
+  "expected": {
+    "query": "SELECT genre, COUNT(*) AS books FROM books GROUP BY genre HAVING COUNT(*) >= 8;",
+    "orderMatters": false
+  },
+  "order": 151
+}

@@ -1,0 +1,55 @@
+{
+  "slug": "sum-of-squares",
+  "track": "python",
+  "title": "Sum of squares",
+  "difficulty": "Easy",
+  "tags": [
+    "loops"
+  ],
+  "statementMd": "Return `1² + 2² + ... + n²` (0 if `n < 1`).\n\n**Example:** `sum_of_squares(3)` returns `14`.",
+  "hints": [
+    "Loop and accumulate `i * i`."
+  ],
+  "solutionMd": "```python\ndef sum_of_squares(n):\n    return sum(i * i for i in range(1, n + 1))\n```\n\nA generator expression sums lazily.",
+  "starterCode": "def sum_of_squares(n):\n    # Write your code here\n    pass\n",
+  "functionName": "sum_of_squares",
+  "referenceSolution": "def sum_of_squares(n):\n    return sum(i * i for i in range(1, n + 1))\n",
+  "tests": [
+    {
+      "args": [
+        3
+      ],
+      "expected": 14,
+      "hidden": false
+    },
+    {
+      "args": [
+        10
+      ],
+      "expected": 385,
+      "hidden": false
+    },
+    {
+      "args": [
+        0
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        1
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        100
+      ],
+      "expected": 338350,
+      "hidden": true
+    }
+  ],
+  "order": 40
+}

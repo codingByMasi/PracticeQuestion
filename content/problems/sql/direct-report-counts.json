@@ -1,0 +1,21 @@
+{
+  "slug": "direct-report-counts",
+  "track": "sql",
+  "title": "Direct report counts",
+  "difficulty": "Medium",
+  "tags": [
+    "group-by"
+  ],
+  "statementMd": "For each manager, show their first name and how many direct reports they have.\n\nExpected columns: `first_name`, `reports`.\n\nTables: `employees`, `departments`.\n\nRow order does not matter.",
+  "hints": [
+    "Group the employees by `manager_id`, then join back for the name."
+  ],
+  "solutionMd": "```sql\nSELECT m.first_name, COUNT(*) AS reports FROM employees e JOIN employees m ON m.id = e.manager_id GROUP BY m.id, m.first_name;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "SELECT m.first_name, COUNT(*) AS reports FROM employees e JOIN employees m ON m.id = e.manager_id GROUP BY m.id, m.first_name;",
+    "orderMatters": false
+  },
+  "order": 230
+}

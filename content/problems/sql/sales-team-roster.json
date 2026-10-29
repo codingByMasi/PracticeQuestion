@@ -1,0 +1,21 @@
+{
+  "slug": "sales-team-roster",
+  "track": "sql",
+  "title": "Sales team roster",
+  "difficulty": "Easy",
+  "tags": [
+    "where"
+  ],
+  "statementMd": "List the first and last names of everyone in the Sales department (`department_id = 2`).\n\nExpected columns: `first_name`, `last_name`.\n\nTables: `employees`, `departments`.\n\nRow order does not matter.",
+  "hints": [
+    "Filter with `WHERE department_id = 2`."
+  ],
+  "solutionMd": "```sql\nSELECT first_name, last_name FROM employees WHERE department_id = 2;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "SELECT first_name, last_name FROM employees WHERE department_id = 2;",
+    "orderMatters": false
+  },
+  "order": 21
+}

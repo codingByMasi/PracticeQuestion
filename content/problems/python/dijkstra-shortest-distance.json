@@ -1,0 +1,129 @@
+{
+  "slug": "dijkstra-shortest-distance",
+  "track": "python",
+  "title": "Dijkstra shortest distance",
+  "difficulty": "Hard",
+  "tags": [
+    "graphs"
+  ],
+  "statementMd": "Weighted directed graph: edges are `[from, to, weight]` with non-negative integer weights. Return the shortest distance from `src` to `dst`, or `-1` if unreachable.\n\n**Example:** `dijkstra(4, [[0, 1, 1], [1, 2, 2], [0, 2, 5], [2, 3, 1]], 0, 3)` returns `4`.",
+  "hints": [
+    "Priority queue of (distance, node)."
+  ],
+  "solutionMd": "```python\nfrom collections import deque, defaultdict\n\n\ndef dijkstra(n, edges, src, dst):\n    import heapq\n    adj = defaultdict(list)\n    for a, b, w in edges:\n        adj[a].append((b, w))\n    dist = {src: 0}\n    heap = [(0, src)]\n    while heap:\n        d, u = heapq.heappop(heap)\n        if d > dist.get(u, float('inf')):\n            continue\n        for v, w in adj[u]:\n            nd = d + w\n            if nd < dist.get(v, float('inf')):\n                dist[v] = nd\n                heapq.heappush(heap, (nd, v))\n    return dist.get(dst, -1)\n```\n\nSkip stale heap entries.",
+  "starterCode": "def dijkstra(n, edges, src, dst):\n    # Write your code here\n    pass\n",
+  "functionName": "dijkstra",
+  "referenceSolution": "from collections import deque, defaultdict\n\n\ndef dijkstra(n, edges, src, dst):\n    import heapq\n    adj = defaultdict(list)\n    for a, b, w in edges:\n        adj[a].append((b, w))\n    dist = {src: 0}\n    heap = [(0, src)]\n    while heap:\n        d, u = heapq.heappop(heap)\n        if d > dist.get(u, float('inf')):\n            continue\n        for v, w in adj[u]:\n            nd = d + w\n            if nd < dist.get(v, float('inf')):\n                dist[v] = nd\n                heapq.heappush(heap, (nd, v))\n    return dist.get(dst, -1)\n",
+  "tests": [
+    {
+      "args": [
+        4,
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            2,
+            2
+          ],
+          [
+            0,
+            2,
+            5
+          ],
+          [
+            2,
+            3,
+            1
+          ]
+        ],
+        0,
+        3
+      ],
+      "expected": 4,
+      "hidden": false
+    },
+    {
+      "args": [
+        3,
+        [
+          [
+            0,
+            1,
+            4
+          ]
+        ],
+        0,
+        2
+      ],
+      "expected": -1,
+      "hidden": false
+    },
+    {
+      "args": [
+        1,
+        [],
+        0,
+        0
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        3,
+        [
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            1,
+            2,
+            0
+          ]
+        ],
+        0,
+        2
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        4,
+        [
+          [
+            0,
+            1,
+            10
+          ],
+          [
+            0,
+            2,
+            3
+          ],
+          [
+            2,
+            1,
+            4
+          ],
+          [
+            1,
+            3,
+            1
+          ]
+        ],
+        0,
+        3
+      ],
+      "expected": 8,
+      "hidden": true
+    }
+  ],
+  "order": 467
+}

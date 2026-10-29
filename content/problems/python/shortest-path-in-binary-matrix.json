@@ -1,0 +1,109 @@
+{
+  "slug": "shortest-path-in-binary-matrix",
+  "track": "python",
+  "title": "Shortest path in binary matrix",
+  "difficulty": "Hard",
+  "tags": [
+    "graphs"
+  ],
+  "statementMd": "Cells are `0` (open) or `1` (blocked). Move in 8 directions through open cells from top-left to bottom-right. Return the number of cells on the shortest path, or `-1`.\n\n**Example:** `shortest_path_binary([[0, 1], [1, 0]])` returns `2`.",
+  "hints": [
+    "BFS with 8 neighbours."
+  ],
+  "solutionMd": "```python\nfrom collections import deque, defaultdict\n\n\ndef shortest_path_binary(grid):\n    n = len(grid)\n    if grid[0][0] or grid[n - 1][n - 1]:\n        return -1\n    q = deque([(0, 0, 1)])\n    seen = {(0, 0)}\n    while q:\n        r, c, d = q.popleft()\n        if (r, c) == (n - 1, n - 1):\n            return d\n        for dr in (-1, 0, 1):\n            for dc in (-1, 0, 1):\n                nr, nc = r + dr, c + dc\n                if 0 <= nr < n and 0 <= nc < n and not grid[nr][nc] and (nr, nc) not in seen:\n                    seen.add((nr, nc)); q.append((nr, nc, d + 1))\n    return -1\n```\n\nStart counts as one cell.",
+  "starterCode": "def shortest_path_binary(grid):\n    # Write your code here\n    pass\n",
+  "functionName": "shortest_path_binary",
+  "referenceSolution": "from collections import deque, defaultdict\n\n\ndef shortest_path_binary(grid):\n    n = len(grid)\n    if grid[0][0] or grid[n - 1][n - 1]:\n        return -1\n    q = deque([(0, 0, 1)])\n    seen = {(0, 0)}\n    while q:\n        r, c, d = q.popleft()\n        if (r, c) == (n - 1, n - 1):\n            return d\n        for dr in (-1, 0, 1):\n            for dc in (-1, 0, 1):\n                nr, nc = r + dr, c + dc\n                if 0 <= nr < n and 0 <= nc < n and not grid[nr][nc] and (nr, nc) not in seen:\n                    seen.add((nr, nc)); q.append((nr, nc, d + 1))\n    return -1\n",
+  "tests": [
+    {
+      "args": [
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      ],
+      "expected": 2,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            1,
+            0
+          ]
+        ]
+      ],
+      "expected": 4,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      ],
+      "expected": -1,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            0
+          ]
+        ]
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      ],
+      "expected": -1,
+      "hidden": true
+    }
+  ],
+  "order": 474
+}

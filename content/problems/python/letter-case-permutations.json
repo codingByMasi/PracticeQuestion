@@ -1,0 +1,72 @@
+{
+  "slug": "letter-case-permutations",
+  "track": "python",
+  "title": "Letter case permutations",
+  "difficulty": "Medium",
+  "tags": [
+    "backtracking"
+  ],
+  "statementMd": "Return every string obtained by changing each letter of `s` to upper or lower case independently, sorted. Digits stay.\n\n**Example:** `letter_case_permutations(\"a1b\")` returns `[\"A1B\", \"A1b\", \"a1B\", \"a1b\"]`.",
+  "hints": [
+    "Branch only at letters."
+  ],
+  "solutionMd": "```python\ndef letter_case_permutations(s):\n    out = ['']\n    for c in s:\n        if c.isalpha():\n            out = [p + x for p in out for x in (c.lower(), c.upper())]\n        else:\n            out = [p + c for p in out]\n    return sorted(set(out))\n```\n\nEach letter doubles the results.",
+  "starterCode": "def letter_case_permutations(s):\n    # Write your code here\n    pass\n",
+  "functionName": "letter_case_permutations",
+  "referenceSolution": "def letter_case_permutations(s):\n    out = ['']\n    for c in s:\n        if c.isalpha():\n            out = [p + x for p in out for x in (c.lower(), c.upper())]\n        else:\n            out = [p + c for p in out]\n    return sorted(set(out))\n",
+  "tests": [
+    {
+      "args": [
+        "a1b"
+      ],
+      "expected": [
+        "A1B",
+        "A1b",
+        "a1B",
+        "a1b"
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        "3"
+      ],
+      "expected": [
+        "3"
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        ""
+      ],
+      "expected": [
+        ""
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        "ab"
+      ],
+      "expected": [
+        "AB",
+        "Ab",
+        "aB",
+        "ab"
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        "A"
+      ],
+      "expected": [
+        "A",
+        "a"
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 336
+}

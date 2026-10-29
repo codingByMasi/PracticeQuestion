@@ -1,0 +1,139 @@
+{
+  "slug": "find-words-in-a-grid",
+  "track": "python",
+  "title": "Find words in a grid",
+  "difficulty": "Hard",
+  "tags": [
+    "backtracking"
+  ],
+  "statementMd": "Return the sorted list of words from `words` that can be traced in the letter grid through adjacent (up/down/left/right) cells without reusing a cell within a word.\n\n**Example:** `find_words_grid([[\"o\", \"a\", \"a\", \"n\"], [\"e\", \"t\", \"a\", \"e\"], [\"i\", \"h\", \"k\"…, [\"oath\", \"pea\", \"eat\", \"rain\"])` returns `[\"eat\", \"oath\"]`.",
+  "hints": [
+    "DFS for each word, or a trie."
+  ],
+  "solutionMd": "```python\ndef find_words_grid(board, words):\n    R, C = len(board), len(board[0])\n    def exists(word):\n        def go(r, c, i):\n            if i == len(word):\n                return True\n            if not (0 <= r < R and 0 <= c < C) or board[r][c] != word[i]:\n                return False\n            saved, board[r][c] = board[r][c], '#'\n            ok = any(go(r + dr, c + dc, i + 1) for dr, dc in ((1, 0), (-1, 0), (0, 1), (0, -1)))\n            board[r][c] = saved\n            return ok\n        return any(go(r, c, 0) for r in range(R) for c in range(C))\n    return sorted(w for w in set(words) if exists(w))\n```\n\nReuse the single-word search.",
+  "starterCode": "def find_words_grid(board, words):\n    # Write your code here\n    pass\n",
+  "functionName": "find_words_grid",
+  "referenceSolution": "def find_words_grid(board, words):\n    R, C = len(board), len(board[0])\n    def exists(word):\n        def go(r, c, i):\n            if i == len(word):\n                return True\n            if not (0 <= r < R and 0 <= c < C) or board[r][c] != word[i]:\n                return False\n            saved, board[r][c] = board[r][c], '#'\n            ok = any(go(r + dr, c + dc, i + 1) for dr, dc in ((1, 0), (-1, 0), (0, 1), (0, -1)))\n            board[r][c] = saved\n            return ok\n        return any(go(r, c, 0) for r in range(R) for c in range(C))\n    return sorted(w for w in set(words) if exists(w))\n",
+  "tests": [
+    {
+      "args": [
+        [
+          [
+            "o",
+            "a",
+            "a",
+            "n"
+          ],
+          [
+            "e",
+            "t",
+            "a",
+            "e"
+          ],
+          [
+            "i",
+            "h",
+            "k",
+            "r"
+          ],
+          [
+            "i",
+            "f",
+            "l",
+            "v"
+          ]
+        ],
+        [
+          "oath",
+          "pea",
+          "eat",
+          "rain"
+        ]
+      ],
+      "expected": [
+        "eat",
+        "oath"
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            "a",
+            "b"
+          ],
+          [
+            "c",
+            "d"
+          ]
+        ],
+        [
+          "abcb"
+        ]
+      ],
+      "expected": [],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            "a"
+          ]
+        ],
+        [
+          "a",
+          "b"
+        ]
+      ],
+      "expected": [
+        "a"
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            "a",
+            "a"
+          ]
+        ],
+        [
+          "aa",
+          "aaa"
+        ]
+      ],
+      "expected": [
+        "aa"
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            "a",
+            "b"
+          ],
+          [
+            "c",
+            "d"
+          ]
+        ],
+        [
+          "abdc",
+          "acdb",
+          "ad"
+        ]
+      ],
+      "expected": [
+        "abdc",
+        "acdb"
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 462
+}

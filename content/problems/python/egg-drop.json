@@ -1,0 +1,68 @@
+{
+  "slug": "egg-drop",
+  "track": "python",
+  "title": "Egg drop",
+  "difficulty": "Hard",
+  "tags": [
+    "dynamic-programming"
+  ],
+  "statementMd": "With `eggs` identical eggs and a building of `floors` floors, find the minimum number of drops needed in the worst case to determine the critical floor.\n\n**Example:** `egg_drop(1, 2)` returns `2`.",
+  "hints": [
+    "f(m, e) = f(m-1, e-1) + f(m-1, e) + 1 floors coverable."
+  ],
+  "solutionMd": "```python\ndef egg_drop(eggs, floors):\n    dp = [0] * (eggs + 1)\n    moves = 0\n    while dp[eggs] < floors:\n        moves += 1\n        for e in range(eggs, 0, -1):\n            dp[e] = dp[e] + dp[e - 1] + 1\n    return moves\n```\n\nCount how many floors m moves can cover.",
+  "starterCode": "def egg_drop(eggs, floors):\n    # Write your code here\n    pass\n",
+  "functionName": "egg_drop",
+  "referenceSolution": "def egg_drop(eggs, floors):\n    dp = [0] * (eggs + 1)\n    moves = 0\n    while dp[eggs] < floors:\n        moves += 1\n        for e in range(eggs, 0, -1):\n            dp[e] = dp[e] + dp[e - 1] + 1\n    return moves\n",
+  "tests": [
+    {
+      "args": [
+        1,
+        2
+      ],
+      "expected": 2,
+      "hidden": false
+    },
+    {
+      "args": [
+        2,
+        6
+      ],
+      "expected": 3,
+      "hidden": false
+    },
+    {
+      "args": [
+        3,
+        14
+      ],
+      "expected": 4,
+      "hidden": true
+    },
+    {
+      "args": [
+        2,
+        100
+      ],
+      "expected": 14,
+      "hidden": true
+    },
+    {
+      "args": [
+        1,
+        10
+      ],
+      "expected": 10,
+      "hidden": true
+    },
+    {
+      "args": [
+        10,
+        1
+      ],
+      "expected": 1,
+      "hidden": true
+    }
+  ],
+  "order": 451
+}

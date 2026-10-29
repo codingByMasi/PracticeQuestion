@@ -1,0 +1,21 @@
+{
+  "slug": "not-yet-delivered",
+  "track": "sql",
+  "title": "Not yet delivered",
+  "difficulty": "Easy",
+  "tags": [
+    "where"
+  ],
+  "statementMd": "List order ids whose status is either `shipped` or `pending`.\n\nExpected columns: `id`, `status`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\nRow order does not matter.",
+  "hints": [
+    "`IN ('shipped', 'pending')`."
+  ],
+  "solutionMd": "```sql\nSELECT id, status FROM orders WHERE status IN ('shipped', 'pending');\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "SELECT id, status FROM orders WHERE status IN ('shipped', 'pending');",
+    "orderMatters": false
+  },
+  "order": 20
+}

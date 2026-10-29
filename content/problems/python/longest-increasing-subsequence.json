@@ -1,0 +1,140 @@
+{
+  "slug": "longest-increasing-subsequence",
+  "track": "python",
+  "title": "Longest increasing subsequence",
+  "difficulty": "Medium",
+  "tags": [
+    "dynamic-programming"
+  ],
+  "statementMd": "Return the length of the longest strictly increasing subsequence.\n\n**Example:** `lis_length([10, 9, 2, 5, 3, 7, 101, 18])` returns `4`.",
+  "hints": [
+    "O(n log n) with patience sorting and binary search."
+  ],
+  "solutionMd": "```python\ndef lis_length(nums):\n    import bisect\n    tails = []\n    for x in nums:\n        i = bisect.bisect_left(tails, x)\n        if i == len(tails):\n            tails.append(x)\n        else:\n            tails[i] = x\n    return len(tails)\n```\n\n`tails[i]` is the smallest tail of an increasing subsequence of length i+1.",
+  "starterCode": "def lis_length(nums):\n    # Write your code here\n    pass\n",
+  "functionName": "lis_length",
+  "referenceSolution": "def lis_length(nums):\n    import bisect\n    tails = []\n    for x in nums:\n        i = bisect.bisect_left(tails, x)\n        if i == len(tails):\n            tails.append(x)\n        else:\n            tails[i] = x\n    return len(tails)\n",
+  "tests": [
+    {
+      "args": [
+        [
+          10,
+          9,
+          2,
+          5,
+          3,
+          7,
+          101,
+          18
+        ]
+      ],
+      "expected": 4,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          0,
+          1,
+          0,
+          3,
+          2,
+          3
+        ]
+      ],
+      "expected": 4,
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          7,
+          7,
+          7
+        ]
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          2,
+          3,
+          4
+        ]
+      ],
+      "expected": 4,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          4,
+          3,
+          2,
+          1
+        ]
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          15,
+          2,
+          15,
+          8,
+          9,
+          3,
+          8,
+          14,
+          3,
+          13,
+          4,
+          12
+        ]
+      ],
+      "expected": 4,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          12,
+          11,
+          4,
+          13,
+          11,
+          12,
+          14,
+          0
+        ]
+      ],
+      "expected": 4,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          5,
+          14,
+          1,
+          1
+        ]
+      ],
+      "expected": 2,
+      "hidden": true
+    }
+  ],
+  "order": 320
+}

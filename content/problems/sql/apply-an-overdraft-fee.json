@@ -1,0 +1,21 @@
+{
+  "slug": "apply-an-overdraft-fee",
+  "track": "sql",
+  "title": "Apply an overdraft fee",
+  "difficulty": "Medium",
+  "tags": [
+    "dml"
+  ],
+  "statementMd": "Insert a fee transaction of -35 (kind `fee`, date `2024-07-01`, id 901) for every account whose balance is negative, then report how many fee rows were inserted in total with that date.\n\nExpected columns: `inserted`.\n\nTables: `customers`, `accounts`, `transactions`.\n\nRow order does not matter.",
+  "hints": [
+    "`INSERT INTO ... SELECT` over a grouped query."
+  ],
+  "solutionMd": "```sql\nINSERT INTO transactions (id, account_id, tx_date, amount, kind, merchant) SELECT 900 + ROW_NUMBER() OVER (ORDER BY account_id), account_id, '2024-07-01', -35, 'fee', NULL FROM transactions GROUP BY account_id HAVING SUM(amount) < 0; SELECT COUNT(*) AS inserted FROM transactions WHERE tx_date = '2024-07-01';\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, accounts, transactions\nSELECT\n",
+  "datasetId": "bank",
+  "expected": {
+    "query": "INSERT INTO transactions (id, account_id, tx_date, amount, kind, merchant) SELECT 900 + ROW_NUMBER() OVER (ORDER BY account_id), account_id, '2024-07-01', -35, 'fee', NULL FROM transactions GROUP BY account_id HAVING SUM(amount) < 0; SELECT COUNT(*) AS inserted FROM transactions WHERE tx_date = '2024-07-01';",
+    "orderMatters": false
+  },
+  "order": 354
+}

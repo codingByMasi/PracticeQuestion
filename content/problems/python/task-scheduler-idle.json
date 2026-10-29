@@ -1,0 +1,99 @@
+{
+  "slug": "task-scheduler-idle",
+  "track": "python",
+  "title": "Task scheduler idle",
+  "difficulty": "Hard",
+  "tags": [
+    "greedy"
+  ],
+  "statementMd": "Each task (a letter) takes one unit; identical tasks must be at least `n` units apart (idle units allowed). Return the least number of units to finish all tasks.\n\n**Example:** `least_interval([\"A\", \"A\", \"A\", \"B\", \"B\", \"B\"], 2)` returns `8`.",
+  "hints": [
+    "The most frequent task dictates the frame."
+  ],
+  "solutionMd": "```python\ndef least_interval(tasks, n):\n    counts = {}\n    for t in tasks:\n        counts[t] = counts.get(t, 0) + 1\n    hi = max(counts.values())\n    ties = sum(1 for v in counts.values() if v == hi)\n    return max(len(tasks), (hi - 1) * (n + 1) + ties)\n```\n\nFrames of n+1 slots, filled by the other tasks.",
+  "starterCode": "def least_interval(tasks, n):\n    # Write your code here\n    pass\n",
+  "functionName": "least_interval",
+  "referenceSolution": "def least_interval(tasks, n):\n    counts = {}\n    for t in tasks:\n        counts[t] = counts.get(t, 0) + 1\n    hi = max(counts.values())\n    ties = sum(1 for v in counts.values() if v == hi)\n    return max(len(tasks), (hi - 1) * (n + 1) + ties)\n",
+  "tests": [
+    {
+      "args": [
+        [
+          "A",
+          "A",
+          "A",
+          "B",
+          "B",
+          "B"
+        ],
+        2
+      ],
+      "expected": 8,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          "A",
+          "A",
+          "A",
+          "B",
+          "B",
+          "B"
+        ],
+        0
+      ],
+      "expected": 6,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          "A"
+        ],
+        5
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          "A",
+          "A"
+        ],
+        2
+      ],
+      "expected": 4,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          "A",
+          "B",
+          "C"
+        ],
+        3
+      ],
+      "expected": 3,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          "A",
+          "A",
+          "A",
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        1
+      ],
+      "expected": 7,
+      "hidden": true
+    }
+  ],
+  "order": 435
+}

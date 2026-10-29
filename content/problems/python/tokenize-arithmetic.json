@@ -1,0 +1,77 @@
+{
+  "slug": "tokenize-arithmetic",
+  "track": "python",
+  "title": "Tokenize arithmetic",
+  "difficulty": "Medium",
+  "tags": [
+    "parsing"
+  ],
+  "statementMd": "Split an arithmetic expression into tokens: integers (as strings of digits), operators `+ - * /` and parentheses. Spaces are ignored.\n\n**Example:** `tokenize_expr(\"12+(3*45)\")` returns `[\"12\", \"+\", \"(\", \"3\", \"*\", \"45\", \")\"]`.",
+  "hints": [
+    "Accumulate digits until a non-digit."
+  ],
+  "solutionMd": "```python\ndef tokenize_expr(s):\n    tokens, num = [], ''\n    for c in s:\n        if c.isdigit():\n            num += c\n        else:\n            if num:\n                tokens.append(num); num = ''\n            if c in '+-*/()':\n                tokens.append(c)\n    if num:\n        tokens.append(num)\n    return tokens\n```\n\nFlush the number buffer at each non-digit.",
+  "starterCode": "def tokenize_expr(s):\n    # Write your code here\n    pass\n",
+  "functionName": "tokenize_expr",
+  "referenceSolution": "def tokenize_expr(s):\n    tokens, num = [], ''\n    for c in s:\n        if c.isdigit():\n            num += c\n        else:\n            if num:\n                tokens.append(num); num = ''\n            if c in '+-*/()':\n                tokens.append(c)\n    if num:\n        tokens.append(num)\n    return tokens\n",
+  "tests": [
+    {
+      "args": [
+        "12+(3*45)"
+      ],
+      "expected": [
+        "12",
+        "+",
+        "(",
+        "3",
+        "*",
+        "45",
+        ")"
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        "7"
+      ],
+      "expected": [
+        "7"
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        ""
+      ],
+      "expected": [],
+      "hidden": true
+    },
+    {
+      "args": [
+        "1 + 2"
+      ],
+      "expected": [
+        "1",
+        "+",
+        "2"
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        "(10)/(2)"
+      ],
+      "expected": [
+        "(",
+        "10",
+        ")",
+        "/",
+        "(",
+        "2",
+        ")"
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 297
+}

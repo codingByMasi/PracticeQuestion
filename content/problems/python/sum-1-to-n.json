@@ -1,0 +1,62 @@
+{
+  "slug": "sum-1-to-n",
+  "track": "python",
+  "title": "Sum 1 to n",
+  "difficulty": "Easy",
+  "tags": [
+    "loops"
+  ],
+  "statementMd": "Return the sum of the integers from 1 to `n` inclusive (0 if `n` is less than 1).\n\n**Example:** `sum_to_n(5)` returns `15`.",
+  "hints": [
+    "Loop with `range(1, n + 1)` or use the formula."
+  ],
+  "solutionMd": "```python\ndef sum_to_n(n):\n    total = 0\n    for i in range(1, n + 1):\n        total += i\n    return total\n```\n\n`range` is empty when n < 1, so the total stays 0.",
+  "starterCode": "def sum_to_n(n):\n    # Write your code here\n    pass\n",
+  "functionName": "sum_to_n",
+  "referenceSolution": "def sum_to_n(n):\n    total = 0\n    for i in range(1, n + 1):\n        total += i\n    return total\n",
+  "tests": [
+    {
+      "args": [
+        5
+      ],
+      "expected": 15,
+      "hidden": false
+    },
+    {
+      "args": [
+        10
+      ],
+      "expected": 55,
+      "hidden": false
+    },
+    {
+      "args": [
+        0
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        1
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        100
+      ],
+      "expected": 5050,
+      "hidden": true
+    },
+    {
+      "args": [
+        -4
+      ],
+      "expected": 0,
+      "hidden": true
+    }
+  ],
+  "order": 35
+}

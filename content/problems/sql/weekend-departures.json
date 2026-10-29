@@ -1,0 +1,21 @@
+{
+  "slug": "weekend-departures",
+  "track": "sql",
+  "title": "Weekend departures",
+  "difficulty": "Medium",
+  "tags": [
+    "dates"
+  ],
+  "statementMd": "How many flights depart on a Saturday or Sunday? (`strftime('%w')` gives 0 for Sunday and 6 for Saturday.)\n\nExpected columns: `weekend_flights`.\n\nTables: `airlines`, `airports`, `flights`, `bookings`.\n\nRow order does not matter.",
+  "hints": [
+    "`IN ('0', '6')`."
+  ],
+  "solutionMd": "```sql\nSELECT COUNT(*) AS weekend_flights FROM flights WHERE strftime('%w', depart_date) IN ('0', '6');\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: airlines, airports, flights, bookings\nSELECT\n",
+  "datasetId": "flights",
+  "expected": {
+    "query": "SELECT COUNT(*) AS weekend_flights FROM flights WHERE strftime('%w', depart_date) IN ('0', '6');",
+    "orderMatters": false
+  },
+  "order": 192
+}

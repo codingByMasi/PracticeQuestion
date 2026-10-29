@@ -1,0 +1,21 @@
+{
+  "slug": "largest-team-by-direct-reports",
+  "track": "sql",
+  "title": "Largest team by direct reports",
+  "difficulty": "Medium",
+  "tags": [
+    "subquery"
+  ],
+  "statementMd": "Which manager has the most direct reports? Show their first name and the count. (There is no tie.)\n\nExpected columns: `first_name`, `reports`.\n\nTables: `employees`, `departments`.\n\nRow order does not matter.",
+  "hints": [
+    "Group by manager, order by count descending, take one."
+  ],
+  "solutionMd": "```sql\nSELECT m.first_name, COUNT(*) AS reports FROM employees e JOIN employees m ON m.id = e.manager_id GROUP BY m.id, m.first_name ORDER BY reports DESC LIMIT 1;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "SELECT m.first_name, COUNT(*) AS reports FROM employees e JOIN employees m ON m.id = e.manager_id GROUP BY m.id, m.first_name ORDER BY reports DESC LIMIT 1;",
+    "orderMatters": false
+  },
+  "order": 313
+}

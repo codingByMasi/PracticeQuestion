@@ -1,0 +1,120 @@
+{
+  "slug": "rotting-oranges",
+  "track": "python",
+  "title": "Rotting oranges",
+  "difficulty": "Hard",
+  "tags": [
+    "graphs"
+  ],
+  "statementMd": "Grid cells: 0 empty, 1 fresh orange, 2 rotten orange. Each minute rotten oranges rot their 4-directional fresh neighbours. Return the minutes until no fresh orange remains, or -1 if impossible.\n\n**Example:** `oranges_rotting([[2, 1, 1], [1, 1, 0], [0, 1, 1]])` returns `4`.",
+  "hints": [
+    "Multi-source BFS."
+  ],
+  "solutionMd": "```python\nfrom collections import deque, defaultdict\n\n\ndef oranges_rotting(grid):\n    R, C = len(grid), len(grid[0])\n    q = deque((r, c) for r in range(R) for c in range(C) if grid[r][c] == 2)\n    fresh = sum(row.count(1) for row in grid)\n    grid = [row[:] for row in grid]\n    minutes = 0\n    while q and fresh:\n        minutes += 1\n        for _ in range(len(q)):\n            r, c = q.popleft()\n            for dr, dc in ((1, 0), (-1, 0), (0, 1), (0, -1)):\n                nr, nc = r + dr, c + dc\n                if 0 <= nr < R and 0 <= nc < C and grid[nr][nc] == 1:\n                    grid[nr][nc] = 2\n                    fresh -= 1\n                    q.append((nr, nc))\n    return -1 if fresh else minutes\n```\n\nProcess the BFS one minute at a time.",
+  "starterCode": "def oranges_rotting(grid):\n    # Write your code here\n    pass\n",
+  "functionName": "oranges_rotting",
+  "referenceSolution": "from collections import deque, defaultdict\n\n\ndef oranges_rotting(grid):\n    R, C = len(grid), len(grid[0])\n    q = deque((r, c) for r in range(R) for c in range(C) if grid[r][c] == 2)\n    fresh = sum(row.count(1) for row in grid)\n    grid = [row[:] for row in grid]\n    minutes = 0\n    while q and fresh:\n        minutes += 1\n        for _ in range(len(q)):\n            r, c = q.popleft()\n            for dr, dc in ((1, 0), (-1, 0), (0, 1), (0, -1)):\n                nr, nc = r + dr, c + dc\n                if 0 <= nr < R and 0 <= nc < C and grid[nr][nc] == 1:\n                    grid[nr][nc] = 2\n                    fresh -= 1\n                    q.append((nr, nc))\n    return -1 if fresh else minutes\n",
+  "tests": [
+    {
+      "args": [
+        [
+          [
+            2,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            1
+          ]
+        ]
+      ],
+      "expected": 4,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            2,
+            1,
+            1
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            1
+          ]
+        ]
+      ],
+      "expected": -1,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            0,
+            2
+          ]
+        ]
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            1
+          ]
+        ]
+      ],
+      "expected": -1,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            2,
+            1,
+            1,
+            1,
+            1
+          ]
+        ]
+      ],
+      "expected": 4,
+      "hidden": true
+    }
+  ],
+  "order": 465
+}

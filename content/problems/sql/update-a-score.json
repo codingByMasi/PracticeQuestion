@@ -1,0 +1,21 @@
+{
+  "slug": "update-a-score",
+  "track": "sql",
+  "title": "Update a score",
+  "difficulty": "Medium",
+  "tags": [
+    "dml"
+  ],
+  "statementMd": "A teacher re-graded: add 5 points (capped at 100) to every score in course 1 using `MIN(100, score + 5)`, then show the new average for course 1 rounded to 2 decimals.\n\nExpected columns: `new_avg`.\n\nTables: `teachers`, `courses`, `students`, `enrollments`.\n\nRow order does not matter.",
+  "hints": [
+    "`UPDATE enrollments SET score = MIN(100, score + 5) WHERE course_id = 1`."
+  ],
+  "solutionMd": "```sql\nUPDATE enrollments SET score = MIN(100, score + 5) WHERE course_id = 1; SELECT ROUND(AVG(score), 2) AS new_avg FROM enrollments WHERE course_id = 1;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: teachers, courses, students, enrollments\nSELECT\n",
+  "datasetId": "school",
+  "expected": {
+    "query": "UPDATE enrollments SET score = MIN(100, score + 5) WHERE course_id = 1; SELECT ROUND(AVG(score), 2) AS new_avg FROM enrollments WHERE course_id = 1;",
+    "orderMatters": false
+  },
+  "order": 368
+}

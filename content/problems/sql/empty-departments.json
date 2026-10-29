@@ -18,5 +18,6 @@
   "expected": {
     "query": "SELECT d.name\nFROM departments d\nLEFT JOIN employees e ON e.department_id = d.id\nWHERE e.id IS NULL;",
     "orderMatters": false
-  }
+  },
+  "order": 259
 }

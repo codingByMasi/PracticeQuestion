@@ -1,0 +1,21 @@
+{
+  "slug": "authors-by-number-of-books",
+  "track": "sql",
+  "title": "Authors by number of books",
+  "difficulty": "Medium",
+  "tags": [
+    "group-by"
+  ],
+  "statementMd": "Show each author who has books and how many they wrote, most first (ties by name).\n\nExpected columns: `name`, `books`.\n\nTables: `authors`, `books`, `members`, `loans`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Join, group, sort."
+  ],
+  "solutionMd": "```sql\nSELECT a.name, COUNT(*) AS books FROM authors a JOIN books b ON b.author_id = a.id GROUP BY a.id, a.name ORDER BY books DESC, a.name;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: authors, books, members, loans\nSELECT\n",
+  "datasetId": "library",
+  "expected": {
+    "query": "SELECT a.name, COUNT(*) AS books FROM authors a JOIN books b ON b.author_id = a.id GROUP BY a.id, a.name ORDER BY books DESC, a.name;",
+    "orderMatters": true
+  },
+  "order": 234
+}

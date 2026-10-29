@@ -1,0 +1,60 @@
+{
+  "slug": "jewels-and-stones",
+  "track": "python",
+  "title": "Jewels and stones",
+  "difficulty": "Easy",
+  "tags": [
+    "sets"
+  ],
+  "statementMd": "`jewels` lists the characters that are jewels, `stones` the stones you have. Return how many stones are jewels (case-sensitive).\n\n**Example:** `count_jewels(\"aA\", \"aAAbbbb\")` returns `3`.",
+  "hints": [
+    "Put jewels in a set."
+  ],
+  "solutionMd": "```python\ndef count_jewels(jewels, stones):\n    j = set(jewels)\n    return sum(1 for s in stones if s in j)\n```\n\nSet membership is O(1).",
+  "starterCode": "def count_jewels(jewels, stones):\n    # Write your code here\n    pass\n",
+  "functionName": "count_jewels",
+  "referenceSolution": "def count_jewels(jewels, stones):\n    j = set(jewels)\n    return sum(1 for s in stones if s in j)\n",
+  "tests": [
+    {
+      "args": [
+        "aA",
+        "aAAbbbb"
+      ],
+      "expected": 3,
+      "hidden": false
+    },
+    {
+      "args": [
+        "z",
+        "ZZ"
+      ],
+      "expected": 0,
+      "hidden": false
+    },
+    {
+      "args": [
+        "",
+        "abc"
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        "abc",
+        ""
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        "ab",
+        "abab"
+      ],
+      "expected": 4,
+      "hidden": true
+    }
+  ],
+  "order": 98
+}

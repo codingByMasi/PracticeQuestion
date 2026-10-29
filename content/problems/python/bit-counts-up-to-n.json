@@ -1,0 +1,95 @@
+{
+  "slug": "bit-counts-up-to-n",
+  "track": "python",
+  "title": "Bit counts up to n",
+  "difficulty": "Medium",
+  "tags": [
+    "bit-manipulation"
+  ],
+  "statementMd": "Return a list where entry `i` (for `0..n`) is the number of 1 bits in `i`.\n\n**Example:** `bit_counts(5)` returns `[0, 1, 1, 2, 1, 2]`.",
+  "hints": [
+    "`bits[i] = bits[i >> 1] + (i & 1)`."
+  ],
+  "solutionMd": "```python\ndef bit_counts(n):\n    bits = [0] * (n + 1)\n    for i in range(1, n + 1):\n        bits[i] = bits[i >> 1] + (i & 1)\n    return bits\n```\n\nReuse the count of i with its last bit dropped.",
+  "starterCode": "def bit_counts(n):\n    # Write your code here\n    pass\n",
+  "functionName": "bit_counts",
+  "referenceSolution": "def bit_counts(n):\n    bits = [0] * (n + 1)\n    for i in range(1, n + 1):\n        bits[i] = bits[i >> 1] + (i & 1)\n    return bits\n",
+  "tests": [
+    {
+      "args": [
+        5
+      ],
+      "expected": [
+        0,
+        1,
+        1,
+        2,
+        1,
+        2
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        0
+      ],
+      "expected": [
+        0
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        1
+      ],
+      "expected": [
+        0,
+        1
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        8
+      ],
+      "expected": [
+        0,
+        1,
+        1,
+        2,
+        1,
+        2,
+        2,
+        3,
+        1
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        16
+      ],
+      "expected": [
+        0,
+        1,
+        1,
+        2,
+        1,
+        2,
+        2,
+        3,
+        1,
+        2,
+        2,
+        3,
+        2,
+        3,
+        3,
+        4,
+        1
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 276
+}

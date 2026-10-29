@@ -1,0 +1,62 @@
+{
+  "slug": "collatz-steps",
+  "track": "python",
+  "title": "Collatz steps",
+  "difficulty": "Medium",
+  "tags": [
+    "loops"
+  ],
+  "statementMd": "Starting from `n >= 1`, repeatedly halve even numbers or replace odd numbers with `3n + 1`. Return how many steps are needed to reach 1.\n\n**Example:** `collatz_steps(6)` returns `8`.",
+  "hints": [
+    "Count loop iterations until n is 1."
+  ],
+  "solutionMd": "```python\ndef collatz_steps(n):\n    steps = 0\n    while n != 1:\n        n = n // 2 if n % 2 == 0 else 3 * n + 1\n        steps += 1\n    return steps\n```\n\nThe sequence is conjectured to always reach 1; for small inputs it does.",
+  "starterCode": "def collatz_steps(n):\n    # Write your code here\n    pass\n",
+  "functionName": "collatz_steps",
+  "referenceSolution": "def collatz_steps(n):\n    steps = 0\n    while n != 1:\n        n = n // 2 if n % 2 == 0 else 3 * n + 1\n        steps += 1\n    return steps\n",
+  "tests": [
+    {
+      "args": [
+        6
+      ],
+      "expected": 8,
+      "hidden": false
+    },
+    {
+      "args": [
+        1
+      ],
+      "expected": 0,
+      "hidden": false
+    },
+    {
+      "args": [
+        7
+      ],
+      "expected": 16,
+      "hidden": true
+    },
+    {
+      "args": [
+        27
+      ],
+      "expected": 111,
+      "hidden": true
+    },
+    {
+      "args": [
+        97
+      ],
+      "expected": 118,
+      "hidden": true
+    },
+    {
+      "args": [
+        2
+      ],
+      "expected": 1,
+      "hidden": true
+    }
+  ],
+  "order": 178
+}

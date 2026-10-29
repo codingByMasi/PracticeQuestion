@@ -1,0 +1,21 @@
+{
+  "slug": "union-of-titles-and-authors",
+  "track": "sql",
+  "title": "Union of titles and authors",
+  "difficulty": "Medium",
+  "tags": [
+    "set-ops"
+  ],
+  "statementMd": "Produce one alphabetical list of all book titles and all author names (single column `entry`), without duplicates.\n\nExpected columns: `entry`.\n\nTables: `authors`, `books`, `members`, `loans`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "`UNION` then `ORDER BY`."
+  ],
+  "solutionMd": "```sql\nSELECT title AS entry FROM books UNION SELECT name FROM authors ORDER BY entry;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: authors, books, members, loans\nSELECT\n",
+  "datasetId": "library",
+  "expected": {
+    "query": "SELECT title AS entry FROM books UNION SELECT name FROM authors ORDER BY entry;",
+    "orderMatters": true
+  },
+  "order": 333
+}

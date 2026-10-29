@@ -1,0 +1,21 @@
+{
+  "slug": "most-prolific-decade",
+  "track": "sql",
+  "title": "Most prolific decade",
+  "difficulty": "Medium",
+  "tags": [
+    "expressions"
+  ],
+  "statementMd": "Which decade of publication has the most books? Show decade start year and count (no tie).\n\nExpected columns: `decade`, `books`.\n\nTables: `authors`, `books`, `members`, `loans`.\n\nRow order does not matter.",
+  "hints": [
+    "`published_year / 10 * 10`."
+  ],
+  "solutionMd": "```sql\nSELECT published_year / 10 * 10 AS decade, COUNT(*) AS books FROM books GROUP BY decade ORDER BY books DESC, decade LIMIT 1;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: authors, books, members, loans\nSELECT\n",
+  "datasetId": "library",
+  "expected": {
+    "query": "SELECT published_year / 10 * 10 AS decade, COUNT(*) AS books FROM books GROUP BY decade ORDER BY books DESC, decade LIMIT 1;",
+    "orderMatters": false
+  },
+  "order": 181
+}

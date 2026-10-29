@@ -1,0 +1,146 @@
+{
+  "slug": "min-stack-ops",
+  "track": "python",
+  "title": "Min stack ops",
+  "difficulty": "Medium",
+  "tags": [
+    "design"
+  ],
+  "statementMd": "Simulate a stack supporting `['push', x]`, `['pop']`, `['top']` and `['min']` (the minimum currently in the stack). Return the results of `top` and `min` operations in order. Pops and queries only happen on non-empty stacks.\n\n**Example:** `min_stack_ops([[\"push\", 3], [\"push\", 1], [\"min\"], [\"pop\"], [\"min\"], [\"top…)` returns `[1, 3, 3]`.",
+  "hints": [
+    "Store the running minimum next to each element."
+  ],
+  "solutionMd": "```python\ndef min_stack_ops(ops):\n    stack = []\n    out = []\n    for op in ops:\n        if op[0] == 'push':\n            x = op[1]\n            stack.append((x, min(x, stack[-1][1]) if stack else x))\n        elif op[0] == 'pop':\n            stack.pop()\n        elif op[0] == 'top':\n            out.append(stack[-1][0])\n        else:\n            out.append(stack[-1][1])\n    return out\n```\n\nPairs make min O(1).",
+  "starterCode": "def min_stack_ops(ops):\n    # Write your code here\n    pass\n",
+  "functionName": "min_stack_ops",
+  "referenceSolution": "def min_stack_ops(ops):\n    stack = []\n    out = []\n    for op in ops:\n        if op[0] == 'push':\n            x = op[1]\n            stack.append((x, min(x, stack[-1][1]) if stack else x))\n        elif op[0] == 'pop':\n            stack.pop()\n        elif op[0] == 'top':\n            out.append(stack[-1][0])\n        else:\n            out.append(stack[-1][1])\n    return out\n",
+  "tests": [
+    {
+      "args": [
+        [
+          [
+            "push",
+            3
+          ],
+          [
+            "push",
+            1
+          ],
+          [
+            "min"
+          ],
+          [
+            "pop"
+          ],
+          [
+            "min"
+          ],
+          [
+            "top"
+          ]
+        ]
+      ],
+      "expected": [
+        1,
+        3,
+        3
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            "push",
+            5
+          ],
+          [
+            "top"
+          ]
+        ]
+      ],
+      "expected": [
+        5
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            "push",
+            2
+          ],
+          [
+            "push",
+            2
+          ],
+          [
+            "pop"
+          ],
+          [
+            "min"
+          ]
+        ]
+      ],
+      "expected": [
+        2
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            "push",
+            -1
+          ],
+          [
+            "push",
+            4
+          ],
+          [
+            "min"
+          ],
+          [
+            "top"
+          ]
+        ]
+      ],
+      "expected": [
+        -1,
+        4
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            "push",
+            9
+          ],
+          [
+            "push",
+            8
+          ],
+          [
+            "push",
+            7
+          ],
+          [
+            "pop"
+          ],
+          [
+            "min"
+          ]
+        ]
+      ],
+      "expected": [
+        8
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 369
+}

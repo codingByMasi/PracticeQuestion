@@ -40,27 +40,31 @@ Choices made where the spec was silent or where reality forced a deviation. Newe
 25. **Lessons**: optional `datasetId` in frontmatter for SQL snippets; runnable snippets are fenced blocks tagged `sql-run` / `python-run` (`<editorLanguage>-run`); lesson ids are unique per track and progress is keyed as `track/id`; `exerciseSlugs` must reference 2 to 5 problems from the same track.
 26. **`validate:content` checks more than references:** schema and cross-references, every reference solution passes its own tests, starter code does *not* pass, every lesson snippet runs without error, and the Pyodide version matches.
 27. **Python expected values were generated** by running each reference with CPython when authoring; `validate:content` re-verifies them in Pyodide.
-28. **Seed size:** 25 SQL problems (11 Easy, 10 Medium, 4 Hard), 25 Python problems (13 Easy, 9 Medium, 3 Hard), 8 lessons per track, 3 datasets.
+28. **Content size:** 500 SQL problems (166 Easy, 205 Medium, 129 Hard) and 500 Python problems (166 Easy, 211 Medium, 123 Hard), 8 lessons per track, 9 datasets (employees, ecommerce, movies, plus library, school, flights, music, bank and stocks). The original 25 + 25 hand-written problems are kept unchanged.
+29. **Bulk problems are generated, then checked.** `tools/content-gen` holds compact Python authoring modules; the builders run each reference in SQLite or CPython to derive expected columns and values, and reject empty results, non-deterministic row order (checked with `PRAGMA reverse_unordered_selects`), duplicate or constant tests, and colliding titles. The generated JSON is committed, so the app and `validate:content` never need Python. Hand-written problems still work by dropping in one JSON file.
+30. **Beginner to advanced ordering via an optional `order` field** on problems (global per track, difficulty first, then a concept ladder). The problem list sorts by it, and shows 50 rows at a time with a Show more button, since 1,000 rows made the page heavy.
+31. **Python tree problems take level-order lists** (`[3, 9, 20, None, None, 15, 7]`) because tests must be JSON; the reference solution contains the `build_tree` helper, and the statement says so.
+32. **SQL problems never have an empty reference result.** sql.js returns no result set for a zero-row SELECT, which the judge treats as an error; the generator rejects such problems instead of changing the judge.
 
 ## Progress
 
-29. **ProgressStore additions:** `getFailedAttempts`, `getActivityCounts` (heatmap), `getLastVisited`/`setLastVisited` (dashboard "continue"), `subscribe`/`getVersion` (React re-render via `useSyncExternalStore`). Storage is one JSON blob under `codedrill:progress`, validated with zod on read and import; corrupt data falls back to empty progress. Cross-tab changes are picked up via the `storage` event.
-30. **Statuses** are `unsolved`, `attempted`, `solved`. The list's "Unsolved" filter includes attempted problems. Solved is sticky.
-31. **Activity** = a submission (pass or fail) or a lesson completion, on the user's local date. Runs don't count.
-32. **Streaks:** the current streak survives until the end of the day after the last active day (active yesterday but not yet today still counts). Longest is the longest consecutive run ever.
-33. **Lesson completion** is an explicit "Mark lesson complete" button.
-34. **Daily challenge:** FNV-1a hash of `codedrill:<YYYY-MM-DD>` modulo the number of problems (sorted by slug), using the user's **local** date, so everyone sees the same problem on the same calendar date. Adding problems reshuffles future picks, which is acceptable.
-35. **Import replaces** all progress (after validation and a confirm dialog) rather than merging.
-36. **Drafts** autosave 400 ms after the last keystroke and flush on `pagehide`. Playground drafts use keys `playground:sql:<dataset>` and `playground:python`.
+33. **ProgressStore additions:** `getFailedAttempts`, `getActivityCounts` (heatmap), `getLastVisited`/`setLastVisited` (dashboard "continue"), `subscribe`/`getVersion` (React re-render via `useSyncExternalStore`). Storage is one JSON blob under `codedrill:progress`, validated with zod on read and import; corrupt data falls back to empty progress. Cross-tab changes are picked up via the `storage` event.
+34. **Statuses** are `unsolved`, `attempted`, `solved`. The list's "Unsolved" filter includes attempted problems. Solved is sticky.
+35. **Activity** = a submission (pass or fail) or a lesson completion, on the user's local date. Runs don't count.
+36. **Streaks:** the current streak survives until the end of the day after the last active day (active yesterday but not yet today still counts). Longest is the longest consecutive run ever.
+37. **Lesson completion** is an explicit "Mark lesson complete" button.
+38. **Daily challenge:** FNV-1a hash of `codedrill:<YYYY-MM-DD>` modulo the number of problems (sorted by slug), using the user's **local** date, so everyone sees the same problem on the same calendar date. Adding problems reshuffles future picks, which is acceptable.
+39. **Import replaces** all progress (after validation and a confirm dialog) rather than merging.
+40. **Drafts** autosave 400 ms after the last keystroke and flush on `pagehide`. Playground drafts use keys `playground:sql:<dataset>` and `playground:python`.
 
 ## UX
 
-37. **Split panes are a small custom component** (pointer and keyboard resizable, `role="separator"`), stacking vertically below the `lg` breakpoint: description, then editor, then results.
-38. **Shortcuts:** Ctrl/⌘+Enter runs, Ctrl/⌘+Shift+Enter submits.
-39. **Runtimes load lazily:** SQLite when a SQL problem/playground opens, Pyodide only on Python pages; lesson snippets load their runtime on first Run.
-40. **Accessibility:** audited with axe-core (WCAG 2 A/AA) in light and dark mode; remaining findings are Monaco-internal (dimmed line numbers).
+41. **Split panes are a small custom component** (pointer and keyboard resizable, `role="separator"`), stacking vertically below the `lg` breakpoint: description, then editor, then results.
+42. **Shortcuts:** Ctrl/⌘+Enter runs, Ctrl/⌘+Shift+Enter submits.
+43. **Runtimes load lazily:** SQLite when a SQL problem/playground opens, Pyodide only on Python pages; lesson snippets load their runtime on first Run.
+44. **Accessibility:** audited with axe-core (WCAG 2 A/AA) in light and dark mode; remaining findings are Monaco-internal (dimmed line numbers).
 
 ## Not done / limitations
 
-41. **Not deployed.** Deploying needs the owner's Vercel account; `vercel.json` is ready.
-42. **CDN URLs weren't reachable from the build sandbox**, so the browser tests served Monaco and Pyodide from local copies of the same versions. The jsDelivr URLs follow the documented pattern but weren't fetched live.
+45. **Not deployed.** Deploying needs the owner's Vercel account; `vercel.json` is ready.
+46. **CDN URLs weren't reachable from the build sandbox**, so the browser tests served Monaco and Pyodide from local copies of the same versions. The jsDelivr URLs follow the documented pattern but weren't fetched live.

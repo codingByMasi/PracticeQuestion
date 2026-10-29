@@ -1,0 +1,161 @@
+{
+  "slug": "time-based-key-value",
+  "track": "python",
+  "title": "Time-based key value",
+  "difficulty": "Hard",
+  "tags": [
+    "design"
+  ],
+  "statementMd": "Simulate a time-based store. `['set', key, value, t]` records a value at time `t` (times for a key arrive increasing). `['get', key, t]` returns the value with the largest recorded time <= `t`, or `\"\"` if none. Return the results of the `get` operations.\n\n**Example:** `timemap_ops([[\"set\", \"a\", \"x\", 1], [\"get\", \"a\", 1], [\"get\", \"a\", 3], [\"…)` returns `[\"x\", \"x\", \"y\", \"y\"]`.",
+  "hints": [
+    "Keep sorted (time, value) lists and binary search."
+  ],
+  "solutionMd": "```python\ndef timemap_ops(ops):\n    import bisect\n    store = {}\n    out = []\n    for op in ops:\n        if op[0] == 'set':\n            _, k, v, t = op\n            store.setdefault(k, []).append((t, v))\n        else:\n            _, k, t = op\n            arr = store.get(k, [])\n            i = bisect.bisect_right(arr, (t, chr(0x10ffff)))\n            out.append(arr[i - 1][1] if i else '')\n    return out\n```\n\nBinary search by time.",
+  "starterCode": "def timemap_ops(ops):\n    # Write your code here\n    pass\n",
+  "functionName": "timemap_ops",
+  "referenceSolution": "def timemap_ops(ops):\n    import bisect\n    store = {}\n    out = []\n    for op in ops:\n        if op[0] == 'set':\n            _, k, v, t = op\n            store.setdefault(k, []).append((t, v))\n        else:\n            _, k, t = op\n            arr = store.get(k, [])\n            i = bisect.bisect_right(arr, (t, chr(0x10ffff)))\n            out.append(arr[i - 1][1] if i else '')\n    return out\n",
+  "tests": [
+    {
+      "args": [
+        [
+          [
+            "set",
+            "a",
+            "x",
+            1
+          ],
+          [
+            "get",
+            "a",
+            1
+          ],
+          [
+            "get",
+            "a",
+            3
+          ],
+          [
+            "set",
+            "a",
+            "y",
+            4
+          ],
+          [
+            "get",
+            "a",
+            4
+          ],
+          [
+            "get",
+            "a",
+            5
+          ]
+        ]
+      ],
+      "expected": [
+        "x",
+        "x",
+        "y",
+        "y"
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            "get",
+            "q",
+            1
+          ]
+        ]
+      ],
+      "expected": [
+        ""
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            "set",
+            "k",
+            "v",
+            5
+          ],
+          [
+            "get",
+            "k",
+            4
+          ]
+        ]
+      ],
+      "expected": [
+        ""
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            "set",
+            "k",
+            "a",
+            1
+          ],
+          [
+            "set",
+            "k",
+            "b",
+            2
+          ],
+          [
+            "get",
+            "k",
+            2
+          ]
+        ]
+      ],
+      "expected": [
+        "b"
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            "set",
+            "a",
+            "1",
+            1
+          ],
+          [
+            "set",
+            "b",
+            "2",
+            1
+          ],
+          [
+            "get",
+            "a",
+            9
+          ],
+          [
+            "get",
+            "b",
+            0
+          ]
+        ]
+      ],
+      "expected": [
+        "1",
+        ""
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 491
+}

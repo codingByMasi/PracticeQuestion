@@ -1,0 +1,21 @@
+{
+  "slug": "best-performer-each-week",
+  "track": "sql",
+  "title": "Best performer each week",
+  "difficulty": "Hard",
+  "tags": [
+    "ranking"
+  ],
+  "statementMd": "For each week (`strftime('%W')`) find the symbol with the highest weekly return (last close of the week divided by first close of the week minus one, as a percentage rounded to 2 decimals). Show week, symbol, return. Ties by symbol.\n\nExpected columns: `week`, `symbol`, `return_pct`.\n\nTables: `tickers`, `prices`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Per symbol-week first and last close with `FIRST_VALUE`, then rank weeks."
+  ],
+  "solutionMd": "```sql\nWITH w AS (SELECT DISTINCT symbol, strftime('%W', trade_date) AS week, FIRST_VALUE(close) OVER (PARTITION BY symbol, strftime('%W', trade_date) ORDER BY trade_date) AS first_close, FIRST_VALUE(close) OVER (PARTITION BY symbol, strftime('%W', trade_date) ORDER BY trade_date DESC) AS last_close FROM prices), r AS (SELECT week, symbol, 100.0 * (last_close - first_close) / first_close AS ret FROM w), k AS (SELECT *, ROW_NUMBER() OVER (PARTITION BY week ORDER BY ret DESC, symbol) AS rn FROM r) SELECT week, symbol, ROUND(ret, 2) AS return_pct FROM k WHERE rn = 1 ORDER BY week;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: tickers, prices\nSELECT\n",
+  "datasetId": "stocks",
+  "expected": {
+    "query": "WITH w AS (SELECT DISTINCT symbol, strftime('%W', trade_date) AS week, FIRST_VALUE(close) OVER (PARTITION BY symbol, strftime('%W', trade_date) ORDER BY trade_date) AS first_close, FIRST_VALUE(close) OVER (PARTITION BY symbol, strftime('%W', trade_date) ORDER BY trade_date DESC) AS last_close FROM prices), r AS (SELECT week, symbol, 100.0 * (last_close - first_close) / first_close AS ret FROM w), k AS (SELECT *, ROW_NUMBER() OVER (PARTITION BY week ORDER BY ret DESC, symbol) AS rn FROM r) SELECT week, symbol, ROUND(ret, 2) AS return_pct FROM k WHERE rn = 1 ORDER BY week;",
+    "orderMatters": true
+  },
+  "order": 462
+}

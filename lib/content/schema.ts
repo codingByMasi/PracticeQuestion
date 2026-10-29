@@ -35,6 +35,8 @@ const problemBase = {
   hints: z.array(z.string().min(1)),
   solutionMd: z.string().min(1),
   starterCode: z.string(),
+  /** Optional global position (beginner -> advanced) used to sort the problem list. */
+  order: z.number().int().optional(),
 };
 
 export const SqlProblemSchema = z.strictObject({
@@ -77,7 +79,7 @@ export type Problem =
   | ({ kind: "sql" } & SqlProblem)
   | ({ kind: "python" } & PythonProblem);
 
-export type ProblemSummary = Pick<Problem, "slug" | "track" | "title" | "difficulty" | "tags">;
+export type ProblemSummary = Pick<Problem, "slug" | "track" | "title" | "difficulty" | "tags" | "order">;
 
 export const LessonFrontmatterSchema = z.strictObject({
   id: IdSchema,

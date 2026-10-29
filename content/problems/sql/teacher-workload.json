@@ -1,0 +1,21 @@
+{
+  "slug": "teacher-workload",
+  "track": "sql",
+  "title": "Teacher workload",
+  "difficulty": "Medium",
+  "tags": [
+    "join"
+  ],
+  "statementMd": "For each teacher show the number of courses they teach and the total credits. Include teachers with no courses (zero).\n\nExpected columns: `name`, `courses`, `credits`.\n\nTables: `teachers`, `courses`, `students`, `enrollments`.\n\nRow order does not matter.",
+  "hints": [
+    "`LEFT JOIN` and `COALESCE(SUM(...), 0)`."
+  ],
+  "solutionMd": "```sql\nSELECT t.name, COUNT(c.id) AS courses, COALESCE(SUM(c.credits), 0) AS credits FROM teachers t LEFT JOIN courses c ON c.teacher_id = t.id GROUP BY t.id, t.name;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: teachers, courses, students, enrollments\nSELECT\n",
+  "datasetId": "school",
+  "expected": {
+    "query": "SELECT t.name, COUNT(c.id) AS courses, COALESCE(SUM(c.credits), 0) AS credits FROM teachers t LEFT JOIN courses c ON c.teacher_id = t.id GROUP BY t.id, t.name;",
+    "orderMatters": false
+  },
+  "order": 275
+}

@@ -1,0 +1,74 @@
+{
+  "slug": "interleaving-strings",
+  "track": "python",
+  "title": "Interleaving strings",
+  "difficulty": "Hard",
+  "tags": [
+    "dynamic-programming"
+  ],
+  "statementMd": "Return whether `c` is formed by interleaving `a` and `b` while preserving the relative order of characters within each.\n\n**Example:** `is_interleave(\"aabcc\", \"dbbca\", \"aadbbcbcac\")` returns `true`.",
+  "hints": [
+    "dp[i][j]: first i of a and j of b form first i+j of c."
+  ],
+  "solutionMd": "```python\ndef is_interleave(a, b, c):\n    if len(a) + len(b) != len(c):\n        return False\n    dp = [[False] * (len(b) + 1) for _ in range(len(a) + 1)]\n    dp[0][0] = True\n    for i in range(len(a) + 1):\n        for j in range(len(b) + 1):\n            if i and dp[i - 1][j] and a[i - 1] == c[i + j - 1]:\n                dp[i][j] = True\n            if j and dp[i][j - 1] and b[j - 1] == c[i + j - 1]:\n                dp[i][j] = True\n    return dp[len(a)][len(b)]\n```\n\nTake the next character from either string.",
+  "starterCode": "def is_interleave(a, b, c):\n    # Write your code here\n    pass\n",
+  "functionName": "is_interleave",
+  "referenceSolution": "def is_interleave(a, b, c):\n    if len(a) + len(b) != len(c):\n        return False\n    dp = [[False] * (len(b) + 1) for _ in range(len(a) + 1)]\n    dp[0][0] = True\n    for i in range(len(a) + 1):\n        for j in range(len(b) + 1):\n            if i and dp[i - 1][j] and a[i - 1] == c[i + j - 1]:\n                dp[i][j] = True\n            if j and dp[i][j - 1] and b[j - 1] == c[i + j - 1]:\n                dp[i][j] = True\n    return dp[len(a)][len(b)]\n",
+  "tests": [
+    {
+      "args": [
+        "aabcc",
+        "dbbca",
+        "aadbbcbcac"
+      ],
+      "expected": true,
+      "hidden": false
+    },
+    {
+      "args": [
+        "aabcc",
+        "dbbca",
+        "aadbbbaccc"
+      ],
+      "expected": false,
+      "hidden": false
+    },
+    {
+      "args": [
+        "",
+        "",
+        ""
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        "a",
+        "",
+        "a"
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        "a",
+        "b",
+        "ba"
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        "ab",
+        "cd",
+        "acbd"
+      ],
+      "expected": true,
+      "hidden": true
+    }
+  ],
+  "order": 444
+}

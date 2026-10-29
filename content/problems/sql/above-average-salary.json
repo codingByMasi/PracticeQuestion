@@ -17,5 +17,6 @@
   "expected": {
     "query": "SELECT first_name, salary FROM employees WHERE salary > (SELECT AVG(salary) FROM employees);",
     "orderMatters": false
-  }
+  },
+  "order": 307
 }

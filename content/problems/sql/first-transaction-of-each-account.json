@@ -1,0 +1,21 @@
+{
+  "slug": "first-transaction-of-each-account",
+  "track": "sql",
+  "title": "First transaction of each account",
+  "difficulty": "Medium",
+  "tags": [
+    "window-functions"
+  ],
+  "statementMd": "For accounts 1 to 5 show the earliest transaction (date, id, amount); tie on date goes to the lowest id.\n\nExpected columns: `account_id`, `tx_date`, `id`, `amount`.\n\nTables: `customers`, `accounts`, `transactions`.\n\nRow order does not matter.",
+  "hints": [
+    "`ROW_NUMBER()` per account."
+  ],
+  "solutionMd": "```sql\nWITH r AS (SELECT account_id, tx_date, id, amount, ROW_NUMBER() OVER (PARTITION BY account_id ORDER BY tx_date, id) AS rn FROM transactions WHERE account_id <= 5) SELECT account_id, tx_date, id, amount FROM r WHERE rn = 1;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, accounts, transactions\nSELECT\n",
+  "datasetId": "bank",
+  "expected": {
+    "query": "WITH r AS (SELECT account_id, tx_date, id, amount, ROW_NUMBER() OVER (PARTITION BY account_id ORDER BY tx_date, id) AS rn FROM transactions WHERE account_id <= 5) SELECT account_id, tx_date, id, amount FROM r WHERE rn = 1;",
+    "orderMatters": false
+  },
+  "order": 350
+}

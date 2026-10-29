@@ -1,0 +1,74 @@
+{
+  "slug": "strip-comments",
+  "track": "python",
+  "title": "Strip comments",
+  "difficulty": "Medium",
+  "tags": [
+    "parsing"
+  ],
+  "statementMd": "Given a list of source lines, remove everything from the first `#` to the end of each line, strip trailing whitespace, and drop lines that become empty. Return the cleaned lines.\n\n**Example:** `strip_comments([\"x = 1  # one\", \"# note\", \"y = 2\"])` returns `[\"x = 1\", \"y = 2\"]`.",
+  "hints": [
+    "`line.split('#')[0].rstrip()`."
+  ],
+  "solutionMd": "```python\ndef strip_comments(lines):\n    out = []\n    for line in lines:\n        code = line.split('#')[0].rstrip()\n        if code:\n            out.append(code)\n    return out\n```\n\nComments run to the end of the line.",
+  "starterCode": "def strip_comments(lines):\n    # Write your code here\n    pass\n",
+  "functionName": "strip_comments",
+  "referenceSolution": "def strip_comments(lines):\n    out = []\n    for line in lines:\n        code = line.split('#')[0].rstrip()\n        if code:\n            out.append(code)\n    return out\n",
+  "tests": [
+    {
+      "args": [
+        [
+          "x = 1  # one",
+          "# note",
+          "y = 2"
+        ]
+      ],
+      "expected": [
+        "x = 1",
+        "y = 2"
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          "a",
+          "b"
+        ]
+      ],
+      "expected": [
+        "a",
+        "b"
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": [],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          "   # only comment"
+        ]
+      ],
+      "expected": [],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          "z = 3 # c # d"
+        ]
+      ],
+      "expected": [
+        "z = 3"
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 293
+}

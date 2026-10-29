@@ -1,0 +1,21 @@
+{
+  "slug": "spend-share-per-merchant",
+  "track": "sql",
+  "title": "Spend share per merchant",
+  "difficulty": "Hard",
+  "tags": [
+    "window-functions"
+  ],
+  "statementMd": "For each merchant show its share (percentage, 1 decimal) of all purchase spending. Largest share first.\n\nExpected columns: `merchant`, `share_pct`.\n\nTables: `customers`, `accounts`, `transactions`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Window total over merchants."
+  ],
+  "solutionMd": "```sql\nWITH m AS (SELECT merchant, -SUM(amount) AS spent FROM transactions WHERE kind = 'purchase' GROUP BY merchant) SELECT merchant, ROUND(100.0 * spent / SUM(spent) OVER (), 1) AS share_pct FROM m ORDER BY share_pct DESC;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, accounts, transactions\nSELECT\n",
+  "datasetId": "bank",
+  "expected": {
+    "query": "WITH m AS (SELECT merchant, -SUM(amount) AS spent FROM transactions WHERE kind = 'purchase' GROUP BY merchant) SELECT merchant, ROUND(100.0 * spent / SUM(spent) OVER (), 1) AS share_pct FROM m ORDER BY share_pct DESC;",
+    "orderMatters": true
+  },
+  "order": 402
+}

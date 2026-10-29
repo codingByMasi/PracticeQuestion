@@ -1,0 +1,21 @@
+{
+  "slug": "sector-share-of-volume-per-week",
+  "track": "sql",
+  "title": "Sector share of volume per week",
+  "difficulty": "Hard",
+  "tags": [
+    "window-functions"
+  ],
+  "statementMd": "For the week starting 2024-03-04 through 2024-03-08, show each sector's share of the total traded volume that week (percentage, 1 decimal), biggest share first.\n\nExpected columns: `sector`, `share_pct`.\n\nTables: `tickers`, `prices`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Join tickers, filter dates, divide by the overall sum with a window."
+  ],
+  "solutionMd": "```sql\nSELECT t.sector, ROUND(100.0 * SUM(p.volume) / SUM(SUM(p.volume)) OVER (), 1) AS share_pct FROM prices p JOIN tickers t ON t.symbol = p.symbol WHERE p.trade_date BETWEEN '2024-03-04' AND '2024-03-08' GROUP BY t.sector ORDER BY share_pct DESC, t.sector;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: tickers, prices\nSELECT\n",
+  "datasetId": "stocks",
+  "expected": {
+    "query": "SELECT t.sector, ROUND(100.0 * SUM(p.volume) / SUM(SUM(p.volume)) OVER (), 1) AS share_pct FROM prices p JOIN tickers t ON t.symbol = p.symbol WHERE p.trade_date BETWEEN '2024-03-04' AND '2024-03-08' GROUP BY t.sector ORDER BY share_pct DESC, t.sector;",
+    "orderMatters": true
+  },
+  "order": 439
+}

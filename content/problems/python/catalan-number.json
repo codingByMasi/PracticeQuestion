@@ -1,0 +1,62 @@
+{
+  "slug": "catalan-number",
+  "track": "python",
+  "title": "Catalan number",
+  "difficulty": "Medium",
+  "tags": [
+    "combinatorics"
+  ],
+  "statementMd": "Return the n-th Catalan number: `C(0)=1`, `C(n+1)=sum C(i)*C(n-i)`.\n\n**Example:** `catalan(3)` returns `5`.",
+  "hints": [
+    "Build up with the recurrence."
+  ],
+  "solutionMd": "```python\ndef catalan(n):\n    c = [1] + [0] * n\n    for i in range(1, n + 1):\n        c[i] = sum(c[j] * c[i - 1 - j] for j in range(i))\n    return c[n]\n```\n\nIt counts balanced parentheses, binary trees and more.",
+  "starterCode": "def catalan(n):\n    # Write your code here\n    pass\n",
+  "functionName": "catalan",
+  "referenceSolution": "def catalan(n):\n    c = [1] + [0] * n\n    for i in range(1, n + 1):\n        c[i] = sum(c[j] * c[i - 1 - j] for j in range(i))\n    return c[n]\n",
+  "tests": [
+    {
+      "args": [
+        3
+      ],
+      "expected": 5,
+      "hidden": false
+    },
+    {
+      "args": [
+        0
+      ],
+      "expected": 1,
+      "hidden": false
+    },
+    {
+      "args": [
+        1
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        5
+      ],
+      "expected": 42,
+      "hidden": true
+    },
+    {
+      "args": [
+        10
+      ],
+      "expected": 16796,
+      "hidden": true
+    },
+    {
+      "args": [
+        15
+      ],
+      "expected": 9694845,
+      "hidden": true
+    }
+  ],
+  "order": 339
+}

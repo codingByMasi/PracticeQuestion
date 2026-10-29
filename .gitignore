@@ -8,3 +8,4 @@ public/vendor
 .env*.local
 public/pyodide
 public/workers
+__pycache__

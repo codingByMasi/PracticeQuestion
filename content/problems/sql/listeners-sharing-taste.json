@@ -1,0 +1,21 @@
+{
+  "slug": "listeners-sharing-taste",
+  "track": "sql",
+  "title": "Listeners sharing taste",
+  "difficulty": "Hard",
+  "tags": [
+    "self-join"
+  ],
+  "statementMd": "For listener 1, list the 3 other listeners who share the most distinct played tracks with them. Show listener id and the number of shared tracks, ties by listener id.\n\nExpected columns: `listener_id`, `shared`.\n\nTables: `artists`, `albums`, `tracks`, `listeners`, `plays`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Self-join distinct (listener, track) pairs."
+  ],
+  "solutionMd": "```sql\nWITH lt AS (SELECT DISTINCT listener_id, track_id FROM plays) SELECT b.listener_id, COUNT(*) AS shared FROM lt a JOIN lt b ON a.track_id = b.track_id AND b.listener_id <> a.listener_id WHERE a.listener_id = 1 GROUP BY b.listener_id ORDER BY shared DESC, b.listener_id LIMIT 3;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: artists, albums, tracks, listeners, plays\nSELECT\n",
+  "datasetId": "music",
+  "expected": {
+    "query": "WITH lt AS (SELECT DISTINCT listener_id, track_id FROM plays) SELECT b.listener_id, COUNT(*) AS shared FROM lt a JOIN lt b ON a.track_id = b.track_id AND b.listener_id <> a.listener_id WHERE a.listener_id = 1 GROUP BY b.listener_id ORDER BY shared DESC, b.listener_id LIMIT 3;",
+    "orderMatters": true
+  },
+  "order": 388
+}

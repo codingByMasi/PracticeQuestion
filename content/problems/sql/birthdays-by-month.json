@@ -1,0 +1,21 @@
+{
+  "slug": "birthdays-by-month",
+  "track": "sql",
+  "title": "Birthdays by month",
+  "difficulty": "Medium",
+  "tags": [
+    "dates"
+  ],
+  "statementMd": "How many students were born in each calendar month (01-12)? Show the month number and count.\n\nExpected columns: `month`, `students`.\n\nTables: `teachers`, `courses`, `students`, `enrollments`.\n\nRow order does not matter.",
+  "hints": [
+    "`strftime('%m', birth_date)`."
+  ],
+  "solutionMd": "```sql\nSELECT strftime('%m', birth_date) AS month, COUNT(*) AS students FROM students GROUP BY month;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: teachers, courses, students, enrollments\nSELECT\n",
+  "datasetId": "school",
+  "expected": {
+    "query": "SELECT strftime('%m', birth_date) AS month, COUNT(*) AS students FROM students GROUP BY month;",
+    "orderMatters": false
+  },
+  "order": 205
+}

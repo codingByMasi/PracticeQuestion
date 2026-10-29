@@ -1,0 +1,21 @@
+{
+  "slug": "author-popularity-ranking",
+  "track": "sql",
+  "title": "Author popularity ranking",
+  "difficulty": "Hard",
+  "tags": [
+    "ranking"
+  ],
+  "statementMd": "Rank authors by total loans of their books with `DENSE_RANK` (1 = most loans). Show rank, author and loans, only the top 5 ranks, ordered by rank then author.\n\nExpected columns: `rk`, `name`, `loans`.\n\nTables: `authors`, `books`, `members`, `loans`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Aggregate loans per author, then rank."
+  ],
+  "solutionMd": "```sql\nWITH t AS (SELECT a.name, COUNT(*) AS loans FROM loans l JOIN books b ON b.id = l.book_id JOIN authors a ON a.id = b.author_id GROUP BY a.id, a.name), r AS (SELECT name, loans, DENSE_RANK() OVER (ORDER BY loans DESC) AS rk FROM t) SELECT rk, name, loans FROM r WHERE rk <= 5 ORDER BY rk, name;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: authors, books, members, loans\nSELECT\n",
+  "datasetId": "library",
+  "expected": {
+    "query": "WITH t AS (SELECT a.name, COUNT(*) AS loans FROM loans l JOIN books b ON b.id = l.book_id JOIN authors a ON a.id = b.author_id GROUP BY a.id, a.name), r AS (SELECT name, loans, DENSE_RANK() OVER (ORDER BY loans DESC) AS rk FROM t) SELECT rk, name, loans FROM r WHERE rk <= 5 ORDER BY rk, name;",
+    "orderMatters": true
+  },
+  "order": 452
+}

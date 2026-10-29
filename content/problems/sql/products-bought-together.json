@@ -1,0 +1,21 @@
+{
+  "slug": "products-bought-together",
+  "track": "sql",
+  "title": "Products bought together",
+  "difficulty": "Hard",
+  "tags": [
+    "self-join"
+  ],
+  "statementMd": "Find pairs of different products that appear in the same order. List each pair once (smaller product id first) together with the number of orders that contain both.\n\nExpected columns: `product_a`, `product_b`, `together`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\nRow order does not matter.",
+  "hints": [
+    "Self-join `order_items` on `order_id` with `a.product_id < b.product_id`."
+  ],
+  "solutionMd": "```sql\nSELECT a.product_id AS product_a, b.product_id AS product_b, COUNT(*) AS together FROM order_items a JOIN order_items b ON a.order_id = b.order_id AND a.product_id < b.product_id GROUP BY a.product_id, b.product_id;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "SELECT a.product_id AS product_a, b.product_id AS product_b, COUNT(*) AS together FROM order_items a JOIN order_items b ON a.order_id = b.order_id AND a.product_id < b.product_id GROUP BY a.product_id, b.product_id;",
+    "orderMatters": false
+  },
+  "order": 384
+}

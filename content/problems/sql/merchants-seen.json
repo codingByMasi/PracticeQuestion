@@ -1,0 +1,21 @@
+{
+  "slug": "merchants-seen",
+  "track": "sql",
+  "title": "Merchants seen",
+  "difficulty": "Easy",
+  "tags": [
+    "distinct"
+  ],
+  "statementMd": "List the distinct merchants that appear in the ledger (ignore NULL).\n\nExpected columns: `merchant`.\n\nTables: `customers`, `accounts`, `transactions`.\n\nRow order does not matter.",
+  "hints": [
+    "`WHERE merchant IS NOT NULL`."
+  ],
+  "solutionMd": "```sql\nSELECT DISTINCT merchant FROM transactions WHERE merchant IS NOT NULL;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, accounts, transactions\nSELECT\n",
+  "datasetId": "bank",
+  "expected": {
+    "query": "SELECT DISTINCT merchant FROM transactions WHERE merchant IS NOT NULL;",
+    "orderMatters": false
+  },
+  "order": 78
+}

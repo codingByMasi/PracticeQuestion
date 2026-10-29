@@ -1,0 +1,77 @@
+{
+  "slug": "best-time-many-transactions",
+  "track": "python",
+  "title": "Best time many transactions",
+  "difficulty": "Medium",
+  "tags": [
+    "greedy"
+  ],
+  "statementMd": "You may buy and sell many times (hold at most one share). Return the maximum total profit.\n\n**Example:** `max_profit_multi([7, 1, 5, 3, 6, 4])` returns `7`.",
+  "hints": [
+    "Add every positive day-to-day rise."
+  ],
+  "solutionMd": "```python\ndef max_profit_multi(prices):\n    return sum(max(0, b - a) for a, b in zip(prices, prices[1:]))\n```\n\nCapturing every upswing is optimal.",
+  "starterCode": "def max_profit_multi(prices):\n    # Write your code here\n    pass\n",
+  "functionName": "max_profit_multi",
+  "referenceSolution": "def max_profit_multi(prices):\n    return sum(max(0, b - a) for a, b in zip(prices, prices[1:]))\n",
+  "tests": [
+    {
+      "args": [
+        [
+          7,
+          1,
+          5,
+          3,
+          6,
+          4
+        ]
+      ],
+      "expected": 7,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      ],
+      "expected": 4,
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          5,
+          4,
+          3
+        ]
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          5,
+          1,
+          5
+        ]
+      ],
+      "expected": 8,
+      "hidden": true
+    }
+  ],
+  "order": 308
+}

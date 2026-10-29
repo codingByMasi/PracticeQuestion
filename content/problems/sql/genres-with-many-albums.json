@@ -1,0 +1,21 @@
+{
+  "slug": "genres-with-many-albums",
+  "track": "sql",
+  "title": "Genres with many albums",
+  "difficulty": "Easy",
+  "tags": [
+    "having"
+  ],
+  "statementMd": "Which genres have at least 7 albums?\n\nExpected columns: `genre`, `albums`.\n\nTables: `artists`, `albums`, `tracks`, `listeners`, `plays`.\n\nRow order does not matter.",
+  "hints": [
+    "`HAVING COUNT(*) >= 7`."
+  ],
+  "solutionMd": "```sql\nSELECT genre, COUNT(*) AS albums FROM albums GROUP BY genre HAVING COUNT(*) >= 7;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: artists, albums, tracks, listeners, plays\nSELECT\n",
+  "datasetId": "music",
+  "expected": {
+    "query": "SELECT genre, COUNT(*) AS albums FROM albums GROUP BY genre HAVING COUNT(*) >= 7;",
+    "orderMatters": false
+  },
+  "order": 152
+}

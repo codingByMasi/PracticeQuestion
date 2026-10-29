@@ -1,0 +1,150 @@
+{
+  "slug": "undo-redo-editor",
+  "track": "python",
+  "title": "Undo-redo editor",
+  "difficulty": "Hard",
+  "tags": [
+    "design"
+  ],
+  "statementMd": "Simulate a text editor starting empty. `['type', s]` appends `s`, `['delete', n]` removes the last `n` characters (or all if fewer), `['undo']` reverts the last type/delete not yet undone, `['redo']` re-applies the last undone action (any new type/delete clears the redo history), and `['show']` records the current text. Return the recorded texts.\n\n**Example:** `editor_ops([[\"type\", \"ab\"], [\"type\", \"c\"], [\"show\"], [\"undo\"], [\"show\"…)` returns `[\"abc\", \"ab\", \"abc\"]`.",
+  "hints": [
+    "Two stacks of states."
+  ],
+  "solutionMd": "```python\ndef editor_ops(ops):\n    text = ''\n    undo, redo, out = [], [], []\n    for op in ops:\n        k = op[0]\n        if k == 'type':\n            undo.append(text); redo.clear(); text += op[1]\n        elif k == 'delete':\n            undo.append(text); redo.clear(); text = text[:max(0, len(text) - op[1])]\n        elif k == 'undo':\n            if undo:\n                redo.append(text); text = undo.pop()\n        elif k == 'redo':\n            if redo:\n                undo.append(text); text = redo.pop()\n        else:\n            out.append(text)\n    return out\n```\n\nStore full snapshots for simplicity.",
+  "starterCode": "def editor_ops(ops):\n    # Write your code here\n    pass\n",
+  "functionName": "editor_ops",
+  "referenceSolution": "def editor_ops(ops):\n    text = ''\n    undo, redo, out = [], [], []\n    for op in ops:\n        k = op[0]\n        if k == 'type':\n            undo.append(text); redo.clear(); text += op[1]\n        elif k == 'delete':\n            undo.append(text); redo.clear(); text = text[:max(0, len(text) - op[1])]\n        elif k == 'undo':\n            if undo:\n                redo.append(text); text = undo.pop()\n        elif k == 'redo':\n            if redo:\n                undo.append(text); text = redo.pop()\n        else:\n            out.append(text)\n    return out\n",
+  "tests": [
+    {
+      "args": [
+        [
+          [
+            "type",
+            "ab"
+          ],
+          [
+            "type",
+            "c"
+          ],
+          [
+            "show"
+          ],
+          [
+            "undo"
+          ],
+          [
+            "show"
+          ],
+          [
+            "redo"
+          ],
+          [
+            "show"
+          ]
+        ]
+      ],
+      "expected": [
+        "abc",
+        "ab",
+        "abc"
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            "show"
+          ]
+        ]
+      ],
+      "expected": [
+        ""
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            "type",
+            "abc"
+          ],
+          [
+            "delete",
+            2
+          ],
+          [
+            "show"
+          ],
+          [
+            "undo"
+          ],
+          [
+            "undo"
+          ],
+          [
+            "show"
+          ]
+        ]
+      ],
+      "expected": [
+        "a",
+        ""
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            "type",
+            "a"
+          ],
+          [
+            "undo"
+          ],
+          [
+            "type",
+            "b"
+          ],
+          [
+            "redo"
+          ],
+          [
+            "show"
+          ]
+        ]
+      ],
+      "expected": [
+        "b"
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            "delete",
+            3
+          ],
+          [
+            "show"
+          ],
+          [
+            "undo"
+          ],
+          [
+            "show"
+          ]
+        ]
+      ],
+      "expected": [
+        "",
+        ""
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 493
+}

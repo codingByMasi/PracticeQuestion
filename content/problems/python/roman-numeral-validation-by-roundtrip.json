@@ -1,0 +1,69 @@
+{
+  "slug": "roman-numeral-validation-by-roundtrip",
+  "track": "python",
+  "title": "Roman numeral validation by roundtrip",
+  "difficulty": "Medium",
+  "tags": [
+    "parsing"
+  ],
+  "statementMd": "Return whether `s` is a canonical Roman numeral (what `int_to_roman` would produce) for a value 1-3999.\n\n**Example:** `is_canonical_roman(\"XIV\")` returns `true`.",
+  "hints": [
+    "Convert to an integer and back."
+  ],
+  "solutionMd": "```python\ndef is_canonical_roman(s):\n    vals = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}\n    if not s or any(c not in vals for c in s):\n        return False\n    n = 0\n    for i, c in enumerate(s):\n        n += -vals[c] if i + 1 < len(s) and vals[c] < vals[s[i + 1]] else vals[c]\n    if not 1 <= n <= 3999:\n        return False\n    table = [(1000, 'M'), (900, 'CM'), (500, 'D'), (400, 'CD'), (100, 'C'), (90, 'XC'), (50, 'L'), (40, 'XL'), (10, 'X'), (9, 'IX'), (5, 'V'), (4, 'IV'), (1, 'I')]\n    out, m = '', n\n    for v, sym in table:\n        while m >= v:\n            out += sym; m -= v\n    return out == s\n```\n\nRound trip rejects non-canonical forms like IIII.",
+  "starterCode": "def is_canonical_roman(s):\n    # Write your code here\n    pass\n",
+  "functionName": "is_canonical_roman",
+  "referenceSolution": "def is_canonical_roman(s):\n    vals = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}\n    if not s or any(c not in vals for c in s):\n        return False\n    n = 0\n    for i, c in enumerate(s):\n        n += -vals[c] if i + 1 < len(s) and vals[c] < vals[s[i + 1]] else vals[c]\n    if not 1 <= n <= 3999:\n        return False\n    table = [(1000, 'M'), (900, 'CM'), (500, 'D'), (400, 'CD'), (100, 'C'), (90, 'XC'), (50, 'L'), (40, 'XL'), (10, 'X'), (9, 'IX'), (5, 'V'), (4, 'IV'), (1, 'I')]\n    out, m = '', n\n    for v, sym in table:\n        while m >= v:\n            out += sym; m -= v\n    return out == s\n",
+  "tests": [
+    {
+      "args": [
+        "XIV"
+      ],
+      "expected": true,
+      "hidden": false
+    },
+    {
+      "args": [
+        "IIII"
+      ],
+      "expected": false,
+      "hidden": false
+    },
+    {
+      "args": [
+        ""
+      ],
+      "expected": false,
+      "hidden": true
+    },
+    {
+      "args": [
+        "MMMM"
+      ],
+      "expected": false,
+      "hidden": true
+    },
+    {
+      "args": [
+        "IC"
+      ],
+      "expected": false,
+      "hidden": true
+    },
+    {
+      "args": [
+        "MCMXCIV"
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        "abc"
+      ],
+      "expected": false,
+      "hidden": true
+    }
+  ],
+  "order": 298
+}

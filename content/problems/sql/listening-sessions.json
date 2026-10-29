@@ -1,0 +1,21 @@
+{
+  "slug": "listening-sessions",
+  "track": "sql",
+  "title": "Listening sessions",
+  "difficulty": "Hard",
+  "tags": [
+    "gaps-islands"
+  ],
+  "statementMd": "For listener 1, order plays by time and start a new session whenever more than 60 minutes pass since the previous play. Show the session number (starting at 1), its first play time and its number of plays, ordered by session.\n\nExpected columns: `session`, `started`, `plays`.\n\nTables: `artists`, `albums`, `tracks`, `listeners`, `plays`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "`LAG` to detect gaps, running sum for session ids."
+  ],
+  "solutionMd": "```sql\nWITH x AS (SELECT played_at, (julianday(played_at) - julianday(LAG(played_at) OVER (ORDER BY played_at, id))) * 1440 AS gap FROM plays WHERE listener_id = 1), s AS (SELECT played_at, SUM(CASE WHEN gap IS NULL OR gap > 60 THEN 1 ELSE 0 END) OVER (ORDER BY played_at ROWS UNBOUNDED PRECEDING) AS session FROM x) SELECT session, MIN(played_at) AS started, COUNT(*) AS plays FROM s GROUP BY session ORDER BY session LIMIT 10;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: artists, albums, tracks, listeners, plays\nSELECT\n",
+  "datasetId": "music",
+  "expected": {
+    "query": "WITH x AS (SELECT played_at, (julianday(played_at) - julianday(LAG(played_at) OVER (ORDER BY played_at, id))) * 1440 AS gap FROM plays WHERE listener_id = 1), s AS (SELECT played_at, SUM(CASE WHEN gap IS NULL OR gap > 60 THEN 1 ELSE 0 END) OVER (ORDER BY played_at ROWS UNBOUNDED PRECEDING) AS session FROM x) SELECT session, MIN(played_at) AS started, COUNT(*) AS plays FROM s GROUP BY session ORDER BY session LIMIT 10;",
+    "orderMatters": true
+  },
+  "order": 497
+}

@@ -1,0 +1,21 @@
+{
+  "slug": "lowercase-author-search",
+  "track": "sql",
+  "title": "Lowercase author search",
+  "difficulty": "Easy",
+  "tags": [
+    "strings"
+  ],
+  "statementMd": "Find authors whose name, ignoring case, contains `an`. Show the name in upper case.\n\nExpected columns: `name`.\n\nTables: `authors`, `books`, `members`, `loans`.\n\nRow order does not matter.",
+  "hints": [
+    "`LOWER(name) LIKE '%an%'`, `UPPER(name)`."
+  ],
+  "solutionMd": "```sql\nSELECT UPPER(name) AS name FROM authors WHERE LOWER(name) LIKE '%an%';\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: authors, books, members, loans\nSELECT\n",
+  "datasetId": "library",
+  "expected": {
+    "query": "SELECT UPPER(name) AS name FROM authors WHERE LOWER(name) LIKE '%an%';",
+    "orderMatters": false
+  },
+  "order": 99
+}

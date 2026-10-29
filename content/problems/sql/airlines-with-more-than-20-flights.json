@@ -1,0 +1,21 @@
+{
+  "slug": "airlines-with-more-than-20-flights",
+  "track": "sql",
+  "title": "Airlines with more than 20 flights",
+  "difficulty": "Easy",
+  "tags": [
+    "having"
+  ],
+  "statementMd": "Which airlines operate more than 20 flights? Show the code and count.\n\nExpected columns: `airline_code`, `flights`.\n\nTables: `airlines`, `airports`, `flights`, `bookings`.\n\nRow order does not matter.",
+  "hints": [
+    "`HAVING COUNT(*) > 20`."
+  ],
+  "solutionMd": "```sql\nSELECT airline_code, COUNT(*) AS flights FROM flights GROUP BY airline_code HAVING COUNT(*) > 20;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: airlines, airports, flights, bookings\nSELECT\n",
+  "datasetId": "flights",
+  "expected": {
+    "query": "SELECT airline_code, COUNT(*) AS flights FROM flights GROUP BY airline_code HAVING COUNT(*) > 20;",
+    "orderMatters": false
+  },
+  "order": 150
+}

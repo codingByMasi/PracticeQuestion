@@ -1,0 +1,100 @@
+{
+  "slug": "lowest-common-ancestor-in-bst",
+  "track": "python",
+  "title": "Lowest common ancestor in BST",
+  "difficulty": "Medium",
+  "tags": [
+    "trees"
+  ],
+  "statementMd": "The tree is a binary search tree of distinct values; return the value of the lowest common ancestor of the existing node values `a` and `b`. The tree is given as a level-order list where `None` marks a missing child (like `[3, 9, 20, None, None, 15, 7]`); the helper `build_tree` in the solution shows how it is read, and in your function the argument is already that list.\n\n**Example:** `lca_bst([6, 2, 8, 0, 4, 7, 9], 2, 8)` returns `6`.",
+  "hints": [
+    "Walk down: if both are smaller go left, both larger go right."
+  ],
+  "solutionMd": "```python\nclass Node:\n    def __init__(self, val, left=None, right=None):\n        self.val, self.left, self.right = val, left, right\n\n\ndef build_tree(values):\n    \"\"\"Build a binary tree from a level-order list where None marks a missing child.\"\"\"\n    if not values or values[0] is None:\n        return None\n    root = Node(values[0])\n    queue, i = [root], 1\n    while queue and i < len(values):\n        node = queue.pop(0)\n        if i < len(values) and values[i] is not None:\n            node.left = Node(values[i])\n            queue.append(node.left)\n        i += 1\n        if i < len(values) and values[i] is not None:\n            node.right = Node(values[i])\n            queue.append(node.right)\n        i += 1\n    return root\n\n\ndef lca_bst(values, a, b):\n    n = build_tree(values)\n    while n:\n        if a < n.val and b < n.val:\n            n = n.left\n        elif a > n.val and b > n.val:\n            n = n.right\n        else:\n            return n.val\n```\n\nThe first node that splits the two values is the LCA.",
+  "starterCode": "def lca_bst(values, a, b):\n    # Write your code here\n    pass\n",
+  "functionName": "lca_bst",
+  "referenceSolution": "class Node:\n    def __init__(self, val, left=None, right=None):\n        self.val, self.left, self.right = val, left, right\n\n\ndef build_tree(values):\n    \"\"\"Build a binary tree from a level-order list where None marks a missing child.\"\"\"\n    if not values or values[0] is None:\n        return None\n    root = Node(values[0])\n    queue, i = [root], 1\n    while queue and i < len(values):\n        node = queue.pop(0)\n        if i < len(values) and values[i] is not None:\n            node.left = Node(values[i])\n            queue.append(node.left)\n        i += 1\n        if i < len(values) and values[i] is not None:\n            node.right = Node(values[i])\n            queue.append(node.right)\n        i += 1\n    return root\n\n\ndef lca_bst(values, a, b):\n    n = build_tree(values)\n    while n:\n        if a < n.val and b < n.val:\n            n = n.left\n        elif a > n.val and b > n.val:\n            n = n.right\n        else:\n            return n.val\n",
+  "tests": [
+    {
+      "args": [
+        [
+          6,
+          2,
+          8,
+          0,
+          4,
+          7,
+          9
+        ],
+        2,
+        8
+      ],
+      "expected": 6,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          6,
+          2,
+          8,
+          0,
+          4,
+          7,
+          9
+        ],
+        2,
+        4
+      ],
+      "expected": 2,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          2,
+          1
+        ],
+        2,
+        1
+      ],
+      "expected": 2,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          6,
+          2,
+          8,
+          0,
+          4,
+          7,
+          9
+        ],
+        0,
+        4
+      ],
+      "expected": 2,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          6,
+          2,
+          8,
+          0,
+          4,
+          7,
+          9
+        ],
+        7,
+        9
+      ],
+      "expected": 8,
+      "hidden": true
+    }
+  ],
+  "order": 357
+}

@@ -1,0 +1,68 @@
+{
+  "slug": "bulls-and-cows",
+  "track": "python",
+  "title": "Bulls and cows",
+  "difficulty": "Medium",
+  "tags": [
+    "counting"
+  ],
+  "statementMd": "Both strings have equal length and consist of digits. A bull is a digit that is correct in value and position; a cow is a correct digit in the wrong position (each digit counted once). Return `\"xAyB\"` with x bulls and y cows.\n\n**Example:** `bulls_and_cows(\"1807\", \"7810\")` returns `\"1A3B\"`.",
+  "hints": [
+    "Count bulls first, then match leftovers by count."
+  ],
+  "solutionMd": "```python\ndef bulls_and_cows(secret, guess):\n    bulls = sum(a == b for a, b in zip(secret, guess))\n    sc, gc = {}, {}\n    for a, b in zip(secret, guess):\n        if a != b:\n            sc[a] = sc.get(a, 0) + 1\n            gc[b] = gc.get(b, 0) + 1\n    cows = sum(min(n, gc.get(d, 0)) for d, n in sc.items())\n    return f'{bulls}A{cows}B'\n```\n\nCows come from the unmatched digits only.",
+  "starterCode": "def bulls_and_cows(secret, guess):\n    # Write your code here\n    pass\n",
+  "functionName": "bulls_and_cows",
+  "referenceSolution": "def bulls_and_cows(secret, guess):\n    bulls = sum(a == b for a, b in zip(secret, guess))\n    sc, gc = {}, {}\n    for a, b in zip(secret, guess):\n        if a != b:\n            sc[a] = sc.get(a, 0) + 1\n            gc[b] = gc.get(b, 0) + 1\n    cows = sum(min(n, gc.get(d, 0)) for d, n in sc.items())\n    return f'{bulls}A{cows}B'\n",
+  "tests": [
+    {
+      "args": [
+        "1807",
+        "7810"
+      ],
+      "expected": "1A3B",
+      "hidden": false
+    },
+    {
+      "args": [
+        "1123",
+        "0111"
+      ],
+      "expected": "1A1B",
+      "hidden": false
+    },
+    {
+      "args": [
+        "1",
+        "1"
+      ],
+      "expected": "1A0B",
+      "hidden": true
+    },
+    {
+      "args": [
+        "12",
+        "21"
+      ],
+      "expected": "0A2B",
+      "hidden": true
+    },
+    {
+      "args": [
+        "1111",
+        "1122"
+      ],
+      "expected": "2A0B",
+      "hidden": true
+    },
+    {
+      "args": [
+        "0000",
+        "1111"
+      ],
+      "expected": "0A0B",
+      "hidden": true
+    }
+  ],
+  "order": 227
+}

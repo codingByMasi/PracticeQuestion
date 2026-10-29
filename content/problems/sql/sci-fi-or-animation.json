@@ -1,0 +1,21 @@
+{
+  "slug": "sci-fi-or-animation",
+  "track": "sql",
+  "title": "Sci-Fi or Animation",
+  "difficulty": "Easy",
+  "tags": [
+    "where"
+  ],
+  "statementMd": "List titles whose genre is either Sci-Fi or Animation.\n\nExpected columns: `title`, `genre`.\n\nTables: `movies`, `directors`, `reviews`.\n\nRow order does not matter.",
+  "hints": [
+    "`IN ('Sci-Fi', 'Animation')`."
+  ],
+  "solutionMd": "```sql\nSELECT title, genre FROM movies WHERE genre IN ('Sci-Fi', 'Animation');\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: movies, directors, reviews\nSELECT\n",
+  "datasetId": "movies",
+  "expected": {
+    "query": "SELECT title, genre FROM movies WHERE genre IN ('Sci-Fi', 'Animation');",
+    "orderMatters": false
+  },
+  "order": 38
+}

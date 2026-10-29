@@ -1,0 +1,21 @@
+{
+  "slug": "engineers-by-title",
+  "track": "sql",
+  "title": "Engineers by title",
+  "difficulty": "Easy",
+  "tags": [
+    "like"
+  ],
+  "statementMd": "Find employees whose title contains the word `Engineer` anywhere (for example Staff Engineer or Junior Engineer).\n\nExpected columns: `first_name`, `title`.\n\nTables: `employees`, `departments`.\n\nRow order does not matter.",
+  "hints": [
+    "`LIKE '%text%'` matches the text anywhere."
+  ],
+  "solutionMd": "```sql\nSELECT first_name, title FROM employees WHERE title LIKE '%Engineer%';\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "SELECT first_name, title FROM employees WHERE title LIKE '%Engineer%';",
+    "orderMatters": false
+  },
+  "order": 56
+}

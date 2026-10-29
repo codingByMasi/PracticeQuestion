@@ -1,0 +1,21 @@
+{
+  "slug": "running-box-office-by-year",
+  "track": "sql",
+  "title": "Running box office by year",
+  "difficulty": "Hard",
+  "tags": [
+    "running-total"
+  ],
+  "statementMd": "For each release year show total gross that year and the cumulative gross up to that year (ignoring unknown grosses; years with only unknown gross are excluded). Oldest first.\n\nExpected columns: `release_year`, `gross`, `cumulative`.\n\nTables: `movies`, `directors`, `reviews`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Aggregate per year, then running `SUM() OVER`."
+  ],
+  "solutionMd": "```sql\nWITH y AS (SELECT release_year, SUM(gross_millions) AS gross FROM movies WHERE gross_millions IS NOT NULL GROUP BY release_year) SELECT release_year, gross, SUM(gross) OVER (ORDER BY release_year) AS cumulative FROM y ORDER BY release_year;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: movies, directors, reviews\nSELECT\n",
+  "datasetId": "movies",
+  "expected": {
+    "query": "WITH y AS (SELECT release_year, SUM(gross_millions) AS gross FROM movies WHERE gross_millions IS NOT NULL GROUP BY release_year) SELECT release_year, gross, SUM(gross) OVER (ORDER BY release_year) AS cumulative FROM y ORDER BY release_year;",
+    "orderMatters": true
+  },
+  "order": 473
+}

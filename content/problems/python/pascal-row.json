@@ -1,0 +1,97 @@
+{
+  "slug": "pascal-row",
+  "track": "python",
+  "title": "Pascal row",
+  "difficulty": "Medium",
+  "tags": [
+    "lists"
+  ],
+  "statementMd": "Return row `n` (0-based) of Pascal's triangle as a list.\n\n**Example:** `pascal_row(0)` returns `[1]`.",
+  "hints": [
+    "Each entry is the sum of two entries above."
+  ],
+  "solutionMd": "```python\ndef pascal_row(n):\n    row = [1]\n    for _ in range(n):\n        row = [1] + [a + b for a, b in zip(row, row[1:])] + [1]\n    return row\n```\n\nBuild rows iteratively.",
+  "starterCode": "def pascal_row(n):\n    # Write your code here\n    pass\n",
+  "functionName": "pascal_row",
+  "referenceSolution": "def pascal_row(n):\n    row = [1]\n    for _ in range(n):\n        row = [1] + [a + b for a, b in zip(row, row[1:])] + [1]\n    return row\n",
+  "tests": [
+    {
+      "args": [
+        0
+      ],
+      "expected": [
+        1
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        4
+      ],
+      "expected": [
+        1,
+        4,
+        6,
+        4,
+        1
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        1
+      ],
+      "expected": [
+        1,
+        1
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        2
+      ],
+      "expected": [
+        1,
+        2,
+        1
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        6
+      ],
+      "expected": [
+        1,
+        6,
+        15,
+        20,
+        15,
+        6,
+        1
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        10
+      ],
+      "expected": [
+        1,
+        10,
+        45,
+        120,
+        210,
+        252,
+        210,
+        120,
+        45,
+        10,
+        1
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 198
+}

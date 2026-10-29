@@ -1,0 +1,21 @@
+{
+  "slug": "revenue-per-order-status",
+  "track": "sql",
+  "title": "Revenue per order status",
+  "difficulty": "Medium",
+  "tags": [
+    "group-by"
+  ],
+  "statementMd": "Total value of order lines per order status, rounded to 2 decimals.\n\nExpected columns: `status`, `value`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\nRow order does not matter.",
+  "hints": [
+    "Join orders to items."
+  ],
+  "solutionMd": "```sql\nSELECT o.status, ROUND(SUM(oi.quantity * oi.unit_price), 2) AS value FROM orders o JOIN order_items oi ON oi.order_id = o.id GROUP BY o.status;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "SELECT o.status, ROUND(SUM(oi.quantity * oi.unit_price), 2) AS value FROM orders o JOIN order_items oi ON oi.order_id = o.id GROUP BY o.status;",
+    "orderMatters": false
+  },
+  "order": 228
+}

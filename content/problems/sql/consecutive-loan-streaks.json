@@ -1,0 +1,21 @@
+{
+  "slug": "consecutive-loan-streaks",
+  "track": "sql",
+  "title": "Consecutive loan streaks",
+  "difficulty": "Hard",
+  "tags": [
+    "gaps-islands"
+  ],
+  "statementMd": "For member 1, group their loan dates into streaks where consecutive loans are at most 30 days apart, and show each streak's start, end and size. Order by start.\n\nExpected columns: `streak_start`, `streak_end`, `loans`.\n\nTables: `authors`, `books`, `members`, `loans`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "`LAG` to flag gaps over 30 days, running sum of the flags to number the streaks."
+  ],
+  "solutionMd": "```sql\nWITH d AS (SELECT loan_date, CASE WHEN julianday(loan_date) - julianday(LAG(loan_date) OVER (ORDER BY loan_date, id)) > 30 THEN 1 ELSE 0 END AS new_streak FROM loans WHERE member_id = 1), g AS (SELECT loan_date, SUM(new_streak) OVER (ORDER BY loan_date ROWS UNBOUNDED PRECEDING) AS grp FROM d) SELECT MIN(loan_date) AS streak_start, MAX(loan_date) AS streak_end, COUNT(*) AS loans FROM g GROUP BY grp ORDER BY streak_start;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: authors, books, members, loans\nSELECT\n",
+  "datasetId": "library",
+  "expected": {
+    "query": "WITH d AS (SELECT loan_date, CASE WHEN julianday(loan_date) - julianday(LAG(loan_date) OVER (ORDER BY loan_date, id)) > 30 THEN 1 ELSE 0 END AS new_streak FROM loans WHERE member_id = 1), g AS (SELECT loan_date, SUM(new_streak) OVER (ORDER BY loan_date ROWS UNBOUNDED PRECEDING) AS grp FROM d) SELECT MIN(loan_date) AS streak_start, MAX(loan_date) AS streak_end, COUNT(*) AS loans FROM g GROUP BY grp ORDER BY streak_start;",
+    "orderMatters": true
+  },
+  "order": 496
+}

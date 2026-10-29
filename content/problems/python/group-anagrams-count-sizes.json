@@ -1,0 +1,84 @@
+{
+  "slug": "group-anagrams-count-sizes",
+  "track": "python",
+  "title": "Group anagrams count sizes",
+  "difficulty": "Medium",
+  "tags": [
+    "dicts"
+  ],
+  "statementMd": "Group words that are anagrams of each other and return the sorted list of group sizes (largest first).\n\n**Example:** `anagram_group_sizes([\"eat\", \"tea\", \"tan\", \"ate\", \"nat\", \"bat\"])` returns `[3, 2, 1]`.",
+  "hints": [
+    "Key by sorted letters."
+  ],
+  "solutionMd": "```python\ndef anagram_group_sizes(words):\n    groups = {}\n    for w in words:\n        groups[''.join(sorted(w))] = groups.get(''.join(sorted(w)), 0) + 1\n    return sorted(groups.values(), reverse=True)\n```\n\nSizes only, so counts are enough.",
+  "starterCode": "def anagram_group_sizes(words):\n    # Write your code here\n    pass\n",
+  "functionName": "anagram_group_sizes",
+  "referenceSolution": "def anagram_group_sizes(words):\n    groups = {}\n    for w in words:\n        groups[''.join(sorted(w))] = groups.get(''.join(sorted(w)), 0) + 1\n    return sorted(groups.values(), reverse=True)\n",
+  "tests": [
+    {
+      "args": [
+        [
+          "eat",
+          "tea",
+          "tan",
+          "ate",
+          "nat",
+          "bat"
+        ]
+      ],
+      "expected": [
+        3,
+        2,
+        1
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": [],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          "a"
+        ]
+      ],
+      "expected": [
+        1
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          "ab",
+          "ba",
+          "ab",
+          "cd"
+        ]
+      ],
+      "expected": [
+        3,
+        1
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          "x",
+          "y"
+        ]
+      ],
+      "expected": [
+        1,
+        1
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 213
+}

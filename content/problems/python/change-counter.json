@@ -1,0 +1,62 @@
+{
+  "slug": "change-counter",
+  "track": "python",
+  "title": "Change counter",
+  "difficulty": "Easy",
+  "tags": [
+    "numbers"
+  ],
+  "statementMd": "Return the minimum number of US coins (25, 10, 5, 1 cents) that add up to `cents`.\n\n**Example:** `coins_greedy(41)` returns `4`.",
+  "hints": [
+    "Take as many large coins as possible first."
+  ],
+  "solutionMd": "```python\ndef coins_greedy(cents):\n    count = 0\n    for c in (25, 10, 5, 1):\n        count += cents // c\n        cents %= c\n    return count\n```\n\nGreedy is optimal for this coin system.",
+  "starterCode": "def coins_greedy(cents):\n    # Write your code here\n    pass\n",
+  "functionName": "coins_greedy",
+  "referenceSolution": "def coins_greedy(cents):\n    count = 0\n    for c in (25, 10, 5, 1):\n        count += cents // c\n        cents %= c\n    return count\n",
+  "tests": [
+    {
+      "args": [
+        41
+      ],
+      "expected": 4,
+      "hidden": false
+    },
+    {
+      "args": [
+        3
+      ],
+      "expected": 3,
+      "hidden": false
+    },
+    {
+      "args": [
+        0
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        99
+      ],
+      "expected": 9,
+      "hidden": true
+    },
+    {
+      "args": [
+        100
+      ],
+      "expected": 4,
+      "hidden": true
+    },
+    {
+      "args": [
+        30
+      ],
+      "expected": 2,
+      "hidden": true
+    }
+  ],
+  "order": 24
+}

@@ -1,0 +1,65 @@
+{
+  "slug": "parse-key-value-pairs",
+  "track": "python",
+  "title": "Parse key=value pairs",
+  "difficulty": "Medium",
+  "tags": [
+    "parsing"
+  ],
+  "statementMd": "Parse a string like `\"a=1;b=2;c=hello\"` into a dict. Values that look like integers become ints; keys and other values stay strings. An empty string gives `{}`.\n\n**Example:** `parse_kv(\"a=1;b=x\")` returns `{\"a\": 1, \"b\": \"x\"}`.",
+  "hints": [
+    "Split on `;` then `=`."
+  ],
+  "solutionMd": "```python\ndef parse_kv(line):\n    out = {}\n    if not line:\n        return out\n    for part in line.split(';'):\n        k, v = part.split('=', 1)\n        out[k] = int(v) if v.lstrip('-').isdigit() else v\n    return out\n```\n\nSplit once per pair, convert numeric strings.",
+  "starterCode": "def parse_kv(line):\n    # Write your code here\n    pass\n",
+  "functionName": "parse_kv",
+  "referenceSolution": "def parse_kv(line):\n    out = {}\n    if not line:\n        return out\n    for part in line.split(';'):\n        k, v = part.split('=', 1)\n        out[k] = int(v) if v.lstrip('-').isdigit() else v\n    return out\n",
+  "tests": [
+    {
+      "args": [
+        "a=1;b=x"
+      ],
+      "expected": {
+        "a": 1,
+        "b": "x"
+      },
+      "hidden": false
+    },
+    {
+      "args": [
+        ""
+      ],
+      "expected": {},
+      "hidden": false
+    },
+    {
+      "args": [
+        "k=-5"
+      ],
+      "expected": {
+        "k": -5
+      },
+      "hidden": true
+    },
+    {
+      "args": [
+        "name=Ann;age=30"
+      ],
+      "expected": {
+        "name": "Ann",
+        "age": 30
+      },
+      "hidden": true
+    },
+    {
+      "args": [
+        "eq=a=b"
+      ],
+      "expected": {
+        "eq": "a=b"
+      },
+      "hidden": true
+    }
+  ],
+  "order": 294
+}

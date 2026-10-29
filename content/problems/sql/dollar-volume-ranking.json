@@ -1,0 +1,21 @@
+{
+  "slug": "dollar-volume-ranking",
+  "track": "sql",
+  "title": "Dollar volume ranking",
+  "difficulty": "Medium",
+  "tags": [
+    "ranking"
+  ],
+  "statementMd": "Rank tickers by total dollar volume (sum of close times volume), showing symbol, total rounded to the nearest whole number, and rank with `RANK()`. Order by rank.\n\nExpected columns: `symbol`, `dollar_volume`, `rk`.\n\nTables: `tickers`, `prices`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "`RANK() OVER (ORDER BY total DESC)`."
+  ],
+  "solutionMd": "```sql\nSELECT symbol, ROUND(SUM(close * volume)) AS dollar_volume, RANK() OVER (ORDER BY SUM(close * volume) DESC) AS rk FROM prices GROUP BY symbol ORDER BY rk;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: tickers, prices\nSELECT\n",
+  "datasetId": "stocks",
+  "expected": {
+    "query": "SELECT symbol, ROUND(SUM(close * volume)) AS dollar_volume, RANK() OVER (ORDER BY SUM(close * volume) DESC) AS rk FROM prices GROUP BY symbol ORDER BY rk;",
+    "orderMatters": true
+  },
+  "order": 352
+}

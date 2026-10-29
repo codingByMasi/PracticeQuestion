@@ -1,0 +1,83 @@
+{
+  "slug": "count-palindromic-substrings",
+  "track": "python",
+  "title": "Count palindromic substrings",
+  "difficulty": "Hard",
+  "tags": [
+    "strings"
+  ],
+  "statementMd": "Count substrings of `s` (by position, so repeats count separately) that are palindromes.\n\n**Example:** `count_palindromic_substrings(\"abc\")` returns `3`.",
+  "hints": [
+    "Expand around each centre and count every success."
+  ],
+  "solutionMd": "```python\ndef count_palindromic_substrings(s):\n    total = 0\n    for c in range(len(s)):\n        for l, r in ((c, c), (c, c + 1)):\n            while l >= 0 and r < len(s) and s[l] == s[r]:\n                total += 1\n                l -= 1\n                r += 1\n    return total\n```\n\nEach successful expansion is one palindrome.",
+  "starterCode": "def count_palindromic_substrings(s):\n    # Write your code here\n    pass\n",
+  "functionName": "count_palindromic_substrings",
+  "referenceSolution": "def count_palindromic_substrings(s):\n    total = 0\n    for c in range(len(s)):\n        for l, r in ((c, c), (c, c + 1)):\n            while l >= 0 and r < len(s) and s[l] == s[r]:\n                total += 1\n                l -= 1\n                r += 1\n    return total\n",
+  "tests": [
+    {
+      "args": [
+        "abc"
+      ],
+      "expected": 3,
+      "hidden": false
+    },
+    {
+      "args": [
+        "aaa"
+      ],
+      "expected": 6,
+      "hidden": false
+    },
+    {
+      "args": [
+        ""
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        "a"
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        "abba"
+      ],
+      "expected": 6,
+      "hidden": true
+    },
+    {
+      "args": [
+        "racecar"
+      ],
+      "expected": 10,
+      "hidden": true
+    },
+    {
+      "args": [
+        "ababbbaaaba"
+      ],
+      "expected": 22,
+      "hidden": true
+    },
+    {
+      "args": [
+        "bbbabbaba"
+      ],
+      "expected": 19,
+      "hidden": true
+    },
+    {
+      "args": [
+        "ababbbbbb"
+      ],
+      "expected": 26,
+      "hidden": true
+    }
+  ],
+  "order": 382
+}

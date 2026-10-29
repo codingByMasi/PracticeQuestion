@@ -1,0 +1,86 @@
+{
+  "slug": "alien-dictionary-order",
+  "track": "python",
+  "title": "Alien dictionary order",
+  "difficulty": "Hard",
+  "tags": [
+    "graphs"
+  ],
+  "statementMd": "Words are sorted in an unknown alphabet. Derive a letter order: add an edge from the first differing letters of each adjacent word pair, then topologically sort using the smallest available letter first. Return the string, or `\"\"` if there is a contradiction (cycle) or an invalid prefix order (`\"abc\"` before `\"ab\"`).\n\n**Example:** `alien_order([\"wrt\", \"wrf\", \"er\", \"ett\", \"rftt\"])` returns `\"wertf\"`.",
+  "hints": [
+    "Build the graph, then Kahn with a heap."
+  ],
+  "solutionMd": "```python\nfrom collections import deque, defaultdict\n\n\ndef alien_order(words):\n    import heapq\n    letters = {c for w in words for c in w}\n    adj = defaultdict(set)\n    indeg = {c: 0 for c in letters}\n    for a, b in zip(words, words[1:]):\n        if len(a) > len(b) and a.startswith(b):\n            return ''\n        for x, y in zip(a, b):\n            if x != y:\n                if y not in adj[x]:\n                    adj[x].add(y)\n                    indeg[y] += 1\n                break\n    heap = [c for c in letters if indeg[c] == 0]\n    heapq.heapify(heap)\n    out = []\n    while heap:\n        c = heapq.heappop(heap)\n        out.append(c)\n        for d in adj[c]:\n            indeg[d] -= 1\n            if indeg[d] == 0:\n                heapq.heappush(heap, d)\n    return ''.join(out) if len(out) == len(letters) else ''\n```\n\nPairs of adjacent words give all the ordering rules.",
+  "starterCode": "def alien_order(words):\n    # Write your code here\n    pass\n",
+  "functionName": "alien_order",
+  "referenceSolution": "from collections import deque, defaultdict\n\n\ndef alien_order(words):\n    import heapq\n    letters = {c for w in words for c in w}\n    adj = defaultdict(set)\n    indeg = {c: 0 for c in letters}\n    for a, b in zip(words, words[1:]):\n        if len(a) > len(b) and a.startswith(b):\n            return ''\n        for x, y in zip(a, b):\n            if x != y:\n                if y not in adj[x]:\n                    adj[x].add(y)\n                    indeg[y] += 1\n                break\n    heap = [c for c in letters if indeg[c] == 0]\n    heapq.heapify(heap)\n    out = []\n    while heap:\n        c = heapq.heappop(heap)\n        out.append(c)\n        for d in adj[c]:\n            indeg[d] -= 1\n            if indeg[d] == 0:\n                heapq.heappush(heap, d)\n    return ''.join(out) if len(out) == len(letters) else ''\n",
+  "tests": [
+    {
+      "args": [
+        [
+          "wrt",
+          "wrf",
+          "er",
+          "ett",
+          "rftt"
+        ]
+      ],
+      "expected": "wertf",
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          "z",
+          "x",
+          "z"
+        ]
+      ],
+      "expected": "",
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          "abc",
+          "ab"
+        ]
+      ],
+      "expected": "",
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          "a",
+          "b"
+        ]
+      ],
+      "expected": "ab",
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          "z",
+          "z"
+        ]
+      ],
+      "expected": "z",
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          "ba",
+          "bc",
+          "ac",
+          "cab"
+        ]
+      ],
+      "expected": "bac",
+      "hidden": true
+    }
+  ],
+  "order": 472
+}

@@ -1,0 +1,21 @@
+{
+  "slug": "average-close-per-ticker",
+  "track": "sql",
+  "title": "Average close per ticker",
+  "difficulty": "Easy",
+  "tags": [
+    "group-by"
+  ],
+  "statementMd": "Average closing price per symbol rounded to 2 decimals.\n\nExpected columns: `symbol`, `avg_close`.\n\nTables: `tickers`, `prices`.\n\nRow order does not matter.",
+  "hints": [
+    "`ROUND(AVG(close), 2)`."
+  ],
+  "solutionMd": "```sql\nSELECT symbol, ROUND(AVG(close), 2) AS avg_close FROM prices GROUP BY symbol;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: tickers, prices\nSELECT\n",
+  "datasetId": "stocks",
+  "expected": {
+    "query": "SELECT symbol, ROUND(AVG(close), 2) AS avg_close FROM prices GROUP BY symbol;",
+    "orderMatters": false
+  },
+  "order": 146
+}

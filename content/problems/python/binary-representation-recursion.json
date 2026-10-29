@@ -1,0 +1,62 @@
+{
+  "slug": "binary-representation-recursion",
+  "track": "python",
+  "title": "Binary representation recursion",
+  "difficulty": "Medium",
+  "tags": [
+    "recursion"
+  ],
+  "statementMd": "Return the binary representation of `n >= 0` as a string using recursion (`\"0\"` for zero), no `bin`.\n\n**Example:** `to_binary(5)` returns `\"101\"`.",
+  "hints": [
+    "`to_binary(n // 2) + str(n % 2)`."
+  ],
+  "solutionMd": "```python\ndef to_binary(n):\n    if n < 2:\n        return str(n)\n    return to_binary(n // 2) + str(n % 2)\n```\n\nThe remainder is the last bit.",
+  "starterCode": "def to_binary(n):\n    # Write your code here\n    pass\n",
+  "functionName": "to_binary",
+  "referenceSolution": "def to_binary(n):\n    if n < 2:\n        return str(n)\n    return to_binary(n // 2) + str(n % 2)\n",
+  "tests": [
+    {
+      "args": [
+        5
+      ],
+      "expected": "101",
+      "hidden": false
+    },
+    {
+      "args": [
+        0
+      ],
+      "expected": "0",
+      "hidden": false
+    },
+    {
+      "args": [
+        1
+      ],
+      "expected": "1",
+      "hidden": true
+    },
+    {
+      "args": [
+        2
+      ],
+      "expected": "10",
+      "hidden": true
+    },
+    {
+      "args": [
+        255
+      ],
+      "expected": "11111111",
+      "hidden": true
+    },
+    {
+      "args": [
+        1024
+      ],
+      "expected": "10000000000",
+      "hidden": true
+    }
+  ],
+  "order": 244
+}

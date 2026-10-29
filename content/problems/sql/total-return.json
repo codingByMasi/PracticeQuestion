@@ -1,0 +1,21 @@
+{
+  "slug": "total-return",
+  "track": "sql",
+  "title": "Total return",
+  "difficulty": "Medium",
+  "tags": [
+    "expressions"
+  ],
+  "statementMd": "For each symbol compute total return as percentage change from first close to last close, rounded to 1 decimal. Highest first.\n\nExpected columns: `symbol`, `return_pct`.\n\nTables: `tickers`, `prices`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Compare last and first close."
+  ],
+  "solutionMd": "```sql\nWITH r AS (SELECT symbol, FIRST_VALUE(close) OVER (PARTITION BY symbol ORDER BY trade_date) AS first_close, FIRST_VALUE(close) OVER (PARTITION BY symbol ORDER BY trade_date DESC) AS last_close FROM prices) SELECT DISTINCT symbol, ROUND(100.0 * (last_close - first_close) / first_close, 1) AS return_pct FROM r ORDER BY return_pct DESC;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: tickers, prices\nSELECT\n",
+  "datasetId": "stocks",
+  "expected": {
+    "query": "WITH r AS (SELECT symbol, FIRST_VALUE(close) OVER (PARTITION BY symbol ORDER BY trade_date) AS first_close, FIRST_VALUE(close) OVER (PARTITION BY symbol ORDER BY trade_date DESC) AS last_close FROM prices) SELECT DISTINCT symbol, ROUND(100.0 * (last_close - first_close) / first_close, 1) AS return_pct FROM r ORDER BY return_pct DESC;",
+    "orderMatters": true
+  },
+  "order": 177
+}

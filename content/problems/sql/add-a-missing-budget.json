@@ -1,0 +1,21 @@
+{
+  "slug": "add-a-missing-budget",
+  "track": "sql",
+  "title": "Add a missing budget",
+  "difficulty": "Medium",
+  "tags": [
+    "dml"
+  ],
+  "statementMd": "Set the budget of the movie titled `The Room Next Door` to 15 and then list movies with a budget above 100.\n\nExpected columns: `title`, `budget_millions`.\n\nTables: `movies`, `directors`, `reviews`.\n\nRow order does not matter.",
+  "hints": [
+    "`UPDATE movies SET budget_millions = 15 WHERE ...`."
+  ],
+  "solutionMd": "```sql\nUPDATE movies SET budget_millions = 15 WHERE title = 'The Room Next Door'; SELECT title, budget_millions FROM movies WHERE budget_millions > 100;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: movies, directors, reviews\nSELECT\n",
+  "datasetId": "movies",
+  "expected": {
+    "query": "UPDATE movies SET budget_millions = 15 WHERE title = 'The Room Next Door'; SELECT title, budget_millions FROM movies WHERE budget_millions > 100;",
+    "orderMatters": false
+  },
+  "order": 365
+}

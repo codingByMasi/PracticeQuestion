@@ -1,0 +1,89 @@
+{
+  "slug": "longest-turbulent-subarray",
+  "track": "python",
+  "title": "Longest turbulent subarray",
+  "difficulty": "Hard",
+  "tags": [
+    "sliding-window"
+  ],
+  "statementMd": "A subarray is turbulent if comparisons alternate between consecutive elements (up, down, up, ... or down, up, ...). Return the length of the longest turbulent subarray.\n\n**Example:** `max_turbulence([9, 4, 2, 10, 7, 8, 8, 1, 9])` returns `5`.",
+  "hints": [
+    "Track the current alternating run length."
+  ],
+  "solutionMd": "```python\ndef max_turbulence(nums):\n    best = cur = 1\n    prev_cmp = 0\n    for a, b in zip(nums, nums[1:]):\n        cmp = (b > a) - (b < a)\n        if cmp == 0:\n            cur = 1\n        elif cmp == -prev_cmp:\n            cur += 1\n        else:\n            cur = 2\n        prev_cmp = cmp\n        best = max(best, cur)\n    return best if nums else 0\n```\n\nEqual neighbours reset the run.",
+  "starterCode": "def max_turbulence(nums):\n    # Write your code here\n    pass\n",
+  "functionName": "max_turbulence",
+  "referenceSolution": "def max_turbulence(nums):\n    best = cur = 1\n    prev_cmp = 0\n    for a, b in zip(nums, nums[1:]):\n        cmp = (b > a) - (b < a)\n        if cmp == 0:\n            cur = 1\n        elif cmp == -prev_cmp:\n            cur += 1\n        else:\n            cur = 2\n        prev_cmp = cmp\n        best = max(best, cur)\n    return best if nums else 0\n",
+  "tests": [
+    {
+      "args": [
+        [
+          9,
+          4,
+          2,
+          10,
+          7,
+          8,
+          8,
+          1,
+          9
+        ]
+      ],
+      "expected": 5,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          4,
+          8,
+          12,
+          16
+        ]
+      ],
+      "expected": 2,
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          100
+        ]
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          1,
+          1
+        ]
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          2,
+          1,
+          2,
+          1
+        ]
+      ],
+      "expected": 5,
+      "hidden": true
+    }
+  ],
+  "order": 410
+}

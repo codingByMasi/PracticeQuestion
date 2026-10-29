@@ -1,0 +1,21 @@
+{
+  "slug": "listening-hours",
+  "track": "sql",
+  "title": "Listening hours",
+  "difficulty": "Medium",
+  "tags": [
+    "aggregate"
+  ],
+  "statementMd": "Total listening time per listener in hours (sum of the played tracks' lengths), rounded to 2 decimals. Show the top five, ties by name.\n\nExpected columns: `name`, `hours`.\n\nTables: `artists`, `albums`, `tracks`, `listeners`, `plays`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Join plays to tracks and listeners."
+  ],
+  "solutionMd": "```sql\nSELECT l.name, ROUND(SUM(t.seconds) / 3600.0, 2) AS hours FROM plays p JOIN tracks t ON t.id = p.track_id JOIN listeners l ON l.id = p.listener_id GROUP BY l.id, l.name ORDER BY hours DESC, l.name LIMIT 5;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: artists, albums, tracks, listeners, plays\nSELECT\n",
+  "datasetId": "music",
+  "expected": {
+    "query": "SELECT l.name, ROUND(SUM(t.seconds) / 3600.0, 2) AS hours FROM plays p JOIN tracks t ON t.id = p.track_id JOIN listeners l ON l.id = p.listener_id GROUP BY l.id, l.name ORDER BY hours DESC, l.name LIMIT 5;",
+    "orderMatters": true
+  },
+  "order": 216
+}

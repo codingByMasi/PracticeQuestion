@@ -1,0 +1,170 @@
+{
+  "slug": "lfu-cache",
+  "track": "python",
+  "title": "LFU cache",
+  "difficulty": "Hard",
+  "tags": [
+    "design"
+  ],
+  "statementMd": "Simulate an LFU cache. `['put', k, v]` stores (updating counts as a use if the key exists); when full, evict the least frequently used key, breaking ties by least recently used. `['get', k]` returns the value or -1 and counts as a use. Capacity 0 stores nothing. Return the results of get operations.\n\n**Example:** `lfu_cache_ops(2, [[\"put\", 1, 1], [\"put\", 2, 2], [\"get\", 1], [\"put\", 3, 3], […)` returns `[1, -1, 3, -1, 3, 4]`.",
+  "hints": [
+    "Track frequency and a recency counter per key."
+  ],
+  "solutionMd": "```python\ndef lfu_cache_ops(capacity, ops):\n    vals, freq, last = {}, {}, {}\n    clock = 0\n    out = []\n    for op in ops:\n        clock += 1\n        if op[0] == 'get':\n            k = op[1]\n            if k in vals:\n                freq[k] += 1\n                last[k] = clock\n                out.append(vals[k])\n            else:\n                out.append(-1)\n        else:\n            if capacity == 0:\n                continue\n            k, v = op[1], op[2]\n            if k in vals:\n                vals[k] = v\n                freq[k] += 1\n                last[k] = clock\n            else:\n                if len(vals) >= capacity:\n                    victim = min(vals, key=lambda x: (freq[x], last[x]))\n                    del vals[victim], freq[victim], last[victim]\n                vals[k], freq[k], last[k] = v, 1, clock\n    return out\n```\n\nEviction picks the lowest (frequency, recency).",
+  "starterCode": "def lfu_cache_ops(capacity, ops):\n    # Write your code here\n    pass\n",
+  "functionName": "lfu_cache_ops",
+  "referenceSolution": "def lfu_cache_ops(capacity, ops):\n    vals, freq, last = {}, {}, {}\n    clock = 0\n    out = []\n    for op in ops:\n        clock += 1\n        if op[0] == 'get':\n            k = op[1]\n            if k in vals:\n                freq[k] += 1\n                last[k] = clock\n                out.append(vals[k])\n            else:\n                out.append(-1)\n        else:\n            if capacity == 0:\n                continue\n            k, v = op[1], op[2]\n            if k in vals:\n                vals[k] = v\n                freq[k] += 1\n                last[k] = clock\n            else:\n                if len(vals) >= capacity:\n                    victim = min(vals, key=lambda x: (freq[x], last[x]))\n                    del vals[victim], freq[victim], last[victim]\n                vals[k], freq[k], last[k] = v, 1, clock\n    return out\n",
+  "tests": [
+    {
+      "args": [
+        2,
+        [
+          [
+            "put",
+            1,
+            1
+          ],
+          [
+            "put",
+            2,
+            2
+          ],
+          [
+            "get",
+            1
+          ],
+          [
+            "put",
+            3,
+            3
+          ],
+          [
+            "get",
+            2
+          ],
+          [
+            "get",
+            3
+          ],
+          [
+            "put",
+            4,
+            4
+          ],
+          [
+            "get",
+            1
+          ],
+          [
+            "get",
+            3
+          ],
+          [
+            "get",
+            4
+          ]
+        ]
+      ],
+      "expected": [
+        1,
+        -1,
+        3,
+        -1,
+        3,
+        4
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        0,
+        [
+          [
+            "put",
+            1,
+            1
+          ],
+          [
+            "get",
+            1
+          ]
+        ]
+      ],
+      "expected": [
+        -1
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        1,
+        [
+          [
+            "put",
+            1,
+            1
+          ],
+          [
+            "put",
+            2,
+            2
+          ],
+          [
+            "get",
+            1
+          ],
+          [
+            "get",
+            2
+          ]
+        ]
+      ],
+      "expected": [
+        -1,
+        2
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        2,
+        [
+          [
+            "put",
+            1,
+            1
+          ],
+          [
+            "put",
+            1,
+            5
+          ],
+          [
+            "get",
+            1
+          ]
+        ]
+      ],
+      "expected": [
+        5
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        2,
+        [
+          [
+            "get",
+            9
+          ]
+        ]
+      ],
+      "expected": [
+        -1
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 499
+}

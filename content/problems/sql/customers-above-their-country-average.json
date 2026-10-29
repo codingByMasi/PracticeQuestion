@@ -1,0 +1,21 @@
+{
+  "slug": "customers-above-their-country-average",
+  "track": "sql",
+  "title": "Customers above their country average",
+  "difficulty": "Hard",
+  "tags": [
+    "correlated-subquery"
+  ],
+  "statementMd": "Among customers with non-cancelled orders, list those whose total spend exceeds the average total spend of customers in their own country. Show name, country and total rounded to 2 decimals.\n\nExpected columns: `name`, `country`, `total`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\nRow order does not matter.",
+  "hints": [
+    "Build per-customer totals in a CTE and compare with a window average per country."
+  ],
+  "solutionMd": "```sql\nWITH s AS (SELECT c.id, c.name, c.country, SUM(oi.quantity * oi.unit_price) AS total FROM customers c JOIN orders o ON o.customer_id = c.id AND o.status <> 'cancelled' JOIN order_items oi ON oi.order_id = o.id GROUP BY c.id) SELECT name, country, ROUND(total, 2) AS total FROM (SELECT *, AVG(total) OVER (PARTITION BY country) AS country_avg FROM s) WHERE total > country_avg;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "WITH s AS (SELECT c.id, c.name, c.country, SUM(oi.quantity * oi.unit_price) AS total FROM customers c JOIN orders o ON o.customer_id = c.id AND o.status <> 'cancelled' JOIN order_items oi ON oi.order_id = o.id GROUP BY c.id) SELECT name, country, ROUND(total, 2) AS total FROM (SELECT *, AVG(total) OVER (PARTITION BY country) AS country_avg FROM s) WHERE total > country_avg;",
+    "orderMatters": false
+  },
+  "order": 394
+}

@@ -1,0 +1,21 @@
+{
+  "slug": "orders-with-customer-names",
+  "track": "sql",
+  "title": "Orders with customer names",
+  "difficulty": "Easy",
+  "tags": [
+    "join"
+  ],
+  "statementMd": "List each order id with the name of the customer who placed it.\n\nExpected columns: `id`, `name`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\nRow order does not matter.",
+  "hints": [
+    "Join `orders` to `customers`."
+  ],
+  "solutionMd": "```sql\nSELECT o.id, c.name FROM orders o JOIN customers c ON c.id = o.customer_id;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "SELECT o.id, c.name FROM orders o JOIN customers c ON c.id = o.customer_id;",
+    "orderMatters": false
+  },
+  "order": 156
+}

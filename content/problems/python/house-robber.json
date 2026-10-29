@@ -1,0 +1,115 @@
+{
+  "slug": "house-robber",
+  "track": "python",
+  "title": "House robber",
+  "difficulty": "Medium",
+  "tags": [
+    "dynamic-programming"
+  ],
+  "statementMd": "Houses in a row hold money `nums[i]`; you cannot rob two adjacent houses. Return the maximum you can rob.\n\n**Example:** `house_robber([1, 2, 3, 1])` returns `4`.",
+  "hints": [
+    "best[i] = max(best[i-1], best[i-2] + nums[i])."
+  ],
+  "solutionMd": "```python\ndef house_robber(nums):\n    take = skip = 0\n    for x in nums:\n        take, skip = skip + x, max(skip, take)\n    return max(take, skip)\n```\n\nTwo rolling values suffice.",
+  "starterCode": "def house_robber(nums):\n    # Write your code here\n    pass\n",
+  "functionName": "house_robber",
+  "referenceSolution": "def house_robber(nums):\n    take = skip = 0\n    for x in nums:\n        take, skip = skip + x, max(skip, take)\n    return max(take, skip)\n",
+  "tests": [
+    {
+      "args": [
+        [
+          1,
+          2,
+          3,
+          1
+        ]
+      ],
+      "expected": 4,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          2,
+          7,
+          9,
+          3,
+          1
+        ]
+      ],
+      "expected": 12,
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          5
+        ]
+      ],
+      "expected": 5,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          2,
+          1,
+          1,
+          2
+        ]
+      ],
+      "expected": 4,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          7,
+          5,
+          4,
+          2
+        ]
+      ],
+      "expected": 11,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          2,
+          8,
+          9,
+          3,
+          6
+        ]
+      ],
+      "expected": 17,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          5,
+          9,
+          8,
+          6,
+          5,
+          9,
+          4,
+          9,
+          0
+        ]
+      ],
+      "expected": 33,
+      "hidden": true
+    }
+  ],
+  "order": 313
+}

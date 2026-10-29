@@ -1,0 +1,80 @@
+{
+  "slug": "bubble-sort-passes",
+  "track": "python",
+  "title": "Bubble sort passes",
+  "difficulty": "Medium",
+  "tags": [
+    "sorting"
+  ],
+  "statementMd": "Count how many full passes bubble sort needs to finish: stop after the first pass in which no swap occurs (that final pass counts). An empty list or single element needs 1 pass.\n\n**Example:** `bubble_sort_passes([3, 2, 1])` returns `3`.",
+  "hints": [
+    "Loop until a pass makes no swaps."
+  ],
+  "solutionMd": "```python\ndef bubble_sort_passes(nums):\n    a = nums[:]\n    passes = 0\n    while True:\n        passes += 1\n        swapped = False\n        for i in range(len(a) - 1):\n            if a[i] > a[i + 1]:\n                a[i], a[i + 1] = a[i + 1], a[i]\n                swapped = True\n        if not swapped:\n            return passes\n```\n\nAlready sorted input needs exactly one pass.",
+  "starterCode": "def bubble_sort_passes(nums):\n    # Write your code here\n    pass\n",
+  "functionName": "bubble_sort_passes",
+  "referenceSolution": "def bubble_sort_passes(nums):\n    a = nums[:]\n    passes = 0\n    while True:\n        passes += 1\n        swapped = False\n        for i in range(len(a) - 1):\n            if a[i] > a[i + 1]:\n                a[i], a[i + 1] = a[i + 1], a[i]\n                swapped = True\n        if not swapped:\n            return passes\n",
+  "tests": [
+    {
+      "args": [
+        [
+          3,
+          2,
+          1
+        ]
+      ],
+      "expected": 3,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "expected": 1,
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1
+        ]
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          2,
+          1
+        ]
+      ],
+      "expected": 2,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          4,
+          3,
+          2,
+          1
+        ]
+      ],
+      "expected": 4,
+      "hidden": true
+    }
+  ],
+  "order": 233
+}

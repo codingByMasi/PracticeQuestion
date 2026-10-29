@@ -1,0 +1,21 @@
+{
+  "slug": "books-by-countrymen-of-the-member",
+  "track": "sql",
+  "title": "Books by countrymen of the member",
+  "difficulty": "Medium",
+  "tags": [
+    "multi-join"
+  ],
+  "statementMd": "Count loans where the borrowed book's author comes from the UK.\n\nExpected columns: `uk_loans`.\n\nTables: `authors`, `books`, `members`, `loans`.\n\nRow order does not matter.",
+  "hints": [
+    "Join loans, books, authors."
+  ],
+  "solutionMd": "```sql\nSELECT COUNT(*) AS uk_loans FROM loans l JOIN books b ON b.id = l.book_id JOIN authors a ON a.id = b.author_id WHERE a.country = 'UK';\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: authors, books, members, loans\nSELECT\n",
+  "datasetId": "library",
+  "expected": {
+    "query": "SELECT COUNT(*) AS uk_loans FROM loans l JOIN books b ON b.id = l.book_id JOIN authors a ON a.id = b.author_id WHERE a.country = 'UK';",
+    "orderMatters": false
+  },
+  "order": 302
+}

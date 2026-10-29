@@ -1,0 +1,21 @@
+{
+  "slug": "reachable-cities-in-two-hops",
+  "track": "sql",
+  "title": "Reachable cities in two hops",
+  "difficulty": "Hard",
+  "tags": [
+    "recursive"
+  ],
+  "statementMd": "Starting from LHR, list the destinations reachable with at most 2 flights (ignoring dates) together with the minimum number of hops. Order by hops then airport code.\n\nExpected columns: `code`, `hops`.\n\nTables: `airlines`, `airports`, `flights`, `bookings`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Recursive CTE over distinct routes; take `MIN(hops)`."
+  ],
+  "solutionMd": "```sql\nWITH RECURSIVE routes AS (SELECT DISTINCT origin, destination FROM flights), reach(code, hops) AS (SELECT destination, 1 FROM routes WHERE origin = 'LHR' UNION ALL SELECT r.destination, reach.hops + 1 FROM reach JOIN routes r ON r.origin = reach.code WHERE reach.hops < 2) SELECT code, MIN(hops) AS hops FROM reach WHERE code <> 'LHR' GROUP BY code ORDER BY hops, code;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: airlines, airports, flights, bookings\nSELECT\n",
+  "datasetId": "flights",
+  "expected": {
+    "query": "WITH RECURSIVE routes AS (SELECT DISTINCT origin, destination FROM flights), reach(code, hops) AS (SELECT destination, 1 FROM routes WHERE origin = 'LHR' UNION ALL SELECT r.destination, reach.hops + 1 FROM reach JOIN routes r ON r.origin = reach.code WHERE reach.hops < 2) SELECT code, MIN(hops) AS hops FROM reach WHERE code <> 'LHR' GROUP BY code ORDER BY hops, code;",
+    "orderMatters": true
+  },
+  "order": 491
+}

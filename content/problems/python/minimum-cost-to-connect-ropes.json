@@ -1,0 +1,70 @@
+{
+  "slug": "minimum-cost-to-connect-ropes",
+  "track": "python",
+  "title": "Minimum cost to connect ropes",
+  "difficulty": "Medium",
+  "tags": [
+    "heaps"
+  ],
+  "statementMd": "Joining two ropes costs the sum of their lengths. Return the minimum total cost to join all ropes into one.\n\n**Example:** `connect_ropes([4, 3, 2, 6])` returns `29`.",
+  "hints": [
+    "Always join the two shortest."
+  ],
+  "solutionMd": "```python\ndef connect_ropes(ropes):\n    import heapq\n    h = ropes[:]\n    heapq.heapify(h)\n    total = 0\n    while len(h) > 1:\n        a, b = heapq.heappop(h), heapq.heappop(h)\n        total += a + b\n        heapq.heappush(h, a + b)\n    return total\n```\n\nHuffman-style greedy.",
+  "starterCode": "def connect_ropes(ropes):\n    # Write your code here\n    pass\n",
+  "functionName": "connect_ropes",
+  "referenceSolution": "def connect_ropes(ropes):\n    import heapq\n    h = ropes[:]\n    heapq.heapify(h)\n    total = 0\n    while len(h) > 1:\n        a, b = heapq.heappop(h), heapq.heappop(h)\n        total += a + b\n        heapq.heappush(h, a + b)\n    return total\n",
+  "tests": [
+    {
+      "args": [
+        [
+          4,
+          3,
+          2,
+          6
+        ]
+      ],
+      "expected": 29,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          5
+        ]
+      ],
+      "expected": 0,
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          2
+        ]
+      ],
+      "expected": 3,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          1,
+          1,
+          1
+        ]
+      ],
+      "expected": 8,
+      "hidden": true
+    }
+  ],
+  "order": 367
+}

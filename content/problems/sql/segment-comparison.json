@@ -1,0 +1,21 @@
+{
+  "slug": "segment-comparison",
+  "track": "sql",
+  "title": "Segment comparison",
+  "difficulty": "Medium",
+  "tags": [
+    "multi-join"
+  ],
+  "statementMd": "For each customer segment show the average account balance (average of per-account totals, rounded to 2 decimals).\n\nExpected columns: `segment`, `avg_balance`.\n\nTables: `customers`, `accounts`, `transactions`.\n\nRow order does not matter.",
+  "hints": [
+    "Per-account totals in a subquery."
+  ],
+  "solutionMd": "```sql\nSELECT c.segment, ROUND(AVG(b.balance), 2) AS avg_balance FROM (SELECT account_id, SUM(amount) AS balance FROM transactions GROUP BY account_id) b JOIN accounts a ON a.id = b.account_id JOIN customers c ON c.id = a.customer_id GROUP BY c.segment;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, accounts, transactions\nSELECT\n",
+  "datasetId": "bank",
+  "expected": {
+    "query": "SELECT c.segment, ROUND(AVG(b.balance), 2) AS avg_balance FROM (SELECT account_id, SUM(amount) AS balance FROM transactions GROUP BY account_id) b JOIN accounts a ON a.id = b.account_id JOIN customers c ON c.id = a.customer_id GROUP BY c.segment;",
+    "orderMatters": false
+  },
+  "order": 295
+}

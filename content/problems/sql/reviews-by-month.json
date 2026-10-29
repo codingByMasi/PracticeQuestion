@@ -1,0 +1,21 @@
+{
+  "slug": "reviews-by-month",
+  "track": "sql",
+  "title": "Reviews by month",
+  "difficulty": "Medium",
+  "tags": [
+    "dates"
+  ],
+  "statementMd": "How many reviews were written in each month (YYYY-MM)? Earliest first.\n\nExpected columns: `month`, `reviews`.\n\nTables: `movies`, `directors`, `reviews`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "`strftime('%Y-%m', review_date)`."
+  ],
+  "solutionMd": "```sql\nSELECT strftime('%Y-%m', review_date) AS month, COUNT(*) AS reviews FROM reviews GROUP BY month ORDER BY month;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: movies, directors, reviews\nSELECT\n",
+  "datasetId": "movies",
+  "expected": {
+    "query": "SELECT strftime('%Y-%m', review_date) AS month, COUNT(*) AS reviews FROM reviews GROUP BY month ORDER BY month;",
+    "orderMatters": true
+  },
+  "order": 198
+}

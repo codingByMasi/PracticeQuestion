@@ -1,0 +1,119 @@
+{
+  "slug": "browser-history",
+  "track": "python",
+  "title": "Browser history",
+  "difficulty": "Hard",
+  "tags": [
+    "design"
+  ],
+  "statementMd": "Simulate browser history starting at `homepage`. `['visit', url]` goes to a new page and clears forward history, `['back', n]` moves back up to `n` steps, `['forward', n]` moves forward up to `n` steps. Return the current page after each `back` and `forward`.\n\n**Example:** `browser_ops(\"a\", [[\"visit\", \"b\"], [\"visit\", \"c\"], [\"back\", 1], [\"forward\", 1…)` returns `[\"b\", \"c\"]`.",
+  "hints": [
+    "Keep a list and an index."
+  ],
+  "solutionMd": "```python\ndef browser_ops(homepage, ops):\n    hist, i, out = [homepage], 0, []\n    for op in ops:\n        if op[0] == 'visit':\n            hist = hist[:i + 1] + [op[1]]\n            i += 1\n        elif op[0] == 'back':\n            i = max(0, i - op[1])\n            out.append(hist[i])\n        else:\n            i = min(len(hist) - 1, i + op[1])\n            out.append(hist[i])\n    return out\n```\n\nVisiting truncates the forward part.",
+  "starterCode": "def browser_ops(homepage, ops):\n    # Write your code here\n    pass\n",
+  "functionName": "browser_ops",
+  "referenceSolution": "def browser_ops(homepage, ops):\n    hist, i, out = [homepage], 0, []\n    for op in ops:\n        if op[0] == 'visit':\n            hist = hist[:i + 1] + [op[1]]\n            i += 1\n        elif op[0] == 'back':\n            i = max(0, i - op[1])\n            out.append(hist[i])\n        else:\n            i = min(len(hist) - 1, i + op[1])\n            out.append(hist[i])\n    return out\n",
+  "tests": [
+    {
+      "args": [
+        "a",
+        [
+          [
+            "visit",
+            "b"
+          ],
+          [
+            "visit",
+            "c"
+          ],
+          [
+            "back",
+            1
+          ],
+          [
+            "forward",
+            1
+          ]
+        ]
+      ],
+      "expected": [
+        "b",
+        "c"
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        "a",
+        [
+          [
+            "back",
+            5
+          ]
+        ]
+      ],
+      "expected": [
+        "a"
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        "a",
+        []
+      ],
+      "expected": [],
+      "hidden": true
+    },
+    {
+      "args": [
+        "x",
+        [
+          [
+            "visit",
+            "y"
+          ],
+          [
+            "back",
+            1
+          ],
+          [
+            "visit",
+            "z"
+          ],
+          [
+            "forward",
+            1
+          ],
+          [
+            "back",
+            2
+          ]
+        ]
+      ],
+      "expected": [
+        "x",
+        "z",
+        "x"
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        "p",
+        [
+          [
+            "forward",
+            3
+          ]
+        ]
+      ],
+      "expected": [
+        "p"
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 494
+}

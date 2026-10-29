@@ -1,0 +1,72 @@
+{
+  "slug": "find-all-anagram-start-indices",
+  "track": "python",
+  "title": "Find all anagram start indices",
+  "difficulty": "Hard",
+  "tags": [
+    "sliding-window"
+  ],
+  "statementMd": "Return the start indices of all substrings of `s` that are anagrams of `p`, ascending.\n\n**Example:** `find_anagrams(\"cbaebabacd\", \"abc\")` returns `[0, 6]`.",
+  "hints": [
+    "Fixed-size window with counts."
+  ],
+  "solutionMd": "```python\ndef find_anagrams(s, p):\n    from collections import Counter\n    k = len(p)\n    need = Counter(p)\n    win = Counter(s[:k])\n    out = [0] if win == need else []\n    for i in range(k, len(s)):\n        win[s[i]] += 1\n        win[s[i - k]] -= 1\n        if win[s[i - k]] == 0:\n            del win[s[i - k]]\n        if win == need:\n            out.append(i - k + 1)\n    return out\n```\n\nUpdate the window in O(1) per step.",
+  "starterCode": "def find_anagrams(s, p):\n    # Write your code here\n    pass\n",
+  "functionName": "find_anagrams",
+  "referenceSolution": "def find_anagrams(s, p):\n    from collections import Counter\n    k = len(p)\n    need = Counter(p)\n    win = Counter(s[:k])\n    out = [0] if win == need else []\n    for i in range(k, len(s)):\n        win[s[i]] += 1\n        win[s[i - k]] -= 1\n        if win[s[i - k]] == 0:\n            del win[s[i - k]]\n        if win == need:\n            out.append(i - k + 1)\n    return out\n",
+  "tests": [
+    {
+      "args": [
+        "cbaebabacd",
+        "abc"
+      ],
+      "expected": [
+        0,
+        6
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        "abab",
+        "ab"
+      ],
+      "expected": [
+        0,
+        1,
+        2
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        "a",
+        "b"
+      ],
+      "expected": [],
+      "hidden": true
+    },
+    {
+      "args": [
+        "aa",
+        "a"
+      ],
+      "expected": [
+        0,
+        1
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        "baa",
+        "aa"
+      ],
+      "expected": [
+        1
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 408
+}

@@ -1,0 +1,21 @@
+{
+  "slug": "five-cheapest-base-fares",
+  "track": "sql",
+  "title": "Five cheapest base fares",
+  "difficulty": "Easy",
+  "tags": [
+    "order-by"
+  ],
+  "statementMd": "The five lowest base prices among flights, cheapest first. Break ties by flight id.\n\nExpected columns: `id`, `base_price`.\n\nTables: `airlines`, `airports`, `flights`, `bookings`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Order by price then id."
+  ],
+  "solutionMd": "```sql\nSELECT id, base_price FROM flights ORDER BY base_price, id LIMIT 5;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: airlines, airports, flights, bookings\nSELECT\n",
+  "datasetId": "flights",
+  "expected": {
+    "query": "SELECT id, base_price FROM flights ORDER BY base_price, id LIMIT 5;",
+    "orderMatters": true
+  },
+  "order": 68
+}

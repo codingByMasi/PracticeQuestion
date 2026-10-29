@@ -1,0 +1,55 @@
+{
+  "slug": "most-common-character",
+  "track": "python",
+  "title": "Most common character",
+  "difficulty": "Easy",
+  "tags": [
+    "strings"
+  ],
+  "statementMd": "Return the character that occurs most often in non-empty `s`. On a tie return the one that appears first in `s`.\n\n**Example:** `most_common_char(\"hello\")` returns `\"l\"`.",
+  "hints": [
+    "Count, then pick the max by count while scanning in order."
+  ],
+  "solutionMd": "```python\ndef most_common_char(s):\n    counts = {}\n    for c in s:\n        counts[c] = counts.get(c, 0) + 1\n    best = s[0]\n    for c in s:\n        if counts[c] > counts[best]:\n            best = c\n    return best\n```\n\nStrict > keeps the earliest on ties.",
+  "starterCode": "def most_common_char(s):\n    # Write your code here\n    pass\n",
+  "functionName": "most_common_char",
+  "referenceSolution": "def most_common_char(s):\n    counts = {}\n    for c in s:\n        counts[c] = counts.get(c, 0) + 1\n    best = s[0]\n    for c in s:\n        if counts[c] > counts[best]:\n            best = c\n    return best\n",
+  "tests": [
+    {
+      "args": [
+        "hello"
+      ],
+      "expected": "l",
+      "hidden": false
+    },
+    {
+      "args": [
+        "abab"
+      ],
+      "expected": "a",
+      "hidden": false
+    },
+    {
+      "args": [
+        "z"
+      ],
+      "expected": "z",
+      "hidden": true
+    },
+    {
+      "args": [
+        "aabbb"
+      ],
+      "expected": "b",
+      "hidden": true
+    },
+    {
+      "args": [
+        "xyzzy"
+      ],
+      "expected": "y",
+      "hidden": true
+    }
+  ],
+  "order": 62
+}

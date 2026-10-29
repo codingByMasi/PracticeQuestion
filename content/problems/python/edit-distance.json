@@ -1,0 +1,92 @@
+{
+  "slug": "edit-distance",
+  "track": "python",
+  "title": "Edit distance",
+  "difficulty": "Hard",
+  "tags": [
+    "dynamic-programming"
+  ],
+  "statementMd": "Return the minimum number of single-character insertions, deletions and substitutions to turn `a` into `b`.\n\n**Example:** `edit_distance(\"horse\", \"ros\")` returns `3`.",
+  "hints": [
+    "dp[i][j] over prefixes."
+  ],
+  "solutionMd": "```python\ndef edit_distance(a, b):\n    prev = list(range(len(b) + 1))\n    for i, x in enumerate(a, 1):\n        cur = [i]\n        for j, y in enumerate(b, 1):\n            cur.append(min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + (x != y)))\n        prev = cur\n    return prev[-1]\n```\n\nLevenshtein distance.",
+  "starterCode": "def edit_distance(a, b):\n    # Write your code here\n    pass\n",
+  "functionName": "edit_distance",
+  "referenceSolution": "def edit_distance(a, b):\n    prev = list(range(len(b) + 1))\n    for i, x in enumerate(a, 1):\n        cur = [i]\n        for j, y in enumerate(b, 1):\n            cur.append(min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + (x != y)))\n        prev = cur\n    return prev[-1]\n",
+  "tests": [
+    {
+      "args": [
+        "horse",
+        "ros"
+      ],
+      "expected": 3,
+      "hidden": false
+    },
+    {
+      "args": [
+        "intention",
+        "execution"
+      ],
+      "expected": 5,
+      "hidden": false
+    },
+    {
+      "args": [
+        "",
+        ""
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        "a",
+        ""
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        "",
+        "abc"
+      ],
+      "expected": 3,
+      "hidden": true
+    },
+    {
+      "args": [
+        "kitten",
+        "sitting"
+      ],
+      "expected": 3,
+      "hidden": true
+    },
+    {
+      "args": [
+        "",
+        "acca"
+      ],
+      "expected": 4,
+      "hidden": true
+    },
+    {
+      "args": [
+        "bbccacac",
+        "babcbc"
+      ],
+      "expected": 5,
+      "hidden": true
+    },
+    {
+      "args": [
+        "baa",
+        ""
+      ],
+      "expected": 3,
+      "hidden": true
+    }
+  ],
+  "order": 438
+}

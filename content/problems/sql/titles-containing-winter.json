@@ -1,0 +1,21 @@
+{
+  "slug": "titles-containing-winter",
+  "track": "sql",
+  "title": "Titles containing Winter",
+  "difficulty": "Easy",
+  "tags": [
+    "like"
+  ],
+  "statementMd": "Find books with `Winter` in the title.\n\nExpected columns: `title`.\n\nTables: `authors`, `books`, `members`, `loans`.\n\nRow order does not matter.",
+  "hints": [
+    "`LIKE '%Winter%'`."
+  ],
+  "solutionMd": "```sql\nSELECT title FROM books WHERE title LIKE '%Winter%';\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: authors, books, members, loans\nSELECT\n",
+  "datasetId": "library",
+  "expected": {
+    "query": "SELECT title FROM books WHERE title LIKE '%Winter%';",
+    "orderMatters": false
+  },
+  "order": 59
+}

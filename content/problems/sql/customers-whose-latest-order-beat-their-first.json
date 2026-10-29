@@ -1,0 +1,21 @@
+{
+  "slug": "customers-whose-latest-order-beat-their-first",
+  "track": "sql",
+  "title": "Customers whose latest order beat their first",
+  "difficulty": "Hard",
+  "tags": [
+    "window-functions"
+  ],
+  "statementMd": "Among customers with at least 2 non-cancelled orders, list those whose latest order total (by date, then id) is larger than their first order total. Show customer name.\n\nExpected columns: `name`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\nRow order does not matter.",
+  "hints": [
+    "`FIRST_VALUE` with ascending and descending windows over order totals."
+  ],
+  "solutionMd": "```sql\nWITH t AS (SELECT o.customer_id, o.id, o.order_date, SUM(oi.quantity * oi.unit_price) AS total FROM orders o JOIN order_items oi ON oi.order_id = o.id WHERE o.status <> 'cancelled' GROUP BY o.id), r AS (SELECT *, FIRST_VALUE(total) OVER (PARTITION BY customer_id ORDER BY order_date, id) AS first_total, FIRST_VALUE(total) OVER (PARTITION BY customer_id ORDER BY order_date DESC, id DESC) AS last_total, COUNT(*) OVER (PARTITION BY customer_id) AS n FROM t) SELECT DISTINCT c.name FROM r JOIN customers c ON c.id = r.customer_id WHERE n >= 2 AND last_total > first_total;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "WITH t AS (SELECT o.customer_id, o.id, o.order_date, SUM(oi.quantity * oi.unit_price) AS total FROM orders o JOIN order_items oi ON oi.order_id = o.id WHERE o.status <> 'cancelled' GROUP BY o.id), r AS (SELECT *, FIRST_VALUE(total) OVER (PARTITION BY customer_id ORDER BY order_date, id) AS first_total, FIRST_VALUE(total) OVER (PARTITION BY customer_id ORDER BY order_date DESC, id DESC) AS last_total, COUNT(*) OVER (PARTITION BY customer_id) AS n FROM t) SELECT DISTINCT c.name FROM r JOIN customers c ON c.id = r.customer_id WHERE n >= 2 AND last_total > first_total;",
+    "orderMatters": false
+  },
+  "order": 442
+}

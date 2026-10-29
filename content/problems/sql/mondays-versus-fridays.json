@@ -1,0 +1,21 @@
+{
+  "slug": "mondays-versus-fridays",
+  "track": "sql",
+  "title": "Mondays versus Fridays",
+  "difficulty": "Medium",
+  "tags": [
+    "dates"
+  ],
+  "statementMd": "Average closing change (close minus open) on Mondays and on Fridays, rounded to 3 decimals. Two rows labelled `Monday` and `Friday`.\n\nExpected columns: `weekday`, `avg_change`.\n\nTables: `tickers`, `prices`.\n\nRow order does not matter.",
+  "hints": [
+    "`strftime('%w')` is 1 for Monday and 5 for Friday."
+  ],
+  "solutionMd": "```sql\nSELECT CASE strftime('%w', trade_date) WHEN '1' THEN 'Monday' ELSE 'Friday' END AS weekday, ROUND(AVG(close - open), 3) AS avg_change FROM prices WHERE strftime('%w', trade_date) IN ('1', '5') GROUP BY weekday;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: tickers, prices\nSELECT\n",
+  "datasetId": "stocks",
+  "expected": {
+    "query": "SELECT CASE strftime('%w', trade_date) WHEN '1' THEN 'Monday' ELSE 'Friday' END AS weekday, ROUND(AVG(close - open), 3) AS avg_change FROM prices WHERE strftime('%w', trade_date) IN ('1', '5') GROUP BY weekday;",
+    "orderMatters": false
+  },
+  "order": 207
+}

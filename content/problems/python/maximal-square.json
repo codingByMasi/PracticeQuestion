@@ -1,0 +1,117 @@
+{
+  "slug": "maximal-square",
+  "track": "python",
+  "title": "Maximal square",
+  "difficulty": "Hard",
+  "tags": [
+    "dynamic-programming"
+  ],
+  "statementMd": "A binary matrix of `0`/`1` integers. Return the area of the largest square containing only `1`s.\n\n**Example:** `maximal_square([[1, 0, 1, 0, 0], [1, 0, 1, 1, 1], [1, 1, 1, 1, 1], [1, 0, …)` returns `4`.",
+  "hints": [
+    "dp[r][c] = 1 + min(left, up, diag) when the cell is 1."
+  ],
+  "solutionMd": "```python\ndef maximal_square(matrix):\n    if not matrix:\n        return 0\n    R, C = len(matrix), len(matrix[0])\n    dp = [[0] * (C + 1) for _ in range(R + 1)]\n    best = 0\n    for r in range(1, R + 1):\n        for c in range(1, C + 1):\n            if matrix[r - 1][c - 1] == 1:\n                dp[r][c] = 1 + min(dp[r - 1][c], dp[r][c - 1], dp[r - 1][c - 1])\n                best = max(best, dp[r][c])\n    return best * best\n```\n\nThe side of the square ending at a cell is limited by its neighbours.",
+  "starterCode": "def maximal_square(matrix):\n    # Write your code here\n    pass\n",
+  "functionName": "maximal_square",
+  "referenceSolution": "def maximal_square(matrix):\n    if not matrix:\n        return 0\n    R, C = len(matrix), len(matrix[0])\n    dp = [[0] * (C + 1) for _ in range(R + 1)]\n    best = 0\n    for r in range(1, R + 1):\n        for c in range(1, C + 1):\n            if matrix[r - 1][c - 1] == 1:\n                dp[r][c] = 1 + min(dp[r - 1][c], dp[r][c - 1], dp[r - 1][c - 1])\n                best = max(best, dp[r][c])\n    return best * best\n",
+  "tests": [
+    {
+      "args": [
+        [
+          [
+            1,
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            1,
+            0
+          ]
+        ]
+      ],
+      "expected": 4,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            0
+          ]
+        ]
+      ],
+      "expected": 0,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            1
+          ]
+        ]
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      ],
+      "expected": 4,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": 0,
+      "hidden": true
+    }
+  ],
+  "order": 441
+}

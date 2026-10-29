@@ -1,0 +1,85 @@
+{
+  "slug": "target-sum-ways",
+  "track": "python",
+  "title": "Target sum ways",
+  "difficulty": "Hard",
+  "tags": [
+    "dynamic-programming"
+  ],
+  "statementMd": "Assign `+` or `-` to each number; return how many assignments make the total equal `target`.\n\n**Example:** `target_sum_ways([1, 1, 1, 1, 1], 3)` returns `5`.",
+  "hints": [
+    "Count with a dict of reachable sums."
+  ],
+  "solutionMd": "```python\ndef target_sum_ways(nums, target):\n    ways = {0: 1}\n    for x in nums:\n        new = {}\n        for s, c in ways.items():\n            new[s + x] = new.get(s + x, 0) + c\n            new[s - x] = new.get(s - x, 0) + c\n        ways = new\n    return ways.get(target, 0)\n```\n\nEach number branches into plus and minus.",
+  "starterCode": "def target_sum_ways(nums, target):\n    # Write your code here\n    pass\n",
+  "functionName": "target_sum_ways",
+  "referenceSolution": "def target_sum_ways(nums, target):\n    ways = {0: 1}\n    for x in nums:\n        new = {}\n        for s, c in ways.items():\n            new[s + x] = new.get(s + x, 0) + c\n            new[s - x] = new.get(s - x, 0) + c\n        ways = new\n    return ways.get(target, 0)\n",
+  "tests": [
+    {
+      "args": [
+        [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        3
+      ],
+      "expected": 5,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          1
+        ],
+        1
+      ],
+      "expected": 1,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          1
+        ],
+        2
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [],
+        0
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          0,
+          0
+        ],
+        0
+      ],
+      "expected": 4,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          2,
+          3,
+          5
+        ],
+        0
+      ],
+      "expected": 2,
+      "hidden": true
+    }
+  ],
+  "order": 440
+}

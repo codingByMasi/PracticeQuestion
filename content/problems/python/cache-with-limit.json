@@ -1,0 +1,180 @@
+{
+  "slug": "cache-with-limit",
+  "track": "python",
+  "title": "Cache with limit",
+  "difficulty": "Hard",
+  "tags": [
+    "design"
+  ],
+  "statementMd": "Simulate an LRU cache of `capacity`. `ops` is a list: `['put', k, v]` stores a value (marking `k` most recent; evict the least recently used key if over capacity) and `['get', k]` returns the value or `-1` (a hit makes `k` most recent). Return the list of results of the `get` operations.\n\n**Example:** `lru_cache_ops(2, [[\"put\", 1, 1], [\"put\", 2, 2], [\"get\", 1], [\"put\", 3, 3], […)` returns `[1, -1, 3]`.",
+  "hints": [
+    "Keep an ordered structure; move a key to the end on access."
+  ],
+  "solutionMd": "```python\ndef lru_cache_ops(capacity, ops):\n    from collections import OrderedDict\n    cache = OrderedDict()\n    out = []\n    for op in ops:\n        if op[0] == 'put':\n            _, k, v = op\n            if k in cache:\n                cache.move_to_end(k)\n            cache[k] = v\n            if len(cache) > capacity:\n                cache.popitem(last=False)\n        else:\n            k = op[1]\n            if k in cache:\n                cache.move_to_end(k)\n                out.append(cache[k])\n            else:\n                out.append(-1)\n    return out\n```\n\nOrderedDict gives O(1) move and eviction.",
+  "starterCode": "def lru_cache_ops(capacity, ops):\n    # Write your code here\n    pass\n",
+  "functionName": "lru_cache_ops",
+  "referenceSolution": "def lru_cache_ops(capacity, ops):\n    from collections import OrderedDict\n    cache = OrderedDict()\n    out = []\n    for op in ops:\n        if op[0] == 'put':\n            _, k, v = op\n            if k in cache:\n                cache.move_to_end(k)\n            cache[k] = v\n            if len(cache) > capacity:\n                cache.popitem(last=False)\n        else:\n            k = op[1]\n            if k in cache:\n                cache.move_to_end(k)\n                out.append(cache[k])\n            else:\n                out.append(-1)\n    return out\n",
+  "tests": [
+    {
+      "args": [
+        2,
+        [
+          [
+            "put",
+            1,
+            1
+          ],
+          [
+            "put",
+            2,
+            2
+          ],
+          [
+            "get",
+            1
+          ],
+          [
+            "put",
+            3,
+            3
+          ],
+          [
+            "get",
+            2
+          ],
+          [
+            "get",
+            3
+          ]
+        ]
+      ],
+      "expected": [
+        1,
+        -1,
+        3
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        1,
+        [
+          [
+            "put",
+            1,
+            1
+          ],
+          [
+            "put",
+            2,
+            2
+          ],
+          [
+            "get",
+            1
+          ]
+        ]
+      ],
+      "expected": [
+        -1
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        2,
+        [
+          [
+            "get",
+            5
+          ]
+        ]
+      ],
+      "expected": [
+        -1
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        2,
+        [
+          [
+            "put",
+            1,
+            1
+          ],
+          [
+            "put",
+            1,
+            9
+          ],
+          [
+            "get",
+            1
+          ]
+        ]
+      ],
+      "expected": [
+        9
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        2,
+        [
+          [
+            "put",
+            1,
+            1
+          ],
+          [
+            "put",
+            2,
+            2
+          ],
+          [
+            "get",
+            1
+          ],
+          [
+            "put",
+            3,
+            3
+          ],
+          [
+            "get",
+            2
+          ],
+          [
+            "put",
+            4,
+            4
+          ],
+          [
+            "get",
+            1
+          ],
+          [
+            "get",
+            3
+          ],
+          [
+            "get",
+            4
+          ]
+        ]
+      ],
+      "expected": [
+        1,
+        -1,
+        -1,
+        3,
+        4
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 490
+}

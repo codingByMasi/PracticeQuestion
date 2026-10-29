@@ -1,0 +1,21 @@
+{
+  "slug": "passengers-with-multiple-bookings",
+  "track": "sql",
+  "title": "Passengers with multiple bookings",
+  "difficulty": "Medium",
+  "tags": [
+    "having"
+  ],
+  "statementMd": "List passengers (by name) who made more than one booking. Show name and count, by count then name.\n\nExpected columns: `passenger`, `bookings`.\n\nTables: `airlines`, `airports`, `flights`, `bookings`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "`HAVING COUNT(*) > 1`."
+  ],
+  "solutionMd": "```sql\nSELECT passenger, COUNT(*) AS bookings FROM bookings GROUP BY passenger HAVING COUNT(*) > 1 ORDER BY bookings DESC, passenger;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: airlines, airports, flights, bookings\nSELECT\n",
+  "datasetId": "flights",
+  "expected": {
+    "query": "SELECT passenger, COUNT(*) AS bookings FROM bookings GROUP BY passenger HAVING COUNT(*) > 1 ORDER BY bookings DESC, passenger;",
+    "orderMatters": true
+  },
+  "order": 249
+}

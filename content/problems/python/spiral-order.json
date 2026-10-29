@@ -1,0 +1,148 @@
+{
+  "slug": "spiral-order",
+  "track": "python",
+  "title": "Spiral order",
+  "difficulty": "Medium",
+  "tags": [
+    "matrix"
+  ],
+  "statementMd": "Return all elements of a rectangular matrix in clockwise spiral order starting at the top-left.\n\n**Example:** `spiral_order([[1, 2, 3], [4, 5, 6], [7, 8, 9]])` returns `[1, 2, 3, 6, 9, 8, 7, 4, 5]`.",
+  "hints": [
+    "Peel off the top row, rotate the rest."
+  ],
+  "solutionMd": "```python\ndef spiral_order(m):\n    m = [r[:] for r in m]\n    out = []\n    while m:\n        out += m.pop(0)\n        m = [list(r) for r in zip(*m)][::-1]\n    return out\n```\n\nTake the first row, then rotate the remainder counter-clockwise.",
+  "starterCode": "def spiral_order(m):\n    # Write your code here\n    pass\n",
+  "functionName": "spiral_order",
+  "referenceSolution": "def spiral_order(m):\n    m = [r[:] for r in m]\n    out = []\n    while m:\n        out += m.pop(0)\n        m = [list(r) for r in zip(*m)][::-1]\n    return out\n",
+  "tests": [
+    {
+      "args": [
+        [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            4,
+            5,
+            6
+          ],
+          [
+            7,
+            8,
+            9
+          ]
+        ]
+      ],
+      "expected": [
+        1,
+        2,
+        3,
+        6,
+        9,
+        8,
+        7,
+        4,
+        5
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            1,
+            2,
+            3,
+            4
+          ],
+          [
+            5,
+            6,
+            7,
+            8
+          ],
+          [
+            9,
+            10,
+            11,
+            12
+          ]
+        ]
+      ],
+      "expected": [
+        1,
+        2,
+        3,
+        4,
+        8,
+        12,
+        11,
+        10,
+        9,
+        5,
+        6,
+        7
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            1
+          ]
+        ]
+      ],
+      "expected": [
+        1
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            1,
+            2
+          ]
+        ]
+      ],
+      "expected": [
+        1,
+        2
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ]
+        ]
+      ],
+      "expected": [
+        1,
+        2,
+        3
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": [],
+      "hidden": true
+    }
+  ],
+  "order": 270
+}

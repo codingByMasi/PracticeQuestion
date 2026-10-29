@@ -1,0 +1,97 @@
+{
+  "slug": "intersection-of-two-lists",
+  "track": "python",
+  "title": "Intersection of two lists",
+  "difficulty": "Easy",
+  "tags": [
+    "sets"
+  ],
+  "statementMd": "Return the sorted list of distinct values present in both lists.\n\n**Example:** `intersect_sorted([1, 2, 2, 3], [2, 3, 4])` returns `[2, 3]`.",
+  "hints": [
+    "Set intersection, then sort."
+  ],
+  "solutionMd": "```python\ndef intersect_sorted(a, b):\n    return sorted(set(a) & set(b))\n```\n\nSets make it concise.",
+  "starterCode": "def intersect_sorted(a, b):\n    # Write your code here\n    pass\n",
+  "functionName": "intersect_sorted",
+  "referenceSolution": "def intersect_sorted(a, b):\n    return sorted(set(a) & set(b))\n",
+  "tests": [
+    {
+      "args": [
+        [
+          1,
+          2,
+          2,
+          3
+        ],
+        [
+          2,
+          3,
+          4
+        ]
+      ],
+      "expected": [
+        2,
+        3
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          1
+        ],
+        [
+          2
+        ]
+      ],
+      "expected": [],
+      "hidden": false
+    },
+    {
+      "args": [
+        [],
+        [
+          1
+        ]
+      ],
+      "expected": [],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          5,
+          5
+        ],
+        [
+          5
+        ]
+      ],
+      "expected": [
+        5
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          3,
+          2,
+          1
+        ],
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "expected": [
+        1,
+        2,
+        3
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 92
+}

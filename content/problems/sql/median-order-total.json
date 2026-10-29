@@ -1,0 +1,21 @@
+{
+  "slug": "median-order-total",
+  "track": "sql",
+  "title": "Median order total",
+  "difficulty": "Hard",
+  "tags": [
+    "window-functions"
+  ],
+  "statementMd": "Compute the median order total (orders with items), rounded to 2 decimals.\n\nExpected columns: `median_total`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\nRow order does not matter.",
+  "hints": [
+    "Rank totals and pick the middle row(s)."
+  ],
+  "solutionMd": "```sql\nWITH t AS (SELECT SUM(oi.quantity * oi.unit_price) AS total FROM order_items oi GROUP BY order_id), r AS (SELECT total, ROW_NUMBER() OVER (ORDER BY total) AS rn, COUNT(*) OVER () AS n FROM t) SELECT ROUND(AVG(total), 2) AS median_total FROM r WHERE rn IN ((n + 1) / 2, (n + 2) / 2);\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "WITH t AS (SELECT SUM(oi.quantity * oi.unit_price) AS total FROM order_items oi GROUP BY order_id), r AS (SELECT total, ROW_NUMBER() OVER (ORDER BY total) AS rn, COUNT(*) OVER () AS n FROM t) SELECT ROUND(AVG(total), 2) AS median_total FROM r WHERE rn IN ((n + 1) / 2, (n + 2) / 2);",
+    "orderMatters": false
+  },
+  "order": 433
+}

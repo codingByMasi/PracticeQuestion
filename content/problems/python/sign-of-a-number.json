@@ -1,0 +1,55 @@
+{
+  "slug": "sign-of-a-number",
+  "track": "python",
+  "title": "Sign of a number",
+  "difficulty": "Easy",
+  "tags": [
+    "conditionals"
+  ],
+  "statementMd": "Return `1` if `n` is positive, `-1` if negative and `0` if zero.\n\n**Example:** `sign(10)` returns `1`.",
+  "hints": [
+    "Use `if / elif / else`."
+  ],
+  "solutionMd": "```python\ndef sign(n):\n    if n > 0:\n        return 1\n    if n < 0:\n        return -1\n    return 0\n```\n\nThree exclusive cases.",
+  "starterCode": "def sign(n):\n    # Write your code here\n    pass\n",
+  "functionName": "sign",
+  "referenceSolution": "def sign(n):\n    if n > 0:\n        return 1\n    if n < 0:\n        return -1\n    return 0\n",
+  "tests": [
+    {
+      "args": [
+        10
+      ],
+      "expected": 1,
+      "hidden": false
+    },
+    {
+      "args": [
+        -3
+      ],
+      "expected": -1,
+      "hidden": false
+    },
+    {
+      "args": [
+        0
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        0.1
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        -0.1
+      ],
+      "expected": -1,
+      "hidden": true
+    }
+  ],
+  "order": 10
+}

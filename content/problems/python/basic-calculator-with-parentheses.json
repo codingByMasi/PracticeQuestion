@@ -1,0 +1,62 @@
+{
+  "slug": "basic-calculator-with-parentheses",
+  "track": "python",
+  "title": "Basic calculator with parentheses",
+  "difficulty": "Hard",
+  "tags": [
+    "parsing"
+  ],
+  "statementMd": "Evaluate an expression with integers, `+`, `-`, parentheses and spaces. A `-` may appear before a parenthesis.\n\n**Example:** `calculate_parens(\"1 + 1\")` returns `2`.",
+  "hints": [
+    "Stack of (sum so far, sign) when entering parentheses."
+  ],
+  "solutionMd": "```python\ndef calculate_parens(s):\n    stack = []\n    total, sign, num = 0, 1, 0\n    for c in s:\n        if c.isdigit():\n            num = num * 10 + int(c)\n        elif c in '+-':\n            total += sign * num\n            num = 0\n            sign = 1 if c == '+' else -1\n        elif c == '(':\n            stack.append((total, sign))\n            total, sign = 0, 1\n        elif c == ')':\n            total += sign * num\n            num = 0\n            prev_total, prev_sign = stack.pop()\n            total = prev_total + prev_sign * total\n    return total + sign * num\n```\n\nSave state when entering parentheses and combine when leaving.",
+  "starterCode": "def calculate_parens(s):\n    # Write your code here\n    pass\n",
+  "functionName": "calculate_parens",
+  "referenceSolution": "def calculate_parens(s):\n    stack = []\n    total, sign, num = 0, 1, 0\n    for c in s:\n        if c.isdigit():\n            num = num * 10 + int(c)\n        elif c in '+-':\n            total += sign * num\n            num = 0\n            sign = 1 if c == '+' else -1\n        elif c == '(':\n            stack.append((total, sign))\n            total, sign = 0, 1\n        elif c == ')':\n            total += sign * num\n            num = 0\n            prev_total, prev_sign = stack.pop()\n            total = prev_total + prev_sign * total\n    return total + sign * num\n",
+  "tests": [
+    {
+      "args": [
+        "1 + 1"
+      ],
+      "expected": 2,
+      "hidden": false
+    },
+    {
+      "args": [
+        "(1+(4+5+2)-3)+(6+8)"
+      ],
+      "expected": 23,
+      "hidden": false
+    },
+    {
+      "args": [
+        "-(2+3)"
+      ],
+      "expected": -5,
+      "hidden": true
+    },
+    {
+      "args": [
+        "2-(5-6)"
+      ],
+      "expected": 3,
+      "hidden": true
+    },
+    {
+      "args": [
+        "10"
+      ],
+      "expected": 10,
+      "hidden": true
+    },
+    {
+      "args": [
+        "(7)-(0)+(4)"
+      ],
+      "expected": 11,
+      "hidden": true
+    }
+  ],
+  "order": 428
+}

@@ -1,0 +1,21 @@
+{
+  "slug": "disagreeing-reviewers",
+  "track": "sql",
+  "title": "Disagreeing reviewers",
+  "difficulty": "Hard",
+  "tags": [
+    "self-join"
+  ],
+  "statementMd": "Find pairs of reviewers who rated the same movie with a difference of at least 3 points. Show movie title, the two reviewers (alphabetical order within the pair) and the difference.\n\nExpected columns: `title`, `reviewer_a`, `reviewer_b`, `diff`.\n\nTables: `movies`, `directors`, `reviews`.\n\nRow order does not matter.",
+  "hints": [
+    "Self-join reviews on `movie_id` with `a.reviewer < b.reviewer`."
+  ],
+  "solutionMd": "```sql\nSELECT m.title, a.reviewer AS reviewer_a, b.reviewer AS reviewer_b, ABS(a.rating - b.rating) AS diff FROM reviews a JOIN reviews b ON a.movie_id = b.movie_id AND a.reviewer < b.reviewer JOIN movies m ON m.id = a.movie_id WHERE ABS(a.rating - b.rating) >= 3;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: movies, directors, reviews\nSELECT\n",
+  "datasetId": "movies",
+  "expected": {
+    "query": "SELECT m.title, a.reviewer AS reviewer_a, b.reviewer AS reviewer_b, ABS(a.rating - b.rating) AS diff FROM reviews a JOIN reviews b ON a.movie_id = b.movie_id AND a.reviewer < b.reviewer JOIN movies m ON m.id = a.movie_id WHERE ABS(a.rating - b.rating) >= 3;",
+    "orderMatters": false
+  },
+  "order": 387
+}

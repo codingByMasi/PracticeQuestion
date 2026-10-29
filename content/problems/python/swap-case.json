@@ -1,0 +1,55 @@
+{
+  "slug": "swap-case",
+  "track": "python",
+  "title": "Swap case",
+  "difficulty": "Easy",
+  "tags": [
+    "strings"
+  ],
+  "statementMd": "Return `s` with uppercase letters lowered and lowercase letters uppercased; other characters stay.\n\n**Example:** `swap_case(\"Hello World\")` returns `\"hELLO wORLD\"`.",
+  "hints": [
+    "`str.swapcase()` or per-character logic."
+  ],
+  "solutionMd": "```python\ndef swap_case(s):\n    return ''.join(c.lower() if c.isupper() else c.upper() for c in s)\n```\n\nNon-letters are unaffected by case methods.",
+  "starterCode": "def swap_case(s):\n    # Write your code here\n    pass\n",
+  "functionName": "swap_case",
+  "referenceSolution": "def swap_case(s):\n    return ''.join(c.lower() if c.isupper() else c.upper() for c in s)\n",
+  "tests": [
+    {
+      "args": [
+        "Hello World"
+      ],
+      "expected": "hELLO wORLD",
+      "hidden": false
+    },
+    {
+      "args": [
+        "abc"
+      ],
+      "expected": "ABC",
+      "hidden": false
+    },
+    {
+      "args": [
+        ""
+      ],
+      "expected": "",
+      "hidden": true
+    },
+    {
+      "args": [
+        "A1b2"
+      ],
+      "expected": "a1B2",
+      "hidden": true
+    },
+    {
+      "args": [
+        "ALL CAPS"
+      ],
+      "expected": "all caps",
+      "hidden": true
+    }
+  ],
+  "order": 52
+}

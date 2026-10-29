@@ -1,0 +1,21 @@
+{
+  "slug": "customers-who-never-bought-stationery",
+  "track": "sql",
+  "title": "Customers who never bought stationery",
+  "difficulty": "Medium",
+  "tags": [
+    "exists"
+  ],
+  "statementMd": "List customers who have **not** ordered any Stationery product (customers with no orders count).\n\nExpected columns: `name`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\nRow order does not matter.",
+  "hints": [
+    "`NOT EXISTS`."
+  ],
+  "solutionMd": "```sql\nSELECT c.name FROM customers c WHERE NOT EXISTS (SELECT 1 FROM orders o JOIN order_items oi ON oi.order_id = o.id JOIN products p ON p.id = oi.product_id WHERE o.customer_id = c.id AND p.category = 'Stationery');\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "SELECT c.name FROM customers c WHERE NOT EXISTS (SELECT 1 FROM orders o JOIN order_items oi ON oi.order_id = o.id JOIN products p ON p.id = oi.product_id WHERE o.customer_id = c.id AND p.category = 'Stationery');",
+    "orderMatters": false
+  },
+  "order": 324
+}

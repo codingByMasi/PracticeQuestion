@@ -1,0 +1,102 @@
+{
+  "slug": "minimum-capacity-to-ship",
+  "track": "python",
+  "title": "Minimum capacity to ship",
+  "difficulty": "Hard",
+  "tags": [
+    "searching"
+  ],
+  "statementMd": "Packages with the given weights must be shipped in order within `days` days; each day you load consecutive packages up to the ship's capacity. Return the minimum capacity.\n\n**Example:** `ship_within_days([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 5)` returns `15`.",
+  "hints": [
+    "Binary search on capacity with a greedy feasibility check."
+  ],
+  "solutionMd": "```python\ndef ship_within_days(weights, days):\n    def needed(cap):\n        d, load = 1, 0\n        for w in weights:\n            if load + w > cap:\n                d += 1\n                load = 0\n            load += w\n        return d\n    lo, hi = max(weights), sum(weights)\n    while lo < hi:\n        mid = (lo + hi) // 2\n        if needed(mid) <= days:\n            hi = mid\n        else:\n            lo = mid + 1\n    return lo\n```\n\nFeasibility is monotone in the capacity.",
+  "starterCode": "def ship_within_days(weights, days):\n    # Write your code here\n    pass\n",
+  "functionName": "ship_within_days",
+  "referenceSolution": "def ship_within_days(weights, days):\n    def needed(cap):\n        d, load = 1, 0\n        for w in weights:\n            if load + w > cap:\n                d += 1\n                load = 0\n            load += w\n        return d\n    lo, hi = max(weights), sum(weights)\n    while lo < hi:\n        mid = (lo + hi) // 2\n        if needed(mid) <= days:\n            hi = mid\n        else:\n            lo = mid + 1\n    return lo\n",
+  "tests": [
+    {
+      "args": [
+        [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        5
+      ],
+      "expected": 15,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          3,
+          2,
+          2,
+          4,
+          1,
+          4
+        ],
+        3
+      ],
+      "expected": 6,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          1
+        ],
+        1
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          5,
+          5,
+          5
+        ],
+        3
+      ],
+      "expected": 5,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          5,
+          5,
+          5
+        ],
+        1
+      ],
+      "expected": 15,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          2,
+          3,
+          1,
+          1
+        ],
+        4
+      ],
+      "expected": 3,
+      "hidden": true
+    }
+  ],
+  "order": 393
+}

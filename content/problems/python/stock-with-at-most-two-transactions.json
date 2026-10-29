@@ -1,0 +1,81 @@
+{
+  "slug": "stock-with-at-most-two-transactions",
+  "track": "python",
+  "title": "Stock with at most two transactions",
+  "difficulty": "Hard",
+  "tags": [
+    "dynamic-programming"
+  ],
+  "statementMd": "You may complete at most two buy/sell transactions (not overlapping). Return the maximum profit.\n\n**Example:** `max_profit_two([3, 3, 5, 0, 0, 3, 1, 4])` returns `6`.",
+  "hints": [
+    "Track the best balance after each of the four actions."
+  ],
+  "solutionMd": "```python\ndef max_profit_two(prices):\n    b1 = b2 = float('-inf')\n    s1 = s2 = 0\n    for p in prices:\n        b1 = max(b1, -p)\n        s1 = max(s1, b1 + p)\n        b2 = max(b2, s1 - p)\n        s2 = max(s2, b2 + p)\n    return s2\n```\n\nChain two buy/sell pairs.",
+  "starterCode": "def max_profit_two(prices):\n    # Write your code here\n    pass\n",
+  "functionName": "max_profit_two",
+  "referenceSolution": "def max_profit_two(prices):\n    b1 = b2 = float('-inf')\n    s1 = s2 = 0\n    for p in prices:\n        b1 = max(b1, -p)\n        s1 = max(s1, b1 + p)\n        b2 = max(b2, s1 - p)\n        s2 = max(s2, b2 + p)\n    return s2\n",
+  "tests": [
+    {
+      "args": [
+        [
+          3,
+          3,
+          5,
+          0,
+          0,
+          3,
+          1,
+          4
+        ]
+      ],
+      "expected": 6,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      ],
+      "expected": 4,
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          7,
+          6,
+          4,
+          3,
+          1
+        ]
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          4,
+          2,
+          7
+        ]
+      ],
+      "expected": 8,
+      "hidden": true
+    }
+  ],
+  "order": 449
+}

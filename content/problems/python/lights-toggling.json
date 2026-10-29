@@ -1,0 +1,62 @@
+{
+  "slug": "lights-toggling",
+  "track": "python",
+  "title": "Lights toggling",
+  "difficulty": "Medium",
+  "tags": [
+    "simulation"
+  ],
+  "statementMd": "`n` lights start off. In round `i` (1..n) toggle every `i`-th light. Return how many lights are on at the end.\n\n**Example:** `toggle_lights(3)` returns `1`.",
+  "hints": [
+    "Only perfect squares have an odd number of divisors."
+  ],
+  "solutionMd": "```python\ndef toggle_lights(n):\n    count = 0\n    k = 1\n    while k * k <= n:\n        count += 1\n        k += 1\n    return count\n```\n\nLights at perfect-square positions end on.",
+  "starterCode": "def toggle_lights(n):\n    # Write your code here\n    pass\n",
+  "functionName": "toggle_lights",
+  "referenceSolution": "def toggle_lights(n):\n    count = 0\n    k = 1\n    while k * k <= n:\n        count += 1\n        k += 1\n    return count\n",
+  "tests": [
+    {
+      "args": [
+        3
+      ],
+      "expected": 1,
+      "hidden": false
+    },
+    {
+      "args": [
+        0
+      ],
+      "expected": 0,
+      "hidden": false
+    },
+    {
+      "args": [
+        1
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        10
+      ],
+      "expected": 3,
+      "hidden": true
+    },
+    {
+      "args": [
+        100
+      ],
+      "expected": 10,
+      "hidden": true
+    },
+    {
+      "args": [
+        99
+      ],
+      "expected": 9,
+      "hidden": true
+    }
+  ],
+  "order": 305
+}

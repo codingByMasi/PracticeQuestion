@@ -1,0 +1,21 @@
+{
+  "slug": "listeners-of-the-opening-track",
+  "track": "sql",
+  "title": "Listeners of the opening track",
+  "difficulty": "Medium",
+  "tags": [
+    "exists"
+  ],
+  "statementMd": "List listeners who played a track number 1 on any album. Show distinct names.\n\nExpected columns: `name`.\n\nTables: `artists`, `albums`, `tracks`, `listeners`, `plays`.\n\nRow order does not matter.",
+  "hints": [
+    "Join plays to tracks with `track_no = 1`."
+  ],
+  "solutionMd": "```sql\nSELECT DISTINCT l.name FROM listeners l JOIN plays p ON p.listener_id = l.id JOIN tracks t ON t.id = p.track_id WHERE t.track_no = 1;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: artists, albums, tracks, listeners, plays\nSELECT\n",
+  "datasetId": "music",
+  "expected": {
+    "query": "SELECT DISTINCT l.name FROM listeners l JOIN plays p ON p.listener_id = l.id JOIN tracks t ON t.id = p.track_id WHERE t.track_no = 1;",
+    "orderMatters": false
+  },
+  "order": 327
+}

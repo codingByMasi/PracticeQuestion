@@ -1,0 +1,21 @@
+{
+  "slug": "staff-per-office-city",
+  "track": "sql",
+  "title": "Staff per office city",
+  "difficulty": "Medium",
+  "tags": [
+    "join"
+  ],
+  "statementMd": "How many employees work in each department location (city)? Show the city and the count.\n\nExpected columns: `location`, `staff`.\n\nTables: `employees`, `departments`.\n\nRow order does not matter.",
+  "hints": [
+    "Group by `d.location`; two departments can share a city."
+  ],
+  "solutionMd": "```sql\nSELECT d.location, COUNT(*) AS staff FROM employees e JOIN departments d ON d.id = e.department_id GROUP BY d.location;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "SELECT d.location, COUNT(*) AS staff FROM employees e JOIN departments d ON d.id = e.department_id GROUP BY d.location;",
+    "orderMatters": false
+  },
+  "order": 264
+}

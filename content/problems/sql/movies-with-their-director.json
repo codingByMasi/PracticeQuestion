@@ -1,0 +1,21 @@
+{
+  "slug": "movies-with-their-director",
+  "track": "sql",
+  "title": "Movies with their director",
+  "difficulty": "Easy",
+  "tags": [
+    "join"
+  ],
+  "statementMd": "List each movie title with its director's name (movies without a director are not shown).\n\nExpected columns: `title`, `director`.\n\nTables: `movies`, `directors`, `reviews`.\n\nRow order does not matter.",
+  "hints": [
+    "Inner join."
+  ],
+  "solutionMd": "```sql\nSELECT m.title, d.name AS director FROM movies m JOIN directors d ON d.id = m.director_id;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: movies, directors, reviews\nSELECT\n",
+  "datasetId": "movies",
+  "expected": {
+    "query": "SELECT m.title, d.name AS director FROM movies m JOIN directors d ON d.id = m.director_id;",
+    "orderMatters": false
+  },
+  "order": 160
+}

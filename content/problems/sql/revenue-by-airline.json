@@ -1,0 +1,21 @@
+{
+  "slug": "revenue-by-airline",
+  "track": "sql",
+  "title": "Revenue by airline",
+  "difficulty": "Medium",
+  "tags": [
+    "multi-join"
+  ],
+  "statementMd": "Total booking fares per airline name, rounded to 2 decimals, biggest first.\n\nExpected columns: `name`, `revenue`.\n\nTables: `airlines`, `airports`, `flights`, `bookings`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Join bookings, flights, airlines."
+  ],
+  "solutionMd": "```sql\nSELECT a.name, ROUND(SUM(b.fare), 2) AS revenue FROM bookings b JOIN flights f ON f.id = b.flight_id JOIN airlines a ON a.code = f.airline_code GROUP BY a.code, a.name ORDER BY revenue DESC;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: airlines, airports, flights, bookings\nSELECT\n",
+  "datasetId": "flights",
+  "expected": {
+    "query": "SELECT a.name, ROUND(SUM(b.fare), 2) AS revenue FROM bookings b JOIN flights f ON f.id = b.flight_id JOIN airlines a ON a.code = f.airline_code GROUP BY a.code, a.name ORDER BY revenue DESC;",
+    "orderMatters": true
+  },
+  "order": 299
+}

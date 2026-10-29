@@ -1,0 +1,21 @@
+{
+  "slug": "category-columns-per-customer",
+  "track": "sql",
+  "title": "Category columns per customer",
+  "difficulty": "Hard",
+  "tags": [
+    "pivot"
+  ],
+  "statementMd": "For each customer who ordered anything (non-cancelled), show how many units they bought in each category as three columns `electronics`, `home` and `stationery` (0 when none).\n\nExpected columns: `name`, `electronics`, `home`, `stationery`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\nRow order does not matter.",
+  "hints": [
+    "Conditional `SUM(CASE ...)` per category."
+  ],
+  "solutionMd": "```sql\nSELECT c.name, COALESCE(SUM(CASE WHEN p.category = 'Electronics' THEN oi.quantity END), 0) AS electronics, COALESCE(SUM(CASE WHEN p.category = 'Home' THEN oi.quantity END), 0) AS home, COALESCE(SUM(CASE WHEN p.category = 'Stationery' THEN oi.quantity END), 0) AS stationery FROM customers c JOIN orders o ON o.customer_id = c.id AND o.status <> 'cancelled' JOIN order_items oi ON oi.order_id = o.id JOIN products p ON p.id = oi.product_id GROUP BY c.id, c.name;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "SELECT c.name, COALESCE(SUM(CASE WHEN p.category = 'Electronics' THEN oi.quantity END), 0) AS electronics, COALESCE(SUM(CASE WHEN p.category = 'Home' THEN oi.quantity END), 0) AS home, COALESCE(SUM(CASE WHEN p.category = 'Stationery' THEN oi.quantity END), 0) AS stationery FROM customers c JOIN orders o ON o.customer_id = c.id AND o.status <> 'cancelled' JOIN order_items oi ON oi.order_id = o.id JOIN products p ON p.id = oi.product_id GROUP BY c.id, c.name;",
+    "orderMatters": false
+  },
+  "order": 482
+}

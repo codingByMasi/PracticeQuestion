@@ -1,0 +1,86 @@
+{
+  "slug": "unique-elements-in-both-counts",
+  "track": "python",
+  "title": "Unique elements in both counts",
+  "difficulty": "Medium",
+  "tags": [
+    "sets"
+  ],
+  "statementMd": "Return the number of distinct values that occur in `a` but not in `b`, plus those in `b` but not in `a`.\n\n**Example:** `unique_in_one_only([1, 2], [2, 3])` returns `2`.",
+  "hints": [
+    "Size of symmetric difference."
+  ],
+  "solutionMd": "```python\ndef unique_in_one_only(a, b):\n    return len(set(a) ^ set(b))\n```\n\nCounting after the set operation.",
+  "starterCode": "def unique_in_one_only(a, b):\n    # Write your code here\n    pass\n",
+  "functionName": "unique_in_one_only",
+  "referenceSolution": "def unique_in_one_only(a, b):\n    return len(set(a) ^ set(b))\n",
+  "tests": [
+    {
+      "args": [
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "expected": 2,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          1
+        ],
+        [
+          1
+        ]
+      ],
+      "expected": 0,
+      "hidden": false
+    },
+    {
+      "args": [
+        [],
+        [
+          1,
+          2
+        ]
+      ],
+      "expected": 2,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          4,
+          5,
+          6
+        ]
+      ],
+      "expected": 6,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          1
+        ],
+        [
+          1
+        ]
+      ],
+      "expected": 0,
+      "hidden": true
+    }
+  ],
+  "order": 201
+}

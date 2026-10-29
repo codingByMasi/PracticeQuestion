@@ -1,0 +1,83 @@
+{
+  "slug": "sort-by-length-then-alphabetically",
+  "track": "python",
+  "title": "Sort by length then alphabetically",
+  "difficulty": "Easy",
+  "tags": [
+    "sorting"
+  ],
+  "statementMd": "Sort words by length ascending, ties alphabetically.\n\n**Example:** `sort_words([\"bb\", \"a\", \"ab\", \"c\"])` returns `[\"a\", \"c\", \"ab\", \"bb\"]`.",
+  "hints": [
+    "Tuple sort key."
+  ],
+  "solutionMd": "```python\ndef sort_words(words):\n    return sorted(words, key=lambda w: (len(w), w))\n```\n\nKey tuples compare element by element.",
+  "starterCode": "def sort_words(words):\n    # Write your code here\n    pass\n",
+  "functionName": "sort_words",
+  "referenceSolution": "def sort_words(words):\n    return sorted(words, key=lambda w: (len(w), w))\n",
+  "tests": [
+    {
+      "args": [
+        [
+          "bb",
+          "a",
+          "ab",
+          "c"
+        ]
+      ],
+      "expected": [
+        "a",
+        "c",
+        "ab",
+        "bb"
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": [],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          "x"
+        ]
+      ],
+      "expected": [
+        "x"
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          "ccc",
+          "bb",
+          "aa"
+        ]
+      ],
+      "expected": [
+        "aa",
+        "bb",
+        "ccc"
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          "b",
+          "a"
+        ]
+      ],
+      "expected": [
+        "a",
+        "b"
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 109
+}

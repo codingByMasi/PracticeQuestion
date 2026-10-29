@@ -1,0 +1,101 @@
+{
+  "slug": "minimum-refueling-stops",
+  "track": "python",
+  "title": "Minimum refueling stops",
+  "difficulty": "Hard",
+  "tags": [
+    "heaps"
+  ],
+  "statementMd": "A car starts with `start_fuel` and uses 1 fuel per mile. `stations` is a list of `[position, fuel]`, sorted by position. Return the minimum number of refuelling stops to reach `target`, or `-1`.\n\n**Example:** `min_refuel_stops(100, 10, [[10, 60], [20, 30], [30, 30], [60, 40]])` returns `2`.",
+  "hints": [
+    "Greedy: refuel at the largest stations passed when you run out."
+  ],
+  "solutionMd": "```python\ndef min_refuel_stops(target, start_fuel, stations):\n    import heapq\n    heap, stops, fuel, i = [], 0, start_fuel, 0\n    while fuel < target:\n        while i < len(stations) and stations[i][0] <= fuel:\n            heapq.heappush(heap, -stations[i][1])\n            i += 1\n        if not heap:\n            return -1\n        fuel += -heapq.heappop(heap)\n        stops += 1\n    return stops\n```\n\nDelay the decision: take the biggest tank only when needed.",
+  "starterCode": "def min_refuel_stops(target, start_fuel, stations):\n    # Write your code here\n    pass\n",
+  "functionName": "min_refuel_stops",
+  "referenceSolution": "def min_refuel_stops(target, start_fuel, stations):\n    import heapq\n    heap, stops, fuel, i = [], 0, start_fuel, 0\n    while fuel < target:\n        while i < len(stations) and stations[i][0] <= fuel:\n            heapq.heappush(heap, -stations[i][1])\n            i += 1\n        if not heap:\n            return -1\n        fuel += -heapq.heappop(heap)\n        stops += 1\n    return stops\n",
+  "tests": [
+    {
+      "args": [
+        100,
+        10,
+        [
+          [
+            10,
+            60
+          ],
+          [
+            20,
+            30
+          ],
+          [
+            30,
+            30
+          ],
+          [
+            60,
+            40
+          ]
+        ]
+      ],
+      "expected": 2,
+      "hidden": false
+    },
+    {
+      "args": [
+        1,
+        1,
+        []
+      ],
+      "expected": 0,
+      "hidden": false
+    },
+    {
+      "args": [
+        100,
+        1,
+        [
+          [
+            10,
+            100
+          ]
+        ]
+      ],
+      "expected": -1,
+      "hidden": true
+    },
+    {
+      "args": [
+        100,
+        50,
+        [
+          [
+            25,
+            50
+          ]
+        ]
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        50,
+        10,
+        [
+          [
+            5,
+            5
+          ],
+          [
+            10,
+            40
+          ]
+        ]
+      ],
+      "expected": 1,
+      "hidden": true
+    }
+  ],
+  "order": 489
+}

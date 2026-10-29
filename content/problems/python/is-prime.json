@@ -1,0 +1,76 @@
+{
+  "slug": "is-prime",
+  "track": "python",
+  "title": "Is prime",
+  "difficulty": "Easy",
+  "tags": [
+    "number-theory"
+  ],
+  "statementMd": "Return `True` if the integer `n` is prime (numbers below 2 are not prime).\n\n**Example:** `is_prime(7)` returns `true`.",
+  "hints": [
+    "Only test divisors up to the square root."
+  ],
+  "solutionMd": "```python\ndef is_prime(n):\n    if n < 2:\n        return False\n    i = 2\n    while i * i <= n:\n        if n % i == 0:\n            return False\n        i += 1\n    return True\n```\n\nA composite number has a divisor no larger than its square root.",
+  "starterCode": "def is_prime(n):\n    # Write your code here\n    pass\n",
+  "functionName": "is_prime",
+  "referenceSolution": "def is_prime(n):\n    if n < 2:\n        return False\n    i = 2\n    while i * i <= n:\n        if n % i == 0:\n            return False\n        i += 1\n    return True\n",
+  "tests": [
+    {
+      "args": [
+        7
+      ],
+      "expected": true,
+      "hidden": false
+    },
+    {
+      "args": [
+        9
+      ],
+      "expected": false,
+      "hidden": false
+    },
+    {
+      "args": [
+        1
+      ],
+      "expected": false,
+      "hidden": true
+    },
+    {
+      "args": [
+        2
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        0
+      ],
+      "expected": false,
+      "hidden": true
+    },
+    {
+      "args": [
+        97
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        100
+      ],
+      "expected": false,
+      "hidden": true
+    },
+    {
+      "args": [
+        7919
+      ],
+      "expected": true,
+      "hidden": true
+    }
+  ],
+  "order": 143
+}

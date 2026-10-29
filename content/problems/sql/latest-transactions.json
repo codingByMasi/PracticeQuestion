@@ -1,0 +1,21 @@
+{
+  "slug": "latest-transactions",
+  "track": "sql",
+  "title": "Latest transactions",
+  "difficulty": "Easy",
+  "tags": [
+    "order-by"
+  ],
+  "statementMd": "The 5 latest transactions by date (ties by id descending). Show id, date, amount.\n\nExpected columns: `id`, `tx_date`, `amount`.\n\nTables: `customers`, `accounts`, `transactions`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Sort by date desc then id desc."
+  ],
+  "solutionMd": "```sql\nSELECT id, tx_date, amount FROM transactions ORDER BY tx_date DESC, id DESC LIMIT 5;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, accounts, transactions\nSELECT\n",
+  "datasetId": "bank",
+  "expected": {
+    "query": "SELECT id, tx_date, amount FROM transactions ORDER BY tx_date DESC, id DESC LIMIT 5;",
+    "orderMatters": true
+  },
+  "order": 63
+}

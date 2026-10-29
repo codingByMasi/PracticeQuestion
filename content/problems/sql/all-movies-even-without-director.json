@@ -1,0 +1,21 @@
+{
+  "slug": "all-movies-even-without-director",
+  "track": "sql",
+  "title": "All movies even without director",
+  "difficulty": "Medium",
+  "tags": [
+    "left-join"
+  ],
+  "statementMd": "List every movie with its director's name, showing `Unknown` when there is none.\n\nExpected columns: `title`, `director`.\n\nTables: `movies`, `directors`, `reviews`.\n\nRow order does not matter.",
+  "hints": [
+    "`LEFT JOIN` plus `COALESCE`."
+  ],
+  "solutionMd": "```sql\nSELECT m.title, COALESCE(d.name, 'Unknown') AS director FROM movies m LEFT JOIN directors d ON d.id = m.director_id;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: movies, directors, reviews\nSELECT\n",
+  "datasetId": "movies",
+  "expected": {
+    "query": "SELECT m.title, COALESCE(d.name, 'Unknown') AS director FROM movies m LEFT JOIN directors d ON d.id = m.director_id;",
+    "orderMatters": false
+  },
+  "order": 285
+}

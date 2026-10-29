@@ -1,0 +1,21 @@
+{
+  "slug": "genre-pivot-by-tier",
+  "track": "sql",
+  "title": "Genre pivot by tier",
+  "difficulty": "Hard",
+  "tags": [
+    "pivot"
+  ],
+  "statementMd": "For each genre show the number of loans by `basic`, `plus` and `premium` members as three columns.\n\nExpected columns: `genre`, `basic`, `plus`, `premium`.\n\nTables: `authors`, `books`, `members`, `loans`.\n\nRow order does not matter.",
+  "hints": [
+    "Conditional aggregation over member tier."
+  ],
+  "solutionMd": "```sql\nSELECT b.genre, SUM(CASE WHEN m.tier = 'basic' THEN 1 ELSE 0 END) AS basic, SUM(CASE WHEN m.tier = 'plus' THEN 1 ELSE 0 END) AS plus, SUM(CASE WHEN m.tier = 'premium' THEN 1 ELSE 0 END) AS premium FROM loans l JOIN books b ON b.id = l.book_id JOIN members m ON m.id = l.member_id GROUP BY b.genre;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: authors, books, members, loans\nSELECT\n",
+  "datasetId": "library",
+  "expected": {
+    "query": "SELECT b.genre, SUM(CASE WHEN m.tier = 'basic' THEN 1 ELSE 0 END) AS basic, SUM(CASE WHEN m.tier = 'plus' THEN 1 ELSE 0 END) AS plus, SUM(CASE WHEN m.tier = 'premium' THEN 1 ELSE 0 END) AS premium FROM loans l JOIN books b ON b.id = l.book_id JOIN members m ON m.id = l.member_id GROUP BY b.genre;",
+    "orderMatters": false
+  },
+  "order": 484
+}

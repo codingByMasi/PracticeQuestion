@@ -1,0 +1,21 @@
+{
+  "slug": "basket-with-the-most-distinct-products",
+  "track": "sql",
+  "title": "Basket with the most distinct products",
+  "difficulty": "Medium",
+  "tags": [
+    "group-by"
+  ],
+  "statementMd": "Which order contains the most distinct products? Show order id and the count (no tie).\n\nExpected columns: `order_id`, `products`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\nRow order does not matter.",
+  "hints": [
+    "Count lines per order."
+  ],
+  "solutionMd": "```sql\nSELECT order_id, COUNT(DISTINCT product_id) AS products FROM order_items GROUP BY order_id ORDER BY products DESC, order_id LIMIT 1;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "SELECT order_id, COUNT(DISTINCT product_id) AS products FROM order_items GROUP BY order_id ORDER BY products DESC, order_id LIMIT 1;",
+    "orderMatters": false
+  },
+  "order": 242
+}

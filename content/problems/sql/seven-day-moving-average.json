@@ -1,0 +1,21 @@
+{
+  "slug": "seven-day-moving-average",
+  "track": "sql",
+  "title": "Seven-day moving average",
+  "difficulty": "Hard",
+  "tags": [
+    "window-functions"
+  ],
+  "statementMd": "Daily plays for the first 12 days with plays, plus the 7-day trailing moving average (current day and the 6 previous days with plays) rounded to 1 decimal.\n\nExpected columns: `day`, `plays`, `moving_avg`.\n\nTables: `artists`, `albums`, `tracks`, `listeners`, `plays`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "`ROWS BETWEEN 6 PRECEDING AND CURRENT ROW`."
+  ],
+  "solutionMd": "```sql\nWITH d AS (SELECT substr(played_at, 1, 10) AS day, COUNT(*) AS plays FROM plays GROUP BY day) SELECT day, plays, ROUND(AVG(plays) OVER (ORDER BY day ROWS BETWEEN 6 PRECEDING AND CURRENT ROW), 1) AS moving_avg FROM d ORDER BY day LIMIT 12;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: artists, albums, tracks, listeners, plays\nSELECT\n",
+  "datasetId": "music",
+  "expected": {
+    "query": "WITH d AS (SELECT substr(played_at, 1, 10) AS day, COUNT(*) AS plays FROM plays GROUP BY day) SELECT day, plays, ROUND(AVG(plays) OVER (ORDER BY day ROWS BETWEEN 6 PRECEDING AND CURRENT ROW), 1) AS moving_avg FROM d ORDER BY day LIMIT 12;",
+    "orderMatters": true
+  },
+  "order": 421
+}

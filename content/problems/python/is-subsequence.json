@@ -1,0 +1,68 @@
+{
+  "slug": "is-subsequence",
+  "track": "python",
+  "title": "Is subsequence",
+  "difficulty": "Medium",
+  "tags": [
+    "two-pointers"
+  ],
+  "statementMd": "Return `True` if all characters of `small` appear in `big` in the same order (not necessarily adjacent).\n\n**Example:** `is_subsequence(\"ace\", \"abcde\")` returns `true`.",
+  "hints": [
+    "Walk through `big` with one pointer into `small`."
+  ],
+  "solutionMd": "```python\ndef is_subsequence(small, big):\n    i = 0\n    for c in big:\n        if i < len(small) and small[i] == c:\n            i += 1\n    return i == len(small)\n```\n\nGreedy matching is optimal.",
+  "starterCode": "def is_subsequence(small, big):\n    # Write your code here\n    pass\n",
+  "functionName": "is_subsequence",
+  "referenceSolution": "def is_subsequence(small, big):\n    i = 0\n    for c in big:\n        if i < len(small) and small[i] == c:\n            i += 1\n    return i == len(small)\n",
+  "tests": [
+    {
+      "args": [
+        "ace",
+        "abcde"
+      ],
+      "expected": true,
+      "hidden": false
+    },
+    {
+      "args": [
+        "aec",
+        "abcde"
+      ],
+      "expected": false,
+      "hidden": false
+    },
+    {
+      "args": [
+        "",
+        "abc"
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        "abc",
+        ""
+      ],
+      "expected": false,
+      "hidden": true
+    },
+    {
+      "args": [
+        "a",
+        "a"
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        "bb",
+        "abcb"
+      ],
+      "expected": true,
+      "hidden": true
+    }
+  ],
+  "order": 249
+}

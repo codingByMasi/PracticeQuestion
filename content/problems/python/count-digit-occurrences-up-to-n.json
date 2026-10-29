@@ -1,0 +1,69 @@
+{
+  "slug": "count-digit-occurrences-up-to-n",
+  "track": "python",
+  "title": "Count digit occurrences up to n",
+  "difficulty": "Hard",
+  "tags": [
+    "math"
+  ],
+  "statementMd": "Return how many times the digit `1` appears in all numbers from 1 to `n` inclusive.\n\n**Example:** `count_digit_one(13)` returns `6`.",
+  "hints": [
+    "Count per digit position."
+  ],
+  "solutionMd": "```python\ndef count_digit_one(n):\n    total = 0\n    m = 1\n    while m <= n:\n        high, cur, low = n // (m * 10), n // m % 10, n % m\n        if cur == 0:\n            total += high * m\n        elif cur == 1:\n            total += high * m + low + 1\n        else:\n            total += (high + 1) * m\n        m *= 10\n    return total\n```\n\nAnalyse each decimal position independently.",
+  "starterCode": "def count_digit_one(n):\n    # Write your code here\n    pass\n",
+  "functionName": "count_digit_one",
+  "referenceSolution": "def count_digit_one(n):\n    total = 0\n    m = 1\n    while m <= n:\n        high, cur, low = n // (m * 10), n // m % 10, n % m\n        if cur == 0:\n            total += high * m\n        elif cur == 1:\n            total += high * m + low + 1\n        else:\n            total += (high + 1) * m\n        m *= 10\n    return total\n",
+  "tests": [
+    {
+      "args": [
+        13
+      ],
+      "expected": 6,
+      "hidden": false
+    },
+    {
+      "args": [
+        0
+      ],
+      "expected": 0,
+      "hidden": false
+    },
+    {
+      "args": [
+        1
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        10
+      ],
+      "expected": 2,
+      "hidden": true
+    },
+    {
+      "args": [
+        99
+      ],
+      "expected": 20,
+      "hidden": true
+    },
+    {
+      "args": [
+        100
+      ],
+      "expected": 21,
+      "hidden": true
+    },
+    {
+      "args": [
+        1234
+      ],
+      "expected": 689,
+      "hidden": true
+    }
+  ],
+  "order": 379
+}

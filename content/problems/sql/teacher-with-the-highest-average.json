@@ -1,0 +1,21 @@
+{
+  "slug": "teacher-with-the-highest-average",
+  "track": "sql",
+  "title": "Teacher with the highest average",
+  "difficulty": "Medium",
+  "tags": [
+    "subquery"
+  ],
+  "statementMd": "Which teacher's students score the highest on average? Show the teacher and the average rounded to 2 decimals. No tie.\n\nExpected columns: `name`, `avg_score`.\n\nTables: `teachers`, `courses`, `students`, `enrollments`.\n\nRow order does not matter.",
+  "hints": [
+    "Group, sort, limit 1."
+  ],
+  "solutionMd": "```sql\nSELECT t.name, ROUND(AVG(e.score), 2) AS avg_score FROM teachers t JOIN courses c ON c.teacher_id = t.id JOIN enrollments e ON e.course_id = c.id GROUP BY t.id, t.name ORDER BY avg_score DESC LIMIT 1;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: teachers, courses, students, enrollments\nSELECT\n",
+  "datasetId": "school",
+  "expected": {
+    "query": "SELECT t.name, ROUND(AVG(e.score), 2) AS avg_score FROM teachers t JOIN courses c ON c.teacher_id = t.id JOIN enrollments e ON e.course_id = c.id GROUP BY t.id, t.name ORDER BY avg_score DESC LIMIT 1;",
+    "orderMatters": false
+  },
+  "order": 317
+}

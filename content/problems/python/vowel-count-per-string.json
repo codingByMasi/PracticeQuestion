@@ -1,0 +1,62 @@
+{
+  "slug": "vowel-count-per-string",
+  "track": "python",
+  "title": "Vowel count per string",
+  "difficulty": "Easy",
+  "tags": [
+    "strings"
+  ],
+  "statementMd": "Return the fraction (float rounded to 3 decimals) of letters in `s` that are vowels (`aeiou`, case-insensitive). Only letters count in the denominator; return `0.0` if there are no letters.\n\n**Example:** `vowel_ratio(\"hello\")` returns `0.4`.",
+  "hints": [
+    "Filter with `isalpha`."
+  ],
+  "solutionMd": "```python\ndef vowel_ratio(s):\n    letters = [c.lower() for c in s if c.isalpha()]\n    if not letters:\n        return 0.0\n    return round(sum(c in 'aeiou' for c in letters) / len(letters), 3)\n```\n\nGuard against dividing by zero.",
+  "starterCode": "def vowel_ratio(s):\n    # Write your code here\n    pass\n",
+  "functionName": "vowel_ratio",
+  "referenceSolution": "def vowel_ratio(s):\n    letters = [c.lower() for c in s if c.isalpha()]\n    if not letters:\n        return 0.0\n    return round(sum(c in 'aeiou' for c in letters) / len(letters), 3)\n",
+  "tests": [
+    {
+      "args": [
+        "hello"
+      ],
+      "expected": 0.4,
+      "hidden": false
+    },
+    {
+      "args": [
+        "xyz"
+      ],
+      "expected": 0.0,
+      "hidden": false
+    },
+    {
+      "args": [
+        ""
+      ],
+      "expected": 0.0,
+      "hidden": true
+    },
+    {
+      "args": [
+        "AEIOU"
+      ],
+      "expected": 1.0,
+      "hidden": true
+    },
+    {
+      "args": [
+        "a1b2"
+      ],
+      "expected": 0.5,
+      "hidden": true
+    },
+    {
+      "args": [
+        "Programming is fun"
+      ],
+      "expected": 0.312,
+      "hidden": true
+    }
+  ],
+  "order": 58
+}

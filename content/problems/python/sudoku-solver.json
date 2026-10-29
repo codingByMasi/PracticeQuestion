@@ -1,0 +1,155 @@
+{
+  "slug": "sudoku-solver",
+  "track": "python",
+  "title": "Sudoku solver",
+  "difficulty": "Hard",
+  "tags": [
+    "backtracking"
+  ],
+  "statementMd": "Solve a 9x9 Sudoku given as a list of 9 strings of digits with `.` for empty cells. The puzzle has exactly one solution. Return the solved board as 9 strings.\n\n**Example:** `solve_sudoku([\"53..7....\", \"6..195...\", \".98....6.\", \"8...6...3\", \"4..8.…)` returns `[\"534678912\", \"672195348\", \"198342567\", \"859761423\", \"426853791\", \"713924856\", …`.",
+  "hints": [
+    "Backtrack on the empty cell with constraints."
+  ],
+  "solutionMd": "```python\ndef solve_sudoku(board):\n    g = [list(r) for r in board]\n    def ok(r, c, d):\n        for i in range(9):\n            if g[r][i] == d or g[i][c] == d:\n                return False\n        br, bc = r // 3 * 3, c // 3 * 3\n        return all(g[br + i][bc + j] != d for i in range(3) for j in range(3))\n    def go():\n        for r in range(9):\n            for c in range(9):\n                if g[r][c] == '.':\n                    for d in '123456789':\n                        if ok(r, c, d):\n                            g[r][c] = d\n                            if go():\n                                return True\n                            g[r][c] = '.'\n                    return False\n        return True\n    go()\n    return [''.join(r) for r in g]\n```\n\nClassic constraint backtracking.",
+  "starterCode": "def solve_sudoku(board):\n    # Write your code here\n    pass\n",
+  "functionName": "solve_sudoku",
+  "referenceSolution": "def solve_sudoku(board):\n    g = [list(r) for r in board]\n    def ok(r, c, d):\n        for i in range(9):\n            if g[r][i] == d or g[i][c] == d:\n                return False\n        br, bc = r // 3 * 3, c // 3 * 3\n        return all(g[br + i][bc + j] != d for i in range(3) for j in range(3))\n    def go():\n        for r in range(9):\n            for c in range(9):\n                if g[r][c] == '.':\n                    for d in '123456789':\n                        if ok(r, c, d):\n                            g[r][c] = d\n                            if go():\n                                return True\n                            g[r][c] = '.'\n                    return False\n        return True\n    go()\n    return [''.join(r) for r in g]\n",
+  "tests": [
+    {
+      "args": [
+        [
+          "53..7....",
+          "6..195...",
+          ".98....6.",
+          "8...6...3",
+          "4..8.3..1",
+          "7...2...6",
+          ".6....28.",
+          "...419..5",
+          "....8..79"
+        ]
+      ],
+      "expected": [
+        "534678912",
+        "672195348",
+        "198342567",
+        "859761423",
+        "426853791",
+        "713924856",
+        "961537284",
+        "287419635",
+        "345286179"
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          ".34678912",
+          "672195348",
+          "198342567",
+          "859761423",
+          "4268.3791",
+          "713924856",
+          "961537284",
+          "287419635",
+          "34528617."
+        ]
+      ],
+      "expected": [
+        "534678912",
+        "672195348",
+        "198342567",
+        "859761423",
+        "426853791",
+        "713924856",
+        "961537284",
+        "287419635",
+        "345286179"
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          "5.4678912",
+          "672195348",
+          "198342567",
+          "859.61423",
+          "426853791",
+          "71392485.",
+          "961537284",
+          "28741.635",
+          "345286179"
+        ]
+      ],
+      "expected": [
+        "534678912",
+        "672195348",
+        "198342567",
+        "859761423",
+        "426853791",
+        "713924856",
+        "961537284",
+        "287419635",
+        "345286179"
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          "576432198",
+          "4.8915762",
+          "91.768543",
+          "251349687",
+          "6842573.9",
+          "397186254",
+          "149573.26",
+          "823691475",
+          ".65824931"
+        ]
+      ],
+      "expected": [
+        "576432198",
+        "438915762",
+        "912768543",
+        "251349687",
+        "684257319",
+        "397186254",
+        "149573826",
+        "823691475",
+        "765824931"
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          ".346.8912",
+          "6721953.8",
+          "198.42567",
+          "859761423",
+          "426853791",
+          "71392.856",
+          "961537284",
+          "287419635",
+          "34.286179"
+        ]
+      ],
+      "expected": [
+        "534678912",
+        "672195348",
+        "198342567",
+        "859761423",
+        "426853791",
+        "713924856",
+        "961537284",
+        "287419635",
+        "345286179"
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 460
+}

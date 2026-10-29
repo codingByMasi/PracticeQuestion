@@ -1,0 +1,21 @@
+{
+  "slug": "unreviewed-movies",
+  "track": "sql",
+  "title": "Unreviewed movies",
+  "difficulty": "Medium",
+  "tags": [
+    "left-join"
+  ],
+  "statementMd": "List movies that have no reviews.\n\nExpected columns: `title`.\n\nTables: `movies`, `directors`, `reviews`.\n\nRow order does not matter.",
+  "hints": [
+    "`LEFT JOIN reviews ... WHERE r.id IS NULL`."
+  ],
+  "solutionMd": "```sql\nSELECT m.title FROM movies m LEFT JOIN reviews r ON r.movie_id = m.id WHERE r.id IS NULL;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: movies, directors, reviews\nSELECT\n",
+  "datasetId": "movies",
+  "expected": {
+    "query": "SELECT m.title FROM movies m LEFT JOIN reviews r ON r.movie_id = m.id WHERE r.id IS NULL;",
+    "orderMatters": false
+  },
+  "order": 286
+}

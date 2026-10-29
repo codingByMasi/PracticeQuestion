@@ -1,0 +1,21 @@
+{
+  "slug": "plan-pivot-by-device",
+  "track": "sql",
+  "title": "Plan pivot by device",
+  "difficulty": "Hard",
+  "tags": [
+    "pivot"
+  ],
+  "statementMd": "For each plan show plays on `phone`, `web`, `speaker` and `car` as four columns.\n\nExpected columns: `plan`, `phone`, `web`, `speaker`, `car`.\n\nTables: `artists`, `albums`, `tracks`, `listeners`, `plays`.\n\nRow order does not matter.",
+  "hints": [
+    "Conditional sums."
+  ],
+  "solutionMd": "```sql\nSELECT l.plan, SUM(p.device = 'phone') AS phone, SUM(p.device = 'web') AS web, SUM(p.device = 'speaker') AS speaker, SUM(p.device = 'car') AS car FROM plays p JOIN listeners l ON l.id = p.listener_id GROUP BY l.plan;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: artists, albums, tracks, listeners, plays\nSELECT\n",
+  "datasetId": "music",
+  "expected": {
+    "query": "SELECT l.plan, SUM(p.device = 'phone') AS phone, SUM(p.device = 'web') AS web, SUM(p.device = 'speaker') AS speaker, SUM(p.device = 'car') AS car FROM plays p JOIN listeners l ON l.id = p.listener_id GROUP BY l.plan;",
+    "orderMatters": false
+  },
+  "order": 485
+}

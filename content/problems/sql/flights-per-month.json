@@ -1,0 +1,21 @@
+{
+  "slug": "flights-per-month",
+  "track": "sql",
+  "title": "Flights per month",
+  "difficulty": "Medium",
+  "tags": [
+    "dates"
+  ],
+  "statementMd": "Number of flights departing each month (YYYY-MM), earliest first.\n\nExpected columns: `month`, `flights`.\n\nTables: `airlines`, `airports`, `flights`, `bookings`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "`strftime('%Y-%m', depart_date)`."
+  ],
+  "solutionMd": "```sql\nSELECT strftime('%Y-%m', depart_date) AS month, COUNT(*) AS flights FROM flights GROUP BY month ORDER BY month;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: airlines, airports, flights, bookings\nSELECT\n",
+  "datasetId": "flights",
+  "expected": {
+    "query": "SELECT strftime('%Y-%m', depart_date) AS month, COUNT(*) AS flights FROM flights GROUP BY month ORDER BY month;",
+    "orderMatters": true
+  },
+  "order": 191
+}

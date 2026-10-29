@@ -2,9 +2,9 @@
 
 Practice SQL and Python in the browser with instant feedback. All code runs client-side: SQL in SQLite (sql.js) and Python in Pyodide, each inside a Web Worker. There is no backend.
 
-- **Problems**: 25 SQL + 25 Python, filterable by track, difficulty, tag and status. Run against examples, submit against hidden tests, reveal hints one at a time, unlock the solution after solving or 3 failed submissions.
+- **Problems**: 500 SQL + 500 Python, ordered beginner to advanced (166 / 205 / 129 Easy / Medium / Hard in SQL, 166 / 211 / 123 in Python), filterable by track, difficulty, tag and status. Run against examples, submit against hidden tests, reveal hints one at a time, unlock the solution after solving or 3 failed submissions.
 - **Lessons**: 8 per track, with editable runnable examples and 2 to 5 exercises each.
-- **Playgrounds**: SQL with three sample datasets and a schema browser; Python with stdout/stderr and on-demand numpy/pandas.
+- **Playgrounds**: SQL with nine sample datasets and a schema browser; Python with stdout/stderr and on-demand numpy/pandas.
 - **Daily challenge, streaks and an activity heatmap**; dashboard with "continue where you left off" and solved counts.
 - **Progress** in `localStorage`, with JSON export/import.
 
@@ -55,6 +55,7 @@ content/
   problems/<track>/<slug>.json
   lessons/<track>/<nn-slug>.md
 scripts/             validate-content.ts, build-workers.mjs, copy-wasm.mjs
+tools/content-gen/   Python generators that produced the bulk problem set (see below)
 tests/               Vitest suites
 ```
 
@@ -149,3 +150,17 @@ SELECT * FROM employees LIMIT 3;
 ## Swapping the progress backend
 
 Components only use the `ProgressStore` interface (`lib/progress/types.ts`) via `useProgress()`. A Supabase or other cloud store implements the same interface and is created in `lib/progress/ProgressProvider.tsx`.
+
+## Bulk content generation
+
+The 1,000 problems were authored in compact Python modules under `tools/content-gen/` and compiled to the JSON files in `content/problems/`. The generators *execute every reference solution* (SQLite for SQL, CPython for Python), so expected columns, rows and test values are never hand-typed, and they reject ambiguous problems (non-deterministic row order, empty results, duplicate tests, hard-codable tests, titles that collide).
+
+```bash
+cd tools/content-gen
+python3 datasets.py      # regenerates content/datasets/{library,school,flights,music,bank,stocks}.{json,sql}
+python3 build_sql.py     # sql/*.py  -> content/problems/sql/*.json
+python3 build_py.py      # py/*.py   -> content/problems/python/*.json
+cd ../.. && npm run validate:content
+```
+
+Each problem gets an `order` number (difficulty first, then a concept ladder such as select, where, group-by, join, window functions) that the problem list uses for the beginner to advanced progression. You do not need the generators to add problems by hand; they are only a faster way to author many at once. Note the generators rewrite every generated JSON file (not the original 50), so edit the `.py` source rather than the JSON for generated problems.

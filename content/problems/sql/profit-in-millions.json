@@ -1,0 +1,21 @@
+{
+  "slug": "profit-in-millions",
+  "track": "sql",
+  "title": "Profit in millions",
+  "difficulty": "Easy",
+  "tags": [
+    "expressions"
+  ],
+  "statementMd": "For movies with both budget and gross known, show title and profit (gross minus budget) rounded to 1 decimal.\n\nExpected columns: `title`, `profit`.\n\nTables: `movies`, `directors`, `reviews`.\n\nRow order does not matter.",
+  "hints": [
+    "Filter out NULLs first."
+  ],
+  "solutionMd": "```sql\nSELECT title, ROUND(gross_millions - budget_millions, 1) AS profit FROM movies WHERE budget_millions IS NOT NULL AND gross_millions IS NOT NULL;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: movies, directors, reviews\nSELECT\n",
+  "datasetId": "movies",
+  "expected": {
+    "query": "SELECT title, ROUND(gross_millions - budget_millions, 1) AS profit FROM movies WHERE budget_millions IS NOT NULL AND gross_millions IS NOT NULL;",
+    "orderMatters": false
+  },
+  "order": 93
+}

@@ -1,0 +1,21 @@
+{
+  "slug": "average-true-range",
+  "track": "sql",
+  "title": "Average true range",
+  "difficulty": "Hard",
+  "tags": [
+    "window-functions"
+  ],
+  "statementMd": "For `GRID`, true range of a day is the largest of: high minus low, absolute high minus previous close, absolute low minus previous close. Show the average true range over days that have a previous close, rounded to 3 decimals.\n\nExpected columns: `atr`.\n\nTables: `tickers`, `prices`.\n\nRow order does not matter.",
+  "hints": [
+    "Use `LAG(close)` and `MAX(a, b, c)` (scalar max)."
+  ],
+  "solutionMd": "```sql\nWITH t AS (SELECT high, low, LAG(close) OVER (ORDER BY trade_date) AS pc FROM prices WHERE symbol = 'GRID') SELECT ROUND(AVG(MAX(high - low, ABS(high - pc), ABS(low - pc))), 3) AS atr FROM t WHERE pc IS NOT NULL;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: tickers, prices\nSELECT\n",
+  "datasetId": "stocks",
+  "expected": {
+    "query": "WITH t AS (SELECT high, low, LAG(close) OVER (ORDER BY trade_date) AS pc FROM prices WHERE symbol = 'GRID') SELECT ROUND(AVG(MAX(high - low, ABS(high - pc), ABS(low - pc))), 3) AS atr FROM t WHERE pc IS NOT NULL;",
+    "orderMatters": false
+  },
+  "order": 431
+}

@@ -1,0 +1,60 @@
+{
+  "slug": "power-recursion",
+  "track": "python",
+  "title": "Power recursion",
+  "difficulty": "Easy",
+  "tags": [
+    "recursion"
+  ],
+  "statementMd": "Compute `base ** exp` recursively for integer `exp >= 0`.\n\n**Example:** `rec_power(2, 5)` returns `32`.",
+  "hints": [
+    "`base * rec_power(base, exp - 1)`."
+  ],
+  "solutionMd": "```python\ndef rec_power(base, exp):\n    if exp == 0:\n        return 1\n    return base * rec_power(base, exp - 1)\n```\n\nLinear recursion depth.",
+  "starterCode": "def rec_power(base, exp):\n    # Write your code here\n    pass\n",
+  "functionName": "rec_power",
+  "referenceSolution": "def rec_power(base, exp):\n    if exp == 0:\n        return 1\n    return base * rec_power(base, exp - 1)\n",
+  "tests": [
+    {
+      "args": [
+        2,
+        5
+      ],
+      "expected": 32,
+      "hidden": false
+    },
+    {
+      "args": [
+        3,
+        0
+      ],
+      "expected": 1,
+      "hidden": false
+    },
+    {
+      "args": [
+        0,
+        3
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        5,
+        1
+      ],
+      "expected": 5,
+      "hidden": true
+    },
+    {
+      "args": [
+        -2,
+        3
+      ],
+      "expected": -8,
+      "hidden": true
+    }
+  ],
+  "order": 121
+}

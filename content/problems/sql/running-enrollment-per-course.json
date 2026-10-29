@@ -1,0 +1,21 @@
+{
+  "slug": "running-enrollment-per-course",
+  "track": "sql",
+  "title": "Running enrollment per course",
+  "difficulty": "Hard",
+  "tags": [
+    "running-total"
+  ],
+  "statementMd": "For course 3, list enrollments ordered by semester and student id with a running count of enrolled students.\n\nExpected columns: `semester`, `student_id`, `running_count`.\n\nTables: `teachers`, `courses`, `students`, `enrollments`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "`COUNT(*) OVER (ORDER BY ...)` with a unique tie-breaker."
+  ],
+  "solutionMd": "```sql\nSELECT semester, student_id, ROW_NUMBER() OVER (ORDER BY semester, student_id) AS running_count FROM enrollments WHERE course_id = 3 ORDER BY semester, student_id;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: teachers, courses, students, enrollments\nSELECT\n",
+  "datasetId": "school",
+  "expected": {
+    "query": "SELECT semester, student_id, ROW_NUMBER() OVER (ORDER BY semester, student_id) AS running_count FROM enrollments WHERE course_id = 3 ORDER BY semester, student_id;",
+    "orderMatters": true
+  },
+  "order": 475
+}

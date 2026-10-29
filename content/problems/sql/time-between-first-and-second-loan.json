@@ -1,0 +1,21 @@
+{
+  "slug": "time-between-first-and-second-loan",
+  "track": "sql",
+  "title": "Time between first and second loan",
+  "difficulty": "Hard",
+  "tags": [
+    "window-functions"
+  ],
+  "statementMd": "For each member with at least two loans show days between their first and second loan, and list the 5 smallest gaps (ties by member id).\n\nExpected columns: `member_id`, `days`.\n\nTables: `authors`, `books`, `members`, `loans`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "`ROW_NUMBER()` per member, then self-join rn 1 and 2."
+  ],
+  "solutionMd": "```sql\nWITH r AS (SELECT member_id, loan_date, ROW_NUMBER() OVER (PARTITION BY member_id ORDER BY loan_date, id) AS rn FROM loans) SELECT a.member_id, CAST(julianday(b.loan_date) - julianday(a.loan_date) AS INTEGER) AS days FROM r a JOIN r b ON a.member_id = b.member_id AND a.rn = 1 AND b.rn = 2 ORDER BY days, a.member_id LIMIT 5;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: authors, books, members, loans\nSELECT\n",
+  "datasetId": "library",
+  "expected": {
+    "query": "WITH r AS (SELECT member_id, loan_date, ROW_NUMBER() OVER (PARTITION BY member_id ORDER BY loan_date, id) AS rn FROM loans) SELECT a.member_id, CAST(julianday(b.loan_date) - julianday(a.loan_date) AS INTEGER) AS days FROM r a JOIN r b ON a.member_id = b.member_id AND a.rn = 1 AND b.rn = 2 ORDER BY days, a.member_id LIMIT 5;",
+    "orderMatters": true
+  },
+  "order": 436
+}

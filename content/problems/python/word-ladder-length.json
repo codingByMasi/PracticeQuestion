@@ -1,0 +1,87 @@
+{
+  "slug": "word-ladder-length",
+  "track": "python",
+  "title": "Word ladder length",
+  "difficulty": "Hard",
+  "tags": [
+    "graphs"
+  ],
+  "statementMd": "Transform `begin` into `end` changing one letter at a time, where every intermediate word must be in `words`. Return the number of words in the shortest sequence (including begin and end), or 0 if impossible.\n\n**Example:** `ladder_length(\"hit\", \"cog\", [\"hot\", \"dot\", \"dog\", \"lot\", \"log\", \"cog\"])` returns `5`.",
+  "hints": [
+    "BFS over words differing by one letter."
+  ],
+  "solutionMd": "```python\nfrom collections import deque, defaultdict\n\n\ndef ladder_length(begin, end, words):\n    ws = set(words)\n    if end not in ws:\n        return 0\n    q = deque([(begin, 1)])\n    seen = {begin}\n    while q:\n        w, d = q.popleft()\n        if w == end:\n            return d\n        for i in range(len(w)):\n            for c in 'abcdefghijklmnopqrstuvwxyz':\n                nxt = w[:i] + c + w[i + 1:]\n                if nxt in ws and nxt not in seen:\n                    seen.add(nxt); q.append((nxt, d + 1))\n    return 0\n```\n\nGenerate neighbours by changing each letter.",
+  "starterCode": "def ladder_length(begin, end, words):\n    # Write your code here\n    pass\n",
+  "functionName": "ladder_length",
+  "referenceSolution": "from collections import deque, defaultdict\n\n\ndef ladder_length(begin, end, words):\n    ws = set(words)\n    if end not in ws:\n        return 0\n    q = deque([(begin, 1)])\n    seen = {begin}\n    while q:\n        w, d = q.popleft()\n        if w == end:\n            return d\n        for i in range(len(w)):\n            for c in 'abcdefghijklmnopqrstuvwxyz':\n                nxt = w[:i] + c + w[i + 1:]\n                if nxt in ws and nxt not in seen:\n                    seen.add(nxt); q.append((nxt, d + 1))\n    return 0\n",
+  "tests": [
+    {
+      "args": [
+        "hit",
+        "cog",
+        [
+          "hot",
+          "dot",
+          "dog",
+          "lot",
+          "log",
+          "cog"
+        ]
+      ],
+      "expected": 5,
+      "hidden": false
+    },
+    {
+      "args": [
+        "hit",
+        "cog",
+        [
+          "hot",
+          "dot",
+          "dog",
+          "lot",
+          "log"
+        ]
+      ],
+      "expected": 0,
+      "hidden": false
+    },
+    {
+      "args": [
+        "a",
+        "c",
+        [
+          "a",
+          "b",
+          "c"
+        ]
+      ],
+      "expected": 2,
+      "hidden": true
+    },
+    {
+      "args": [
+        "aa",
+        "bb",
+        [
+          "ab",
+          "bb"
+        ]
+      ],
+      "expected": 3,
+      "hidden": true
+    },
+    {
+      "args": [
+        "same",
+        "same",
+        [
+          "same"
+        ]
+      ],
+      "expected": 1,
+      "hidden": true
+    }
+  ],
+  "order": 471
+}

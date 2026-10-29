@@ -1,0 +1,62 @@
+{
+  "slug": "number-of-binary-strings-without-consecutive-ones",
+  "track": "python",
+  "title": "Number of binary strings without consecutive ones",
+  "difficulty": "Medium",
+  "tags": [
+    "dynamic-programming"
+  ],
+  "statementMd": "Return how many binary strings of length `n` contain no two adjacent `1`s.\n\n**Example:** `no_consecutive_ones(3)` returns `5`.",
+  "hints": [
+    "Fibonacci recurrence."
+  ],
+  "solutionMd": "```python\ndef no_consecutive_ones(n):\n    a, b = 1, 2\n    if n == 0:\n        return 1\n    for _ in range(n - 1):\n        a, b = b, a + b\n    return b\n```\n\nStrings ending in 0 plus strings ending in 01.",
+  "starterCode": "def no_consecutive_ones(n):\n    # Write your code here\n    pass\n",
+  "functionName": "no_consecutive_ones",
+  "referenceSolution": "def no_consecutive_ones(n):\n    a, b = 1, 2\n    if n == 0:\n        return 1\n    for _ in range(n - 1):\n        a, b = b, a + b\n    return b\n",
+  "tests": [
+    {
+      "args": [
+        3
+      ],
+      "expected": 5,
+      "hidden": false
+    },
+    {
+      "args": [
+        1
+      ],
+      "expected": 2,
+      "hidden": false
+    },
+    {
+      "args": [
+        0
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        2
+      ],
+      "expected": 3,
+      "hidden": true
+    },
+    {
+      "args": [
+        10
+      ],
+      "expected": 144,
+      "hidden": true
+    },
+    {
+      "args": [
+        20
+      ],
+      "expected": 17711,
+      "hidden": true
+    }
+  ],
+  "order": 330
+}

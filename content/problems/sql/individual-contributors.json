@@ -1,0 +1,21 @@
+{
+  "slug": "individual-contributors",
+  "track": "sql",
+  "title": "Individual contributors",
+  "difficulty": "Medium",
+  "tags": [
+    "exists"
+  ],
+  "statementMd": "List employees who have **no** direct reports.\n\nExpected columns: `first_name`, `last_name`.\n\nTables: `employees`, `departments`.\n\nRow order does not matter.",
+  "hints": [
+    "`NOT EXISTS` with a correlated subquery is NULL-safe."
+  ],
+  "solutionMd": "```sql\nSELECT e.first_name, e.last_name FROM employees e WHERE NOT EXISTS (SELECT 1 FROM employees r WHERE r.manager_id = e.id);\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "SELECT e.first_name, e.last_name FROM employees e WHERE NOT EXISTS (SELECT 1 FROM employees r WHERE r.manager_id = e.id);",
+    "orderMatters": false
+  },
+  "order": 325
+}

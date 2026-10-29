@@ -1,0 +1,21 @@
+{
+  "slug": "month-over-month-spending",
+  "track": "sql",
+  "title": "Month over month spending",
+  "difficulty": "Hard",
+  "tags": [
+    "window-functions"
+  ],
+  "statementMd": "Monthly purchase spending (positive, rounded to 2 decimals) and the change from the previous month. NULL for the first month. Earliest first.\n\nExpected columns: `month`, `spent`, `change`.\n\nTables: `customers`, `accounts`, `transactions`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "`LAG` over months."
+  ],
+  "solutionMd": "```sql\nWITH m AS (SELECT strftime('%Y-%m', tx_date) AS month, -SUM(amount) AS spent FROM transactions WHERE kind = 'purchase' GROUP BY month) SELECT month, ROUND(spent, 2) AS spent, ROUND(spent - LAG(spent) OVER (ORDER BY month), 2) AS change FROM m ORDER BY month;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, accounts, transactions\nSELECT\n",
+  "datasetId": "bank",
+  "expected": {
+    "query": "WITH m AS (SELECT strftime('%Y-%m', tx_date) AS month, -SUM(amount) AS spent FROM transactions WHERE kind = 'purchase' GROUP BY month) SELECT month, ROUND(spent, 2) AS spent, ROUND(spent - LAG(spent) OVER (ORDER BY month), 2) AS change FROM m ORDER BY month;",
+    "orderMatters": true
+  },
+  "order": 401
+}

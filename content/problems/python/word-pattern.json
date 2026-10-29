@@ -1,0 +1,60 @@
+{
+  "slug": "word-pattern",
+  "track": "python",
+  "title": "Word pattern",
+  "difficulty": "Medium",
+  "tags": [
+    "dicts"
+  ],
+  "statementMd": "Given a pattern like `\"abba\"` and a space-separated `text`, return whether the words follow the same pattern (bijection between letters and words).\n\n**Example:** `word_pattern(\"abba\", \"dog cat cat dog\")` returns `true`.",
+  "hints": [
+    "Same idea as isomorphic strings, on words."
+  ],
+  "solutionMd": "```python\ndef word_pattern(pattern, text):\n    words = text.split()\n    if len(words) != len(pattern):\n        return False\n    pw, wp = {}, {}\n    for c, w in zip(pattern, words):\n        if pw.setdefault(c, w) != w or wp.setdefault(w, c) != c:\n            return False\n    return True\n```\n\nA bijection needs checks in both directions.",
+  "starterCode": "def word_pattern(pattern, text):\n    # Write your code here\n    pass\n",
+  "functionName": "word_pattern",
+  "referenceSolution": "def word_pattern(pattern, text):\n    words = text.split()\n    if len(words) != len(pattern):\n        return False\n    pw, wp = {}, {}\n    for c, w in zip(pattern, words):\n        if pw.setdefault(c, w) != w or wp.setdefault(w, c) != c:\n            return False\n    return True\n",
+  "tests": [
+    {
+      "args": [
+        "abba",
+        "dog cat cat dog"
+      ],
+      "expected": true,
+      "hidden": false
+    },
+    {
+      "args": [
+        "abba",
+        "dog cat cat fish"
+      ],
+      "expected": false,
+      "hidden": false
+    },
+    {
+      "args": [
+        "aaaa",
+        "dog cat cat dog"
+      ],
+      "expected": false,
+      "hidden": true
+    },
+    {
+      "args": [
+        "abc",
+        "b c a"
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        "ab",
+        "x x"
+      ],
+      "expected": false,
+      "hidden": true
+    }
+  ],
+  "order": 208
+}

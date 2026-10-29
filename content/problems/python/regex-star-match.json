@@ -1,0 +1,68 @@
+{
+  "slug": "regex-star-match",
+  "track": "python",
+  "title": "Regex star match",
+  "difficulty": "Hard",
+  "tags": [
+    "dynamic-programming"
+  ],
+  "statementMd": "Implement matching for a pattern with `.` (any one character) and `*` (zero or more of the preceding element). The match must cover the entire string.\n\n**Example:** `regex_match(\"aa\", \"a\")` returns `false`.",
+  "hints": [
+    "dp on (i, j) with a special case for `*`."
+  ],
+  "solutionMd": "```python\ndef regex_match(s, pattern):\n    from functools import lru_cache\n    @lru_cache(None)\n    def go(i, j):\n        if j == len(pattern):\n            return i == len(s)\n        first = i < len(s) and pattern[j] in (s[i], '.')\n        if j + 1 < len(pattern) and pattern[j + 1] == '*':\n            return go(i, j + 2) or (first and go(i + 1, j))\n        return first and go(i + 1, j + 1)\n    return go(0, 0)\n```\n\nA star either matches nothing or consumes one character and stays.",
+  "starterCode": "def regex_match(s, pattern):\n    # Write your code here\n    pass\n",
+  "functionName": "regex_match",
+  "referenceSolution": "def regex_match(s, pattern):\n    from functools import lru_cache\n    @lru_cache(None)\n    def go(i, j):\n        if j == len(pattern):\n            return i == len(s)\n        first = i < len(s) and pattern[j] in (s[i], '.')\n        if j + 1 < len(pattern) and pattern[j + 1] == '*':\n            return go(i, j + 2) or (first and go(i + 1, j))\n        return first and go(i + 1, j + 1)\n    return go(0, 0)\n",
+  "tests": [
+    {
+      "args": [
+        "aa",
+        "a"
+      ],
+      "expected": false,
+      "hidden": false
+    },
+    {
+      "args": [
+        "aa",
+        "a*"
+      ],
+      "expected": true,
+      "hidden": false
+    },
+    {
+      "args": [
+        "ab",
+        ".*"
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        "mississippi",
+        "mis*is*p*."
+      ],
+      "expected": false,
+      "hidden": true
+    },
+    {
+      "args": [
+        "",
+        "a*"
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        "aab",
+        "c*a*b"
+      ],
+      "expected": true,
+      "hidden": true
+    }
+  ],
+  "order": 445
+}

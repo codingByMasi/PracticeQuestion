@@ -1,0 +1,21 @@
+{
+  "slug": "percent-of-customers-who-ordered",
+  "track": "sql",
+  "title": "Percent of customers who ordered",
+  "difficulty": "Medium",
+  "tags": [
+    "subquery"
+  ],
+  "statementMd": "What percentage of customers have placed at least one order? Round to 1 decimal.\n\nExpected columns: `pct`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\nRow order does not matter.",
+  "hints": [
+    "Count distinct ordering customers over all customers."
+  ],
+  "solutionMd": "```sql\nSELECT ROUND(100.0 * (SELECT COUNT(DISTINCT customer_id) FROM orders) / (SELECT COUNT(*) FROM customers), 1) AS pct;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "SELECT ROUND(100.0 * (SELECT COUNT(DISTINCT customer_id) FROM orders) / (SELECT COUNT(*) FROM customers), 1) AS pct;",
+    "orderMatters": false
+  },
+  "order": 319
+}

@@ -1,0 +1,21 @@
+{
+  "slug": "letter-grades",
+  "track": "sql",
+  "title": "Letter grades",
+  "difficulty": "Medium",
+  "tags": [
+    "case"
+  ],
+  "statementMd": "Convert each graded enrollment of student 1 into a letter grade: A (90+), B (80-89), C (70-79), D (60-69), F (below 60). Show course id, score and letter, ordered by course id.\n\nExpected columns: `course_id`, `score`, `letter`.\n\nTables: `teachers`, `courses`, `students`, `enrollments`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "`CASE WHEN score >= 90 ...`."
+  ],
+  "solutionMd": "```sql\nSELECT course_id, score, CASE WHEN score >= 90 THEN 'A' WHEN score >= 80 THEN 'B' WHEN score >= 70 THEN 'C' WHEN score >= 60 THEN 'D' ELSE 'F' END AS letter FROM enrollments WHERE student_id = 1 AND score IS NOT NULL ORDER BY course_id, semester;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: teachers, courses, students, enrollments\nSELECT\n",
+  "datasetId": "school",
+  "expected": {
+    "query": "SELECT course_id, score, CASE WHEN score >= 90 THEN 'A' WHEN score >= 80 THEN 'B' WHEN score >= 70 THEN 'C' WHEN score >= 60 THEN 'D' ELSE 'F' END AS letter FROM enrollments WHERE student_id = 1 AND score IS NOT NULL ORDER BY course_id, semester;",
+    "orderMatters": true
+  },
+  "order": 171
+}

@@ -1,0 +1,68 @@
+{
+  "slug": "convert-to-base-k",
+  "track": "python",
+  "title": "Convert to base k",
+  "difficulty": "Easy",
+  "tags": [
+    "numbers"
+  ],
+  "statementMd": "Return the representation of the non-negative integer `n` in a base from 2 to 16 as a string using digits `0-9A-F` (uppercase). Zero is `\"0\"`.\n\n**Example:** `to_base(10, 2)` returns `\"1010\"`.",
+  "hints": [
+    "Repeatedly divide by the base."
+  ],
+  "solutionMd": "```python\ndef to_base(n, base):\n    digits = '0123456789ABCDEF'\n    if n == 0:\n        return '0'\n    out = []\n    while n:\n        n, r = divmod(n, base)\n        out.append(digits[r])\n    return ''.join(reversed(out))\n```\n\nRemainders are the digits from the right.",
+  "starterCode": "def to_base(n, base):\n    # Write your code here\n    pass\n",
+  "functionName": "to_base",
+  "referenceSolution": "def to_base(n, base):\n    digits = '0123456789ABCDEF'\n    if n == 0:\n        return '0'\n    out = []\n    while n:\n        n, r = divmod(n, base)\n        out.append(digits[r])\n    return ''.join(reversed(out))\n",
+  "tests": [
+    {
+      "args": [
+        10,
+        2
+      ],
+      "expected": "1010",
+      "hidden": false
+    },
+    {
+      "args": [
+        255,
+        16
+      ],
+      "expected": "FF",
+      "hidden": false
+    },
+    {
+      "args": [
+        0,
+        8
+      ],
+      "expected": "0",
+      "hidden": true
+    },
+    {
+      "args": [
+        100,
+        7
+      ],
+      "expected": "202",
+      "hidden": true
+    },
+    {
+      "args": [
+        31,
+        16
+      ],
+      "expected": "1F",
+      "hidden": true
+    },
+    {
+      "args": [
+        9,
+        3
+      ],
+      "expected": "100",
+      "hidden": true
+    }
+  ],
+  "order": 25
+}

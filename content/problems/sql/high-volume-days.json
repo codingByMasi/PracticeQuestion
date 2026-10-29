@@ -1,0 +1,21 @@
+{
+  "slug": "high-volume-days",
+  "track": "sql",
+  "title": "High volume days",
+  "difficulty": "Easy",
+  "tags": [
+    "where"
+  ],
+  "statementMd": "Count price rows where volume exceeded 800,000.\n\nExpected columns: `busy_days`.\n\nTables: `tickers`, `prices`.\n\nRow order does not matter.",
+  "hints": [
+    "Numeric filter."
+  ],
+  "solutionMd": "```sql\nSELECT COUNT(*) AS busy_days FROM prices WHERE volume > 800000;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: tickers, prices\nSELECT\n",
+  "datasetId": "stocks",
+  "expected": {
+    "query": "SELECT COUNT(*) AS busy_days FROM prices WHERE volume > 800000;",
+    "orderMatters": false
+  },
+  "order": 50
+}

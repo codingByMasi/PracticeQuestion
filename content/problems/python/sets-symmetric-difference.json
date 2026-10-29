@@ -1,0 +1,92 @@
+{
+  "slug": "sets-symmetric-difference",
+  "track": "python",
+  "title": "Sets: symmetric difference",
+  "difficulty": "Easy",
+  "tags": [
+    "sets"
+  ],
+  "statementMd": "Return the sorted list of values in exactly one of the two lists.\n\n**Example:** `symmetric_diff([1, 2, 3], [3, 4])` returns `[1, 2, 4]`.",
+  "hints": [
+    "`^` on sets."
+  ],
+  "solutionMd": "```python\ndef symmetric_diff(a, b):\n    return sorted(set(a) ^ set(b))\n```\n\nXOR of sets.",
+  "starterCode": "def symmetric_diff(a, b):\n    # Write your code here\n    pass\n",
+  "functionName": "symmetric_diff",
+  "referenceSolution": "def symmetric_diff(a, b):\n    return sorted(set(a) ^ set(b))\n",
+  "tests": [
+    {
+      "args": [
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "expected": [
+        1,
+        2,
+        4
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [],
+        []
+      ],
+      "expected": [],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          1
+        ],
+        [
+          1
+        ]
+      ],
+      "expected": [],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          5,
+          6
+        ],
+        []
+      ],
+      "expected": [
+        5,
+        6
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          2,
+          3,
+          3
+        ]
+      ],
+      "expected": [
+        1,
+        3
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 96
+}

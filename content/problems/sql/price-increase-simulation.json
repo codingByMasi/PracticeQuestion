@@ -1,0 +1,21 @@
+{
+  "slug": "price-increase-simulation",
+  "track": "sql",
+  "title": "Price increase simulation",
+  "difficulty": "Medium",
+  "tags": [
+    "dml"
+  ],
+  "statementMd": "Raise the price of every Home product by 5%, then list the Home products with their new prices rounded to 2 decimals.\n\nExpected columns: `name`, `price`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\nRow order does not matter.",
+  "hints": [
+    "`UPDATE` first, then `SELECT`."
+  ],
+  "solutionMd": "```sql\nUPDATE products SET price = price * 1.05 WHERE category = 'Home'; SELECT name, ROUND(price, 2) AS price FROM products WHERE category = 'Home';\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "UPDATE products SET price = price * 1.05 WHERE category = 'Home'; SELECT name, ROUND(price, 2) AS price FROM products WHERE category = 'Home';",
+    "orderMatters": false
+  },
+  "order": 357
+}

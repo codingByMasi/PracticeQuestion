@@ -1,0 +1,21 @@
+{
+  "slug": "flights-on-a-date",
+  "track": "sql",
+  "title": "Flights on a date",
+  "difficulty": "Easy",
+  "tags": [
+    "where"
+  ],
+  "statementMd": "List the ids of flights departing on 2024-03-15 or later but before 2024-03-20.\n\nExpected columns: `id`, `depart_date`.\n\nTables: `airlines`, `airports`, `flights`, `bookings`.\n\nRow order does not matter.",
+  "hints": [
+    "Date range on `depart_date`."
+  ],
+  "solutionMd": "```sql\nSELECT id, depart_date FROM flights WHERE depart_date >= '2024-03-01' AND depart_date < '2024-03-20';\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: airlines, airports, flights, bookings\nSELECT\n",
+  "datasetId": "flights",
+  "expected": {
+    "query": "SELECT id, depart_date FROM flights WHERE depart_date >= '2024-03-01' AND depart_date < '2024-03-20';",
+    "orderMatters": false
+  },
+  "order": 25
+}

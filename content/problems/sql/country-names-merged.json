@@ -1,0 +1,21 @@
+{
+  "slug": "country-names-merged",
+  "track": "sql",
+  "title": "Country names merged",
+  "difficulty": "Medium",
+  "tags": [
+    "set-ops"
+  ],
+  "statementMd": "List all countries that appear either as an airline country or an airport country, once each.\n\nExpected columns: `country`.\n\nTables: `airlines`, `airports`, `flights`, `bookings`.\n\nRow order does not matter.",
+  "hints": [
+    "`UNION`."
+  ],
+  "solutionMd": "```sql\nSELECT country FROM airlines UNION SELECT country FROM airports;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: airlines, airports, flights, bookings\nSELECT\n",
+  "datasetId": "flights",
+  "expected": {
+    "query": "SELECT country FROM airlines UNION SELECT country FROM airports;",
+    "orderMatters": false
+  },
+  "order": 330
+}

@@ -1,0 +1,159 @@
+{
+  "slug": "set-matrix-zeroes",
+  "track": "python",
+  "title": "Set matrix zeroes",
+  "difficulty": "Medium",
+  "tags": [
+    "matrix"
+  ],
+  "statementMd": "If an element is 0 set its whole row and column to 0. Return the new matrix.\n\n**Example:** `set_zeroes([[1, 1, 1], [1, 0, 1], [1, 1, 1]])` returns `[[1, 0, 1], [0, 0, 0], [1, 0, 1]]`.",
+  "hints": [
+    "Record the rows and columns that contain zero first."
+  ],
+  "solutionMd": "```python\ndef set_zeroes(m):\n    rows = {i for i, r in enumerate(m) for x in r if x == 0}\n    cols = {j for r in m for j, x in enumerate(r) if x == 0}\n    return [[0 if i in rows or j in cols else x for j, x in enumerate(r)] for i, r in enumerate(m)]\n```\n\nCollect first, modify second.",
+  "starterCode": "def set_zeroes(m):\n    # Write your code here\n    pass\n",
+  "functionName": "set_zeroes",
+  "referenceSolution": "def set_zeroes(m):\n    rows = {i for i, r in enumerate(m) for x in r if x == 0}\n    cols = {j for r in m for j, x in enumerate(r) if x == 0}\n    return [[0 if i in rows or j in cols else x for j, x in enumerate(r)] for i, r in enumerate(m)]\n",
+  "tests": [
+    {
+      "args": [
+        [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      ],
+      "expected": [
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          1
+        ]
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            0,
+            1,
+            2,
+            0
+          ],
+          [
+            3,
+            4,
+            5,
+            2
+          ],
+          [
+            1,
+            3,
+            1,
+            5
+          ]
+        ]
+      ],
+      "expected": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          4,
+          5,
+          0
+        ],
+        [
+          0,
+          3,
+          1,
+          0
+        ]
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            1
+          ]
+        ]
+      ],
+      "expected": [
+        [
+          1
+        ]
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            0
+          ]
+        ]
+      ],
+      "expected": [
+        [
+          0
+        ]
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      ],
+      "expected": [
+        [
+          1,
+          2
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 272
+}

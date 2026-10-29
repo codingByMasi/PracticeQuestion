@@ -1,0 +1,21 @@
+{
+  "slug": "plays-per-month",
+  "track": "sql",
+  "title": "Plays per month",
+  "difficulty": "Medium",
+  "tags": [
+    "dates"
+  ],
+  "statementMd": "Number of plays per month (YYYY-MM).\n\nExpected columns: `month`, `plays`.\n\nTables: `artists`, `albums`, `tracks`, `listeners`, `plays`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "`strftime('%Y-%m', played_at)`."
+  ],
+  "solutionMd": "```sql\nSELECT strftime('%Y-%m', played_at) AS month, COUNT(*) AS plays FROM plays GROUP BY month ORDER BY month;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: artists, albums, tracks, listeners, plays\nSELECT\n",
+  "datasetId": "music",
+  "expected": {
+    "query": "SELECT strftime('%Y-%m', played_at) AS month, COUNT(*) AS plays FROM plays GROUP BY month ORDER BY month;",
+    "orderMatters": true
+  },
+  "order": 201
+}

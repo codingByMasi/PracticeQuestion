@@ -1,0 +1,139 @@
+{
+  "slug": "trie-operations",
+  "track": "python",
+  "title": "Trie operations",
+  "difficulty": "Hard",
+  "tags": [
+    "design"
+  ],
+  "statementMd": "Simulate a trie with `['insert', word]`, `['search', word]` (exact word present), `['starts_with', prefix]`. Return the results of search and starts_with operations.\n\n**Example:** `trie_ops([[\"insert\", \"apple\"], [\"search\", \"apple\"], [\"search\", \"app\"…)` returns `[true, false, true, true]`.",
+  "hints": [
+    "Nested dictionaries with an end marker."
+  ],
+  "solutionMd": "```python\ndef trie_ops(ops):\n    root = {}\n    out = []\n    for op in ops:\n        node = root\n        if op[0] == 'insert':\n            for c in op[1]:\n                node = node.setdefault(c, {})\n            node['$'] = True\n        else:\n            ok = True\n            for c in op[1]:\n                if c not in node:\n                    ok = False\n                    break\n                node = node[c]\n            out.append(ok and (op[0] == 'starts_with' or '$' in node))\n    return out\n```\n\nA $ key marks word ends.",
+  "starterCode": "def trie_ops(ops):\n    # Write your code here\n    pass\n",
+  "functionName": "trie_ops",
+  "referenceSolution": "def trie_ops(ops):\n    root = {}\n    out = []\n    for op in ops:\n        node = root\n        if op[0] == 'insert':\n            for c in op[1]:\n                node = node.setdefault(c, {})\n            node['$'] = True\n        else:\n            ok = True\n            for c in op[1]:\n                if c not in node:\n                    ok = False\n                    break\n                node = node[c]\n            out.append(ok and (op[0] == 'starts_with' or '$' in node))\n    return out\n",
+  "tests": [
+    {
+      "args": [
+        [
+          [
+            "insert",
+            "apple"
+          ],
+          [
+            "search",
+            "apple"
+          ],
+          [
+            "search",
+            "app"
+          ],
+          [
+            "starts_with",
+            "app"
+          ],
+          [
+            "insert",
+            "app"
+          ],
+          [
+            "search",
+            "app"
+          ]
+        ]
+      ],
+      "expected": [
+        true,
+        false,
+        true,
+        true
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            "search",
+            "a"
+          ]
+        ]
+      ],
+      "expected": [
+        false
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            "insert",
+            "a"
+          ],
+          [
+            "starts_with",
+            "b"
+          ]
+        ]
+      ],
+      "expected": [
+        false
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            "insert",
+            "abc"
+          ],
+          [
+            "starts_with",
+            ""
+          ],
+          [
+            "search",
+            ""
+          ]
+        ]
+      ],
+      "expected": [
+        true,
+        false
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            "insert",
+            "hi"
+          ],
+          [
+            "insert",
+            "hit"
+          ],
+          [
+            "search",
+            "hit"
+          ],
+          [
+            "search",
+            "hip"
+          ]
+        ]
+      ],
+      "expected": [
+        true,
+        false
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 495
+}

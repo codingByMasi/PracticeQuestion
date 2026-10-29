@@ -1,0 +1,21 @@
+{
+  "slug": "flights-with-airline-names",
+  "track": "sql",
+  "title": "Flights with airline names",
+  "difficulty": "Easy",
+  "tags": [
+    "join"
+  ],
+  "statementMd": "For flights 1 to 5, show the flight id and airline name.\n\nExpected columns: `id`, `airline`.\n\nTables: `airlines`, `airports`, `flights`, `bookings`.\n\nRow order does not matter.",
+  "hints": [
+    "Join to `airlines` on the code."
+  ],
+  "solutionMd": "```sql\nSELECT f.id, a.name AS airline FROM flights f JOIN airlines a ON a.code = f.airline_code WHERE f.id <= 5;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: airlines, airports, flights, bookings\nSELECT\n",
+  "datasetId": "flights",
+  "expected": {
+    "query": "SELECT f.id, a.name AS airline FROM flights f JOIN airlines a ON a.code = f.airline_code WHERE f.id <= 5;",
+    "orderMatters": false
+  },
+  "order": 157
+}

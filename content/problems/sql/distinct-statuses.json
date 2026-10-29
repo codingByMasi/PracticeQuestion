@@ -1,0 +1,21 @@
+{
+  "slug": "distinct-statuses",
+  "track": "sql",
+  "title": "Distinct statuses",
+  "difficulty": "Easy",
+  "tags": [
+    "distinct"
+  ],
+  "statementMd": "List each flight status that occurs.\n\nExpected columns: `status`.\n\nTables: `airlines`, `airports`, `flights`, `bookings`.\n\nRow order does not matter.",
+  "hints": [
+    "`DISTINCT status`."
+  ],
+  "solutionMd": "```sql\nSELECT DISTINCT status FROM flights;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: airlines, airports, flights, bookings\nSELECT\n",
+  "datasetId": "flights",
+  "expected": {
+    "query": "SELECT DISTINCT status FROM flights;",
+    "orderMatters": false
+  },
+  "order": 81
+}

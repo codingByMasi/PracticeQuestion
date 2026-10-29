@@ -1,0 +1,91 @@
+{
+  "slug": "number-of-connected-components",
+  "track": "python",
+  "title": "Number of connected components",
+  "difficulty": "Medium",
+  "tags": [
+    "graphs"
+  ],
+  "statementMd": "An undirected graph has `n` nodes `0..n-1` and a list of edges `[a, b]`. Return the number of connected components.\n\n**Example:** `count_components(5, [[0, 1], [1, 2], [3, 4]])` returns `2`.",
+  "hints": [
+    "Union-find or DFS."
+  ],
+  "solutionMd": "```python\nfrom collections import deque, defaultdict\n\n\ndef count_components(n, edges):\n    adj = defaultdict(list)\n    for a, b in edges:\n        adj[a].append(b); adj[b].append(a)\n    seen = set()\n    count = 0\n    for s in range(n):\n        if s in seen:\n            continue\n        count += 1\n        stack = [s]\n        seen.add(s)\n        while stack:\n            u = stack.pop()\n            for v in adj[u]:\n                if v not in seen:\n                    seen.add(v); stack.append(v)\n    return count\n```\n\nOne DFS per unvisited node.",
+  "starterCode": "def count_components(n, edges):\n    # Write your code here\n    pass\n",
+  "functionName": "count_components",
+  "referenceSolution": "from collections import deque, defaultdict\n\n\ndef count_components(n, edges):\n    adj = defaultdict(list)\n    for a, b in edges:\n        adj[a].append(b); adj[b].append(a)\n    seen = set()\n    count = 0\n    for s in range(n):\n        if s in seen:\n            continue\n        count += 1\n        stack = [s]\n        seen.add(s)\n        while stack:\n            u = stack.pop()\n            for v in adj[u]:\n                if v not in seen:\n                    seen.add(v); stack.append(v)\n    return count\n",
+  "tests": [
+    {
+      "args": [
+        5,
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      ],
+      "expected": 2,
+      "hidden": false
+    },
+    {
+      "args": [
+        3,
+        []
+      ],
+      "expected": 3,
+      "hidden": false
+    },
+    {
+      "args": [
+        1,
+        []
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        4,
+        [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        4,
+        [
+          [
+            0,
+            0
+          ]
+        ]
+      ],
+      "expected": 4,
+      "hidden": true
+    }
+  ],
+  "order": 340
+}

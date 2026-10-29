@@ -1,0 +1,145 @@
+{
+  "slug": "union-find-operations",
+  "track": "python",
+  "title": "Union find operations",
+  "difficulty": "Medium",
+  "tags": [
+    "design"
+  ],
+  "statementMd": "Maintain `n` elements (0..n-1) in disjoint sets. `['union', a, b]` merges the sets, `['connected', a, b]` returns a bool, `['count']` returns the number of sets. Return the results of connected and count in order.\n\n**Example:** `union_find_ops(4, [[\"union\", 0, 1], [\"connected\", 0, 1], [\"connected\", 0, 2],…)` returns `[true, false, 3]`.",
+  "hints": [
+    "Path compression plus union by size."
+  ],
+  "solutionMd": "```python\ndef union_find_ops(n, ops):\n    parent = list(range(n))\n    size = [1] * n\n    sets = n\n    def find(x):\n        while parent[x] != x:\n            parent[x] = parent[parent[x]]\n            x = parent[x]\n        return x\n    out = []\n    for op in ops:\n        if op[0] == 'union':\n            a, b = find(op[1]), find(op[2])\n            if a != b:\n                if size[a] < size[b]:\n                    a, b = b, a\n                parent[b] = a\n                size[a] += size[b]\n                sets -= 1\n        elif op[0] == 'connected':\n            out.append(find(op[1]) == find(op[2]))\n        else:\n            out.append(sets)\n    return out\n```\n\nNear-constant time per operation.",
+  "starterCode": "def union_find_ops(n, ops):\n    # Write your code here\n    pass\n",
+  "functionName": "union_find_ops",
+  "referenceSolution": "def union_find_ops(n, ops):\n    parent = list(range(n))\n    size = [1] * n\n    sets = n\n    def find(x):\n        while parent[x] != x:\n            parent[x] = parent[parent[x]]\n            x = parent[x]\n        return x\n    out = []\n    for op in ops:\n        if op[0] == 'union':\n            a, b = find(op[1]), find(op[2])\n            if a != b:\n                if size[a] < size[b]:\n                    a, b = b, a\n                parent[b] = a\n                size[a] += size[b]\n                sets -= 1\n        elif op[0] == 'connected':\n            out.append(find(op[1]) == find(op[2]))\n        else:\n            out.append(sets)\n    return out\n",
+  "tests": [
+    {
+      "args": [
+        4,
+        [
+          [
+            "union",
+            0,
+            1
+          ],
+          [
+            "connected",
+            0,
+            1
+          ],
+          [
+            "connected",
+            0,
+            2
+          ],
+          [
+            "count"
+          ]
+        ]
+      ],
+      "expected": [
+        true,
+        false,
+        3
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        1,
+        [
+          [
+            "count"
+          ]
+        ]
+      ],
+      "expected": [
+        1
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        3,
+        [
+          [
+            "union",
+            0,
+            1
+          ],
+          [
+            "union",
+            1,
+            2
+          ],
+          [
+            "count"
+          ]
+        ]
+      ],
+      "expected": [
+        1
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        3,
+        [
+          [
+            "union",
+            0,
+            0
+          ],
+          [
+            "count"
+          ]
+        ]
+      ],
+      "expected": [
+        3
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        5,
+        [
+          [
+            "union",
+            0,
+            1
+          ],
+          [
+            "union",
+            2,
+            3
+          ],
+          [
+            "connected",
+            1,
+            2
+          ],
+          [
+            "union",
+            1,
+            2
+          ],
+          [
+            "connected",
+            0,
+            3
+          ]
+        ]
+      ],
+      "expected": [
+        false,
+        true
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 374
+}

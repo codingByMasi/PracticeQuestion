@@ -1,0 +1,21 @@
+{
+  "slug": "long-tracks",
+  "track": "sql",
+  "title": "Long tracks",
+  "difficulty": "Easy",
+  "tags": [
+    "where"
+  ],
+  "statementMd": "List tracks longer than 6 minutes (360 seconds) with their length in seconds. Show only the first 10 by id.\n\nExpected columns: `id`, `title`, `seconds`.\n\nTables: `artists`, `albums`, `tracks`, `listeners`, `plays`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Filter, sort by id, limit."
+  ],
+  "solutionMd": "```sql\nSELECT id, title, seconds FROM tracks WHERE seconds > 360 ORDER BY id LIMIT 10;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: artists, albums, tracks, listeners, plays\nSELECT\n",
+  "datasetId": "music",
+  "expected": {
+    "query": "SELECT id, title, seconds FROM tracks WHERE seconds > 360 ORDER BY id LIMIT 10;",
+    "orderMatters": true
+  },
+  "order": 42
+}

@@ -1,0 +1,21 @@
+{
+  "slug": "three-day-moving-average-crossover",
+  "track": "sql",
+  "title": "Three-day moving average crossover",
+  "difficulty": "Hard",
+  "tags": [
+    "window-functions"
+  ],
+  "statementMd": "Show the days where a ticker's close was above its 3-day moving average (including the current day) but the previous day it was below its own 3-day average. Show symbol and trade_date, ordered by symbol then date; consider only days with a full 3-day window.\n\nExpected columns: `symbol`, `trade_date`.\n\nTables: `tickers`, `prices`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Compute the average with `ROWS BETWEEN 2 PRECEDING AND CURRENT ROW`, then compare with `LAG` of the difference."
+  ],
+  "solutionMd": "```sql\nWITH m AS (SELECT symbol, trade_date, close, AVG(close) OVER (PARTITION BY symbol ORDER BY trade_date ROWS BETWEEN 2 PRECEDING AND CURRENT ROW) AS ma, COUNT(*) OVER (PARTITION BY symbol ORDER BY trade_date ROWS BETWEEN 2 PRECEDING AND CURRENT ROW) AS n FROM prices), d AS (SELECT *, close - ma AS diff, LAG(close - ma) OVER (PARTITION BY symbol ORDER BY trade_date) AS prev_diff FROM m WHERE n = 3) SELECT symbol, trade_date FROM d WHERE diff > 0 AND prev_diff < 0 ORDER BY symbol, trade_date;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: tickers, prices\nSELECT\n",
+  "datasetId": "stocks",
+  "expected": {
+    "query": "WITH m AS (SELECT symbol, trade_date, close, AVG(close) OVER (PARTITION BY symbol ORDER BY trade_date ROWS BETWEEN 2 PRECEDING AND CURRENT ROW) AS ma, COUNT(*) OVER (PARTITION BY symbol ORDER BY trade_date ROWS BETWEEN 2 PRECEDING AND CURRENT ROW) AS n FROM prices), d AS (SELECT *, close - ma AS diff, LAG(close - ma) OVER (PARTITION BY symbol ORDER BY trade_date) AS prev_diff FROM m WHERE n = 3) SELECT symbol, trade_date FROM d WHERE diff > 0 AND prev_diff < 0 ORDER BY symbol, trade_date;",
+    "orderMatters": true
+  },
+  "order": 438
+}

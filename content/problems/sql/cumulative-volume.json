@@ -1,0 +1,21 @@
+{
+  "slug": "cumulative-volume",
+  "track": "sql",
+  "title": "Cumulative volume",
+  "difficulty": "Hard",
+  "tags": [
+    "running-total"
+  ],
+  "statementMd": "For `DRUG` show the first 10 trading days with daily volume and cumulative volume.\n\nExpected columns: `trade_date`, `volume`, `cumulative_volume`.\n\nTables: `tickers`, `prices`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Running `SUM(volume) OVER (ORDER BY trade_date)`."
+  ],
+  "solutionMd": "```sql\nSELECT trade_date, volume, SUM(volume) OVER (ORDER BY trade_date) AS cumulative_volume FROM prices WHERE symbol = 'DRUG' ORDER BY trade_date LIMIT 10;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: tickers, prices\nSELECT\n",
+  "datasetId": "stocks",
+  "expected": {
+    "query": "SELECT trade_date, volume, SUM(volume) OVER (ORDER BY trade_date) AS cumulative_volume FROM prices WHERE symbol = 'DRUG' ORDER BY trade_date LIMIT 10;",
+    "orderMatters": true
+  },
+  "order": 476
+}

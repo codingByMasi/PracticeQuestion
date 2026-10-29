@@ -1,0 +1,79 @@
+{
+  "slug": "second-smallest",
+  "track": "python",
+  "title": "Second smallest",
+  "difficulty": "Medium",
+  "tags": [
+    "lists"
+  ],
+  "statementMd": "Return the second smallest distinct value, or `None` if there are fewer than two distinct values.\n\n**Example:** `second_smallest([4, 2, 9, 2])` returns `4`.",
+  "hints": [
+    "Use a set to deduplicate."
+  ],
+  "solutionMd": "```python\ndef second_smallest(nums):\n    vals = sorted(set(nums))\n    return vals[1] if len(vals) >= 2 else None\n```\n\nSorting a set removes duplicates.",
+  "starterCode": "def second_smallest(nums):\n    # Write your code here\n    pass\n",
+  "functionName": "second_smallest",
+  "referenceSolution": "def second_smallest(nums):\n    vals = sorted(set(nums))\n    return vals[1] if len(vals) >= 2 else None\n",
+  "tests": [
+    {
+      "args": [
+        [
+          4,
+          2,
+          9,
+          2
+        ]
+      ],
+      "expected": 4,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          1,
+          1
+        ]
+      ],
+      "expected": null,
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": null,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          5
+        ]
+      ],
+      "expected": null,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          3,
+          1
+        ]
+      ],
+      "expected": 3,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          -1,
+          -2,
+          -3
+        ]
+      ],
+      "expected": -2,
+      "hidden": true
+    }
+  ],
+  "order": 196
+}

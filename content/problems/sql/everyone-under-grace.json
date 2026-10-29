@@ -1,0 +1,21 @@
+{
+  "slug": "everyone-under-grace",
+  "track": "sql",
+  "title": "Everyone under Grace",
+  "difficulty": "Hard",
+  "tags": [
+    "recursive"
+  ],
+  "statementMd": "List all employees who report to Grace Hopper (id 1), directly or indirectly. Show first name only.\n\nExpected columns: `first_name`.\n\nTables: `employees`, `departments`.\n\nRow order does not matter.",
+  "hints": [
+    "Start the recursion at Grace's direct reports."
+  ],
+  "solutionMd": "```sql\nWITH RECURSIVE under_grace(id, first_name) AS (SELECT id, first_name FROM employees WHERE manager_id = 1 UNION ALL SELECT e.id, e.first_name FROM employees e JOIN under_grace u ON e.manager_id = u.id) SELECT first_name FROM under_grace;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: employees, departments\nSELECT\n",
+  "datasetId": "employees",
+  "expected": {
+    "query": "WITH RECURSIVE under_grace(id, first_name) AS (SELECT id, first_name FROM employees WHERE manager_id = 1 UNION ALL SELECT e.id, e.first_name FROM employees e JOIN under_grace u ON e.manager_id = u.id) SELECT first_name FROM under_grace;",
+    "orderMatters": false
+  },
+  "order": 489
+}

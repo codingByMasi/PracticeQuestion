@@ -1,0 +1,21 @@
+{
+  "slug": "orders-in-spring-2024",
+  "track": "sql",
+  "title": "Orders in spring 2024",
+  "difficulty": "Easy",
+  "tags": [
+    "dates"
+  ],
+  "statementMd": "List orders placed from 2024-03-01 to 2024-05-31 inclusive.\n\nExpected columns: `id`, `order_date`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\nRow order does not matter.",
+  "hints": [
+    "`BETWEEN` works on ISO date strings."
+  ],
+  "solutionMd": "```sql\nSELECT id, order_date FROM orders WHERE order_date BETWEEN '2024-03-01' AND '2024-05-31';\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "SELECT id, order_date FROM orders WHERE order_date BETWEEN '2024-03-01' AND '2024-05-31';",
+    "orderMatters": false
+  },
+  "order": 106
+}

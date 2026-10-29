@@ -1,0 +1,21 @@
+{
+  "slug": "directors-who-stayed-in-one-genre",
+  "track": "sql",
+  "title": "Directors who stayed in one genre",
+  "difficulty": "Hard",
+  "tags": [
+    "having"
+  ],
+  "statementMd": "List directors whose movies all belong to a single genre and who made at least two movies.\n\nExpected columns: `name`, `genre`, `movies`.\n\nTables: `movies`, `directors`, `reviews`.\n\nRow order does not matter.",
+  "hints": [
+    "`COUNT(DISTINCT genre) = 1`."
+  ],
+  "solutionMd": "```sql\nSELECT d.name, MIN(m.genre) AS genre, COUNT(*) AS movies FROM directors d JOIN movies m ON m.director_id = d.id GROUP BY d.id, d.name HAVING COUNT(DISTINCT m.genre) = 1 AND COUNT(*) >= 2;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: movies, directors, reviews\nSELECT\n",
+  "datasetId": "movies",
+  "expected": {
+    "query": "SELECT d.name, MIN(m.genre) AS genre, COUNT(*) AS movies FROM directors d JOIN movies m ON m.director_id = d.id GROUP BY d.id, d.name HAVING COUNT(DISTINCT m.genre) = 1 AND COUNT(*) >= 2;",
+    "orderMatters": false
+  },
+  "order": 380
+}

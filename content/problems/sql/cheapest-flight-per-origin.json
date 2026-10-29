@@ -1,0 +1,21 @@
+{
+  "slug": "cheapest-flight-per-origin",
+  "track": "sql",
+  "title": "Cheapest flight per origin",
+  "difficulty": "Medium",
+  "tags": [
+    "correlated-subquery"
+  ],
+  "statementMd": "For each origin airport show the cheapest flight (id and base price).\n\nExpected columns: `origin`, `id`, `base_price`.\n\nTables: `airlines`, `airports`, `flights`, `bookings`.\n\nRow order does not matter.",
+  "hints": [
+    "Compare with the minimum price of the same origin."
+  ],
+  "solutionMd": "```sql\nSELECT f.origin, f.id, f.base_price FROM flights f WHERE f.base_price = (SELECT MIN(f2.base_price) FROM flights f2 WHERE f2.origin = f.origin);\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: airlines, airports, flights, bookings\nSELECT\n",
+  "datasetId": "flights",
+  "expected": {
+    "query": "SELECT f.origin, f.id, f.base_price FROM flights f WHERE f.base_price = (SELECT MIN(f2.base_price) FROM flights f2 WHERE f2.origin = f.origin);",
+    "orderMatters": false
+  },
+  "order": 340
+}

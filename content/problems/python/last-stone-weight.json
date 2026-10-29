@@ -1,0 +1,70 @@
+{
+  "slug": "last-stone-weight",
+  "track": "python",
+  "title": "Last stone weight",
+  "difficulty": "Easy",
+  "tags": [
+    "heaps"
+  ],
+  "statementMd": "Repeatedly smash the two heaviest stones: equal stones vanish, otherwise the difference remains. Return the weight of the last stone, or 0.\n\n**Example:** `last_stone_weight([2, 7, 4, 1, 8, 1])` returns `1`.",
+  "hints": [
+    "Use a max-heap (negate values)."
+  ],
+  "solutionMd": "```python\ndef last_stone_weight(stones):\n    import heapq\n    h = [-s for s in stones]\n    heapq.heapify(h)\n    while len(h) > 1:\n        a, b = heapq.heappop(h), heapq.heappop(h)\n        if a != b:\n            heapq.heappush(h, a - b)\n    return -h[0] if h else 0\n```\n\nPython's heap is a min-heap, so store negatives.",
+  "starterCode": "def last_stone_weight(stones):\n    # Write your code here\n    pass\n",
+  "functionName": "last_stone_weight",
+  "referenceSolution": "def last_stone_weight(stones):\n    import heapq\n    h = [-s for s in stones]\n    heapq.heapify(h)\n    while len(h) > 1:\n        a, b = heapq.heappop(h), heapq.heappop(h)\n        if a != b:\n            heapq.heappush(h, a - b)\n    return -h[0] if h else 0\n",
+  "tests": [
+    {
+      "args": [
+        [
+          2,
+          7,
+          4,
+          1,
+          8,
+          1
+        ]
+      ],
+      "expected": 1,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          1
+        ]
+      ],
+      "expected": 1,
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          3,
+          3
+        ]
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          5,
+          2
+        ]
+      ],
+      "expected": 3,
+      "hidden": true
+    }
+  ],
+  "order": 165
+}

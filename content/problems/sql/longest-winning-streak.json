@@ -1,0 +1,21 @@
+{
+  "slug": "longest-winning-streak",
+  "track": "sql",
+  "title": "Longest winning streak",
+  "difficulty": "Hard",
+  "tags": [
+    "gaps-islands"
+  ],
+  "statementMd": "For `FOOD`, find the longest run of consecutive trading days that closed above the previous day's close. Show the length as `longest_streak`.\n\nExpected columns: `longest_streak`.\n\nTables: `tickers`, `prices`.\n\nRow order does not matter.",
+  "hints": [
+    "Flag up days, then islands by row-number differences."
+  ],
+  "solutionMd": "```sql\nWITH d AS (SELECT trade_date, close > LAG(close) OVER (ORDER BY trade_date) AS up FROM prices WHERE symbol = 'FOOD'), n AS (SELECT trade_date, ROW_NUMBER() OVER (ORDER BY trade_date) AS rn FROM d WHERE up = 1), g AS (SELECT rn - ROW_NUMBER() OVER (ORDER BY rn) AS grp FROM n) SELECT COALESCE(MAX(c), 0) AS longest_streak FROM (SELECT COUNT(*) AS c FROM g GROUP BY grp);\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: tickers, prices\nSELECT\n",
+  "datasetId": "stocks",
+  "expected": {
+    "query": "WITH d AS (SELECT trade_date, close > LAG(close) OVER (ORDER BY trade_date) AS up FROM prices WHERE symbol = 'FOOD'), n AS (SELECT trade_date, ROW_NUMBER() OVER (ORDER BY trade_date) AS rn FROM d WHERE up = 1), g AS (SELECT rn - ROW_NUMBER() OVER (ORDER BY rn) AS grp FROM n) SELECT COALESCE(MAX(c), 0) AS longest_streak FROM (SELECT COUNT(*) AS c FROM g GROUP BY grp);",
+    "orderMatters": false
+  },
+  "order": 499
+}

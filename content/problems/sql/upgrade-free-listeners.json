@@ -1,0 +1,21 @@
+{
+  "slug": "upgrade-free-listeners",
+  "track": "sql",
+  "title": "Upgrade free listeners",
+  "difficulty": "Medium",
+  "tags": [
+    "dml"
+  ],
+  "statementMd": "Move every free listener who signed up before 2022 to the `premium` plan, then count listeners per plan.\n\nExpected columns: `plan`, `listeners`.\n\nTables: `artists`, `albums`, `tracks`, `listeners`, `plays`.\n\nRow order does not matter.",
+  "hints": [
+    "`UPDATE listeners SET plan = 'premium' WHERE ...`."
+  ],
+  "solutionMd": "```sql\nUPDATE listeners SET plan = 'premium' WHERE plan = 'free' AND signup_date < '2022-01-01'; SELECT plan, COUNT(*) AS listeners FROM listeners GROUP BY plan;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: artists, albums, tracks, listeners, plays\nSELECT\n",
+  "datasetId": "music",
+  "expected": {
+    "query": "UPDATE listeners SET plan = 'premium' WHERE plan = 'free' AND signup_date < '2022-01-01'; SELECT plan, COUNT(*) AS listeners FROM listeners GROUP BY plan;",
+    "orderMatters": false
+  },
+  "order": 367
+}

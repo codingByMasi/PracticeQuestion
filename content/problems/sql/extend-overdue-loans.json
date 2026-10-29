@@ -1,0 +1,21 @@
+{
+  "slug": "extend-overdue-loans",
+  "track": "sql",
+  "title": "Extend overdue loans",
+  "difficulty": "Medium",
+  "tags": [
+    "dml"
+  ],
+  "statementMd": "Extend the due date of every unreturned loan by 14 days (use `date(due_date, '+14 days')`), then count how many of them are still overdue as of 2024-07-01.\n\nExpected columns: `still_overdue`.\n\nTables: `authors`, `books`, `members`, `loans`.\n\nRow order does not matter.",
+  "hints": [
+    "`UPDATE` then `SELECT COUNT(*)`."
+  ],
+  "solutionMd": "```sql\nUPDATE loans SET due_date = date(due_date, '+14 days') WHERE return_date IS NULL; SELECT COUNT(*) AS still_overdue FROM loans WHERE return_date IS NULL AND due_date < '2024-07-01';\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: authors, books, members, loans\nSELECT\n",
+  "datasetId": "library",
+  "expected": {
+    "query": "UPDATE loans SET due_date = date(due_date, '+14 days') WHERE return_date IS NULL; SELECT COUNT(*) AS still_overdue FROM loans WHERE return_date IS NULL AND due_date < '2024-07-01';",
+    "orderMatters": false
+  },
+  "order": 362
+}

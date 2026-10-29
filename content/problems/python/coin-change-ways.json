@@ -1,0 +1,85 @@
+{
+  "slug": "coin-change-ways",
+  "track": "python",
+  "title": "Coin change ways",
+  "difficulty": "Medium",
+  "tags": [
+    "dynamic-programming"
+  ],
+  "statementMd": "Return the number of combinations (order does not matter) of coins that make `amount`.\n\n**Example:** `coin_ways([1, 2, 5], 5)` returns `4`.",
+  "hints": [
+    "Loop coins in the outer loop."
+  ],
+  "solutionMd": "```python\ndef coin_ways(coins, amount):\n    dp = [1] + [0] * amount\n    for c in coins:\n        for a in range(c, amount + 1):\n            dp[a] += dp[a - c]\n    return dp[amount]\n```\n\nOuter loop over coins counts combinations, not permutations.",
+  "starterCode": "def coin_ways(coins, amount):\n    # Write your code here\n    pass\n",
+  "functionName": "coin_ways",
+  "referenceSolution": "def coin_ways(coins, amount):\n    dp = [1] + [0] * amount\n    for c in coins:\n        for a in range(c, amount + 1):\n            dp[a] += dp[a - c]\n    return dp[amount]\n",
+  "tests": [
+    {
+      "args": [
+        [
+          1,
+          2,
+          5
+        ],
+        5
+      ],
+      "expected": 4,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          2
+        ],
+        3
+      ],
+      "expected": 0,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          10
+        ],
+        10
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          2,
+          3
+        ],
+        4
+      ],
+      "expected": 4,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1
+        ],
+        0
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          2,
+          3
+        ],
+        7
+      ],
+      "expected": 1,
+      "hidden": true
+    }
+  ],
+  "order": 316
+}

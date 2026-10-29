@@ -1,0 +1,21 @@
+{
+  "slug": "remove-low-rated-reviews",
+  "track": "sql",
+  "title": "Remove low-rated reviews",
+  "difficulty": "Medium",
+  "tags": [
+    "dml"
+  ],
+  "statementMd": "Delete all reviews rated below 6, then show the new average rating rounded to 2 decimals.\n\nExpected columns: `avg_rating`.\n\nTables: `movies`, `directors`, `reviews`.\n\nRow order does not matter.",
+  "hints": [
+    "`DELETE FROM reviews WHERE rating < 6`."
+  ],
+  "solutionMd": "```sql\nDELETE FROM reviews WHERE rating < 6; SELECT ROUND(AVG(rating), 2) AS avg_rating FROM reviews;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: movies, directors, reviews\nSELECT\n",
+  "datasetId": "movies",
+  "expected": {
+    "query": "DELETE FROM reviews WHERE rating < 6; SELECT ROUND(AVG(rating), 2) AS avg_rating FROM reviews;",
+    "orderMatters": false
+  },
+  "order": 364
+}

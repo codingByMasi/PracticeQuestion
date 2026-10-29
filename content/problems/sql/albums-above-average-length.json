@@ -1,0 +1,21 @@
+{
+  "slug": "albums-above-average-length",
+  "track": "sql",
+  "title": "Albums above average length",
+  "difficulty": "Medium",
+  "tags": [
+    "subquery"
+  ],
+  "statementMd": "List albums whose total running time is above the average album running time. Show title and minutes rounded to 1 decimal.\n\nExpected columns: `title`, `minutes`.\n\nTables: `artists`, `albums`, `tracks`, `listeners`, `plays`.\n\nRow order does not matter.",
+  "hints": [
+    "Per-album sums in a CTE."
+  ],
+  "solutionMd": "```sql\nWITH a AS (SELECT album_id, SUM(seconds) AS total FROM tracks GROUP BY album_id) SELECT al.title, ROUND(a.total / 60.0, 1) AS minutes FROM a JOIN albums al ON al.id = a.album_id WHERE a.total > (SELECT AVG(total) FROM a);\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: artists, albums, tracks, listeners, plays\nSELECT\n",
+  "datasetId": "music",
+  "expected": {
+    "query": "WITH a AS (SELECT album_id, SUM(seconds) AS total FROM tracks GROUP BY album_id) SELECT al.title, ROUND(a.total / 60.0, 1) AS minutes FROM a JOIN albums al ON al.id = a.album_id WHERE a.total > (SELECT AVG(total) FROM a);",
+    "orderMatters": false
+  },
+  "order": 315
+}

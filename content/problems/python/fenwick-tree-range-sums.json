@@ -1,0 +1,164 @@
+{
+  "slug": "fenwick-tree-range-sums",
+  "track": "python",
+  "title": "Fenwick tree range sums",
+  "difficulty": "Hard",
+  "tags": [
+    "design"
+  ],
+  "statementMd": "Maintain an array. `['update', i, v]` sets `nums[i] = v`; `['sum', l, r]` returns the sum of `nums[l..r]` inclusive. Return the results of the sum operations.\n\n**Example:** `range_sum_updates([1, 3, 5], [[\"sum\", 0, 2], [\"update\", 1, 2], [\"sum\", 0, 2]])` returns `[9, 8]`.",
+  "hints": [
+    "A Fenwick (binary indexed) tree supports both in O(log n)."
+  ],
+  "solutionMd": "```python\ndef range_sum_updates(nums, ops):\n    n = len(nums)\n    tree = [0] * (n + 1)\n    cur = [0] * n\n    def add(i, d):\n        i += 1\n        while i <= n:\n            tree[i] += d\n            i += i & -i\n    def prefix(i):\n        s = 0\n        i += 1\n        while i > 0:\n            s += tree[i]\n            i -= i & -i\n        return s\n    for i, v in enumerate(nums):\n        cur[i] = v\n        add(i, v)\n    out = []\n    for op in ops:\n        if op[0] == 'update':\n            add(op[1], op[2] - cur[op[1]])\n            cur[op[1]] = op[2]\n        else:\n            out.append(prefix(op[2]) - (prefix(op[1] - 1) if op[1] else 0))\n    return out\n```\n\nStore differences so updates are additive.",
+  "starterCode": "def range_sum_updates(nums, ops):\n    # Write your code here\n    pass\n",
+  "functionName": "range_sum_updates",
+  "referenceSolution": "def range_sum_updates(nums, ops):\n    n = len(nums)\n    tree = [0] * (n + 1)\n    cur = [0] * n\n    def add(i, d):\n        i += 1\n        while i <= n:\n            tree[i] += d\n            i += i & -i\n    def prefix(i):\n        s = 0\n        i += 1\n        while i > 0:\n            s += tree[i]\n            i -= i & -i\n        return s\n    for i, v in enumerate(nums):\n        cur[i] = v\n        add(i, v)\n    out = []\n    for op in ops:\n        if op[0] == 'update':\n            add(op[1], op[2] - cur[op[1]])\n            cur[op[1]] = op[2]\n        else:\n            out.append(prefix(op[2]) - (prefix(op[1] - 1) if op[1] else 0))\n    return out\n",
+  "tests": [
+    {
+      "args": [
+        [
+          1,
+          3,
+          5
+        ],
+        [
+          [
+            "sum",
+            0,
+            2
+          ],
+          [
+            "update",
+            1,
+            2
+          ],
+          [
+            "sum",
+            0,
+            2
+          ]
+        ]
+      ],
+      "expected": [
+        9,
+        8
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          5
+        ],
+        [
+          [
+            "sum",
+            0,
+            0
+          ]
+        ]
+      ],
+      "expected": [
+        5
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          1,
+          2,
+          3,
+          4
+        ],
+        [
+          [
+            "sum",
+            1,
+            2
+          ],
+          [
+            "update",
+            0,
+            10
+          ],
+          [
+            "sum",
+            0,
+            3
+          ]
+        ]
+      ],
+      "expected": [
+        5,
+        19
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          0,
+          0
+        ],
+        [
+          [
+            "update",
+            1,
+            5
+          ],
+          [
+            "sum",
+            1,
+            1
+          ],
+          [
+            "sum",
+            0,
+            0
+          ]
+        ]
+      ],
+      "expected": [
+        5,
+        0
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          2,
+          4,
+          6,
+          8,
+          10
+        ],
+        [
+          [
+            "sum",
+            2,
+            4
+          ],
+          [
+            "update",
+            4,
+            0
+          ],
+          [
+            "sum",
+            2,
+            4
+          ]
+        ]
+      ],
+      "expected": [
+        24,
+        14
+      ],
+      "hidden": true
+    }
+  ],
+  "order": 497
+}

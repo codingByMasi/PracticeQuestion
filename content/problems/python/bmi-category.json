@@ -1,0 +1,68 @@
+{
+  "slug": "bmi-category",
+  "track": "python",
+  "title": "BMI category",
+  "difficulty": "Easy",
+  "tags": [
+    "conditionals"
+  ],
+  "statementMd": "Compute BMI = weight / height² and return `\"underweight\"` (< 18.5), `\"normal\"` (< 25), `\"overweight\"` (< 30) or `\"obese\"`.\n\n**Example:** `bmi_category(70, 1.75)` returns `\"normal\"`.",
+  "hints": [
+    "Compute once, then use a ladder of comparisons."
+  ],
+  "solutionMd": "```python\ndef bmi_category(weight_kg, height_m):\n    bmi = weight_kg / (height_m ** 2)\n    if bmi < 18.5:\n        return 'underweight'\n    if bmi < 25:\n        return 'normal'\n    if bmi < 30:\n        return 'overweight'\n    return 'obese'\n```\n\nBoundaries are exclusive on the upper end.",
+  "starterCode": "def bmi_category(weight_kg, height_m):\n    # Write your code here\n    pass\n",
+  "functionName": "bmi_category",
+  "referenceSolution": "def bmi_category(weight_kg, height_m):\n    bmi = weight_kg / (height_m ** 2)\n    if bmi < 18.5:\n        return 'underweight'\n    if bmi < 25:\n        return 'normal'\n    if bmi < 30:\n        return 'overweight'\n    return 'obese'\n",
+  "tests": [
+    {
+      "args": [
+        70,
+        1.75
+      ],
+      "expected": "normal",
+      "hidden": false
+    },
+    {
+      "args": [
+        50,
+        1.8
+      ],
+      "expected": "underweight",
+      "hidden": false
+    },
+    {
+      "args": [
+        90,
+        1.7
+      ],
+      "expected": "obese",
+      "hidden": true
+    },
+    {
+      "args": [
+        100,
+        1.7
+      ],
+      "expected": "obese",
+      "hidden": true
+    },
+    {
+      "args": [
+        60,
+        1.6
+      ],
+      "expected": "normal",
+      "hidden": true
+    },
+    {
+      "args": [
+        45,
+        1.6
+      ],
+      "expected": "underweight",
+      "hidden": true
+    }
+  ],
+  "order": 13
+}

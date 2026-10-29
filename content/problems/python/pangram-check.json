@@ -1,0 +1,55 @@
+{
+  "slug": "pangram-check",
+  "track": "python",
+  "title": "Pangram check",
+  "difficulty": "Easy",
+  "tags": [
+    "strings"
+  ],
+  "statementMd": "Return `True` if `s` contains every letter of the English alphabet at least once (case-insensitive).\n\n**Example:** `is_pangram(\"The quick brown fox jumps over the lazy dog\")` returns `true`.",
+  "hints": [
+    "Compare a set of letters with the 26-letter set."
+  ],
+  "solutionMd": "```python\ndef is_pangram(s):\n    return set('abcdefghijklmnopqrstuvwxyz') <= set(s.lower())\n```\n\nA subset test does it.",
+  "starterCode": "def is_pangram(s):\n    # Write your code here\n    pass\n",
+  "functionName": "is_pangram",
+  "referenceSolution": "def is_pangram(s):\n    return set('abcdefghijklmnopqrstuvwxyz') <= set(s.lower())\n",
+  "tests": [
+    {
+      "args": [
+        "The quick brown fox jumps over the lazy dog"
+      ],
+      "expected": true,
+      "hidden": false
+    },
+    {
+      "args": [
+        "hello"
+      ],
+      "expected": false,
+      "hidden": false
+    },
+    {
+      "args": [
+        ""
+      ],
+      "expected": false,
+      "hidden": true
+    },
+    {
+      "args": [
+        "abcdefghijklmnopqrstuvwxyz"
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        "abcdefghijklmnopqrstuvwxy"
+      ],
+      "expected": false,
+      "hidden": true
+    }
+  ],
+  "order": 60
+}

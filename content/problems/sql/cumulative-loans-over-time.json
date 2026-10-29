@@ -1,0 +1,21 @@
+{
+  "slug": "cumulative-loans-over-time",
+  "track": "sql",
+  "title": "Cumulative loans over time",
+  "difficulty": "Hard",
+  "tags": [
+    "running-total"
+  ],
+  "statementMd": "For each month show loans that month and the cumulative number of loans to date. Earliest first.\n\nExpected columns: `month`, `loans`, `cumulative`.\n\nTables: `authors`, `books`, `members`, `loans`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Monthly counts, then running sum."
+  ],
+  "solutionMd": "```sql\nWITH m AS (SELECT strftime('%Y-%m', loan_date) AS month, COUNT(*) AS loans FROM loans GROUP BY month) SELECT month, loans, SUM(loans) OVER (ORDER BY month) AS cumulative FROM m ORDER BY month;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: authors, books, members, loans\nSELECT\n",
+  "datasetId": "library",
+  "expected": {
+    "query": "WITH m AS (SELECT strftime('%Y-%m', loan_date) AS month, COUNT(*) AS loans FROM loans GROUP BY month) SELECT month, loans, SUM(loans) OVER (ORDER BY month) AS cumulative FROM m ORDER BY month;",
+    "orderMatters": true
+  },
+  "order": 472
+}

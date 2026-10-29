@@ -1,0 +1,21 @@
+{
+  "slug": "credit-load-per-student",
+  "track": "sql",
+  "title": "Credit load per student",
+  "difficulty": "Hard",
+  "tags": [
+    "expressions"
+  ],
+  "statementMd": "Compute each student's total credits across their distinct course enrollments (a course counted once even if taken twice). List the five highest, ties by name.\n\nExpected columns: `name`, `credits`.\n\nTables: `teachers`, `courses`, `students`, `enrollments`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Deduplicate student-course pairs first."
+  ],
+  "solutionMd": "```sql\nSELECT s.name, SUM(c.credits) AS credits FROM students s JOIN (SELECT DISTINCT student_id, course_id FROM enrollments) x ON x.student_id = s.id JOIN courses c ON c.id = x.course_id GROUP BY s.id, s.name ORDER BY credits DESC, s.name LIMIT 5;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: teachers, courses, students, enrollments\nSELECT\n",
+  "datasetId": "school",
+  "expected": {
+    "query": "SELECT s.name, SUM(c.credits) AS credits FROM students s JOIN (SELECT DISTINCT student_id, course_id FROM enrollments) x ON x.student_id = s.id JOIN courses c ON c.id = x.course_id GROUP BY s.id, s.name ORDER BY credits DESC, s.name LIMIT 5;",
+    "orderMatters": true
+  },
+  "order": 375
+}

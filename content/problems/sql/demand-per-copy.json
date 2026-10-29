@@ -1,0 +1,21 @@
+{
+  "slug": "demand-per-copy",
+  "track": "sql",
+  "title": "Demand per copy",
+  "difficulty": "Hard",
+  "tags": [
+    "expressions"
+  ],
+  "statementMd": "For the 5 books with the highest loans-per-copy ratio show title, copies, loans and the ratio rounded to 2 decimals. Break ties by title.\n\nExpected columns: `title`, `copies`, `loans`, `per_copy`.\n\nTables: `authors`, `books`, `members`, `loans`.\n\n**Row order matters** for this problem.",
+  "hints": [
+    "Join aggregated loans to books and divide."
+  ],
+  "solutionMd": "```sql\nSELECT b.title, b.copies, x.loans, ROUND(1.0 * x.loans / b.copies, 2) AS per_copy FROM books b JOIN (SELECT book_id, COUNT(*) AS loans FROM loans GROUP BY book_id) x ON x.book_id = b.id ORDER BY per_copy DESC, b.title LIMIT 5;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: authors, books, members, loans\nSELECT\n",
+  "datasetId": "library",
+  "expected": {
+    "query": "SELECT b.title, b.copies, x.loans, ROUND(1.0 * x.loans / b.copies, 2) AS per_copy FROM books b JOIN (SELECT book_id, COUNT(*) AS loans FROM loans GROUP BY book_id) x ON x.book_id = b.id ORDER BY per_copy DESC, b.title LIMIT 5;",
+    "orderMatters": true
+  },
+  "order": 374
+}

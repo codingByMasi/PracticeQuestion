@@ -1,0 +1,21 @@
+{
+  "slug": "top-sector-by-average-close",
+  "track": "sql",
+  "title": "Top sector by average close",
+  "difficulty": "Medium",
+  "tags": [
+    "subquery"
+  ],
+  "statementMd": "Which sector has the highest average closing price across all its price rows? Show sector and average rounded to 2 decimals.\n\nExpected columns: `sector`, `avg_close`.\n\nTables: `tickers`, `prices`.\n\nRow order does not matter.",
+  "hints": [
+    "Group, order, limit 1."
+  ],
+  "solutionMd": "```sql\nSELECT t.sector, ROUND(AVG(p.close), 2) AS avg_close FROM prices p JOIN tickers t ON t.symbol = p.symbol GROUP BY t.sector ORDER BY AVG(p.close) DESC LIMIT 1;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: tickers, prices\nSELECT\n",
+  "datasetId": "stocks",
+  "expected": {
+    "query": "SELECT t.sector, ROUND(AVG(p.close), 2) AS avg_close FROM prices p JOIN tickers t ON t.symbol = p.symbol GROUP BY t.sector ORDER BY AVG(p.close) DESC LIMIT 1;",
+    "orderMatters": false
+  },
+  "order": 318
+}

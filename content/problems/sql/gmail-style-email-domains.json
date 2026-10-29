@@ -1,0 +1,21 @@
+{
+  "slug": "gmail-style-email-domains",
+  "track": "sql",
+  "title": "Gmail-style email domains",
+  "difficulty": "Easy",
+  "tags": [
+    "strings"
+  ],
+  "statementMd": "Show each customer's name and the part of their email after the `@` sign.\n\nExpected columns: `name`, `domain`.\n\nTables: `customers`, `products`, `orders`, `order_items`.\n\nRow order does not matter.",
+  "hints": [
+    "`substr(email, instr(email, '@') + 1)`."
+  ],
+  "solutionMd": "```sql\nSELECT name, substr(email, instr(email, '@') + 1) AS domain FROM customers;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: customers, products, orders, order_items\nSELECT\n",
+  "datasetId": "ecommerce",
+  "expected": {
+    "query": "SELECT name, substr(email, instr(email, '@') + 1) AS domain FROM customers;",
+    "orderMatters": false
+  },
+  "order": 97
+}

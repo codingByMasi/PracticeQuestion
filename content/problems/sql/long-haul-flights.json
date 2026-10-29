@@ -1,0 +1,21 @@
+{
+  "slug": "long-haul-flights",
+  "track": "sql",
+  "title": "Long-haul flights",
+  "difficulty": "Easy",
+  "tags": [
+    "where"
+  ],
+  "statementMd": "List flights longer than 10 hours (600 minutes) with their duration.\n\nExpected columns: `id`, `origin`, `destination`, `duration_min`.\n\nTables: `airlines`, `airports`, `flights`, `bookings`.\n\nRow order does not matter.",
+  "hints": [
+    "`duration_min > 600`."
+  ],
+  "solutionMd": "```sql\nSELECT id, origin, destination, duration_min FROM flights WHERE duration_min > 600;\n```\n\nCompare with your own query; the result sets must match.",
+  "starterCode": "-- Tables: airlines, airports, flights, bookings\nSELECT\n",
+  "datasetId": "flights",
+  "expected": {
+    "query": "SELECT id, origin, destination, duration_min FROM flights WHERE duration_min > 600;",
+    "orderMatters": false
+  },
+  "order": 27
+}

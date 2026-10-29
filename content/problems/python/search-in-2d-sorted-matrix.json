@@ -1,0 +1,122 @@
+{
+  "slug": "search-in-2d-sorted-matrix",
+  "track": "python",
+  "title": "Search in 2D sorted matrix",
+  "difficulty": "Medium",
+  "tags": [
+    "matrix"
+  ],
+  "statementMd": "Each row and each column is sorted ascending. Return whether `target` exists.\n\n**Example:** `search_matrix_ii([[1, 4, 7], [2, 5, 8], [3, 6, 9]], 5)` returns `true`.",
+  "hints": [
+    "Start at the top-right corner and move left or down."
+  ],
+  "solutionMd": "```python\ndef search_matrix_ii(m, target):\n    if not m or not m[0]:\n        return False\n    r, c = 0, len(m[0]) - 1\n    while r < len(m) and c >= 0:\n        if m[r][c] == target:\n            return True\n        if m[r][c] > target:\n            c -= 1\n        else:\n            r += 1\n    return False\n```\n\nEach comparison eliminates a row or column.",
+  "starterCode": "def search_matrix_ii(m, target):\n    # Write your code here\n    pass\n",
+  "functionName": "search_matrix_ii",
+  "referenceSolution": "def search_matrix_ii(m, target):\n    if not m or not m[0]:\n        return False\n    r, c = 0, len(m[0]) - 1\n    while r < len(m) and c >= 0:\n        if m[r][c] == target:\n            return True\n        if m[r][c] > target:\n            c -= 1\n        else:\n            r += 1\n    return False\n",
+  "tests": [
+    {
+      "args": [
+        [
+          [
+            1,
+            4,
+            7
+          ],
+          [
+            2,
+            5,
+            8
+          ],
+          [
+            3,
+            6,
+            9
+          ]
+        ],
+        5
+      ],
+      "expected": true,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            1,
+            4,
+            7
+          ],
+          [
+            2,
+            5,
+            8
+          ],
+          [
+            3,
+            6,
+            9
+          ]
+        ],
+        10
+      ],
+      "expected": false,
+      "hidden": false
+    },
+    {
+      "args": [
+        [],
+        1
+      ],
+      "expected": false,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            1
+          ]
+        ],
+        1
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        3
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        0
+      ],
+      "expected": false,
+      "hidden": true
+    }
+  ],
+  "order": 274
+}

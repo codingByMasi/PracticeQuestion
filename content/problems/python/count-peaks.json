@@ -1,0 +1,82 @@
+{
+  "slug": "count-peaks",
+  "track": "python",
+  "title": "Count peaks",
+  "difficulty": "Easy",
+  "tags": [
+    "lists"
+  ],
+  "statementMd": "Count interior elements strictly greater than both neighbours.\n\n**Example:** `count_peaks([1, 3, 1, 4, 2])` returns `2`.",
+  "hints": [
+    "Check indices 1..n-2."
+  ],
+  "solutionMd": "```python\ndef count_peaks(nums):\n    return sum(1 for i in range(1, len(nums) - 1) if nums[i] > nums[i - 1] and nums[i] > nums[i + 1])\n```\n\nThe first and last elements are never peaks.",
+  "starterCode": "def count_peaks(nums):\n    # Write your code here\n    pass\n",
+  "functionName": "count_peaks",
+  "referenceSolution": "def count_peaks(nums):\n    return sum(1 for i in range(1, len(nums) - 1) if nums[i] > nums[i - 1] and nums[i] > nums[i + 1])\n",
+  "tests": [
+    {
+      "args": [
+        [
+          1,
+          3,
+          1,
+          4,
+          2
+        ]
+      ],
+      "expected": 2,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "expected": 0,
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          5
+        ]
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          3,
+          1
+        ]
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          2,
+          2,
+          2
+        ]
+      ],
+      "expected": 0,
+      "hidden": true
+    }
+  ],
+  "order": 87
+}

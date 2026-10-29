@@ -1,0 +1,62 @@
+{
+  "slug": "robot-return-to-origin",
+  "track": "python",
+  "title": "Robot return to origin",
+  "difficulty": "Easy",
+  "tags": [
+    "simulation"
+  ],
+  "statementMd": "A robot starts at (0, 0) and follows moves `U`, `D`, `L`, `R`. Return whether it ends at the origin.\n\n**Example:** `returns_to_origin(\"UD\")` returns `true`.",
+  "hints": [
+    "Count ups against downs, lefts against rights."
+  ],
+  "solutionMd": "```python\ndef returns_to_origin(moves):\n    return moves.count('U') == moves.count('D') and moves.count('L') == moves.count('R')\n```\n\nOpposite moves cancel.",
+  "starterCode": "def returns_to_origin(moves):\n    # Write your code here\n    pass\n",
+  "functionName": "returns_to_origin",
+  "referenceSolution": "def returns_to_origin(moves):\n    return moves.count('U') == moves.count('D') and moves.count('L') == moves.count('R')\n",
+  "tests": [
+    {
+      "args": [
+        "UD"
+      ],
+      "expected": true,
+      "hidden": false
+    },
+    {
+      "args": [
+        "LL"
+      ],
+      "expected": false,
+      "hidden": false
+    },
+    {
+      "args": [
+        ""
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        "UDLR"
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        "UUDDLRLR"
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        "RRU"
+      ],
+      "expected": false,
+      "hidden": true
+    }
+  ],
+  "order": 146
+}
