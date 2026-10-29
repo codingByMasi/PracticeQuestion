@@ -4,11 +4,16 @@
  *
  *   npm run validate:content
  */
+import { createRequire } from "node:module";
+import { loadPyodide } from "pyodide";
 import initSqlJs from "sql.js";
 import { ContentError, loadContent, type Content } from "../lib/content/load";
 import type { Problem } from "../lib/content/schema";
+import { judgePython } from "../lib/judge/python";
 import { judgeSql } from "../lib/judge/sql";
 import type { JudgeReport } from "../lib/judge/types";
+import { PYODIDE_VERSION } from "../lib/runners/python/config";
+import { executePython, installHarness } from "../lib/runners/python/engine";
 import { executeSql } from "../lib/runners/sql/engine";
 import type { Execute } from "../lib/runners/types";
 
@@ -36,13 +41,21 @@ async function main() {
     `Loaded ${content.tracks.length} tracks, ${content.datasets.length} datasets, ${content.problems.length} problems, ${content.lessons.length} lessons.`,
   );
 
+  const checks: Check[] = [];
+  const installed = (createRequire(import.meta.url)("pyodide/package.json") as { version: string }).version;
+  checks.push({
+    label: `PYODIDE_VERSION (${PYODIDE_VERSION}) matches installed pyodide (${installed})`,
+    ok: installed === PYODIDE_VERSION,
+  });
+
   const SQL = await initSqlJs();
+  const pyodide = await loadPyodide();
+  installHarness(pyodide);
   const executors: Record<Problem["kind"], Execute> = {
     sql: async (input) => executeSql(SQL, input),
-    python: async () => ({ ok: false, error: "Python validation not available", durationMs: 0 }),
+    python: async (input) => executePython(pyodide, input),
   };
 
-  const checks: Check[] = [];
   for (const problem of content.problems) {
     const label = `${problem.track}/${problem.slug}`;
     if (problem.kind === "sql") {
@@ -50,6 +63,11 @@ async function main() {
       const sql = dataset?.sql ?? "";
       const report = await judgeSql(problem, sql, problem.expected.query, "submit", executors.sql);
       const starter = await judgeSql(problem, sql, problem.starterCode, "submit", executors.sql);
+      checks.push({ label, ok: report.passed, detail: report.passed ? undefined : describeFailure(report) });
+      if (starter.passed) checks.push({ label: `${label} (starter code must not pass)`, ok: false });
+    } else {
+      const report = await judgePython(problem, problem.referenceSolution, "submit", executors.python);
+      const starter = await judgePython(problem, problem.starterCode, "submit", executors.python);
       checks.push({ label, ok: report.passed, detail: report.passed ? undefined : describeFailure(report) });
       if (starter.passed) checks.push({ label: `${label} (starter code must not pass)`, ok: false });
     }

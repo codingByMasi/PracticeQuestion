@@ -1,0 +1,56 @@
+{
+  "slug": "factorial",
+  "track": "python",
+  "title": "Factorial",
+  "difficulty": "Easy",
+  "tags": [
+    "recursion",
+    "math"
+  ],
+  "statementMd": "Return `n!` (the product `1 × 2 × … × n`) for a non-negative integer `n`. By definition `0! = 1`. Try writing it recursively.",
+  "hints": [
+    "The base case is `n == 0`.",
+    "`factorial(n) = n * factorial(n - 1)`."
+  ],
+  "solutionMd": "```python\ndef factorial(n):\n    if n == 0:\n        return 1\n    return n * factorial(n - 1)\n```\n\nEach call reduces the problem by one until the base case stops the recursion. Python integers never overflow, so `factorial(20)` is exact.",
+  "starterCode": "def factorial(n):\n    # Write your code here\n    pass\n",
+  "functionName": "factorial",
+  "referenceSolution": "def factorial(n):\n    if n == 0:\n        return 1\n    return n * factorial(n - 1)\n",
+  "tests": [
+    {
+      "args": [
+        0
+      ],
+      "expected": 1,
+      "hidden": false
+    },
+    {
+      "args": [
+        5
+      ],
+      "expected": 120,
+      "hidden": false
+    },
+    {
+      "args": [
+        1
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        10
+      ],
+      "expected": 3628800,
+      "hidden": true
+    },
+    {
+      "args": [
+        20
+      ],
+      "expected": 2432902008176640000,
+      "hidden": true
+    }
+  ]
+}

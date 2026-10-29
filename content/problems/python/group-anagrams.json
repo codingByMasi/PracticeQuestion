@@ -1,0 +1,111 @@
+{
+  "slug": "group-anagrams",
+  "track": "python",
+  "title": "Group anagrams",
+  "difficulty": "Hard",
+  "tags": [
+    "dicts",
+    "strings",
+    "sorting"
+  ],
+  "statementMd": "Group words that are anagrams of each other (same letters, different order).\n\nReturn a list of groups where **each group is sorted alphabetically** and the **groups are sorted by their first word**.",
+  "hints": [
+    "Two words are anagrams if `sorted(word)` is equal.",
+    "Use a dict from `\"\".join(sorted(word))` to a list of words."
+  ],
+  "solutionMd": "```python\ndef group_anagrams(words):\n    groups = {}\n    for word in words:\n        groups.setdefault(\"\".join(sorted(word)), []).append(word)\n    return sorted(sorted(g) for g in groups.values())\n```\n\nSorting the letters gives a canonical key shared by all anagrams. Sorting the groups (lists compare element by element) produces the required order.",
+  "starterCode": "def group_anagrams(words):\n    # Write your code here\n    pass\n",
+  "functionName": "group_anagrams",
+  "referenceSolution": "def group_anagrams(words):\n    groups = {}\n    for word in words:\n        groups.setdefault(\"\".join(sorted(word)), []).append(word)\n    return sorted(sorted(g) for g in groups.values())\n",
+  "tests": [
+    {
+      "args": [
+        [
+          "eat",
+          "tea",
+          "tan",
+          "ate",
+          "nat",
+          "bat"
+        ]
+      ],
+      "expected": [
+        [
+          "ate",
+          "eat",
+          "tea"
+        ],
+        [
+          "bat"
+        ],
+        [
+          "nat",
+          "tan"
+        ]
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": [],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          "abc"
+        ]
+      ],
+      "expected": [
+        [
+          "abc"
+        ]
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          "listen",
+          "silent",
+          "enlist",
+          "google",
+          "gogole"
+        ]
+      ],
+      "expected": [
+        [
+          "enlist",
+          "listen",
+          "silent"
+        ],
+        [
+          "gogole",
+          "google"
+        ]
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          "a",
+          "b",
+          "a"
+        ]
+      ],
+      "expected": [
+        [
+          "a",
+          "a"
+        ],
+        [
+          "b"
+        ]
+      ],
+      "hidden": true
+    }
+  ]
+}

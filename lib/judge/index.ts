@@ -1,5 +1,6 @@
 import type { Problem } from "../content/schema";
 import type { Execute } from "../runners/types";
+import { judgePython } from "./python";
 import { judgeSql } from "./sql";
 import type { JudgeMode, JudgeReport } from "./types";
 
@@ -10,8 +11,8 @@ export async function judgeProblem(problem: Problem, code: string, mode: JudgeMo
   switch (problem.kind) {
     case "sql":
       return judgeSql(problem, ctx.datasetSql ?? "", code, mode, ctx.execute);
-    default:
-      return { mode, passed: false, durationMs: 0, error: `No judge for ${problem.kind}` };
+    case "python":
+      return judgePython(problem, code, mode, ctx.execute);
   }
 }
 

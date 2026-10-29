@@ -1,0 +1,99 @@
+{
+  "slug": "two-sum",
+  "track": "python",
+  "title": "Two sum",
+  "difficulty": "Medium",
+  "tags": [
+    "algorithms",
+    "dicts"
+  ],
+  "statementMd": "Return the indices `[i, j]` (with `i < j`) of the two numbers in `nums` that add up to `target`. Exactly one solution exists.",
+  "hints": [
+    "A double loop works but is O(n²).",
+    "Store each number's index in a dict and look up `target - x` as you go."
+  ],
+  "solutionMd": "```python\ndef two_sum(nums, target):\n    seen = {}\n    for j, x in enumerate(nums):\n        if target - x in seen:\n            return [seen[target - x], j]\n        seen[x] = j\n    return []\n```\n\nThe dict remembers where each value was seen, turning the search for a complement into an O(1) lookup: O(n) overall.",
+  "starterCode": "def two_sum(nums, target):\n    # Write your code here\n    pass\n",
+  "functionName": "two_sum",
+  "referenceSolution": "def two_sum(nums, target):\n    seen = {}\n    for j, x in enumerate(nums):\n        if target - x in seen:\n            return [seen[target - x], j]\n        seen[x] = j\n    return []\n",
+  "tests": [
+    {
+      "args": [
+        [
+          2,
+          7,
+          11,
+          15
+        ],
+        9
+      ],
+      "expected": [
+        0,
+        1
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          3,
+          2,
+          4
+        ],
+        6
+      ],
+      "expected": [
+        1,
+        2
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          3,
+          3
+        ],
+        6
+      ],
+      "expected": [
+        0,
+        1
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          -1,
+          -2,
+          -3,
+          -4,
+          -5
+        ],
+        -8
+      ],
+      "expected": [
+        2,
+        4
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          0,
+          4,
+          3,
+          0
+        ],
+        0
+      ],
+      "expected": [
+        0,
+        3
+      ],
+      "hidden": true
+    }
+  ]
+}

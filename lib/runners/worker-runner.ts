@@ -78,7 +78,7 @@ export class WorkerRunner implements Runner {
     this.reset();
   }
 
-  private request(req: { type: "init" } | { type: "run"; input: RunInput }, timeoutMs: number) {
+  private request(req: { type: "init" } | { type: "prepare" | "run"; input: RunInput }, timeoutMs: number) {
     const id = this.nextId++;
     const worker = this.getWorker();
     return new Promise<(WorkerResponse & { type: "done" }) | "timeout">((resolve) => {
@@ -131,6 +131,12 @@ export class WorkerRunner implements Runner {
       return { ok: false, error: `Could not start the ${this.id} runner: ${(e as Error).message}`, durationMs: 0 };
     }
     this.setStatus({ state: "running" });
+    const prep = await this.request({ type: "prepare", input }, this.initTimeoutMs);
+    if (prep === "timeout" || prep.error) {
+      if (prep === "timeout") this.reset();
+      this.setStatus({ state: "ready" });
+      return { ok: false, error: prep === "timeout" ? "Timed out preparing the run." : prep.error, durationMs: 0 };
+    }
     const start = performance.now();
     const res = await this.request({ type: "run", input }, this.timeoutMs);
     const durationMs = Math.round(performance.now() - start);

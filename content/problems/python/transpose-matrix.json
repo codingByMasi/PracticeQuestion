@@ -1,0 +1,128 @@
+{
+  "slug": "transpose-matrix",
+  "track": "python",
+  "title": "Transpose a matrix",
+  "difficulty": "Medium",
+  "tags": [
+    "comprehensions",
+    "lists"
+  ],
+  "statementMd": "Return the transpose of a rectangular matrix (a list of rows): row `i` of the result is column `i` of the input. An empty matrix transposes to `[]`.",
+  "hints": [
+    "The result has `len(matrix[0])` rows.",
+    "A nested comprehension: `[[row[i] for row in matrix] for i in range(...)]`. Or try `zip(*matrix)`."
+  ],
+  "solutionMd": "```python\ndef transpose(matrix):\n    if not matrix:\n        return []\n    return [[row[i] for row in matrix] for i in range(len(matrix[0]))]\n```\n\nThe outer comprehension picks a column index, the inner one collects that column from every row. `[list(c) for c in zip(*matrix)]` is equivalent.",
+  "starterCode": "def transpose(matrix):\n    # Write your code here\n    pass\n",
+  "functionName": "transpose",
+  "referenceSolution": "def transpose(matrix):\n    if not matrix:\n        return []\n    return [[row[i] for row in matrix] for i in range(len(matrix[0]))]\n",
+  "tests": [
+    {
+      "args": [
+        [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            4,
+            5,
+            6
+          ]
+        ]
+      ],
+      "expected": [
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          6
+        ]
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": [],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            1
+          ]
+        ]
+      ],
+      "expected": [
+        [
+          1
+        ]
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            5,
+            6
+          ]
+        ]
+      ],
+      "expected": [
+        [
+          1,
+          3,
+          5
+        ],
+        [
+          2,
+          4,
+          6
+        ]
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            1,
+            2,
+            3
+          ]
+        ]
+      ],
+      "expected": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          3
+        ]
+      ],
+      "hidden": true
+    }
+  ]
+}

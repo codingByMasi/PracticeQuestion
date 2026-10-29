@@ -1,6 +1,7 @@
 "use client";
 
 import type { Runner } from "./types";
+import { createPythonRunner } from "./python";
 import { createSqlRunner } from "./sql";
 
 /**
@@ -9,6 +10,7 @@ import { createSqlRunner } from "./sql";
  */
 const factories: Record<string, () => Runner> = {
   sql: createSqlRunner,
+  python: createPythonRunner,
 };
 
 const instances = new Map<string, Runner>();

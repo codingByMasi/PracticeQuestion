@@ -1,0 +1,71 @@
+{
+  "slug": "find-max",
+  "track": "python",
+  "title": "Largest number",
+  "difficulty": "Easy",
+  "tags": [
+    "lists",
+    "loops"
+  ],
+  "statementMd": "Return the largest number in the list `nums` **without** using the built-in `max`. Return `None` for an empty list.",
+  "hints": [
+    "Start with the first element as the best so far.",
+    "Loop over the rest and update when you find something bigger."
+  ],
+  "solutionMd": "```python\ndef find_max(nums):\n    if not nums:\n        return None\n    best = nums[0]\n    for x in nums[1:]:\n        if x > best:\n            best = x\n    return best\n```\n\nTrack the best value seen so far: a single pass, O(n).",
+  "starterCode": "def find_max(nums):\n    # Write your code here\n    pass\n",
+  "functionName": "find_max",
+  "referenceSolution": "def find_max(nums):\n    if not nums:\n        return None\n    best = nums[0]\n    for x in nums[1:]:\n        if x > best:\n            best = x\n    return best\n",
+  "tests": [
+    {
+      "args": [
+        [
+          3,
+          7,
+          2
+        ]
+      ],
+      "expected": 7,
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": null,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          -5,
+          -2,
+          -9
+        ]
+      ],
+      "expected": -2,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          42
+        ]
+      ],
+      "expected": 42,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          5,
+          5,
+          3
+        ]
+      ],
+      "expected": 5,
+      "hidden": true
+    }
+  ]
+}

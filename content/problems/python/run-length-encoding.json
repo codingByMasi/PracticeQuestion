@@ -1,0 +1,63 @@
+{
+  "slug": "run-length-encoding",
+  "track": "python",
+  "title": "Run-length encoding",
+  "difficulty": "Medium",
+  "tags": [
+    "strings",
+    "algorithms"
+  ],
+  "statementMd": "Compress `s` by replacing each run of the same character with the character followed by the run length. For example `rle(\"aaabcc\")` is `\"a3b1c2\"`.",
+  "hints": [
+    "Walk the string keeping the current character and its count.",
+    "Remember to emit the final run after the loop. `itertools.groupby` also works."
+  ],
+  "solutionMd": "```python\ndef rle(s):\n    if not s:\n        return \"\"\n    parts = []\n    current, count = s[0], 1\n    for ch in s[1:]:\n        if ch == current:\n            count += 1\n        else:\n            parts.append(f\"{current}{count}\")\n            current, count = ch, 1\n    parts.append(f\"{current}{count}\")\n    return \"\".join(parts)\n```\n\nBuild the output in a list and join once at the end, which is faster than repeated string concatenation.",
+  "starterCode": "def rle(s):\n    # Write your code here\n    pass\n",
+  "functionName": "rle",
+  "referenceSolution": "def rle(s):\n    if not s:\n        return \"\"\n    parts = []\n    current, count = s[0], 1\n    for ch in s[1:]:\n        if ch == current:\n            count += 1\n        else:\n            parts.append(f\"{current}{count}\")\n            current, count = ch, 1\n    parts.append(f\"{current}{count}\")\n    return \"\".join(parts)\n",
+  "tests": [
+    {
+      "args": [
+        "aaabcc"
+      ],
+      "expected": "a3b1c2",
+      "hidden": false
+    },
+    {
+      "args": [
+        ""
+      ],
+      "expected": "",
+      "hidden": false
+    },
+    {
+      "args": [
+        "a"
+      ],
+      "expected": "a1",
+      "hidden": true
+    },
+    {
+      "args": [
+        "abc"
+      ],
+      "expected": "a1b1c1",
+      "hidden": true
+    },
+    {
+      "args": [
+        "zzzzzzzzzzzz"
+      ],
+      "expected": "z12",
+      "hidden": true
+    },
+    {
+      "args": [
+        "aabbaa"
+      ],
+      "expected": "a2b2a2",
+      "hidden": true
+    }
+  ]
+}

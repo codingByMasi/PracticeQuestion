@@ -1,0 +1,61 @@
+{
+  "slug": "add-two-numbers",
+  "track": "python",
+  "title": "Add two numbers",
+  "difficulty": "Easy",
+  "tags": [
+    "basics",
+    "functions"
+  ],
+  "statementMd": "Write a function `add(a, b)` that returns the sum of two numbers.",
+  "hints": [
+    "Use the `+` operator.",
+    "Make sure you `return` the value instead of printing it."
+  ],
+  "solutionMd": "```python\ndef add(a, b):\n    return a + b\n```\n\n`return` hands the value back to the caller; `print` would only display it.",
+  "starterCode": "def add(a, b):\n    # Write your code here\n    pass\n",
+  "functionName": "add",
+  "referenceSolution": "def add(a, b):\n    return a + b\n",
+  "tests": [
+    {
+      "args": [
+        1,
+        2
+      ],
+      "expected": 3,
+      "hidden": false
+    },
+    {
+      "args": [
+        -3,
+        3
+      ],
+      "expected": 0,
+      "hidden": false
+    },
+    {
+      "args": [
+        100,
+        250
+      ],
+      "expected": 350,
+      "hidden": true
+    },
+    {
+      "args": [
+        0.5,
+        0.25
+      ],
+      "expected": 0.75,
+      "hidden": true
+    },
+    {
+      "args": [
+        -7,
+        -8
+      ],
+      "expected": -15,
+      "hidden": true
+    }
+  ]
+}

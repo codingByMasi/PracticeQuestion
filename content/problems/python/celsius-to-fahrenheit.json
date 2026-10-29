@@ -1,0 +1,55 @@
+{
+  "slug": "celsius-to-fahrenheit",
+  "track": "python",
+  "title": "Celsius to Fahrenheit",
+  "difficulty": "Easy",
+  "tags": [
+    "basics"
+  ],
+  "statementMd": "Convert a temperature from Celsius to Fahrenheit using `F = C × 9/5 + 32`. Return a float.",
+  "hints": [
+    "Multiply by `9 / 5`, then add `32`.",
+    "In Python 3, `/` always produces a float."
+  ],
+  "solutionMd": "```python\ndef c_to_f(celsius):\n    return celsius * 9 / 5 + 32\n```\n\nOperator precedence applies multiplication and division before addition.",
+  "starterCode": "def c_to_f(celsius):\n    # Write your code here\n    pass\n",
+  "functionName": "c_to_f",
+  "referenceSolution": "def c_to_f(celsius):\n    return celsius * 9 / 5 + 32\n",
+  "tests": [
+    {
+      "args": [
+        0
+      ],
+      "expected": 32.0,
+      "hidden": false
+    },
+    {
+      "args": [
+        100
+      ],
+      "expected": 212.0,
+      "hidden": false
+    },
+    {
+      "args": [
+        -40
+      ],
+      "expected": -40.0,
+      "hidden": true
+    },
+    {
+      "args": [
+        37
+      ],
+      "expected": 98.6,
+      "hidden": true
+    },
+    {
+      "args": [
+        21.5
+      ],
+      "expected": 70.7,
+      "hidden": true
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "slug": "word-frequency",
+  "track": "python",
+  "title": "Word frequency",
+  "difficulty": "Medium",
+  "tags": [
+    "dicts",
+    "strings"
+  ],
+  "statementMd": "Return a dictionary mapping each word in `text` to how many times it appears. Treat words case-insensitively (use lower case keys) and split on whitespace. Ignore the punctuation characters `.,!?`.",
+  "hints": [
+    "Remove punctuation with `str.replace` or a comprehension.",
+    "`counts[w] = counts.get(w, 0) + 1`, or use `collections.Counter`."
+  ],
+  "solutionMd": "```python\ndef word_counts(text):\n    for p in \".,!?\":\n        text = text.replace(p, \"\")\n    counts = {}\n    for word in text.lower().split():\n        counts[word] = counts.get(word, 0) + 1\n    return counts\n```\n\n`dict.get(key, 0)` supplies a default for unseen words. `collections.Counter(words)` does the same.",
+  "starterCode": "def word_counts(text):\n    # Write your code here\n    pass\n",
+  "functionName": "word_counts",
+  "referenceSolution": "def word_counts(text):\n    for p in \".,!?\":\n        text = text.replace(p, \"\")\n    counts = {}\n    for word in text.lower().split():\n        counts[word] = counts.get(word, 0) + 1\n    return counts\n",
+  "tests": [
+    {
+      "args": [
+        "the cat and the hat"
+      ],
+      "expected": {
+        "the": 2,
+        "cat": 1,
+        "and": 1,
+        "hat": 1
+      },
+      "hidden": false
+    },
+    {
+      "args": [
+        "Hi! hi, HI."
+      ],
+      "expected": {
+        "hi": 3
+      },
+      "hidden": false
+    },
+    {
+      "args": [
+        ""
+      ],
+      "expected": {},
+      "hidden": true
+    },
+    {
+      "args": [
+        "One fish two fish red fish blue fish"
+      ],
+      "expected": {
+        "one": 1,
+        "fish": 4,
+        "two": 1,
+        "red": 1,
+        "blue": 1
+      },
+      "hidden": true
+    },
+    {
+      "args": [
+        "Is it? It is."
+      ],
+      "expected": {
+        "is": 2,
+        "it": 2
+      },
+      "hidden": true
+    }
+  ]
+}

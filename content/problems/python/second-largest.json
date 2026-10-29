@@ -1,0 +1,83 @@
+{
+  "slug": "second-largest",
+  "track": "python",
+  "title": "Second largest",
+  "difficulty": "Medium",
+  "tags": [
+    "lists"
+  ],
+  "statementMd": "Return the second largest **distinct** value in `nums`, or `None` if there isn't one.",
+  "hints": [
+    "Remove duplicates with `set` first.",
+    "Sort the distinct values, or track the top two in one pass."
+  ],
+  "solutionMd": "```python\ndef second_largest(nums):\n    distinct = sorted(set(nums))\n    return distinct[-2] if len(distinct) >= 2 else None\n```\n\nDeduplicating first means `[5, 5, 3]` correctly gives `3`. A one-pass solution tracking `first` and `second` is O(n).",
+  "starterCode": "def second_largest(nums):\n    # Write your code here\n    pass\n",
+  "functionName": "second_largest",
+  "referenceSolution": "def second_largest(nums):\n    distinct = sorted(set(nums))\n    return distinct[-2] if len(distinct) >= 2 else None\n",
+  "tests": [
+    {
+      "args": [
+        [
+          4,
+          1,
+          7,
+          3
+        ]
+      ],
+      "expected": 4,
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          5,
+          5
+        ]
+      ],
+      "expected": null,
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": null,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          10,
+          10,
+          9
+        ]
+      ],
+      "expected": 9,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          -1,
+          -2,
+          -3
+        ]
+      ],
+      "expected": -2,
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          2,
+          1,
+          2,
+          1
+        ]
+      ],
+      "expected": 1,
+      "hidden": true
+    }
+  ]
+}

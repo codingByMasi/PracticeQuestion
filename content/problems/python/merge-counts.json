@@ -1,0 +1,93 @@
+{
+  "slug": "merge-counts",
+  "track": "python",
+  "title": "Merge counters",
+  "difficulty": "Medium",
+  "tags": [
+    "dicts"
+  ],
+  "statementMd": "Given two dictionaries mapping keys to numbers, return a new dictionary containing every key from both, where shared keys have their values **added**. Don't modify the inputs.",
+  "hints": [
+    "Start from a copy: `result = dict(a)`.",
+    "Loop over `b.items()` and add to existing values with `.get`."
+  ],
+  "solutionMd": "```python\ndef merge_counts(a, b):\n    result = dict(a)\n    for key, value in b.items():\n        result[key] = result.get(key, 0) + value\n    return result\n```\n\nCopying `a` first keeps the original untouched; `.get(key, 0)` handles keys only in `b`.",
+  "starterCode": "def merge_counts(a, b):\n    # Write your code here\n    pass\n",
+  "functionName": "merge_counts",
+  "referenceSolution": "def merge_counts(a, b):\n    result = dict(a)\n    for key, value in b.items():\n        result[key] = result.get(key, 0) + value\n    return result\n",
+  "tests": [
+    {
+      "args": [
+        {
+          "x": 1,
+          "y": 2
+        },
+        {
+          "y": 3,
+          "z": 4
+        }
+      ],
+      "expected": {
+        "x": 1,
+        "y": 5,
+        "z": 4
+      },
+      "hidden": false
+    },
+    {
+      "args": [
+        {},
+        {
+          "a": 1
+        }
+      ],
+      "expected": {
+        "a": 1
+      },
+      "hidden": false
+    },
+    {
+      "args": [
+        {
+          "a": 1
+        },
+        {}
+      ],
+      "expected": {
+        "a": 1
+      },
+      "hidden": true
+    },
+    {
+      "args": [
+        {
+          "a": 1,
+          "b": 2
+        },
+        {
+          "a": -1,
+          "b": 2
+        }
+      ],
+      "expected": {
+        "a": 0,
+        "b": 4
+      },
+      "hidden": true
+    },
+    {
+      "args": [
+        {
+          "k": 0.5
+        },
+        {
+          "k": 0.25
+        }
+      ],
+      "expected": {
+        "k": 0.75
+      },
+      "hidden": true
+    }
+  ]
+}

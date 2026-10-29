@@ -1,0 +1,55 @@
+{
+  "slug": "title-case",
+  "track": "python",
+  "title": "Capitalize words",
+  "difficulty": "Easy",
+  "tags": [
+    "strings"
+  ],
+  "statementMd": "Return `sentence` with the first letter of every word upper-cased and the rest lower-cased. Words are separated by single spaces.",
+  "hints": [
+    "`sentence.split(\" \")` gives the words.",
+    "`word[:1].upper() + word[1:].lower()` handles one word; join them back with `\" \".join(...)`."
+  ],
+  "solutionMd": "```python\ndef title_case(sentence):\n    return \" \".join(w[:1].upper() + w[1:].lower() for w in sentence.split(\" \"))\n```\n\nSplitting on a single space keeps empty strings for repeated spaces, so the original spacing survives the join.",
+  "starterCode": "def title_case(sentence):\n    # Write your code here\n    pass\n",
+  "functionName": "title_case",
+  "referenceSolution": "def title_case(sentence):\n    return \" \".join(w[:1].upper() + w[1:].lower() for w in sentence.split(\" \"))\n",
+  "tests": [
+    {
+      "args": [
+        "hello world"
+      ],
+      "expected": "Hello World",
+      "hidden": false
+    },
+    {
+      "args": [
+        "pYTHON is FUN"
+      ],
+      "expected": "Python Is Fun",
+      "hidden": false
+    },
+    {
+      "args": [
+        ""
+      ],
+      "expected": "",
+      "hidden": true
+    },
+    {
+      "args": [
+        "a"
+      ],
+      "expected": "A",
+      "hidden": true
+    },
+    {
+      "args": [
+        "sql and python"
+      ],
+      "expected": "Sql And Python",
+      "hidden": true
+    }
+  ]
+}

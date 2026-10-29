@@ -1,0 +1,82 @@
+{
+  "slug": "even-squares",
+  "track": "python",
+  "title": "Squares of evens",
+  "difficulty": "Easy",
+  "tags": [
+    "comprehensions"
+  ],
+  "statementMd": "Return a list with the square of every **even** number in `nums`, in order. Use a list comprehension.",
+  "hints": [
+    "Comprehensions can filter: `[expr for x in nums if condition]`.",
+    "A number is even when `x % 2 == 0`."
+  ],
+  "solutionMd": "```python\ndef even_squares(nums):\n    return [x * x for x in nums if x % 2 == 0]\n```\n\nThe `if` clause filters before the expression is evaluated.",
+  "starterCode": "def even_squares(nums):\n    # Write your code here\n    pass\n",
+  "functionName": "even_squares",
+  "referenceSolution": "def even_squares(nums):\n    return [x * x for x in nums if x % 2 == 0]\n",
+  "tests": [
+    {
+      "args": [
+        [
+          1,
+          2,
+          3,
+          4
+        ]
+      ],
+      "expected": [
+        4,
+        16
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": [],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          1,
+          3,
+          5
+        ]
+      ],
+      "expected": [],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          -2,
+          0,
+          2
+        ]
+      ],
+      "expected": [
+        4,
+        0,
+        4
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          10,
+          11,
+          12
+        ]
+      ],
+      "expected": [
+        100,
+        144
+      ],
+      "hidden": true
+    }
+  ]
+}

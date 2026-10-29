@@ -1,0 +1,63 @@
+{
+  "slug": "count-primes",
+  "track": "python",
+  "title": "Count primes",
+  "difficulty": "Hard",
+  "tags": [
+    "algorithms",
+    "math"
+  ],
+  "statementMd": "Return how many prime numbers are less than or equal to `n`. It must handle `n = 1,000,000` well within the time limit.",
+  "hints": [
+    "Trial division of every number is too slow for large `n`.",
+    "Use the Sieve of Eratosthenes: mark multiples of each prime starting at `p * p`."
+  ],
+  "solutionMd": "```python\ndef count_primes(n):\n    if n < 2:\n        return 0\n    is_prime = [True] * (n + 1)\n    is_prime[0] = is_prime[1] = False\n    p = 2\n    while p * p <= n:\n        if is_prime[p]:\n            is_prime[p * p :: p] = [False] * len(range(p * p, n + 1, p))\n        p += 1\n    return sum(is_prime)\n```\n\nThe sieve runs in O(n log log n). Starting at `p * p` works because smaller multiples were already crossed out by smaller primes, and slice assignment crosses out a whole series at once.",
+  "starterCode": "def count_primes(n):\n    # Write your code here\n    pass\n",
+  "functionName": "count_primes",
+  "referenceSolution": "def count_primes(n):\n    if n < 2:\n        return 0\n    is_prime = [True] * (n + 1)\n    is_prime[0] = is_prime[1] = False\n    p = 2\n    while p * p <= n:\n        if is_prime[p]:\n            is_prime[p * p :: p] = [False] * len(range(p * p, n + 1, p))\n        p += 1\n    return sum(is_prime)\n",
+  "tests": [
+    {
+      "args": [
+        10
+      ],
+      "expected": 4,
+      "hidden": false
+    },
+    {
+      "args": [
+        1
+      ],
+      "expected": 0,
+      "hidden": false
+    },
+    {
+      "args": [
+        2
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        100
+      ],
+      "expected": 25,
+      "hidden": true
+    },
+    {
+      "args": [
+        7919
+      ],
+      "expected": 1000,
+      "hidden": true
+    },
+    {
+      "args": [
+        1000000
+      ],
+      "expected": 78498,
+      "hidden": true
+    }
+  ]
+}

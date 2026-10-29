@@ -1,0 +1,62 @@
+{
+  "slug": "valid-palindrome",
+  "track": "python",
+  "title": "Valid palindrome",
+  "difficulty": "Easy",
+  "tags": [
+    "strings"
+  ],
+  "statementMd": "Return `True` if `s` reads the same forwards and backwards, **ignoring case and any character that isn't a letter or digit**; otherwise `False`.",
+  "hints": [
+    "Build a cleaned string with `ch.isalnum()`.",
+    "Compare the cleaned string to its reverse."
+  ],
+  "solutionMd": "```python\ndef is_palindrome(s):\n    cleaned = [ch.lower() for ch in s if ch.isalnum()]\n    return cleaned == cleaned[::-1]\n```\n\nNormalise first (filter and lower-case), then a palindrome equals its own reverse.",
+  "starterCode": "def is_palindrome(s):\n    # Write your code here\n    pass\n",
+  "functionName": "is_palindrome",
+  "referenceSolution": "def is_palindrome(s):\n    cleaned = [ch.lower() for ch in s if ch.isalnum()]\n    return cleaned == cleaned[::-1]\n",
+  "tests": [
+    {
+      "args": [
+        "A man, a plan, a canal: Panama"
+      ],
+      "expected": true,
+      "hidden": false
+    },
+    {
+      "args": [
+        "hello"
+      ],
+      "expected": false,
+      "hidden": false
+    },
+    {
+      "args": [
+        ""
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        "No 'x' in Nixon"
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        "ab_a"
+      ],
+      "expected": true,
+      "hidden": true
+    },
+    {
+      "args": [
+        "0P"
+      ],
+      "expected": false,
+      "hidden": true
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "slug": "remove-duplicates",
+  "track": "python",
+  "title": "Remove duplicates",
+  "difficulty": "Easy",
+  "tags": [
+    "lists",
+    "sets"
+  ],
+  "statementMd": "Return a new list with duplicates removed, **keeping the first occurrence** of each item in its original order.",
+  "hints": [
+    "A `set` gives fast membership tests.",
+    "Only append an item the first time you see it."
+  ],
+  "solutionMd": "```python\ndef dedupe(items):\n    seen = set()\n    result = []\n    for item in items:\n        if item not in seen:\n            seen.add(item)\n            result.append(item)\n    return result\n```\n\n`list(set(items))` loses order; tracking a `seen` set keeps it. (`list(dict.fromkeys(items))` is a neat one-liner.)",
+  "starterCode": "def dedupe(items):\n    # Write your code here\n    pass\n",
+  "functionName": "dedupe",
+  "referenceSolution": "def dedupe(items):\n    seen = set()\n    result = []\n    for item in items:\n        if item not in seen:\n            seen.add(item)\n            result.append(item)\n    return result\n",
+  "tests": [
+    {
+      "args": [
+        [
+          1,
+          2,
+          1,
+          3,
+          2
+        ]
+      ],
+      "expected": [
+        1,
+        2,
+        3
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": [],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          "b",
+          "a",
+          "b",
+          "c",
+          "a"
+        ]
+      ],
+      "expected": [
+        "b",
+        "a",
+        "c"
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          5,
+          5,
+          5
+        ]
+      ],
+      "expected": [
+        5
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "expected": [
+        1,
+        2,
+        3
+      ],
+      "hidden": true
+    }
+  ]
+}

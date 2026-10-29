@@ -1,0 +1,56 @@
+{
+  "slug": "sum-of-digits",
+  "track": "python",
+  "title": "Sum of digits",
+  "difficulty": "Easy",
+  "tags": [
+    "loops",
+    "math"
+  ],
+  "statementMd": "Return the sum of the decimal digits of a non-negative integer `n`. For example `digit_sum(472)` is `13`.",
+  "hints": [
+    "`n % 10` gives the last digit and `n // 10` drops it.",
+    "Alternatively, iterate over `str(n)`."
+  ],
+  "solutionMd": "```python\ndef digit_sum(n):\n    total = 0\n    while n > 0:\n        total += n % 10\n        n //= 10\n    return total\n```\n\nRepeatedly peel off the last digit with `% 10` and shift right with `// 10`.",
+  "starterCode": "def digit_sum(n):\n    # Write your code here\n    pass\n",
+  "functionName": "digit_sum",
+  "referenceSolution": "def digit_sum(n):\n    total = 0\n    while n > 0:\n        total += n % 10\n        n //= 10\n    return total\n",
+  "tests": [
+    {
+      "args": [
+        472
+      ],
+      "expected": 13,
+      "hidden": false
+    },
+    {
+      "args": [
+        0
+      ],
+      "expected": 0,
+      "hidden": false
+    },
+    {
+      "args": [
+        9
+      ],
+      "expected": 9,
+      "hidden": true
+    },
+    {
+      "args": [
+        1000001
+      ],
+      "expected": 2,
+      "hidden": true
+    },
+    {
+      "args": [
+        987654321
+      ],
+      "expected": 45,
+      "hidden": true
+    }
+  ]
+}

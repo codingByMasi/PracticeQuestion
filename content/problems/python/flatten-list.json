@@ -1,0 +1,108 @@
+{
+  "slug": "flatten-list",
+  "track": "python",
+  "title": "Flatten a nested list",
+  "difficulty": "Medium",
+  "tags": [
+    "recursion",
+    "lists"
+  ],
+  "statementMd": "Given a list that may contain integers and other (arbitrarily nested) lists, return a flat list of all the integers in order.",
+  "hints": [
+    "Use `isinstance(item, list)` to detect sub-lists.",
+    "Recursively flatten sub-lists and `extend` the result."
+  ],
+  "solutionMd": "```python\ndef flatten(nested):\n    result = []\n    for item in nested:\n        if isinstance(item, list):\n            result.extend(flatten(item))\n        else:\n            result.append(item)\n    return result\n```\n\nRecursion mirrors the structure of the data: lists are handled by flattening them, integers are the base case.",
+  "starterCode": "def flatten(nested):\n    # Write your code here\n    pass\n",
+  "functionName": "flatten",
+  "referenceSolution": "def flatten(nested):\n    result = []\n    for item in nested:\n        if isinstance(item, list):\n            result.extend(flatten(item))\n        else:\n            result.append(item)\n    return result\n",
+  "tests": [
+    {
+      "args": [
+        [
+          1,
+          [
+            2,
+            3
+          ],
+          [
+            4,
+            [
+              5
+            ]
+          ]
+        ]
+      ],
+      "expected": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": [],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          [
+            []
+          ]
+        ]
+      ],
+      "expected": [],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "expected": [
+        1,
+        2,
+        3
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          [
+            1,
+            [
+              2,
+              [
+                3,
+                [
+                  4,
+                  [
+                    5
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ],
+      "expected": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "hidden": true
+    }
+  ]
+}

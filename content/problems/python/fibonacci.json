@@ -1,0 +1,63 @@
+{
+  "slug": "fibonacci",
+  "track": "python",
+  "title": "Fibonacci",
+  "difficulty": "Easy",
+  "tags": [
+    "recursion",
+    "loops"
+  ],
+  "statementMd": "Return the `n`-th Fibonacci number, where `fib(0) = 0`, `fib(1) = 1` and `fib(n) = fib(n-1) + fib(n-2)`. Your solution must handle `n` up to 80 quickly.",
+  "hints": [
+    "Plain recursion recomputes the same values exponentially many times.",
+    "Iterate keeping the last two values, or memoize with `functools.lru_cache`."
+  ],
+  "solutionMd": "```python\ndef fib(n):\n    a, b = 0, 1\n    for _ in range(n):\n        a, b = b, a + b\n    return a\n```\n\nIterating with two variables is O(n). Naive recursion is O(2^n) and would time out for `n = 80`.",
+  "starterCode": "def fib(n):\n    # Write your code here\n    pass\n",
+  "functionName": "fib",
+  "referenceSolution": "def fib(n):\n    a, b = 0, 1\n    for _ in range(n):\n        a, b = b, a + b\n    return a\n",
+  "tests": [
+    {
+      "args": [
+        0
+      ],
+      "expected": 0,
+      "hidden": false
+    },
+    {
+      "args": [
+        10
+      ],
+      "expected": 55,
+      "hidden": false
+    },
+    {
+      "args": [
+        1
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        2
+      ],
+      "expected": 1,
+      "hidden": true
+    },
+    {
+      "args": [
+        30
+      ],
+      "expected": 832040,
+      "hidden": true
+    },
+    {
+      "args": [
+        80
+      ],
+      "expected": 23416728348467685,
+      "hidden": true
+    }
+  ]
+}

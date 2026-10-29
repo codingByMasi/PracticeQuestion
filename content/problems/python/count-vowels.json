@@ -1,0 +1,56 @@
+{
+  "slug": "count-vowels",
+  "track": "python",
+  "title": "Count vowels",
+  "difficulty": "Easy",
+  "tags": [
+    "strings",
+    "loops"
+  ],
+  "statementMd": "Return how many vowels (`a`, `e`, `i`, `o`, `u`, upper or lower case) appear in `s`.",
+  "hints": [
+    "Lower-case the string first.",
+    "`ch in \"aeiou\"` tests membership."
+  ],
+  "solutionMd": "```python\ndef count_vowels(s):\n    return sum(1 for ch in s.lower() if ch in \"aeiou\")\n```\n\nA generator expression counts matching characters without building a list.",
+  "starterCode": "def count_vowels(s):\n    # Write your code here\n    pass\n",
+  "functionName": "count_vowels",
+  "referenceSolution": "def count_vowels(s):\n    return sum(1 for ch in s.lower() if ch in \"aeiou\")\n",
+  "tests": [
+    {
+      "args": [
+        "Hello World"
+      ],
+      "expected": 3,
+      "hidden": false
+    },
+    {
+      "args": [
+        "rhythm"
+      ],
+      "expected": 0,
+      "hidden": false
+    },
+    {
+      "args": [
+        ""
+      ],
+      "expected": 0,
+      "hidden": true
+    },
+    {
+      "args": [
+        "AEIOU aeiou"
+      ],
+      "expected": 10,
+      "hidden": true
+    },
+    {
+      "args": [
+        "Programming in Python"
+      ],
+      "expected": 5,
+      "hidden": true
+    }
+  ]
+}

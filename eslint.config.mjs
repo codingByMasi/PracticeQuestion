@@ -23,7 +23,7 @@ const config = [
       ],
     },
   },
-  { ignores: [".next/**", "node_modules/**", "public/vendor/**", "next-env.d.ts"] },
+  { ignores: [".next/**", "node_modules/**", "public/vendor/**", "public/workers/**", "public/pyodide/**", "next-env.d.ts"] },
 ];
 
 export default config;

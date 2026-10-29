@@ -6,3 +6,5 @@ next-env.d.ts
 public/vendor
 .vercel
 .env*.local
+public/pyodide
+public/workers

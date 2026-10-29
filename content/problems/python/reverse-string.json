@@ -1,0 +1,55 @@
+{
+  "slug": "reverse-string",
+  "track": "python",
+  "title": "Reverse a string",
+  "difficulty": "Easy",
+  "tags": [
+    "strings"
+  ],
+  "statementMd": "Return the string `s` reversed.",
+  "hints": [
+    "Strings support slicing.",
+    "`s[::-1]` steps backwards through the string."
+  ],
+  "solutionMd": "```python\ndef reverse_string(s):\n    return s[::-1]\n```\n\nA slice with step `-1` walks the string from end to start.",
+  "starterCode": "def reverse_string(s):\n    # Write your code here\n    pass\n",
+  "functionName": "reverse_string",
+  "referenceSolution": "def reverse_string(s):\n    return s[::-1]\n",
+  "tests": [
+    {
+      "args": [
+        "hello"
+      ],
+      "expected": "olleh",
+      "hidden": false
+    },
+    {
+      "args": [
+        ""
+      ],
+      "expected": "",
+      "hidden": false
+    },
+    {
+      "args": [
+        "a"
+      ],
+      "expected": "a",
+      "hidden": true
+    },
+    {
+      "args": [
+        "racecar"
+      ],
+      "expected": "racecar",
+      "hidden": true
+    },
+    {
+      "args": [
+        "CodeDrill 2026"
+      ],
+      "expected": "6202 llirDedoC",
+      "hidden": true
+    }
+  ]
+}

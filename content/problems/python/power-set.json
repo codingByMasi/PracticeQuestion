@@ -1,0 +1,206 @@
+{
+  "slug": "power-set",
+  "track": "python",
+  "title": "All subsets",
+  "difficulty": "Hard",
+  "tags": [
+    "recursion",
+    "backtracking"
+  ],
+  "statementMd": "Return every subset of the list `items` (whose elements are distinct). Each subset should keep the elements in their original order.\n\nReturn the subsets **sorted by length, then lexicographically**: e.g. `subsets([1, 2])` is `[[], [1], [2], [1, 2]]`.",
+  "hints": [
+    "Each element is either in or out of a subset: 2ⁿ subsets.",
+    "Build recursively from `subsets(items[1:])`, then sort with `key=lambda s: (len(s), s)`."
+  ],
+  "solutionMd": "```python\ndef subsets(items):\n    if not items:\n        return [[]]\n    rest = subsets(items[1:])\n    result = rest + [[items[0]] + s for s in rest]\n    return sorted(result, key=lambda s: (len(s), s))\n```\n\nThe subsets of a list are the subsets without its first element, plus the same subsets with that element added in front.",
+  "starterCode": "def subsets(items):\n    # Write your code here\n    pass\n",
+  "functionName": "subsets",
+  "referenceSolution": "def subsets(items):\n    if not items:\n        return [[]]\n    rest = subsets(items[1:])\n    result = rest + [[items[0]] + s for s in rest]\n    return sorted(result, key=lambda s: (len(s), s))\n",
+  "tests": [
+    {
+      "args": [
+        [
+          1,
+          2
+        ]
+      ],
+      "expected": [
+        [],
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": [
+        []
+      ],
+      "hidden": false
+    },
+    {
+      "args": [
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "expected": [
+        [],
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          "a",
+          "b",
+          "c",
+          "d"
+        ]
+      ],
+      "expected": [
+        [],
+        [
+          "a"
+        ],
+        [
+          "b"
+        ],
+        [
+          "c"
+        ],
+        [
+          "d"
+        ],
+        [
+          "a",
+          "b"
+        ],
+        [
+          "a",
+          "c"
+        ],
+        [
+          "a",
+          "d"
+        ],
+        [
+          "b",
+          "c"
+        ],
+        [
+          "b",
+          "d"
+        ],
+        [
+          "c",
+          "d"
+        ],
+        [
+          "a",
+          "b",
+          "c"
+        ],
+        [
+          "a",
+          "b",
+          "d"
+        ],
+        [
+          "a",
+          "c",
+          "d"
+        ],
+        [
+          "b",
+          "c",
+          "d"
+        ],
+        [
+          "a",
+          "b",
+          "c",
+          "d"
+        ]
+      ],
+      "hidden": true
+    },
+    {
+      "args": [
+        [
+          3,
+          1,
+          2
+        ]
+      ],
+      "expected": [
+        [],
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          1,
+          2
+        ]
+      ],
+      "hidden": true
+    }
+  ]
+}
